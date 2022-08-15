@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 
 import 'config/firebase.stg.dart';
@@ -22,12 +23,19 @@ Future<void> main() async {
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
 
     FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+    FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.instance;
+
+    await remoteConfig.setConfigSettings(RemoteConfigSettings(
+      fetchTimeout: const Duration(minutes: 1),
+      minimumFetchInterval: const Duration(hours: 1),
+    ));
 
     runApp(const MyApp());
   },
       (error, stack) =>
           FirebaseCrashlytics.instance.recordError(error, stack, fatal: true));
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
