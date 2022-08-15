@@ -54,6 +54,11 @@ app.*.map.json
 google-services.json
 GoogleService-Info.plist
 google-services.js
+macos/firebase_app_id_file.json
+ios/firebase_app_id_file.json
+lib/config/firebase.dev.dart
+lib/config/firebase.stg.dart
+lib/config/firebase.prd.dart
 
 Gemfile.lock
 
