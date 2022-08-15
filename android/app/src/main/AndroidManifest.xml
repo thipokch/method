@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.method">
+    package="ch.thipok.method">
    <application
         android:label="method"
         android:name="${applicationName}"
