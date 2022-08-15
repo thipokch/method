@@ -3,7 +3,7 @@
 import 'dart:io';
 
 main() async {
-  final buildHash = Platform.environment["BUILDHASH"];
+  final buildHash = Platform.environment["BUILD_NUM"];
 
   if (buildHash?.isEmpty ?? true) {
     print("Build number update skipped.");

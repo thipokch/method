@@ -88,8 +88,9 @@ platform :ios do
             ipa: "../build/ipa/dev/Runner.ipa",
             beta_app_feedback_email: "me@thipok.ch",
             beta_app_description: "Experiment with your thought.",
+            groups: [ "All" ],
+            changelog: ENV["CHANGELOG"],
             demo_account_required: false,
-            notify_external_testers: true,
         )
     end
 
@@ -106,8 +107,9 @@ platform :ios do
             ipa: "../build/ipa/stg/Runner.ipa",
             beta_app_feedback_email: "me@thipok.ch",
             beta_app_description: "Experiment with your thought.",
+            groups: [ "All" ],
+            changelog: ENV["CHANGELOG"],
             demo_account_required: false,
-            notify_external_testers: true,
         )
     end
 
@@ -121,7 +123,7 @@ platform :ios do
             in_house: false,
         )
         upload_to_app_store(
-            ipa: "../build/ipa/prd/Runner.ipa",
+            ipa: "./build/ipa/prd/Runner.ipa",
             force: true,
         )
     end
