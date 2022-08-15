@@ -1,5 +1,8 @@
+// ignore_for_file: unused_local_variable
+
 import 'dart:async';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -17,6 +20,8 @@ Future<void> main() async {
     // Pass all uncaught errors from the framework to Crashlytics.
     // https://firebase.google.com/docs/crashlytics/customize-crash-reports?platform=flutter
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
+    FirebaseAnalytics analytics = FirebaseAnalytics.instance;
 
     runApp(const MyApp());
   },
