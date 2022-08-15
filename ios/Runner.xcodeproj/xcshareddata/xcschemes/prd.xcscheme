@@ -9,7 +9,7 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Copy environment files"
+               title = "Copy Environment Files"
                scriptText = "# https://www.appfoundry.be/blog/xcode-env-configuration&#10;&#10;ENV_PATH=&quot;${PROJECT_DIR}/${ENVIRONMENT}/&quot;&#10;WORKING_DIR=&quot;${PROJECT_DIR}/${PRODUCT_NAME}/&quot;&#10;&#10;echo &quot;Copying all files under ${ENV_PATH} to ${WORKING_DIR}&quot;&#10;cp -v -r &quot;${ENV_PATH}&quot;* &quot;${WORKING_DIR}&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
