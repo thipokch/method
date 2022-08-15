@@ -3,6 +3,7 @@
 import 'dart:async';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_app_installations/firebase_app_installations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
@@ -24,7 +25,8 @@ Future<void> main() async {
 
     FirebaseAnalytics analytics = FirebaseAnalytics.instance;
     FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.instance;
-    
+    String fid = await FirebaseInstallations.instance.getId();
+
     await remoteConfig.setConfigSettings(RemoteConfigSettings(
       fetchTimeout: const Duration(minutes: 1),
       minimumFetchInterval: const Duration(hours: 1),
