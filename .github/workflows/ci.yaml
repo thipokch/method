@@ -292,7 +292,7 @@ jobs:
           #   deploy-command: web
           #   build-dir: /build/web/
 
-    if: ${{ needs.release.outputs.releases_created }}
+    if: ${{ needs.release.outputs.releases_created || needs.release.outputs.current_env == 'dev' }}
     runs-on: ${{ matrix.os }}
     steps:
 
