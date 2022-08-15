@@ -13,9 +13,14 @@ struct MethodApp: App {
     
     var body: some Scene {
         WindowGroup {
-            FlutterView()
-                .ignoresSafeArea()
-                .environmentObject(self.appDelegate)
+            ZStack {
+                FlutterView()
+                    .ignoresSafeArea()
+                    .environmentObject(self.appDelegate)
+                Button("Crash") {
+                    fatalError("Crash was triggered")
+                }
+            }
         }
     }
 }

@@ -71,8 +71,8 @@ scripts:
       cp -v -r "$SECRETS_DIR/google/darwin/"* "$MELOS_ROOT_PATH/ios/"
       cp -v -r "$SECRETS_DIR/google/web/"* "$MELOS_ROOT_PATH/web/"
       
-      cp -v -r $SECRETS_DIR/google/flutter/*/lib/config/firebase.*.dart "$MELOS_ROOT_PATH/lib/config/"
       cp -v -r "$SECRETS_DIR/google/flutter/dev/"* "$MELOS_ROOT_PATH"
+      cp -v -r $SECRETS_DIR/google/flutter/*/lib/config/firebase.*.dart "$MELOS_ROOT_PATH/lib/config/"
 
   #
   #   Hygiene

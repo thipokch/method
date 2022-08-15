@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
+		189CB1D628AA7B5800F89D64 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3CC30F0E2E717D5F3E0E147 /* GoogleService-Info.plist */; };
 		18D8321228A9E757001B965E /* FlutterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D8321128A9E757001B965E /* FlutterView.swift */; };
 		18D8321428A9E7A2001B965E /* MethodApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D8321328A9E7A1001B965E /* MethodApp.swift */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
@@ -220,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
+				189CB1D628AA7B5800F89D64 /* GoogleService-Info.plist in Resources */,
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
 			);
@@ -410,6 +412,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 9C25UZ547F;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT = stg;
+				FLUTTER_TARGET = "lib/main.$(ENVIRONMENT).dart";
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -491,6 +494,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 9C25UZ547F;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT = prd;
+				FLUTTER_TARGET = "lib/main.$(ENVIRONMENT).dart";
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -575,6 +579,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 9C25UZ547F;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT = prd;
+				FLUTTER_TARGET = "lib/main.$(ENVIRONMENT).dart";
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -655,6 +660,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 9C25UZ547F;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT = stg;
+				FLUTTER_TARGET = "lib/main.$(ENVIRONMENT).dart";
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -739,6 +745,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 9C25UZ547F;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT = stg;
+				FLUTTER_TARGET = "lib/main.$(ENVIRONMENT).dart";
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -819,6 +826,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 9C25UZ547F;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT = prd;
+				FLUTTER_TARGET = "lib/main.$(ENVIRONMENT).dart";
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -897,6 +905,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 9C25UZ547F;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT = dev;
+				FLUTTER_TARGET = "lib/main.$(ENVIRONMENT).dart";
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1032,6 +1041,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 9C25UZ547F;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT = dev;
+				FLUTTER_TARGET = "lib/main.$(ENVIRONMENT).dart";
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1061,6 +1071,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 9C25UZ547F;
 				ENABLE_BITCODE = NO;
 				ENVIRONMENT = dev;
+				FLUTTER_TARGET = "lib/main.$(ENVIRONMENT).dart";
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
