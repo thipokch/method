@@ -1,5 +1,7 @@
-# melos_managed_dependency_overrides: element,matter
+# melos_managed_dependency_overrides: element,matter,core
 dependency_overrides:
+  core:
+    path: packages/core
   element:
     path: packages/element
   matter:
