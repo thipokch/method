@@ -142,7 +142,7 @@ packages:
     source: hosted
     version: "2.2.3"
   element:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       path: "packages/element"
       relative: true
@@ -422,6 +422,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.4"
+  matter:
+    dependency: "direct main"
+    description:
+      path: "packages/matter"
+      relative: true
+    source: path
+    version: "0.0.0"
   melos:
     dependency: "direct dev"
     description:
