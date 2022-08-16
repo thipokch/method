@@ -43,6 +43,8 @@ dependencies:
   firebase_app_check: ^0.0.6+19
   firebase_in_app_messaging: ^0.6.0+21
 
+  element:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

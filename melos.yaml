@@ -19,6 +19,7 @@ scripts:
 
   postbootstrap: |
     melos run setup:githook
+    melos run sync:analysis
 
   postclean: |
     echo "Cleaning previous secrets repo..."
@@ -29,6 +30,11 @@ scripts:
   #
   #   Setup
   #
+
+  sync:analysis:
+    run: 
+      melos exec -c 6 --ignore="method" -- \
+        cp $MELOS_ROOT_PATH/analysis_options.yaml ./analysis_options.yaml
 
   clean:deep:
     description: Clean things very deeply, can be used to establish "pristine checkout" status.

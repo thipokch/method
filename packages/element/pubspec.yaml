@@ -1,0 +1,45 @@
+name: element
+description: Design tokens and assets for method.
+
+environment:
+  sdk: ">=2.17.6 <3.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  fonts:
+    - family: NotoSans
+      fonts:
+        - asset: fonts/NotoSans-Black.ttf
+        - asset: fonts/NotoSans-BlackItalic.ttf
+        - asset: fonts/NotoSans-Bold.ttf
+        - asset: fonts/NotoSans-BoldItalic.ttf
+        - asset: fonts/NotoSans-ExtraBold.ttf
+        - asset: fonts/NotoSans-ExtraBoldItalic.ttf
+        - asset: fonts/NotoSans-BoldItalic.ttf
+        - asset: fonts/NotoSans-ExtraLight.ttf
+        - asset: fonts/NotoSans-ExtraLightItalic.ttf
+        - asset: fonts/NotoSans-Italic.ttf
+        - asset: fonts/NotoSans-Light.ttf
+        - asset: fonts/NotoSans-LightItalic.ttf
+        - asset: fonts/NotoSans-Medium.ttf
+        - asset: fonts/NotoSans-MediumItalic.ttf
+        - asset: fonts/NotoSans-Regular.ttf
+        - asset: fonts/NotoSans-SemiBold.ttf
+        - asset: fonts/NotoSans-SemiBoldItalic.ttf
+        - asset: fonts/NotoSans-Thin.ttf
+        - asset: fonts/NotoSans-ThinItalic.ttf
+    - family: NotoSerif
+      fonts:
+        - asset: fonts/NotoSerif-Bold.ttf
+        - asset: fonts/NotoSerif-BoldItalic.ttf
+        - asset: fonts/NotoSans-Italic.ttf
+        - asset: fonts/NotoSans-Regular.ttf
