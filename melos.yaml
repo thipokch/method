@@ -20,6 +20,7 @@ scripts:
   postbootstrap: |
     melos run setup:githook
     melos run sync:analysis
+    melos run build:generate
 
   postclean: |
     echo "Cleaning previous secrets repo..."
