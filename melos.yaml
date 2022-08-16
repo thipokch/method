@@ -32,7 +32,7 @@ scripts:
   #
 
   sync:analysis:
-    run: 
+    run: |
       melos exec -c 6 --ignore="method" -- \
         cp $MELOS_ROOT_PATH/analysis_options.yaml ./analysis_options.yaml
 
@@ -292,3 +292,13 @@ scripts:
         echo "Environment variables from .env exported..."
 
       cd ios && bundle exec fastlane deployPrd
+
+  
+  #
+  #   Packages
+  #
+  
+  element:build:
+    run: |
+      melos exec --scope="element" -- \
+        flutter pub run build_runner build
