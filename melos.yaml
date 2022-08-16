@@ -142,6 +142,11 @@ scripts:
   #   Build
   #
 
+  build:generate:
+    run: |
+      melos exec --depends-on="build_runner" -- \
+        flutter pub run build_runner build
+  
   #   iOS
 
   build:ios:dev:
@@ -292,13 +297,3 @@ scripts:
         echo "Environment variables from .env exported..."
 
       cd ios && bundle exec fastlane deployPrd
-
-  
-  #
-  #   Packages
-  #
-  
-  element:build:
-    run: |
-      melos exec --scope="element" -- \
-        flutter pub run build_runner build
