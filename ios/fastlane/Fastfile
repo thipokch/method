@@ -89,7 +89,11 @@ platform :ios do
             beta_app_feedback_email: "me@thipok.ch",
             beta_app_description: "Experiment with your thought.",
             groups: [ "All" ],
-            changelog: ENV["CHANGELOG"],
+            localized_build_info: {
+                "default": {
+                    whats_new: ENV["CHANGELOG"],
+                },
+            },
             demo_account_required: false,
         )
     end
@@ -108,7 +112,11 @@ platform :ios do
             beta_app_feedback_email: "me@thipok.ch",
             beta_app_description: "Experiment with your thought.",
             groups: [ "All" ],
-            changelog: ENV["CHANGELOG"],
+            localized_build_info: {
+                "default": {
+                    whats_new: ENV["CHANGELOG"],
+                },
+            },
             demo_account_required: false,
         )
     end
