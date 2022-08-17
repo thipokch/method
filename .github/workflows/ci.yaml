@@ -54,7 +54,7 @@ jobs:
       
       - name: Run Dart Code Metrics
         env:
-          INPUT_FOLDERS: "lib"
+          INPUT_FOLDERS: "lib, packages/core/lib, packages/core/element, packages/core/matter"
           INPUT_GITHUB_TOKEN: ${{ github.token }}
           # Defaults
           INPUT_RELATIVE_PATH: ""

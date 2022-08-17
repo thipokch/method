@@ -28,6 +28,14 @@ linter:
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
 
+analyzer:
+  plugins:
+    - dart_code_metrics
+  exclude:
+    - "build/**"
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+
 # https://dartcodemetrics.dev/docs/getting-started/configuration#configuring-a-rules-entry
 dart_code_metrics:
   anti-patterns:
@@ -46,6 +54,7 @@ dart_code_metrics:
     technical-debt: 0
   metrics-exclude:
     - test/**
+    - lib/gen/**
   rules:
     - newline-before-return
     - no-boolean-literal-compare

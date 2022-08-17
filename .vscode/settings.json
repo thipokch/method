@@ -1,3 +1,20 @@
 {
-    "dart.runPubGetOnPubspecChanges": false
+    "dart.runPubGetOnPubspecChanges": false,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/.dart_tool": true,
+        "**/.idea": true,
+        "**/.flutter-plugins": true,
+        "**/.flutter-plugins-dependencies": true,
+        "**/.metadata": true,
+        "**/.packages": true,
+        "**/*.iml": true,
+        "**/pubspec.lock": true
+    },
+    "explorerExclude.backup": {}
 }
