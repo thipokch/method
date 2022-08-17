@@ -12,7 +12,4 @@ class FontFamily {
 
   /// Font family: NotoSans
   static const String notoSans = 'NotoSans';
-
-  /// Font family: NotoSerif
-  static const String notoSerif = 'NotoSerif';
 }

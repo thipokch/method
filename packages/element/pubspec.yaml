@@ -42,12 +42,6 @@ flutter:
         - asset: fonts/NotoSans-SemiBoldItalic.ttf
         - asset: fonts/NotoSans-Thin.ttf
         - asset: fonts/NotoSans-ThinItalic.ttf
-    - family: NotoSerif
-      fonts:
-        - asset: fonts/NotoSerif-Bold.ttf
-        - asset: fonts/NotoSerif-BoldItalic.ttf
-        - asset: fonts/NotoSans-Italic.ttf
-        - asset: fonts/NotoSans-Regular.ttf
 
 flutter_gen:
   output: lib/gen/ # Optional (default: lib/gen/)
@@ -57,3 +51,5 @@ flutter_gen:
     flutter_svg: true
     # flare_flutter: true
     # rive: true
+
+  package_parameter_enabled: true

@@ -1,6 +1,6 @@
 import 'package:element/element_icon.dart';
+import 'package:element/element_typography.dart';
 import 'package:flutter/material.dart';
-import 'package:matter/element/typography.dart';
 import 'package:matter/patch/ink_sparkle.dart';
 import 'package:matter/preview_composite.dart';
 import 'package:matter/element/color.dart';
@@ -37,7 +37,7 @@ class _MatterPreviewState extends State<MatterPreview> {
   ThemeData updateThemes(bool useLightMode) {
     return ThemeData(
       useMaterial3: useMaterial3,
-      textTheme: textStyle,
+      textTheme: ElementTypography.textStyle,
       splashFactory: InkSparklePatch.splashFactory,
       colorScheme: useLightMode ? lightColorStyle : darkColorStyle,
     );
