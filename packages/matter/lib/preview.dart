@@ -36,10 +36,11 @@ class _MatterPreviewState extends State<MatterPreview> {
 
   ThemeData updateThemes(bool useLightMode) {
     return ThemeData(
-        useMaterial3: useMaterial3,
-        textTheme: textStyle,
-        splashFactory: InkSparklePatch.splashFactory,
-        colorScheme: useLightMode ? lightColorStyle : darkColorStyle);
+      useMaterial3: useMaterial3,
+      textTheme: textStyle,
+      splashFactory: InkSparklePatch.splashFactory,
+      colorScheme: useLightMode ? lightColorStyle : darkColorStyle,
+    );
   }
 
   void onScreenChanged(int selectedScreen) {
@@ -76,8 +77,8 @@ class _MatterPreviewState extends State<MatterPreview> {
       actions: [
         IconButton(
           icon: useLightMode
-              ? const Icon(Icons.wb_sunny)
-              : const Icon(Icons.wb_sunny_outlined),
+              ? const Icon(ElementIcon.sunMax)
+              : const Icon(ElementIcon.sunMin),
           onPressed: onBrightnessChange,
           tooltip: "Toggle brightness",
         ),
@@ -122,10 +123,12 @@ class _MatterPreviewState extends State<MatterPreview> {
                 child: Row(
                   children: <Widget>[
                     Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 5),
-                        child: NavigationRailSection(
-                            onSelectItem: onScreenChanged,
-                            selectedIndex: screenIndex)),
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      child: NavigationRailSection(
+                        onSelectItem: onScreenChanged,
+                        selectedIndex: screenIndex,
+                      ),
+                    ),
                     const VerticalDivider(thickness: 1, width: 1),
                     createScreenFor(screenIndex, true),
                   ],
@@ -164,10 +167,10 @@ const List<NavigationDestination> appBarDestinations = [
   ),
   NavigationDestination(
     tooltip: "",
-    icon: Icon(ElementIcon.styleGuide),
+    icon: Icon(ElementIcon.style),
     label: 'Style',
-    selectedIcon: Icon(ElementIcon.styleGuideFilled),
-  )
+    selectedIcon: Icon(ElementIcon.styleFilled),
+  ),
 ];
 
 final List<NavigationRailDestination> navRailDestinations = appBarDestinations
@@ -191,11 +194,12 @@ class NavigationBars extends StatefulWidget {
   final int selectedIndex;
   final bool isExampleBar;
 
-  const NavigationBars(
-      {super.key,
-      this.onSelectItem,
-      required this.selectedIndex,
-      required this.isExampleBar});
+  const NavigationBars({
+    super.key,
+    this.onSelectItem,
+    required this.selectedIndex,
+    required this.isExampleBar,
+  });
 
   @override
   State<NavigationBars> createState() => _NavigationBarsState();
@@ -229,8 +233,11 @@ class NavigationRailSection extends StatefulWidget {
   final void Function(int) onSelectItem;
   final int selectedIndex;
 
-  const NavigationRailSection(
-      {super.key, required this.onSelectItem, required this.selectedIndex});
+  const NavigationRailSection({
+    super.key,
+    required this.onSelectItem,
+    required this.selectedIndex,
+  });
 
   @override
   State<NavigationRailSection> createState() => _NavigationRailSectionState();

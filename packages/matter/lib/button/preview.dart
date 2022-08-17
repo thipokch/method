@@ -117,7 +117,7 @@ class ButtonsWithIcon extends StatelessWidget {
           onPressed: () {},
           icon: const Icon(ElementIcon.add),
           label: const Text("Icon"),
-        )
+        ),
       ],
     );
   }
@@ -130,6 +130,7 @@ class FloatingActionButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     // ignore: no_leading_underscores_for_local_identifiers
     const Widget _divider = Preview.rowDivider;
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Wrap(
@@ -138,23 +139,23 @@ class FloatingActionButtons extends StatelessWidget {
         children: [
           FloatingActionButton.small(
             onPressed: () {},
-            child: const Icon(Icons.add),
+            child: const Icon(ElementIcon.add),
           ),
           _divider,
           FloatingActionButton(
             onPressed: () {},
-            child: const Icon(Icons.add),
+            child: const Icon(ElementIcon.add),
           ),
           _divider,
           FloatingActionButton.extended(
             onPressed: () {},
-            icon: const Icon(Icons.add),
+            icon: const Icon(ElementIcon.add),
             label: const Text("Create"),
           ),
           _divider,
           FloatingActionButton.large(
             onPressed: () {},
-            child: const Icon(Icons.add),
+            child: const Icon(ElementIcon.add),
           ),
         ],
       ),

@@ -118,15 +118,20 @@ class InkSparklePatch extends InteractiveInkFeature {
         _textDirection = textDirection,
         _targetRadius = (radius ??
                 _getTargetRadius(
-                    referenceBox, containedInkWell, rectCallback, position)) *
+                  referenceBox,
+                  containedInkWell,
+                  rectCallback,
+                  position,
+                )) *
             _targetRadiusMultiplier,
         _clipCallback =
             _getClipCallback(referenceBox, containedInkWell, rectCallback),
         super(
-            controller: controller,
-            referenceBox: referenceBox,
-            color: color,
-            onRemoved: onRemoved) {
+          controller: controller,
+          referenceBox: referenceBox,
+          color: color,
+          onRemoved: onRemoved,
+        ) {
     // InkSparkle will not be painted until the async compilation completes.
     _InkSparkleFactory.compileShaderIfNeccessary();
     controller.addInkFeature(this);
@@ -163,7 +168,8 @@ class InkSparklePatch extends InteractiveInkFeature {
     final Tween<Vector2> centerTween = Tween<Vector2>(
       begin: Vector2.array(<double>[_position.dx, _position.dy]),
       end: Vector2.array(
-          <double>[referenceBox.size.width / 2, referenceBox.size.height / 2]),
+        <double>[referenceBox.size.width / 2, referenceBox.size.height / 2],
+      ),
     );
     final Animation<double> centerProgress = TweenSequence<double>(
       <TweenSequenceItem<double>>[
@@ -426,7 +432,8 @@ class InkSparklePatch extends InteractiveInkFeature {
     final Rect rect = clipCallback();
     if (customBorder != null) {
       canvas.clipPath(
-          customBorder.getOuterPath(rect, textDirection: textDirection));
+        customBorder.getOuterPath(rect, textDirection: textDirection),
+      );
     } else if (borderRadius != BorderRadius.zero) {
       canvas.clipRRect(RRect.fromRectAndCorners(
         rect,

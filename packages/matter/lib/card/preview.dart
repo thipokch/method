@@ -58,7 +58,7 @@ class _MaterialCardPreview extends StatelessWidget {
                   Align(
                     alignment: Alignment.bottomLeft,
                     child: Text("Elevated"),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -81,7 +81,7 @@ class _MaterialCardPreview extends StatelessWidget {
                   Align(
                     alignment: Alignment.bottomLeft,
                     child: Text("Filled"),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -109,7 +109,7 @@ class _MaterialCardPreview extends StatelessWidget {
                   Align(
                     alignment: Alignment.bottomLeft,
                     child: Text("Outlined"),
-                  )
+                  ),
                 ],
               ),
             ),

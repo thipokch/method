@@ -9,6 +9,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  cupertino_icons: ^1.0.5
+
 dev_dependencies:
   build_runner:
   flutter_gen_runner:

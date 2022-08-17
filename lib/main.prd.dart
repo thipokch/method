@@ -10,32 +10,34 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:matter/preview.dart';
 
-
 import 'config/firebase.prd.dart';
 
 Future<void> main() async {
-  runZonedGuarded<Future<void>>(() async {
-    WidgetsFlutterBinding.ensureInitialized();
+  runZonedGuarded<Future<void>>(
+    () async {
+      WidgetsFlutterBinding.ensureInitialized();
 
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
 
-    // Pass all uncaught errors from the framework to Crashlytics.
-    // https://firebase.google.com/docs/crashlytics/customize-crash-reports?platform=flutter
-    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+      // Pass all uncaught errors from the framework to Crashlytics.
+      // https://firebase.google.com/docs/crashlytics/customize-crash-reports?platform=flutter
+      FlutterError.onError =
+          FirebaseCrashlytics.instance.recordFlutterFatalError;
 
-    FirebaseAnalytics analytics = FirebaseAnalytics.instance;
-    FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.instance;
-    String fid = await FirebaseInstallations.instance.getId();
+      FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+      FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.instance;
+      String fid = await FirebaseInstallations.instance.getId();
 
-    await remoteConfig.setConfigSettings(RemoteConfigSettings(
-      fetchTimeout: const Duration(minutes: 1),
-      minimumFetchInterval: const Duration(hours: 1),
-    ));
+      await remoteConfig.setConfigSettings(RemoteConfigSettings(
+        fetchTimeout: const Duration(minutes: 1),
+        minimumFetchInterval: const Duration(hours: 1),
+      ));
 
-    runApp(const MatterPreview());
-  },
-      (error, stack) =>
-          FirebaseCrashlytics.instance.recordError(error, stack, fatal: true));
+      runApp(const MatterPreview());
+    },
+    (error, stack) =>
+        FirebaseCrashlytics.instance.recordError(error, stack, fatal: true),
+  );
 }

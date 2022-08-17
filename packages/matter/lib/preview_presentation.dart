@@ -50,7 +50,7 @@ class PresentationPreview extends StatelessWidget {
                       const TypographyPreview(),
                     ],
                   ),
-                )
+                ),
               ],
             ),
           );

@@ -61,7 +61,7 @@ class _DialogsState extends State<Dialogs> {
       builder: (context) => AlertDialog(
         title: const Text("Basic Dialog Title"),
         content: const Text(
-            "A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made."),
+            "A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made.",),
         actions: <Widget>[
           TextButton(
             child: const Text('Dismiss'),
@@ -118,7 +118,7 @@ const List<NavigationDestination> appBarDestinations = [
     icon: Icon(Icons.invert_colors_on_outlined),
     label: 'Elevation',
     selectedIcon: Icon(Icons.opacity),
-  )
+  ),
 ];
 
 final List<NavigationRailDestination> navRailDestinations = appBarDestinations
@@ -155,7 +155,7 @@ const List<Widget> exampleBarDestinations = [
     icon: Icon(Icons.account_box_outlined),
     label: 'Account',
     selectedIcon: Icon(Icons.account_box),
-  )
+  ),
 ];
 
 class NavigationBars extends StatefulWidget {
@@ -167,7 +167,7 @@ class NavigationBars extends StatefulWidget {
       {super.key,
       this.onSelectItem,
       required this.selectedIndex,
-      required this.isExampleBar});
+      required this.isExampleBar,});
 
   @override
   State<NavigationBars> createState() => _NavigationBarsState();
@@ -203,7 +203,7 @@ class NavigationRailSection extends StatefulWidget {
   final int selectedIndex;
 
   const NavigationRailSection(
-      {super.key, required this.onSelectItem, required this.selectedIndex});
+      {super.key, required this.onSelectItem, required this.selectedIndex,});
 
   @override
   State<NavigationRailSection> createState() => _NavigationRailSectionState();

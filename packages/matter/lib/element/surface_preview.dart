@@ -7,6 +7,7 @@ class SurfacePreview extends StatelessWidget {
   Widget build(BuildContext context) {
     Color shadowColor = Theme.of(context).colorScheme.shadow;
     Color surfaceTint = Theme.of(context).colorScheme.primary;
+
     return Column(
       children: [
         Padding(
@@ -37,7 +38,7 @@ class SurfacePreview extends StatelessWidget {
             style: Theme.of(context).textTheme.titleSmall,
           ),
         ),
-        ElevationGrid(shadowColor: shadowColor)
+        ElevationGrid(shadowColor: shadowColor),
       ],
     );
   }
@@ -52,7 +53,9 @@ class ElevationGrid extends StatelessWidget {
   final Color? surfaceTintColor;
 
   List<ElevationCard> elevationCards(
-      Color? shadowColor, Color? surfaceTintColor) {
+    Color? shadowColor,
+    Color? surfaceTintColor,
+  ) {
     return elevations
         .map(
           (elevationInfo) => ElevationCard(
@@ -90,8 +93,12 @@ class ElevationGrid extends StatelessWidget {
 }
 
 class ElevationCard extends StatefulWidget {
-  const ElevationCard(
-      {super.key, required this.info, this.shadowColor, this.surfaceTint});
+  const ElevationCard({
+    super.key,
+    required this.info,
+    this.shadowColor,
+    this.surfaceTint,
+  });
 
   final ElevationInfo info;
   final Color? shadowColor;

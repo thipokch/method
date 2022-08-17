@@ -36,7 +36,7 @@ class IconographyPreview extends StatelessWidget {
             Icon(ElementIcon.brandArrowDownRight, size: ElementScale.iconM),
             Icon(ElementIcon.brandArrowLeftRight, size: ElementScale.iconM),
           ],
-        )
+        ),
       ],
     );
   }

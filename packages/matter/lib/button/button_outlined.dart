@@ -41,23 +41,24 @@ class ButtonOutlined extends OutlinedButton {
           context,
         )
         .copyWith(
-            elevation: ButtonStyleButton.allOrNull(.0),
-            foregroundColor: ButtonForeground(
-              Theme.of(context).colorScheme.primary,
-              Theme.of(context).colorScheme.onSurface,
+          elevation: ButtonStyleButton.allOrNull(.0),
+          foregroundColor: ButtonForeground(
+            Theme.of(context).colorScheme.primary,
+            Theme.of(context).colorScheme.onSurface,
+          ),
+          overlayColor: ButtonOverlay(
+            Theme.of(context).colorScheme.primary,
+          ),
+          splashFactory: InkSparklePatch.splashFactory,
+          side: MaterialStateProperty.all(
+            BorderSide(
+              width: ElementScale.borderL,
+              color: isEnabled
+                  ? colorScheme.primary
+                  : colorScheme.outline.withOpacity(0.12),
             ),
-            overlayColor: ButtonOverlay(
-              Theme.of(context).colorScheme.primary,
-            ),
-            splashFactory: InkSparklePatch.splashFactory,
-            side: MaterialStateProperty.all(
-              BorderSide(
-                width: ElementScale.borderL,
-                color: isEnabled
-                    ? colorScheme.primary
-                    : colorScheme.outline.withOpacity(0.12),
-              ),
-            ));
+          ),
+        );
   }
 
   factory ButtonOutlined.icon({
