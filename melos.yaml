@@ -19,6 +19,7 @@ scripts:
 
   postbootstrap: |
     melos run setup:githook
+    melos run setup:secrets
     melos run sync:analysis
     melos run build:generate
 
