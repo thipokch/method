@@ -1,9 +1,9 @@
+import 'package:element/element_color.dart';
 import 'package:element/element_icon.dart';
 import 'package:element/element_typography.dart';
 import 'package:flutter/material.dart';
 import 'package:matter/patch/ink_sparkle.dart';
 import 'package:matter/preview_composite.dart';
-import 'package:matter/element/color.dart';
 import 'package:matter/preview_element.dart';
 import 'package:matter/preview_style.dart';
 import 'package:matter/preview_presentation.dart';
@@ -39,7 +39,7 @@ class _MatterPreviewState extends State<MatterPreview> {
       useMaterial3: useMaterial3,
       textTheme: ElementTypography.textStyle,
       splashFactory: InkSparklePatch.splashFactory,
-      colorScheme: useLightMode ? lightColorStyle : darkColorStyle,
+      colorScheme: useLightMode ? ElementColor.lightColorStyle : ElementColor.darkColorStyle,
     );
   }
 
