@@ -14,6 +14,7 @@ class ButtonBackground extends MaterialStateProperty<Color?>
     if (states.contains(MaterialState.disabled)) {
       return onSurface?.withOpacity(0.12);
     }
+
     return primary;
   }
 }
@@ -31,6 +32,7 @@ class ButtonForeground extends MaterialStateProperty<Color?>
     if (states.contains(MaterialState.disabled)) {
       return onSurface?.withOpacity(0.38);
     }
+
     return onPrimary;
   }
 }
@@ -50,6 +52,7 @@ class ButtonOverlay extends MaterialStateProperty<Color?> with Diagnosticable {
         states.contains(MaterialState.pressed)) {
       return onPrimary.withOpacity(0.12);
     }
+
     return null;
   }
 }
@@ -67,6 +70,7 @@ class ButtonElevation extends MaterialStateProperty<double>
     if (states.contains(MaterialState.hovered)) return elevation + 2;
     if (states.contains(MaterialState.focused)) return elevation + 2;
     if (states.contains(MaterialState.pressed)) return elevation + 6;
+    
     return elevation;
   }
 }

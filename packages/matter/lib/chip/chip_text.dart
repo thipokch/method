@@ -19,6 +19,7 @@ class ChipText extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
+    
     return ChoiceChip(
       side: BorderSide(
         width: ElementScale.borderL,
