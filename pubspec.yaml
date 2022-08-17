@@ -20,7 +20,7 @@ dependencies:
 
   flutter_native_splash: ^2.2.7
 
-  core:
+  component:
   matter:
 
 dev_dependencies:
