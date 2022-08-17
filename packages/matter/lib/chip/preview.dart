@@ -11,6 +11,7 @@ class ChipPreview extends StatelessWidget {
   Widget build(BuildContext context) {
     // ignore: no_leading_underscores_for_local_identifiers
     const Widget _divider = Preview.rowDivider;
+    
     return Column(
       children: [
         Row(

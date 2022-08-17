@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:matter/button/button_tonal.dart';
 import 'package:matter/button/preview.dart';
 import 'package:matter/chip/preview.dart';
+import 'package:matter/element/touch_preview.dart';
 import 'package:matter/heading/preview.dart';
 
 import 'preview_helper.dart';
@@ -18,6 +19,7 @@ class ElementPreview extends StatelessWidget {
   Widget build(BuildContext context) {
     // ignore: no_leading_underscores_for_local_identifiers
     Widget Function(String) _sectionLabel = Preview.sectionLabel;
+    
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.0),
@@ -30,6 +32,8 @@ class ElementPreview extends StatelessWidget {
             const ChipPreview(),
             _sectionLabel("Headings"),
             const HeadingPreview(),
+            _sectionLabel("Touch"),
+            const TouchPreview(),
             showNavBottomBar
                 ? const NavigationBars(
                     selectedIndex: 0,
