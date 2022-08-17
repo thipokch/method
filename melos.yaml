@@ -89,12 +89,12 @@ scripts:
   check:quality:
     description: Run all targets generally expected in CI for a full local quality check.
     run: |
-      melos run clean:deep -- --exclude=.env
       melos clean
       melos bootstrap
       melos run format
       melos run analyze
       melos run metrics
+    # melos run clean:deep -- --exclude=.env
     # melos run build:all
     # melos run test:all
 
