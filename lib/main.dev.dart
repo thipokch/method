@@ -8,7 +8,7 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:firebase_app_installations/firebase_app_installations.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:method/app.dart';
+import 'package:matter/preview.dart';
 
 import 'config/firebase.dev.dart';
 
@@ -33,7 +33,7 @@ Future<void> main() async {
         minimumFetchInterval: const Duration(minutes: 5),
     ));
 
-    runApp(const App());
+    runApp(const MatterPreview());
   },
       (error, stack) =>
           FirebaseCrashlytics.instance.recordError(error, stack, fatal: true));
