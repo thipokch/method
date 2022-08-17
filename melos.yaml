@@ -38,6 +38,11 @@ scripts:
       melos exec -c 6 --ignore="method" -- \
         cp $MELOS_ROOT_PATH/analysis_options.yaml ./analysis_options.yaml
 
+  sync:launchscreen:
+    run: |
+      melos exec -c 1 --scope="method" -- \
+        flutter pub run flutter_native_splash:create
+        
   clean:deep:
     description: Clean things very deeply, can be used to establish "pristine checkout" status.
     run: git clean -x -d -f -q
