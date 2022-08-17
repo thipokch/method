@@ -1,3 +1,4 @@
+import 'package:element/element_touch.dart';
 import 'package:flutter/material.dart';
 
 class ButtonAction extends StatelessWidget {
@@ -17,7 +18,9 @@ class ButtonAction extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(100),
         ),
-        onPressed: () {},
+        onPressed: () {
+          ElementTouch.select();
+        },
         label: Text(
           "Action Button".toUpperCase(),
           style: textTheme.labelLarge?.copyWith(

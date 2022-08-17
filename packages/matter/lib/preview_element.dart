@@ -19,7 +19,7 @@ class ElementPreview extends StatelessWidget {
   Widget build(BuildContext context) {
     // ignore: no_leading_underscores_for_local_identifiers
     Widget Function(String) _sectionLabel = Preview.sectionLabel;
-    
+
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.0),
@@ -28,12 +28,12 @@ class ElementPreview extends StatelessWidget {
           children: [
             _sectionLabel("Buttons"),
             const Buttons(),
+            _sectionLabel("Touch"),
+            const TouchPreview(),
             _sectionLabel("Chips"),
             const ChipPreview(),
             _sectionLabel("Headings"),
             const HeadingPreview(),
-            _sectionLabel("Touch"),
-            const TouchPreview(),
             showNavBottomBar
                 ? const NavigationBars(
                     selectedIndex: 0,
@@ -65,7 +65,8 @@ class _DialogsState extends State<Dialogs> {
       builder: (context) => AlertDialog(
         title: const Text("Basic Dialog Title"),
         content: const Text(
-            "A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made.",),
+          "A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made.",
+        ),
         actions: <Widget>[
           TextButton(
             child: const Text('Dismiss'),
@@ -167,11 +168,12 @@ class NavigationBars extends StatefulWidget {
   final int selectedIndex;
   final bool isExampleBar;
 
-  const NavigationBars(
-      {super.key,
-      this.onSelectItem,
-      required this.selectedIndex,
-      required this.isExampleBar,});
+  const NavigationBars({
+    super.key,
+    this.onSelectItem,
+    required this.selectedIndex,
+    required this.isExampleBar,
+  });
 
   @override
   State<NavigationBars> createState() => _NavigationBarsState();
@@ -206,8 +208,11 @@ class NavigationRailSection extends StatefulWidget {
   final void Function(int) onSelectItem;
   final int selectedIndex;
 
-  const NavigationRailSection(
-      {super.key, required this.onSelectItem, required this.selectedIndex,});
+  const NavigationRailSection({
+    super.key,
+    required this.onSelectItem,
+    required this.selectedIndex,
+  });
 
   @override
   State<NavigationRailSection> createState() => _NavigationRailSectionState();

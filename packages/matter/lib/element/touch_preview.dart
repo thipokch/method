@@ -1,7 +1,7 @@
 import 'package:element/element_touch.dart';
 import 'package:flutter/material.dart';
 
-import '../button/button_filled.dart';
+import '../button/button_tonal.dart';
 import '../preview_helper.dart';
 
 class TouchPreview extends StatelessWidget {
@@ -12,53 +12,63 @@ class TouchPreview extends StatelessWidget {
     // ignore: no_leading_underscores_for_local_identifiers
     const Widget _divider = Preview.colDivider;
 
-    return Column(
-      children: const [
-        ButtonFilled(
-          onPressed: ElementTouch.select,
-          child: Text('Select'),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Column(
+          children: const [
+            ButtonTonal(
+              onPressed: ElementTouch.warn,
+              child: Text('Warn'),
+            ),
+            _divider,
+            ButtonTonal(
+              onPressed: ElementTouch.error,
+              child: Text('Error'),
+            ),
+            _divider,
+            ButtonTonal(
+              onPressed: ElementTouch.success,
+              child: Text('Success'),
+            ),
+          ],
         ),
-        _divider,
-        ButtonFilled(
-          onPressed: ElementTouch.error,
-          child: Text('Error'),
+        Column(
+          children: const [
+            ButtonTonal(
+              onPressed: ElementTouch.light,
+              child: Text('Light'),
+            ),
+            _divider,
+            ButtonTonal(
+              onPressed: ElementTouch.heavy,
+              child: Text('Heavy'),
+            ),
+            _divider,
+            ButtonTonal(
+              onPressed: ElementTouch.medium,
+              child: Text('Medium'),
+            ),
+          ],
         ),
-        _divider,
-        ButtonFilled(
-          onPressed: ElementTouch.success,
-          child: Text('Success'),
+        Column(
+          children: const [
+            ButtonTonal(
+              onPressed: ElementTouch.select,
+              child: Text('Select'),
+            ),
+            _divider,
+            ButtonTonal(
+              onPressed: ElementTouch.rigid,
+              child: Text('Rigid'),
+            ),
+            _divider,
+            ButtonTonal(
+              onPressed: ElementTouch.soft,
+              child: Text('Soft'),
+            ),
+          ],
         ),
-        _divider,
-        ButtonFilled(
-          onPressed: ElementTouch.warn,
-          child: Text('Warn'),
-        ),
-        _divider,
-        ButtonFilled(
-          onPressed: ElementTouch.heavy,
-          child: Text('Heavy'),
-        ),
-        _divider,
-        ButtonFilled(
-          onPressed: ElementTouch.medium,
-          child: Text('Medium'),
-        ),
-        _divider,
-        ButtonFilled(
-          onPressed: ElementTouch.light,
-          child: Text('Light'),
-        ),
-        _divider,
-        ButtonFilled(
-          onPressed: ElementTouch.rigid,
-          child: Text('Rigid'),
-        ),
-        _divider,
-        ButtonFilled(
-          onPressed: ElementTouch.soft,
-          child: Text('Soft'),
-        ),
-        _divider,
       ],
     );
   }
