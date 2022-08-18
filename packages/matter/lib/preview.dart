@@ -39,7 +39,9 @@ class _MatterPreviewState extends State<MatterPreview> {
       useMaterial3: useMaterial3,
       textTheme: ElementTypography.textStyle,
       splashFactory: InkSparklePatch.splashFactory,
-      colorScheme: useLightMode ? ElementColor.lightColorStyle : ElementColor.darkColorStyle,
+      colorScheme: useLightMode
+          ? ElementColor.lightColorStyle
+          : ElementColor.darkColorStyle,
     );
   }
 
@@ -73,6 +75,10 @@ class _MatterPreviewState extends State<MatterPreview> {
 
   PreferredSizeWidget createAppBar() {
     return AppBar(
+      leading: IconButton(
+        icon: const Icon(ElementIcon.brandArrowLeft),
+        onPressed: () => Navigator.of(context).pop(),
+      ),
       title: const Text("Matter Preview"),
       actions: [
         IconButton(
@@ -267,4 +273,16 @@ class _NavigationRailSectionState extends State<NavigationRailSection> {
       },
     );
   }
+}
+
+void showMatterPreview({
+  required BuildContext context,
+  bool useRootNavigator = false,
+}) {
+  assert(context != null);
+  assert(useRootNavigator != null);
+  Navigator.of(context, rootNavigator: useRootNavigator)
+      .push(MaterialPageRoute<void>(
+    builder: (BuildContext context) => const MatterPreview(),
+  ));
 }
