@@ -23,6 +23,7 @@ dependencies:
 
   component:
   matter:
+  element:
 
 dev_dependencies:
   flutter_test:

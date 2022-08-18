@@ -170,7 +170,7 @@ packages:
     source: hosted
     version: "2.2.3"
   element:
-    dependency: "direct overridden"
+    dependency: "direct main"
     description:
       path: "packages/element"
       relative: true

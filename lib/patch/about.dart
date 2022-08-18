@@ -993,14 +993,19 @@ double _getGutterSize(BuildContext context) =>
 
 /// Signature for the builder callback used by [_MasterDetailFlow].
 typedef _MasterViewBuilder = Widget Function(
-    BuildContext context, bool isLateralUI);
+  BuildContext context,
+  bool isLateralUI,
+);
 
 /// Signature for the builder callback used by [_MasterDetailFlow.detailPageBuilder].
 ///
 /// scrollController is provided when the page destination is the draggable
 /// sheet in the lateral UI. Otherwise, it is null.
-typedef _DetailPageBuilder = Widget Function(BuildContext context,
-    Object? arguments, ScrollController? scrollController);
+typedef _DetailPageBuilder = Widget Function(
+  BuildContext context,
+  Object? arguments,
+  ScrollController? scrollController,
+);
 
 /// Signature for the builder callback used by [_MasterDetailFlow.actionBuilder].
 ///
@@ -1008,7 +1013,9 @@ typedef _DetailPageBuilder = Widget Function(BuildContext context,
 /// lateral UI pages. actionLevel indicates the intended destination of the
 /// return actions.
 typedef _ActionBuilder = List<Widget> Function(
-    BuildContext context, _ActionLevel actionLevel);
+  BuildContext context,
+  _ActionLevel actionLevel,
+);
 
 /// Describes which type of app bar the actions are intended for.
 enum _ActionLevel {
@@ -1185,14 +1192,15 @@ class _MasterDetailFlowState extends State<_MasterDetailFlow>
         return _lateralUI(context);
       case _LayoutMode.auto:
         return LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraints) {
-          final double availableWidth = constraints.maxWidth;
-          if (availableWidth >= _materialWideDisplayThreshold) {
-            return _lateralUI(context);
-          } else {
-            return _nestedUI(context);
-          }
-        });
+          builder: (BuildContext context, BoxConstraints constraints) {
+            final double availableWidth = constraints.maxWidth;
+            if (availableWidth >= _materialWideDisplayThreshold) {
+              return _lateralUI(context);
+            } else {
+              return _nestedUI(context);
+            }
+          },
+        );
     }
   }
 
@@ -1267,7 +1275,8 @@ class _MasterDetailFlowState extends State<_MasterDetailFlow>
           return false;
         },
         child: BlockSemantics(
-            child: widget.detailPageBuilder(context, arguments, null)),
+          child: widget.detailPageBuilder(context, arguments, null),
+        ),
       );
     });
   }
@@ -1277,10 +1286,16 @@ class _MasterDetailFlowState extends State<_MasterDetailFlow>
     return _MasterDetailScaffold(
       actionBuilder: (_, __) => const <Widget>[],
       automaticallyImplyLeading: widget.automaticallyImplyLeading,
-      detailPageBuilder: (BuildContext context, Object? args,
-              ScrollController? scrollController) =>
+      detailPageBuilder: (
+        BuildContext context,
+        Object? args,
+        ScrollController? scrollController,
+      ) =>
           widget.detailPageBuilder(
-              context, args ?? _cachedDetailArguments, scrollController),
+        context,
+        args ?? _cachedDetailArguments,
+        scrollController,
+      ),
       detailPageFABlessGutterWidth: widget.detailPageFABlessGutterWidth,
       initialArguments: _cachedDetailArguments,
       masterViewBuilder: (BuildContext context, bool isLateral) =>
@@ -1464,8 +1479,10 @@ class _MasterDetailScaffoldState extends State<_MasterDetailScaffold>
     );
   }
 
-  ConstrainedBox _masterPanel(BuildContext context,
-      {bool needsScaffold = false}) {
+  ConstrainedBox _masterPanel(
+    BuildContext context, {
+    bool needsScaffold = false,
+  }) {
     return ConstrainedBox(
       constraints: BoxConstraints(maxWidth: masterViewWidth),
       child: needsScaffold
@@ -1515,7 +1532,11 @@ class _DetailView extends StatelessWidget {
             elevation: _kCardElevation,
             clipBehavior: Clip.antiAlias,
             margin: const EdgeInsets.fromLTRB(
-                _kCardElevation, 0.0, _kCardElevation, 0.0),
+              _kCardElevation,
+              0.0,
+              _kCardElevation,
+              0.0,
+            ),
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(top: Radius.circular(3.0)),
             ),
