@@ -16,7 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Entry {
-  Uniform get uniform => throw _privateConstructorUsedError;
+  Task get template => throw _privateConstructorUsedError;
+  List<EntryDefinition> get definitions => throw _privateConstructorUsedError;
+  String get collectionSlug => throw _privateConstructorUsedError;
+  String get hierarchyPath => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  String get uuid => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $EntryCopyWith<Entry> get copyWith => throw _privateConstructorUsedError;
@@ -26,7 +31,15 @@ mixin _$Entry {
 abstract class $EntryCopyWith<$Res> {
   factory $EntryCopyWith(Entry value, $Res Function(Entry) then) =
       _$EntryCopyWithImpl<$Res>;
-  $Res call({Uniform uniform});
+  $Res call(
+      {Task template,
+      List<EntryDefinition> definitions,
+      String collectionSlug,
+      String hierarchyPath,
+      String id,
+      String uuid});
+
+  $TaskCopyWith<$Res> get template;
 }
 
 /// @nodoc
@@ -39,14 +52,46 @@ class _$EntryCopyWithImpl<$Res> implements $EntryCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? uniform = freezed,
+    Object? template = freezed,
+    Object? definitions = freezed,
+    Object? collectionSlug = freezed,
+    Object? hierarchyPath = freezed,
+    Object? id = freezed,
+    Object? uuid = freezed,
   }) {
     return _then(_value.copyWith(
-      uniform: uniform == freezed
-          ? _value.uniform
-          : uniform // ignore: cast_nullable_to_non_nullable
-              as Uniform,
+      template: template == freezed
+          ? _value.template
+          : template // ignore: cast_nullable_to_non_nullable
+              as Task,
+      definitions: definitions == freezed
+          ? _value.definitions
+          : definitions // ignore: cast_nullable_to_non_nullable
+              as List<EntryDefinition>,
+      collectionSlug: collectionSlug == freezed
+          ? _value.collectionSlug
+          : collectionSlug // ignore: cast_nullable_to_non_nullable
+              as String,
+      hierarchyPath: hierarchyPath == freezed
+          ? _value.hierarchyPath
+          : hierarchyPath // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      uuid: uuid == freezed
+          ? _value.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
+  }
+
+  @override
+  $TaskCopyWith<$Res> get template {
+    return $TaskCopyWith<$Res>(_value.template, (value) {
+      return _then(_value.copyWith(template: value));
+    });
   }
 }
 
@@ -55,7 +100,16 @@ abstract class _$$_EntryCopyWith<$Res> implements $EntryCopyWith<$Res> {
   factory _$$_EntryCopyWith(_$_Entry value, $Res Function(_$_Entry) then) =
       __$$_EntryCopyWithImpl<$Res>;
   @override
-  $Res call({Uniform uniform});
+  $Res call(
+      {Task template,
+      List<EntryDefinition> definitions,
+      String collectionSlug,
+      String hierarchyPath,
+      String id,
+      String uuid});
+
+  @override
+  $TaskCopyWith<$Res> get template;
 }
 
 /// @nodoc
@@ -69,13 +123,38 @@ class __$$_EntryCopyWithImpl<$Res> extends _$EntryCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? uniform = freezed,
+    Object? template = freezed,
+    Object? definitions = freezed,
+    Object? collectionSlug = freezed,
+    Object? hierarchyPath = freezed,
+    Object? id = freezed,
+    Object? uuid = freezed,
   }) {
     return _then(_$_Entry(
-      uniform: uniform == freezed
-          ? _value.uniform
-          : uniform // ignore: cast_nullable_to_non_nullable
-              as Uniform,
+      template: template == freezed
+          ? _value.template
+          : template // ignore: cast_nullable_to_non_nullable
+              as Task,
+      definitions: definitions == freezed
+          ? _value._definitions
+          : definitions // ignore: cast_nullable_to_non_nullable
+              as List<EntryDefinition>,
+      collectionSlug: collectionSlug == freezed
+          ? _value.collectionSlug
+          : collectionSlug // ignore: cast_nullable_to_non_nullable
+              as String,
+      hierarchyPath: hierarchyPath == freezed
+          ? _value.hierarchyPath
+          : hierarchyPath // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      uuid: uuid == freezed
+          ? _value.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -83,14 +162,36 @@ class __$$_EntryCopyWithImpl<$Res> extends _$EntryCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Entry implements _Entry {
-  const _$_Entry({required this.uniform});
+  const _$_Entry(
+      {required this.template,
+      required final List<EntryDefinition> definitions,
+      required this.collectionSlug,
+      required this.hierarchyPath,
+      required this.id,
+      required this.uuid})
+      : _definitions = definitions;
 
   @override
-  final Uniform uniform;
+  final Task template;
+  final List<EntryDefinition> _definitions;
+  @override
+  List<EntryDefinition> get definitions {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_definitions);
+  }
+
+  @override
+  final String collectionSlug;
+  @override
+  final String hierarchyPath;
+  @override
+  final String id;
+  @override
+  final String uuid;
 
   @override
   String toString() {
-    return 'Entry(uniform: $uniform)';
+    return 'Entry._(template: $template, definitions: $definitions, collectionSlug: $collectionSlug, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
   }
 
   @override
@@ -98,12 +199,26 @@ class _$_Entry implements _Entry {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Entry &&
-            const DeepCollectionEquality().equals(other.uniform, uniform));
+            const DeepCollectionEquality().equals(other.template, template) &&
+            const DeepCollectionEquality()
+                .equals(other._definitions, _definitions) &&
+            const DeepCollectionEquality()
+                .equals(other.collectionSlug, collectionSlug) &&
+            const DeepCollectionEquality()
+                .equals(other.hierarchyPath, hierarchyPath) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.uuid, uuid));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(uniform));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(template),
+      const DeepCollectionEquality().hash(_definitions),
+      const DeepCollectionEquality().hash(collectionSlug),
+      const DeepCollectionEquality().hash(hierarchyPath),
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(uuid));
 
   @JsonKey(ignore: true)
   @override
@@ -111,11 +226,28 @@ class _$_Entry implements _Entry {
       __$$_EntryCopyWithImpl<_$_Entry>(this, _$identity);
 }
 
-abstract class _Entry implements Entry {
-  const factory _Entry({required final Uniform uniform}) = _$_Entry;
+abstract class _Entry
+    implements Entry, Uniform, DefineDocument<EntryDefinition, Task> {
+  const factory _Entry(
+      {required final Task template,
+      required final List<EntryDefinition> definitions,
+      required final String collectionSlug,
+      required final String hierarchyPath,
+      required final String id,
+      required final String uuid}) = _$_Entry;
 
   @override
-  Uniform get uniform;
+  Task get template;
+  @override
+  List<EntryDefinition> get definitions;
+  @override
+  String get collectionSlug;
+  @override
+  String get hierarchyPath;
+  @override
+  String get id;
+  @override
+  String get uuid;
   @override
   @JsonKey(ignore: true)
   _$$_EntryCopyWith<_$_Entry> get copyWith =>

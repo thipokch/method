@@ -16,7 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Session {
-  Uniform get uniform => throw _privateConstructorUsedError;
+  Exercise get template => throw _privateConstructorUsedError;
+  List<Entry> get definitions => throw _privateConstructorUsedError;
+  String get collectionSlug => throw _privateConstructorUsedError;
+  String get hierarchyPath => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  String get uuid => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SessionCopyWith<Session> get copyWith => throw _privateConstructorUsedError;
@@ -26,7 +31,15 @@ mixin _$Session {
 abstract class $SessionCopyWith<$Res> {
   factory $SessionCopyWith(Session value, $Res Function(Session) then) =
       _$SessionCopyWithImpl<$Res>;
-  $Res call({Uniform uniform});
+  $Res call(
+      {Exercise template,
+      List<Entry> definitions,
+      String collectionSlug,
+      String hierarchyPath,
+      String id,
+      String uuid});
+
+  $ExerciseCopyWith<$Res> get template;
 }
 
 /// @nodoc
@@ -39,14 +52,46 @@ class _$SessionCopyWithImpl<$Res> implements $SessionCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? uniform = freezed,
+    Object? template = freezed,
+    Object? definitions = freezed,
+    Object? collectionSlug = freezed,
+    Object? hierarchyPath = freezed,
+    Object? id = freezed,
+    Object? uuid = freezed,
   }) {
     return _then(_value.copyWith(
-      uniform: uniform == freezed
-          ? _value.uniform
-          : uniform // ignore: cast_nullable_to_non_nullable
-              as Uniform,
+      template: template == freezed
+          ? _value.template
+          : template // ignore: cast_nullable_to_non_nullable
+              as Exercise,
+      definitions: definitions == freezed
+          ? _value.definitions
+          : definitions // ignore: cast_nullable_to_non_nullable
+              as List<Entry>,
+      collectionSlug: collectionSlug == freezed
+          ? _value.collectionSlug
+          : collectionSlug // ignore: cast_nullable_to_non_nullable
+              as String,
+      hierarchyPath: hierarchyPath == freezed
+          ? _value.hierarchyPath
+          : hierarchyPath // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      uuid: uuid == freezed
+          ? _value.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
+  }
+
+  @override
+  $ExerciseCopyWith<$Res> get template {
+    return $ExerciseCopyWith<$Res>(_value.template, (value) {
+      return _then(_value.copyWith(template: value));
+    });
   }
 }
 
@@ -56,7 +101,16 @@ abstract class _$$_SessionCopyWith<$Res> implements $SessionCopyWith<$Res> {
           _$_Session value, $Res Function(_$_Session) then) =
       __$$_SessionCopyWithImpl<$Res>;
   @override
-  $Res call({Uniform uniform});
+  $Res call(
+      {Exercise template,
+      List<Entry> definitions,
+      String collectionSlug,
+      String hierarchyPath,
+      String id,
+      String uuid});
+
+  @override
+  $ExerciseCopyWith<$Res> get template;
 }
 
 /// @nodoc
@@ -70,13 +124,38 @@ class __$$_SessionCopyWithImpl<$Res> extends _$SessionCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? uniform = freezed,
+    Object? template = freezed,
+    Object? definitions = freezed,
+    Object? collectionSlug = freezed,
+    Object? hierarchyPath = freezed,
+    Object? id = freezed,
+    Object? uuid = freezed,
   }) {
     return _then(_$_Session(
-      uniform: uniform == freezed
-          ? _value.uniform
-          : uniform // ignore: cast_nullable_to_non_nullable
-              as Uniform,
+      template: template == freezed
+          ? _value.template
+          : template // ignore: cast_nullable_to_non_nullable
+              as Exercise,
+      definitions: definitions == freezed
+          ? _value._definitions
+          : definitions // ignore: cast_nullable_to_non_nullable
+              as List<Entry>,
+      collectionSlug: collectionSlug == freezed
+          ? _value.collectionSlug
+          : collectionSlug // ignore: cast_nullable_to_non_nullable
+              as String,
+      hierarchyPath: hierarchyPath == freezed
+          ? _value.hierarchyPath
+          : hierarchyPath // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      uuid: uuid == freezed
+          ? _value.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -84,14 +163,36 @@ class __$$_SessionCopyWithImpl<$Res> extends _$SessionCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Session implements _Session {
-  const _$_Session({required this.uniform});
+  const _$_Session(
+      {required this.template,
+      required final List<Entry> definitions,
+      required this.collectionSlug,
+      required this.hierarchyPath,
+      required this.id,
+      required this.uuid})
+      : _definitions = definitions;
 
   @override
-  final Uniform uniform;
+  final Exercise template;
+  final List<Entry> _definitions;
+  @override
+  List<Entry> get definitions {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_definitions);
+  }
+
+  @override
+  final String collectionSlug;
+  @override
+  final String hierarchyPath;
+  @override
+  final String id;
+  @override
+  final String uuid;
 
   @override
   String toString() {
-    return 'Session(uniform: $uniform)';
+    return 'Session._(template: $template, definitions: $definitions, collectionSlug: $collectionSlug, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
   }
 
   @override
@@ -99,12 +200,26 @@ class _$_Session implements _Session {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Session &&
-            const DeepCollectionEquality().equals(other.uniform, uniform));
+            const DeepCollectionEquality().equals(other.template, template) &&
+            const DeepCollectionEquality()
+                .equals(other._definitions, _definitions) &&
+            const DeepCollectionEquality()
+                .equals(other.collectionSlug, collectionSlug) &&
+            const DeepCollectionEquality()
+                .equals(other.hierarchyPath, hierarchyPath) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.uuid, uuid));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(uniform));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(template),
+      const DeepCollectionEquality().hash(_definitions),
+      const DeepCollectionEquality().hash(collectionSlug),
+      const DeepCollectionEquality().hash(hierarchyPath),
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(uuid));
 
   @JsonKey(ignore: true)
   @override
@@ -112,11 +227,28 @@ class _$_Session implements _Session {
       __$$_SessionCopyWithImpl<_$_Session>(this, _$identity);
 }
 
-abstract class _Session implements Session {
-  const factory _Session({required final Uniform uniform}) = _$_Session;
+abstract class _Session
+    implements Session, Uniform, DefineDocument<Entry, Exercise> {
+  const factory _Session(
+      {required final Exercise template,
+      required final List<Entry> definitions,
+      required final String collectionSlug,
+      required final String hierarchyPath,
+      required final String id,
+      required final String uuid}) = _$_Session;
 
   @override
-  Uniform get uniform;
+  Exercise get template;
+  @override
+  List<Entry> get definitions;
+  @override
+  String get collectionSlug;
+  @override
+  String get hierarchyPath;
+  @override
+  String get id;
+  @override
+  String get uuid;
   @override
   @JsonKey(ignore: true)
   _$$_SessionCopyWith<_$_Session> get copyWith =>
