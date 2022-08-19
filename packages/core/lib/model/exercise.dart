@@ -11,7 +11,6 @@ part 'exercise.freezed.dart';
 
 @freezed
 class Exercise with _$Exercise, Uniform, Describe {
-
   @Implements<Uniform>()
   @Implements<Describe>()
   @Implements<Define<Task>>()

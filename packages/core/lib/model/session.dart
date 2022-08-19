@@ -10,7 +10,6 @@ part 'session.freezed.dart';
 
 @freezed
 class Session with _$Session {
-  
   @Implements<Uniform>()
   @Implements<DefineDocument<Entry, Exercise>>()
   const factory Session._({

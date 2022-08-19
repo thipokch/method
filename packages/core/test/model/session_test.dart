@@ -3,7 +3,7 @@ import 'package:core/model/session.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('construct using create()', () {
+  test('create()', () {
     Exercise aTemplate = Exercise.create(
       name: "name",
       collectionSlug: "collectionSlug",

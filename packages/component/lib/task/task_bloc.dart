@@ -20,7 +20,7 @@ class TaskBlock extends Bloc<TaskEvent, TaskState> {
   }
 
   void _onCloseTask(_CloseTask event, Emitter<TaskState> emit) {
-    print("close");
+    throw UnimplementedError();
   }
 
   void _onLoadEntry(_LoadEntry event, Emitter<TaskState> emit) {

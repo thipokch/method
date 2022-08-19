@@ -108,40 +108,38 @@ class _MatterPreviewState extends State<MatterPreview> {
           }
         },
         child: LayoutBuilder(builder: (context, constraints) {
-          if (constraints.maxWidth < narrowScreenWidthThreshold) {
-            return Scaffold(
-              appBar: createAppBar(),
-              body: Row(children: <Widget>[
-                createScreenFor(screenIndex, false),
-              ]),
-              bottomNavigationBar: NavigationBars(
-                onSelectItem: onScreenChanged,
-                selectedIndex: screenIndex,
-                isExampleBar: false,
-              ),
-            );
-          } else {
-            return Scaffold(
-              appBar: createAppBar(),
-              body: SafeArea(
-                bottom: false,
-                top: false,
-                child: Row(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 5),
-                      child: NavigationRailSection(
-                        onSelectItem: onScreenChanged,
-                        selectedIndex: screenIndex,
-                      ),
+          return constraints.maxWidth < narrowScreenWidthThreshold
+              ? Scaffold(
+                  appBar: createAppBar(),
+                  body: Row(
+                    children: <Widget>[createScreenFor(screenIndex, false)],
+                  ),
+                  bottomNavigationBar: NavigationBars(
+                    onSelectItem: onScreenChanged,
+                    selectedIndex: screenIndex,
+                    isExampleBar: false,
+                  ),
+                )
+              : Scaffold(
+                  appBar: createAppBar(),
+                  body: SafeArea(
+                    bottom: false,
+                    top: false,
+                    child: Row(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          child: NavigationRailSection(
+                            onSelectItem: onScreenChanged,
+                            selectedIndex: screenIndex,
+                          ),
+                        ),
+                        const VerticalDivider(thickness: 1, width: 1),
+                        createScreenFor(screenIndex, true),
+                      ],
                     ),
-                    const VerticalDivider(thickness: 1, width: 1),
-                    createScreenFor(screenIndex, true),
-                  ],
-                ),
-              ),
-            );
-          }
+                  ),
+                );
         }),
       ),
     );
@@ -279,8 +277,6 @@ void showMatterPreview({
   required BuildContext context,
   bool useRootNavigator = false,
 }) {
-  assert(context != null);
-  assert(useRootNavigator != null);
   Navigator.of(context, rootNavigator: useRootNavigator)
       .push(MaterialPageRoute<void>(
     builder: (BuildContext context) => const MatterPreview(),

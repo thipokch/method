@@ -126,14 +126,14 @@ jobs:
         run: |
           dart pub global activate melos
           melos bootstrap
-          melos setup:secrets
+          melos setup:ci
       
       - name: Flutter Build ${{ matrix.target }}
         env:
           BUILD_NUM: ${{ needs.check.outputs.build_num }}
           SECRETS_PASSWORD: ${{ secrets.SECRETS_PASSWORD }}
         run: |
-          melos version:build
+          melos setup:build
           melos build:${{ matrix.build-command }}:${{ github.ref_name }}
 
       - name: Upload ${{ matrix.target }} artifacts
@@ -325,6 +325,7 @@ jobs:
         run: |
           dart pub global activate melos
           melos bootstrap
+          melos setup:ci
 
       - name: "Deploying ${{ matrix.target }} #${{ needs.check.outputs.build_num }}"
         env:

@@ -18,7 +18,7 @@ class ChipEmoji extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    
+
     return ChoiceChip(
       padding: const EdgeInsets.all(14.0),
       shape: const CircleBorder(),

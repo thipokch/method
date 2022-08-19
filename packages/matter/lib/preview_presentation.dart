@@ -19,42 +19,40 @@ class PresentationPreview extends StatelessWidget {
 
     return Expanded(
       child: LayoutBuilder(builder: (context, constraints) {
-        if (constraints.maxWidth < narrowScreenWidthThreshold) {
-          return SingleChildScrollView(
-            child: Column(
-              children: [
-                _sectionLabel("Iconography"),
-                const IconographyPreview(),
-                _sectionLabel("Typography"),
-                const TypographyPreview(),
-              ],
-            ),
-          );
-        } else {
-          return SingleChildScrollView(
-            padding: const EdgeInsets.only(top: 5),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    children: [
-                      _sectionLabel("Iconography"),
-                      const IconographyPreview(),
-                    ],
-                  ),
+        return constraints.maxWidth < narrowScreenWidthThreshold
+            ? SingleChildScrollView(
+                child: Column(
+                  children: [
+                    _sectionLabel("Iconography"),
+                    const IconographyPreview(),
+                    _sectionLabel("Typography"),
+                    const TypographyPreview(),
+                  ],
                 ),
-                Expanded(
-                  child: Column(
-                    children: [
-                      _sectionLabel("Typography"),
-                      const TypographyPreview(),
-                    ],
-                  ),
+              )
+            : SingleChildScrollView(
+                padding: const EdgeInsets.only(top: 5),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        children: [
+                          _sectionLabel("Iconography"),
+                          const IconographyPreview(),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        children: [
+                          _sectionLabel("Typography"),
+                          const TypographyPreview(),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          );
-        }
+              );
       }),
     );
   }

@@ -1,8 +1,6 @@
-
 import 'package:element/element_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:method/view/task.dart';
-
 
 class ViewPreview extends StatelessWidget {
   const ViewPreview({Key? key}) : super(key: key);
@@ -13,9 +11,9 @@ class ViewPreview extends StatelessWidget {
       appBar: AppBar(
         title: const Text("View"),
         leading: IconButton(
-                      icon: const Icon(ElementIcon.brandArrowLeft),
-                      onPressed: () => Navigator.of(context).pop(),
-                    ),
+          icon: const Icon(ElementIcon.brandArrowLeft),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
         actions: const <Widget>[],
       ),
       body: const TaskView(),
@@ -27,10 +25,8 @@ void showViewPreview({
   required BuildContext context,
   bool useRootNavigator = false,
 }) {
-  assert(context != null);
-  assert(useRootNavigator != null);
   Navigator.of(context, rootNavigator: useRootNavigator)
       .push(MaterialPageRoute<void>(
-    builder: (BuildContext context) => ViewPreview(),
+    builder: (BuildContext context) => const ViewPreview(),
   ));
 }
