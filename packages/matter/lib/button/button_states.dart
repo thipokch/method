@@ -70,7 +70,7 @@ class ButtonElevation extends MaterialStateProperty<double>
     if (states.contains(MaterialState.hovered)) return elevation + 2;
     if (states.contains(MaterialState.focused)) return elevation + 2;
     if (states.contains(MaterialState.pressed)) return elevation + 6;
-    
+
     return elevation;
   }
 }

@@ -72,21 +72,25 @@ class ElevationGrid extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8),
       child: LayoutBuilder(builder: (context, constraints) {
-        if (constraints.maxWidth < narrowScreenWidthThreshold) {
-          return GridView.count(
-            shrinkWrap: true,
-            crossAxisCount: 3,
-            physics: const NeverScrollableScrollPhysics(),
-            children: elevationCards(shadowColor, surfaceTintColor),
-          );
-        } else {
-          return GridView.count(
-            shrinkWrap: true,
-            crossAxisCount: 6,
-            physics: const NeverScrollableScrollPhysics(),
-            children: elevationCards(shadowColor, surfaceTintColor),
-          );
-        }
+        return constraints.maxWidth < narrowScreenWidthThreshold
+            ? GridView.count(
+                shrinkWrap: true,
+                crossAxisCount: 3,
+                physics: const NeverScrollableScrollPhysics(),
+                children: elevationCards(
+                  shadowColor,
+                  surfaceTintColor,
+                ),
+              )
+            : GridView.count(
+                shrinkWrap: true,
+                crossAxisCount: 6,
+                physics: const NeverScrollableScrollPhysics(),
+                children: elevationCards(
+                  shadowColor,
+                  surfaceTintColor,
+                ),
+              );
       }),
     );
   }

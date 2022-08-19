@@ -3,7 +3,7 @@ import 'package:core/model/task.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('construct using create()', () {
+  test('create()', () {
     Task aTemplate = Task.create(
       name: "name",
       collectionSlug: "collectionSlug",

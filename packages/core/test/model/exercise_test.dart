@@ -1,9 +1,8 @@
 import 'package:core/model/exercise.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-
 void main() {
-  test('construct using create()', () {
+  test('create()', () {
     Exercise a = Exercise.create(
       name: "name",
       collectionSlug: "collectionSlug",

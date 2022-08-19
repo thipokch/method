@@ -9,7 +9,7 @@ import 'package:uuid/uuid.dart';
 part 'task.freezed.dart';
 
 @freezed
-class Task with _$Task, Uniform, Describe{
+class Task with _$Task, Uniform, Describe {
   @Implements<Uniform>()
   @Implements<Describe>()
   @Implements<Define<TaskDefinition>>()

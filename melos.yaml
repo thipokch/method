@@ -13,15 +13,13 @@ command:
     # See: https://github.com/dart-lang/pub/issues/3404).
 
 scripts:
+
   #
   #   Melos Lifecycle
   #
 
   postbootstrap: |
-    melos run setup:githook
-    melos run setup:secrets
-    melos run sync:analysis
-    melos run build:generate
+    melos run setup:analysis
 
   postclean: |
     echo "Cleaning previous secrets repo..."
@@ -33,19 +31,25 @@ scripts:
   #   Setup
   #
 
-  sync:analysis:
+  setup:local:
+    run: |
+      melos run setup:secrets
+      melos run setup:githook
+      melos run build:generate
+
+  setup:ci:
+    run: |
+      melos run setup:secrets
+
+  setup:analysis:
     run: |
       melos exec -c 6 --ignore="method" -- \
         cp $MELOS_ROOT_PATH/analysis_options.yaml ./analysis_options.yaml
 
-  sync:launchscreen:
+  setup:launchscreen:
     run: |
       melos exec -c 1 --scope="method" -- \
         flutter pub run flutter_native_splash:create
-        
-  clean:deep:
-    description: Clean things very deeply, can be used to establish "pristine checkout" status.
-    run: git clean -x -d -f -q
 
   setup:githook:
     run: |
@@ -87,23 +91,44 @@ scripts:
       cp -v -r "$SECRETS_DIR/google/flutter/dev/"* "$MELOS_ROOT_PATH"
       cp -v -r $SECRETS_DIR/google/flutter/*/lib/config/firebase.*.dart "$MELOS_ROOT_PATH/lib/config/"
 
+  setup:version:
+    description: 
+      Manually set semver version number
+      For local development, use .env to set variables
+        VERSION - semver version
+    run: |
+      dart ./script/version_semver.dart
+
+  setup:build:
+    description: 
+      Bump build number
+      For local development, use .env to set variables
+        BUILD_NUM - build number
+    run: |
+      dart ./script/version_build.dart
+      melos run build:generate
+
   #
   #   Hygiene
   #
 
-  check:quality:
+  hygiene:pristine:
+    description: Clean things very deeply, can be used to establish "pristine checkout" status.
+    run: git clean -x -d -f -q
+
+  hygiene:check:
     description: Run all targets generally expected in CI for a full local quality check.
     run: |
-      melos clean
-      melos bootstrap
-      melos run format
-      melos run analyze
-      melos run metrics
-    # melos run clean:deep -- --exclude=.env
-    # melos run build:all
-    # melos run test:all
+      melos clean && \
+      melos bootstrap && \
+      melos run build:generate && \
+      melos run hygiene:format && \
+      melos run hygiene:analyze && \
+      melos run hygiene:metrics && \
+      melos run test:all
+    # melos run hygiene:pristine -- --exclude=.env
 
-  metrics:
+  hygiene:metrics:
     description: |
       Run `dart_code_metrics` in all packages.
       - Note: you can also rely on your IDEs Dart Analysis / Issues window.
@@ -111,7 +136,7 @@ scripts:
       melos exec -c 1 --ignore="*test*" -- \
         flutter pub run dart_code_metrics:metrics analyze lib
 
-  analyze:
+  hygiene:analyze:
     # We are setting the concurrency to 1 because a higher concurrency can crash
     # the analysis server on low performance machines (like GitHub Actions).
     description: |
@@ -121,29 +146,13 @@ scripts:
       melos exec -c 1 -- \
         flutter analyze . --fatal-infos
 
-  format:
+  hygiene:format:
     description: |
       Run `flutter format` in all packages.
         - Note: Exits with non-zero exit code if formatting is needed.
     run: |
       melos exec -c 1 -- \
           flutter format --output=none --set-exit-if-changed .
-
-  version:manual:
-    description: 
-      Manually set semver version number
-      For local development, use .env to set variables
-        VERSION - semver version
-    run: |
-      dart ./script/version_semver.dart
-
-  version:build:
-    description: 
-      Bump build number
-      For local development, use .env to set variables
-        BUILD_NUM - build number
-    run: |
-      dart ./script/version_build.dart
 
   #
   #   Build
@@ -262,6 +271,29 @@ scripts:
       cp -v -r "$MELOS_ROOT_PATH/.secrets/google/flutter/prd/"* "$MELOS_ROOT_PATH"
 
       flutter build web --verbose --release --target=lib/main.prd.dart
+
+
+  #
+  #   Test
+  #
+
+  test:all:
+    description: |
+      Run all tests available.
+    run: |
+      melos run test --no-select
+    # melos run test --no-select && \
+    # melos run test:web --no-select && \
+    # melos run test:e2e --no-select
+
+  test:
+    description: Run `flutter test` for a specific package.
+    run: |
+      melos exec -c 6 --fail-fast -- \
+        "flutter test --no-pub"
+    select-package:
+      dir-exists:
+        - test
 
   #
   #   Deploy

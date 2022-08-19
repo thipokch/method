@@ -1,3 +1,6 @@
+// ignore_for_file: newline-before-return, unnecessary_import, depend_on_referenced_packages, long-method
+// ignore_for_file: long-parameter-list, todo
+
 // Copyright 2014 The Flutter Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.

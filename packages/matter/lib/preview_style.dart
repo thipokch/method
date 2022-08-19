@@ -19,44 +19,42 @@ class StylePreview extends StatelessWidget {
 
     return Expanded(
       child: LayoutBuilder(builder: (context, constraints) {
-        if (constraints.maxWidth < narrowScreenWidthThreshold) {
-          return SingleChildScrollView(
-            child: Column(
-              children: [
-                _sectionLabel("Surfaces"),
-                const SurfacePreview(),
-                _sectionLabel("Color"),
-                const ColorPreview(),
-              ],
-            ),
-          );
-        } else {
-          return SingleChildScrollView(
-            padding: const EdgeInsets.only(top: 5),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      _sectionLabel("Color"),
-                      const ColorPreview(),
-                    ],
-                  ),
+        return constraints.maxWidth < narrowScreenWidthThreshold
+            ? SingleChildScrollView(
+                child: Column(
+                  children: [
+                    _sectionLabel("Surfaces"),
+                    const SurfacePreview(),
+                    _sectionLabel("Color"),
+                    const ColorPreview(),
+                  ],
                 ),
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      _sectionLabel("Surfaces"),
-                      const SurfacePreview(),
-                    ],
-                  ),
+              )
+            : SingleChildScrollView(
+                padding: const EdgeInsets.only(top: 5),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          _sectionLabel("Color"),
+                          const ColorPreview(),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          _sectionLabel("Surfaces"),
+                          const SurfacePreview(),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          );
-        }
+              );
       }),
     );
   }

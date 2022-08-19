@@ -9,7 +9,6 @@ part 'entry.freezed.dart';
 
 @freezed
 class Entry with _$Entry, Uniform {
-
   @Implements<Uniform>()
   @Implements<DefineDocument<EntryDefinition, Task>>()
   const factory Entry._({

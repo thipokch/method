@@ -8,7 +8,7 @@ class TaskState with _$TaskState {
 
   const factory TaskState.taskLoaded({
     @Default("Task Loaded") String data,
-    }) = _TaskLoaded;
+  }) = _TaskLoaded;
 
   const factory TaskState.entryLoaded({
     @Default("Entry Loaded") String data,
