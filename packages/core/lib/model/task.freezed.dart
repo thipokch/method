@@ -16,8 +16,13 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Task {
-  Uniform get uniform => throw _privateConstructorUsedError;
-  Describe get describe => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  List<TaskDefinition> get definitions => throw _privateConstructorUsedError;
+  String get collectionSlug => throw _privateConstructorUsedError;
+  String get hierarchyPath => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  String get uuid => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TaskCopyWith<Task> get copyWith => throw _privateConstructorUsedError;
@@ -27,7 +32,14 @@ mixin _$Task {
 abstract class $TaskCopyWith<$Res> {
   factory $TaskCopyWith(Task value, $Res Function(Task) then) =
       _$TaskCopyWithImpl<$Res>;
-  $Res call({Uniform uniform, Describe describe});
+  $Res call(
+      {String name,
+      String description,
+      List<TaskDefinition> definitions,
+      String collectionSlug,
+      String hierarchyPath,
+      String id,
+      String uuid});
 }
 
 /// @nodoc
@@ -40,18 +52,43 @@ class _$TaskCopyWithImpl<$Res> implements $TaskCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? uniform = freezed,
-    Object? describe = freezed,
+    Object? name = freezed,
+    Object? description = freezed,
+    Object? definitions = freezed,
+    Object? collectionSlug = freezed,
+    Object? hierarchyPath = freezed,
+    Object? id = freezed,
+    Object? uuid = freezed,
   }) {
     return _then(_value.copyWith(
-      uniform: uniform == freezed
-          ? _value.uniform
-          : uniform // ignore: cast_nullable_to_non_nullable
-              as Uniform,
-      describe: describe == freezed
-          ? _value.describe
-          : describe // ignore: cast_nullable_to_non_nullable
-              as Describe,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      definitions: definitions == freezed
+          ? _value.definitions
+          : definitions // ignore: cast_nullable_to_non_nullable
+              as List<TaskDefinition>,
+      collectionSlug: collectionSlug == freezed
+          ? _value.collectionSlug
+          : collectionSlug // ignore: cast_nullable_to_non_nullable
+              as String,
+      hierarchyPath: hierarchyPath == freezed
+          ? _value.hierarchyPath
+          : hierarchyPath // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      uuid: uuid == freezed
+          ? _value.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -61,7 +98,14 @@ abstract class _$$_TaskCopyWith<$Res> implements $TaskCopyWith<$Res> {
   factory _$$_TaskCopyWith(_$_Task value, $Res Function(_$_Task) then) =
       __$$_TaskCopyWithImpl<$Res>;
   @override
-  $Res call({Uniform uniform, Describe describe});
+  $Res call(
+      {String name,
+      String description,
+      List<TaskDefinition> definitions,
+      String collectionSlug,
+      String hierarchyPath,
+      String id,
+      String uuid});
 }
 
 /// @nodoc
@@ -75,18 +119,43 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? uniform = freezed,
-    Object? describe = freezed,
+    Object? name = freezed,
+    Object? description = freezed,
+    Object? definitions = freezed,
+    Object? collectionSlug = freezed,
+    Object? hierarchyPath = freezed,
+    Object? id = freezed,
+    Object? uuid = freezed,
   }) {
     return _then(_$_Task(
-      uniform: uniform == freezed
-          ? _value.uniform
-          : uniform // ignore: cast_nullable_to_non_nullable
-              as Uniform,
-      describe: describe == freezed
-          ? _value.describe
-          : describe // ignore: cast_nullable_to_non_nullable
-              as Describe,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      definitions: definitions == freezed
+          ? _value._definitions
+          : definitions // ignore: cast_nullable_to_non_nullable
+              as List<TaskDefinition>,
+      collectionSlug: collectionSlug == freezed
+          ? _value.collectionSlug
+          : collectionSlug // ignore: cast_nullable_to_non_nullable
+              as String,
+      hierarchyPath: hierarchyPath == freezed
+          ? _value.hierarchyPath
+          : hierarchyPath // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      uuid: uuid == freezed
+          ? _value.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -94,16 +163,39 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Task implements _Task {
-  const _$_Task({required this.uniform, required this.describe});
+  const _$_Task(
+      {required this.name,
+      required this.description,
+      required final List<TaskDefinition> definitions,
+      required this.collectionSlug,
+      required this.hierarchyPath,
+      required this.id,
+      required this.uuid})
+      : _definitions = definitions;
 
   @override
-  final Uniform uniform;
+  final String name;
   @override
-  final Describe describe;
+  final String description;
+  final List<TaskDefinition> _definitions;
+  @override
+  List<TaskDefinition> get definitions {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_definitions);
+  }
+
+  @override
+  final String collectionSlug;
+  @override
+  final String hierarchyPath;
+  @override
+  final String id;
+  @override
+  final String uuid;
 
   @override
   String toString() {
-    return 'Task(uniform: $uniform, describe: $describe)';
+    return 'Task._(name: $name, description: $description, definitions: $definitions, collectionSlug: $collectionSlug, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
   }
 
   @override
@@ -111,15 +203,29 @@ class _$_Task implements _Task {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Task &&
-            const DeepCollectionEquality().equals(other.uniform, uniform) &&
-            const DeepCollectionEquality().equals(other.describe, describe));
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
+            const DeepCollectionEquality()
+                .equals(other._definitions, _definitions) &&
+            const DeepCollectionEquality()
+                .equals(other.collectionSlug, collectionSlug) &&
+            const DeepCollectionEquality()
+                .equals(other.hierarchyPath, hierarchyPath) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.uuid, uuid));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(uniform),
-      const DeepCollectionEquality().hash(describe));
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(_definitions),
+      const DeepCollectionEquality().hash(collectionSlug),
+      const DeepCollectionEquality().hash(hierarchyPath),
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(uuid));
 
   @JsonKey(ignore: true)
   @override
@@ -127,15 +233,31 @@ class _$_Task implements _Task {
       __$$_TaskCopyWithImpl<_$_Task>(this, _$identity);
 }
 
-abstract class _Task implements Task {
+abstract class _Task
+    implements Task, Uniform, Describe, Define<TaskDefinition> {
   const factory _Task(
-      {required final Uniform uniform,
-      required final Describe describe}) = _$_Task;
+      {required final String name,
+      required final String description,
+      required final List<TaskDefinition> definitions,
+      required final String collectionSlug,
+      required final String hierarchyPath,
+      required final String id,
+      required final String uuid}) = _$_Task;
 
   @override
-  Uniform get uniform;
+  String get name;
   @override
-  Describe get describe;
+  String get description;
+  @override
+  List<TaskDefinition> get definitions;
+  @override
+  String get collectionSlug;
+  @override
+  String get hierarchyPath;
+  @override
+  String get id;
+  @override
+  String get uuid;
   @override
   @JsonKey(ignore: true)
   _$$_TaskCopyWith<_$_Task> get copyWith => throw _privateConstructorUsedError;
