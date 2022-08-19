@@ -70,7 +70,7 @@ jobs:
       
       - name: Quality Check
         run: |
-          melos check:quality
+          melos hygiene:check
 
   build:
   
@@ -334,4 +334,4 @@ jobs:
           ASC_KEY_CONTENT: ${{ secrets.ASC_KEY_CONTENT }}
           CHANGELOG: ${{ needs.release.outputs.changelog }}
         run: |
-          melos run deploy:${{ matrix.deploy-command }}:${{ needs.release.outputs.current_env }}
+          melos deploy:${{ matrix.deploy-command }}:${{ needs.release.outputs.current_env }}
