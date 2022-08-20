@@ -408,6 +408,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
+  gh_pages:
+    dependency: "direct dev"
+    description:
+      name: gh_pages
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.1"
+  git:
+    dependency: transitive
+    description:
+      name: git
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   glob:
     dependency: transitive
     description:

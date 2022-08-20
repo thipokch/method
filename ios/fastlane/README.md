@@ -15,50 +15,50 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ## iOS
 
-### ios buildDev
+### ios build_dev
 
 ```sh
-[bundle exec] fastlane ios buildDev
+[bundle exec] fastlane ios build_dev
 ```
 
 Build Development
 
-### ios buildStg
+### ios build_stg
 
 ```sh
-[bundle exec] fastlane ios buildStg
+[bundle exec] fastlane ios build_stg
 ```
 
 Build Staging
 
-### ios buildPrd
+### ios build_prd
 
 ```sh
-[bundle exec] fastlane ios buildPrd
+[bundle exec] fastlane ios build_prd
 ```
 
 Build Production
 
-### ios deployDev
+### ios deploy_dev
 
 ```sh
-[bundle exec] fastlane ios deployDev
+[bundle exec] fastlane ios deploy_dev
 ```
 
 Deploy Development
 
-### ios deployStg
+### ios deploy_stg
 
 ```sh
-[bundle exec] fastlane ios deployStg
+[bundle exec] fastlane ios deploy_stg
 ```
 
 Deploy Staging
 
-### ios deployPrd
+### ios deploy_prd
 
 ```sh
-[bundle exec] fastlane ios deployPrd
+[bundle exec] fastlane ios deploy_prd
 ```
 
 Deploy Production

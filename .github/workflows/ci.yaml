@@ -13,9 +13,9 @@ concurrency:
 
 jobs:
 
-  check:
+  hygiene:
   
-    name: Quality Check for ${{ github.ref_name }}
+    name: Hygiene check for ${{ github.ref_name }}
     outputs:
       build_num: ${{ steps.hash.outputs.build_num }}
 
@@ -26,14 +26,6 @@ jobs:
         with:
           fetch-depth: 0  # Deep Fetch
       
-      - name: Generate build num
-        id: hash
-        run: |
-          DATE=$( TZ=UTC0 git show --quiet --date='format-local:%y%m%d' --format='%cd' )
-          COUNT=$( printf %02d $(TZ=UTC0 git log --date='format-local:%y%m%d' --format='%cd' | grep -c $DATE ) )
-          export BUILD_NUM="$DATE$COUNT"
-          echo "::set-output name=build_num::$BUILD_NUM"
-      
       - name: Setup Flutter SDK
         uses: subosito/flutter-action@v2
         with:
@@ -41,10 +33,29 @@ jobs:
           cache: true
 
       - name: Bootstraping Melos
-        run: |
-          dart pub global activate melos
-          melos bootstrap
+        env:
+          SECRETS_GITHUB_TOKEN: ${{ secrets.SECRETS_GITHUB_TOKEN }}
+          SECRETS_GITHUB_PATH: ${{ secrets.SECRETS_GITHUB_PATH }}
+          SECRETS_PASSWORD: ${{ secrets.SECRETS_PASSWORD }}
+        run: dart pub global activate melos && melos setup:ci
 
+      - name: Generate new build num
+        id: hash
+        run: |
+          DATE=$( TZ=UTC0 git show --quiet --date='format-local:%y%m%d' --format='%cd' )
+          COUNT=$( printf %02d $(TZ=UTC0 git log --date='format-local:%y%m%d' --format='%cd' | grep -c $DATE ) )
+          export BUILD_NUM="$DATE$COUNT"
+          echo "::set-output name=build_num::$BUILD_NUM"
+      
+      - name: Generate code
+        run: melos build:num && melos build:generate
+
+      - name: Hygiene - Format
+        run: melos hygiene:format
+        
+      - name: Hygiene - Analyse
+        run: melos hygiene:analyze
+      
       - name: Setup Dart Code Metrics
         working-directory: ${{ runner.temp }}
         run: |
@@ -52,9 +63,9 @@ jobs:
           cd ./dart-code-metrics-action/action_app/
           flutter pub get
       
-      - name: Run Dart Code Metrics
+      - name: Hygiene - Code Metrics
         env:
-          INPUT_FOLDERS: "lib, packages/core/lib, packages/core/element, packages/core/matter"
+          INPUT_FOLDERS: "lib, ./packages/core/lib, ./packages/core/element, ./packages/core/matter"
           INPUT_GITHUB_TOKEN: ${{ github.token }}
           # Defaults
           INPUT_RELATIVE_PATH: ""
@@ -68,14 +79,13 @@ jobs:
         run: |
           dart run ${{ runner.temp }}/dart-code-metrics-action/action_app/bin/main.dart
       
-      - name: Quality Check
-        run: |
-          melos hygiene:check
+      - name: Flutter fail-fast test
+        run: melos test:fast
 
   build:
   
-    name: "Building ${{ matrix.target }} for ${{ github.ref_name }} #${{ needs.check.outputs.build_num }}"
-    needs: check
+    name: "Building ${{ matrix.target }} for ${{ github.ref_name }} #${{ needs.hygiene.outputs.build_num }}"
+    needs: hygiene
     strategy:
       fail-fast: true
       matrix:
@@ -123,31 +133,61 @@ jobs:
           SECRETS_GITHUB_TOKEN: ${{ secrets.SECRETS_GITHUB_TOKEN }}
           SECRETS_GITHUB_PATH: ${{ secrets.SECRETS_GITHUB_PATH }}
           SECRETS_PASSWORD: ${{ secrets.SECRETS_PASSWORD }}
-        run: |
-          dart pub global activate melos
-          melos bootstrap
-          melos setup:ci
+        run: dart pub global activate melos && melos setup:ci
       
       - name: Flutter Build ${{ matrix.target }}
         env:
-          BUILD_NUM: ${{ needs.check.outputs.build_num }}
+          BUILD_NUM: ${{ needs.hygiene.outputs.build_num }}
           SECRETS_PASSWORD: ${{ secrets.SECRETS_PASSWORD }}
         run: |
-          melos setup:build
+          melos build:num && \
+          melos build:generate && \
           melos build:${{ matrix.build-command }}:${{ github.ref_name }}
 
       - name: Upload ${{ matrix.target }} artifacts
         uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.target }}
-          if-no-files-found: ignore
           path: |
-            ${{ github.workspace }}${{ matrix.build-dir }}
+            ./**/${{ matrix.build-dir }}
+
+  # test:
+
+  #   name: Unit, Widget, Integration Tests.
+  #   needs: [ hygiene, build ]
+
+  #   runs-on: ubuntu-22.04
+  #   steps:
+
+  #     - name: Checking out repo.
+  #       uses: actions/checkout@v3
+  #       with:
+  #         fetch-depth: 0  # Deep Fetch
+      
+  #     - name: Setup Flutter SDK
+  #       uses: subosito/flutter-action@v2
+  #       with:
+  #         channel: 'stable'
+  #         cache: true
+
+  #     - name: Bootstraping Melos
+  #       env:
+  #         SECRETS_GITHUB_TOKEN: ${{ secrets.SECRETS_GITHUB_TOKEN }}
+  #         SECRETS_GITHUB_PATH: ${{ secrets.SECRETS_GITHUB_PATH }}
+  #         SECRETS_PASSWORD: ${{ secrets.SECRETS_PASSWORD }}
+  #       run: dart pub global activate melos && melos setup:ci
+      
+  #     - name: Generate code
+  #       run: melos build:num && melos build:generate
+
+  #     - name: End to end testing
+  #       run: melos test:e2e
 
   release:
 
-    name: "Process ${{ github.ref_name }} #${{ needs.check.outputs.build_num }} for release"
-    needs: [ check, build ]
+    name: "Process ${{ github.ref_name }} #${{ needs.hygiene.outputs.build_num }} for release"
+    needs: [ hygiene, build ]
+    # needs: [ hygiene, build, test ]
     outputs:
       releases_created: ${{ steps.release.outputs.releases_created }}
       version: ${{ steps.get-version.outputs.replaced }}
@@ -155,7 +195,7 @@ jobs:
       next_env: ${{ steps.get-next-branch.outputs.replaced }}
       current_env: ${{ github.ref_name }}
       pr: ${{ steps.release.outputs.pr }}
-      changelog: ${{ steps.render-changelog.outputs.replaced || needs.check.outputs.build_num }}
+      changelog: ${{ steps.render-changelog.outputs.replaced || needs.hygiene.outputs.build_num }}
 
     runs-on: ubuntu-22.04
     steps:
@@ -210,7 +250,7 @@ jobs:
           # https://regex101.com/r/S5GXF9/1
           pattern: '# Changelog\n\n(## .*[\W\w]*?)^## .*[\W\w]*$'
           string: "${{ steps.get-changelog.outputs.result }} \n## END"
-          replace-with: "$1\nBuild #${{ needs.check.outputs.build_num }}"
+          replace-with: "$1\nBuild #${{ needs.hygiene.outputs.build_num }}"
           flags: m  # multiline
       
       - name: Determine next environment
@@ -231,18 +271,19 @@ jobs:
           echo "Next environment: ${{ steps.get-next-branch.outputs.replaced }}"
           echo "Changelog: $CHANGELOG"
       
-      - name: "Tag merged commit with {{ needs.check.outputs.build_num }}."
+      - name: "Tag merged commit with {{ needs.hygiene.outputs.build_num }}."
         if: ${{ steps.release.outputs.releases_created }}
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git tag ${{ needs.check.outputs.build_num }}
-          git push origin ${{ needs.check.outputs.build_num }}
+          git tag ${{ needs.hygiene.outputs.build_num }}
+          git push origin ${{ needs.hygiene.outputs.build_num }}
 
   promote:
 
-    name: "Promote ${{ needs.release.outputs.current_env }} #${{ needs.check.outputs.build_num }} to ${{ needs.release.outputs.next_env }}"
-    needs: [ check, build, release ]
+    name: "Promote ${{ needs.release.outputs.current_env }} #${{ needs.hygiene.outputs.build_num }} to ${{ needs.release.outputs.next_env }}"
+    needs: [ hygiene, build, release ]
+    # needs: [ hygiene, build, test, release ]
 
     if: ${{ needs.release.outputs.releases_created && (needs.release.outputs.next_env != '---') }}
     runs-on: ubuntu-22.04
@@ -270,8 +311,8 @@ jobs:
 
   deploy:
 
-    name: "Deploying ${{ needs.release.outputs.current_env }} #${{ needs.check.outputs.build_num }}"
-    needs: [ check, build, release ]
+    name: "Deploying ${{ needs.release.outputs.current_env }} #${{ needs.hygiene.outputs.build_num }}"
+    needs: [ hygiene, build, release ]
     strategy:
       fail-fast: false
       matrix:
@@ -280,17 +321,17 @@ jobs:
           - os: macos-12
             target: iOS
             deploy-command: ios
-            build-dir: /build/ipa/
+            # build-dir: /build/ipa/
 
           # - os: ubuntu-22.04
           #   target: Android
           #   deploy-command: and
           #   build-dir: /build/app/outputs/apk/
 
-          # - os: ubuntu-22.04
-          #   target: Web
-          #   deploy-command: web
-          #   build-dir: /build/web/
+          - os: ubuntu-22.04
+            target: Web
+            deploy-command: web
+            # build-dir: /build/web/
 
     if: ${{ needs.release.outputs.releases_created || needs.release.outputs.current_env == 'dev' }}
     runs-on: ${{ matrix.os }}
@@ -300,12 +341,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: ${{ needs.release.outputs.current_env }}
-      
-      - name: "Download Artifacts for ${{ matrix.target }} #${{ needs.check.outputs.build_num }}"
-        uses: actions/download-artifact@v3
-        with:
-          path: ${{ github.workspace }}${{ matrix.build-dir }}
-          name: ${{ matrix.target }}
       
       - name: Setup Flutter SDK
         uses: subosito/flutter-action@v2
@@ -324,14 +359,17 @@ jobs:
       - name: Bootstraping Melos
         run: |
           dart pub global activate melos
-          melos bootstrap
           melos setup:ci
+          
+      - name: "Download Artifacts for ${{ matrix.target }} #${{ needs.hygiene.outputs.build_num }}"
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ matrix.target }}
 
-      - name: "Deploying ${{ matrix.target }} #${{ needs.check.outputs.build_num }}"
+      - name: "Deploying ${{ matrix.target }} #${{ needs.hygiene.outputs.build_num }}"
         env:
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
           ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
           ASC_KEY_CONTENT: ${{ secrets.ASC_KEY_CONTENT }}
           CHANGELOG: ${{ needs.release.outputs.changelog }}
-        run: |
-          melos deploy:${{ matrix.deploy-command }}:${{ needs.release.outputs.current_env }}
+        run: melos deploy:${{ matrix.deploy-command }}:${{ needs.release.outputs.current_env }}

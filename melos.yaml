@@ -18,43 +18,43 @@ scripts:
   #   Melos Lifecycle
   #
 
-  postbootstrap: |
-    melos run setup:analysis
-
   postclean: |
-    echo "Cleaning previous secrets repo..."
-    rm -rf ./.secrets
-
     melos exec -c 6 -- "flutter clean"
+
+    echo "Cleaning secrets repo..."
+    rm -rvf ./.secrets
 
   #
   #   Setup
   #
 
-  setup:local:
+  setup:
+    description: Setup for local development. See 'setup:secrets' for variables.
     run: |
-      melos run setup:secrets
-      melos run setup:githook
-      melos run build:generate
+      melos clean && \
+      melos bootstrap && \
+      melos setup:secrets && \
+      melos setup:analysis && \
+      melos setup:githook
 
   setup:ci:
+    description: Setup for CI build. See 'setup:secrets' for variables.
     run: |
-      melos run setup:secrets
+      melos clean && \
+      melos bootstrap && \
+      melos setup:secrets && \
+      melos setup:analysis && \
+      git config --global user.email "noreply@github.com" && \
+      git config --global user.name "GitHub"
 
   setup:analysis:
     run: |
       melos exec -c 6 --ignore="method" -- \
         cp $MELOS_ROOT_PATH/analysis_options.yaml ./analysis_options.yaml
 
-  setup:launchscreen:
-    run: |
-      melos exec -c 1 --scope="method" -- \
-        flutter pub run flutter_native_splash:create
-
   setup:githook:
-    run: |
-      chmod -R +x .githook/
-      git config core.hooksPath .githook/
+    description: Setup scripts to run on git hook events.
+    run: chmod -R +x .githook/ && git config core.hooksPath .githook/
       
   setup:secrets:
     description: |
@@ -91,42 +91,160 @@ scripts:
       cp -v -r "$SECRETS_DIR/google/flutter/dev/"* "$MELOS_ROOT_PATH"
       cp -v -r $SECRETS_DIR/google/flutter/*/lib/config/firebase.*.dart "$MELOS_ROOT_PATH/lib/config/"
 
-  setup:version:
-    description: 
-      Manually set semver version number
-      For local development, use .env to set variables
-        VERSION - semver version
-    run: |
-      dart ./script/version_semver.dart
+      flutter format ./lib/config/firebase.*.dart
 
-  setup:build:
-    description: 
+  #
+  #   Build
+  #
+
+  build:num:
+    description: | 
       Bump build number
       For local development, use .env to set variables
         BUILD_NUM - build number
+    run: dart ./script/version_build.dart
+
+  build:generate:
+    description: Run all code generators.
     run: |
-      dart ./script/version_build.dart
-      melos run build:generate
+      melos build:runner && \
+      melos build:splash
+
+  build:runner:
+    run: |
+      melos exec --depends-on="build_runner" -- \
+        flutter pub run build_runner build --delete-conflicting-outputs
+
+  build:splash:
+    run: |
+      melos exec -c 1 --scope="method" -- \
+        flutter pub run flutter_native_splash:create
+  
+  #   iOS
+
+  build:ios:
+    description: |
+      Build ios for given environment.
+      For local development, use .env to set variables
+        BUILD_ENV - build environment (dev, stg, prd)
+    run: |
+      echo "$SHELL"
+      
+      [ ! -f .env ] || export $(grep -v '^#' .env | xargs) && \
+        echo "Environment variables from .env exported..." && \
+
+      echo "Copying Google service configurations for $BUILD_ENV environment..." && \
+      cp -v -r "$MELOS_ROOT_PATH/.secrets/google/flutter/$BUILD_ENV/"* "$MELOS_ROOT_PATH" && \
+      
+      export MATCH_GIT_URL=$MELOS_ROOT_PATH/.secrets && \
+      export MATCH_PASSWORD=$SECRETS_PASSWORD && \
+
+      cd ios && \
+      bundle exec fastlane build_$BUILD_ENV
+
+  build:ios:dev:
+    description: Builds ios for development.
+    run: export BUILD_ENV=dev && melos build:ios
+
+  build:ios:stg:
+    description: Builds ios for staging.
+    run: export BUILD_ENV=stg && melos build:ios
+
+  build:ios:prd:
+    description: Builds ios for production.
+    run: export BUILD_ENV=prd && melos build:ios
+
+  #   android
+
+  build:and:
+    description:
+      Build android for given environment.
+      For local development, use .env to set variables
+        BUILD_ENV - build environment (dev, stg, prd)
+    run: |
+      echo "Copying Google service configurations for $BUILD_ENV environment..." && \
+      cp -v -r "$MELOS_ROOT_PATH/.secrets/google/flutter/$BUILD_ENV/"* "$MELOS_ROOT_PATH" && \
+
+      flutter build apk --verbose --release --flavor=$BUILD_ENV --target=lib/main.$BUILD_ENV.dart
+
+  build:and:dev:
+    description: Builds android for development.
+    run: export BUILD_ENV=dev && melos build:and
+
+  build:and:stg:
+    description: Builds android for staging.
+    run: export BUILD_ENV=stg && melos build:and
+
+  build:and:prd:
+    description: Builds android for production.
+    run: export BUILD_ENV=prd && melos build:and
+
+  #   web
+
+  build:web:
+    description:
+      Build web for given environment.
+      For local development, use .env to set variables
+        BUILD_ENV - build environment (dev, stg, prd)
+    run: flutter build web --verbose --release --target=lib/main.$BUILD_ENV.dart
+
+  build:web:dev:
+    description: Builds web for development.
+    run: export BUILD_ENV=dev && melos build:web
+
+  build:web:stg:
+    description: Builds web for staging.
+    run: export BUILD_ENV=stg && melos build:web
+
+  build:web:prd:
+    description: Builds web for production.
+    run: export BUILD_ENV=prd && melos build:web
+
+  #
+  #   Test
+  #
+
+  test:
+    run: |
+      melos test:fast
+    # melos test:fast && \
+    # melos test:e2e
+
+  test:fast:
+    description: Flutter tests (fail-fast)
+    run: |
+      melos exec -c 6 --dir-exists=test --fail-fast -- \
+        "flutter test"
+
+  test:e2e:
+    description: Run all e2e tests.
+    select-package:
+      dir-exists:
+        - test_driver
+      scope: '*tests*'
+    run: |
+      melos exec -c 1 --fail-fast -- \
+        "flutter drive --no-pub --target=./test_driver/driver_e2e.dart"
 
   #
   #   Hygiene
   #
 
-  hygiene:pristine:
+
+  hygiene:
+    description: Run all targets generally expected for local quality check. For visibility, CI uses individual steps.
+    run: |
+      melos setup && \
+      melos build:generate && \
+      melos hygiene:format && \
+      melos hygiene:analyze && \
+      melos hygiene:metrics && \
+      melos test:fast
+
+  hygiene:clean:
+    # melos hygiene:clean -- --exclude=.env
     description: Clean things very deeply, can be used to establish "pristine checkout" status.
     run: git clean -x -d -f -q
-
-  hygiene:check:
-    description: Run all targets generally expected in CI for a full local quality check.
-    run: |
-      melos clean && \
-      melos bootstrap && \
-      melos run build:generate && \
-      melos run hygiene:format && \
-      melos run hygiene:analyze && \
-      melos run hygiene:metrics && \
-      melos run test:all
-    # melos run hygiene:pristine -- --exclude=.env
 
   hygiene:metrics:
     description: |
@@ -155,184 +273,56 @@ scripts:
           flutter format --output=none --set-exit-if-changed .
 
   #
-  #   Build
-  #
-
-  build:generate:
-    run: |
-      melos exec --depends-on="build_runner" -- \
-        flutter pub run build_runner build --delete-conflicting-outputs
-  
-  #   iOS
-
-  build:ios:dev:
-    description: |
-      Builds ios for development.
-    run: | 
-      [ ! -f .env ] || export $(grep -v '^#' .env | xargs) && \
-        echo "Environment variables from .env exported..."
-
-
-      echo "Copying Google service configurations..."
-      cp -v -r "$MELOS_ROOT_PATH/.secrets/google/flutter/dev/"* "$MELOS_ROOT_PATH"
-
-      flutter build ios --verbose --release --flavor=dev --target=lib/main.dev.dart
-
-      export MATCH_GIT_URL=$MELOS_ROOT_PATH/.secrets
-      export MATCH_PASSWORD=$SECRETS_PASSWORD
-
-      cd ios
-      bundle exec fastlane buildDev
-
-  build:ios:stg:
-    description: |
-      Builds ios for staging.
-    run: |
-      [ ! -f .env ] || export $(grep -v '^#' .env | xargs) && \
-        echo "Environment variables from .env exported..."
-
-      echo "Copying Google service configurations..."
-      cp -v -r "$MELOS_ROOT_PATH/.secrets/google/flutter/stg/"* "$MELOS_ROOT_PATH"
-
-      flutter build ios --verbose --release --flavor=stg --target=lib/main.stg.dart
-
-      export MATCH_GIT_URL=$MELOS_ROOT_PATH/.secrets
-      export MATCH_PASSWORD=$SECRETS_PASSWORD
-
-      cd ios
-      bundle exec fastlane buildStg
-
-  build:ios:prd:
-    description: |
-      Builds ios for production.
-    run: |
-      [ ! -f .env ] || export $(grep -v '^#' .env | xargs) && \
-        echo "Environment variables from .env exported..."
-
-      echo "Copying Google service configurations..."
-      cp -v -r "$MELOS_ROOT_PATH/.secrets/google/flutter/prd/"* "$MELOS_ROOT_PATH"
-
-      flutter build ios --verbose --release --flavor=prd --target=lib/main.prd.dart
-
-      export MATCH_GIT_URL=$MELOS_ROOT_PATH/.secrets
-      export MATCH_PASSWORD=$SECRETS_PASSWORD
-
-      cd ios
-      bundle exec fastlane buildPrd
-
-  #   android
-
-  build:and:dev:
-    description: Builds android for development.
-    run: |
-      echo "Copying Google service configurations..."
-      cp -v -r "$MELOS_ROOT_PATH/.secrets/google/flutter/dev/"* "$MELOS_ROOT_PATH"
-
-      flutter build apk --verbose --release --flavor=dev --target=lib/main.dev.dart
-
-  build:and:stg:
-    description: Builds android for development.
-    run: |
-      echo "Copying Google service configurations..."
-      cp -v -r "$MELOS_ROOT_PATH/.secrets/google/flutter/stg/"* "$MELOS_ROOT_PATH"
-
-      flutter build apk --verbose --release --flavor=stg --target=lib/main.stg.dart
-
-  build:and:prd:
-    description: Builds android for development.
-    run: |
-      echo "Copying Google service configurations..."
-      cp -v -r "$MELOS_ROOT_PATH/.secrets/google/flutter/prd/"* "$MELOS_ROOT_PATH"
-
-      flutter build apk --verbose --release --flavor=prd --target=lib/main.prd.dart
-
-  #   web
-
-  build:web:dev:
-    description: Builds android for development.
-    run: |
-      echo "Copying Google service configurations..."
-      cp -v -r "$MELOS_ROOT_PATH/.secrets/google/flutter/dev/"* "$MELOS_ROOT_PATH"
-
-      flutter build web --verbose --release --target=lib/main.dev.dart
-
-  build:web:stg:
-    description: Builds android for development.
-    run: |
-      echo "Copying Google service configurations..."
-      cp -v -r "$MELOS_ROOT_PATH/.secrets/google/flutter/stg/"* "$MELOS_ROOT_PATH"
-
-      flutter build web --verbose --release --target=lib/main.stg.dart
-
-  build:web:prd:
-    description: Builds android for development.
-    run: |
-      echo "Copying Google service configurations..."
-      cp -v -r "$MELOS_ROOT_PATH/.secrets/google/flutter/prd/"* "$MELOS_ROOT_PATH"
-
-      flutter build web --verbose --release --target=lib/main.prd.dart
-
-
-  #
-  #   Test
-  #
-
-  test:all:
-    description: |
-      Run all tests available.
-    run: |
-      melos run test --no-select
-    # melos run test --no-select && \
-    # melos run test:web --no-select && \
-    # melos run test:e2e --no-select
-
-  test:
-    description: Run `flutter test` for a specific package.
-    run: |
-      melos exec -c 6 --fail-fast -- \
-        "flutter test --no-pub"
-    select-package:
-      dir-exists:
-        - test
-
-  #
   #   Deploy
   #
 
-  deploy:ios:dev:
+  deploy:ios:
     description: |
-      Deploy ios development to testflight.
+      Deploy ios for given environment to testflight.
       For local development, use .env to set variables:
         ASC_KEY_ID - App Store Connect key id
         ASC_ISSUER_ID - App Store Connect key issuer id
         ASC_KEY_CONTENT - App Store Connect key encoded in base64.
+        BUILD_ENV - build environment (dev, stg, prd).
     run: |
+      ls -R
+
       [ ! -f .env ] || export $(grep -v '^#' .env | xargs) && \
-        echo "Environment variables from .env exported..."
-      cd ios && bundle exec fastlane deployDev
+        echo "Environment variables from .env exported..." && \
+      
+      export APP_STORE_CONNECT_API_KEY_KEY_ID=$ASC_KEY_ID
+      export APP_STORE_CONNECT_API_KEY_ISSUER_ID=$ASC_ISSUER_ID
+      export APP_STORE_CONNECT_API_KEY_KEY=$ASC_KEY_CONTENT
+
+      cd ios && \
+      bundle exec fastlane deploy_$BUILD_ENV
+
+  deploy:ios:dev:
+    description: Deploy ios development to testflight. See 'deploy:ios' for variables.
+    run: export BUILD_ENV=dev && melos deploy:ios
 
   deploy:ios:stg:
-    description: |
-      Deploy ios staging to testflight.
-      For local development, use .env to set variables:
-        ASC_KEY_ID - App Store Connect key id
-        ASC_ISSUER_ID - App Store Connect key issuer id
-        ASC_KEY_CONTENT - App Store Connect key encoded in base64.
-    run: |
-      [ ! -f .env ] || export $(grep -v '^#' .env | xargs) && \
-        echo "Environment variables from .env exported..."
-      cd ios && bundle exec fastlane deployStg
+    description: Deploy ios staging to testflight. See 'deploy:ios' for variables.
+    run: export BUILD_ENV=stg && melos deploy:ios
 
   deploy:ios:prd:
-    description: |
-      Deploy ios production to app store.
-      For local development, use .env to set variables:
-        ASC_KEY_ID - App Store Connect key id
-        ASC_ISSUER_ID - App Store Connect key issuer id
-        ASC_KEY_CONTENT - App Store Connect key encoded in base64.
-        CHANGELOG - Changelog Content
-    run: |
-      [ ! -f .env ] || export $(grep -v '^#' .env | xargs) && \
-        echo "Environment variables from .env exported..."
+    description: Deploy ios production to testflight. See 'deploy:ios' for variables.
+    run: export BUILD_ENV=prd && melos deploy:ios
 
-      cd ios && bundle exec fastlane deployPrd
+  deploy:web:
+    description: |
+      Deploy ios for given environment to github pages.
+      For local development, use .env to set variables
+        BUILD_NUM - build number
+        BUILD_ENV - build environment (dev, stg, prd).
+    run: |
+      flutter pub run gh_pages:gh_pages build/web --message "chore($BUILD_ENV): deploy $BUILD_NUM to github pages"
+
+  deploy:web:dev:
+    run: export BUILD_ENV=dev && melos deploy:web 
+
+  deploy:web:stg:
+    run: export BUILD_ENV=stg && melos deploy:web 
+
+  deploy:web:prd:
+    run: export BUILD_ENV=prd && melos deploy:web 

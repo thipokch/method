@@ -18,7 +18,7 @@ default_platform(:ios)
 platform :ios do
 
     desc "Build Development"
-    lane :buildDev do
+    lane :build_dev do
         setup_ci if is_ci
         match(
             type: "development",
@@ -34,6 +34,13 @@ platform :ios do
             readonly: is_ci,
             # Via env: MATCH_PASSWORD, MATCH_GIT_URL
         )
+        Dir.chdir "../.." do
+            sh(
+                "flutter", "build", "ios", "--release", "--config-only",
+                "--flavor=dev", 
+                "--target=lib/main.dev.dart"
+            )
+        end
         build_app(
             scheme: "dev",
             export_method: "app-store",
@@ -42,7 +49,7 @@ platform :ios do
     end
 
     desc "Build Staging"
-    lane :buildStg do
+    lane :build_stg do
         setup_ci if is_ci
         match(
             type: "appstore",
@@ -51,6 +58,13 @@ platform :ios do
             readonly: is_ci
             # Via env: MATCH_PASSWORD, MATCH_GIT_URL
         )
+        Dir.chdir "../.." do
+            sh(
+                "flutter", "build", "ios", "--release", "--config-only",
+                "--flavor=stg", 
+                "--target=lib/main.stg.dart"
+            )
+        end
         build_app(
             scheme: "stg",
             export_method: "app-store",
@@ -59,7 +73,7 @@ platform :ios do
     end
 
     desc "Build Production"
-    lane :buildPrd do
+    lane :build_prd do
         setup_ci if is_ci
         match(
             type: "appstore",
@@ -68,6 +82,13 @@ platform :ios do
             readonly: is_ci
             # Via env: MATCH_PASSWORD, MATCH_GIT_URL
         )
+        Dir.chdir "../.." do
+            sh(
+                "flutter", "build", "ios", "--release", "--config-only",
+                "--flavor=prd", 
+                "--target=lib/main.prd.dart"
+            )
+        end
         build_app(
             scheme: "prd",
             export_method: "app-store",
@@ -76,13 +97,11 @@ platform :ios do
     end
 
     desc "Deploy Development"
-    lane :deployDev do
+    lane :deploy_dev do
         app_store_connect_api_key(
-            key_id: ENV["ASC_KEY_ID"],
-            issuer_id: ENV["ASC_ISSUER_ID"],
-            key_content: ENV["ASC_KEY_CONTENT"],
             is_key_content_base64: true,
             in_house: false,
+            # Via env: APP_STORE_CONNECT_API_KEY_KEY_ID, APP_STORE_CONNECT_API_KEY_ISSUER_ID, APP_STORE_CONNECT_API_KEY_KEY
         )
         upload_to_testflight(
             ipa: "../build/ipa/dev/Runner.ipa",
@@ -99,13 +118,11 @@ platform :ios do
     end
 
     desc "Deploy Staging"
-    lane :deployStg do
+    lane :deploy_stg do
         app_store_connect_api_key(
-            key_id: ENV["ASC_KEY_ID"],
-            issuer_id: ENV["ASC_ISSUER_ID"],
-            key_content: ENV["ASC_KEY_CONTENT"],
             is_key_content_base64: true,
             in_house: false,
+            # Via env: APP_STORE_CONNECT_API_KEY_KEY_ID, APP_STORE_CONNECT_API_KEY_ISSUER_ID, APP_STORE_CONNECT_API_KEY_KEY
         )
         upload_to_testflight(
             ipa: "../build/ipa/stg/Runner.ipa",
@@ -113,7 +130,7 @@ platform :ios do
             beta_app_description: "Experiment with your thought.",
             groups: [ "All" ],
             localized_build_info: {
-                "default": {
+                "en-US": {
                     whats_new: ENV["CHANGELOG"],
                 },
             },
@@ -122,13 +139,11 @@ platform :ios do
     end
 
     desc "Deploy Production"
-    lane :deployPrd do
+    lane :deploy_prd do
         app_store_connect_api_key(
-            key_id: ENV["ASC_KEY_ID"],
-            issuer_id: ENV["ASC_ISSUER_ID"],
-            key_content: ENV["ASC_KEY_CONTENT"],
             is_key_content_base64: true,
             in_house: false,
+            # Via env: APP_STORE_CONNECT_API_KEY_KEY_ID, APP_STORE_CONNECT_API_KEY_ISSUER_ID, APP_STORE_CONNECT_API_KEY_KEY
         )
         upload_to_app_store(
             ipa: "./build/ipa/prd/Runner.ipa",

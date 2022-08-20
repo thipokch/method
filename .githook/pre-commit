@@ -5,7 +5,7 @@
 git stash -q --keep-index
 
 # run the tests with the gradle wrapper
-melos check:quality
+melos hygiene
 
 # store the last exit code in a variable
 RESULT=$?
