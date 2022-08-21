@@ -128,7 +128,7 @@ packages:
     source: hosted
     version: "3.0.2"
   core:
-    dependency: "direct overridden"
+    dependency: "direct main"
     description:
       path: "packages/core"
       relative: true

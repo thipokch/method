@@ -16,35 +16,34 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TaskEvent {
-  String get data => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String data) loadTask,
-    required TResult Function(String data) closeTask,
-    required TResult Function(String data) loadEntry,
-    required TResult Function(String data) addData,
-    required TResult Function(String data) updateData,
-    required TResult Function(String data) deleteData,
+    required TResult Function(Task task) loadTask,
+    required TResult Function() closeTask,
+    required TResult Function() loadEntry,
+    required TResult Function() addData,
+    required TResult Function() updateData,
+    required TResult Function() deleteData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String data)? loadTask,
-    TResult Function(String data)? closeTask,
-    TResult Function(String data)? loadEntry,
-    TResult Function(String data)? addData,
-    TResult Function(String data)? updateData,
-    TResult Function(String data)? deleteData,
+    TResult Function(Task task)? loadTask,
+    TResult Function()? closeTask,
+    TResult Function()? loadEntry,
+    TResult Function()? addData,
+    TResult Function()? updateData,
+    TResult Function()? deleteData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String data)? loadTask,
-    TResult Function(String data)? closeTask,
-    TResult Function(String data)? loadEntry,
-    TResult Function(String data)? addData,
-    TResult Function(String data)? updateData,
-    TResult Function(String data)? deleteData,
+    TResult Function(Task task)? loadTask,
+    TResult Function()? closeTask,
+    TResult Function()? loadEntry,
+    TResult Function()? addData,
+    TResult Function()? updateData,
+    TResult Function()? deleteData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -79,17 +78,12 @@ mixin _$TaskEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $TaskEventCopyWith<TaskEvent> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $TaskEventCopyWith<$Res> {
   factory $TaskEventCopyWith(TaskEvent value, $Res Function(TaskEvent) then) =
       _$TaskEventCopyWithImpl<$Res>;
-  $Res call({String data});
 }
 
 /// @nodoc
@@ -99,27 +93,16 @@ class _$TaskEventCopyWithImpl<$Res> implements $TaskEventCopyWith<$Res> {
   final TaskEvent _value;
   // ignore: unused_field
   final $Res Function(TaskEvent) _then;
-
-  @override
-  $Res call({
-    Object? data = freezed,
-  }) {
-    return _then(_value.copyWith(
-      data: data == freezed
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class _$$_LoadTaskCopyWith<$Res> implements $TaskEventCopyWith<$Res> {
+abstract class _$$_LoadTaskCopyWith<$Res> {
   factory _$$_LoadTaskCopyWith(
           _$_LoadTask value, $Res Function(_$_LoadTask) then) =
       __$$_LoadTaskCopyWithImpl<$Res>;
-  @override
-  $Res call({String data});
+  $Res call({Task task});
+
+  $TaskCopyWith<$Res> get task;
 }
 
 /// @nodoc
@@ -134,28 +117,35 @@ class __$$_LoadTaskCopyWithImpl<$Res> extends _$TaskEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? data = freezed,
+    Object? task = freezed,
   }) {
     return _then(_$_LoadTask(
-      data: data == freezed
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as String,
+      task: task == freezed
+          ? _value.task
+          : task // ignore: cast_nullable_to_non_nullable
+              as Task,
     ));
+  }
+
+  @override
+  $TaskCopyWith<$Res> get task {
+    return $TaskCopyWith<$Res>(_value.task, (value) {
+      return _then(_value.copyWith(task: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$_LoadTask implements _LoadTask {
-  const _$_LoadTask({required this.data});
+  const _$_LoadTask({required this.task});
 
   @override
-  final String data;
+  final Task task;
 
   @override
   String toString() {
-    return 'TaskEvent.loadTask(data: $data)';
+    return 'TaskEvent.loadTask(task: $task)';
   }
 
   @override
@@ -163,12 +153,12 @@ class _$_LoadTask implements _LoadTask {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LoadTask &&
-            const DeepCollectionEquality().equals(other.data, data));
+            const DeepCollectionEquality().equals(other.task, task));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(task));
 
   @JsonKey(ignore: true)
   @override
@@ -178,42 +168,42 @@ class _$_LoadTask implements _LoadTask {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String data) loadTask,
-    required TResult Function(String data) closeTask,
-    required TResult Function(String data) loadEntry,
-    required TResult Function(String data) addData,
-    required TResult Function(String data) updateData,
-    required TResult Function(String data) deleteData,
+    required TResult Function(Task task) loadTask,
+    required TResult Function() closeTask,
+    required TResult Function() loadEntry,
+    required TResult Function() addData,
+    required TResult Function() updateData,
+    required TResult Function() deleteData,
   }) {
-    return loadTask(data);
+    return loadTask(task);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String data)? loadTask,
-    TResult Function(String data)? closeTask,
-    TResult Function(String data)? loadEntry,
-    TResult Function(String data)? addData,
-    TResult Function(String data)? updateData,
-    TResult Function(String data)? deleteData,
+    TResult Function(Task task)? loadTask,
+    TResult Function()? closeTask,
+    TResult Function()? loadEntry,
+    TResult Function()? addData,
+    TResult Function()? updateData,
+    TResult Function()? deleteData,
   }) {
-    return loadTask?.call(data);
+    return loadTask?.call(task);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String data)? loadTask,
-    TResult Function(String data)? closeTask,
-    TResult Function(String data)? loadEntry,
-    TResult Function(String data)? addData,
-    TResult Function(String data)? updateData,
-    TResult Function(String data)? deleteData,
+    TResult Function(Task task)? loadTask,
+    TResult Function()? closeTask,
+    TResult Function()? loadEntry,
+    TResult Function()? addData,
+    TResult Function()? updateData,
+    TResult Function()? deleteData,
     required TResult orElse(),
   }) {
     if (loadTask != null) {
-      return loadTask(data);
+      return loadTask(task);
     }
     return orElse();
   }
@@ -263,23 +253,19 @@ class _$_LoadTask implements _LoadTask {
 }
 
 abstract class _LoadTask implements TaskEvent {
-  const factory _LoadTask({required final String data}) = _$_LoadTask;
+  const factory _LoadTask({required final Task task}) = _$_LoadTask;
 
-  @override
-  String get data;
-  @override
+  Task get task;
   @JsonKey(ignore: true)
   _$$_LoadTaskCopyWith<_$_LoadTask> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_CloseTaskCopyWith<$Res> implements $TaskEventCopyWith<$Res> {
+abstract class _$$_CloseTaskCopyWith<$Res> {
   factory _$$_CloseTaskCopyWith(
           _$_CloseTask value, $Res Function(_$_CloseTask) then) =
       __$$_CloseTaskCopyWithImpl<$Res>;
-  @override
-  $Res call({String data});
 }
 
 /// @nodoc
@@ -291,89 +277,66 @@ class __$$_CloseTaskCopyWithImpl<$Res> extends _$TaskEventCopyWithImpl<$Res>
 
   @override
   _$_CloseTask get _value => super._value as _$_CloseTask;
-
-  @override
-  $Res call({
-    Object? data = freezed,
-  }) {
-    return _then(_$_CloseTask(
-      data: data == freezed
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_CloseTask implements _CloseTask {
-  const _$_CloseTask({required this.data});
-
-  @override
-  final String data;
+  const _$_CloseTask();
 
   @override
   String toString() {
-    return 'TaskEvent.closeTask(data: $data)';
+    return 'TaskEvent.closeTask()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_CloseTask &&
-            const DeepCollectionEquality().equals(other.data, data));
+        (other.runtimeType == runtimeType && other is _$_CloseTask);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_CloseTaskCopyWith<_$_CloseTask> get copyWith =>
-      __$$_CloseTaskCopyWithImpl<_$_CloseTask>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String data) loadTask,
-    required TResult Function(String data) closeTask,
-    required TResult Function(String data) loadEntry,
-    required TResult Function(String data) addData,
-    required TResult Function(String data) updateData,
-    required TResult Function(String data) deleteData,
+    required TResult Function(Task task) loadTask,
+    required TResult Function() closeTask,
+    required TResult Function() loadEntry,
+    required TResult Function() addData,
+    required TResult Function() updateData,
+    required TResult Function() deleteData,
   }) {
-    return closeTask(data);
+    return closeTask();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String data)? loadTask,
-    TResult Function(String data)? closeTask,
-    TResult Function(String data)? loadEntry,
-    TResult Function(String data)? addData,
-    TResult Function(String data)? updateData,
-    TResult Function(String data)? deleteData,
+    TResult Function(Task task)? loadTask,
+    TResult Function()? closeTask,
+    TResult Function()? loadEntry,
+    TResult Function()? addData,
+    TResult Function()? updateData,
+    TResult Function()? deleteData,
   }) {
-    return closeTask?.call(data);
+    return closeTask?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String data)? loadTask,
-    TResult Function(String data)? closeTask,
-    TResult Function(String data)? loadEntry,
-    TResult Function(String data)? addData,
-    TResult Function(String data)? updateData,
-    TResult Function(String data)? deleteData,
+    TResult Function(Task task)? loadTask,
+    TResult Function()? closeTask,
+    TResult Function()? loadEntry,
+    TResult Function()? addData,
+    TResult Function()? updateData,
+    TResult Function()? deleteData,
     required TResult orElse(),
   }) {
     if (closeTask != null) {
-      return closeTask(data);
+      return closeTask();
     }
     return orElse();
   }
@@ -423,23 +386,14 @@ class _$_CloseTask implements _CloseTask {
 }
 
 abstract class _CloseTask implements TaskEvent {
-  const factory _CloseTask({required final String data}) = _$_CloseTask;
-
-  @override
-  String get data;
-  @override
-  @JsonKey(ignore: true)
-  _$$_CloseTaskCopyWith<_$_CloseTask> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _CloseTask() = _$_CloseTask;
 }
 
 /// @nodoc
-abstract class _$$_LoadEntryCopyWith<$Res> implements $TaskEventCopyWith<$Res> {
+abstract class _$$_LoadEntryCopyWith<$Res> {
   factory _$$_LoadEntryCopyWith(
           _$_LoadEntry value, $Res Function(_$_LoadEntry) then) =
       __$$_LoadEntryCopyWithImpl<$Res>;
-  @override
-  $Res call({String data});
 }
 
 /// @nodoc
@@ -451,89 +405,66 @@ class __$$_LoadEntryCopyWithImpl<$Res> extends _$TaskEventCopyWithImpl<$Res>
 
   @override
   _$_LoadEntry get _value => super._value as _$_LoadEntry;
-
-  @override
-  $Res call({
-    Object? data = freezed,
-  }) {
-    return _then(_$_LoadEntry(
-      data: data == freezed
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_LoadEntry implements _LoadEntry {
-  const _$_LoadEntry({required this.data});
-
-  @override
-  final String data;
+  const _$_LoadEntry();
 
   @override
   String toString() {
-    return 'TaskEvent.loadEntry(data: $data)';
+    return 'TaskEvent.loadEntry()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_LoadEntry &&
-            const DeepCollectionEquality().equals(other.data, data));
+        (other.runtimeType == runtimeType && other is _$_LoadEntry);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_LoadEntryCopyWith<_$_LoadEntry> get copyWith =>
-      __$$_LoadEntryCopyWithImpl<_$_LoadEntry>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String data) loadTask,
-    required TResult Function(String data) closeTask,
-    required TResult Function(String data) loadEntry,
-    required TResult Function(String data) addData,
-    required TResult Function(String data) updateData,
-    required TResult Function(String data) deleteData,
+    required TResult Function(Task task) loadTask,
+    required TResult Function() closeTask,
+    required TResult Function() loadEntry,
+    required TResult Function() addData,
+    required TResult Function() updateData,
+    required TResult Function() deleteData,
   }) {
-    return loadEntry(data);
+    return loadEntry();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String data)? loadTask,
-    TResult Function(String data)? closeTask,
-    TResult Function(String data)? loadEntry,
-    TResult Function(String data)? addData,
-    TResult Function(String data)? updateData,
-    TResult Function(String data)? deleteData,
+    TResult Function(Task task)? loadTask,
+    TResult Function()? closeTask,
+    TResult Function()? loadEntry,
+    TResult Function()? addData,
+    TResult Function()? updateData,
+    TResult Function()? deleteData,
   }) {
-    return loadEntry?.call(data);
+    return loadEntry?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String data)? loadTask,
-    TResult Function(String data)? closeTask,
-    TResult Function(String data)? loadEntry,
-    TResult Function(String data)? addData,
-    TResult Function(String data)? updateData,
-    TResult Function(String data)? deleteData,
+    TResult Function(Task task)? loadTask,
+    TResult Function()? closeTask,
+    TResult Function()? loadEntry,
+    TResult Function()? addData,
+    TResult Function()? updateData,
+    TResult Function()? deleteData,
     required TResult orElse(),
   }) {
     if (loadEntry != null) {
-      return loadEntry(data);
+      return loadEntry();
     }
     return orElse();
   }
@@ -583,23 +514,14 @@ class _$_LoadEntry implements _LoadEntry {
 }
 
 abstract class _LoadEntry implements TaskEvent {
-  const factory _LoadEntry({required final String data}) = _$_LoadEntry;
-
-  @override
-  String get data;
-  @override
-  @JsonKey(ignore: true)
-  _$$_LoadEntryCopyWith<_$_LoadEntry> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _LoadEntry() = _$_LoadEntry;
 }
 
 /// @nodoc
-abstract class _$$_AddDataCopyWith<$Res> implements $TaskEventCopyWith<$Res> {
+abstract class _$$_AddDataCopyWith<$Res> {
   factory _$$_AddDataCopyWith(
           _$_AddData value, $Res Function(_$_AddData) then) =
       __$$_AddDataCopyWithImpl<$Res>;
-  @override
-  $Res call({String data});
 }
 
 /// @nodoc
@@ -610,89 +532,66 @@ class __$$_AddDataCopyWithImpl<$Res> extends _$TaskEventCopyWithImpl<$Res>
 
   @override
   _$_AddData get _value => super._value as _$_AddData;
-
-  @override
-  $Res call({
-    Object? data = freezed,
-  }) {
-    return _then(_$_AddData(
-      data: data == freezed
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_AddData implements _AddData {
-  const _$_AddData({required this.data});
-
-  @override
-  final String data;
+  const _$_AddData();
 
   @override
   String toString() {
-    return 'TaskEvent.addData(data: $data)';
+    return 'TaskEvent.addData()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_AddData &&
-            const DeepCollectionEquality().equals(other.data, data));
+        (other.runtimeType == runtimeType && other is _$_AddData);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_AddDataCopyWith<_$_AddData> get copyWith =>
-      __$$_AddDataCopyWithImpl<_$_AddData>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String data) loadTask,
-    required TResult Function(String data) closeTask,
-    required TResult Function(String data) loadEntry,
-    required TResult Function(String data) addData,
-    required TResult Function(String data) updateData,
-    required TResult Function(String data) deleteData,
+    required TResult Function(Task task) loadTask,
+    required TResult Function() closeTask,
+    required TResult Function() loadEntry,
+    required TResult Function() addData,
+    required TResult Function() updateData,
+    required TResult Function() deleteData,
   }) {
-    return addData(data);
+    return addData();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String data)? loadTask,
-    TResult Function(String data)? closeTask,
-    TResult Function(String data)? loadEntry,
-    TResult Function(String data)? addData,
-    TResult Function(String data)? updateData,
-    TResult Function(String data)? deleteData,
+    TResult Function(Task task)? loadTask,
+    TResult Function()? closeTask,
+    TResult Function()? loadEntry,
+    TResult Function()? addData,
+    TResult Function()? updateData,
+    TResult Function()? deleteData,
   }) {
-    return addData?.call(data);
+    return addData?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String data)? loadTask,
-    TResult Function(String data)? closeTask,
-    TResult Function(String data)? loadEntry,
-    TResult Function(String data)? addData,
-    TResult Function(String data)? updateData,
-    TResult Function(String data)? deleteData,
+    TResult Function(Task task)? loadTask,
+    TResult Function()? closeTask,
+    TResult Function()? loadEntry,
+    TResult Function()? addData,
+    TResult Function()? updateData,
+    TResult Function()? deleteData,
     required TResult orElse(),
   }) {
     if (addData != null) {
-      return addData(data);
+      return addData();
     }
     return orElse();
   }
@@ -742,24 +641,14 @@ class _$_AddData implements _AddData {
 }
 
 abstract class _AddData implements TaskEvent {
-  const factory _AddData({required final String data}) = _$_AddData;
-
-  @override
-  String get data;
-  @override
-  @JsonKey(ignore: true)
-  _$$_AddDataCopyWith<_$_AddData> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _AddData() = _$_AddData;
 }
 
 /// @nodoc
-abstract class _$$_UpdateDataCopyWith<$Res>
-    implements $TaskEventCopyWith<$Res> {
+abstract class _$$_UpdateDataCopyWith<$Res> {
   factory _$$_UpdateDataCopyWith(
           _$_UpdateData value, $Res Function(_$_UpdateData) then) =
       __$$_UpdateDataCopyWithImpl<$Res>;
-  @override
-  $Res call({String data});
 }
 
 /// @nodoc
@@ -771,89 +660,66 @@ class __$$_UpdateDataCopyWithImpl<$Res> extends _$TaskEventCopyWithImpl<$Res>
 
   @override
   _$_UpdateData get _value => super._value as _$_UpdateData;
-
-  @override
-  $Res call({
-    Object? data = freezed,
-  }) {
-    return _then(_$_UpdateData(
-      data: data == freezed
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_UpdateData implements _UpdateData {
-  const _$_UpdateData({required this.data});
-
-  @override
-  final String data;
+  const _$_UpdateData();
 
   @override
   String toString() {
-    return 'TaskEvent.updateData(data: $data)';
+    return 'TaskEvent.updateData()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_UpdateData &&
-            const DeepCollectionEquality().equals(other.data, data));
+        (other.runtimeType == runtimeType && other is _$_UpdateData);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_UpdateDataCopyWith<_$_UpdateData> get copyWith =>
-      __$$_UpdateDataCopyWithImpl<_$_UpdateData>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String data) loadTask,
-    required TResult Function(String data) closeTask,
-    required TResult Function(String data) loadEntry,
-    required TResult Function(String data) addData,
-    required TResult Function(String data) updateData,
-    required TResult Function(String data) deleteData,
+    required TResult Function(Task task) loadTask,
+    required TResult Function() closeTask,
+    required TResult Function() loadEntry,
+    required TResult Function() addData,
+    required TResult Function() updateData,
+    required TResult Function() deleteData,
   }) {
-    return updateData(data);
+    return updateData();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String data)? loadTask,
-    TResult Function(String data)? closeTask,
-    TResult Function(String data)? loadEntry,
-    TResult Function(String data)? addData,
-    TResult Function(String data)? updateData,
-    TResult Function(String data)? deleteData,
+    TResult Function(Task task)? loadTask,
+    TResult Function()? closeTask,
+    TResult Function()? loadEntry,
+    TResult Function()? addData,
+    TResult Function()? updateData,
+    TResult Function()? deleteData,
   }) {
-    return updateData?.call(data);
+    return updateData?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String data)? loadTask,
-    TResult Function(String data)? closeTask,
-    TResult Function(String data)? loadEntry,
-    TResult Function(String data)? addData,
-    TResult Function(String data)? updateData,
-    TResult Function(String data)? deleteData,
+    TResult Function(Task task)? loadTask,
+    TResult Function()? closeTask,
+    TResult Function()? loadEntry,
+    TResult Function()? addData,
+    TResult Function()? updateData,
+    TResult Function()? deleteData,
     required TResult orElse(),
   }) {
     if (updateData != null) {
-      return updateData(data);
+      return updateData();
     }
     return orElse();
   }
@@ -903,24 +769,14 @@ class _$_UpdateData implements _UpdateData {
 }
 
 abstract class _UpdateData implements TaskEvent {
-  const factory _UpdateData({required final String data}) = _$_UpdateData;
-
-  @override
-  String get data;
-  @override
-  @JsonKey(ignore: true)
-  _$$_UpdateDataCopyWith<_$_UpdateData> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _UpdateData() = _$_UpdateData;
 }
 
 /// @nodoc
-abstract class _$$_DeleteDataCopyWith<$Res>
-    implements $TaskEventCopyWith<$Res> {
+abstract class _$$_DeleteDataCopyWith<$Res> {
   factory _$$_DeleteDataCopyWith(
           _$_DeleteData value, $Res Function(_$_DeleteData) then) =
       __$$_DeleteDataCopyWithImpl<$Res>;
-  @override
-  $Res call({String data});
 }
 
 /// @nodoc
@@ -932,89 +788,66 @@ class __$$_DeleteDataCopyWithImpl<$Res> extends _$TaskEventCopyWithImpl<$Res>
 
   @override
   _$_DeleteData get _value => super._value as _$_DeleteData;
-
-  @override
-  $Res call({
-    Object? data = freezed,
-  }) {
-    return _then(_$_DeleteData(
-      data: data == freezed
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_DeleteData implements _DeleteData {
-  const _$_DeleteData({required this.data});
-
-  @override
-  final String data;
+  const _$_DeleteData();
 
   @override
   String toString() {
-    return 'TaskEvent.deleteData(data: $data)';
+    return 'TaskEvent.deleteData()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_DeleteData &&
-            const DeepCollectionEquality().equals(other.data, data));
+        (other.runtimeType == runtimeType && other is _$_DeleteData);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_DeleteDataCopyWith<_$_DeleteData> get copyWith =>
-      __$$_DeleteDataCopyWithImpl<_$_DeleteData>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String data) loadTask,
-    required TResult Function(String data) closeTask,
-    required TResult Function(String data) loadEntry,
-    required TResult Function(String data) addData,
-    required TResult Function(String data) updateData,
-    required TResult Function(String data) deleteData,
+    required TResult Function(Task task) loadTask,
+    required TResult Function() closeTask,
+    required TResult Function() loadEntry,
+    required TResult Function() addData,
+    required TResult Function() updateData,
+    required TResult Function() deleteData,
   }) {
-    return deleteData(data);
+    return deleteData();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String data)? loadTask,
-    TResult Function(String data)? closeTask,
-    TResult Function(String data)? loadEntry,
-    TResult Function(String data)? addData,
-    TResult Function(String data)? updateData,
-    TResult Function(String data)? deleteData,
+    TResult Function(Task task)? loadTask,
+    TResult Function()? closeTask,
+    TResult Function()? loadEntry,
+    TResult Function()? addData,
+    TResult Function()? updateData,
+    TResult Function()? deleteData,
   }) {
-    return deleteData?.call(data);
+    return deleteData?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String data)? loadTask,
-    TResult Function(String data)? closeTask,
-    TResult Function(String data)? loadEntry,
-    TResult Function(String data)? addData,
-    TResult Function(String data)? updateData,
-    TResult Function(String data)? deleteData,
+    TResult Function(Task task)? loadTask,
+    TResult Function()? closeTask,
+    TResult Function()? loadEntry,
+    TResult Function()? addData,
+    TResult Function()? updateData,
+    TResult Function()? deleteData,
     required TResult orElse(),
   }) {
     if (deleteData != null) {
-      return deleteData(data);
+      return deleteData();
     }
     return orElse();
   }
@@ -1064,41 +897,33 @@ class _$_DeleteData implements _DeleteData {
 }
 
 abstract class _DeleteData implements TaskEvent {
-  const factory _DeleteData({required final String data}) = _$_DeleteData;
-
-  @override
-  String get data;
-  @override
-  @JsonKey(ignore: true)
-  _$$_DeleteDataCopyWith<_$_DeleteData> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _DeleteData() = _$_DeleteData;
 }
 
 /// @nodoc
 mixin _$TaskState {
-  String get data => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String data) initial,
-    required TResult Function(String data) taskLoaded,
-    required TResult Function(String data) entryLoaded,
-    required TResult Function(String data) entryUpdated,
+    required TResult Function() initial,
+    required TResult Function(Task task) taskLoaded,
+    required TResult Function(Task task) entryLoaded,
+    required TResult Function(Task task) entryUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String data)? initial,
-    TResult Function(String data)? taskLoaded,
-    TResult Function(String data)? entryLoaded,
-    TResult Function(String data)? entryUpdated,
+    TResult Function()? initial,
+    TResult Function(Task task)? taskLoaded,
+    TResult Function(Task task)? entryLoaded,
+    TResult Function(Task task)? entryUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String data)? initial,
-    TResult Function(String data)? taskLoaded,
-    TResult Function(String data)? entryLoaded,
-    TResult Function(String data)? entryUpdated,
+    TResult Function()? initial,
+    TResult Function(Task task)? taskLoaded,
+    TResult Function(Task task)? entryLoaded,
+    TResult Function(Task task)? entryUpdated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1127,17 +952,12 @@ mixin _$TaskState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $TaskStateCopyWith<TaskState> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $TaskStateCopyWith<$Res> {
   factory $TaskStateCopyWith(TaskState value, $Res Function(TaskState) then) =
       _$TaskStateCopyWithImpl<$Res>;
-  $Res call({String data});
 }
 
 /// @nodoc
@@ -1147,27 +967,13 @@ class _$TaskStateCopyWithImpl<$Res> implements $TaskStateCopyWith<$Res> {
   final TaskState _value;
   // ignore: unused_field
   final $Res Function(TaskState) _then;
-
-  @override
-  $Res call({
-    Object? data = freezed,
-  }) {
-    return _then(_value.copyWith(
-      data: data == freezed
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> implements $TaskStateCopyWith<$Res> {
+abstract class _$$_InitialCopyWith<$Res> {
   factory _$$_InitialCopyWith(
           _$_Initial value, $Res Function(_$_Initial) then) =
       __$$_InitialCopyWithImpl<$Res>;
-  @override
-  $Res call({String data});
 }
 
 /// @nodoc
@@ -1178,84 +984,60 @@ class __$$_InitialCopyWithImpl<$Res> extends _$TaskStateCopyWithImpl<$Res>
 
   @override
   _$_Initial get _value => super._value as _$_Initial;
-
-  @override
-  $Res call({
-    Object? data = freezed,
-  }) {
-    return _then(_$_Initial(
-      data: data == freezed
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_Initial implements _Initial {
-  const _$_Initial({this.data = "Initial"});
-
-  @override
-  @JsonKey()
-  final String data;
+  const _$_Initial();
 
   @override
   String toString() {
-    return 'TaskState.initial(data: $data)';
+    return 'TaskState.initial()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Initial &&
-            const DeepCollectionEquality().equals(other.data, data));
+        (other.runtimeType == runtimeType && other is _$_Initial);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_InitialCopyWith<_$_Initial> get copyWith =>
-      __$$_InitialCopyWithImpl<_$_Initial>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String data) initial,
-    required TResult Function(String data) taskLoaded,
-    required TResult Function(String data) entryLoaded,
-    required TResult Function(String data) entryUpdated,
+    required TResult Function() initial,
+    required TResult Function(Task task) taskLoaded,
+    required TResult Function(Task task) entryLoaded,
+    required TResult Function(Task task) entryUpdated,
   }) {
-    return initial(data);
+    return initial();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String data)? initial,
-    TResult Function(String data)? taskLoaded,
-    TResult Function(String data)? entryLoaded,
-    TResult Function(String data)? entryUpdated,
+    TResult Function()? initial,
+    TResult Function(Task task)? taskLoaded,
+    TResult Function(Task task)? entryLoaded,
+    TResult Function(Task task)? entryUpdated,
   }) {
-    return initial?.call(data);
+    return initial?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String data)? initial,
-    TResult Function(String data)? taskLoaded,
-    TResult Function(String data)? entryLoaded,
-    TResult Function(String data)? entryUpdated,
+    TResult Function()? initial,
+    TResult Function(Task task)? taskLoaded,
+    TResult Function(Task task)? entryLoaded,
+    TResult Function(Task task)? entryUpdated,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(data);
+      return initial();
     }
     return orElse();
   }
@@ -1299,24 +1081,17 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements TaskState {
-  const factory _Initial({final String data}) = _$_Initial;
-
-  @override
-  String get data;
-  @override
-  @JsonKey(ignore: true)
-  _$$_InitialCopyWith<_$_Initial> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _Initial() = _$_Initial;
 }
 
 /// @nodoc
-abstract class _$$_TaskLoadedCopyWith<$Res>
-    implements $TaskStateCopyWith<$Res> {
+abstract class _$$_TaskLoadedCopyWith<$Res> {
   factory _$$_TaskLoadedCopyWith(
           _$_TaskLoaded value, $Res Function(_$_TaskLoaded) then) =
       __$$_TaskLoadedCopyWithImpl<$Res>;
-  @override
-  $Res call({String data});
+  $Res call({Task task});
+
+  $TaskCopyWith<$Res> get task;
 }
 
 /// @nodoc
@@ -1331,29 +1106,35 @@ class __$$_TaskLoadedCopyWithImpl<$Res> extends _$TaskStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? data = freezed,
+    Object? task = freezed,
   }) {
     return _then(_$_TaskLoaded(
-      data: data == freezed
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as String,
+      task: task == freezed
+          ? _value.task
+          : task // ignore: cast_nullable_to_non_nullable
+              as Task,
     ));
+  }
+
+  @override
+  $TaskCopyWith<$Res> get task {
+    return $TaskCopyWith<$Res>(_value.task, (value) {
+      return _then(_value.copyWith(task: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$_TaskLoaded implements _TaskLoaded {
-  const _$_TaskLoaded({this.data = "Task Loaded"});
+  const _$_TaskLoaded({required this.task});
 
   @override
-  @JsonKey()
-  final String data;
+  final Task task;
 
   @override
   String toString() {
-    return 'TaskState.taskLoaded(data: $data)';
+    return 'TaskState.taskLoaded(task: $task)';
   }
 
   @override
@@ -1361,12 +1142,12 @@ class _$_TaskLoaded implements _TaskLoaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TaskLoaded &&
-            const DeepCollectionEquality().equals(other.data, data));
+            const DeepCollectionEquality().equals(other.task, task));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(task));
 
   @JsonKey(ignore: true)
   @override
@@ -1376,36 +1157,36 @@ class _$_TaskLoaded implements _TaskLoaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String data) initial,
-    required TResult Function(String data) taskLoaded,
-    required TResult Function(String data) entryLoaded,
-    required TResult Function(String data) entryUpdated,
+    required TResult Function() initial,
+    required TResult Function(Task task) taskLoaded,
+    required TResult Function(Task task) entryLoaded,
+    required TResult Function(Task task) entryUpdated,
   }) {
-    return taskLoaded(data);
+    return taskLoaded(task);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String data)? initial,
-    TResult Function(String data)? taskLoaded,
-    TResult Function(String data)? entryLoaded,
-    TResult Function(String data)? entryUpdated,
+    TResult Function()? initial,
+    TResult Function(Task task)? taskLoaded,
+    TResult Function(Task task)? entryLoaded,
+    TResult Function(Task task)? entryUpdated,
   }) {
-    return taskLoaded?.call(data);
+    return taskLoaded?.call(task);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String data)? initial,
-    TResult Function(String data)? taskLoaded,
-    TResult Function(String data)? entryLoaded,
-    TResult Function(String data)? entryUpdated,
+    TResult Function()? initial,
+    TResult Function(Task task)? taskLoaded,
+    TResult Function(Task task)? entryLoaded,
+    TResult Function(Task task)? entryUpdated,
     required TResult orElse(),
   }) {
     if (taskLoaded != null) {
-      return taskLoaded(data);
+      return taskLoaded(task);
     }
     return orElse();
   }
@@ -1449,24 +1230,22 @@ class _$_TaskLoaded implements _TaskLoaded {
 }
 
 abstract class _TaskLoaded implements TaskState {
-  const factory _TaskLoaded({final String data}) = _$_TaskLoaded;
+  const factory _TaskLoaded({required final Task task}) = _$_TaskLoaded;
 
-  @override
-  String get data;
-  @override
+  Task get task;
   @JsonKey(ignore: true)
   _$$_TaskLoadedCopyWith<_$_TaskLoaded> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_EntryLoadedCopyWith<$Res>
-    implements $TaskStateCopyWith<$Res> {
+abstract class _$$_EntryLoadedCopyWith<$Res> {
   factory _$$_EntryLoadedCopyWith(
           _$_EntryLoaded value, $Res Function(_$_EntryLoaded) then) =
       __$$_EntryLoadedCopyWithImpl<$Res>;
-  @override
-  $Res call({String data});
+  $Res call({Task task});
+
+  $TaskCopyWith<$Res> get task;
 }
 
 /// @nodoc
@@ -1481,29 +1260,35 @@ class __$$_EntryLoadedCopyWithImpl<$Res> extends _$TaskStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? data = freezed,
+    Object? task = freezed,
   }) {
     return _then(_$_EntryLoaded(
-      data: data == freezed
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as String,
+      task: task == freezed
+          ? _value.task
+          : task // ignore: cast_nullable_to_non_nullable
+              as Task,
     ));
+  }
+
+  @override
+  $TaskCopyWith<$Res> get task {
+    return $TaskCopyWith<$Res>(_value.task, (value) {
+      return _then(_value.copyWith(task: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$_EntryLoaded implements _EntryLoaded {
-  const _$_EntryLoaded({this.data = "Entry Loaded"});
+  const _$_EntryLoaded({required this.task});
 
   @override
-  @JsonKey()
-  final String data;
+  final Task task;
 
   @override
   String toString() {
-    return 'TaskState.entryLoaded(data: $data)';
+    return 'TaskState.entryLoaded(task: $task)';
   }
 
   @override
@@ -1511,12 +1296,12 @@ class _$_EntryLoaded implements _EntryLoaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_EntryLoaded &&
-            const DeepCollectionEquality().equals(other.data, data));
+            const DeepCollectionEquality().equals(other.task, task));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(task));
 
   @JsonKey(ignore: true)
   @override
@@ -1526,36 +1311,36 @@ class _$_EntryLoaded implements _EntryLoaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String data) initial,
-    required TResult Function(String data) taskLoaded,
-    required TResult Function(String data) entryLoaded,
-    required TResult Function(String data) entryUpdated,
+    required TResult Function() initial,
+    required TResult Function(Task task) taskLoaded,
+    required TResult Function(Task task) entryLoaded,
+    required TResult Function(Task task) entryUpdated,
   }) {
-    return entryLoaded(data);
+    return entryLoaded(task);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String data)? initial,
-    TResult Function(String data)? taskLoaded,
-    TResult Function(String data)? entryLoaded,
-    TResult Function(String data)? entryUpdated,
+    TResult Function()? initial,
+    TResult Function(Task task)? taskLoaded,
+    TResult Function(Task task)? entryLoaded,
+    TResult Function(Task task)? entryUpdated,
   }) {
-    return entryLoaded?.call(data);
+    return entryLoaded?.call(task);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String data)? initial,
-    TResult Function(String data)? taskLoaded,
-    TResult Function(String data)? entryLoaded,
-    TResult Function(String data)? entryUpdated,
+    TResult Function()? initial,
+    TResult Function(Task task)? taskLoaded,
+    TResult Function(Task task)? entryLoaded,
+    TResult Function(Task task)? entryUpdated,
     required TResult orElse(),
   }) {
     if (entryLoaded != null) {
-      return entryLoaded(data);
+      return entryLoaded(task);
     }
     return orElse();
   }
@@ -1599,24 +1384,22 @@ class _$_EntryLoaded implements _EntryLoaded {
 }
 
 abstract class _EntryLoaded implements TaskState {
-  const factory _EntryLoaded({final String data}) = _$_EntryLoaded;
+  const factory _EntryLoaded({required final Task task}) = _$_EntryLoaded;
 
-  @override
-  String get data;
-  @override
+  Task get task;
   @JsonKey(ignore: true)
   _$$_EntryLoadedCopyWith<_$_EntryLoaded> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_EntryUpdatedCopyWith<$Res>
-    implements $TaskStateCopyWith<$Res> {
+abstract class _$$_EntryUpdatedCopyWith<$Res> {
   factory _$$_EntryUpdatedCopyWith(
           _$_EntryUpdated value, $Res Function(_$_EntryUpdated) then) =
       __$$_EntryUpdatedCopyWithImpl<$Res>;
-  @override
-  $Res call({String data});
+  $Res call({Task task});
+
+  $TaskCopyWith<$Res> get task;
 }
 
 /// @nodoc
@@ -1631,29 +1414,35 @@ class __$$_EntryUpdatedCopyWithImpl<$Res> extends _$TaskStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? data = freezed,
+    Object? task = freezed,
   }) {
     return _then(_$_EntryUpdated(
-      data: data == freezed
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as String,
+      task: task == freezed
+          ? _value.task
+          : task // ignore: cast_nullable_to_non_nullable
+              as Task,
     ));
+  }
+
+  @override
+  $TaskCopyWith<$Res> get task {
+    return $TaskCopyWith<$Res>(_value.task, (value) {
+      return _then(_value.copyWith(task: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$_EntryUpdated implements _EntryUpdated {
-  const _$_EntryUpdated({this.data = "Entry Updated"});
+  const _$_EntryUpdated({required this.task});
 
   @override
-  @JsonKey()
-  final String data;
+  final Task task;
 
   @override
   String toString() {
-    return 'TaskState.entryUpdated(data: $data)';
+    return 'TaskState.entryUpdated(task: $task)';
   }
 
   @override
@@ -1661,12 +1450,12 @@ class _$_EntryUpdated implements _EntryUpdated {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_EntryUpdated &&
-            const DeepCollectionEquality().equals(other.data, data));
+            const DeepCollectionEquality().equals(other.task, task));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(task));
 
   @JsonKey(ignore: true)
   @override
@@ -1676,36 +1465,36 @@ class _$_EntryUpdated implements _EntryUpdated {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String data) initial,
-    required TResult Function(String data) taskLoaded,
-    required TResult Function(String data) entryLoaded,
-    required TResult Function(String data) entryUpdated,
+    required TResult Function() initial,
+    required TResult Function(Task task) taskLoaded,
+    required TResult Function(Task task) entryLoaded,
+    required TResult Function(Task task) entryUpdated,
   }) {
-    return entryUpdated(data);
+    return entryUpdated(task);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String data)? initial,
-    TResult Function(String data)? taskLoaded,
-    TResult Function(String data)? entryLoaded,
-    TResult Function(String data)? entryUpdated,
+    TResult Function()? initial,
+    TResult Function(Task task)? taskLoaded,
+    TResult Function(Task task)? entryLoaded,
+    TResult Function(Task task)? entryUpdated,
   }) {
-    return entryUpdated?.call(data);
+    return entryUpdated?.call(task);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String data)? initial,
-    TResult Function(String data)? taskLoaded,
-    TResult Function(String data)? entryLoaded,
-    TResult Function(String data)? entryUpdated,
+    TResult Function()? initial,
+    TResult Function(Task task)? taskLoaded,
+    TResult Function(Task task)? entryLoaded,
+    TResult Function(Task task)? entryUpdated,
     required TResult orElse(),
   }) {
     if (entryUpdated != null) {
-      return entryUpdated(data);
+      return entryUpdated(task);
     }
     return orElse();
   }
@@ -1749,11 +1538,9 @@ class _$_EntryUpdated implements _EntryUpdated {
 }
 
 abstract class _EntryUpdated implements TaskState {
-  const factory _EntryUpdated({final String data}) = _$_EntryUpdated;
+  const factory _EntryUpdated({required final Task task}) = _$_EntryUpdated;
 
-  @override
-  String get data;
-  @override
+  Task get task;
   @JsonKey(ignore: true)
   _$$_EntryUpdatedCopyWith<_$_EntryUpdated> get copyWith =>
       throw _privateConstructorUsedError;
