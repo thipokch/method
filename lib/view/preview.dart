@@ -1,6 +1,6 @@
 import 'package:element/element_icon.dart';
 import 'package:flutter/material.dart';
-import 'package:method/view/task.dart';
+import 'package:method/view/task_view.dart';
 
 class ViewPreview extends StatelessWidget {
   const ViewPreview({Key? key}) : super(key: key);
@@ -16,7 +16,7 @@ class ViewPreview extends StatelessWidget {
         ),
         actions: const <Widget>[],
       ),
-      body: const TaskView(),
+      body: TaskView(),
     );
   }
 }
