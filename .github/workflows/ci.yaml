@@ -311,7 +311,7 @@ jobs:
 
   deploy:
 
-    name: "Deploying ${{ needs.release.outputs.current_env }} #${{ needs.hygiene.outputs.build_num }}"
+    name: "Deploying ${{ matrix.target }} for ${{ needs.release.outputs.current_env }} #${{ needs.hygiene.outputs.build_num }}"
     needs: [ hygiene, build, release ]
     strategy:
       fail-fast: false
