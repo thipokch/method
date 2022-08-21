@@ -322,7 +322,6 @@ jobs:
           - os: macos-12
             target: iOS
             deploy-command: ios
-            # build-dir: /build/ipa/
 
           # - os: ubuntu-22.04
           #   target: Android
@@ -332,7 +331,6 @@ jobs:
           - os: ubuntu-22.04
             target: Web
             deploy-command: web
-            # build-dir: /build/web/
 
     if: ${{ needs.release.outputs.releases_created || needs.release.outputs.current_env == 'dev' }}
     runs-on: ${{ matrix.os }}

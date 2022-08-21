@@ -107,13 +107,7 @@ platform :ios do
             ipa: "../build/ipa/dev/Runner.ipa",
             beta_app_feedback_email: "me@thipok.ch",
             beta_app_description: "Experiment with your thought.",
-            groups: [ "All" ],
-            localized_build_info: {
-                "default": {
-                    whats_new: ENV["CHANGELOG"],
-                },
-            },
-            demo_account_required: false,
+            changelog: ENV["CHANGELOG"],
         )
     end
 
@@ -128,13 +122,7 @@ platform :ios do
             ipa: "../build/ipa/stg/Runner.ipa",
             beta_app_feedback_email: "me@thipok.ch",
             beta_app_description: "Experiment with your thought.",
-            groups: [ "All" ],
-            localized_build_info: {
-                "en-US": {
-                    whats_new: ENV["CHANGELOG"],
-                },
-            },
-            demo_account_required: false,
+            changelog: ENV["CHANGELOG"],
         )
     end
 
