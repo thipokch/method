@@ -18,6 +18,7 @@ jobs:
     name: Hygiene check for ${{ github.ref_name }}
     outputs:
       build_num: ${{ steps.hash.outputs.build_num }}
+      build_info: "Build #${{ steps.hash.outputs.build_num }} for ${{  github.ref_name }} environment."
 
     runs-on: ubuntu-22.04
     steps:
@@ -195,7 +196,7 @@ jobs:
       next_env: ${{ steps.get-next-branch.outputs.replaced }}
       current_env: ${{ github.ref_name }}
       pr: ${{ steps.release.outputs.pr }}
-      changelog: ${{ steps.render-changelog.outputs.replaced || needs.hygiene.outputs.build_num }}
+      changelog: ${{ steps.render-changelog.outputs.replaced || needs.hygiene.outputs.build_info }}
 
     runs-on: ubuntu-22.04
     steps:
