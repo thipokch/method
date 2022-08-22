@@ -2,6 +2,8 @@ import 'package:component/settings/settings_bloc.dart';
 import 'package:element/element_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:method/view/settings_preview.dart';
+import 'package:method/view/settings_view.dart';
 
 import 'dev_home.dart';
 
@@ -29,7 +31,7 @@ class App extends StatelessWidget {
                       loaded: (themeMode) => themeMode,
                     ) ??
                 ThemeMode.system,
-            home: const DevHome(title: 'Developer Home'),
+            home: const SettingsPreview(),
           ),
         ),
       ),

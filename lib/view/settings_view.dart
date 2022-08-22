@@ -2,6 +2,9 @@ import 'package:component/settings/settings_bloc.dart';
 import 'package:element/element_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:method/dev_home.dart';
+import 'package:method/patch/about.dart' as about;
+import 'package:package_info_plus/package_info_plus.dart';
 
 import 'settings_preview.dart';
 
@@ -13,8 +16,12 @@ class SettingsView extends StatelessWidget {
       BlocBuilder<SettingsBloc, SettingsState>(
         builder: (context, state) => state.when(
           initial: () => const Text("initial"),
-          loaded: (themeMode) => ListView(
-            children: [
+          loaded: (themeMode) {
+            final List<Widget> items = [
+              const Padding(
+                padding: EdgeInsets.fromLTRB(16, 12, 16, 8),
+                child: Text("Theme"),
+              ),
               ListTile(
                 title: const Text("System"),
                 trailing: Visibility(
@@ -51,8 +58,41 @@ class SettingsView extends StatelessWidget {
                       ),
                     ),
               ),
-            ],
-          ),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(16, 16, 16, 8),
+                child: Text("Method App"),
+              ),
+              ListTile(
+                title: const Text("About"),
+                trailing: const Icon(ElementIcon.brandArrowRight),
+                onTap: () async {
+                  PackageInfo packageInfo = await PackageInfo.fromPlatform();
+                  about.showLicensePage(
+                    context: context,
+                    applicationVersion: packageInfo.version,
+                    applicationName: packageInfo.appName.toLowerCase(),
+                    applicationLegalese: "Build ${packageInfo.buildNumber}",
+                  );
+                },
+              ),
+              ListTile(
+                title: const Text("Developer"),
+                trailing: const Icon(ElementIcon.brandArrowRight),
+                onTap: () => showDev(context: context),
+              ),
+            ];
+
+            return ListView.separated(
+              separatorBuilder: (context, index) => const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 12),
+                child: Divider(
+                  height: 0,
+                ),
+              ),
+              itemCount: items.length,
+              itemBuilder: (context, index) => items[index],
+            );
+          },
         ),
       );
 }

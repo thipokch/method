@@ -30,18 +30,6 @@ class _DevHomeState extends State<DevHome> {
         child: Column(
           children: [
             ButtonTonal(
-              child: const Text("License"),
-              onPressed: () async {
-                PackageInfo packageInfo = await PackageInfo.fromPlatform();
-                about.showLicensePage(
-                  context: context,
-                  applicationVersion:
-                      "${packageInfo.version} - ${packageInfo.buildNumber}",
-                  applicationName: packageInfo.appName.toLowerCase(),
-                );
-              },
-            ),
-            ButtonTonal(
               child: const Text("Matter"),
               onPressed: () {
                 showMatterPreview(context: context);
@@ -53,15 +41,21 @@ class _DevHomeState extends State<DevHome> {
                 showTaskPreview(context: context);
               },
             ),
-            ButtonTonal(
-              child: const Text("Settings"),
-              onPressed: () {
-                showSettingsPreview(context: context);
-              },
-            ),
           ],
         ),
       ),
     );
   }
+}
+
+void showDev({
+  required BuildContext context,
+  bool useRootNavigator = false,
+}) {
+  Navigator.of(context, rootNavigator: useRootNavigator)
+      .push(MaterialPageRoute<void>(
+    builder: (BuildContext context) => const DevHome(
+      title: "Developers",
+    ),
+  ));
 }
