@@ -1,8 +1,5 @@
-import 'package:element/element_color.dart';
 import 'package:element/element_icon.dart';
-import 'package:element/element_typography.dart';
 import 'package:flutter/material.dart';
-import 'package:matter/patch/ink_sparkle.dart';
 import 'package:matter/preview_composite.dart';
 import 'package:matter/preview_element.dart';
 import 'package:matter/preview_style.dart';
@@ -22,39 +19,10 @@ class MatterPreview extends StatefulWidget {
 }
 
 class _MatterPreviewState extends State<MatterPreview> {
-  bool useMaterial3 = true;
-  bool useLightMode = true;
   int screenIndex = 0;
-
-  late ThemeData themeData;
-
-  @override
-  initState() {
-    super.initState();
-    themeData = updateThemes(useLightMode);
-  }
-
-  ThemeData updateThemes(bool useLightMode) {
-    return ThemeData(
-      useMaterial3: useMaterial3,
-      textTheme: ElementTypography.textStyle,
-      splashFactory: InkSparklePatch.splashFactory,
-      colorScheme: useLightMode
-          ? ElementColor.lightColorStyle
-          : ElementColor.darkColorStyle,
-    );
-  }
-
   void onScreenChanged(int selectedScreen) {
     setState(() {
       screenIndex = selectedScreen;
-    });
-  }
-
-  void onBrightnessChange() {
-    setState(() {
-      useLightMode = !useLightMode;
-      themeData = updateThemes(!useLightMode);
     });
   }
 
@@ -80,70 +48,45 @@ class _MatterPreviewState extends State<MatterPreview> {
         onPressed: () => Navigator.of(context).pop(),
       ),
       title: const Text("Matter Preview"),
-      actions: [
-        IconButton(
-          icon: useLightMode
-              ? const Icon(ElementIcon.sunMax)
-              : const Icon(ElementIcon.sunMin),
-          onPressed: onBrightnessChange,
-          tooltip: "Toggle brightness",
-        ),
-      ],
     );
   }
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "Matter Preview",
-      themeMode: useLightMode ? ThemeMode.light : ThemeMode.dark,
-      theme: themeData,
-      home: GestureDetector(
-        onTap: () {
-          FocusScopeNode currentFocus = FocusScope.of(context);
-          if (!currentFocus.hasPrimaryFocus &&
-              currentFocus.focusedChild != null) {
-            currentFocus.focusedChild?.unfocus();
-          }
-        },
-        child: LayoutBuilder(builder: (context, constraints) {
-          return constraints.maxWidth < narrowScreenWidthThreshold
-              ? Scaffold(
-                  appBar: createAppBar(),
-                  body: Row(
-                    children: <Widget>[createScreenFor(screenIndex, false)],
-                  ),
-                  bottomNavigationBar: NavigationBars(
-                    onSelectItem: onScreenChanged,
-                    selectedIndex: screenIndex,
-                    isExampleBar: false,
-                  ),
-                )
-              : Scaffold(
-                  appBar: createAppBar(),
-                  body: SafeArea(
-                    bottom: false,
-                    top: false,
-                    child: Row(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5),
-                          child: NavigationRailSection(
-                            onSelectItem: onScreenChanged,
-                            selectedIndex: screenIndex,
+  Widget build(BuildContext context) => LayoutBuilder(
+        builder: (context, constraints) =>
+            constraints.maxWidth < narrowScreenWidthThreshold
+                ? Scaffold(
+                    appBar: createAppBar(),
+                    body: Row(
+                      children: <Widget>[createScreenFor(screenIndex, false)],
+                    ),
+                    bottomNavigationBar: NavigationBars(
+                      onSelectItem: onScreenChanged,
+                      selectedIndex: screenIndex,
+                      isExampleBar: false,
+                    ),
+                  )
+                : Scaffold(
+                    appBar: createAppBar(),
+                    body: SafeArea(
+                      bottom: false,
+                      top: false,
+                      child: Row(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 5),
+                            child: NavigationRailSection(
+                              onSelectItem: onScreenChanged,
+                              selectedIndex: screenIndex,
+                            ),
                           ),
-                        ),
-                        const VerticalDivider(thickness: 1, width: 1),
-                        createScreenFor(screenIndex, true),
-                      ],
+                          const VerticalDivider(thickness: 1, width: 1),
+                          createScreenFor(screenIndex, true),
+                        ],
+                      ),
                     ),
                   ),
-                );
-        }),
-      ),
-    );
-  }
+      );
 }
 
 //

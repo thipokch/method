@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:matter/button/button_tonal.dart';
 import 'package:matter/preview.dart';
 import 'package:method/patch/about.dart' as about;
-import 'package:method/view/preview.dart';
+import 'package:method/view/task_preview.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+
+import 'view/settings_view.dart';
 
 class DevHome extends StatefulWidget {
   const DevHome({
@@ -46,9 +48,15 @@ class _DevHomeState extends State<DevHome> {
               },
             ),
             ButtonTonal(
-              child: const Text("View"),
+              child: const Text("Task"),
               onPressed: () {
-                showViewPreview(context: context);
+                showTaskPreview(context: context);
+              },
+            ),
+            ButtonTonal(
+              child: const Text("Settings"),
+              onPressed: () {
+                showSettingsPreview(context: context);
               },
             ),
           ],

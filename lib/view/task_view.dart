@@ -8,11 +8,11 @@ import 'package:matter/card/card.dart';
 class TaskView extends StatelessWidget {
   TaskView({Key? key}) : super(key: key);
 
-  final bloc = TaskBlock();
+  final bloc = TaskBloc();
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TaskBlock, TaskState>(
+    return BlocBuilder<TaskBloc, TaskState>(
       bloc: bloc,
       builder: (context, state) {
         return Column(
@@ -23,7 +23,6 @@ class TaskView extends StatelessWidget {
                 initial: () => "Loading",
                 taskLoaded: (task) => task.description,
                 entryLoaded: (task) => task.description,
-                entryUpdated: (task) => task.description,
               ),
               emoji: "📺",
               isExpanded: true,

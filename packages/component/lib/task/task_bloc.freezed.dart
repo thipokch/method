@@ -907,7 +907,6 @@ mixin _$TaskState {
     required TResult Function() initial,
     required TResult Function(Task task) taskLoaded,
     required TResult Function(Task task) entryLoaded,
-    required TResult Function(Task task) entryUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -915,7 +914,6 @@ mixin _$TaskState {
     TResult Function()? initial,
     TResult Function(Task task)? taskLoaded,
     TResult Function(Task task)? entryLoaded,
-    TResult Function(Task task)? entryUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -923,7 +921,6 @@ mixin _$TaskState {
     TResult Function()? initial,
     TResult Function(Task task)? taskLoaded,
     TResult Function(Task task)? entryLoaded,
-    TResult Function(Task task)? entryUpdated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -932,7 +929,6 @@ mixin _$TaskState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_TaskLoaded value) taskLoaded,
     required TResult Function(_EntryLoaded value) entryLoaded,
-    required TResult Function(_EntryUpdated value) entryUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -940,7 +936,6 @@ mixin _$TaskState {
     TResult Function(_Initial value)? initial,
     TResult Function(_TaskLoaded value)? taskLoaded,
     TResult Function(_EntryLoaded value)? entryLoaded,
-    TResult Function(_EntryUpdated value)? entryUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -948,7 +943,6 @@ mixin _$TaskState {
     TResult Function(_Initial value)? initial,
     TResult Function(_TaskLoaded value)? taskLoaded,
     TResult Function(_EntryLoaded value)? entryLoaded,
-    TResult Function(_EntryUpdated value)? entryUpdated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1011,7 +1005,6 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function(Task task) taskLoaded,
     required TResult Function(Task task) entryLoaded,
-    required TResult Function(Task task) entryUpdated,
   }) {
     return initial();
   }
@@ -1022,7 +1015,6 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function(Task task)? taskLoaded,
     TResult Function(Task task)? entryLoaded,
-    TResult Function(Task task)? entryUpdated,
   }) {
     return initial?.call();
   }
@@ -1033,7 +1025,6 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function(Task task)? taskLoaded,
     TResult Function(Task task)? entryLoaded,
-    TResult Function(Task task)? entryUpdated,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1048,7 +1039,6 @@ class _$_Initial implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_TaskLoaded value) taskLoaded,
     required TResult Function(_EntryLoaded value) entryLoaded,
-    required TResult Function(_EntryUpdated value) entryUpdated,
   }) {
     return initial(this);
   }
@@ -1059,7 +1049,6 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_TaskLoaded value)? taskLoaded,
     TResult Function(_EntryLoaded value)? entryLoaded,
-    TResult Function(_EntryUpdated value)? entryUpdated,
   }) {
     return initial?.call(this);
   }
@@ -1070,7 +1059,6 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_TaskLoaded value)? taskLoaded,
     TResult Function(_EntryLoaded value)? entryLoaded,
-    TResult Function(_EntryUpdated value)? entryUpdated,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1160,7 +1148,6 @@ class _$_TaskLoaded implements _TaskLoaded {
     required TResult Function() initial,
     required TResult Function(Task task) taskLoaded,
     required TResult Function(Task task) entryLoaded,
-    required TResult Function(Task task) entryUpdated,
   }) {
     return taskLoaded(task);
   }
@@ -1171,7 +1158,6 @@ class _$_TaskLoaded implements _TaskLoaded {
     TResult Function()? initial,
     TResult Function(Task task)? taskLoaded,
     TResult Function(Task task)? entryLoaded,
-    TResult Function(Task task)? entryUpdated,
   }) {
     return taskLoaded?.call(task);
   }
@@ -1182,7 +1168,6 @@ class _$_TaskLoaded implements _TaskLoaded {
     TResult Function()? initial,
     TResult Function(Task task)? taskLoaded,
     TResult Function(Task task)? entryLoaded,
-    TResult Function(Task task)? entryUpdated,
     required TResult orElse(),
   }) {
     if (taskLoaded != null) {
@@ -1197,7 +1182,6 @@ class _$_TaskLoaded implements _TaskLoaded {
     required TResult Function(_Initial value) initial,
     required TResult Function(_TaskLoaded value) taskLoaded,
     required TResult Function(_EntryLoaded value) entryLoaded,
-    required TResult Function(_EntryUpdated value) entryUpdated,
   }) {
     return taskLoaded(this);
   }
@@ -1208,7 +1192,6 @@ class _$_TaskLoaded implements _TaskLoaded {
     TResult Function(_Initial value)? initial,
     TResult Function(_TaskLoaded value)? taskLoaded,
     TResult Function(_EntryLoaded value)? entryLoaded,
-    TResult Function(_EntryUpdated value)? entryUpdated,
   }) {
     return taskLoaded?.call(this);
   }
@@ -1219,7 +1202,6 @@ class _$_TaskLoaded implements _TaskLoaded {
     TResult Function(_Initial value)? initial,
     TResult Function(_TaskLoaded value)? taskLoaded,
     TResult Function(_EntryLoaded value)? entryLoaded,
-    TResult Function(_EntryUpdated value)? entryUpdated,
     required TResult orElse(),
   }) {
     if (taskLoaded != null) {
@@ -1314,7 +1296,6 @@ class _$_EntryLoaded implements _EntryLoaded {
     required TResult Function() initial,
     required TResult Function(Task task) taskLoaded,
     required TResult Function(Task task) entryLoaded,
-    required TResult Function(Task task) entryUpdated,
   }) {
     return entryLoaded(task);
   }
@@ -1325,7 +1306,6 @@ class _$_EntryLoaded implements _EntryLoaded {
     TResult Function()? initial,
     TResult Function(Task task)? taskLoaded,
     TResult Function(Task task)? entryLoaded,
-    TResult Function(Task task)? entryUpdated,
   }) {
     return entryLoaded?.call(task);
   }
@@ -1336,7 +1316,6 @@ class _$_EntryLoaded implements _EntryLoaded {
     TResult Function()? initial,
     TResult Function(Task task)? taskLoaded,
     TResult Function(Task task)? entryLoaded,
-    TResult Function(Task task)? entryUpdated,
     required TResult orElse(),
   }) {
     if (entryLoaded != null) {
@@ -1351,7 +1330,6 @@ class _$_EntryLoaded implements _EntryLoaded {
     required TResult Function(_Initial value) initial,
     required TResult Function(_TaskLoaded value) taskLoaded,
     required TResult Function(_EntryLoaded value) entryLoaded,
-    required TResult Function(_EntryUpdated value) entryUpdated,
   }) {
     return entryLoaded(this);
   }
@@ -1362,7 +1340,6 @@ class _$_EntryLoaded implements _EntryLoaded {
     TResult Function(_Initial value)? initial,
     TResult Function(_TaskLoaded value)? taskLoaded,
     TResult Function(_EntryLoaded value)? entryLoaded,
-    TResult Function(_EntryUpdated value)? entryUpdated,
   }) {
     return entryLoaded?.call(this);
   }
@@ -1373,7 +1350,6 @@ class _$_EntryLoaded implements _EntryLoaded {
     TResult Function(_Initial value)? initial,
     TResult Function(_TaskLoaded value)? taskLoaded,
     TResult Function(_EntryLoaded value)? entryLoaded,
-    TResult Function(_EntryUpdated value)? entryUpdated,
     required TResult orElse(),
   }) {
     if (entryLoaded != null) {
@@ -1389,159 +1365,5 @@ abstract class _EntryLoaded implements TaskState {
   Task get task;
   @JsonKey(ignore: true)
   _$$_EntryLoadedCopyWith<_$_EntryLoaded> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_EntryUpdatedCopyWith<$Res> {
-  factory _$$_EntryUpdatedCopyWith(
-          _$_EntryUpdated value, $Res Function(_$_EntryUpdated) then) =
-      __$$_EntryUpdatedCopyWithImpl<$Res>;
-  $Res call({Task task});
-
-  $TaskCopyWith<$Res> get task;
-}
-
-/// @nodoc
-class __$$_EntryUpdatedCopyWithImpl<$Res> extends _$TaskStateCopyWithImpl<$Res>
-    implements _$$_EntryUpdatedCopyWith<$Res> {
-  __$$_EntryUpdatedCopyWithImpl(
-      _$_EntryUpdated _value, $Res Function(_$_EntryUpdated) _then)
-      : super(_value, (v) => _then(v as _$_EntryUpdated));
-
-  @override
-  _$_EntryUpdated get _value => super._value as _$_EntryUpdated;
-
-  @override
-  $Res call({
-    Object? task = freezed,
-  }) {
-    return _then(_$_EntryUpdated(
-      task: task == freezed
-          ? _value.task
-          : task // ignore: cast_nullable_to_non_nullable
-              as Task,
-    ));
-  }
-
-  @override
-  $TaskCopyWith<$Res> get task {
-    return $TaskCopyWith<$Res>(_value.task, (value) {
-      return _then(_value.copyWith(task: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$_EntryUpdated implements _EntryUpdated {
-  const _$_EntryUpdated({required this.task});
-
-  @override
-  final Task task;
-
-  @override
-  String toString() {
-    return 'TaskState.entryUpdated(task: $task)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_EntryUpdated &&
-            const DeepCollectionEquality().equals(other.task, task));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(task));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_EntryUpdatedCopyWith<_$_EntryUpdated> get copyWith =>
-      __$$_EntryUpdatedCopyWithImpl<_$_EntryUpdated>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(Task task) taskLoaded,
-    required TResult Function(Task task) entryLoaded,
-    required TResult Function(Task task) entryUpdated,
-  }) {
-    return entryUpdated(task);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(Task task)? taskLoaded,
-    TResult Function(Task task)? entryLoaded,
-    TResult Function(Task task)? entryUpdated,
-  }) {
-    return entryUpdated?.call(task);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(Task task)? taskLoaded,
-    TResult Function(Task task)? entryLoaded,
-    TResult Function(Task task)? entryUpdated,
-    required TResult orElse(),
-  }) {
-    if (entryUpdated != null) {
-      return entryUpdated(task);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_TaskLoaded value) taskLoaded,
-    required TResult Function(_EntryLoaded value) entryLoaded,
-    required TResult Function(_EntryUpdated value) entryUpdated,
-  }) {
-    return entryUpdated(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_TaskLoaded value)? taskLoaded,
-    TResult Function(_EntryLoaded value)? entryLoaded,
-    TResult Function(_EntryUpdated value)? entryUpdated,
-  }) {
-    return entryUpdated?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_TaskLoaded value)? taskLoaded,
-    TResult Function(_EntryLoaded value)? entryLoaded,
-    TResult Function(_EntryUpdated value)? entryUpdated,
-    required TResult orElse(),
-  }) {
-    if (entryUpdated != null) {
-      return entryUpdated(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _EntryUpdated implements TaskState {
-  const factory _EntryUpdated({required final Task task}) = _$_EntryUpdated;
-
-  Task get task;
-  @JsonKey(ignore: true)
-  _$$_EntryUpdatedCopyWith<_$_EntryUpdated> get copyWith =>
       throw _privateConstructorUsedError;
 }

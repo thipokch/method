@@ -11,21 +11,21 @@ class TaskDefinition with _$TaskDefinition, Uniform, Describe {
   @Implements<Uniform>()
   @Implements<Describe>()
   const factory TaskDefinition.label({
-    required String name,
-    required String description,
-    required String hierarchyPath,
-    required String id,
-    required String text,
+    required final String name,
+    required final String description,
+    required final String hierarchyPath,
+    required final String id,
+    required final String text,
   }) = _Label;
 
   @Implements<Uniform>()
   @Implements<Describe>()
   const factory TaskDefinition.note({
-    required String name,
-    required String description,
-    required String hierarchyPath,
-    required String id,
-    required String text,
+    required final String name,
+    required final String description,
+    required final String hierarchyPath,
+    required final String id,
+    required final String text,
   }) = _Note;
 
   @override

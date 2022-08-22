@@ -6,8 +6,8 @@ part 'task_event.dart';
 part 'task_state.dart';
 part 'task_bloc.freezed.dart';
 
-class TaskBlock extends Bloc<TaskEvent, TaskState> {
-  TaskBlock() : super(const _Initial()) {
+class TaskBloc extends Bloc<TaskEvent, TaskState> {
+  TaskBloc() : super(const _Initial()) {
     on<_LoadTask>(_onLoadTask);
     on<_CloseTask>(_onCloseTask);
     on<_LoadEntry>(_onLoadEntry);
@@ -28,34 +28,30 @@ class TaskBlock extends Bloc<TaskEvent, TaskState> {
   void _onLoadEntry(_LoadEntry event, Emitter<TaskState> emit) => state.when(
         taskLoaded: (task) => emit(TaskState.entryLoaded(task: task)),
         entryLoaded: (task) => emit(TaskState.entryLoaded(task: task)),
-        entryUpdated: (task) => emit(TaskState.entryLoaded(task: task)),
         initial: () {
           throw UnimplementedError();
         },
       );
 
   void _onAddData(_AddData event, Emitter<TaskState> emit) => state.when(
-        taskLoaded: (task) => emit(TaskState.entryUpdated(task: task)),
-        entryLoaded: (task) => emit(TaskState.entryUpdated(task: task)),
-        entryUpdated: (task) => emit(TaskState.entryUpdated(task: task)),
+        taskLoaded: (task) => emit(TaskState.entryLoaded(task: task)),
+        entryLoaded: (task) => emit(TaskState.entryLoaded(task: task)),
         initial: () {
           throw UnimplementedError();
         },
       );
 
   void _onUpdateData(_UpdateData event, Emitter<TaskState> emit) => state.when(
-        taskLoaded: (task) => emit(TaskState.entryUpdated(task: task)),
-        entryLoaded: (task) => emit(TaskState.entryUpdated(task: task)),
-        entryUpdated: (task) => emit(TaskState.entryUpdated(task: task)),
+        taskLoaded: (task) => emit(TaskState.entryLoaded(task: task)),
+        entryLoaded: (task) => emit(TaskState.entryLoaded(task: task)),
         initial: () {
           throw UnimplementedError();
         },
       );
 
   void _onDeleteData(_DeleteData event, Emitter<TaskState> emit) => state.when(
-        taskLoaded: (task) => emit(TaskState.entryUpdated(task: task)),
-        entryLoaded: (task) => emit(TaskState.entryUpdated(task: task)),
-        entryUpdated: (task) => emit(TaskState.entryUpdated(task: task)),
+        taskLoaded: (task) => emit(TaskState.entryLoaded(task: task)),
+        entryLoaded: (task) => emit(TaskState.entryLoaded(task: task)),
         initial: () {
           throw UnimplementedError();
         },
