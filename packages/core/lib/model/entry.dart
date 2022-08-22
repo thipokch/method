@@ -12,21 +12,21 @@ class Entry with _$Entry, Uniform {
   @Implements<Uniform>()
   @Implements<DefineDocument<EntryDefinition, Task>>()
   const factory Entry._({
-    required Task template,
-    required List<EntryDefinition> definitions,
-    required String collectionSlug,
-    required String hierarchyPath,
-    required String id,
-    required String uuid,
+    required final Task template,
+    required final List<EntryDefinition> definitions,
+    required final String collectionSlug,
+    required final String hierarchyPath,
+    required final String id,
+    required final String uuid,
   }) = _Entry;
 
   factory Entry.create({
-    required Task template,
+    required final Task template,
     required String collectionSlug,
-    List<EntryDefinition>? definitions,
-    required String hierarchyPath,
-    required String id,
-    String? uuid,
+    final List<EntryDefinition>? definitions,
+    required final String hierarchyPath,
+    required final String id,
+    final String? uuid,
   }) =>
       Entry._(
         template: template,

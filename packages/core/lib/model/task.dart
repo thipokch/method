@@ -14,23 +14,23 @@ class Task with _$Task, Uniform, Describe {
   @Implements<Describe>()
   @Implements<Define<TaskDefinition>>()
   const factory Task._({
-    required String name,
-    required String description,
-    required List<TaskDefinition> definitions,
-    required String collectionSlug,
-    required String hierarchyPath,
-    required String id,
-    required String uuid,
+    required final String name,
+    required final String description,
+    required final List<TaskDefinition> definitions,
+    required final String collectionSlug,
+    required final String hierarchyPath,
+    required final String id,
+    required final String uuid,
   }) = _Task;
 
   factory Task.create({
-    required String name,
-    String? description,
-    List<TaskDefinition>? definitions,
-    required String collectionSlug,
-    required String hierarchyPath,
-    String? id,
-    String? uuid,
+    required final String name,
+    final String? description,
+    final List<TaskDefinition>? definitions,
+    required final String collectionSlug,
+    required final String hierarchyPath,
+    final String? id,
+    final String? uuid,
   }) =>
       Task._(
         name: name,

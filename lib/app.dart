@@ -1,7 +1,7 @@
-import 'package:element/element_color.dart';
-import 'package:element/element_typography.dart';
+import 'package:component/settings/settings_bloc.dart';
+import 'package:element/element_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:matter/patch/ink_sparkle.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'dev_home.dart';
 
@@ -10,15 +10,29 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'method',
-      theme: ThemeData(
-        useMaterial3: true,
-        textTheme: ElementTypography.textStyle,
-        splashFactory: InkSparklePatch.splashFactory,
-        colorScheme: ElementColor.lightColorStyle,
+    return BlocProvider(
+      create: (context) => SettingsBloc(),
+      child: BlocBuilder<SettingsBloc, SettingsState>(
+        builder: (context, state) => GestureDetector(
+          onTap: () {
+            FocusScopeNode currentFocus = FocusScope.of(context);
+            if (!currentFocus.hasPrimaryFocus &&
+                currentFocus.focusedChild != null) {
+              currentFocus.focusedChild?.unfocus();
+            }
+          },
+          child: MaterialApp(
+            title: 'method',
+            theme: ElementTheme.light,
+            darkTheme: ElementTheme.dark,
+            themeMode: context.read<SettingsBloc>().state.whenOrNull(
+                      loaded: (themeMode) => themeMode,
+                    ) ??
+                ThemeMode.system,
+            home: const DevHome(title: 'Developer Home'),
+          ),
+        ),
       ),
-      home: const DevHome(title: 'Developer Home'),
     );
   }
 }

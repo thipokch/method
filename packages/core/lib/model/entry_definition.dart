@@ -9,16 +9,16 @@ class EntryDefinition with _$EntryDefinition, Uniform {
 
   @Implements<Uniform>()
   const factory EntryDefinition.label({
-    required String hierarchyPath,
-    required String id,
-    required String text,
+    required final String hierarchyPath,
+    required final String id,
+    required final String text,
   }) = _Label;
 
   @Implements<Uniform>()
   const factory EntryDefinition.note({
-    required String hierarchyPath,
-    required String id,
-    required String text,
+    required final String hierarchyPath,
+    required final String id,
+    required final String text,
   }) = _Note;
 
   @override

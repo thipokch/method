@@ -13,21 +13,21 @@ class Session with _$Session {
   @Implements<Uniform>()
   @Implements<DefineDocument<Entry, Exercise>>()
   const factory Session._({
-    required Exercise template,
-    required List<Entry> definitions,
-    required String collectionSlug,
-    required String hierarchyPath,
-    required String id,
-    required String uuid,
+    required final Exercise template,
+    required final List<Entry> definitions,
+    required final String collectionSlug,
+    required final String hierarchyPath,
+    required final String id,
+    required final String uuid,
   }) = _Session;
 
   factory Session.create({
-    required Exercise template,
-    List<Entry>? definitions,
-    required String collectionSlug,
-    required String hierarchyPath,
-    required String id,
-    String? uuid,
+    required final Exercise template,
+    final List<Entry>? definitions,
+    required final String collectionSlug,
+    required final String hierarchyPath,
+    required final String id,
+    final String? uuid,
   }) =>
       Session._(
         template: template,

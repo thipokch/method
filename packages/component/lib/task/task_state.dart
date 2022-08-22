@@ -11,8 +11,4 @@ class TaskState with _$TaskState {
   const factory TaskState.entryLoaded({
     required Task task,
   }) = _EntryLoaded;
-
-  const factory TaskState.entryUpdated({
-    required Task task,
-  }) = _EntryUpdated;
 }

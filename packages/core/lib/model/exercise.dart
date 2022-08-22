@@ -15,23 +15,23 @@ class Exercise with _$Exercise, Uniform, Describe {
   @Implements<Describe>()
   @Implements<Define<Task>>()
   const factory Exercise._({
-    required String name,
-    required String description,
-    required List<Task> definitions,
-    required String collectionSlug,
-    required String hierarchyPath,
-    required String id,
-    required String uuid,
+    required final String name,
+    required final String description,
+    required final List<Task> definitions,
+    required final String collectionSlug,
+    required final String hierarchyPath,
+    required final String id,
+    required final String uuid,
   }) = _Exercise;
 
   factory Exercise.create({
-    required String name,
-    String? description,
-    List<Task>? definitions,
-    required String collectionSlug,
-    required String hierarchyPath,
-    String? id,
-    String? uuid,
+    required final String name,
+    final String? description,
+    final List<Task>? definitions,
+    required final String collectionSlug,
+    required final String hierarchyPath,
+    final String? id,
+    final String? uuid,
   }) =>
       Exercise._(
         name: name,
