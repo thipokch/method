@@ -37,7 +37,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
             entry: event.entry,
           ),
         ),
-        orElse: () {},
+        orElse: () => null,
       );
 
   void _onAddData(_AddData event, Emitter<TaskState> emit) => state.maybeWhen(
@@ -54,13 +54,13 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
 
   void _onUpdateData(_UpdateData event, Emitter<TaskState> emit) =>
       state.maybeWhen(
-        entryLoaded: (task, entry) {},
+        entryLoaded: (task, entry) => null,
         orElse: () => throw UnimplementedError(),
       );
 
   void _onDeleteData(_DeleteData event, Emitter<TaskState> emit) =>
       state.maybeWhen(
-        entryLoaded: (task, entry) {},
+        entryLoaded: (task, entry) => null,
         orElse: () => throw UnimplementedError(),
       );
 }

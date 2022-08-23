@@ -22,6 +22,7 @@ class TextArea extends StatelessWidget {
           bottom: 16.0,
         ),
         child: TextField(
+          autofocus: true,
           onChanged: onChanged,
           textAlign: TextAlign.center,
           textAlignVertical: TextAlignVertical.center,

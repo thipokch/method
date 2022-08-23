@@ -20,7 +20,7 @@ class SettingsView extends StatelessWidget {
           loaded: (themeMode) {
             final List<Widget> items = [
               const Padding(
-                padding: EdgeInsets.fromLTRB(16, 24, 16, 8),
+                padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
                 child: Text("Appearance"),
               ),
               ListTile(
