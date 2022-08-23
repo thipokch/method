@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:matter/button/button_tonal.dart';
 import 'package:matter/preview.dart';
-import 'package:method/patch/about.dart' as about;
 import 'package:method/view/task_preview.dart';
-import 'package:package_info_plus/package_info_plus.dart';
-
-import 'view/settings_view.dart';
 
 class DevHome extends StatefulWidget {
   const DevHome({
