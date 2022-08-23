@@ -8,6 +8,8 @@ class MethodCard extends StatefulWidget {
   final String description;
   final String emoji;
   final bool isExpanded;
+  final ValueChanged<String>? onChanged;
+  final GestureTapCallback? onTap;
 
   const MethodCard({
     Key? key,
@@ -15,6 +17,8 @@ class MethodCard extends StatefulWidget {
     required this.description,
     required this.emoji,
     required this.isExpanded,
+    this.onChanged,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -37,27 +41,33 @@ class _MethodCardState extends State<MethodCard> {
             Radius.circular(ElementScale.cornerLarge),
           ),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: (widget.isExpanded)
-              ? AspectRatio(
-                  aspectRatio: 1 / 1,
-                  child: Column(
-                    children: [
-                      CardTile(
-                        emoji: widget.emoji,
-                        title: widget.title,
-                        description: widget.description,
-                      ),
-                      const TextArea(),
-                    ],
+        child: InkWell(
+          onTap: widget.onTap,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: (widget.isExpanded)
+                ? AspectRatio(
+                    aspectRatio: 1 / 1,
+                    child: Column(
+                      children: [
+                        CardTile(
+                          emoji: widget.emoji,
+                          title: widget.title,
+                          description: widget.description,
+                        ),
+                        TextArea(
+                          onTap: widget.onTap,
+                          onChanged: widget.onChanged,
+                        ),
+                      ],
+                    ),
+                  )
+                : CardTile(
+                    emoji: widget.emoji,
+                    title: widget.title,
+                    description: widget.description,
                   ),
-                )
-              : CardTile(
-                  emoji: widget.emoji,
-                  title: widget.title,
-                  description: widget.description,
-                ),
+          ),
         ),
       ),
     );

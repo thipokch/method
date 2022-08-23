@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class TextArea extends StatelessWidget {
-  const TextArea({Key? key}) : super(key: key);
+  final ValueChanged<String>? onChanged;
+  final GestureTapCallback? onTap;
+
+  const TextArea({
+    Key? key,
+    this.onChanged,
+    this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +22,14 @@ class TextArea extends StatelessWidget {
           bottom: 16.0,
         ),
         child: TextField(
+          onChanged: onChanged,
           textAlign: TextAlign.center,
           textAlignVertical: TextAlignVertical.center,
-          controller: TextEditingController(),
           style: textTheme.bodyLarge,
           expands: true,
           maxLines: null,
           maxLength: 280,
+          onTap: onTap,
           buildCounter: (
             _, {
             required currentLength,

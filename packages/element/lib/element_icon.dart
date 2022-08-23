@@ -35,4 +35,11 @@ class ElementIcon {
   static const IconData brandArrowDownLeft = CupertinoIcons.arrow_down_left;
   static const IconData brandArrowUpDown = CupertinoIcons.arrow_up_down;
   static const IconData brandArrowLeftRight = CupertinoIcons.arrow_left_right;
+
+  static const IconData chevronBack = CupertinoIcons.chevron_back;
+  static const IconData chevronForward = CupertinoIcons.chevron_forward;
+  static const IconData chevronLeft = CupertinoIcons.chevron_left;
+  static const IconData chevronRight = CupertinoIcons.chevron_right;
+  static const IconData chevronUp = CupertinoIcons.chevron_up;
+  static const IconData chevronDown = CupertinoIcons.chevron_down;
 }

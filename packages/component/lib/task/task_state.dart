@@ -10,5 +10,6 @@ class TaskState with _$TaskState {
 
   const factory TaskState.entryLoaded({
     required Task task,
+    required Entry entry,
   }) = _EntryLoaded;
 }

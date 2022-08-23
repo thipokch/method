@@ -1,7 +1,7 @@
 import 'package:element/element_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:matter/preview.dart';
-import 'package:method/view/task_preview.dart';
+import 'package:method/view/task/task_preview.dart';
 
 import '../../patch/app_bar.dart';
 
@@ -23,12 +23,12 @@ class _SettingsDevState extends State<SettingsDev> {
     final List<Widget> items = [
       ListTile(
         title: const Text("Matter UI"),
-        trailing: const Icon(ElementIcon.brandArrowRight),
+        trailing: const Icon(ElementIcon.chevronForward),
         onTap: () => showMatterPreview(context: context),
       ),
       ListTile(
         title: const Text("Task Component"),
-        trailing: const Icon(ElementIcon.brandArrowRight),
+        trailing: const Icon(ElementIcon.chevronForward),
         onTap: () => showTaskPreview(context: context),
       ),
     ];
@@ -38,7 +38,7 @@ class _SettingsDevState extends State<SettingsDev> {
         headerSliverBuilder: (context, innerBoxIsScrolled) => <Widget>[
           SliverAppBarPatch.medium(
             leading: IconButton(
-              icon: const Icon(ElementIcon.brandArrowLeft),
+              icon: const Icon(ElementIcon.chevronBack),
               onPressed: () => Navigator.of(context).pop(),
               highlightColor: Colors.transparent,
             ),
