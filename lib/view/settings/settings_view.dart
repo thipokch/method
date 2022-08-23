@@ -1,12 +1,13 @@
 import 'package:component/settings/settings_bloc.dart';
 import 'package:element/element_icon.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:method/dev_home.dart';
-import 'package:method/patch/about.dart' as about;
+import 'package:method/view/settings/settings_dev.dart';
+import 'package:method/view/settings/settings_license.dart' as about;
 import 'package:package_info_plus/package_info_plus.dart';
 
-import 'settings_preview.dart';
+import 'settings_page.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({Key? key}) : super(key: key);
@@ -19,8 +20,8 @@ class SettingsView extends StatelessWidget {
           loaded: (themeMode) {
             final List<Widget> items = [
               const Padding(
-                padding: EdgeInsets.fromLTRB(16, 12, 16, 8),
-                child: Text("Theme"),
+                padding: EdgeInsets.fromLTRB(16, 24, 16, 8),
+                child: Text("Appearance"),
               ),
               ListTile(
                 title: const Text("System"),
@@ -59,11 +60,11 @@ class SettingsView extends StatelessWidget {
                     ),
               ),
               const Padding(
-                padding: EdgeInsets.fromLTRB(16, 16, 16, 8),
-                child: Text("Method App"),
+                padding: EdgeInsets.fromLTRB(16, 24, 16, 8),
+                child: Text("About"),
               ),
               ListTile(
-                title: const Text("About"),
+                title: const Text("Licenses"),
                 trailing: const Icon(ElementIcon.brandArrowRight),
                 onTap: () async {
                   PackageInfo packageInfo = await PackageInfo.fromPlatform();
@@ -78,11 +79,26 @@ class SettingsView extends StatelessWidget {
               ListTile(
                 title: const Text("Developer"),
                 trailing: const Icon(ElementIcon.brandArrowRight),
-                onTap: () => showDev(context: context),
+                onTap: () => showDeveloperPage(context: context),
+              ),
+              FutureBuilder<PackageInfo>(
+                future: PackageInfo.fromPlatform(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return _AboutApp(
+                      name: snapshot.data!.appName.toLowerCase(),
+                      version: snapshot.data!.version,
+                      buildNum: snapshot.data!.buildNumber,
+                    );
+                  }
+
+                  return const CupertinoActivityIndicator();
+                },
               ),
             ];
 
             return ListView.separated(
+              padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
               separatorBuilder: (context, index) => const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 12),
                 child: Divider(
@@ -103,6 +119,58 @@ void showSettingsPreview({
 }) {
   Navigator.of(context, rootNavigator: useRootNavigator)
       .push(MaterialPageRoute<void>(
-    builder: (BuildContext context) => const SettingsPreview(),
+    builder: (BuildContext context) => const SettingsPage(),
   ));
+}
+
+class _AboutApp extends StatelessWidget {
+  const _AboutApp({
+    Key? key,
+    required this.name,
+    required this.version,
+    required this.buildNum,
+    this.icon,
+  }) : super(key: key);
+
+  final String name;
+  final String version;
+  final Widget? icon;
+  final String buildNum;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16.0,
+        vertical: 24.0,
+      ),
+      child: Column(
+        children: <Widget>[
+          Text(
+            name,
+            style: Theme.of(context).textTheme.headline5,
+            textAlign: TextAlign.center,
+          ),
+          if (icon != null)
+            IconTheme(data: Theme.of(context).iconTheme, child: icon!),
+          if (version != '')
+            Padding(
+              padding: const EdgeInsets.only(bottom: 16),
+              child: Text(
+                version,
+                style: Theme.of(context).textTheme.bodyText2,
+                textAlign: TextAlign.center,
+              ),
+            ),
+          if (buildNum != null && buildNum != '')
+            Text(
+              buildNum!,
+              style: Theme.of(context).textTheme.caption,
+              textAlign: TextAlign.center,
+            ),
+          const SizedBox(height: 16),
+        ],
+      ),
+    );
+  }
 }
