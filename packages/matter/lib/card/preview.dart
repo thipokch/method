@@ -12,14 +12,16 @@ class CardPreview extends StatelessWidget {
     const Widget _divider = Preview.rowDivider;
 
     return Column(
-      children: const [
-        _MaterialCardPreview(),
+      children: [
+        const _MaterialCardPreview(),
         _divider,
         MethodCard(
           title: "Collapse",
           description: "Tap to collapse...",
           emoji: "👅",
           isExpanded: false,
+          // ignore: no-empty-block
+          onTap: () {},
         ),
         _divider,
         MethodCard(
@@ -27,6 +29,8 @@ class CardPreview extends StatelessWidget {
           description: "Tap to start writing...",
           emoji: "👌",
           isExpanded: true,
+          // ignore: no-empty-block
+          onTap: () {},
         ),
       ],
     );

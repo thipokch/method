@@ -8,9 +8,13 @@ class TaskEvent with _$TaskEvent {
 
   const factory TaskEvent.closeTask() = _CloseTask;
 
-  const factory TaskEvent.loadEntry() = _LoadEntry;
+  const factory TaskEvent.loadEntry({
+    required Entry entry,
+  }) = _LoadEntry;
 
-  const factory TaskEvent.addData() = _AddData;
+  const factory TaskEvent.addData({
+    required String text,
+  }) = _AddData;
 
   const factory TaskEvent.updateData() = _UpdateData;
 

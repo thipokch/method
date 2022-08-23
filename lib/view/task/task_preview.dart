@@ -1,8 +1,9 @@
+import 'package:core/model/task.dart';
 import 'package:element/element_icon.dart';
 import 'package:flutter/material.dart';
-import 'package:method/view/task_view.dart';
+import 'package:method/view/task/task_view.dart';
 
-import '../patch/app_bar.dart';
+import '../../patch/app_bar.dart';
 
 class TaskPreview extends StatelessWidget {
   const TaskPreview({Key? key}) : super(key: key);
@@ -20,17 +21,20 @@ class TaskPreview extends StatelessWidget {
               title: const Text('Task'),
             ),
           ],
-          body: Column(
-            children: [
-              TaskView(
-                task: Task.create(
-                  name: "name",
-                  description: "description",
-                  collectionSlug: "collectionSlug",
-                  hierarchyPath: "hierarchyPath",
+          body: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              children: [
+                TaskView(
+                  task: Task.create(
+                    name: "name",
+                    description: "description",
+                    collectionSlug: "collectionSlug",
+                    hierarchyPath: "hierarchyPath",
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       );

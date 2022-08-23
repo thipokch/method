@@ -88,7 +88,7 @@ class SettingsView extends StatelessWidget {
                     return _AboutApp(
                       name: snapshot.data!.appName.toLowerCase(),
                       version: snapshot.data!.version,
-                      buildNum: snapshot.data!.buildNumber,
+                      buildInfo: snapshot.data!.buildNumber,
                     );
                   }
 
@@ -128,7 +128,7 @@ class _AboutApp extends StatelessWidget {
     Key? key,
     required this.name,
     required this.version,
-    required this.buildNum,
+    required this.buildInfo,
     // ignore: unused_element
     this.icon,
   }) : super(key: key);
@@ -136,14 +136,14 @@ class _AboutApp extends StatelessWidget {
   final String name;
   final String version;
   final Widget? icon;
-  final String buildNum;
+  final String buildInfo;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 16.0,
-        vertical: 24.0,
+        vertical: 36.0,
       ),
       child: Column(
         children: <Widget>[
@@ -163,9 +163,9 @@ class _AboutApp extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-          if (buildNum != '')
+          if (buildInfo != '')
             Text(
-              buildNum,
+              buildInfo,
               style: Theme.of(context).textTheme.caption,
               textAlign: TextAlign.center,
             ),

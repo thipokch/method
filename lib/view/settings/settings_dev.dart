@@ -1,7 +1,7 @@
 import 'package:element/element_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:matter/preview.dart';
-import 'package:method/view/task_preview.dart';
+import 'package:method/view/task/task_preview.dart';
 
 import '../../patch/app_bar.dart';
 
