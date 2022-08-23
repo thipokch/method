@@ -1,7 +1,9 @@
+import 'package:element/element_icon.dart';
 import 'package:flutter/material.dart';
-import 'package:matter/button/button_tonal.dart';
 import 'package:matter/preview.dart';
 import 'package:method/view/task_preview.dart';
+
+import '../../patch/app_bar.dart';
 
 class SettingsDev extends StatefulWidget {
   const SettingsDev({
@@ -18,33 +20,48 @@ class SettingsDev extends StatefulWidget {
 class _SettingsDevState extends State<SettingsDev> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
+    final List<Widget> items = [
+      ListTile(
+        title: const Text("Matter UI"),
+        trailing: const Icon(ElementIcon.brandArrowRight),
+        onTap: () => showMatterPreview(context: context),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            ButtonTonal(
-              child: const Text("Matter"),
-              onPressed: () {
-                showMatterPreview(context: context);
-              },
+      ListTile(
+        title: const Text("Task Component"),
+        trailing: const Icon(ElementIcon.brandArrowRight),
+        onTap: () => showTaskPreview(context: context),
+      ),
+    ];
+
+    return Material(
+      child: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) => <Widget>[
+          SliverAppBarPatch.medium(
+            leading: IconButton(
+              icon: const Icon(ElementIcon.brandArrowLeft),
+              onPressed: () => Navigator.of(context).pop(),
+              highlightColor: Colors.transparent,
             ),
-            ButtonTonal(
-              child: const Text("Task"),
-              onPressed: () {
-                showTaskPreview(context: context);
-              },
+            title: const Text('Developer'),
+          ),
+        ],
+        body: ListView.separated(
+          padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
+          separatorBuilder: (context, index) => const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 12),
+            child: Divider(
+              height: 0,
             ),
-          ],
+          ),
+          itemCount: items.length,
+          itemBuilder: (context, index) => items[index],
         ),
       ),
     );
   }
 }
 
-void showDev({
+void showDeveloperPage({
   required BuildContext context,
   bool useRootNavigator = false,
 }) {

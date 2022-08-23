@@ -2,7 +2,7 @@ import 'package:component/settings/settings_bloc.dart';
 import 'package:element/element_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:method/view/settings/settings_preview.dart';
+import 'package:method/view/settings/settings_page.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -28,7 +28,7 @@ class App extends StatelessWidget {
                       loaded: (themeMode) => themeMode,
                     ) ??
                 ThemeMode.system,
-            home: const SettingsPreview(),
+            home: const SettingsPage(),
           ),
         ),
       ),

@@ -2,20 +2,26 @@ import 'package:element/element_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:method/view/task_view.dart';
 
+import '../patch/app_bar.dart';
+
 class TaskPreview extends StatelessWidget {
   const TaskPreview({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: const Text("View"),
-          leading: IconButton(
-            icon: const Icon(ElementIcon.brandArrowLeft),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          actions: const <Widget>[],
+  Widget build(BuildContext context) => Material(
+        child: NestedScrollView(
+          headerSliverBuilder: (context, innerBoxIsScrolled) => <Widget>[
+            SliverAppBarPatch.medium(
+              leading: IconButton(
+                icon: const Icon(ElementIcon.brandArrowLeft),
+                onPressed: () => Navigator.of(context).pop(),
+                highlightColor: Colors.transparent,
+              ),
+              title: const Text('Task'),
+            ),
+          ],
+          body: TaskView(),
         ),
-        body: TaskView(),
       );
 }
 

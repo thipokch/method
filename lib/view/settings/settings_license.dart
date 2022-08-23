@@ -1,13 +1,15 @@
 import 'dart:developer' show Timeline, Flow;
-import 'dart:io' show Platform;
 
 import 'package:element/element_icon.dart';
+import 'package:flutter/cupertino.dart' as cupertino;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' hide Flow;
 import 'package:flutter/scheduler.dart';
 
-class AboutListTile extends StatelessWidget {
-  const AboutListTile({
+import '../../patch/app_bar.dart';
+
+class LicenseListTile extends StatelessWidget {
+  const LicenseListTile({
     Key? key,
     this.icon,
     this.child,
@@ -44,7 +46,7 @@ class AboutListTile extends StatelessWidget {
       leading: icon,
       title: child ??
           Text(MaterialLocalizations.of(context).aboutListTileTitle(
-            applicationName ?? _defaultApplicationName(context),
+            applicationName ?? "method",
           )),
       dense: dense,
       onTap: () {
@@ -77,7 +79,7 @@ void showAboutDialog({
     context: context,
     useRootNavigator: useRootNavigator,
     builder: (BuildContext context) {
-      return AboutDialog(
+      return LicenseDialog(
         applicationName: applicationName,
         applicationVersion: applicationVersion,
         applicationIcon: applicationIcon,
@@ -110,10 +112,8 @@ void showLicensePage({
   ));
 }
 
-const double _textVerticalSeparation = 18.0;
-
-class AboutDialog extends StatelessWidget {
-  const AboutDialog({
+class LicenseDialog extends StatelessWidget {
+  const LicenseDialog({
     Key? key,
     this.applicationName,
     this.applicationVersion,
@@ -135,40 +135,10 @@ class AboutDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     assert(debugCheckHasMaterialLocalizations(context));
-    final String name = applicationName ?? _defaultApplicationName(context);
-    final String version =
-        applicationVersion ?? _defaultApplicationVersion(context);
-    final Widget? icon = applicationIcon ?? _defaultApplicationIcon(context);
 
     return AlertDialog(
       content: ListBody(
         children: <Widget>[
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              if (icon != null)
-                IconTheme(data: Theme.of(context).iconTheme, child: icon),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                  child: ListBody(
-                    children: <Widget>[
-                      Text(name, style: Theme.of(context).textTheme.headline5),
-                      Text(
-                        version,
-                        style: Theme.of(context).textTheme.bodyText2,
-                      ),
-                      const SizedBox(height: _textVerticalSeparation),
-                      Text(
-                        applicationLegalese ?? '',
-                        style: Theme.of(context).textTheme.caption,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
           ...?children,
         ],
       ),
@@ -248,69 +218,9 @@ class _LicensePageState extends State<LicensePage> {
   }
 
   Widget _packagesView(final BuildContext _, final bool isLateral) {
-    final Widget about = _AboutProgram(
-      name: widget.applicationName ?? _defaultApplicationName(context),
-      icon: widget.applicationIcon ?? _defaultApplicationIcon(context),
-      version: widget.applicationVersion ?? _defaultApplicationVersion(context),
-      legalese: widget.applicationLegalese,
-    );
-
     return _PackagesView(
-      about: about,
       isLateral: isLateral,
       selectedId: selectedId,
-    );
-  }
-}
-
-class _AboutProgram extends StatelessWidget {
-  const _AboutProgram({
-    Key? key,
-    required this.name,
-    required this.version,
-    this.icon,
-    this.legalese,
-  }) : super(key: key);
-
-  final String name;
-  final String version;
-  final Widget? icon;
-  final String? legalese;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: _getGutterSize(context),
-        vertical: 24.0,
-      ),
-      child: Column(
-        children: <Widget>[
-          Text(
-            name,
-            style: Theme.of(context).textTheme.headline5,
-            textAlign: TextAlign.center,
-          ),
-          if (icon != null)
-            IconTheme(data: Theme.of(context).iconTheme, child: icon!),
-          if (version != '')
-            Padding(
-              padding: const EdgeInsets.only(bottom: _textVerticalSeparation),
-              child: Text(
-                version,
-                style: Theme.of(context).textTheme.bodyText2,
-                textAlign: TextAlign.center,
-              ),
-            ),
-          if (legalese != null && legalese != '')
-            Text(
-              legalese!,
-              style: Theme.of(context).textTheme.caption,
-              textAlign: TextAlign.center,
-            ),
-          const SizedBox(height: _textVerticalSeparation),
-        ],
-      ),
     );
   }
 }
@@ -318,12 +228,10 @@ class _AboutProgram extends StatelessWidget {
 class _PackagesView extends StatefulWidget {
   const _PackagesView({
     Key? key,
-    required this.about,
     required this.isLateral,
     required this.selectedId,
   }) : super(key: key);
 
-  final Widget about;
   final bool isLateral;
   final ValueNotifier<int?> selectedId;
 
@@ -377,9 +285,8 @@ class _PackagesViewState extends State<_PackagesView> {
                 return Material(
                   color: Theme.of(context).cardColor,
                   child: Column(
-                    children: <Widget>[
-                      widget.about,
-                      const Center(child: CircularProgressIndicator()),
+                    children: const <Widget>[
+                      Center(child: cupertino.CupertinoActivityIndicator()),
                     ],
                   ),
                 );
@@ -410,34 +317,41 @@ class _PackagesViewState extends State<_PackagesView> {
     final _LicenseData data,
     final bool drawSelection,
   ) {
-    return ListView(
-      children: <Widget>[
-        widget.about,
-        ...data.packages
-            .asMap()
-            .entries
-            .map<Widget>((MapEntry<int, String> entry) {
-          final String packageName = entry.value;
-          final int index = entry.key;
-          final List<int> bindings = data.packageLicenseBindings[packageName]!;
+    final List<Widget> packages = <Widget>[
+      ...data.packages
+          .asMap()
+          .entries
+          .map<Widget>((MapEntry<int, String> entry) {
+        final String packageName = entry.value;
+        final int index = entry.key;
+        final List<int> bindings = data.packageLicenseBindings[packageName]!;
 
-          return _PackageListTile(
-            packageName: packageName,
-            index: index,
-            isSelected: drawSelection && entry.key == (selectedId ?? 0),
-            numberLicenses: bindings.length,
-            onTap: () {
-              widget.selectedId.value = index;
-              _MasterDetailFlow.of(context)!.openDetailPage(_DetailArguments(
-                packageName,
-                bindings
-                    .map((int i) => data.licenses[i])
-                    .toList(growable: false),
-              ));
-            },
-          );
-        }),
-      ],
+        return _PackageListTile(
+          packageName: packageName,
+          index: index,
+          isSelected: drawSelection && entry.key == (selectedId ?? 0),
+          numberLicenses: bindings.length,
+          onTap: () {
+            widget.selectedId.value = index;
+            _MasterDetailFlow.of(context)!.openDetailPage(_DetailArguments(
+              packageName,
+              bindings.map((int i) => data.licenses[i]).toList(growable: false),
+            ));
+          },
+        );
+      }),
+    ];
+
+    return ListView.separated(
+      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      itemBuilder: (context, index) => packages[index],
+      separatorBuilder: (context, index) => const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 12),
+        child: Divider(
+          height: 0,
+        ),
+      ),
+      itemCount: packages.length,
     );
   }
 }
@@ -641,7 +555,7 @@ class _PackageLicensePageState extends State<_PackageLicensePage> {
         localizations.licensesPackageDetailText(widget.licenseEntries.length);
     final double pad = _getGutterSize(context);
     final EdgeInsets padding =
-        EdgeInsets.only(left: pad, right: pad, bottom: pad);
+        EdgeInsets.only(left: pad, right: pad, bottom: pad * 4);
     final List<Widget> listWidgets = <Widget>[
       ..._licenses,
       if (!_loaded)
@@ -660,6 +574,7 @@ class _PackageLicensePageState extends State<_PackageLicensePage> {
               leading: IconButton(
                 icon: const Icon(ElementIcon.brandArrowLeft),
                 onPressed: () => Navigator.of(context).pop(),
+                highlightColor: Colors.transparent,
               ),
               title: _PackageLicensePageTitle(
                 title,
@@ -755,24 +670,9 @@ class _PackageLicensePageTitle extends StatelessWidget {
   }
 }
 
-String _defaultApplicationName(BuildContext context) {
-  final Title? ancestorTitle = context.findAncestorWidgetOfExactType<Title>();
-
-  return ancestorTitle?.title ??
-      Platform.resolvedExecutable.split(Platform.pathSeparator).last;
-}
-
-String _defaultApplicationVersion(BuildContext context) {
-  return '';
-}
-
-Widget? _defaultApplicationIcon(BuildContext context) {
-  return null;
-}
-
 const int _materialGutterThreshold = 720;
 const double _wideGutterSize = 24.0;
-const double _narrowGutterSize = 12.0;
+const double _narrowGutterSize = 16.0;
 
 double _getGutterSize(BuildContext context) =>
     MediaQuery.of(context).size.width >= _materialGutterThreshold
@@ -975,6 +875,7 @@ class _MasterDetailFlowState extends State<_MasterDetailFlow>
                   ? IconButton(
                       icon: const Icon(ElementIcon.brandArrowLeft),
                       onPressed: () => Navigator.of(context).pop(),
+                      highlightColor: Colors.transparent,
                     )
                   : null,
           title: widget.title,
@@ -1041,17 +942,27 @@ class _MasterPage extends StatelessWidget {
   final bool automaticallyImplyLeading;
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: title,
-        leading: leading,
-        actions: const <Widget>[],
-        automaticallyImplyLeading: automaticallyImplyLeading,
-      ),
-      body: masterViewBuilder!(context, false),
-    );
-  }
+  Widget build(BuildContext context) => NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) => <Widget>[
+          SliverAppBarPatch.medium(
+            automaticallyImplyLeading: automaticallyImplyLeading,
+            leading: leading,
+            title: const Text('Licenses'),
+          ),
+        ],
+        body: masterViewBuilder!(context, false),
+      );
+  //  {
+  //   return Scaffold(
+  //     appBar: AppBar(
+  //       title: title,
+  //       leading: leading,
+  //       actions: const <Widget>[],
+  //       automaticallyImplyLeading: automaticallyImplyLeading,
+  //     ),
+  //     body: masterViewBuilder!(context, false),
+  //   );
+  // }
 }
 
 const double _kCardElevation = 4.0;
