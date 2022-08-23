@@ -2,6 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+// ignore_for_file: deprecated_member_use_from_same_package, deprecated_member_use
+
 import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
@@ -11,8 +13,7 @@ import 'package:flutter/services.dart';
 
 const double _kLeadingWidth =
     kToolbarHeight; // So the leading button is square.
-const double _kMaxTitleTextScaleFactor =
-    1.34; // TODO(perc): Add link to Material spec when available, https://github.com/flutter/flutter/issues/58769.
+const double _kMaxTitleTextScaleFactor = 1.34;
 
 // Bottom justify the toolbarHeight child which may overflow the top.
 class _ToolbarContainerLayout extends SingleChildLayoutDelegate {
@@ -209,6 +210,7 @@ class AppBarPatch extends StatefulWidget implements PreferredSizeWidget {
       return (AppBarTheme.of(context).toolbarHeight ?? kToolbarHeight) +
           (preferredSize.bottomHeight ?? 0);
     }
+
     return preferredSize.height;
   }
 
@@ -786,11 +788,13 @@ class _AppBarPatchState extends State<AppBarPatch> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if (_scrollNotificationObserver != null)
+    if (_scrollNotificationObserver != null) {
       _scrollNotificationObserver!.removeListener(_handleScrollNotification);
+    }
     _scrollNotificationObserver = ScrollNotificationObserver.of(context);
-    if (_scrollNotificationObserver != null)
+    if (_scrollNotificationObserver != null) {
       _scrollNotificationObserver!.addListener(_handleScrollNotification);
+    }
   }
 
   @override
@@ -831,6 +835,7 @@ class _AppBarPatchState extends State<AppBarPatch> {
       }
 
       if (_scrolledUnder != oldScrolledUnder) {
+        // ignore: no-empty-block
         setState(() {
           // React to a change in MaterialState.scrolledUnder
         });
@@ -856,6 +861,7 @@ class _AppBarPatchState extends State<AppBarPatch> {
     final SystemUiOverlayStyle style = brightness == Brightness.dark
         ? SystemUiOverlayStyle.light
         : SystemUiOverlayStyle.dark;
+
     return style.copyWith(statusBarColor: backgroundColor);
   }
 
@@ -974,8 +980,9 @@ class _AppBarPatchState extends State<AppBarPatch> {
           tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
         );
       } else {
-        if (!hasEndDrawer && canPop)
+        if (!hasEndDrawer && canPop) {
           leading = useCloseButton ? const CloseButton() : const BackButton();
+        }
       }
     }
     if (leading != null) {
@@ -1223,9 +1230,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   })  : assert(primary || topPadding == 0.0),
         assert(
           !floating ||
-              (snapConfiguration == null &&
-                  showOnScreenConfiguration == null) ||
-              vsync != null,
+              (snapConfiguration == null && showOnScreenConfiguration == null),
           'vsync cannot be null when snapConfiguration or showOnScreenConfiguration is not null, and floating is true',
         ),
         _bottomHeight = bottom?.preferredSize.height ?? 0.0;
@@ -1363,6 +1368,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
         systemOverlayStyle: systemOverlayStyle,
       ),
     );
+
     return appBar;
   }
 
@@ -1549,8 +1555,7 @@ class SliverAppBarPatch extends StatefulWidget {
     this.toolbarTextStyle,
     this.titleTextStyle,
     this.systemOverlayStyle,
-  })  : assert(forceElevated != null),
-        assert(floating || !snap,
+  })  : assert(floating || !snap,
             'The "snap" argument only makes sense for floating app bars.'),
         assert(stretchTriggerOffset > 0.0),
         assert(collapsedHeight == null || collapsedHeight >= toolbarHeight,
@@ -2051,14 +2056,12 @@ class _SliverAppBarPatchState extends State<SliverAppBarPatch>
   PersistentHeaderShowOnScreenConfiguration? _showOnScreenConfiguration;
 
   void _updateSnapConfiguration() {
-    if (widget.snap && widget.floating) {
-      _snapConfiguration = FloatingHeaderSnapConfiguration(
-        curve: Curves.easeOut,
-        duration: const Duration(milliseconds: 200),
-      );
-    } else {
-      _snapConfiguration = null;
-    }
+    _snapConfiguration = widget.snap && widget.floating
+        ? FloatingHeaderSnapConfiguration(
+            curve: Curves.easeOut,
+            duration: const Duration(milliseconds: 200),
+          )
+        : null;
 
     _showOnScreenConfiguration = widget.floating & widget.snap
         ? const PersistentHeaderShowOnScreenConfiguration(
@@ -2068,14 +2071,12 @@ class _SliverAppBarPatchState extends State<SliverAppBarPatch>
   }
 
   void _updateStretchConfiguration() {
-    if (widget.stretch) {
-      _stretchConfiguration = OverScrollHeaderStretchConfiguration(
-        stretchTriggerOffset: widget.stretchTriggerOffset,
-        onStretchTrigger: widget.onStretchTrigger,
-      );
-    } else {
-      _stretchConfiguration = null;
-    }
+    _stretchConfiguration = widget.stretch
+        ? OverScrollHeaderStretchConfiguration(
+            stretchTriggerOffset: widget.stretchTriggerOffset,
+            onStretchTrigger: widget.onStretchTrigger,
+          )
+        : null;
   }
 
   @override
@@ -2088,8 +2089,10 @@ class _SliverAppBarPatchState extends State<SliverAppBarPatch>
   @override
   void didUpdateWidget(SliverAppBarPatch oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.snap != oldWidget.snap || widget.floating != oldWidget.floating)
+    if (widget.snap != oldWidget.snap ||
+        widget.floating != oldWidget.floating) {
       _updateSnapConfiguration();
+    }
     if (widget.stretch != oldWidget.stretch) _updateStretchConfiguration();
   }
 
@@ -2188,6 +2191,7 @@ class _RenderAppBarTitleBox extends RenderAligningShiftedBox {
     final BoxConstraints innerConstraints =
         constraints.copyWith(maxHeight: double.infinity);
     final Size childSize = child!.getDryLayout(innerConstraints);
+
     return constraints.constrain(childSize);
   }
 

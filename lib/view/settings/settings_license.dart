@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use, unused_element
+
 import 'dart:developer' show Timeline, Flow;
 
 import 'package:element/element_icon.dart';
@@ -479,6 +481,7 @@ class _PackageLicensePageState extends State<_PackageLicensePage> {
     int debugFlowId = -1;
     assert(() {
       final Flow flow = Flow.begin();
+      // ignore: no-empty-block
       Timeline.timeSync('_initLicenses()', () {}, flow: flow);
       debugFlowId = flow.id;
 
@@ -491,6 +494,7 @@ class _PackageLicensePageState extends State<_PackageLicensePage> {
       assert(() {
         Timeline.timeSync(
           '_initLicenses()',
+          // ignore: no-empty-block
           () {},
           flow: Flow.step(debugFlowId),
         );
@@ -538,6 +542,7 @@ class _PackageLicensePageState extends State<_PackageLicensePage> {
       _loaded = true;
     });
     assert(() {
+      // ignore: no-empty-block
       Timeline.timeSync('Build scheduled', () {}, flow: Flow.end(debugFlowId));
 
       return true;

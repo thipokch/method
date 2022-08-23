@@ -129,6 +129,7 @@ class _AboutApp extends StatelessWidget {
     required this.name,
     required this.version,
     required this.buildNum,
+    // ignore: unused_element
     this.icon,
   }) : super(key: key);
 
@@ -162,9 +163,9 @@ class _AboutApp extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-          if (buildNum != null && buildNum != '')
+          if (buildNum != '')
             Text(
-              buildNum!,
+              buildNum,
               style: Theme.of(context).textTheme.caption,
               textAlign: TextAlign.center,
             ),
