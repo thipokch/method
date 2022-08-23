@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:method/view/settings_view.dart';
+import 'package:method/view/settings/settings_view.dart';
 
 class SettingsPreview extends StatelessWidget {
   const SettingsPreview({Key? key}) : super(key: key);

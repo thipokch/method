@@ -2,8 +2,8 @@ import 'package:component/settings/settings_bloc.dart';
 import 'package:element/element_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:method/dev_home.dart';
-import 'package:method/patch/about.dart' as about;
+import 'package:method/view/settings/settings_dev.dart';
+import 'package:method/view/settings/settings_about.dart' as about;
 import 'package:package_info_plus/package_info_plus.dart';
 
 import 'settings_preview.dart';

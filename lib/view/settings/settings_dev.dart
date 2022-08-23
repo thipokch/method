@@ -3,8 +3,8 @@ import 'package:matter/button/button_tonal.dart';
 import 'package:matter/preview.dart';
 import 'package:method/view/task_preview.dart';
 
-class DevHome extends StatefulWidget {
-  const DevHome({
+class SettingsDev extends StatefulWidget {
+  const SettingsDev({
     Key? key,
     required this.title,
   }) : super(key: key);
@@ -12,10 +12,10 @@ class DevHome extends StatefulWidget {
   final String title;
 
   @override
-  State<DevHome> createState() => _DevHomeState();
+  State<SettingsDev> createState() => _SettingsDevState();
 }
 
-class _DevHomeState extends State<DevHome> {
+class _SettingsDevState extends State<SettingsDev> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +50,7 @@ void showDev({
 }) {
   Navigator.of(context, rootNavigator: useRootNavigator)
       .push(MaterialPageRoute<void>(
-    builder: (BuildContext context) => const DevHome(
+    builder: (BuildContext context) => const SettingsDev(
       title: "Developers",
     ),
   ));
