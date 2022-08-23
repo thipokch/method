@@ -33,19 +33,22 @@ class _SettingsDevState extends State<SettingsDev> {
       ),
     ];
 
-    return Material(
-      child: NestedScrollView(
-        headerSliverBuilder: (context, innerBoxIsScrolled) => <Widget>[
-          SliverAppBarPatch.medium(
-            leading: IconButton(
-              icon: const Icon(ElementIcon.chevronBack),
-              onPressed: () => Navigator.of(context).pop(),
-              highlightColor: Colors.transparent,
+    return NestedScrollView(
+      headerSliverBuilder: (context, innerBoxIsScrolled) => <Widget>[
+        SliverAppBarPatch.medium(
+          leading: IconButton(
+            icon: const Hero(
+              tag: 'nav.back',
+              child: Icon(ElementIcon.chevronBack),
             ),
-            title: const Text('Developer'),
+            onPressed: () => Navigator.of(context).pop(),
+            highlightColor: Colors.transparent,
           ),
-        ],
-        body: ListView.separated(
+          title: const Text('Developer'),
+        ),
+      ],
+      body: Material(
+        child: ListView.separated(
           padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
           separatorBuilder: (context, index) => const Padding(
             padding: EdgeInsets.symmetric(horizontal: 12),

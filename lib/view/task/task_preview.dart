@@ -9,19 +9,22 @@ class TaskPreview extends StatelessWidget {
   const TaskPreview({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Material(
-        child: NestedScrollView(
-          headerSliverBuilder: (context, innerBoxIsScrolled) => <Widget>[
-            SliverAppBarPatch.medium(
-              leading: IconButton(
-                icon: const Icon(ElementIcon.chevronBack),
-                onPressed: () => Navigator.of(context).pop(),
-                highlightColor: Colors.transparent,
+  Widget build(BuildContext context) => NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) => <Widget>[
+          SliverAppBarPatch.medium(
+            leading: IconButton(
+              icon: const Hero(
+                tag: 'nav.back',
+                child: Icon(ElementIcon.chevronBack),
               ),
-              title: const Text('Task'),
+              onPressed: () => Navigator.of(context).pop(),
+              highlightColor: Colors.transparent,
             ),
-          ],
-          body: Padding(
+            title: const Text('Task'),
+          ),
+        ],
+        body: Material(
+          child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Column(
               children: [
