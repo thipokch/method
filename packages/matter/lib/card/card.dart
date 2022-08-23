@@ -28,33 +28,39 @@ class MethodCard extends StatefulWidget {
 class _MethodCardState extends State<MethodCard> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Card(
-        elevation: 0,
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        shape: RoundedRectangleBorder(
-          side: BorderSide(
-            color: Theme.of(context).colorScheme.outline,
-            width: ElementScale.borderL,
-          ),
-          borderRadius: const BorderRadius.all(
-            Radius.circular(ElementScale.cornerLarge),
-          ),
+    final tile = CardTile(
+      emoji: widget.emoji,
+      title: widget.title,
+      description: widget.description,
+    );
+
+    return Card(
+      elevation: 0,
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      shape: RoundedRectangleBorder(
+        side: BorderSide(
+          color: Theme.of(context).colorScheme.outline,
+          width: ElementScale.borderL,
         ),
-        child: InkWell(
-          onTap: widget.onTap,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: (widget.isExpanded)
+        borderRadius: const BorderRadius.all(
+          Radius.circular(ElementScale.cornerLarge),
+        ),
+      ),
+      child: InkWell(
+        onTap: widget.onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: AnimatedSize(
+            alignment: Alignment.topCenter,
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOutCubic,
+            child: widget.isExpanded
                 ? AspectRatio(
-                    aspectRatio: 1 / 1,
+                    aspectRatio: 1,
                     child: Column(
                       children: [
-                        CardTile(
-                          emoji: widget.emoji,
-                          title: widget.title,
-                          description: widget.description,
-                        ),
+                        tile,
+                        // if (widget.isExpanded)
                         TextArea(
                           onTap: widget.onTap,
                           onChanged: widget.onChanged,
@@ -62,12 +68,30 @@ class _MethodCardState extends State<MethodCard> {
                       ],
                     ),
                   )
-                : CardTile(
-                    emoji: widget.emoji,
-                    title: widget.title,
-                    description: widget.description,
-                  ),
+                : tile,
           ),
+          // (widget.isExpanded)
+          //     ? AspectRatio(
+          //         aspectRatio: 1 / 1,
+          //         child: Column(
+          //           children: [
+          //             CardTile(
+          //               emoji: widget.emoji,
+          //               title: widget.title,
+          //               description: widget.description,
+          //             ),
+          //             TextArea(
+          //               onTap: widget.onTap,
+          //               onChanged: widget.onChanged,
+          //             ),
+          //           ],
+          //         ),
+          //       )
+          //     : CardTile(
+          //         emoji: widget.emoji,
+          //         title: widget.title,
+          //         description: widget.description,
+          //       ),
         ),
       ),
     );
