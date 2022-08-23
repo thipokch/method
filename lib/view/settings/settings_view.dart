@@ -65,7 +65,7 @@ class SettingsView extends StatelessWidget {
               ),
               ListTile(
                 title: const Text("Licenses"),
-                trailing: const Icon(ElementIcon.brandArrowRight),
+                trailing: const Icon(ElementIcon.chevronForward),
                 onTap: () async {
                   PackageInfo packageInfo = await PackageInfo.fromPlatform();
                   about.showLicensePage(
@@ -78,7 +78,7 @@ class SettingsView extends StatelessWidget {
               ),
               ListTile(
                 title: const Text("Developer"),
-                trailing: const Icon(ElementIcon.brandArrowRight),
+                trailing: const Icon(ElementIcon.chevronForward),
                 onTap: () => showDeveloperPage(context: context),
               ),
               FutureBuilder<PackageInfo>(

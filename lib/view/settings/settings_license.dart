@@ -577,7 +577,7 @@ class _PackageLicensePageState extends State<_PackageLicensePage> {
         ? Scaffold(
             appBar: AppBar(
               leading: IconButton(
-                icon: const Icon(ElementIcon.brandArrowLeft),
+                icon: const Icon(ElementIcon.chevronBack),
                 onPressed: () => Navigator.of(context).pop(),
                 highlightColor: Colors.transparent,
               ),
@@ -878,7 +878,7 @@ class _MasterDetailFlowState extends State<_MasterDetailFlow>
           leading:
               widget.automaticallyImplyLeading && Navigator.of(context).canPop()
                   ? IconButton(
-                      icon: const Icon(ElementIcon.brandArrowLeft),
+                      icon: const Icon(ElementIcon.chevronBack),
                       onPressed: () => Navigator.of(context).pop(),
                       highlightColor: Colors.transparent,
                     )

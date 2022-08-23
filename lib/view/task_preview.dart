@@ -13,14 +13,25 @@ class TaskPreview extends StatelessWidget {
           headerSliverBuilder: (context, innerBoxIsScrolled) => <Widget>[
             SliverAppBarPatch.medium(
               leading: IconButton(
-                icon: const Icon(ElementIcon.brandArrowLeft),
+                icon: const Icon(ElementIcon.chevronBack),
                 onPressed: () => Navigator.of(context).pop(),
                 highlightColor: Colors.transparent,
               ),
               title: const Text('Task'),
             ),
           ],
-          body: TaskView(),
+          body: Column(
+            children: [
+              TaskView(
+                task: Task.create(
+                  name: "name",
+                  description: "description",
+                  collectionSlug: "collectionSlug",
+                  hierarchyPath: "hierarchyPath",
+                ),
+              ),
+            ],
+          ),
         ),
       );
 }
