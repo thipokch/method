@@ -1,9 +1,8 @@
 import 'package:element/element_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:matter/preview.dart';
+import 'package:method/patch/nav_bar.dart';
 import 'package:method/view/task/task_preview.dart';
-
-import '../../patch/app_bar.dart';
 
 class SettingsDev extends StatefulWidget {
   const SettingsDev({
@@ -33,31 +32,35 @@ class _SettingsDevState extends State<SettingsDev> {
       ),
     ];
 
-    return NestedScrollView(
-      headerSliverBuilder: (context, innerBoxIsScrolled) => <Widget>[
-        SliverAppBarPatch.medium(
-          leading: IconButton(
-            icon: const Hero(
-              tag: 'nav.back',
-              child: Icon(ElementIcon.chevronBack),
-            ),
-            onPressed: () => Navigator.of(context).pop(),
-            highlightColor: Colors.transparent,
+    return Container(
+      decoration:
+          BoxDecoration(color: Theme.of(context).colorScheme.background),
+      child: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) => <Widget>[
+          const MethodSliverNavigationBar(
+            largeTitle: Text('Developer'),
           ),
-          title: const Text('Developer'),
-        ),
-      ],
-      body: Material(
-        child: ListView.separated(
-          padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
-          separatorBuilder: (context, index) => const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12),
-            child: Divider(
-              height: 0,
+          // SliverAppBarPatch.medium(
+          //   leading: IconButton(
+          //     icon: const Icon(ElementIcon.chevronBack),
+          //     onPressed: () => Navigator.of(context).pop(),
+          //     highlightColor: Colors.transparent,
+          //   ),
+          //   title: const Text('Developer'),
+          // ),
+        ],
+        body: Material(
+          child: ListView.separated(
+            padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
+            separatorBuilder: (context, index) => const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12),
+              child: Divider(
+                height: 0,
+              ),
             ),
+            itemCount: items.length,
+            itemBuilder: (context, index) => items[index],
           ),
-          itemCount: items.length,
-          itemBuilder: (context, index) => items[index],
         ),
       ),
     );

@@ -1,42 +1,36 @@
 import 'package:core/model/task.dart';
-import 'package:element/element_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:method/patch/nav_bar.dart';
 import 'package:method/view/task/task_view.dart';
-
-import '../../patch/app_bar.dart';
 
 class TaskPreview extends StatelessWidget {
   const TaskPreview({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => NestedScrollView(
-        headerSliverBuilder: (context, innerBoxIsScrolled) => <Widget>[
-          SliverAppBarPatch.medium(
-            leading: IconButton(
-              icon: const Hero(
-                tag: 'nav.back',
-                child: Icon(ElementIcon.chevronBack),
-              ),
-              onPressed: () => Navigator.of(context).pop(),
-              highlightColor: Colors.transparent,
+  Widget build(BuildContext context) => Container(
+        decoration:
+            BoxDecoration(color: Theme.of(context).colorScheme.background),
+        child: NestedScrollView(
+          headerSliverBuilder: (context, innerBoxIsScrolled) => <Widget>[
+            const MethodSliverNavigationBar(
+              largeTitle: Text('Task'),
             ),
-            title: const Text('Task'),
-          ),
-        ],
-        body: Material(
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-              children: [
-                TaskView(
-                  task: Task.create(
-                    name: "name",
-                    description: "description",
-                    collectionSlug: "collectionSlug",
-                    hierarchyPath: "hierarchyPath",
+          ],
+          body: Material(
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                children: [
+                  TaskView(
+                    task: Task.create(
+                      name: "name",
+                      description: "description",
+                      collectionSlug: "collectionSlug",
+                      hierarchyPath: "hierarchyPath",
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

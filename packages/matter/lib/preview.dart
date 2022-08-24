@@ -44,10 +44,7 @@ class _MatterPreviewState extends State<MatterPreview> {
   PreferredSizeWidget createAppBar() {
     return AppBar(
       leading: IconButton(
-        icon: const Hero(
-          tag: 'nav.back',
-          child: Icon(ElementIcon.chevronBack),
-        ),
+        icon: const Icon(ElementIcon.chevronBack),
         onPressed: () => Navigator.of(context).pop(),
       ),
       title: const Text("Matter Preview"),

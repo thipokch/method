@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/view/settings/settings_dev.dart';
-import 'package:method/view/settings/settings_license.dart' as about;
+import 'package:method/view/settings/settings_license_list.dart' as about;
 import 'package:package_info_plus/package_info_plus.dart';
 
 import 'settings_page.dart';
@@ -66,13 +66,9 @@ class SettingsView extends StatelessWidget {
               ListTile(
                 title: const Text("Licenses"),
                 trailing: const Icon(ElementIcon.chevronForward),
-                onTap: () async {
-                  PackageInfo packageInfo = await PackageInfo.fromPlatform();
+                onTap: () {
                   about.showLicensePage(
                     context: context,
-                    applicationVersion: packageInfo.version,
-                    applicationName: packageInfo.appName.toLowerCase(),
-                    applicationLegalese: "Build ${packageInfo.buildNumber}",
                   );
                 },
               ),
