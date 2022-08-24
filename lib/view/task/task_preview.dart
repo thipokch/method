@@ -19,7 +19,9 @@ class TaskPreview extends StatelessWidget {
           body: Material(
             child: Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Column(
+              child: ListView(
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
                 children: [
                   TaskView(
                     task: Task.create(

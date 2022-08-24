@@ -1,4 +1,3 @@
-import 'package:element/element_icon.dart';
 import 'package:element/element_scale.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +7,7 @@ class CardTile extends StatelessWidget {
     required this.emoji,
     required this.title,
     required this.description,
+    this.trailing,
     this.onTap,
   }) : super(key: key);
 
@@ -15,6 +15,7 @@ class CardTile extends StatelessWidget {
   final String title;
   final String description;
   final GestureTapCallback? onTap;
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) {
@@ -38,10 +39,7 @@ class CardTile extends StatelessWidget {
         style: textTheme.titleMedium,
       ),
       subtitle: Text(description, style: textTheme.labelMedium),
-      trailing: const Icon(
-        ElementIcon.add,
-        size: ElementScale.iconL,
-      ),
+      trailing: trailing,
       // onTap: () {},
     );
   }

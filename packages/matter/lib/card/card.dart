@@ -1,3 +1,4 @@
+import 'package:element/element_icon.dart';
 import 'package:element/element_scale.dart';
 import 'package:flutter/material.dart';
 import 'package:matter/text/text_area.dart';
@@ -32,6 +33,24 @@ class _MethodCardState extends State<MethodCard> {
       emoji: widget.emoji,
       title: widget.title,
       description: widget.description,
+      trailing: AnimatedCrossFade(
+        firstChild: const Icon(ElementIcon.dismiss),
+        secondChild: const Icon(ElementIcon.add),
+        crossFadeState: widget.isExpanded
+            ? CrossFadeState.showFirst
+            : CrossFadeState.showSecond,
+        duration: const Duration(seconds: 300),
+      ),
+      // AnimatedSwitcher(
+      //   transitionBuilder: (child, animation) => ScaleTransition(
+      //     scale: animation,
+      //     child: child,
+      //   ),
+      //   duration: Duration(milliseconds: 300),
+      //   child: widget.isExpanded
+      //       ? Icon(ElementIcon.dismiss)
+      //       : Icon(ElementIcon.add),
+      // ),
     );
 
     return Card(
@@ -70,28 +89,6 @@ class _MethodCardState extends State<MethodCard> {
                   )
                 : tile,
           ),
-          // (widget.isExpanded)
-          //     ? AspectRatio(
-          //         aspectRatio: 1 / 1,
-          //         child: Column(
-          //           children: [
-          //             CardTile(
-          //               emoji: widget.emoji,
-          //               title: widget.title,
-          //               description: widget.description,
-          //             ),
-          //             TextArea(
-          //               onTap: widget.onTap,
-          //               onChanged: widget.onChanged,
-          //             ),
-          //           ],
-          //         ),
-          //       )
-          //     : CardTile(
-          //         emoji: widget.emoji,
-          //         title: widget.title,
-          //         description: widget.description,
-          //       ),
         ),
       ),
     );
