@@ -14,6 +14,8 @@ class SettingsPage extends MethodPage {
   const SettingsPage({
     Key? key,
     super.title = "Settings",
+    super.leading,
+    super.trailing,
   }) : super(key: key);
 
   @override

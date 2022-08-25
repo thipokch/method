@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../nav/nav_bar.dart';
 
@@ -9,6 +8,7 @@ abstract class MethodPage extends StatelessWidget {
   const MethodPage({
     Key? key,
     required this.title,
+    this.leading,
     this.trailing,
     this.heroTag,
   }) : super(key: key);
@@ -16,6 +16,7 @@ abstract class MethodPage extends StatelessWidget {
   MethodPageBuilder get builder;
   final String title;
   final Object? heroTag;
+  final Widget? leading;
   final Widget? trailing;
 
   @override
@@ -28,6 +29,7 @@ abstract class MethodPage extends StatelessWidget {
               heroTag: heroTag ?? defaultHeroTag,
               largeTitle: Text(title),
               trailing: trailing,
+              leading: leading,
             ),
           ],
           body: Material(
@@ -41,7 +43,7 @@ abstract class MethodPage extends StatelessWidget {
     bool useRootNavigator = false,
   }) =>
       Navigator.of(context, rootNavigator: useRootNavigator)
-          .push(MaterialWithModalsPageRoute<void>(
+          .push(MaterialPageRoute<void>(
         builder: (BuildContext context) => this,
       ));
 }

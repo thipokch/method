@@ -16,7 +16,7 @@ const double _kNavBarLargeTitleHeightExtension = 52.0;
 
 const double _kNavBarShowLargeTitleThreshold = 10.0;
 
-const double _kNavBarEdgePadding = 16.0;
+const double _kNavBarEdgePadding = 4.0;
 
 const Duration _kNavBarTitleFadeDuration = Duration(milliseconds: 150);
 
@@ -464,7 +464,7 @@ class _LargeTitleNavigationBarSliverDelegate
                     alignment: AlignmentDirectional.bottomStart,
                     child: Padding(
                       padding: const EdgeInsetsDirectional.only(
-                        start: _kNavBarEdgePadding,
+                        start: 16.0,
                         bottom: 8.0,
                       ),
                       child: SafeArea(
@@ -575,9 +575,11 @@ class _PersistentNavigationBar extends StatelessWidget {
 
     Widget? leading = components.leading;
     final Widget? backChevron = components.backChevron;
-    final Widget? backLabel = components.backLabel;
+    // final Widget? backLabel = components.backLabel;
 
-    if (leading == null && backChevron != null && backLabel != null) {
+    if (leading == null && backChevron != null
+        //  && backLabel != null
+        ) {
       leading = MethodNavigationBarBackButton._assemble(
         backChevron,
         // backLabel,
