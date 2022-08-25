@@ -1,3 +1,4 @@
+import 'package:element/element_touch.dart';
 import 'package:flutter/material.dart';
 import 'package:matter/button/button_tonal.dart';
 import 'package:matter/page/page.dart';
@@ -21,7 +22,12 @@ class _HomeView extends StatelessWidget {
           child: const Text("Settings"),
           onPressed: () => showCupertinoModalBottomSheet(
             context: context,
-            builder: ((context) => const SettingsFlow()),
+            builder: (context) {
+              ElementTouch.light();
+
+              return const SettingsFlow();
+            },
+            duration: const Duration(milliseconds: 300),
           ),
         ),
       );
