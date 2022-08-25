@@ -9,6 +9,8 @@ dependencies:
   element:
   flutter:
     sdk: flutter
+    
+  modal_bottom_sheet: ^2.1.0
 
 dev_dependencies:
   dart_code_metrics: ^4.17.0

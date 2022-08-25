@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class TextArea extends StatelessWidget {
   final ValueChanged<String>? onChanged;
   final GestureTapCallback? onTap;
+  final bool? autofocus;
 
   const TextArea({
     Key? key,
     this.onChanged,
     this.onTap,
+    this.autofocus,
   }) : super(key: key);
 
   @override
@@ -22,7 +24,7 @@ class TextArea extends StatelessWidget {
           bottom: 16.0,
         ),
         child: TextField(
-          autofocus: true,
+          autofocus: autofocus ?? false,
           onChanged: onChanged,
           textAlign: TextAlign.center,
           textAlignVertical: TextAlignVertical.center,

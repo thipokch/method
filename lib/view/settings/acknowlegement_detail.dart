@@ -1,48 +1,23 @@
-part of 'settings_license_list.dart';
+part of 'acknowlegement_page.dart';
 
-void showLicenseDetailPage({
-  required BuildContext context,
-  required String packageName,
-  required List<LicenseEntry> licenseEntries,
-  bool useRootNavigator = false,
-}) {
-  Navigator.of(context, rootNavigator: useRootNavigator)
-      .push(MaterialPageRoute<void>(
-    builder: (BuildContext context) => LicenseDetailPage(
-      packageName: packageName,
-      licenseEntries: licenseEntries,
-    ),
-  ));
-}
+class AcknowlegementDetail extends MethodPage {
+  final String packageName;
+  final List<LicenseEntry> licenseEntries;
 
-class LicenseDetailPage extends StatelessWidget {
-  const LicenseDetailPage({
-    Key? key,
+  const AcknowlegementDetail({
+    cupertino.Key? key,
     required this.packageName,
     required this.licenseEntries,
   }) : super(key: key);
 
-  final String packageName;
-  final List<LicenseEntry> licenseEntries;
+  @override
+  Widget get child => _PackageLicensePage(
+        packageName: packageName,
+        licenseEntries: licenseEntries,
+      );
 
   @override
-  Widget build(BuildContext context) => Container(
-        decoration:
-            BoxDecoration(color: Theme.of(context).colorScheme.background),
-        child: NestedScrollView(
-          headerSliverBuilder: (context, innerBoxIsScrolled) => <Widget>[
-            MethodSliverNavigationBar(
-              largeTitle: Text(packageName),
-            ),
-          ],
-          body: Material(
-            child: _PackageLicensePage(
-              packageName: packageName,
-              licenseEntries: licenseEntries,
-            ),
-          ),
-        ),
-      );
+  String get title => packageName;
 }
 
 class _PackageLicensePage extends StatefulWidget {
@@ -146,8 +121,8 @@ class _PackageLicensePageState extends State<_PackageLicensePage> {
   Widget build(BuildContext context) {
     assert(debugCheckHasMaterialLocalizations(context));
     final ThemeData theme = Theme.of(context);
-    final double pad = _getGutterSize(context);
-    final EdgeInsets padding =
+    const double pad = 24.0;
+    const EdgeInsets padding =
         EdgeInsets.only(left: pad, right: pad, bottom: pad * 4);
     final List<Widget> listWidgets = <Widget>[
       ..._licenses,
@@ -181,12 +156,3 @@ class _PackageLicensePageState extends State<_PackageLicensePage> {
     );
   }
 }
-
-const int _materialGutterThreshold = 720;
-const double _wideGutterSize = 24.0;
-const double _narrowGutterSize = 16.0;
-
-double _getGutterSize(BuildContext context) =>
-    MediaQuery.of(context).size.width >= _materialGutterThreshold
-        ? _wideGutterSize
-        : _narrowGutterSize;

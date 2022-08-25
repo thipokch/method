@@ -5,48 +5,30 @@ import 'package:flutter/cupertino.dart' as cupertino;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' hide Flow;
 import 'package:flutter/scheduler.dart';
-import 'package:matter/nav/nav_bar.dart';
+import 'package:matter/page/page.dart';
 
-part 'settings_license_detail.dart';
+part 'acknowlegement_detail.dart';
 
-void showLicensePage({
-  required BuildContext context,
-  bool useRootNavigator = false,
-}) {
-  Navigator.of(context, rootNavigator: useRootNavigator)
-      .push(MaterialPageRoute<void>(
-    builder: (BuildContext context) => const LicenseListPage(),
-  ));
-}
-
-class LicenseListPage extends StatelessWidget {
-  const LicenseListPage({Key? key}) : super(key: key);
+class AcknowlegementPage extends MethodPage {
+  const AcknowlegementPage({cupertino.Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Container(
-        decoration:
-            BoxDecoration(color: Theme.of(context).colorScheme.background),
-        child: NestedScrollView(
-          headerSliverBuilder: (context, innerBoxIsScrolled) => <Widget>[
-            const MethodSliverNavigationBar(
-              largeTitle: Text('Licenses'),
-            ),
-          ],
-          body: const Material(child: _PackagesView()),
-        ),
-      );
+  cupertino.Widget get child => const _PackagesList();
+
+  @override
+  String get title => "Acknowlegement";
 }
 
-class _PackagesView extends StatefulWidget {
-  const _PackagesView({
+class _PackagesList extends StatefulWidget {
+  const _PackagesList({
     Key? key,
   }) : super(key: key);
 
   @override
-  _PackagesViewState createState() => _PackagesViewState();
+  _PackagesListState createState() => _PackagesListState();
 }
 
-class _PackagesViewState extends State<_PackagesView> {
+class _PackagesListState extends State<_PackagesList> {
   final Future<_LicenseData> licenses = LicenseRegistry.licenses
       .fold<_LicenseData>(
         _LicenseData(),
@@ -105,18 +87,10 @@ class _PackagesViewState extends State<_PackagesView> {
           packageName: packageName,
           index: index,
           numberLicenses: bindings.length,
-          onTap: () {
-            showLicenseDetailPage(
-              context: context,
-              packageName: packageName,
-              licenseEntries: licenses,
-            );
-            // widget.selectedId.value = index;
-            // _MasterDetailFlow.of(context)!.openDetailPage(_DetailArguments(
-            //   packageName,
-            //   bindings.map((int i) => data.licenses[i]).toList(growable: false),
-            // ));
-          },
+          onTap: () => AcknowlegementDetail(
+            packageName: packageName,
+            licenseEntries: licenses,
+          ).show(context: context),
         );
       }),
     ];

@@ -9,6 +9,7 @@ class MethodCard extends StatefulWidget {
   final String description;
   final String emoji;
   final bool isExpanded;
+  final bool? autofocus;
   final ValueChanged<String>? onChanged;
   final GestureTapCallback? onTap;
 
@@ -18,6 +19,7 @@ class MethodCard extends StatefulWidget {
     required this.description,
     required this.emoji,
     required this.isExpanded,
+    this.autofocus,
     this.onChanged,
     this.onTap,
   }) : super(key: key);
@@ -82,6 +84,7 @@ class _MethodCardState extends State<MethodCard> {
                         // if (widget.isExpanded)
                         TextArea(
                           onTap: widget.onTap,
+                          autofocus: widget.autofocus,
                           onChanged: widget.onChanged,
                         ),
                       ],
