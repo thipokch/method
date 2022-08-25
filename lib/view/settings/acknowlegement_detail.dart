@@ -5,19 +5,16 @@ class AcknowlegementDetail extends MethodPage {
   final List<LicenseEntry> licenseEntries;
 
   const AcknowlegementDetail({
-    cupertino.Key? key,
+    Key? key,
     required this.packageName,
     required this.licenseEntries,
-  }) : super(key: key);
+  }) : super(key: key, title: packageName);
 
   @override
-  Widget get child => _PackageLicensePage(
+  MethodPageBuilder get builder => (buildContext) => _PackageLicensePage(
         packageName: packageName,
         licenseEntries: licenseEntries,
       );
-
-  @override
-  String get title => packageName;
 }
 
 class _PackageLicensePage extends StatefulWidget {

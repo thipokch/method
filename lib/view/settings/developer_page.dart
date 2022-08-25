@@ -5,13 +5,13 @@ import 'package:matter/preview.dart';
 import 'package:method/view/task/task_preview.dart';
 
 class DeveloperPage extends MethodPage {
-  const DeveloperPage({Key? key}) : super(key: key);
+  const DeveloperPage({
+    Key? key,
+    super.title = "Developer",
+  }) : super(key: key);
 
   @override
-  Widget get child => const _DeveloperList();
-
-  @override
-  String get title => "Developer";
+  MethodPageBuilder get builder => ((context) => const _DeveloperList());
 }
 
 class _DeveloperList extends StatelessWidget {

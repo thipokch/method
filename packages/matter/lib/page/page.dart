@@ -3,11 +3,20 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../nav/nav_bar.dart';
 
-abstract class MethodPage extends StatelessWidget {
-  const MethodPage({Key? key}) : super(key: key);
+typedef MethodPageBuilder = Widget Function(BuildContext context);
 
-  Widget get child;
-  String get title;
+abstract class MethodPage extends StatelessWidget {
+  const MethodPage({
+    Key? key,
+    required this.title,
+    this.trailing,
+    this.heroTag,
+  }) : super(key: key);
+
+  MethodPageBuilder get builder;
+  final String title;
+  final Object? heroTag;
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) => Container(
@@ -16,11 +25,13 @@ abstract class MethodPage extends StatelessWidget {
         child: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) => <Widget>[
             MethodSliverNavigationBar(
+              heroTag: heroTag ?? defaultHeroTag,
               largeTitle: Text(title),
+              trailing: trailing,
             ),
           ],
           body: Material(
-            child: child,
+            child: builder(context),
           ),
         ),
       );
