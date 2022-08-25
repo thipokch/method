@@ -29,10 +29,12 @@ class App extends StatelessWidget {
                       loaded: (themeMode) => themeMode,
                     ) ??
                 ThemeMode.system,
-            onGenerateRoute: (settings) => MaterialWithModalsPageRoute(
-              settings: settings,
-              builder: (context) => const HomePage(),
-            ),
+            onGenerateRoute: (settings) {
+              return MaterialWithModalsPageRoute(
+                settings: settings,
+                builder: (context) => const HomePage(),
+              );
+            },
           ),
         ),
       ),

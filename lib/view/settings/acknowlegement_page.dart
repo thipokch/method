@@ -10,13 +10,13 @@ import 'package:matter/page/page.dart';
 part 'acknowlegement_detail.dart';
 
 class AcknowlegementPage extends MethodPage {
-  const AcknowlegementPage({cupertino.Key? key}) : super(key: key);
+  const AcknowlegementPage({
+    Key? key,
+    super.title = "Acknowlegement",
+  }) : super(key: key);
 
   @override
-  cupertino.Widget get child => const _PackagesList();
-
-  @override
-  String get title => "Acknowlegement";
+  MethodPageBuilder get builder => ((context) => const _PackagesList());
 }
 
 class _PackagesList extends StatefulWidget {

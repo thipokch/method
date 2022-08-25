@@ -11,13 +11,13 @@ import 'package:method/view/settings/developer_page.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class SettingsPage extends MethodPage {
-  const SettingsPage({Key? key}) : super(key: key);
+  const SettingsPage({
+    Key? key,
+    super.title = "Settings",
+  }) : super(key: key);
 
   @override
-  Widget get child => const SettingsList();
-
-  @override
-  String get title => "Settings";
+  MethodPageBuilder get builder => ((context) => const SettingsList());
 }
 
 class SettingsList extends StatelessWidget {

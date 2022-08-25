@@ -29,11 +29,11 @@ const Border _kDefaultNavBarBorder = Border(
   ),
 );
 
-const _HeroTag _defaultHeroTag = _HeroTag(null);
+const HeroTag defaultHeroTag = HeroTag(null);
 
 @immutable
-class _HeroTag {
-  const _HeroTag(this.navigator);
+class HeroTag {
+  const HeroTag(this.navigator);
 
   final NavigatorState? navigator;
 
@@ -50,7 +50,7 @@ class _HeroTag {
       return false;
     }
 
-    return other is _HeroTag && other.navigator == navigator;
+    return other is HeroTag && other.navigator == navigator;
   }
 
   @override
@@ -152,9 +152,9 @@ class MethodNavigationBar extends StatefulWidget
     this.brightness,
     this.padding,
     this.transitionBetweenRoutes = true,
-    this.heroTag = _defaultHeroTag,
+    this.heroTag = defaultHeroTag,
   })  : assert(
-          !transitionBetweenRoutes || identical(heroTag, _defaultHeroTag),
+          !transitionBetweenRoutes || identical(heroTag, defaultHeroTag),
           'Cannot specify a heroTag override if this navigation bar does not '
           'transition due to transitionBetweenRoutes = false.',
         ),
@@ -249,8 +249,8 @@ class _MethodNavigationBarState extends State<MethodNavigationBar> {
     return Builder(
       builder: (BuildContext context) {
         return Hero(
-          tag: widget.heroTag == _defaultHeroTag
-              ? _HeroTag(Navigator.of(context))
+          tag: widget.heroTag == defaultHeroTag
+              ? HeroTag(Navigator.of(context))
               : widget.heroTag,
           createRectTween: _linearTranslateWithLargestRectSizeTween,
           placeholderBuilder: _navBarHeroLaunchPadBuilder,
@@ -288,7 +288,7 @@ class MethodSliverNavigationBar extends StatefulWidget {
     this.brightness,
     this.padding,
     this.transitionBetweenRoutes = true,
-    this.heroTag = _defaultHeroTag,
+    this.heroTag = defaultHeroTag,
     this.stretch = false,
   })  : assert(
           automaticallyImplyTitle || largeTitle != null,
@@ -506,9 +506,7 @@ class _LargeTitleNavigationBarSliverDelegate
     }
 
     return Hero(
-      tag: heroTag == _defaultHeroTag
-          ? _HeroTag(Navigator.of(context))
-          : heroTag,
+      tag: heroTag == defaultHeroTag ? HeroTag(Navigator.of(context)) : heroTag,
       createRectTween: _linearTranslateWithLargestRectSizeTween,
       flightShuttleBuilder: _navBarHeroFlightShuttleBuilder,
       placeholderBuilder: _navBarHeroLaunchPadBuilder,

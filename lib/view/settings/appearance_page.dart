@@ -5,13 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matter/page/page.dart';
 
 class AppearancePage extends MethodPage {
-  const AppearancePage({Key? key}) : super(key: key);
+  const AppearancePage({Key? key}) : super(key: key, title: "");
 
   @override
-  Widget get child => const _AppearanceList();
-
-  @override
-  String get title => "Appearance";
+  MethodPageBuilder get builder => ((context) => const _AppearanceList());
 }
 
 class _AppearanceList extends StatelessWidget {

@@ -4,10 +4,13 @@ import 'package:matter/page/page.dart';
 import 'package:method/view/task/task_view.dart';
 
 class TaskPreview extends MethodPage {
-  const TaskPreview({Key? key}) : super(key: key);
+  const TaskPreview({
+    Key? key,
+    super.title = "Task",
+  }) : super(key: key);
 
   @override
-  Widget get child => Padding(
+  MethodPageBuilder get builder => (context) => Padding(
         padding: const EdgeInsets.all(12.0),
         child: ListView(
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
@@ -23,7 +26,4 @@ class TaskPreview extends MethodPage {
           ],
         ),
       );
-
-  @override
-  String get title => "Task Component";
 }
