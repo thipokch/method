@@ -5,7 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matter/page/page.dart';
 
 class AppearancePage extends MethodPage {
-  const AppearancePage({Key? key}) : super(key: key, title: "");
+  const AppearancePage({
+    Key? key,
+    super.title = "Appearance",
+  }) : super(key: key);
 
   @override
   MethodPageBuilder get builder => ((context) => const _AppearanceList());
