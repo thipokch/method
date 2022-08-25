@@ -1,7 +1,7 @@
 import 'package:element/element_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:matter/preview.dart';
-import 'package:method/patch/nav_bar.dart';
+import 'package:matter/nav/nav_bar.dart';
 import 'package:method/view/task/task_preview.dart';
 
 class SettingsDev extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'package:core/model/task.dart';
 import 'package:flutter/material.dart';
-import 'package:method/patch/nav_bar.dart';
 import 'package:method/view/task/task_view.dart';
+import 'package:matter/nav/nav_bar.dart';
 
 class TaskPreview extends StatelessWidget {
   const TaskPreview({Key? key}) : super(key: key);

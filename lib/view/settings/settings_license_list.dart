@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart' as cupertino;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' hide Flow;
 import 'package:flutter/scheduler.dart';
-import 'package:method/patch/nav_bar.dart';
+import 'package:matter/nav/nav_bar.dart';
 
 part 'settings_license_detail.dart';
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../patch/nav_bar.dart';
+import 'package:matter/nav/nav_bar.dart';
 
 import 'settings_view.dart';
 
