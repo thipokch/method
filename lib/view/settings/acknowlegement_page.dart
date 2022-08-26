@@ -6,17 +6,21 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' hide Flow;
 import 'package:flutter/scheduler.dart';
 import 'package:matter/page/page.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 part 'acknowlegement_detail.dart';
 
 class AcknowlegementPage extends MethodPage {
   const AcknowlegementPage({
     Key? key,
-    super.title = "Acknowlegement",
-  }) : super(key: key);
-
-  @override
-  MethodPageBuilder get builder => ((context) => const _PackagesList());
+    super.heroTag,
+    super.leading,
+    super.trailing,
+  }) : super(
+          key: key,
+          title: "Acknowledgement",
+          child: const _PackagesList(),
+        );
 }
 
 class _PackagesList extends StatefulWidget {
@@ -96,6 +100,7 @@ class _PackagesListState extends State<_PackagesList> {
     ];
 
     return ListView.separated(
+      controller: ModalScrollController.of(context),
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       itemBuilder: (context, index) => packages[index],
       separatorBuilder: (context, index) => const Padding(

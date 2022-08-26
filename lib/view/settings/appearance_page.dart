@@ -7,11 +7,14 @@ import 'package:matter/page/page.dart';
 class AppearancePage extends MethodPage {
   const AppearancePage({
     Key? key,
-    super.title = "Appearance",
-  }) : super(key: key);
-
-  @override
-  MethodPageBuilder get builder => ((context) => const _AppearanceList());
+    super.heroTag,
+    super.leading,
+    super.trailing,
+  }) : super(
+          key: key,
+          title: "Appearance",
+          child: const _AppearanceList(),
+        );
 }
 
 class _AppearanceList extends StatelessWidget {

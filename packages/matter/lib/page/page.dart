@@ -12,13 +12,14 @@ abstract class MethodPage extends StatelessWidget {
     this.leading,
     this.trailing,
     this.heroTag,
+    this.child,
   }) : super(key: key);
 
-  MethodPageBuilder get builder;
   final String title;
   final Object? heroTag;
   final Widget? leading;
   final Widget? trailing;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) => Container(
@@ -36,33 +37,16 @@ abstract class MethodPage extends StatelessWidget {
             ),
             // builder(context),
             SliverFillRemaining(
-              child: builder(context),
+              child: child,
             ),
           ],
         ),
-
-        //     NestedScrollView(
-        //   headerSliverBuilder: (context, innerBoxIsScrolled) => <Widget>[
-        //     MethodSliverNavigationBar(
-        //       stretch: true,
-        //       heroTag: heroTag ?? defaultHeroTag,
-        //       largeTitle: Text(title),
-        //       trailing: trailing,
-        //       leading: leading,
-        //     ),
-        //   ],
-        //   body: Material(
-        //     child: builder(context),
-        //   ),
-        // ),
       );
 
   void show({
     required BuildContext context,
-    bool useRootNavigator = false,
   }) =>
-      Navigator.of(context, rootNavigator: useRootNavigator)
-          .push(MaterialPageRoute<void>(
+      Navigator.of(context).push(MaterialPageRoute(
         builder: (BuildContext context) => this,
       ));
 }
