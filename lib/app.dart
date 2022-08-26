@@ -32,7 +32,7 @@ class App extends StatelessWidget {
             onGenerateRoute: (settings) {
               return MaterialWithModalsPageRoute(
                 settings: settings,
-                builder: (context) => const HomePage(),
+                builder: (context) => HomePage(),
               );
             },
           ),

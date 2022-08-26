@@ -11,46 +11,40 @@ import 'package:method/view/settings/developer_page.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class SettingsPage extends MethodPage {
-  const SettingsPage({
+  SettingsPage({
     Key? key,
-    super.title = "Settings",
+    super.heroTag,
     super.leading,
     super.trailing,
-    this.controller,
-  }) : super(key: key);
-
-  final ScrollController? controller;
-
-  @override
-  MethodPageBuilder get builder => ((context) => SettingsList(
-        controller: controller,
-      ));
+  }) : super(
+          key: key,
+          title: "Settings",
+          child: SettingsList(
+            trailing: trailing,
+          ),
+        );
 }
 
 class SettingsList extends StatelessWidget {
-  const SettingsList({Key? key, this.controller}) : super(key: key);
+  const SettingsList({Key? key, this.controller, this.trailing})
+      : super(key: key);
 
   final ScrollController? controller;
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) =>
       BlocBuilder<SettingsBloc, SettingsState>(builder: (context, state) {
-        // const divider = Padding(
-        //   padding: EdgeInsets.symmetric(horizontal: 12),
-        //   child: Divider(
-        //     height: 0,
-        //   ),
-        // );
-
         final Map<String, Function()?> about = {
           "Acknowledgement": () =>
-              const AcknowlegementPage().show(context: context),
+              AcknowlegementPage(trailing: trailing).show(context: context),
           // license.showLicensePage(context: context),
-          "Developer": () => const DeveloperPage().show(context: context),
+          "Developer": () =>
+              DeveloperPage(trailing: trailing).show(context: context),
         };
 
         final Map<String, Function()?> general = {
-          "Appearance": () => const AppearancePage().show(
+          "Appearance": () => AppearancePage(trailing: trailing).show(
                 context: context,
               ),
         };
@@ -95,25 +89,24 @@ class SettingsList extends StatelessWidget {
           ),
         ];
 
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: items,
-        );
-
-        // return ListView.separated(
-        //   shrinkWrap: true,
-        //   padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
-        //   separatorBuilder: (context, index) => const Padding(
-        //     padding: EdgeInsets.symmetric(horizontal: 12),
-        //     child: Divider(
-        //       height: 0,
-        //     ),
-        //   ),
-        //   controller: ModalScrollController.of(context),
-        //   itemBuilder: (context, index) => items[index],
-        //   itemCount: items.length,
+        // return Column(
+        //   crossAxisAlignment: CrossAxisAlignment.start,
+        //   mainAxisSize: MainAxisSize.min,
+        //   children: items,
         // );
+
+        return ListView.separated(
+          shrinkWrap: true,
+          padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
+          separatorBuilder: (context, index) => const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 12),
+            child: Divider(
+              height: 0,
+            ),
+          ),
+          itemBuilder: (context, index) => items[index],
+          itemCount: items.length,
+        );
       });
 }
 

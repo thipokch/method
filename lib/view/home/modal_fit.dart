@@ -19,8 +19,8 @@ class ModalFit extends StatelessWidget {
               ),
               // builder(context),
               SliverFillRemaining(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
+                child: ListView(
+                  // mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     ListTile(
                       title: const Text('Edit'),

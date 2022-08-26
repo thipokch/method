@@ -4,17 +4,18 @@ class AcknowlegementDetail extends MethodPage {
   final String packageName;
   final List<LicenseEntry> licenseEntries;
 
-  const AcknowlegementDetail({
+  AcknowlegementDetail({
     Key? key,
     required this.packageName,
     required this.licenseEntries,
-  }) : super(key: key, title: packageName);
-
-  @override
-  MethodPageBuilder get builder => (buildContext) => _PackageLicensePage(
-        packageName: packageName,
-        licenseEntries: licenseEntries,
-      );
+  }) : super(
+          key: key,
+          title: packageName,
+          child: _PackageLicensePage(
+            packageName: packageName,
+            licenseEntries: licenseEntries,
+          ),
+        );
 }
 
 class _PackageLicensePage extends StatefulWidget {
