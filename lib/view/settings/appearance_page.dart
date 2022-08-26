@@ -10,6 +10,7 @@ class AppearancePage extends MethodPage {
     super.heroTag,
     super.leading,
     super.trailing,
+    super.controller,
   }) : super(
           key: key,
           title: "Appearance",
@@ -49,18 +50,23 @@ class _AppearanceList extends StatelessWidget {
                 ),
               ];
 
-              return ListView.separated(
-                shrinkWrap: true,
-                padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
-                separatorBuilder: (context, index) => const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12),
-                  child: Divider(
-                    height: 0,
-                  ),
-                ),
-                itemCount: items.length,
-                itemBuilder: (context, index) => items[index],
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: items,
               );
+
+              // return ListView.separated(
+              //   shrinkWrap: true,
+              //   padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
+              //   separatorBuilder: (context, index) => const Padding(
+              //     padding: EdgeInsets.symmetric(horizontal: 12),
+              //     child: Divider(
+              //       height: 0,
+              //     ),
+              //   ),
+              //   itemCount: items.length,
+              //   itemBuilder: (context, index) => items[index],
+              // );
             },
           ),
         ),

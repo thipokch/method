@@ -139,14 +139,11 @@ class _PackageLicensePageState extends State<_PackageLicensePage> {
         child: Localizations.override(
           locale: const Locale('en', 'US'),
           context: context,
-          child: ScrollConfiguration(
-            behavior:
-                ScrollConfiguration.of(context).copyWith(scrollbars: false),
-            child: Scrollbar(
-              child: ListView(
-                padding: padding,
-                children: listWidgets,
-              ),
+          child: Padding(
+            padding: padding,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: listWidgets,
             ),
           ),
         ),

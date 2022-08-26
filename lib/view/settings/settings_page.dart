@@ -7,6 +7,7 @@ import 'package:matter/page/page.dart';
 import 'package:method/view/settings/acknowlegement_page.dart';
 import 'package:method/view/settings/appearance_page.dart';
 import 'package:method/view/settings/developer_page.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 // import 'package:method/view/settings/settings_license_list.dart' as license;
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -16,6 +17,7 @@ class SettingsPage extends MethodPage {
     super.heroTag,
     super.leading,
     super.trailing,
+    super.controller,
   }) : super(
           key: key,
           title: "Settings",
@@ -36,32 +38,45 @@ class SettingsList extends StatelessWidget {
   Widget build(BuildContext context) =>
       BlocBuilder<SettingsBloc, SettingsState>(builder: (context, state) {
         final Map<String, Function()?> about = {
-          "Acknowledgement": () =>
-              AcknowlegementPage(trailing: trailing).show(context: context),
+          "Acknowledgement": () => AcknowlegementPage(
+                trailing: trailing,
+                controller: ModalScrollController.of(context),
+              ).show(context: context),
           // license.showLicensePage(context: context),
-          "Developer": () =>
-              DeveloperPage(trailing: trailing).show(context: context),
+          "Developer": () => DeveloperPage(
+                trailing: trailing,
+                controller: ModalScrollController.of(context),
+              ).show(context: context),
         };
 
         final Map<String, Function()?> general = {
-          "Appearance": () => AppearancePage(trailing: trailing).show(
+          "Appearance": () => AppearancePage(
+                trailing: trailing,
+                controller: ModalScrollController.of(context),
+              ).show(
                 context: context,
               ),
         };
 
         final List<Widget> items = [
-          const Padding(
-            padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
-            child: Text("GENERAL"),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+            child: Text(
+              "GENERAL",
+              style: Theme.of(context).textTheme.caption,
+            ),
           ),
           ...general.entries.map((e) => ListTile(
                 title: Text(e.key),
                 trailing: const Icon(ElementIcon.chevronForward),
                 onTap: e.value,
               )),
-          const Padding(
-            padding: EdgeInsets.fromLTRB(16, 24, 16, 8),
-            child: Text("ABOUT"),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 24, 16, 8),
+            child: Text(
+              "ABOUT",
+              style: Theme.of(context).textTheme.caption,
+            ),
           ),
           ...about.entries.map((e) => ListTile(
                 title: Text(e.key),
@@ -89,24 +104,27 @@ class SettingsList extends StatelessWidget {
           ),
         ];
 
-        // return Column(
-        //   crossAxisAlignment: CrossAxisAlignment.start,
-        //   mainAxisSize: MainAxisSize.min,
-        //   children: items,
-        // );
-
-        return ListView.separated(
-          shrinkWrap: true,
-          padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
-          separatorBuilder: (context, index) => const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12),
-            child: Divider(
-              height: 0,
-            ),
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: items,
           ),
-          itemBuilder: (context, index) => items[index],
-          itemCount: items.length,
         );
+
+        // return ListView.separated(
+        //   // shrinkWrap: true,
+        //   padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
+        //   separatorBuilder: (context, index) => const Padding(
+        //     padding: EdgeInsets.symmetric(horizontal: 12),
+        //     child: Divider(
+        //       height: 0,
+        //     ),
+        //   ),
+        //   itemBuilder: (context, index) => items[index],
+        //   itemCount: items.length,
+        // );
       });
 }
 
@@ -130,7 +148,7 @@ class _AppInfo extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 16.0,
-        vertical: 36.0,
+        vertical: 72.0,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
