@@ -16,83 +16,105 @@ class SettingsPage extends MethodPage {
     super.title = "Settings",
     super.leading,
     super.trailing,
+    this.controller,
   }) : super(key: key);
 
+  final ScrollController? controller;
+
   @override
-  MethodPageBuilder get builder => ((context) => const SettingsList());
+  MethodPageBuilder get builder => ((context) => SettingsList(
+        controller: controller,
+      ));
 }
 
 class SettingsList extends StatelessWidget {
-  const SettingsList({Key? key}) : super(key: key);
+  const SettingsList({Key? key, this.controller}) : super(key: key);
+
+  final ScrollController? controller;
 
   @override
   Widget build(BuildContext context) =>
-      BlocBuilder<SettingsBloc, SettingsState>(
-        builder: (context, state) => state.when(
-          initial: () => const Text("initial"),
-          loaded: (themeMode) {
-            final Map<String, Function()?> about = {
-              "Acknowledgement": () =>
-                  const AcknowlegementPage().show(context: context),
-              // license.showLicensePage(context: context),
-              "Developer": () => const DeveloperPage().show(context: context),
-            };
+      BlocBuilder<SettingsBloc, SettingsState>(builder: (context, state) {
+        // const divider = Padding(
+        //   padding: EdgeInsets.symmetric(horizontal: 12),
+        //   child: Divider(
+        //     height: 0,
+        //   ),
+        // );
 
-            final Map<String, Function()?> general = {
-              "Appearance": () => const AppearancePage().show(
-                    context: context,
-                  ),
-            };
+        final Map<String, Function()?> about = {
+          "Acknowledgement": () =>
+              const AcknowlegementPage().show(context: context),
+          // license.showLicensePage(context: context),
+          "Developer": () => const DeveloperPage().show(context: context),
+        };
 
-            final List<Widget> items = [
-              const Padding(
-                padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
-                child: Text("General"),
+        final Map<String, Function()?> general = {
+          "Appearance": () => const AppearancePage().show(
+                context: context,
               ),
-              ...general.entries.map((e) => ListTile(
-                    title: Text(e.key),
-                    trailing: const Icon(ElementIcon.chevronForward),
-                    onTap: e.value,
-                  )),
-              const Padding(
-                padding: EdgeInsets.fromLTRB(16, 24, 16, 8),
-                child: Text("About"),
-              ),
-              ...about.entries.map((e) => ListTile(
-                    title: Text(e.key),
-                    trailing: const Icon(ElementIcon.chevronForward),
-                    onTap: e.value,
-                  )),
-              FutureBuilder<PackageInfo>(
-                future: PackageInfo.fromPlatform(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return _AppInfo(
-                      name: snapshot.data!.appName.toLowerCase(),
-                      version: snapshot.data!.version,
-                      buildInfo: snapshot.data!.buildNumber,
-                    );
-                  }
+        };
 
-                  return const CupertinoActivityIndicator();
-                },
-              ),
-            ];
+        final List<Widget> items = [
+          const Padding(
+            padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+            child: Text("GENERAL"),
+          ),
+          ...general.entries.map((e) => ListTile(
+                title: Text(e.key),
+                trailing: const Icon(ElementIcon.chevronForward),
+                onTap: e.value,
+              )),
+          const Padding(
+            padding: EdgeInsets.fromLTRB(16, 24, 16, 8),
+            child: Text("ABOUT"),
+          ),
+          ...about.entries.map((e) => ListTile(
+                title: Text(e.key),
+                trailing: const Icon(ElementIcon.chevronForward),
+                onTap: e.value,
+              )),
+          // ConstrainedBox(
+          //   constraints:
+          //       BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
+          //   child: Expanded(child: const CupertinoActivityIndicator()),
+          // ),
+          FutureBuilder<PackageInfo>(
+            future: PackageInfo.fromPlatform(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return _AppInfo(
+                  name: snapshot.data!.appName.toLowerCase(),
+                  version: snapshot.data!.version,
+                  buildInfo: snapshot.data!.buildNumber,
+                );
+              }
 
-            return ListView.separated(
-              padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
-              separatorBuilder: (context, index) => const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12),
-                child: Divider(
-                  height: 0,
-                ),
-              ),
-              itemCount: items.length,
-              itemBuilder: (context, index) => items[index],
-            );
-          },
-        ),
-      );
+              return const CupertinoActivityIndicator();
+            },
+          ),
+        ];
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: items,
+        );
+
+        // return ListView.separated(
+        //   shrinkWrap: true,
+        //   padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
+        //   separatorBuilder: (context, index) => const Padding(
+        //     padding: EdgeInsets.symmetric(horizontal: 12),
+        //     child: Divider(
+        //       height: 0,
+        //     ),
+        //   ),
+        //   controller: ModalScrollController.of(context),
+        //   itemBuilder: (context, index) => items[index],
+        //   itemCount: items.length,
+        // );
+      });
 }
 
 class _AppInfo extends StatelessWidget {
@@ -118,11 +140,12 @@ class _AppInfo extends StatelessWidget {
         vertical: 36.0,
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
             name,
             style: Theme.of(context).textTheme.headline5,
-            textAlign: TextAlign.center,
+            textAlign: TextAlign.start,
           ),
           if (icon != null)
             IconTheme(data: Theme.of(context).iconTheme, child: icon!),
@@ -132,14 +155,14 @@ class _AppInfo extends StatelessWidget {
               child: Text(
                 version,
                 style: Theme.of(context).textTheme.bodyText2,
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.start,
               ),
             ),
           if (buildInfo != '')
             Text(
               buildInfo,
               style: Theme.of(context).textTheme.caption,
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.start,
             ),
           const SizedBox(height: 16),
         ],

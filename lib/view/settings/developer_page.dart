@@ -33,6 +33,7 @@ class _DeveloperList extends StatelessWidget {
     ];
 
     return ListView.separated(
+      // controller: ModalScrollController.of(context),
       padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
       separatorBuilder: (context, index) => const Padding(
         padding: EdgeInsets.symmetric(horizontal: 12),
