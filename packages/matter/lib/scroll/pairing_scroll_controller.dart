@@ -40,12 +40,20 @@ class ParingScrollControllerGroup {
     _actors.add(controller);
     controller.addListener(_offsetNotifier.notifyListeners);
 
+    if (_actors.isNotEmpty) {
+      _actors.last.removeListener(_offsetNotifier.notifyListeners);
+    }
+
     return controller;
   }
 
   ScrollController? pop() {
     final controller = _actors.isNotEmpty ? _actors.removeLast() : null;
     controller?.removeListener(_offsetNotifier.notifyListeners);
+
+    if (_actors.isNotEmpty) {
+      _actors.last.addListener(_offsetNotifier.notifyListeners);
+    }
 
     return controller;
   }
@@ -57,7 +65,7 @@ class ParingScrollControllerGroup {
       _offsetNotifier.removeListener(listener);
 
   Iterable<_PairedScrollController> get _attachedControllers =>
-      _actors.where((controller) => controller.hasClients);
+      [_actors.where((controller) => controller.hasClients).last];
 
   Future<void> animateTo(
     double offset, {
