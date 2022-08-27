@@ -4,10 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matter/page/page.dart';
+import 'package:matter/scroll/pairing_scroll_controller.dart';
 import 'package:method/view/settings/acknowlegement_page.dart';
 import 'package:method/view/settings/appearance_page.dart';
 import 'package:method/view/settings/developer_page.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 // import 'package:method/view/settings/settings_license_list.dart' as license;
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -40,19 +40,19 @@ class SettingsList extends StatelessWidget {
         final Map<String, Function()?> about = {
           "Acknowledgement": () => AcknowlegementPage(
                 trailing: trailing,
-                controller: ModalScrollController.of(context),
+                controller: PairingScrollController.of(context)?.push(),
               ).show(context: context),
           // license.showLicensePage(context: context),
           "Developer": () => DeveloperPage(
                 trailing: trailing,
-                controller: ModalScrollController.of(context),
+                controller: PairingScrollController.of(context)?.push(),
               ).show(context: context),
         };
 
         final Map<String, Function()?> general = {
           "Appearance": () => AppearancePage(
                 trailing: trailing,
-                controller: ModalScrollController.of(context),
+                controller: PairingScrollController.of(context)?.push(),
               ).show(
                 context: context,
               ),

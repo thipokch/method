@@ -8,6 +8,7 @@ class AcknowlegementDetail extends MethodPage {
     Key? key,
     required this.packageName,
     required this.licenseEntries,
+    super.controller,
   }) : super(
           key: key,
           title: packageName,

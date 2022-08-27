@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' hide Flow;
 import 'package:flutter/scheduler.dart';
 import 'package:matter/page/page.dart';
+import 'package:matter/scroll/pairing_scroll_controller.dart';
 
 part 'acknowlegement_detail.dart';
 
@@ -93,6 +94,7 @@ class _PackagesListState extends State<_PackagesList> {
           index: index,
           numberLicenses: bindings.length,
           onTap: () => AcknowlegementDetail(
+            controller: PairingScrollController.of(context)?.push(),
             packageName: packageName,
             licenseEntries: licenses,
           ).show(context: context),
