@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../nav/nav_bar.dart';
 
@@ -13,9 +12,11 @@ abstract class MethodPage extends StatelessWidget {
     this.trailing,
     this.heroTag,
     this.child,
+    this.controller,
   }) : super(key: key);
 
   final String title;
+  final ScrollController? controller;
   final Object? heroTag;
   final Widget? leading;
   final Widget? trailing;
@@ -26,7 +27,7 @@ abstract class MethodPage extends StatelessWidget {
         decoration:
             BoxDecoration(color: Theme.of(context).colorScheme.background),
         child: CustomScrollView(
-          controller: ModalScrollController.of(context),
+          controller: controller,
           slivers: <Widget>[
             MethodSliverNavigationBar(
               stretch: true,
@@ -36,8 +37,11 @@ abstract class MethodPage extends StatelessWidget {
               leading: leading,
             ),
             // builder(context),
-            SliverFillRemaining(
-              child: child,
+            SliverToBoxAdapter(
+              child: Material(
+                type: MaterialType.transparency,
+                child: child,
+              ),
             ),
           ],
         ),

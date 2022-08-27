@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:matter/page/page.dart';
 import 'package:matter/preview.dart';
 import 'package:method/view/task/task_preview.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class DeveloperPage extends MethodPage {
   const DeveloperPage({
@@ -11,6 +10,7 @@ class DeveloperPage extends MethodPage {
     super.heroTag,
     super.leading,
     super.trailing,
+    super.controller,
   }) : super(
           key: key,
           title: "Developer",
@@ -36,18 +36,22 @@ class _DeveloperList extends StatelessWidget {
       ),
     ];
 
-    return ListView.separated(
-      controller: ModalScrollController.of(context),
-      shrinkWrap: true,
-      padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
-      separatorBuilder: (context, index) => const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 12),
-        child: Divider(
-          height: 0,
-        ),
-      ),
-      itemCount: items.length,
-      itemBuilder: (context, index) => items[index],
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: items,
     );
+
+    // return ListView.separated(
+    //   shrinkWrap: true,
+    //   padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
+    //   separatorBuilder: (context, index) => const Padding(
+    //     padding: EdgeInsets.symmetric(horizontal: 12),
+    //     child: Divider(
+    //       height: 0,
+    //     ),
+    //   ),
+    //   itemCount: items.length,
+    //   itemBuilder: (context, index) => items[index],
+    // );
   }
 }

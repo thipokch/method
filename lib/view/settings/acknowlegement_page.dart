@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' hide Flow;
 import 'package:flutter/scheduler.dart';
 import 'package:matter/page/page.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:matter/scroll/pairing_scroll_controller.dart';
 
 part 'acknowlegement_detail.dart';
 
@@ -16,6 +16,7 @@ class AcknowlegementPage extends MethodPage {
     super.heroTag,
     super.leading,
     super.trailing,
+    super.controller,
   }) : super(
           key: key,
           title: "Acknowledgement",
@@ -59,10 +60,11 @@ class _PackagesListState extends State<_PackagesList> {
               case ConnectionState.waiting:
                 return Material(
                   color: Theme.of(context).cardColor,
-                  child: Column(
-                    children: const <Widget>[
-                      Center(child: cupertino.CupertinoActivityIndicator()),
-                    ],
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minHeight: MediaQuery.of(context).size.width,
+                    ),
+                    child: const cupertino.CupertinoActivityIndicator(),
                   ),
                 );
             }
@@ -92,6 +94,7 @@ class _PackagesListState extends State<_PackagesList> {
           index: index,
           numberLicenses: bindings.length,
           onTap: () => AcknowlegementDetail(
+            controller: PairingScrollController.of(context)?.push(),
             packageName: packageName,
             licenseEntries: licenses,
           ).show(context: context),
@@ -99,18 +102,21 @@ class _PackagesListState extends State<_PackagesList> {
       }),
     ];
 
-    return ListView.separated(
-      controller: ModalScrollController.of(context),
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
-      itemBuilder: (context, index) => packages[index],
-      separatorBuilder: (context, index) => const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 12),
-        child: Divider(
-          height: 0,
-        ),
-      ),
-      itemCount: packages.length,
+    return Column(
+      children: packages,
     );
+    // return ListView.separated(
+    //   // controller: ModalScrollController.of(context),
+    //   padding: const EdgeInsets.symmetric(vertical: 16.0),
+    //   itemBuilder: (context, index) => packages[index],
+    //   separatorBuilder: (context, index) => const Padding(
+    //     padding: EdgeInsets.symmetric(horizontal: 12),
+    //     child: Divider(
+    //       height: 0,
+    //     ),
+    //   ),
+    //   itemCount: packages.length,
+    // );
   }
 }
 
