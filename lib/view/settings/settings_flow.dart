@@ -15,12 +15,19 @@ class SettingsFlow extends StatelessWidget {
             // initialRoute: 'settings',
             onGenerateRoute: (settings) => MaterialWithModalsPageRoute(
               settings: settings,
-              builder: (_) => SettingsPage(
-                controller: PairingScrollController.of(context)?.push(),
-                trailing: IconButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  icon: const Icon(ElementIcon.dismiss),
-                  iconSize: 20,
+              builder: (_) => WillPopScope(
+                onWillPop: () async {
+                  PairingScrollController.of(context)?.pop();
+
+                  return true;
+                },
+                child: SettingsPage(
+                  controller: PairingScrollController.of(context)?.push(),
+                  trailing: IconButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    icon: const Icon(ElementIcon.dismiss),
+                    iconSize: 20,
+                  ),
                 ),
               ),
             ),
