@@ -19,7 +19,7 @@ class HomePage extends MethodPage {
         );
 }
 
-class _HomeView extends StatelessWidget {
+class _HomeViewState extends State<_HomeView> {
   @override
   Widget build(BuildContext context) => Column(
         children: [
@@ -31,13 +31,19 @@ class _HomeView extends StatelessWidget {
               showCupertinoModalBottomSheet(
                 expand: false,
                 context: context,
-                builder: (context) => PairingScrollController.createGroup(
-                  child: const SettingsFlow(),
-                ),
+                builder: (context) => SettingsFlow(),
                 duration: const Duration(milliseconds: 300),
               );
             },
           ),
         ],
       );
+}
+
+class _HomeView extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _HomeViewState();
+
+  final PairingScrollControllerGroup settingsGroup =
+      PairingScrollControllerGroup();
 }

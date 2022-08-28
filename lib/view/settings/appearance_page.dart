@@ -23,6 +23,7 @@ class _AppearanceList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Material(
+        type: MaterialType.transparency,
         child: BlocBuilder<SettingsBloc, SettingsState>(
           builder: (context, state) => state.when(
             initial: () => const Text("initial"),

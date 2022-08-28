@@ -3,16 +3,17 @@ import 'package:element/element_icon.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:matter/nav/nav_context.dart';
 import 'package:matter/page/page.dart';
 import 'package:matter/scroll/pairing_scroll_controller.dart';
 import 'package:method/view/settings/acknowlegement_page.dart';
 import 'package:method/view/settings/appearance_page.dart';
 import 'package:method/view/settings/developer_page.dart';
-// import 'package:method/view/settings/settings_license_list.dart' as license;
+
 import 'package:package_info_plus/package_info_plus.dart';
 
 class SettingsPage extends MethodPage {
-  SettingsPage({
+  const SettingsPage({
     Key? key,
     super.heroTag,
     super.leading,
@@ -21,40 +22,33 @@ class SettingsPage extends MethodPage {
   }) : super(
           key: key,
           title: "Settings",
-          child: SettingsList(
-            trailing: trailing,
-          ),
+          child: const SettingsList(),
         );
 }
 
 class SettingsList extends StatelessWidget {
-  const SettingsList({Key? key, this.controller, this.trailing})
-      : super(key: key);
+  const SettingsList({Key? key, this.controller}) : super(key: key);
 
   final ScrollController? controller;
-  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) =>
       BlocBuilder<SettingsBloc, SettingsState>(builder: (context, state) {
-        final Map<String, Function()?> about = {
-          "Acknowledgement": () => AcknowlegementPage(
-                trailing: trailing,
+        final Map<String, MethodPageBuilder> about = {
+          "Acknowledgement": (context) => AcknowlegementPage(
+                trailing: NavigationContext.of(context)?.exit,
                 controller: PairingScrollController.of(context)?.push(),
-              ).show(context: context),
-          // license.showLicensePage(context: context),
-          "Developer": () => DeveloperPage(
-                trailing: trailing,
+              ),
+          "Developer": (context) => DeveloperPage(
+                trailing: NavigationContext.of(context)?.exit,
                 controller: PairingScrollController.of(context)?.push(),
-              ).show(context: context),
+              ),
         };
 
-        final Map<String, Function()?> general = {
-          "Appearance": () => AppearancePage(
-                trailing: trailing,
+        final Map<String, MethodPageBuilder> general = {
+          "Appearance": (context) => AppearancePage(
+                trailing: NavigationContext.of(context)?.exit,
                 controller: PairingScrollController.of(context)?.push(),
-              ).show(
-                context: context,
               ),
         };
 
@@ -69,7 +63,7 @@ class SettingsList extends StatelessWidget {
           ...general.entries.map((e) => ListTile(
                 title: Text(e.key),
                 trailing: const Icon(ElementIcon.chevronForward),
-                onTap: e.value,
+                onTap: () => show(context: context, builder: e.value),
               )),
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 24, 16, 8),
@@ -81,13 +75,8 @@ class SettingsList extends StatelessWidget {
           ...about.entries.map((e) => ListTile(
                 title: Text(e.key),
                 trailing: const Icon(ElementIcon.chevronForward),
-                onTap: e.value,
+                onTap: () => show(context: context, builder: e.value),
               )),
-          // ConstrainedBox(
-          //   constraints:
-          //       BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
-          //   child: Expanded(child: const CupertinoActivityIndicator()),
-          // ),
           FutureBuilder<PackageInfo>(
             future: PackageInfo.fromPlatform(),
             builder: (context, snapshot) {
@@ -112,19 +101,6 @@ class SettingsList extends StatelessWidget {
             children: items,
           ),
         );
-
-        // return ListView.separated(
-        //   // shrinkWrap: true,
-        //   padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
-        //   separatorBuilder: (context, index) => const Padding(
-        //     padding: EdgeInsets.symmetric(horizontal: 12),
-        //     child: Divider(
-        //       height: 0,
-        //     ),
-        //   ),
-        //   itemBuilder: (context, index) => items[index],
-        //   itemCount: items.length,
-        // );
       });
 }
 

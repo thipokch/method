@@ -4,18 +4,10 @@ import 'package:flutter/rendering.dart';
 
 part 'pairing_scroll_controller_widget.dart';
 
-class ParingScrollControllerGroup {
-  ParingScrollControllerGroup() {
+class PairingScrollControllerGroup {
+  PairingScrollControllerGroup() {
     _offsetNotifier = _PairedScrollControllerGroupOffsetNotifier(this);
     _mirror = _PairedScrollController(this);
-
-    // final dummy = _mirror.createScrollPosition(
-    //   const BouncingScrollPhysics(),
-    //   ScrollableState(),
-    //   null,
-    // );
-    // _mirror.attach(dummy);
-
     _mirror.addListener(_offsetNotifier.notifyListeners);
   }
 
@@ -42,21 +34,20 @@ class ParingScrollControllerGroup {
 
     if (_actors.isNotEmpty) {
       _actors.last.removeListener(_offsetNotifier.notifyListeners);
-    }
-
-    return controller;
-  }
-
-  ScrollController? pop() {
-    final controller = _actors.isNotEmpty ? _actors.removeLast() : null;
-    controller?.removeListener(_offsetNotifier.notifyListeners);
-
-    if (_actors.isNotEmpty) {
       _actors.last.addListener(_offsetNotifier.notifyListeners);
     }
 
     return controller;
   }
+
+  // ScrollController? pop() {
+  //   final controller = _actors.isNotEmpty ? _actors.removeLast() : null;
+  //   controller?.removeListener(_offsetNotifier.notifyListeners);
+  //   if (_actors.isNotEmpty) {
+  //     _actors.last.addListener(_offsetNotifier.notifyListeners);
+  //   }
+  //   return controller;
+  // }
 
   void addOffsetChangedListener(VoidCallback onChanged) =>
       _offsetNotifier.addListener(onChanged);
@@ -95,7 +86,7 @@ class ParingScrollControllerGroup {
 class _PairedScrollControllerGroupOffsetNotifier extends ChangeNotifier {
   _PairedScrollControllerGroupOffsetNotifier(this.controllerGroup);
 
-  final ParingScrollControllerGroup controllerGroup;
+  final PairingScrollControllerGroup controllerGroup;
 
   double? _cachedOffset;
 
@@ -110,7 +101,7 @@ class _PairedScrollControllerGroupOffsetNotifier extends ChangeNotifier {
 }
 
 class _PairedScrollController extends ScrollController {
-  final ParingScrollControllerGroup _cluster;
+  final PairingScrollControllerGroup _cluster;
 
   _PairedScrollController(
     this._cluster,
@@ -122,6 +113,12 @@ class _PairedScrollController extends ScrollController {
   @override
   void dispose() {
     _cluster._actors.remove(this);
+
+    if (_cluster._actors.isNotEmpty) {
+      final fx = _cluster._offsetNotifier.notifyListeners;
+      _cluster._actors.last.removeListener(fx);
+    }
+
     super.dispose();
   }
 
@@ -133,8 +130,8 @@ class _PairedScrollController extends ScrollController {
         ' _PairedScrollPositions.');
     final _PairedScrollPosition linkedPosition =
         position as _PairedScrollPosition;
-    assert(linkedPosition.owner == this,
-        '_PairedScrollPosition cannot change controllers once created.');
+    // assert(linkedPosition.owner == this,
+    // '_PairedScrollPosition cannot change controllers once created.');
     super.attach(position);
   }
 

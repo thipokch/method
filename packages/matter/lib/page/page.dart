@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../nav/nav_bar.dart';
 
-typedef MethodPageBuilder = Widget Function(BuildContext context);
+typedef MethodPageBuilder = MethodPage Function(BuildContext context);
 
-abstract class MethodPage extends StatelessWidget {
+class MethodPage extends StatefulWidget {
   const MethodPage({
     Key? key,
     required this.title,
@@ -23,34 +23,45 @@ abstract class MethodPage extends StatelessWidget {
   final Widget? child;
 
   @override
+  State<StatefulWidget> createState() => _MethodPageState();
+}
+
+class _MethodPageState extends State<MethodPage> {
+  @override
+  void dispose() {
+    widget.controller?.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) => Container(
         decoration:
             BoxDecoration(color: Theme.of(context).colorScheme.background),
         child: CustomScrollView(
-          controller: controller,
+          controller: widget.controller,
           slivers: <Widget>[
             MethodSliverNavigationBar(
               stretch: true,
-              heroTag: heroTag ?? defaultHeroTag,
-              largeTitle: Text(title),
-              trailing: trailing,
-              leading: leading,
+              heroTag: widget.heroTag ?? defaultHeroTag,
+              largeTitle: Text(widget.title),
+              trailing: widget.trailing,
+              leading: widget.leading,
             ),
-            // builder(context),
             SliverToBoxAdapter(
               child: Material(
                 type: MaterialType.transparency,
-                child: child,
+                child: widget.child,
               ),
             ),
           ],
         ),
       );
-
-  void show({
-    required BuildContext context,
-  }) =>
-      Navigator.of(context).push(MaterialPageRoute(
-        builder: (BuildContext context) => this,
-      ));
 }
+
+void show({
+  required BuildContext context,
+  required MethodPageBuilder builder,
+}) =>
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (BuildContext context) => builder(context),
+    ));

@@ -33,9 +33,12 @@ class _DeveloperList extends StatelessWidget {
       ListTile(
         title: const Text("Task Component"),
         trailing: const Icon(ElementIcon.chevronForward),
-        onTap: () => TaskPreview(
-          controller: PairingScrollController.of(context)?.push(),
-        ).show(context: context),
+        onTap: () => show(
+          context: context,
+          builder: (context) => TaskPreview(
+            controller: PairingScrollController.of(context)?.push(),
+          ),
+        ),
       ),
     ];
 
