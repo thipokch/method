@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart' as cupertino;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' hide Flow;
 import 'package:flutter/scheduler.dart';
+import 'package:matter/nav/nav_context.dart';
 import 'package:matter/page/page.dart';
 import 'package:matter/scroll/pairing_scroll_controller.dart';
 
@@ -59,7 +60,7 @@ class _PackagesListState extends State<_PackagesList> {
               case ConnectionState.active:
               case ConnectionState.waiting:
                 return Material(
-                  color: Theme.of(context).cardColor,
+                  type: MaterialType.transparency,
                   child: ConstrainedBox(
                     constraints: BoxConstraints(
                       minHeight: MediaQuery.of(context).size.width,
@@ -93,11 +94,15 @@ class _PackagesListState extends State<_PackagesList> {
           packageName: packageName,
           index: index,
           numberLicenses: bindings.length,
-          onTap: () => AcknowlegementDetail(
-            controller: PairingScrollController.of(context)?.push(),
-            packageName: packageName,
-            licenseEntries: licenses,
-          ).show(context: context),
+          onTap: () => show(
+            context: context,
+            builder: (context) => AcknowlegementDetail(
+              controller: PairingScrollController.of(context)?.push(),
+              packageName: packageName,
+              licenseEntries: licenses,
+              trailing: NavigationContext.of(context)?.exit,
+            ),
+          ),
         );
       }),
     ];
