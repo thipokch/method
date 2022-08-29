@@ -12,6 +12,7 @@ dependencies:
     
   modal_bottom_sheet: ^2.1.0
   linked_scroll_controller: ^0.2.0
+  figma_squircle: ^0.5.3
 
 dev_dependencies:
   dart_code_metrics: ^4.17.0

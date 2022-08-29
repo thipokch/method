@@ -4,6 +4,7 @@ import 'dart:math' as math;
 import 'dart:ui' show ImageFilter;
 
 import 'package:element/element_icon.dart';
+import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart' as cupertino;
@@ -123,7 +124,7 @@ Widget _wrapWithBackground({
 
   if (backgroundColor.alpha == 0xFF) return childWithBackground;
 
-  return ClipRect(
+  return ClipSmoothRect(
     child: BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
       child: childWithBackground,
@@ -522,7 +523,7 @@ class _LargeTitleNavigationBarSliverDelegate
                   left: 0.0,
                   right: 0.0,
                   bottom: 0.0,
-                  child: ClipRect(
+                  child: ClipSmoothRect(
                     // The large title starts at the persistent bar.
                     // It's aligned with the bottom of the sliver and expands clipped
                     // and behind the persistent bar.
@@ -1019,6 +1020,7 @@ class MethodNavigationBarBackButton extends StatelessWidget {
 
   final VoidCallback? onPressed;
 
+  // ignore: unused_field
   final Widget? _backChevron;
 
   @override
@@ -1038,6 +1040,7 @@ class MethodNavigationBarBackButton extends StatelessWidget {
     //   );
     // }
 
+    // return const Icon(ElementIcon.chevronBack);
     return IconButton(
       onPressed: () {
         if (onPressed != null) {
@@ -1049,6 +1052,7 @@ class MethodNavigationBarBackButton extends StatelessWidget {
       icon: _backChevron ?? const Icon(ElementIcon.chevronBack),
       highlightColor: Colors.transparent,
     );
+
     // cupertino.CupertinoButton(
     //   padding: EdgeInsets.zero,
     //   child: Semantics(
