@@ -695,14 +695,12 @@ class _PersistentNavigationBar extends StatelessWidget {
 
     Widget? leading = components.leading;
     final Widget? backChevron = components.backChevron;
-    // final Widget? backLabel = components.backLabel;
+    final Widget? backLabel = components.backLabel;
 
-    if (leading == null && backChevron != null
-        //  && backLabel != null
-        ) {
+    if (leading == null && backChevron != null && backLabel != null) {
       leading = MethodNavigationBarBackButton._assemble(
         backChevron,
-        // backLabel,
+        backLabel,
       );
     }
 
@@ -881,7 +879,6 @@ class _NavigationBarStaticComponents {
       return null;
     }
 
-    // return KeyedSubtree(key: backChevronKey, child: const _BackChevron());
     return KeyedSubtree(
       key: backChevronKey,
       child: const Icon(ElementIcon.chevronBack),
@@ -1006,10 +1003,12 @@ class MethodNavigationBarBackButton extends StatelessWidget {
     this.previousPageTitle,
     this.onPressed,
   })  : _backChevron = null,
+        _backLabel = null,
         super(key: key);
 
   const MethodNavigationBarBackButton._assemble(
     this._backChevron,
+    this._backLabel,
   )   : previousPageTitle = null,
         color = null,
         onPressed = null;
@@ -1022,6 +1021,8 @@ class MethodNavigationBarBackButton extends StatelessWidget {
 
   // ignore: unused_field
   final Widget? _backChevron;
+
+  final Widget? _backLabel;
 
   @override
   Widget build(BuildContext context) {
@@ -1041,16 +1042,30 @@ class MethodNavigationBarBackButton extends StatelessWidget {
     // }
 
     // return const Icon(ElementIcon.chevronBack);
-    return IconButton(
-      onPressed: () {
-        if (onPressed != null) {
-          onPressed!();
-        } else {
-          Navigator.maybePop(context);
-        }
-      },
-      icon: _backChevron ?? const Icon(ElementIcon.chevronBack),
-      highlightColor: Colors.transparent,
+
+    return Row(
+      children: [
+        IconButton(
+          onPressed: () {
+            if (onPressed != null) {
+              onPressed!();
+            } else {
+              Navigator.maybePop(context);
+            }
+          },
+          icon: Icon(
+            ElementIcon.chevronBack,
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
+
+          // highlightColor: Colors.transparent,
+        ),
+        _backLabel ??
+            _BackLabel(
+              specifiedPreviousTitle: previousPageTitle,
+              route: currentRoute,
+            ),
+      ],
     );
 
     // cupertino.CupertinoButton(
@@ -1159,9 +1174,10 @@ class _BackLabel extends StatelessWidget {
       overflow: TextOverflow.ellipsis,
     );
 
-    if (previousTitle.length > 12) {
-      textWidget = const Text('Back');
-    }
+    // if (previousTitle.length > 12) {
+    //   textWidget = const Text('Back');
+    // }
+    textWidget = const Text('Back');
 
     return Align(
       alignment: AlignmentDirectional.centerStart,
