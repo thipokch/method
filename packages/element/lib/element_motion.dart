@@ -1,0 +1,3 @@
+class ElementMotion {
+  ElementMotion._();
+}
