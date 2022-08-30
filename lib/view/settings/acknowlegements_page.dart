@@ -9,10 +9,10 @@ import 'package:matter/nav/nav_context.dart';
 import 'package:matter/page/page.dart';
 import 'package:matter/scroll/pairing_scroll_controller.dart';
 
-part 'acknowlegement_detail.dart';
+part 'acknowlegements_detail.dart';
 
-class AcknowlegementPage extends MethodPage {
-  const AcknowlegementPage({
+class AcknowlegementsPage extends MethodPage {
+  const AcknowlegementsPage({
     Key? key,
     super.heroTag,
     super.leading,
@@ -96,7 +96,7 @@ class _PackagesListState extends State<_PackagesList> {
           numberLicenses: bindings.length,
           onTap: () => show(
             context: context,
-            builder: (context) => AcknowlegementDetail(
+            builder: (context) => AcknowlegementsDetail(
               controller: PairingScrollController.of(context)?.push(),
               packageName: packageName,
               licenseEntries: licenses,

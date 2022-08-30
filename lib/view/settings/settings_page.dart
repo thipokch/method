@@ -10,7 +10,7 @@ import 'package:method/view/settings/appearance_page.dart';
 
 import 'package:package_info_plus/package_info_plus.dart';
 
-import 'acknowlegement_page.dart';
+import 'acknowlegements_page.dart';
 import 'developer_page.dart';
 
 class SettingsPage extends MethodPage {
@@ -34,10 +34,10 @@ class SettingsList extends StatelessWidget {
   Widget build(BuildContext context) =>
       BlocBuilder<SettingsBloc, SettingsState>(builder: (context, state) {
         final Map<String, MethodPageBuilder> about = {
-          "Acknowledgement":
+          "Acknowledgements":
               // When ShellRoute becomes available
               // (context) => AcknowledgementRoute().push(context),
-              (context) => AcknowlegementPage(
+              (context) => AcknowlegementsPage(
                     trailing: NavigationContext.of(context)?.exit,
                     controller: PairingScrollController.of(context)?.push(),
                   ),
