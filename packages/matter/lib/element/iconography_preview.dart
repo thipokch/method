@@ -1,4 +1,4 @@
-import 'package:element/element_icon.dart';
+import 'package:element/element_symbol.dart';
 import 'package:element/element_scale.dart';
 import 'package:flutter/material.dart';
 
@@ -13,39 +13,39 @@ class IconographyPreview extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
-            Icon(ElementIcon.add, size: ElementScale.iconM),
-            Icon(ElementIcon.dismiss, size: ElementScale.iconM),
-            Icon(ElementIcon.checkmark, size: ElementScale.iconM),
-            Icon(ElementIcon.note, size: ElementScale.iconM),
-            Icon(ElementIcon.moreVertical, size: ElementScale.iconM),
+            Icon(ElementSymbol.add, size: ElementScale.iconM),
+            Icon(ElementSymbol.dismiss, size: ElementScale.iconM),
+            Icon(ElementSymbol.checkmark, size: ElementScale.iconM),
+            Icon(ElementSymbol.note, size: ElementScale.iconM),
+            Icon(ElementSymbol.moreVertical, size: ElementScale.iconM),
           ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
-            Icon(ElementIcon.brandArrowLeft, size: ElementScale.iconM),
-            Icon(ElementIcon.brandArrowUp, size: ElementScale.iconM),
-            Icon(ElementIcon.brandArrowRight, size: ElementScale.iconM),
-            Icon(ElementIcon.brandArrowDown, size: ElementScale.iconM),
-            Icon(ElementIcon.brandArrowUpLeft, size: ElementScale.iconM),
-            Icon(ElementIcon.brandArrowUpRight, size: ElementScale.iconM),
-            Icon(ElementIcon.brandArrowDownRight, size: ElementScale.iconM),
-            Icon(ElementIcon.brandArrowDownLeft, size: ElementScale.iconM),
-            Icon(ElementIcon.brandArrowDownRight, size: ElementScale.iconM),
-            Icon(ElementIcon.brandArrowUpDown, size: ElementScale.iconM),
-            Icon(ElementIcon.brandArrowDownRight, size: ElementScale.iconM),
-            Icon(ElementIcon.brandArrowLeftRight, size: ElementScale.iconM),
+            Icon(ElementSymbol.brandArrowLeft, size: ElementScale.iconM),
+            Icon(ElementSymbol.brandArrowUp, size: ElementScale.iconM),
+            Icon(ElementSymbol.brandArrowRight, size: ElementScale.iconM),
+            Icon(ElementSymbol.brandArrowDown, size: ElementScale.iconM),
+            Icon(ElementSymbol.brandArrowUpLeft, size: ElementScale.iconM),
+            Icon(ElementSymbol.brandArrowUpRight, size: ElementScale.iconM),
+            Icon(ElementSymbol.brandArrowDownRight, size: ElementScale.iconM),
+            Icon(ElementSymbol.brandArrowDownLeft, size: ElementScale.iconM),
+            Icon(ElementSymbol.brandArrowDownRight, size: ElementScale.iconM),
+            Icon(ElementSymbol.brandArrowUpDown, size: ElementScale.iconM),
+            Icon(ElementSymbol.brandArrowDownRight, size: ElementScale.iconM),
+            Icon(ElementSymbol.brandArrowLeftRight, size: ElementScale.iconM),
           ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
-            Icon(ElementIcon.chevronBack, size: ElementScale.iconM),
-            Icon(ElementIcon.chevronForward, size: ElementScale.iconM),
-            Icon(ElementIcon.chevronUp, size: ElementScale.iconM),
-            Icon(ElementIcon.chevronDown, size: ElementScale.iconM),
-            Icon(ElementIcon.chevronLeft, size: ElementScale.iconM),
-            Icon(ElementIcon.chevronRight, size: ElementScale.iconM),
+            Icon(ElementSymbol.chevronBack, size: ElementScale.iconM),
+            Icon(ElementSymbol.chevronForward, size: ElementScale.iconM),
+            Icon(ElementSymbol.chevronUp, size: ElementScale.iconM),
+            Icon(ElementSymbol.chevronDown, size: ElementScale.iconM),
+            Icon(ElementSymbol.chevronLeft, size: ElementScale.iconM),
+            Icon(ElementSymbol.chevronRight, size: ElementScale.iconM),
           ],
         ),
       ],

@@ -1,5 +1,5 @@
 import 'package:component/settings/settings_bloc.dart';
-import 'package:element/element_icon.dart';
+import 'package:element/element_symbol.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -70,7 +70,7 @@ class SettingsList extends StatelessWidget {
           ),
           ...general.entries.map((e) => ListTile(
                 title: Text(e.key),
-                trailing: const Icon(ElementIcon.chevronForward),
+                trailing: const Icon(ElementSymbol.chevronForward),
                 onTap: () => show(context: context, builder: e.value),
               )),
           Padding(
@@ -82,7 +82,7 @@ class SettingsList extends StatelessWidget {
           ),
           ...about.entries.map((e) => ListTile(
                 title: Text(e.key),
-                trailing: const Icon(ElementIcon.chevronForward),
+                trailing: const Icon(ElementSymbol.chevronForward),
                 onTap: () => show(context: context, builder: e.value),
                 // When ShellRoute becomes available
                 // onTap: () => e.value.call(context),

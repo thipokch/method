@@ -1,5 +1,5 @@
 import 'package:component/settings/settings_bloc.dart';
-import 'package:element/element_icon.dart';
+import 'package:element/element_symbol.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matter/page/page.dart';
@@ -40,7 +40,7 @@ class _AppearanceList extends StatelessWidget {
                     title: Text(e.key),
                     trailing: Visibility(
                       visible: themeMode == e.value,
-                      child: const Icon(ElementIcon.checkmark),
+                      child: const Icon(ElementSymbol.checkmark),
                     ),
                     onTap: () => context.read<SettingsBloc>().add(
                           SettingsEvent.themeModeUpdated(

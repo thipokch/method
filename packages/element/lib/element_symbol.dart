@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-class ElementIcon {
-  ElementIcon._();
+class ElementSymbol {
+  ElementSymbol._();
 
   static const IconData dismiss = CupertinoIcons.clear;
   static const IconData dismissFilled = CupertinoIcons.clear_thick;
@@ -42,4 +42,11 @@ class ElementIcon {
   static const IconData chevronRight = CupertinoIcons.chevron_right;
   static const IconData chevronUp = CupertinoIcons.chevron_up;
   static const IconData chevronDown = CupertinoIcons.chevron_down;
+
+  static const IconData person = CupertinoIcons.person;
+  static const IconData personFilled = CupertinoIcons.person_fill;
+  static const IconData search = CupertinoIcons.search;
+  static const IconData searchFilled = CupertinoIcons.search;
+  static const IconData today = CupertinoIcons.sun_max;
+  static const IconData todayFilled = CupertinoIcons.sun_max_fill;
 }

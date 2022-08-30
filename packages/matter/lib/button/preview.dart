@@ -1,6 +1,6 @@
 // ignore_for_file: no-empty-block
 
-import 'package:element/element_icon.dart';
+import 'package:element/element_symbol.dart';
 import 'package:flutter/material.dart';
 import 'package:matter/button/button_action.dart';
 
@@ -93,31 +93,31 @@ class ButtonsWithIcon extends StatelessWidget {
       children: <Widget>[
         ButtonElevated.icon(
           onPressed: () {},
-          icon: const Icon(ElementIcon.add),
+          icon: const Icon(ElementSymbol.add),
           label: const Text("Icon"),
         ),
         Preview.colDivider,
         ButtonFilled.icon(
           onPressed: () {},
-          icon: const Icon(ElementIcon.add),
+          icon: const Icon(ElementSymbol.add),
           label: const Text('Icon'),
         ),
         Preview.colDivider,
         ButtonTonal.icon(
           onPressed: () {},
-          icon: const Icon(ElementIcon.add),
+          icon: const Icon(ElementSymbol.add),
           label: const Text('Icon'),
         ),
         Preview.colDivider,
         ButtonOutlined.icon(
           onPressed: () {},
-          icon: const Icon(ElementIcon.add),
+          icon: const Icon(ElementSymbol.add),
           label: const Text(" Icon"),
         ),
         Preview.colDivider,
         ButtonText.icon(
           onPressed: () {},
-          icon: const Icon(ElementIcon.add),
+          icon: const Icon(ElementSymbol.add),
           label: const Text("Icon"),
         ),
       ],
@@ -141,23 +141,23 @@ class FloatingActionButtons extends StatelessWidget {
         children: [
           FloatingActionButton.small(
             onPressed: () {},
-            child: const Icon(ElementIcon.add),
+            child: const Icon(ElementSymbol.add),
           ),
           _divider,
           FloatingActionButton(
             onPressed: () {},
-            child: const Icon(ElementIcon.add),
+            child: const Icon(ElementSymbol.add),
           ),
           _divider,
           FloatingActionButton.extended(
             onPressed: () {},
-            icon: const Icon(ElementIcon.add),
+            icon: const Icon(ElementSymbol.add),
             label: const Text("Create"),
           ),
           _divider,
           FloatingActionButton.large(
             onPressed: () {},
-            child: const Icon(ElementIcon.add),
+            child: const Icon(ElementSymbol.add),
           ),
         ],
       ),

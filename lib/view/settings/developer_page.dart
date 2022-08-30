@@ -1,4 +1,4 @@
-import 'package:element/element_icon.dart';
+import 'package:element/element_symbol.dart';
 import 'package:flutter/material.dart';
 import 'package:matter/page/page.dart';
 import 'package:matter/preview.dart';
@@ -27,12 +27,12 @@ class _DeveloperList extends StatelessWidget {
     final List<Widget> items = [
       ListTile(
         title: const Text("Matter UI"),
-        trailing: const Icon(ElementIcon.chevronForward),
+        trailing: const Icon(ElementSymbol.chevronForward),
         onTap: () => showMatterPreview(context: context),
       ),
       ListTile(
         title: const Text("Task Component"),
-        trailing: const Icon(ElementIcon.chevronForward),
+        trailing: const Icon(ElementSymbol.chevronForward),
         onTap: () => show(
           context: context,
           builder: (context) => TaskPreview(

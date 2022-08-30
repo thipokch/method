@@ -1,6 +1,6 @@
 import 'dart:developer' show Timeline, Flow;
 
-import 'package:element/element_icon.dart';
+import 'package:element/element_symbol.dart';
 import 'package:flutter/cupertino.dart' as cupertino;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' hide Flow;
@@ -143,7 +143,7 @@ class _PackageListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(packageName),
-      trailing: const Icon(ElementIcon.chevronForward),
+      trailing: const Icon(ElementSymbol.chevronForward),
       subtitle: Text(MaterialLocalizations.of(context)
           .licensesPackageDetailText(numberLicenses)),
       onTap: onTap,
