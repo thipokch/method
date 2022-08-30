@@ -1,5 +1,6 @@
 import 'dart:developer' show Timeline, Flow;
 
+import 'package:element/element_scale.dart';
 import 'package:element/element_symbol.dart';
 import 'package:flutter/cupertino.dart' as cupertino;
 import 'package:flutter/foundation.dart';

@@ -1,3 +1,4 @@
+import 'package:element/element_scale.dart';
 import 'package:element/element_touch.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ class ButtonAction extends StatelessWidget {
     TextTheme textTheme = Theme.of(context).textTheme;
 
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(ElementScale.spaceS),
       child: FloatingActionButton.extended(
         elevation: 3,
         focusElevation: 1,

@@ -44,7 +44,13 @@ class _MethodPageState extends State<MethodPage> {
             MethodSliverNavigationBar(
               stretch: true,
               heroTag: widget.heroTag ?? defaultHeroTag,
-              largeTitle: Text(widget.title),
+              largeTitle: Text(
+                widget.title,
+                // style: Theme.of(context)
+                //     .textTheme
+                //     .headlineMedium!
+                //     .copyWith(color: Theme.of(context).colorScheme.onSurface),
+              ),
               trailing: widget.trailing,
               leading: widget.leading,
             ),

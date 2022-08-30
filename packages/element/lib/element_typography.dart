@@ -7,8 +7,11 @@ class ElementTypography {
   ElementTypography._();
 
   static const weightRegular = 400; /* Regular weight */
+  static const fontWeightRegular = FontWeight.w400;
   static const weightMedium = 500; /* Medium weight */
+  static const fontWeightMedium = FontWeight.w500;
   static const weightBold = 700; /* Bold weight */
+  static const fontWeightBold = FontWeight.w700;
   static const brand = FontFamily.notoSans; /* Brand typeface */
   static const plain = FontFamily.notoSans; /* Plain typeface */
 
@@ -51,91 +54,91 @@ class ElementTypography {
     displayLarge: TextStyle(
       fontFamily: ElementTypography.displayLargeFamily,
       fontSize: ElementScale.typescaleDisplayLarge,
-      fontWeight: FontWeight.w400,
+      fontWeight: fontWeightRegular,
       package: 'element',
     ),
     displayMedium: TextStyle(
       fontFamily: ElementTypography.displayMediumFamily,
       fontSize: ElementScale.typescaleDisplayMedium,
-      fontWeight: FontWeight.w400,
+      fontWeight: fontWeightRegular,
       package: 'element',
     ),
     displaySmall: TextStyle(
       fontFamily: ElementTypography.displaySmallFamily,
       fontSize: ElementScale.typescaleDisplaySmall,
-      fontWeight: FontWeight.w400,
+      fontWeight: fontWeightRegular,
       package: 'element',
     ),
     headlineLarge: TextStyle(
       fontFamily: ElementTypography.headlineLargeFamily,
       fontSize: ElementScale.typescaleHeadlineLarge,
-      fontWeight: FontWeight.w400,
+      fontWeight: fontWeightRegular,
       package: 'element',
     ),
     headlineMedium: TextStyle(
       fontFamily: ElementTypography.headlineMediumFamily,
       fontSize: ElementScale.typescaleHeadlineMedium,
-      fontWeight: FontWeight.w400,
+      fontWeight: fontWeightRegular,
       package: 'element',
     ),
     headlineSmall: TextStyle(
       fontFamily: ElementTypography.headlineSmallFamily,
       fontSize: ElementScale.typescaleHeadlineSmall,
-      fontWeight: FontWeight.w400,
+      fontWeight: fontWeightRegular,
       package: 'element',
     ),
     titleLarge: TextStyle(
       fontFamily: ElementTypography.titleLargeFamily,
       fontSize: ElementScale.typescaleTitleLarge,
-      fontWeight: FontWeight.w400,
+      fontWeight: fontWeightRegular,
       package: 'element',
     ),
     titleMedium: TextStyle(
       fontFamily: ElementTypography.titleMediumFamily,
       fontSize: ElementScale.typescaleTitleMedium,
-      fontWeight: FontWeight.w500,
+      fontWeight: fontWeightMedium,
       package: 'element',
     ),
     titleSmall: TextStyle(
       fontFamily: ElementTypography.titleSmallFamily,
       fontSize: ElementScale.typescaleTitleSmall,
-      fontWeight: FontWeight.w500,
+      fontWeight: fontWeightMedium,
       package: 'element',
     ),
     bodyLarge: TextStyle(
       fontFamily: ElementTypography.bodyLargeFamily,
       fontSize: ElementScale.typescaleBodyLarge,
-      fontWeight: FontWeight.w400,
+      fontWeight: fontWeightRegular,
       package: 'element',
     ),
     bodyMedium: TextStyle(
       fontFamily: ElementTypography.bodyMediumFamily,
       fontSize: ElementScale.typescaleBodyMedium,
-      fontWeight: FontWeight.w400,
+      fontWeight: fontWeightRegular,
       package: 'element',
     ),
     bodySmall: TextStyle(
       fontFamily: ElementTypography.bodySmallFamily,
       fontSize: ElementScale.typescaleBodySmall,
-      fontWeight: FontWeight.w400,
+      fontWeight: fontWeightRegular,
       package: 'element',
     ),
     labelLarge: TextStyle(
       fontFamily: ElementTypography.labelLargeFamily,
       fontSize: ElementScale.typescaleLabelLarge,
-      fontWeight: FontWeight.w500,
+      fontWeight: fontWeightMedium,
       package: 'element',
     ),
     labelMedium: TextStyle(
       fontFamily: ElementTypography.labelMediumFamily,
       fontSize: ElementScale.typescaleLabelMedium,
-      fontWeight: FontWeight.w500,
+      fontWeight: fontWeightMedium,
       package: 'element',
     ),
     labelSmall: TextStyle(
       fontFamily: ElementTypography.labelSmallFamily,
       fontSize: ElementScale.typescaleLabelSmall,
-      fontWeight: FontWeight.w500,
+      fontWeight: fontWeightMedium,
       package: 'element',
     ),
   );

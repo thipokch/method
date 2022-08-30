@@ -34,7 +34,7 @@ class SettingsFlowState extends State<SettingsFlow> {
             child: NavigationContext(
               exit: IconButton(
                 onPressed: () => Navigator.of(context).pop(),
-                icon: const Icon(ElementSymbol.dismissFilled),
+                icon: const Icon(ElementSymbol.dismiss),
                 iconSize: ElementScale.iconM,
               ),
               child: Navigator(

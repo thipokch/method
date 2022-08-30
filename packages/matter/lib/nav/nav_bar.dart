@@ -4,6 +4,7 @@ import 'dart:math' as math;
 import 'dart:ui' show ImageFilter;
 
 import 'package:element/element_symbol.dart';
+import 'package:element/element_motion.dart';
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ const double _kNavBarShowLargeTitleThreshold = 10.0;
 
 const double _kNavBarEdgePadding = 4.0;
 
-const Duration _kNavBarTitleFadeDuration = Duration(milliseconds: 150);
+const Duration _kNavBarTitleFadeDuration = ElementMotion.fast;
 
 const Color _kDefaultNavBarBorderColor = Color(0x4D000000);
 
@@ -1494,13 +1495,13 @@ class _NavigationBarComponentsTransition {
     );
   }
 
-  Animation<double> fadeInFrom(double t, {Curve curve = Curves.easeIn}) {
+  Animation<double> fadeInFrom(double t, {Curve curve = ElementMotion.easeIn}) {
     return animation.drive(fadeIn.chain(
       CurveTween(curve: Interval(t, 1.0, curve: curve)),
     ));
   }
 
-  Animation<double> fadeOutBy(double t, {Curve curve = Curves.easeOut}) {
+  Animation<double> fadeOutBy(double t, {Curve curve = ElementMotion.easeOut}) {
     return animation.drive(fadeOut.chain(
       CurveTween(curve: Interval(0.0, t, curve: curve)),
     ));
