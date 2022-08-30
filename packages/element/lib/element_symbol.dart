@@ -49,4 +49,6 @@ class ElementSymbol {
   static const IconData searchFilled = CupertinoIcons.search;
   static const IconData today = CupertinoIcons.sun_max;
   static const IconData todayFilled = CupertinoIcons.sun_max_fill;
+  static const IconData settings = CupertinoIcons.gear;
+  static const IconData settingsFilled = CupertinoIcons.gear_solid;
 }
