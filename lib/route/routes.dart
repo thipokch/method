@@ -9,25 +9,15 @@ import 'package:method/view/settings/settings_flow.dart';
 
 // See https://pub.dev/packages/go_router_builder
 part 'routes.g.dart';
+part 'routes.home.dart';
 part 'routes.settings.dart';
 
-@TypedGoRoute<RootRoute>(
-  path: '/',
-  routes: [
-    TypedGoRoute<HomeRoute>(path: 'home'),
-  ],
-)
+// HomeRoute cannot be nested and redirect at the same time
+// See https://github.com/flutter/flutter/issues/103368
+@TypedGoRoute<RootRoute>(path: '/')
 class RootRoute extends GoRouteData {
   const RootRoute();
 
   @override
   String redirect() => const HomeRoute().location;
-}
-
-class HomeRoute extends GoRouteData {
-  const HomeRoute();
-
-  @override
-  Page buildPage(BuildContext context) =>
-      RootSheet(builder: (context) => HomePage());
 }
