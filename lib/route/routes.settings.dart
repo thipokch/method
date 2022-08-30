@@ -17,7 +17,7 @@ class SettingsRoute extends GoRouteData {
 
 class AcknowledgementRoute extends GoRouteData {
   @override
-  Widget build(BuildContext context) => const AcknowlegementPage();
+  Widget build(BuildContext context) => const AcknowlegementsPage();
 }
 
 class AppearanceRoute extends GoRouteData {

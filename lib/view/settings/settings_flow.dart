@@ -1,4 +1,4 @@
-import 'package:element/element_icon.dart';
+import 'package:element/element_symbol.dart';
 import 'package:flutter/material.dart';
 import 'package:matter/nav/nav_context.dart';
 import 'package:matter/scroll/pairing_scroll_controller.dart';
@@ -33,7 +33,7 @@ class SettingsFlowState extends State<SettingsFlow> {
             child: NavigationContext(
               exit: IconButton(
                 onPressed: () => Navigator.of(context).pop(),
-                icon: const Icon(ElementIcon.dismiss),
+                icon: const Icon(ElementSymbol.dismiss),
                 iconSize: 20,
               ),
               child: Navigator(

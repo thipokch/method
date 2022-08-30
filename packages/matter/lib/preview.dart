@@ -1,4 +1,4 @@
-import 'package:element/element_icon.dart';
+import 'package:element/element_symbol.dart';
 import 'package:flutter/material.dart';
 import 'package:matter/preview_composite.dart';
 import 'package:matter/preview_element.dart';
@@ -44,7 +44,7 @@ class _MatterPreviewState extends State<MatterPreview> {
   PreferredSizeWidget createAppBar() {
     return AppBar(
       leading: IconButton(
-        icon: const Icon(ElementIcon.chevronBack),
+        icon: const Icon(ElementSymbol.chevronBack),
         onPressed: () => Navigator.of(context).pop(),
       ),
       title: const Text("Matter Preview"),
@@ -96,27 +96,27 @@ class _MatterPreviewState extends State<MatterPreview> {
 const List<NavigationDestination> appBarDestinations = [
   NavigationDestination(
     tooltip: "",
-    icon: Icon(ElementIcon.apps),
+    icon: Icon(ElementSymbol.apps),
     label: 'Composite',
-    selectedIcon: Icon(ElementIcon.appsFilled),
+    selectedIcon: Icon(ElementSymbol.appsFilled),
   ),
   NavigationDestination(
     tooltip: "",
-    icon: Icon(ElementIcon.shapes),
+    icon: Icon(ElementSymbol.shapes),
     label: 'Element',
-    selectedIcon: Icon(ElementIcon.shapesFilled),
+    selectedIcon: Icon(ElementSymbol.shapesFilled),
   ),
   NavigationDestination(
     tooltip: "",
-    icon: Icon(ElementIcon.textEffects),
+    icon: Icon(ElementSymbol.textEffects),
     label: 'Presentation',
-    selectedIcon: Icon(ElementIcon.textEffectsFilled),
+    selectedIcon: Icon(ElementSymbol.textEffectsFilled),
   ),
   NavigationDestination(
     tooltip: "",
-    icon: Icon(ElementIcon.style),
+    icon: Icon(ElementSymbol.style),
     label: 'Style',
-    selectedIcon: Icon(ElementIcon.styleFilled),
+    selectedIcon: Icon(ElementSymbol.styleFilled),
   ),
 ];
 

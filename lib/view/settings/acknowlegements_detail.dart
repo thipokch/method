@@ -1,10 +1,10 @@
-part of 'acknowlegement_page.dart';
+part of 'acknowlegements_page.dart';
 
-class AcknowlegementDetail extends MethodPage {
+class AcknowlegementsDetail extends MethodPage {
   final String packageName;
   final List<LicenseEntry> licenseEntries;
 
-  AcknowlegementDetail({
+  AcknowlegementsDetail({
     Key? key,
     required this.packageName,
     required this.licenseEntries,

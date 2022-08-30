@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:method/route/sheet.dart';
 import 'package:method/view/home/home_page.dart';
-import 'package:method/view/settings/acknowlegement_page.dart';
+import 'package:method/view/settings/acknowlegements_page.dart';
 import 'package:method/view/settings/appearance_page.dart';
 import 'package:method/view/settings/developer_page.dart';
 import 'package:method/view/settings/settings_flow.dart';

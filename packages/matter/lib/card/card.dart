@@ -1,4 +1,4 @@
-import 'package:element/element_icon.dart';
+import 'package:element/element_symbol.dart';
 import 'package:element/element_scale.dart';
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
@@ -37,8 +37,8 @@ class _MethodCardState extends State<MethodCard> {
       title: widget.title,
       description: widget.description,
       trailing: AnimatedCrossFade(
-        firstChild: const Icon(ElementIcon.dismiss),
-        secondChild: const Icon(ElementIcon.add),
+        firstChild: const Icon(ElementSymbol.dismiss),
+        secondChild: const Icon(ElementSymbol.add),
         crossFadeState: widget.isExpanded
             ? CrossFadeState.showFirst
             : CrossFadeState.showSecond,
@@ -51,8 +51,8 @@ class _MethodCardState extends State<MethodCard> {
       //   ),
       //   duration: Duration(milliseconds: 300),
       //   child: widget.isExpanded
-      //       ? Icon(ElementIcon.dismiss)
-      //       : Icon(ElementIcon.add),
+      //       ? Icon(ElementSymbol.dismiss)
+      //       : Icon(ElementSymbol.add),
       // ),
     );
 

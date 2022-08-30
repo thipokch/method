@@ -3,7 +3,7 @@
 import 'dart:math' as math;
 import 'dart:ui' show ImageFilter;
 
-import 'package:element/element_icon.dart';
+import 'package:element/element_symbol.dart';
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -881,7 +881,7 @@ class _NavigationBarStaticComponents {
 
     return KeyedSubtree(
       key: backChevronKey,
-      child: const Icon(ElementIcon.chevronBack),
+      child: const Icon(ElementSymbol.chevronBack),
     );
   }
 
@@ -1041,7 +1041,7 @@ class MethodNavigationBarBackButton extends StatelessWidget {
     //   );
     // }
 
-    // return const Icon(ElementIcon.chevronBack);
+    // return const Icon(ElementSymbol.chevronBack);
 
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -1055,7 +1055,7 @@ class MethodNavigationBarBackButton extends StatelessWidget {
             }
           },
           icon: Icon(
-            ElementIcon.chevronBack,
+            ElementSymbol.chevronBack,
             color: Theme.of(context).colorScheme.onSurface,
           ),
 
