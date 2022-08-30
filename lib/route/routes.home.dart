@@ -6,5 +6,5 @@ class HomeRoute extends GoRouteData {
 
   @override
   Page buildPage(BuildContext context) =>
-      RootSheet(builder: (context) => HomePage());
+      RootSheet(builder: (context) => const HomeFlow());
 }

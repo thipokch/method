@@ -1,9 +1,8 @@
-import 'package:element/element_touch.dart';
+import 'package:core/model/task.dart';
 import 'package:flutter/material.dart';
-import 'package:matter/button/button_tonal.dart';
 import 'package:matter/page/page.dart';
 
-import '../../route/routes.dart';
+import '../task/task_view.dart';
 
 class HomePage extends MethodPage {
   HomePage({
@@ -13,30 +12,26 @@ class HomePage extends MethodPage {
     super.trailing,
   }) : super(
           key: key,
-          title: "Home",
+          title: "method",
           child: _HomeView(),
         );
 }
 
 class _HomeView extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => Column(
-        children: [
-          ButtonTonal(
-            child: const Text("Settings"),
-            onPressed: () {
-              ElementTouch.light();
-
-              const SettingsRoute().push(context);
-
-              // showCupertinoModalBottomSheet(
-              //   expand: false,
-              //   context: context,
-              //   builder: (context) => const SettingsFlow(),
-              //   duration: const Duration(milliseconds: 300),
-              // );
-            },
-          ),
-        ],
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            TaskView(
+              task: Task.create(
+                name: "name",
+                description: "description",
+                collectionSlug: "collectionSlug",
+                hierarchyPath: "hierarchyPath",
+              ),
+            ),
+          ],
+        ),
       );
 }
