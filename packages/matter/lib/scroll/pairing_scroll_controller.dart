@@ -131,7 +131,7 @@ class _PairedScrollController extends ScrollController {
     final _PairedScrollPosition linkedPosition =
         position as _PairedScrollPosition;
     assert(linkedPosition.owner == this,
-    '_PairedScrollPosition cannot change controllers once created.');
+        '_PairedScrollPosition cannot change controllers once created.');
     super.attach(position);
   }
 

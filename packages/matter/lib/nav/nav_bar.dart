@@ -1044,6 +1044,7 @@ class MethodNavigationBarBackButton extends StatelessWidget {
     // return const Icon(ElementIcon.chevronBack);
 
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         IconButton(
           onPressed: () {
