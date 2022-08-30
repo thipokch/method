@@ -1,3 +1,4 @@
+import 'package:element/element_scale.dart';
 import 'package:element/element_symbol.dart';
 import 'package:flutter/material.dart';
 import 'package:matter/nav/nav_context.dart';
@@ -34,7 +35,7 @@ class SettingsFlowState extends State<SettingsFlow> {
               exit: IconButton(
                 onPressed: () => Navigator.of(context).pop(),
                 icon: const Icon(ElementSymbol.dismissFilled),
-                iconSize: 20,
+                iconSize: ElementScale.iconM,
               ),
               child: Navigator(
                 onGenerateRoute: (settings) => MaterialWithModalsPageRoute(

@@ -22,7 +22,7 @@ class ChipText extends StatelessWidget {
 
     return ChoiceChip(
       side: BorderSide(
-        width: ElementScale.borderL,
+        width: ElementScale.strokeL,
         color: isEnabled
             ? colorScheme.primary
             : colorScheme.outline.withOpacity(0.12),

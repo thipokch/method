@@ -1,3 +1,4 @@
+import 'package:element/element_scale.dart';
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,12 +11,10 @@ const double _kPreviousPageVisibleOffset = 10;
 // https://figma-squircle.vercel.app
 // https://www.figma.com/blog/desperately-seeking-squircles/
 
-const double _kDefaultCornerSmoothing = 0.6;
-
 SmoothRadius defaultTopRadiusOf(BuildContext context) {
   return SmoothRadius(
     cornerRadius: MediaQuery.of(context).padding.top / 2,
-    cornerSmoothing: _kDefaultCornerSmoothing,
+    cornerSmoothing: ElementScale.cornerSmoothFactor,
   );
 }
 

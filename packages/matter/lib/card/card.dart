@@ -62,12 +62,14 @@ class _MethodCardState extends State<MethodCard> {
       shape: SmoothRectangleBorder(
         side: BorderSide(
           color: Theme.of(context).colorScheme.outline,
-          width: ElementScale.borderL,
+          width: ElementScale.strokeL,
         ),
-        borderRadius: const SmoothBorderRadius.all(SmoothRadius(
-          cornerRadius: ElementScale.cornerLarge,
-          cornerSmoothing: 0.6,
-        )),
+        borderRadius: const SmoothBorderRadius.all(
+          SmoothRadius(
+            cornerRadius: ElementScale.cornerLarge,
+            cornerSmoothing: ElementScale.cornerSmoothFactor,
+          ),
+        ),
       ),
       child: InkWell(
         onTap: widget.onTap,

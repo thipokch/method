@@ -52,7 +52,7 @@ class ButtonOutlined extends OutlinedButton {
           splashFactory: InkSparklePatch.splashFactory,
           side: MaterialStateProperty.all(
             BorderSide(
-              width: ElementScale.borderL,
+              width: ElementScale.strokeL,
               color: isEnabled
                   ? colorScheme.primary
                   : colorScheme.outline.withOpacity(0.12),

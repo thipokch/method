@@ -1,3 +1,4 @@
+import 'package:element/element_scale.dart';
 import 'package:element/element_symbol.dart';
 import 'package:element/element_touch.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class HomeFlow extends StatelessWidget {
         child: HomePage(
           leading: IconButton(
             icon: const Icon(ElementSymbol.settingsFilled),
-            iconSize: 24,
+            iconSize: ElementScale.iconM,
             onPressed: () {
               ElementTouch.light();
               const SettingsRoute().push(context);
@@ -21,7 +22,7 @@ class HomeFlow extends StatelessWidget {
           ),
           trailing: IconButton(
             icon: const Icon(ElementSymbol.searchFilled),
-            iconSize: 24,
+            iconSize: ElementScale.iconM,
             onPressed: () {
               ElementTouch.light();
               const SettingsRoute().push(context);

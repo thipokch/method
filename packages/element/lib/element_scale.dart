@@ -3,24 +3,6 @@ import 'package:flutter/material.dart';
 class ElementScale {
   ElementScale._();
 
-  static const size15 = 96;
-  static const size14 = 64;
-  static const size13 = 56;
-  static const size06 = 20;
-  static const size04 = 12;
-  static const size03 = 8;
-  static const size00 = 0;
-  static const size16 = 128;
-  static const size12 = 48;
-  static const size11 = 40;
-  static const size10 = 36;
-  static const size09 = 32;
-  static const size08 = 28;
-  static const size07 = 24;
-  static const size05 = 16;
-  static const size02 = 4;
-  static const size01 = 2;
-
   static const typescaleDisplayLarge = 57 + .0;
   static const typescaleDisplayMedium = 45 + .0;
   static const typescaleDisplaySmall = 36 + .0;
@@ -37,6 +19,26 @@ class ElementScale {
   static const typescaleLabelMedium = 12 + .0;
   static const typescaleLabelSmall = 11 + .0;
 
+  static const size00 = 0;
+  static const size01 = 2;
+  static const size02 = 4;
+  static const size03 = 8;
+  static const size04 = 12;
+  static const size05 = 16;
+  static const size06 = 20;
+  static const size07 = 24;
+  static const size08 = 28;
+  static const size09 = 32;
+  static const size10 = 36;
+  static const size11 = 40;
+  static const size12 = 48;
+  static const size13 = 56;
+  static const size14 = 64;
+  static const size15 = 96;
+  static const size16 = 128;
+
+  static const cornerSmoothFactor = 0.6;
+
   static const cornerMedium = size03 + .0; /* Medium corner */
   static const cornerSmall = size02 + .0; /* Smallcorner */
   static const cornerNone = size00 + .0; /* No corner */
@@ -44,13 +46,21 @@ class ElementScale {
   static const cornerExtraSmall = size01 + .0; /* Extra small corner */
   static const cornerExtraLarge = size09 + .0; /* Extra large corner */
 
-  static const borderNone = 0.0;
-  static const borderXS = 0.25;
-  static const borderS = 0.5;
-  static const borderM = 1.0;
-  static const borderL = 2.0;
-  static const borderXL = 4.0;
-  static const borderFull = 8.0;
+  static const spaceNone = size00 + .0;
+  static const spaceXS = size01 + .0;
+  static const spaceS = size03 + .0;
+  static const spaceM = size05 + .0;
+  static const spaceL = size07 + .0;
+  static const spaceXL = size09 + .0;
+  static const spaceFull = size11 + .0;
+
+  static const strokeNone = size00 + .0;
+  static const strokeXS = 0.25;
+  static const strokeS = 0.5;
+  static const strokeM = 1.0;
+  static const strokeL = size01 + .0;
+  static const strokeXL = size02 + .0;
+  static const strokeFull = size03 + .0;
 
   static const iconNone = 0.0;
   static const iconXS = 0.25;

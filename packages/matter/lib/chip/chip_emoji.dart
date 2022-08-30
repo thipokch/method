@@ -23,7 +23,7 @@ class ChipEmoji extends StatelessWidget {
       padding: const EdgeInsets.all(14.0),
       shape: const CircleBorder(),
       side: BorderSide(
-        width: ElementScale.borderL,
+        width: ElementScale.strokeL,
         color: isEnabled
             ? colorScheme.primary
             : colorScheme.outline.withOpacity(0.12),
