@@ -6,11 +6,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matter/nav/nav_context.dart';
 import 'package:matter/page/page.dart';
 import 'package:matter/scroll/pairing_scroll_controller.dart';
-import 'package:method/view/settings/acknowlegement_page.dart';
 import 'package:method/view/settings/appearance_page.dart';
-import 'package:method/view/settings/developer_page.dart';
 
 import 'package:package_info_plus/package_info_plus.dart';
+
+import 'acknowlegement_page.dart';
+import 'developer_page.dart';
 
 class SettingsPage extends MethodPage {
   const SettingsPage({
@@ -27,29 +28,36 @@ class SettingsPage extends MethodPage {
 }
 
 class SettingsList extends StatelessWidget {
-  const SettingsList({Key? key, this.controller}) : super(key: key);
-
-  final ScrollController? controller;
+  const SettingsList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) =>
       BlocBuilder<SettingsBloc, SettingsState>(builder: (context, state) {
         final Map<String, MethodPageBuilder> about = {
-          "Acknowledgement": (context) => AcknowlegementPage(
-                trailing: NavigationContext.of(context)?.exit,
-                controller: PairingScrollController.of(context)?.push(),
-              ),
-          "Developer": (context) => DeveloperPage(
-                trailing: NavigationContext.of(context)?.exit,
-                controller: PairingScrollController.of(context)?.push(),
-              ),
+          "Acknowledgement":
+              // When ShellRoute becomes available
+              // (context) => AcknowledgementRoute().push(context),
+              (context) => AcknowlegementPage(
+                    trailing: NavigationContext.of(context)?.exit,
+                    controller: PairingScrollController.of(context)?.push(),
+                  ),
+          "Developer":
+              // When ShellRoute becomes available
+              // (context) => DeveloperRoute().push(context),
+              (context) => DeveloperPage(
+                    trailing: NavigationContext.of(context)?.exit,
+                    controller: PairingScrollController.of(context)?.push(),
+                  ),
         };
 
         final Map<String, MethodPageBuilder> general = {
-          "Appearance": (context) => AppearancePage(
-                trailing: NavigationContext.of(context)?.exit,
-                controller: PairingScrollController.of(context)?.push(),
-              ),
+          "Appearance":
+              // When ShellRoute becomes available
+              // (context) => AppearancePage().push(context),
+              (context) => AppearancePage(
+                    trailing: NavigationContext.of(context)?.exit,
+                    controller: PairingScrollController.of(context)?.push(),
+                  ),
         };
 
         final List<Widget> items = [
@@ -76,6 +84,8 @@ class SettingsList extends StatelessWidget {
                 title: Text(e.key),
                 trailing: const Icon(ElementIcon.chevronForward),
                 onTap: () => show(context: context, builder: e.value),
+                // When ShellRoute becomes available
+                // onTap: () => e.value.call(context),
               )),
           FutureBuilder<PackageInfo>(
             future: PackageInfo.fromPlatform(),

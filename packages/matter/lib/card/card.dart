@@ -1,5 +1,6 @@
 import 'package:element/element_icon.dart';
 import 'package:element/element_scale.dart';
+import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
 import 'package:matter/text/text_area.dart';
 import 'package:matter/card/card_tile.dart';
@@ -58,14 +59,15 @@ class _MethodCardState extends State<MethodCard> {
     return Card(
       elevation: 0,
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      shape: RoundedRectangleBorder(
+      shape: SmoothRectangleBorder(
         side: BorderSide(
           color: Theme.of(context).colorScheme.outline,
           width: ElementScale.borderL,
         ),
-        borderRadius: const BorderRadius.all(
-          Radius.circular(ElementScale.cornerLarge),
-        ),
+        borderRadius: const SmoothBorderRadius.all(SmoothRadius(
+          cornerRadius: ElementScale.cornerLarge,
+          cornerSmoothing: 0.6,
+        )),
       ),
       child: InkWell(
         onTap: widget.onTap,

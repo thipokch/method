@@ -6,21 +6,28 @@ import 'package:method/view/settings/settings_page.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class SettingsFlow extends StatefulWidget {
-  SettingsFlow({Key? key}) : super(key: key);
-
-  final scrollingControllerScope = PairingScrollControllerGroup();
-  final heroController = MaterialApp.createMaterialHeroController();
+  const SettingsFlow({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => SettingsFlowState();
 }
 
 class SettingsFlowState extends State<SettingsFlow> {
+  final scrollingControllerScope = PairingScrollControllerGroup();
+  late ScrollController rootScrollingController;
+  final heroController = MaterialApp.createMaterialHeroController();
+
+  @override
+  void initState() {
+    rootScrollingController = scrollingControllerScope.push();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) => PairingScrollController(
-        group: widget.scrollingControllerScope,
+        group: scrollingControllerScope,
         child: HeroControllerScope(
-          controller: widget.heroController,
+          controller: heroController,
           child: Material(
             type: MaterialType.transparency,
             child: NavigationContext(
@@ -34,7 +41,7 @@ class SettingsFlowState extends State<SettingsFlow> {
                   settings: settings,
                   builder: (childContext) => SettingsPage(
                     // key: const ObjectKey("SettingsPage"),
-                    controller: widget.scrollingControllerScope.push(),
+                    controller: rootScrollingController,
                     trailing: NavigationContext.of(childContext)?.exit,
                   ),
                 ),
