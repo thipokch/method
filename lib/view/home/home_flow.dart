@@ -13,7 +13,7 @@ class HomeFlow extends StatelessWidget {
   Widget build(BuildContext context) => Material(
         child: HomePage(
           leading: IconButton(
-            icon: const Icon(ElementSymbol.settingsFilled),
+            icon: const Icon(ElementSymbol.settings),
             iconSize: ElementScale.iconM,
             onPressed: () {
               ElementTouch.light();
@@ -21,7 +21,7 @@ class HomeFlow extends StatelessWidget {
             },
           ),
           trailing: IconButton(
-            icon: const Icon(ElementSymbol.searchFilled),
+            icon: const Icon(ElementSymbol.search),
             iconSize: ElementScale.iconM,
             onPressed: () {
               ElementTouch.light();

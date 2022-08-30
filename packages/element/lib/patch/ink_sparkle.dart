@@ -10,6 +10,7 @@ import 'dart:math' as math;
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
+import 'package:element/element_motion.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:vector_math/vector_math_64.dart';
@@ -156,7 +157,7 @@ class InkSparklePatch extends InteractiveInkFeature {
     _radiusScale = TweenSequence<double>(
       <TweenSequenceItem<double>>[
         TweenSequenceItem<double>(
-          tween: CurveTween(curve: Curves.fastOutSlowIn),
+          tween: CurveTween(curve: ElementMotion.fastOutSlowIn),
           weight: 75,
         ),
         TweenSequenceItem<double>(
@@ -231,7 +232,8 @@ class InkSparklePatch extends InteractiveInkFeature {
     if (status == AnimationStatus.completed) dispose();
   }
 
-  static const Duration _animationDuration = Duration(milliseconds: 617);
+  // static const Duration _animationDuration = Duration(milliseconds: 617);
+  static const Duration _animationDuration = ElementMotion.dalayed;
   static const double _targetRadiusMultiplier = 2.3;
   static const double _rotateRight = math.pi * 0.0078125;
   static const double _rotateLeft = -_rotateRight;

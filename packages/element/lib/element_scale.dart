@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 class ElementScale {
   ElementScale._();
 
+  static const breakpointS = 0;
+  static const breakpointM = 600;
+  static const breakpointL = 840;
+
   static const typescaleDisplayLarge = 57 + .0;
   static const typescaleDisplayMedium = 45 + .0;
   static const typescaleDisplaySmall = 36 + .0;
@@ -62,10 +66,10 @@ class ElementScale {
   static const strokeXL = size02 + .0;
   static const strokeFull = size03 + .0;
 
-  static const iconNone = 0.0;
-  static const iconXS = 0.25;
-  static const iconS = 0.5;
-  static const iconM = 28.0;
+  static const iconNone = 12.0;
+  static const iconXS = 16.0;
+  static const iconS = 20.0;
+  static const iconM = 24.0;
   static const iconL = 32.0;
   static const iconXL = 48.0;
   static const iconFull = 48.0;

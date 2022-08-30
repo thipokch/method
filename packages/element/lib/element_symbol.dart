@@ -42,10 +42,10 @@ class ElementSymbol {
 
   static const IconData chevronBack = chevronLeft;
   static const IconData chevronForward = chevronRight;
-  static const IconData chevronLeft = FluentIcons.chevron_left_24_filled;
-  static const IconData chevronRight = FluentIcons.chevron_right_24_filled;
-  static const IconData chevronUp = FluentIcons.chevron_up_24_filled;
-  static const IconData chevronDown = FluentIcons.chevron_down_24_filled;
+  static const IconData chevronLeft = FluentIcons.chevron_left_24_regular;
+  static const IconData chevronRight = FluentIcons.chevron_right_24_regular;
+  static const IconData chevronUp = FluentIcons.chevron_up_24_regular;
+  static const IconData chevronDown = FluentIcons.chevron_down_24_regular;
 
   static const IconData person = FluentIcons.person_24_regular;
   static const IconData personFilled = FluentIcons.person_24_filled;

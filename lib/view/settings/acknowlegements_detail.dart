@@ -81,13 +81,13 @@ class _PackageLicensePageState extends State<_PackageLicensePage> {
       }
       setState(() {
         _licenses.add(const Padding(
-          padding: EdgeInsets.all(18.0),
+          padding: EdgeInsets.all(ElementScale.spaceM),
           child: Divider(),
         ));
         for (final LicenseParagraph paragraph in paragraphs) {
           if (paragraph.indent == LicenseParagraph.centeredIndent) {
             _licenses.add(Padding(
-              padding: const EdgeInsets.only(top: 16.0),
+              padding: const EdgeInsets.only(top: ElementScale.spaceM),
               child: Text(
                 paragraph.text,
                 style: const TextStyle(fontWeight: FontWeight.bold),

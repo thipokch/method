@@ -1,5 +1,6 @@
 import 'package:element/element_symbol.dart';
 import 'package:element/element_scale.dart';
+import 'package:element/element_motion.dart';
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
 import 'package:matter/text/text_area.dart';
@@ -37,12 +38,12 @@ class _MethodCardState extends State<MethodCard> {
       title: widget.title,
       description: widget.description,
       trailing: AnimatedCrossFade(
-        firstChild: const Icon(ElementSymbol.dismissFilled),
-        secondChild: const Icon(ElementSymbol.addFilled),
+        firstChild: const Icon(ElementSymbol.dismiss),
+        secondChild: const Icon(ElementSymbol.add),
         crossFadeState: widget.isExpanded
             ? CrossFadeState.showFirst
             : CrossFadeState.showSecond,
-        duration: const Duration(seconds: 300),
+        duration: ElementMotion.moderate,
       ),
       // AnimatedSwitcher(
       //   transitionBuilder: (child, animation) => ScaleTransition(
@@ -77,8 +78,8 @@ class _MethodCardState extends State<MethodCard> {
           padding: const EdgeInsets.all(8.0),
           child: AnimatedSize(
             alignment: Alignment.topCenter,
-            duration: const Duration(milliseconds: 300),
-            curve: Curves.easeInOutCubic,
+            duration: ElementMotion.moderate,
+            curve: ElementMotion.easeInOutCubic,
             child: widget.isExpanded
                 ? AspectRatio(
                     aspectRatio: 1,

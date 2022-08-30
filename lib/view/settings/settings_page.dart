@@ -1,4 +1,5 @@
 import 'package:component/settings/settings_bloc.dart';
+import 'package:element/element_scale.dart';
 import 'package:element/element_symbol.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -104,7 +105,7 @@ class SettingsList extends StatelessWidget {
         ];
 
         return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          padding: const EdgeInsets.symmetric(vertical: ElementScale.spaceM),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
@@ -148,7 +149,7 @@ class _AppInfo extends StatelessWidget {
             IconTheme(data: Theme.of(context).iconTheme, child: icon!),
           if (version != '')
             Padding(
-              padding: const EdgeInsets.only(bottom: 16),
+              padding: const EdgeInsets.only(bottom: ElementScale.spaceM),
               child: Text(
                 version,
                 style: Theme.of(context).textTheme.bodyText2,
