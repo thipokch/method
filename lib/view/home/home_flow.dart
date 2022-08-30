@@ -20,7 +20,7 @@ class HomeFlow extends StatelessWidget {
             },
           ),
           trailing: IconButton(
-            icon: const Icon(ElementSymbol.search),
+            icon: const Icon(ElementSymbol.searchFilled),
             iconSize: 24,
             onPressed: () {
               ElementTouch.light();

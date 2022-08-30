@@ -9,7 +9,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.5
+  # cupertino_icons: ^1.0.5
+  fluentui_system_icons: ^1.1.178
   gaimon: ^1.0.1
 
 dev_dependencies:

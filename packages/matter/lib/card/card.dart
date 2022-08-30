@@ -37,8 +37,8 @@ class _MethodCardState extends State<MethodCard> {
       title: widget.title,
       description: widget.description,
       trailing: AnimatedCrossFade(
-        firstChild: const Icon(ElementSymbol.dismiss),
-        secondChild: const Icon(ElementSymbol.add),
+        firstChild: const Icon(ElementSymbol.dismissFilled),
+        secondChild: const Icon(ElementSymbol.addFilled),
         crossFadeState: widget.isExpanded
             ? CrossFadeState.showFirst
             : CrossFadeState.showSecond,
