@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   test('create()', () {
     Task aTemplate = Task.create(
+      icon: "💫",
       name: "name",
       collectionSlug: "collectionSlug",
       hierarchyPath: "hierarchyPath",

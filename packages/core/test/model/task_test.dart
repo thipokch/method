@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   test('create', () {
     Task a = Task.create(
+      icon: "💫",
       name: "name",
       collectionSlug: "collectionSlug",
       hierarchyPath: "hierarchyPath",
@@ -20,12 +21,14 @@ void main() {
 
   test('equality', () {
     Task a = Task.create(
+      icon: "💫",
       name: "name",
       collectionSlug: "collectionSlug",
       hierarchyPath: "hierarchyPath",
     );
 
     Task b = Task.create(
+      icon: "💫",
       name: "name",
       collectionSlug: "collectionSlug",
       hierarchyPath: "hierarchyPath",
@@ -35,6 +38,7 @@ void main() {
     expect(b, a);
 
     Task c = Task.create(
+      icon: "💫",
       name: "c",
       collectionSlug: "collectionSlug",
       hierarchyPath: "hierarchyPath",
@@ -46,6 +50,7 @@ void main() {
 
   test('copy', () {
     Task a = Task.create(
+      icon: "💫",
       name: "name",
       collectionSlug: "collectionSlug",
       hierarchyPath: "hierarchyPath",

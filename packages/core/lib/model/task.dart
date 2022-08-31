@@ -14,6 +14,7 @@ class Task with _$Task, Uniform, Describe {
   @Implements<Describe>()
   @Implements<Define<TaskDefinition>>()
   const factory Task._({
+    required final String icon,
     required final String name,
     required final String description,
     required final List<TaskDefinition> definitions,
@@ -24,6 +25,7 @@ class Task with _$Task, Uniform, Describe {
   }) = _Task;
 
   factory Task.create({
+    required final String icon,
     required final String name,
     final String? description,
     final List<TaskDefinition>? definitions,
@@ -33,6 +35,7 @@ class Task with _$Task, Uniform, Describe {
     final String? uuid,
   }) =>
       Task._(
+        icon: icon,
         name: name,
         description: description ?? "",
         definitions: definitions ?? [],

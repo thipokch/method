@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Exercise {
+  String get icon => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   List<Task> get definitions => throw _privateConstructorUsedError;
@@ -34,7 +35,8 @@ abstract class $ExerciseCopyWith<$Res> {
   factory $ExerciseCopyWith(Exercise value, $Res Function(Exercise) then) =
       _$ExerciseCopyWithImpl<$Res>;
   $Res call(
-      {String name,
+      {String icon,
+      String name,
       String description,
       List<Task> definitions,
       String collectionSlug,
@@ -53,6 +55,7 @@ class _$ExerciseCopyWithImpl<$Res> implements $ExerciseCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? icon = freezed,
     Object? name = freezed,
     Object? description = freezed,
     Object? definitions = freezed,
@@ -62,6 +65,10 @@ class _$ExerciseCopyWithImpl<$Res> implements $ExerciseCopyWith<$Res> {
     Object? uuid = freezed,
   }) {
     return _then(_value.copyWith(
+      icon: icon == freezed
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -101,7 +108,8 @@ abstract class _$$_ExerciseCopyWith<$Res> implements $ExerciseCopyWith<$Res> {
       __$$_ExerciseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String name,
+      {String icon,
+      String name,
       String description,
       List<Task> definitions,
       String collectionSlug,
@@ -122,6 +130,7 @@ class __$$_ExerciseCopyWithImpl<$Res> extends _$ExerciseCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? icon = freezed,
     Object? name = freezed,
     Object? description = freezed,
     Object? definitions = freezed,
@@ -131,6 +140,10 @@ class __$$_ExerciseCopyWithImpl<$Res> extends _$ExerciseCopyWithImpl<$Res>
     Object? uuid = freezed,
   }) {
     return _then(_$_Exercise(
+      icon: icon == freezed
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -167,7 +180,8 @@ class __$$_ExerciseCopyWithImpl<$Res> extends _$ExerciseCopyWithImpl<$Res>
 
 class _$_Exercise implements _Exercise {
   const _$_Exercise(
-      {required this.name,
+      {required this.icon,
+      required this.name,
       required this.description,
       required final List<Task> definitions,
       required this.collectionSlug,
@@ -176,6 +190,8 @@ class _$_Exercise implements _Exercise {
       required this.uuid})
       : _definitions = definitions;
 
+  @override
+  final String icon;
   @override
   final String name;
   @override
@@ -198,7 +214,7 @@ class _$_Exercise implements _Exercise {
 
   @override
   String toString() {
-    return 'Exercise._(name: $name, description: $description, definitions: $definitions, collectionSlug: $collectionSlug, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
+    return 'Exercise._(icon: $icon, name: $name, description: $description, definitions: $definitions, collectionSlug: $collectionSlug, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
   }
 
   @override
@@ -206,6 +222,7 @@ class _$_Exercise implements _Exercise {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Exercise &&
+            const DeepCollectionEquality().equals(other.icon, icon) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
@@ -222,6 +239,7 @@ class _$_Exercise implements _Exercise {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(icon),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(_definitions),
@@ -238,7 +256,8 @@ class _$_Exercise implements _Exercise {
 
 abstract class _Exercise implements Exercise, Uniform, Describe, Define<Task> {
   const factory _Exercise(
-      {required final String name,
+      {required final String icon,
+      required final String name,
       required final String description,
       required final List<Task> definitions,
       required final String collectionSlug,
@@ -246,6 +265,8 @@ abstract class _Exercise implements Exercise, Uniform, Describe, Define<Task> {
       required final String id,
       required final String uuid}) = _$_Exercise;
 
+  @override
+  String get icon;
   @override
   String get name;
   @override

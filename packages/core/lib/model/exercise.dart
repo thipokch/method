@@ -15,6 +15,7 @@ class Exercise with _$Exercise, Uniform, Describe {
   @Implements<Describe>()
   @Implements<Define<Task>>()
   const factory Exercise._({
+    required final String icon,
     required final String name,
     required final String description,
     required final List<Task> definitions,
@@ -25,6 +26,7 @@ class Exercise with _$Exercise, Uniform, Describe {
   }) = _Exercise;
 
   factory Exercise.create({
+    required final String icon,
     required final String name,
     final String? description,
     final List<Task>? definitions,
@@ -34,6 +36,7 @@ class Exercise with _$Exercise, Uniform, Describe {
     final String? uuid,
   }) =>
       Exercise._(
+        icon: icon,
         name: name,
         description: description ?? "",
         definitions: definitions ?? [],

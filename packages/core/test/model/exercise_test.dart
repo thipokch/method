@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   test('create()', () {
     Exercise a = Exercise.create(
+      icon: "💫",
       name: "name",
       collectionSlug: "collectionSlug",
       hierarchyPath: "hierarchyPath",
