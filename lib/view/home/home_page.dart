@@ -2,8 +2,7 @@ import 'package:core/model/task.dart';
 import 'package:element/element_scale.dart';
 import 'package:flutter/material.dart';
 import 'package:matter/page/page.dart';
-
-import '../task/task_view.dart';
+import 'package:method/view/task/task_item.dart';
 
 class HomePage extends MethodPage {
   HomePage({
@@ -24,8 +23,9 @@ class _HomeView extends StatelessWidget {
         padding: const EdgeInsets.all(ElementScale.spaceM),
         child: Column(
           children: [
-            TaskView(
+            TaskItem(
               task: Task.create(
+                icon: "",
                 name: "name",
                 description: "description",
                 collectionSlug: "collectionSlug",
