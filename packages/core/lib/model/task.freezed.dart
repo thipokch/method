@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Task {
+  String get icon => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   List<TaskDefinition> get definitions => throw _privateConstructorUsedError;
@@ -33,7 +34,8 @@ abstract class $TaskCopyWith<$Res> {
   factory $TaskCopyWith(Task value, $Res Function(Task) then) =
       _$TaskCopyWithImpl<$Res>;
   $Res call(
-      {String name,
+      {String icon,
+      String name,
       String description,
       List<TaskDefinition> definitions,
       String collectionSlug,
@@ -52,6 +54,7 @@ class _$TaskCopyWithImpl<$Res> implements $TaskCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? icon = freezed,
     Object? name = freezed,
     Object? description = freezed,
     Object? definitions = freezed,
@@ -61,6 +64,10 @@ class _$TaskCopyWithImpl<$Res> implements $TaskCopyWith<$Res> {
     Object? uuid = freezed,
   }) {
     return _then(_value.copyWith(
+      icon: icon == freezed
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -99,7 +106,8 @@ abstract class _$$_TaskCopyWith<$Res> implements $TaskCopyWith<$Res> {
       __$$_TaskCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String name,
+      {String icon,
+      String name,
       String description,
       List<TaskDefinition> definitions,
       String collectionSlug,
@@ -119,6 +127,7 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? icon = freezed,
     Object? name = freezed,
     Object? description = freezed,
     Object? definitions = freezed,
@@ -128,6 +137,10 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
     Object? uuid = freezed,
   }) {
     return _then(_$_Task(
+      icon: icon == freezed
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -164,7 +177,8 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
 
 class _$_Task implements _Task {
   const _$_Task(
-      {required this.name,
+      {required this.icon,
+      required this.name,
       required this.description,
       required final List<TaskDefinition> definitions,
       required this.collectionSlug,
@@ -173,6 +187,8 @@ class _$_Task implements _Task {
       required this.uuid})
       : _definitions = definitions;
 
+  @override
+  final String icon;
   @override
   final String name;
   @override
@@ -195,7 +211,7 @@ class _$_Task implements _Task {
 
   @override
   String toString() {
-    return 'Task._(name: $name, description: $description, definitions: $definitions, collectionSlug: $collectionSlug, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
+    return 'Task._(icon: $icon, name: $name, description: $description, definitions: $definitions, collectionSlug: $collectionSlug, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
   }
 
   @override
@@ -203,6 +219,7 @@ class _$_Task implements _Task {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Task &&
+            const DeepCollectionEquality().equals(other.icon, icon) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
@@ -219,6 +236,7 @@ class _$_Task implements _Task {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(icon),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(_definitions),
@@ -236,7 +254,8 @@ class _$_Task implements _Task {
 abstract class _Task
     implements Task, Uniform, Describe, Define<TaskDefinition> {
   const factory _Task(
-      {required final String name,
+      {required final String icon,
+      required final String name,
       required final String description,
       required final List<TaskDefinition> definitions,
       required final String collectionSlug,
@@ -244,6 +263,8 @@ abstract class _Task
       required final String id,
       required final String uuid}) = _$_Task;
 
+  @override
+  String get icon;
   @override
   String get name;
   @override
