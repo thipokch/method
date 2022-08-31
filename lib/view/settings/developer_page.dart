@@ -2,8 +2,6 @@ import 'package:element/element_symbol.dart';
 import 'package:flutter/material.dart';
 import 'package:matter/page/page.dart';
 import 'package:matter/preview.dart';
-import 'package:matter/scroll/pairing_scroll_controller.dart';
-import 'package:method/view/task/task_preview.dart';
 
 class DeveloperPage extends MethodPage {
   const DeveloperPage({
@@ -30,16 +28,15 @@ class _DeveloperList extends StatelessWidget {
         trailing: const Icon(ElementSymbol.chevronForward),
         onTap: () => showMatterPreview(context: context),
       ),
-      ListTile(
-        title: const Text("Task Component"),
-        trailing: const Icon(ElementSymbol.chevronForward),
-        onTap: () => show(
-          context: context,
-          builder: (context) => TaskPreview(
-            controller: PairingScrollController.of(context)?.push(),
-          ),
-        ),
-      ),
+      // ListTile(
+      //   title: const Text("Task Component"),
+      //   trailing: const Icon(ElementSymbol.chevronForward),
+      //   onTap: () => Navigator.of(context).push(
+      //     MaterialPageRoute(
+      //       builder: (BuildContext context) => const TaskEditor(),
+      //     ),
+      //   ),
+      // ),
     ];
 
     return Column(
