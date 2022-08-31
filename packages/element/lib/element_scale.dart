@@ -43,11 +43,11 @@ class ElementScale {
 
   static const cornerSmoothFactor = 0.6;
 
-  static const cornerMedium = size03 + .0; /* Medium corner */
-  static const cornerSmall = size02 + .0; /* Smallcorner */
   static const cornerNone = size00 + .0; /* No corner */
-  static const cornerLarge = size05 + .0; /* Large corner */
   static const cornerExtraSmall = size01 + .0; /* Extra small corner */
+  static const cornerSmall = size02 + .0; /* Smallcorner */
+  static const cornerMedium = size03 + .0; /* Medium corner */
+  static const cornerLarge = size05 + .0; /* Large corner */
   static const cornerExtraLarge = size09 + .0; /* Extra large corner */
 
   static const spaceNone = size00 + .0;

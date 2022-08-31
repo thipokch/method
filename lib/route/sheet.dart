@@ -1,4 +1,4 @@
-import 'package:element/element_scale.dart';
+import 'package:element/element_react.dart';
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,17 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 const double _kPreviousPageVisibleOffset = 10;
-
-// https://kylebashour.com/posts/finding-the-real-iphone-x-corner-radius
-// https://figma-squircle.vercel.app
-// https://www.figma.com/blog/desperately-seeking-squircles/
-
-SmoothRadius defaultTopRadiusOf(BuildContext context) {
-  return SmoothRadius(
-    cornerRadius: MediaQuery.of(context).padding.top / 2,
-    cornerSmoothing: ElementScale.cornerSmoothFactor,
-  );
-}
 
 const BoxShadow _kDefaultBoxShadow =
     BoxShadow(blurRadius: 10, color: Colors.black12, spreadRadius: 5);
@@ -97,7 +86,7 @@ class Sheet extends Page {
         settings: this,
         builder: (context) => Material(child: body),
         containerBuilder: (context, animation, child) => _SheetContainer(
-          topRadius: topRadius ?? defaultTopRadiusOf(context),
+          topRadius: topRadius ?? ElementReact.screenCornerRadius(context),
           backgroundColor: backgroundColor,
           child: body,
         ),
@@ -118,7 +107,7 @@ class Sheet extends Page {
         isDismissible: isDismissible ?? !expand ? true : false,
         modalBarrierColor: barrierColor ?? Colors.black12,
         enableDrag: enableDrag,
-        topRadius: topRadius ?? defaultTopRadiusOf(context),
+        topRadius: topRadius ?? ElementReact.screenCornerRadius(context),
         animationCurve: animationCurve,
         previousRouteAnimationCurve: previousRouteAnimationCurve,
         duration: duration,
