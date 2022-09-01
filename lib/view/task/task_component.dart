@@ -31,8 +31,6 @@ class TaskComponentState extends State<TaskComponent> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
-
     controller.dispose();
     super.dispose();
   }
@@ -51,7 +49,6 @@ class TaskComponentState extends State<TaskComponent> {
                 TaskFocusRoute(
                   builder: (context) => Focus(
                     onFocusChange: (hasFocus) => setState(() {
-                      print(hasFocus);
                       focused = hasFocus;
                     }),
                     child: BlocProvider.value(

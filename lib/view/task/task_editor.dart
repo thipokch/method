@@ -22,12 +22,11 @@ class TaskEditorState extends State<TaskEditor> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
-
     controller.dispose();
     super.dispose();
   }
 
+  // ignore: no-empty-block
   void onTextEditEvent() {}
 
   @override
