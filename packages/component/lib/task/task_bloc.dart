@@ -25,9 +25,20 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     emit(TaskState.taskLoaded(task: event.task));
   }
 
-  void _onCloseTask(_CloseTask event, Emitter<TaskState> emit) {
-    throw UnimplementedError();
-  }
+  void _onCloseTask(_CloseTask event, Emitter<TaskState> emit) =>
+      state.maybeWhen(
+        entryLoaded: (task, entry) => emit(
+          TaskState.taskLoaded(
+            task: task,
+          ),
+        ),
+        taskLoaded: (task) => emit(
+          TaskState.taskLoaded(
+            task: task,
+          ),
+        ),
+        orElse: () => null,
+      );
 
   void _onLoadEntry(_LoadEntry event, Emitter<TaskState> emit) =>
       state.maybeWhen(

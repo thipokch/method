@@ -4,8 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matter/card/card.dart';
 
 class TaskCard extends StatelessWidget {
-  const TaskCard({Key? key, this.onTap}) : super(key: key);
+  const TaskCard({
+    Key? key,
+    this.onTap,
+    this.controller,
+  }) : super(key: key);
+
   final VoidCallback? onTap;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) => BlocBuilder<TaskBloc, TaskState>(
@@ -16,6 +22,8 @@ class TaskCard extends StatelessWidget {
             entryLoaded: (task, entry) => "task/${task.id}",
           ),
           child: MethodCard(
+            autofocus: true,
+            controller: controller,
             onTap: onTap,
             title: state.maybeWhen(
               initial: () => "Loading",

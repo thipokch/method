@@ -12,7 +12,7 @@ class TaskFocusRoute extends PageRoute {
   }) : super(settings: settings);
 
   @override
-  Color get barrierColor => Colors.black54.withAlpha(100);
+  Color get barrierColor => Theme.of(navigator!.context).colorScheme.background;
   @override
   bool get barrierDismissible => true;
   @override
@@ -46,15 +46,24 @@ class TaskFocusRoute extends PageRoute {
   // }
 
   @override
-  Widget buildTransitions(BuildContext context, Animation<double> animation,
-      Animation<double> secondaryAnimation, Widget child,) {
-    return FadeTransition(
-      opacity: CurvedAnimation(
-        parent: animation,
-        curve: Curves.linear,
-      ),
-      child: child,
-    );
+  Widget buildTransitions(
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child,
+  ) {
+    return child;
+    // return FadeTransition(
+    //   opacity: CurvedAnimation(
+    //     parent: animation,
+    //     curve: Curves.linear,
+    //   ),
+    //   child: child,
+    // );
+    // return ConstrainedBox(
+    //   constraints: const BoxConstraints(minHeight: 0),
+    //   child: child,
+    // );
   }
 
   @override
