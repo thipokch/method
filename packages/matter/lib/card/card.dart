@@ -5,6 +5,8 @@ import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
 import 'package:matter/card/card_tile.dart';
 
+import '../text/text_area.dart';
+
 class MethodCard extends StatefulWidget {
   final String title;
   final String description;
@@ -13,6 +15,7 @@ class MethodCard extends StatefulWidget {
   final bool? autofocus;
   final ValueChanged<String>? onChanged;
   final GestureTapCallback? onTap;
+  final TextEditingController? controller;
 
   const MethodCard({
     Key? key,
@@ -23,6 +26,7 @@ class MethodCard extends StatefulWidget {
     this.autofocus,
     this.onChanged,
     this.onTap,
+    this.controller,
   }) : super(key: key);
 
   @override
@@ -78,33 +82,34 @@ class _MethodCardState extends State<MethodCard> {
           child: AnimatedSize(
             alignment: Alignment.topCenter,
             duration: ElementMotion.moderate,
-            curve: ElementMotion.easeInOutCubic,
+            curve: ElementMotion.linear,
             child: widget.isExpanded
                 ? AspectRatio(
                     aspectRatio: 1,
                     child: Column(
                       children: [
                         tile,
-                        if (widget.isExpanded)
-                          Expanded(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.background,
-                              ),
-                              // child: TextArea(
-                              //   onTap: widget.onTap,
-                              //   autofocus: widget.autofocus,
-                              //   onChanged: widget.onChanged,
-                              // ),
-                            ),
-                          ),
-
                         // if (widget.isExpanded)
-                        //   TextArea(
-                        //     onTap: widget.onTap,
-                        //     autofocus: widget.autofocus,
-                        //     onChanged: widget.onChanged,
+                        //   Expanded(
+                        //     child: Container(
+                        //       decoration: BoxDecoration(
+                        //         color: Theme.of(context).colorScheme.primary,
+                        //       ),
+                        //       // child: TextArea(
+                        //       //   onTap: widget.onTap,
+                        //       //   autofocus: widget.autofocus,
+                        //       //   onChanged: widget.onChanged,
+                        //       // ),
+                        //     ),
                         //   ),
+
+                        if (widget.isExpanded)
+                          TextArea(
+                            controller: widget.controller,
+                            onTap: widget.onTap,
+                            autofocus: widget.autofocus,
+                            onChanged: widget.onChanged,
+                          ),
                       ],
                     ),
                   )
