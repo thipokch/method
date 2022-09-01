@@ -6,6 +6,7 @@ void main() {
   test('create()', () {
     Task aTemplate = Task.create(
       icon: "💫",
+      description: "description",
       name: "name",
       collectionSlug: "collectionSlug",
       hierarchyPath: "hierarchyPath",

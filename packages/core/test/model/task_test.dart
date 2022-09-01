@@ -5,6 +5,7 @@ void main() {
   test('create', () {
     Task a = Task.create(
       icon: "💫",
+      description: "description",
       name: "name",
       collectionSlug: "collectionSlug",
       hierarchyPath: "hierarchyPath",
@@ -23,6 +24,7 @@ void main() {
     Task a = Task.create(
       icon: "💫",
       name: "name",
+      description: "description",
       collectionSlug: "collectionSlug",
       hierarchyPath: "hierarchyPath",
     );
@@ -30,6 +32,7 @@ void main() {
     Task b = Task.create(
       icon: "💫",
       name: "name",
+      description: "description",
       collectionSlug: "collectionSlug",
       hierarchyPath: "hierarchyPath",
       uuid: a.uuid,
@@ -40,6 +43,7 @@ void main() {
     Task c = Task.create(
       icon: "💫",
       name: "c",
+      description: "description",
       collectionSlug: "collectionSlug",
       hierarchyPath: "hierarchyPath",
       uuid: a.uuid,
@@ -52,6 +56,7 @@ void main() {
     Task a = Task.create(
       icon: "💫",
       name: "name",
+      description: "description",
       collectionSlug: "collectionSlug",
       hierarchyPath: "hierarchyPath",
     );

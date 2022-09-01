@@ -1,43 +1,38 @@
 import 'package:component/task/task_bloc.dart';
+import 'package:core/model/entry.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:matter/card/card.dart';
+import 'package:method/view/task/task_card.dart';
+import 'package:method/view/task/task_editor.dart';
+import 'package:method/view/task/task_focus.dart';
 
 class TaskView extends StatelessWidget {
-  const TaskView({Key? key, required this.bloc, this.onTap}) : super(key: key);
-
-  final TaskBloc bloc;
-  final VoidCallback? onTap;
+  const TaskView({
+    Key? key,
+  }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => BlocBuilder<TaskBloc, TaskState>(
-        bloc: bloc,
-        builder: (context, state) => MethodCard(
-          onTap: onTap,
-          title: state.maybeWhen(
-            initial: () => "Loading",
-            taskLoaded: (task) => task.name,
-            entryLoaded: (task, entry) => task.name,
-            orElse: () => "Error",
-          ),
-          description: state.when(
-            initial: () => "Loading",
-            taskLoaded: (task) => task.description,
-            entryLoaded: (task, entry) => task.description,
-          ),
-          emoji: state.when(
-            initial: () => "⏳",
-            taskLoaded: (task) => task.icon,
-            entryLoaded: (task, entry) => task.icon,
-          ),
-          isExpanded: state.when(
-            initial: () => false,
-            taskLoaded: (task) => false,
-            entryLoaded: (task, entry) => true,
-          ),
-          onChanged: (value) => context.read<TaskBloc>().add(
-                TaskEvent.addData(text: value),
+  Widget build(BuildContext context) => TaskCard(
+        onTap: () {
+          final bloc = context.read<TaskBloc>();
+
+          Navigator.of(context).push(
+            TaskFocusRoute(
+              builder: (context) =>
+                  BlocProvider.value(value: bloc, child: const TaskEditor()),
+            ),
+          );
+
+          bloc.add(
+            TaskEvent.loadEntry(
+              entry: Entry.create(
+                template: bloc.task,
+                collectionSlug: "collectionSlug",
+                hierarchyPath: "hierarchyPath",
+                id: "id",
               ),
-        ),
+            ),
+          );
+        },
       );
 }
