@@ -28,7 +28,7 @@ class Exercise with _$Exercise, Uniform, Describe {
   factory Exercise.create({
     required final String icon,
     required final String name,
-    final String? description,
+    required final description,
     final List<Task>? definitions,
     required final String collectionSlug,
     required final String hierarchyPath,
@@ -38,7 +38,7 @@ class Exercise with _$Exercise, Uniform, Describe {
       Exercise._(
         icon: icon,
         name: name,
-        description: description ?? "",
+        description: description,
         definitions: definitions ?? [],
         collectionSlug: collectionSlug,
         hierarchyPath: hierarchyPath,

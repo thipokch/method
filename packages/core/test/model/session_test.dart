@@ -6,6 +6,7 @@ void main() {
   test('create()', () {
     Exercise aTemplate = Exercise.create(
       icon: "💫",
+      description: "description",
       name: "name",
       collectionSlug: "collectionSlug",
       hierarchyPath: "hierarchyPath",
