@@ -3,7 +3,6 @@ import 'package:element/element_scale.dart';
 import 'package:element/element_motion.dart';
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
-import 'package:matter/text/text_area.dart';
 import 'package:matter/card/card_tile.dart';
 
 class MethodCard extends StatefulWidget {
@@ -86,12 +85,26 @@ class _MethodCardState extends State<MethodCard> {
                     child: Column(
                       children: [
                         tile,
+                        if (widget.isExpanded)
+                          Expanded(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).colorScheme.background,
+                              ),
+                              // child: TextArea(
+                              //   onTap: widget.onTap,
+                              //   autofocus: widget.autofocus,
+                              //   onChanged: widget.onChanged,
+                              // ),
+                            ),
+                          ),
+
                         // if (widget.isExpanded)
-                        TextArea(
-                          onTap: widget.onTap,
-                          autofocus: widget.autofocus,
-                          onChanged: widget.onChanged,
-                        ),
+                        //   TextArea(
+                        //     onTap: widget.onTap,
+                        //     autofocus: widget.autofocus,
+                        //     onChanged: widget.onChanged,
+                        //   ),
                       ],
                     ),
                   )
