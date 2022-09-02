@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class TaskFocusRoute extends PageRoute {
+class TaskEditorRoute extends PageRoute {
   final WidgetBuilder builder;
 
   // final Task task;
 
-  TaskFocusRoute({
+  TaskEditorRoute({
     required this.builder,
     // required this.task,
     RouteSettings? settings,

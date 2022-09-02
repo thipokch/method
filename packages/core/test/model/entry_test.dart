@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test('create()', () {
-    Task aTemplate = Task.create(
+    Task aTemplate = Task.createLinear(
       icon: "💫",
       description: "description",
       name: "name",

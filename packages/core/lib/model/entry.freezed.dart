@@ -161,7 +161,7 @@ class __$$_EntryCopyWithImpl<$Res> extends _$EntryCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Entry implements _Entry {
+class _$_Entry extends _Entry {
   const _$_Entry(
       {required this.template,
       required final List<EntryDefinition> definitions,
@@ -169,7 +169,8 @@ class _$_Entry implements _Entry {
       required this.hierarchyPath,
       required this.id,
       required this.uuid})
-      : _definitions = definitions;
+      : _definitions = definitions,
+        super._();
 
   @override
   final Task template;
@@ -191,7 +192,7 @@ class _$_Entry implements _Entry {
 
   @override
   String toString() {
-    return 'Entry._(template: $template, definitions: $definitions, collectionSlug: $collectionSlug, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
+    return 'Entry(template: $template, definitions: $definitions, collectionSlug: $collectionSlug, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
   }
 
   @override
@@ -226,8 +227,7 @@ class _$_Entry implements _Entry {
       __$$_EntryCopyWithImpl<_$_Entry>(this, _$identity);
 }
 
-abstract class _Entry
-    implements Entry, Uniform, DefineDocument<EntryDefinition, Task> {
+abstract class _Entry extends Entry {
   const factory _Entry(
       {required final Task template,
       required final List<EntryDefinition> definitions,
@@ -235,6 +235,7 @@ abstract class _Entry
       required final String hierarchyPath,
       required final String id,
       required final String uuid}) = _$_Entry;
+  const _Entry._() : super._();
 
   @override
   Task get template;

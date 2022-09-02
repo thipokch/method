@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test('create', () {
-    Task a = Task.create(
+    Task a = Task.createLinear(
       icon: "💫",
       description: "description",
       name: "name",
@@ -21,7 +21,7 @@ void main() {
   });
 
   test('equality', () {
-    Task a = Task.create(
+    Task a = Task.createLinear(
       icon: "💫",
       name: "name",
       description: "description",
@@ -29,7 +29,7 @@ void main() {
       hierarchyPath: "hierarchyPath",
     );
 
-    Task b = Task.create(
+    Task b = Task.createLinear(
       icon: "💫",
       name: "name",
       description: "description",
@@ -40,7 +40,7 @@ void main() {
 
     expect(b, a);
 
-    Task c = Task.create(
+    Task c = Task.createLinear(
       icon: "💫",
       name: "c",
       description: "description",
@@ -53,7 +53,7 @@ void main() {
   });
 
   test('copy', () {
-    Task a = Task.create(
+    Task a = Task.createLinear(
       icon: "💫",
       name: "name",
       description: "description",

@@ -162,7 +162,7 @@ class __$$_SessionCopyWithImpl<$Res> extends _$SessionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Session implements _Session {
+class _$_Session extends _Session {
   const _$_Session(
       {required this.template,
       required final List<Entry> definitions,
@@ -170,7 +170,8 @@ class _$_Session implements _Session {
       required this.hierarchyPath,
       required this.id,
       required this.uuid})
-      : _definitions = definitions;
+      : _definitions = definitions,
+        super._();
 
   @override
   final Exercise template;
@@ -192,7 +193,7 @@ class _$_Session implements _Session {
 
   @override
   String toString() {
-    return 'Session._(template: $template, definitions: $definitions, collectionSlug: $collectionSlug, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
+    return 'Session(template: $template, definitions: $definitions, collectionSlug: $collectionSlug, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
   }
 
   @override
@@ -227,8 +228,7 @@ class _$_Session implements _Session {
       __$$_SessionCopyWithImpl<_$_Session>(this, _$identity);
 }
 
-abstract class _Session
-    implements Session, Uniform, DefineDocument<Entry, Exercise> {
+abstract class _Session extends Session {
   const factory _Session(
       {required final Exercise template,
       required final List<Entry> definitions,
@@ -236,6 +236,7 @@ abstract class _Session
       required final String hierarchyPath,
       required final String id,
       required final String uuid}) = _$_Session;
+  const _Session._() : super._();
 
   @override
   Exercise get template;

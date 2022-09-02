@@ -46,7 +46,7 @@ class TaskComponentState extends State<TaskComponent> {
               final bloc = context.read<TaskBloc>();
 
               Navigator.of(context).push(
-                TaskFocusRoute(
+                TaskEditorRoute(
                   builder: (context) => Focus(
                     onFocusChange: (hasFocus) => setState(() {
                       focused = hasFocus;

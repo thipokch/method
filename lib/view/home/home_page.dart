@@ -24,7 +24,7 @@ class _HomeView extends StatelessWidget {
         child: Column(
           children: [
             TaskComponent(
-              task: Task.create(
+              task: Task.createLinear(
                 icon: "🏁",
                 name: "name",
                 description: "description",

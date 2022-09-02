@@ -178,7 +178,7 @@ class __$$_ExerciseCopyWithImpl<$Res> extends _$ExerciseCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Exercise implements _Exercise {
+class _$_Exercise extends _Exercise {
   const _$_Exercise(
       {required this.icon,
       required this.name,
@@ -188,7 +188,8 @@ class _$_Exercise implements _Exercise {
       required this.hierarchyPath,
       required this.id,
       required this.uuid})
-      : _definitions = definitions;
+      : _definitions = definitions,
+        super._();
 
   @override
   final String icon;
@@ -214,7 +215,7 @@ class _$_Exercise implements _Exercise {
 
   @override
   String toString() {
-    return 'Exercise._(icon: $icon, name: $name, description: $description, definitions: $definitions, collectionSlug: $collectionSlug, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
+    return 'Exercise(icon: $icon, name: $name, description: $description, definitions: $definitions, collectionSlug: $collectionSlug, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
   }
 
   @override
@@ -254,7 +255,7 @@ class _$_Exercise implements _Exercise {
       __$$_ExerciseCopyWithImpl<_$_Exercise>(this, _$identity);
 }
 
-abstract class _Exercise implements Exercise, Uniform, Describe, Define<Task> {
+abstract class _Exercise extends Exercise {
   const factory _Exercise(
       {required final String icon,
       required final String name,
@@ -264,6 +265,7 @@ abstract class _Exercise implements Exercise, Uniform, Describe, Define<Task> {
       required final String hierarchyPath,
       required final String id,
       required final String uuid}) = _$_Exercise;
+  const _Exercise._() : super._();
 
   @override
   String get icon;
