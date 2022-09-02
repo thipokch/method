@@ -1,32 +1,25 @@
-import 'package:core/abstract/uniform.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../abstract/identify.dart';
+import '../abstract/locate.dart';
 
 part 'entry_definition.freezed.dart';
 
 @freezed
-class EntryDefinition with _$EntryDefinition, Uniform {
+class EntryDefinition with _$EntryDefinition, Identify, Locate {
   const EntryDefinition._();
 
-  @Implements<Uniform>()
   const factory EntryDefinition.label({
-    required final String hierarchyPath,
-    required final String id,
-    required final String text,
+    required String collectionSlug,
+    required String hierarchyPath,
+    required String id,
+    required String uuid,
   }) = _Label;
 
-  @Implements<Uniform>()
   const factory EntryDefinition.note({
-    required final String hierarchyPath,
-    required final String id,
-    required final String text,
+    required String collectionSlug,
+    required String hierarchyPath,
+    required String id,
+    required String uuid,
   }) = _Note;
-
-  @override
-  String get collectionSlug => when(
-        label: ((hierarchyPath, id, text) => "label"),
-        note: ((hierarchyPath, id, text) => "note"),
-      );
-
-  @override
-  String get uuid => "";
 }

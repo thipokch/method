@@ -1,7 +1,7 @@
-import 'package:core/model/task.dart';
 import 'package:element/element_scale.dart';
 import 'package:flutter/material.dart';
 import 'package:matter/page/page.dart';
+import 'package:method/content/content.dart';
 import 'package:method/view/task/task_component.dart';
 
 class HomePage extends MethodPage {
@@ -22,15 +22,9 @@ class _HomeView extends StatelessWidget {
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.all(ElementScale.spaceM),
         child: Column(
-          children: [
+          children: const [
             TaskComponent(
-              task: Task.create(
-                icon: "🏁",
-                name: "name",
-                description: "description",
-                collectionSlug: "collectionSlug",
-                hierarchyPath: "hierarchyPath",
-              ),
+              task: Content.taskContext,
             ),
           ],
         ),

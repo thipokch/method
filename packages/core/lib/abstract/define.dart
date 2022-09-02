@@ -4,6 +4,7 @@ abstract class Define<D> {
 }
 
 /// Implements a list of given [D] definitions instructed by [T] templates.
-abstract class DefineDocument<D, T> extends Define<D> {
+abstract class DefineDocument<D, T> {
+  List<D> get definitions;
   T get template;
 }

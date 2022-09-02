@@ -1,35 +1,37 @@
-import 'package:core/abstract/uniform.dart';
 import 'package:core/model/entry.dart';
-import 'package:core/model/exercise.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:uuid/uuid.dart';
 
 import '../abstract/define.dart';
+import '../abstract/identify.dart';
+import '../abstract/locate.dart';
+import 'exercise.dart';
 
 part 'session.freezed.dart';
 
 @freezed
-class Session with _$Session {
-  @Implements<Uniform>()
-  @Implements<DefineDocument<Entry, Exercise>>()
-  const factory Session._({
+class Session
+    with _$Session, Identify, Locate, DefineDocument<Entry, Exercise> {
+  const Session._();
+
+  const factory Session({
     required final Exercise template,
     required final List<Entry> definitions,
-    required final String collectionSlug,
-    required final String hierarchyPath,
-    required final String id,
-    required final String uuid,
+    required String collectionSlug,
+    required String hierarchyPath,
+    required String id,
+    required String uuid,
   }) = _Session;
 
   factory Session.create({
     required final Exercise template,
+    required String collectionSlug,
     final List<Entry>? definitions,
-    required final String collectionSlug,
     required final String hierarchyPath,
     required final String id,
     final String? uuid,
   }) =>
-      Session._(
+      Session(
         template: template,
         definitions: definitions ?? [],
         collectionSlug: collectionSlug,

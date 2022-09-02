@@ -16,27 +16,38 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$EntryDefinition {
+  String get collectionSlug => throw _privateConstructorUsedError;
   String get hierarchyPath => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
-  String get text => throw _privateConstructorUsedError;
+  String get uuid => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String hierarchyPath, String id, String text)
+    required TResult Function(
+            String collectionSlug, String hierarchyPath, String id, String uuid)
         label,
-    required TResult Function(String hierarchyPath, String id, String text)
+    required TResult Function(
+            String collectionSlug, String hierarchyPath, String id, String uuid)
         note,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String hierarchyPath, String id, String text)? label,
-    TResult Function(String hierarchyPath, String id, String text)? note,
+    TResult Function(String collectionSlug, String hierarchyPath, String id,
+            String uuid)?
+        label,
+    TResult Function(String collectionSlug, String hierarchyPath, String id,
+            String uuid)?
+        note,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String hierarchyPath, String id, String text)? label,
-    TResult Function(String hierarchyPath, String id, String text)? note,
+    TResult Function(String collectionSlug, String hierarchyPath, String id,
+            String uuid)?
+        label,
+    TResult Function(String collectionSlug, String hierarchyPath, String id,
+            String uuid)?
+        note,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -70,7 +81,8 @@ abstract class $EntryDefinitionCopyWith<$Res> {
   factory $EntryDefinitionCopyWith(
           EntryDefinition value, $Res Function(EntryDefinition) then) =
       _$EntryDefinitionCopyWithImpl<$Res>;
-  $Res call({String hierarchyPath, String id, String text});
+  $Res call(
+      {String collectionSlug, String hierarchyPath, String id, String uuid});
 }
 
 /// @nodoc
@@ -84,11 +96,16 @@ class _$EntryDefinitionCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? collectionSlug = freezed,
     Object? hierarchyPath = freezed,
     Object? id = freezed,
-    Object? text = freezed,
+    Object? uuid = freezed,
   }) {
     return _then(_value.copyWith(
+      collectionSlug: collectionSlug == freezed
+          ? _value.collectionSlug
+          : collectionSlug // ignore: cast_nullable_to_non_nullable
+              as String,
       hierarchyPath: hierarchyPath == freezed
           ? _value.hierarchyPath
           : hierarchyPath // ignore: cast_nullable_to_non_nullable
@@ -97,9 +114,9 @@ class _$EntryDefinitionCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      text: text == freezed
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
+      uuid: uuid == freezed
+          ? _value.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -111,7 +128,8 @@ abstract class _$$_LabelCopyWith<$Res>
   factory _$$_LabelCopyWith(_$_Label value, $Res Function(_$_Label) then) =
       __$$_LabelCopyWithImpl<$Res>;
   @override
-  $Res call({String hierarchyPath, String id, String text});
+  $Res call(
+      {String collectionSlug, String hierarchyPath, String id, String uuid});
 }
 
 /// @nodoc
@@ -125,11 +143,16 @@ class __$$_LabelCopyWithImpl<$Res> extends _$EntryDefinitionCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? collectionSlug = freezed,
     Object? hierarchyPath = freezed,
     Object? id = freezed,
-    Object? text = freezed,
+    Object? uuid = freezed,
   }) {
     return _then(_$_Label(
+      collectionSlug: collectionSlug == freezed
+          ? _value.collectionSlug
+          : collectionSlug // ignore: cast_nullable_to_non_nullable
+              as String,
       hierarchyPath: hierarchyPath == freezed
           ? _value.hierarchyPath
           : hierarchyPath // ignore: cast_nullable_to_non_nullable
@@ -138,9 +161,9 @@ class __$$_LabelCopyWithImpl<$Res> extends _$EntryDefinitionCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      text: text == freezed
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
+      uuid: uuid == freezed
+          ? _value.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -150,19 +173,24 @@ class __$$_LabelCopyWithImpl<$Res> extends _$EntryDefinitionCopyWithImpl<$Res>
 
 class _$_Label extends _Label {
   const _$_Label(
-      {required this.hierarchyPath, required this.id, required this.text})
+      {required this.collectionSlug,
+      required this.hierarchyPath,
+      required this.id,
+      required this.uuid})
       : super._();
 
+  @override
+  final String collectionSlug;
   @override
   final String hierarchyPath;
   @override
   final String id;
   @override
-  final String text;
+  final String uuid;
 
   @override
   String toString() {
-    return 'EntryDefinition.label(hierarchyPath: $hierarchyPath, id: $id, text: $text)';
+    return 'EntryDefinition.label(collectionSlug: $collectionSlug, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
   }
 
   @override
@@ -171,17 +199,20 @@ class _$_Label extends _Label {
         (other.runtimeType == runtimeType &&
             other is _$_Label &&
             const DeepCollectionEquality()
+                .equals(other.collectionSlug, collectionSlug) &&
+            const DeepCollectionEquality()
                 .equals(other.hierarchyPath, hierarchyPath) &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.text, text));
+            const DeepCollectionEquality().equals(other.uuid, uuid));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(collectionSlug),
       const DeepCollectionEquality().hash(hierarchyPath),
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(text));
+      const DeepCollectionEquality().hash(uuid));
 
   @JsonKey(ignore: true)
   @override
@@ -191,32 +222,42 @@ class _$_Label extends _Label {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String hierarchyPath, String id, String text)
+    required TResult Function(
+            String collectionSlug, String hierarchyPath, String id, String uuid)
         label,
-    required TResult Function(String hierarchyPath, String id, String text)
+    required TResult Function(
+            String collectionSlug, String hierarchyPath, String id, String uuid)
         note,
   }) {
-    return label(hierarchyPath, id, text);
+    return label(collectionSlug, hierarchyPath, id, uuid);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String hierarchyPath, String id, String text)? label,
-    TResult Function(String hierarchyPath, String id, String text)? note,
+    TResult Function(String collectionSlug, String hierarchyPath, String id,
+            String uuid)?
+        label,
+    TResult Function(String collectionSlug, String hierarchyPath, String id,
+            String uuid)?
+        note,
   }) {
-    return label?.call(hierarchyPath, id, text);
+    return label?.call(collectionSlug, hierarchyPath, id, uuid);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String hierarchyPath, String id, String text)? label,
-    TResult Function(String hierarchyPath, String id, String text)? note,
+    TResult Function(String collectionSlug, String hierarchyPath, String id,
+            String uuid)?
+        label,
+    TResult Function(String collectionSlug, String hierarchyPath, String id,
+            String uuid)?
+        note,
     required TResult orElse(),
   }) {
     if (label != null) {
-      return label(hierarchyPath, id, text);
+      return label(collectionSlug, hierarchyPath, id, uuid);
     }
     return orElse();
   }
@@ -253,19 +294,22 @@ class _$_Label extends _Label {
   }
 }
 
-abstract class _Label extends EntryDefinition implements Uniform {
+abstract class _Label extends EntryDefinition {
   const factory _Label(
-      {required final String hierarchyPath,
+      {required final String collectionSlug,
+      required final String hierarchyPath,
       required final String id,
-      required final String text}) = _$_Label;
+      required final String uuid}) = _$_Label;
   const _Label._() : super._();
 
+  @override
+  String get collectionSlug;
   @override
   String get hierarchyPath;
   @override
   String get id;
   @override
-  String get text;
+  String get uuid;
   @override
   @JsonKey(ignore: true)
   _$$_LabelCopyWith<_$_Label> get copyWith =>
@@ -278,7 +322,8 @@ abstract class _$$_NoteCopyWith<$Res>
   factory _$$_NoteCopyWith(_$_Note value, $Res Function(_$_Note) then) =
       __$$_NoteCopyWithImpl<$Res>;
   @override
-  $Res call({String hierarchyPath, String id, String text});
+  $Res call(
+      {String collectionSlug, String hierarchyPath, String id, String uuid});
 }
 
 /// @nodoc
@@ -292,11 +337,16 @@ class __$$_NoteCopyWithImpl<$Res> extends _$EntryDefinitionCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? collectionSlug = freezed,
     Object? hierarchyPath = freezed,
     Object? id = freezed,
-    Object? text = freezed,
+    Object? uuid = freezed,
   }) {
     return _then(_$_Note(
+      collectionSlug: collectionSlug == freezed
+          ? _value.collectionSlug
+          : collectionSlug // ignore: cast_nullable_to_non_nullable
+              as String,
       hierarchyPath: hierarchyPath == freezed
           ? _value.hierarchyPath
           : hierarchyPath // ignore: cast_nullable_to_non_nullable
@@ -305,9 +355,9 @@ class __$$_NoteCopyWithImpl<$Res> extends _$EntryDefinitionCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      text: text == freezed
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
+      uuid: uuid == freezed
+          ? _value.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -317,19 +367,24 @@ class __$$_NoteCopyWithImpl<$Res> extends _$EntryDefinitionCopyWithImpl<$Res>
 
 class _$_Note extends _Note {
   const _$_Note(
-      {required this.hierarchyPath, required this.id, required this.text})
+      {required this.collectionSlug,
+      required this.hierarchyPath,
+      required this.id,
+      required this.uuid})
       : super._();
 
+  @override
+  final String collectionSlug;
   @override
   final String hierarchyPath;
   @override
   final String id;
   @override
-  final String text;
+  final String uuid;
 
   @override
   String toString() {
-    return 'EntryDefinition.note(hierarchyPath: $hierarchyPath, id: $id, text: $text)';
+    return 'EntryDefinition.note(collectionSlug: $collectionSlug, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
   }
 
   @override
@@ -338,17 +393,20 @@ class _$_Note extends _Note {
         (other.runtimeType == runtimeType &&
             other is _$_Note &&
             const DeepCollectionEquality()
+                .equals(other.collectionSlug, collectionSlug) &&
+            const DeepCollectionEquality()
                 .equals(other.hierarchyPath, hierarchyPath) &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.text, text));
+            const DeepCollectionEquality().equals(other.uuid, uuid));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(collectionSlug),
       const DeepCollectionEquality().hash(hierarchyPath),
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(text));
+      const DeepCollectionEquality().hash(uuid));
 
   @JsonKey(ignore: true)
   @override
@@ -358,32 +416,42 @@ class _$_Note extends _Note {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String hierarchyPath, String id, String text)
+    required TResult Function(
+            String collectionSlug, String hierarchyPath, String id, String uuid)
         label,
-    required TResult Function(String hierarchyPath, String id, String text)
+    required TResult Function(
+            String collectionSlug, String hierarchyPath, String id, String uuid)
         note,
   }) {
-    return note(hierarchyPath, id, text);
+    return note(collectionSlug, hierarchyPath, id, uuid);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String hierarchyPath, String id, String text)? label,
-    TResult Function(String hierarchyPath, String id, String text)? note,
+    TResult Function(String collectionSlug, String hierarchyPath, String id,
+            String uuid)?
+        label,
+    TResult Function(String collectionSlug, String hierarchyPath, String id,
+            String uuid)?
+        note,
   }) {
-    return note?.call(hierarchyPath, id, text);
+    return note?.call(collectionSlug, hierarchyPath, id, uuid);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String hierarchyPath, String id, String text)? label,
-    TResult Function(String hierarchyPath, String id, String text)? note,
+    TResult Function(String collectionSlug, String hierarchyPath, String id,
+            String uuid)?
+        label,
+    TResult Function(String collectionSlug, String hierarchyPath, String id,
+            String uuid)?
+        note,
     required TResult orElse(),
   }) {
     if (note != null) {
-      return note(hierarchyPath, id, text);
+      return note(collectionSlug, hierarchyPath, id, uuid);
     }
     return orElse();
   }
@@ -420,19 +488,22 @@ class _$_Note extends _Note {
   }
 }
 
-abstract class _Note extends EntryDefinition implements Uniform {
+abstract class _Note extends EntryDefinition {
   const factory _Note(
-      {required final String hierarchyPath,
+      {required final String collectionSlug,
+      required final String hierarchyPath,
       required final String id,
-      required final String text}) = _$_Note;
+      required final String uuid}) = _$_Note;
   const _Note._() : super._();
 
+  @override
+  String get collectionSlug;
   @override
   String get hierarchyPath;
   @override
   String get id;
   @override
-  String get text;
+  String get uuid;
   @override
   @JsonKey(ignore: true)
   _$$_NoteCopyWith<_$_Note> get copyWith => throw _privateConstructorUsedError;

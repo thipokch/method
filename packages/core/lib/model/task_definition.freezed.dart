@@ -18,36 +18,37 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$TaskDefinition {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  String get collectionSlug => throw _privateConstructorUsedError;
   String get hierarchyPath => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
-  String get text => throw _privateConstructorUsedError;
+  String get uuid => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String name, String description,
-            String hierarchyPath, String id, String text)
+            String collectionSlug, String hierarchyPath, String id, String uuid)
         label,
     required TResult Function(String name, String description,
-            String hierarchyPath, String id, String text)
+            String collectionSlug, String hierarchyPath, String id, String uuid)
         note,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String name, String description, String hierarchyPath,
-            String id, String text)?
+    TResult Function(String name, String description, String collectionSlug,
+            String hierarchyPath, String id, String uuid)?
         label,
-    TResult Function(String name, String description, String hierarchyPath,
-            String id, String text)?
+    TResult Function(String name, String description, String collectionSlug,
+            String hierarchyPath, String id, String uuid)?
         note,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, String description, String hierarchyPath,
-            String id, String text)?
+    TResult Function(String name, String description, String collectionSlug,
+            String hierarchyPath, String id, String uuid)?
         label,
-    TResult Function(String name, String description, String hierarchyPath,
-            String id, String text)?
+    TResult Function(String name, String description, String collectionSlug,
+            String hierarchyPath, String id, String uuid)?
         note,
     required TResult orElse(),
   }) =>
@@ -85,9 +86,10 @@ abstract class $TaskDefinitionCopyWith<$Res> {
   $Res call(
       {String name,
       String description,
+      String collectionSlug,
       String hierarchyPath,
       String id,
-      String text});
+      String uuid});
 }
 
 /// @nodoc
@@ -103,9 +105,10 @@ class _$TaskDefinitionCopyWithImpl<$Res>
   $Res call({
     Object? name = freezed,
     Object? description = freezed,
+    Object? collectionSlug = freezed,
     Object? hierarchyPath = freezed,
     Object? id = freezed,
-    Object? text = freezed,
+    Object? uuid = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -116,6 +119,10 @@ class _$TaskDefinitionCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      collectionSlug: collectionSlug == freezed
+          ? _value.collectionSlug
+          : collectionSlug // ignore: cast_nullable_to_non_nullable
+              as String,
       hierarchyPath: hierarchyPath == freezed
           ? _value.hierarchyPath
           : hierarchyPath // ignore: cast_nullable_to_non_nullable
@@ -124,9 +131,9 @@ class _$TaskDefinitionCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      text: text == freezed
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
+      uuid: uuid == freezed
+          ? _value.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -141,9 +148,10 @@ abstract class _$$_LabelCopyWith<$Res>
   $Res call(
       {String name,
       String description,
+      String collectionSlug,
       String hierarchyPath,
       String id,
-      String text});
+      String uuid});
 }
 
 /// @nodoc
@@ -159,9 +167,10 @@ class __$$_LabelCopyWithImpl<$Res> extends _$TaskDefinitionCopyWithImpl<$Res>
   $Res call({
     Object? name = freezed,
     Object? description = freezed,
+    Object? collectionSlug = freezed,
     Object? hierarchyPath = freezed,
     Object? id = freezed,
-    Object? text = freezed,
+    Object? uuid = freezed,
   }) {
     return _then(_$_Label(
       name: name == freezed
@@ -172,6 +181,10 @@ class __$$_LabelCopyWithImpl<$Res> extends _$TaskDefinitionCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      collectionSlug: collectionSlug == freezed
+          ? _value.collectionSlug
+          : collectionSlug // ignore: cast_nullable_to_non_nullable
+              as String,
       hierarchyPath: hierarchyPath == freezed
           ? _value.hierarchyPath
           : hierarchyPath // ignore: cast_nullable_to_non_nullable
@@ -180,9 +193,9 @@ class __$$_LabelCopyWithImpl<$Res> extends _$TaskDefinitionCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      text: text == freezed
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
+      uuid: uuid == freezed
+          ? _value.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -194,9 +207,10 @@ class _$_Label extends _Label {
   const _$_Label(
       {required this.name,
       required this.description,
+      required this.collectionSlug,
       required this.hierarchyPath,
       required this.id,
-      required this.text})
+      required this.uuid})
       : super._();
 
   @override
@@ -204,15 +218,17 @@ class _$_Label extends _Label {
   @override
   final String description;
   @override
+  final String collectionSlug;
+  @override
   final String hierarchyPath;
   @override
   final String id;
   @override
-  final String text;
+  final String uuid;
 
   @override
   String toString() {
-    return 'TaskDefinition.label(name: $name, description: $description, hierarchyPath: $hierarchyPath, id: $id, text: $text)';
+    return 'TaskDefinition.label(name: $name, description: $description, collectionSlug: $collectionSlug, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
   }
 
   @override
@@ -224,9 +240,11 @@ class _$_Label extends _Label {
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
             const DeepCollectionEquality()
+                .equals(other.collectionSlug, collectionSlug) &&
+            const DeepCollectionEquality()
                 .equals(other.hierarchyPath, hierarchyPath) &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.text, text));
+            const DeepCollectionEquality().equals(other.uuid, uuid));
   }
 
   @override
@@ -234,9 +252,10 @@ class _$_Label extends _Label {
       runtimeType,
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(collectionSlug),
       const DeepCollectionEquality().hash(hierarchyPath),
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(text));
+      const DeepCollectionEquality().hash(uuid));
 
   @JsonKey(ignore: true)
   @override
@@ -247,41 +266,42 @@ class _$_Label extends _Label {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String name, String description,
-            String hierarchyPath, String id, String text)
+            String collectionSlug, String hierarchyPath, String id, String uuid)
         label,
     required TResult Function(String name, String description,
-            String hierarchyPath, String id, String text)
+            String collectionSlug, String hierarchyPath, String id, String uuid)
         note,
   }) {
-    return label(name, description, hierarchyPath, id, text);
+    return label(name, description, collectionSlug, hierarchyPath, id, uuid);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String name, String description, String hierarchyPath,
-            String id, String text)?
+    TResult Function(String name, String description, String collectionSlug,
+            String hierarchyPath, String id, String uuid)?
         label,
-    TResult Function(String name, String description, String hierarchyPath,
-            String id, String text)?
+    TResult Function(String name, String description, String collectionSlug,
+            String hierarchyPath, String id, String uuid)?
         note,
   }) {
-    return label?.call(name, description, hierarchyPath, id, text);
+    return label?.call(
+        name, description, collectionSlug, hierarchyPath, id, uuid);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, String description, String hierarchyPath,
-            String id, String text)?
+    TResult Function(String name, String description, String collectionSlug,
+            String hierarchyPath, String id, String uuid)?
         label,
-    TResult Function(String name, String description, String hierarchyPath,
-            String id, String text)?
+    TResult Function(String name, String description, String collectionSlug,
+            String hierarchyPath, String id, String uuid)?
         note,
     required TResult orElse(),
   }) {
     if (label != null) {
-      return label(name, description, hierarchyPath, id, text);
+      return label(name, description, collectionSlug, hierarchyPath, id, uuid);
     }
     return orElse();
   }
@@ -318,13 +338,14 @@ class _$_Label extends _Label {
   }
 }
 
-abstract class _Label extends TaskDefinition implements Uniform, Describe {
+abstract class _Label extends TaskDefinition {
   const factory _Label(
       {required final String name,
       required final String description,
+      required final String collectionSlug,
       required final String hierarchyPath,
       required final String id,
-      required final String text}) = _$_Label;
+      required final String uuid}) = _$_Label;
   const _Label._() : super._();
 
   @override
@@ -332,11 +353,13 @@ abstract class _Label extends TaskDefinition implements Uniform, Describe {
   @override
   String get description;
   @override
+  String get collectionSlug;
+  @override
   String get hierarchyPath;
   @override
   String get id;
   @override
-  String get text;
+  String get uuid;
   @override
   @JsonKey(ignore: true)
   _$$_LabelCopyWith<_$_Label> get copyWith =>
@@ -351,9 +374,10 @@ abstract class _$$_NoteCopyWith<$Res> implements $TaskDefinitionCopyWith<$Res> {
   $Res call(
       {String name,
       String description,
+      String collectionSlug,
       String hierarchyPath,
       String id,
-      String text});
+      String uuid});
 }
 
 /// @nodoc
@@ -369,9 +393,10 @@ class __$$_NoteCopyWithImpl<$Res> extends _$TaskDefinitionCopyWithImpl<$Res>
   $Res call({
     Object? name = freezed,
     Object? description = freezed,
+    Object? collectionSlug = freezed,
     Object? hierarchyPath = freezed,
     Object? id = freezed,
-    Object? text = freezed,
+    Object? uuid = freezed,
   }) {
     return _then(_$_Note(
       name: name == freezed
@@ -382,6 +407,10 @@ class __$$_NoteCopyWithImpl<$Res> extends _$TaskDefinitionCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      collectionSlug: collectionSlug == freezed
+          ? _value.collectionSlug
+          : collectionSlug // ignore: cast_nullable_to_non_nullable
+              as String,
       hierarchyPath: hierarchyPath == freezed
           ? _value.hierarchyPath
           : hierarchyPath // ignore: cast_nullable_to_non_nullable
@@ -390,9 +419,9 @@ class __$$_NoteCopyWithImpl<$Res> extends _$TaskDefinitionCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      text: text == freezed
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
+      uuid: uuid == freezed
+          ? _value.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -404,9 +433,10 @@ class _$_Note extends _Note {
   const _$_Note(
       {required this.name,
       required this.description,
+      required this.collectionSlug,
       required this.hierarchyPath,
       required this.id,
-      required this.text})
+      required this.uuid})
       : super._();
 
   @override
@@ -414,15 +444,17 @@ class _$_Note extends _Note {
   @override
   final String description;
   @override
+  final String collectionSlug;
+  @override
   final String hierarchyPath;
   @override
   final String id;
   @override
-  final String text;
+  final String uuid;
 
   @override
   String toString() {
-    return 'TaskDefinition.note(name: $name, description: $description, hierarchyPath: $hierarchyPath, id: $id, text: $text)';
+    return 'TaskDefinition.note(name: $name, description: $description, collectionSlug: $collectionSlug, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
   }
 
   @override
@@ -434,9 +466,11 @@ class _$_Note extends _Note {
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
             const DeepCollectionEquality()
+                .equals(other.collectionSlug, collectionSlug) &&
+            const DeepCollectionEquality()
                 .equals(other.hierarchyPath, hierarchyPath) &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.text, text));
+            const DeepCollectionEquality().equals(other.uuid, uuid));
   }
 
   @override
@@ -444,9 +478,10 @@ class _$_Note extends _Note {
       runtimeType,
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(collectionSlug),
       const DeepCollectionEquality().hash(hierarchyPath),
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(text));
+      const DeepCollectionEquality().hash(uuid));
 
   @JsonKey(ignore: true)
   @override
@@ -457,41 +492,42 @@ class _$_Note extends _Note {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String name, String description,
-            String hierarchyPath, String id, String text)
+            String collectionSlug, String hierarchyPath, String id, String uuid)
         label,
     required TResult Function(String name, String description,
-            String hierarchyPath, String id, String text)
+            String collectionSlug, String hierarchyPath, String id, String uuid)
         note,
   }) {
-    return note(name, description, hierarchyPath, id, text);
+    return note(name, description, collectionSlug, hierarchyPath, id, uuid);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String name, String description, String hierarchyPath,
-            String id, String text)?
+    TResult Function(String name, String description, String collectionSlug,
+            String hierarchyPath, String id, String uuid)?
         label,
-    TResult Function(String name, String description, String hierarchyPath,
-            String id, String text)?
+    TResult Function(String name, String description, String collectionSlug,
+            String hierarchyPath, String id, String uuid)?
         note,
   }) {
-    return note?.call(name, description, hierarchyPath, id, text);
+    return note?.call(
+        name, description, collectionSlug, hierarchyPath, id, uuid);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, String description, String hierarchyPath,
-            String id, String text)?
+    TResult Function(String name, String description, String collectionSlug,
+            String hierarchyPath, String id, String uuid)?
         label,
-    TResult Function(String name, String description, String hierarchyPath,
-            String id, String text)?
+    TResult Function(String name, String description, String collectionSlug,
+            String hierarchyPath, String id, String uuid)?
         note,
     required TResult orElse(),
   }) {
     if (note != null) {
-      return note(name, description, hierarchyPath, id, text);
+      return note(name, description, collectionSlug, hierarchyPath, id, uuid);
     }
     return orElse();
   }
@@ -528,13 +564,14 @@ class _$_Note extends _Note {
   }
 }
 
-abstract class _Note extends TaskDefinition implements Uniform, Describe {
+abstract class _Note extends TaskDefinition {
   const factory _Note(
       {required final String name,
       required final String description,
+      required final String collectionSlug,
       required final String hierarchyPath,
       required final String id,
-      required final String text}) = _$_Note;
+      required final String uuid}) = _$_Note;
   const _Note._() : super._();
 
   @override
@@ -542,11 +579,13 @@ abstract class _Note extends TaskDefinition implements Uniform, Describe {
   @override
   String get description;
   @override
+  String get collectionSlug;
+  @override
   String get hierarchyPath;
   @override
   String get id;
   @override
-  String get text;
+  String get uuid;
   @override
   @JsonKey(ignore: true)
   _$$_NoteCopyWith<_$_Note> get copyWith => throw _privateConstructorUsedError;

@@ -1,39 +1,30 @@
-import 'package:core/abstract/describe.dart';
-import 'package:core/abstract/uniform.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../abstract/identify.dart';
+import '../abstract/inform.dart';
+import '../abstract/locate.dart';
 
 part 'task_definition.freezed.dart';
 
 @freezed
-class TaskDefinition with _$TaskDefinition, Uniform, Describe {
+class TaskDefinition with _$TaskDefinition, Identify, Locate, Inform {
   const TaskDefinition._();
 
-  @Implements<Uniform>()
-  @Implements<Describe>()
   const factory TaskDefinition.label({
     required final String name,
     required final String description,
-    required final String hierarchyPath,
-    required final String id,
-    required final String text,
+    required String collectionSlug,
+    required String hierarchyPath,
+    required String id,
+    required String uuid,
   }) = _Label;
 
-  @Implements<Uniform>()
-  @Implements<Describe>()
   const factory TaskDefinition.note({
     required final String name,
     required final String description,
-    required final String hierarchyPath,
-    required final String id,
-    required final String text,
+    required String collectionSlug,
+    required String hierarchyPath,
+    required String id,
+    required String uuid,
   }) = _Note;
-
-  @override
-  String get collectionSlug => when(
-        label: ((name, description, hierarchyPath, id, text) => "label"),
-        note: ((name, description, hierarchyPath, id, text) => "note"),
-      );
-
-  @override
-  String get uuid => "";
 }
