@@ -4,7 +4,7 @@ import 'package:core/model/task_definition.dart';
 class Content {
   const Content._();
 
-  static const a = Task.converge(
+  static const taskContext = Task.converge(
     icon: "",
     name: "Identify Context",
     description: "Take in your surroundings.",

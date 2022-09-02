@@ -3,9 +3,8 @@ import 'package:core/model/entry.dart';
 import 'package:core/model/task.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:method/view/task/task_card.dart';
+import 'package:matter/button/button_tonal.dart';
 import 'package:method/view/task/task_editor.dart';
-import 'package:method/view/task/task_focus.dart';
 
 class TaskComponent extends StatefulWidget {
   final Task task;
@@ -41,20 +40,16 @@ class TaskComponentState extends State<TaskComponent> {
   Widget build(BuildContext context) => BlocProvider(
         create: (context) => TaskBloc(task: widget.task),
         child: BlocBuilder<TaskBloc, TaskState>(
-          builder: (context, state) => TaskCard(
-            onTap: () {
+          builder: (context, state) => ButtonTonal(
+            child: Text(context.read<TaskBloc>().task.name),
+            onPressed: () {
               final bloc = context.read<TaskBloc>();
 
               Navigator.of(context).push(
-                TaskEditorRoute(
-                  builder: (context) => Focus(
-                    onFocusChange: (hasFocus) => setState(() {
-                      focused = hasFocus;
-                    }),
-                    child: BlocProvider.value(
-                      value: bloc,
-                      child: const TaskEditor(),
-                    ),
+                MaterialPageRoute(
+                  builder: (context) => BlocProvider.value(
+                    value: bloc,
+                    child: const TaskEditor(),
                   ),
                 ),
               );
