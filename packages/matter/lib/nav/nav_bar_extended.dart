@@ -200,10 +200,9 @@ class _ExtendedNavigationBarSliverDelegate
                         top: false,
                         bottom: false,
                         child: AnimatedScale(
-                          // siz: showLargeTitle ? 1.0 : 0.0,
                           duration: _kNavBarTitleFadeDuration,
-                          scale: showLargeTitle ? 1.0 : 0.85,
-                          curve: ElementMotion.linear,
+                          scale: showLargeTitle ? 1.0 : 0.80,
+                          curve: ElementMotion.easeInOutCubicEmphasized,
                           child: Semantics(
                             header: true,
                             child: DefaultTextStyle(
