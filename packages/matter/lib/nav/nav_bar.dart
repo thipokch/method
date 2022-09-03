@@ -12,6 +12,8 @@ import 'package:flutter/cupertino.dart' as cupertino;
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
+part 'nav_bar_extended.dart';
+
 const double _kNavBarPersistentHeight = kMinInteractiveDimension;
 
 const double _kNavBarLargeTitleHeightExtension = 52.0;
