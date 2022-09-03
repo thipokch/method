@@ -42,10 +42,10 @@ class TaskEditorState extends State<TaskEditor> {
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
 
-    return Container(
-      decoration: BoxDecoration(color: colorScheme.background),
-      child: CustomScrollView(
-        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+    return Scaffold(
+      bottomNavigationBar: const Text("Hey"),
+      body: CustomScrollView(
+        // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         slivers: [
           MethodExtendedSliverNavigationBar(
             border: const Border(),
@@ -61,37 +61,39 @@ class TaskEditorState extends State<TaskEditor> {
             ),
             // middle: Text(note.name),
           ),
-          SliverToBoxAdapter(
-            child: Material(
-              type: MaterialType.transparency,
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: ElementScale.iconL,
-                      vertical: ElementScale.iconS,
-                    ),
-                    child: Text(
-                      note.description,
-                      textAlign: TextAlign.center,
-                      style: textTheme.labelLarge!.copyWith(
-                        color: colorScheme.onSurface.withOpacity(0.45),
+          SliverFillRemaining(
+            child: SingleChildScrollView(
+              child: Material(
+                type: MaterialType.transparency,
+                child: Column(
+                  // mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: ElementScale.iconL,
+                        vertical: ElementScale.iconS,
+                      ),
+                      child: Text(
+                        note.description,
+                        textAlign: TextAlign.center,
+                        style: textTheme.labelLarge!.copyWith(
+                          color: colorScheme.onSurface.withOpacity(0.45),
+                        ),
                       ),
                     ),
-                  ),
-                  TextField(
-                    style: textTheme.bodyLarge,
-                    maxLines: null,
-                    decoration: const InputDecoration(
-                      hintText: ' Start Writing...',
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.all(
-                        ElementScale.spaceL,
+                    TextField(
+                      style: textTheme.bodyLarge,
+                      maxLines: null,
+                      decoration: const InputDecoration(
+                        hintText: ' Start Writing...',
+                        border: InputBorder.none,
+                        contentPadding: EdgeInsets.all(
+                          ElementScale.spaceL,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
