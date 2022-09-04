@@ -14,18 +14,19 @@ class TaskEditor extends StatefulWidget {
 }
 
 class TaskEditorState extends State<TaskEditor> {
-  final controller = TextEditingController();
+  final textEditController = TextEditingController();
+  final scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
-    controller.addListener(onTextEditEvent);
+    textEditController.addListener(onTextEditEvent);
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
   }
 
   @override
   void dispose() {
-    controller.dispose();
+    textEditController.dispose();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     super.dispose();
   }
@@ -41,8 +42,8 @@ class TaskEditorState extends State<TaskEditor> {
 
     return Container(
       decoration: BoxDecoration(color: colorScheme.background),
-      child: NestedScrollView(
-        headerSliverBuilder: (context, innerBoxIsScrolled) => <Widget>[
+      child: CustomScrollView(
+        slivers: [
           MethodExtendedSliverNavigationBar(
             border: const Border(),
             stretch: true,
@@ -56,53 +57,59 @@ class TaskEditorState extends State<TaskEditor> {
               onPressed: () => Navigator.of(context).pop(),
             ),
           ),
-        ],
-        body: Material(
-          type: MaterialType.transparency,
-          child: SafeArea(
-            top: false,
-            child: LayoutBuilder(
-              builder: (context, constraint) => SingleChildScrollView(
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(minHeight: constraint.maxHeight),
-                  child: IntrinsicHeight(
-                    child: Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: ElementScale.spaceM,
-                            vertical: ElementScale.spaceM,
-                          ),
-                          child: Text(
-                            note.description,
-                            textAlign: TextAlign.start,
-                            style: textTheme.labelLarge!.copyWith(
-                              color: colorScheme.onSurface.withOpacity(0.45),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: TextField(
-                            style: textTheme.bodyLarge,
-                            expands: true,
-                            maxLines: null,
-                            decoration: const InputDecoration(
-                              hintText: ' Start Writing...',
-                              border: InputBorder.none,
-                              contentPadding: EdgeInsets.all(
-                                ElementScale.spaceM,
+          SliverFillRemaining(
+            child: Material(
+              type: MaterialType.transparency,
+              child: SafeArea(
+                top: false,
+                child: LayoutBuilder(
+                  builder: (context, constraint) => SingleChildScrollView(
+                    controller: scrollController,
+                    child: ConstrainedBox(
+                      constraints:
+                          BoxConstraints(minHeight: constraint.maxHeight),
+                      child: IntrinsicHeight(
+                        child: Column(
+                          children: <Widget>[
+                            if (note.description.isNotEmpty)
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: ElementScale.spaceM,
+                                  vertical: ElementScale.spaceM,
+                                ),
+                                child: Text(
+                                  note.description,
+                                  textAlign: TextAlign.start,
+                                  style: textTheme.labelLarge!.copyWith(
+                                    color:
+                                        colorScheme.onSurface.withOpacity(0.45),
+                                  ),
+                                ),
+                              ),
+                            Expanded(
+                              child: TextField(
+                                style: textTheme.bodyLarge,
+                                expands: true,
+                                maxLines: null,
+                                decoration: const InputDecoration(
+                                  hintText: ' Start Writing...',
+                                  border: InputBorder.none,
+                                  contentPadding: EdgeInsets.all(
+                                    ElementScale.spaceM,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }

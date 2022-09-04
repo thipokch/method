@@ -32,8 +32,7 @@ class Content {
     definitions: <TaskDefinition>[
       TaskDefinition.note(
         name: "If that were true,\nwhat would it mean to you?",
-        description:
-            "Where am I? Who am I with? When did I start to notice a change in my emotion?",
+        description: "",
         collectionSlug: "",
         hierarchyPath: "",
         id: "",

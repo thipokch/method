@@ -198,54 +198,51 @@ class _ExtendedNavigationBarSliverDelegate
                       child: SafeArea(
                         top: false,
                         bottom: false,
-                        child: AnimatedScale(
-                          duration: _kNavBarTitleFadeDuration,
-                          scale: showLargeTitle ? 1.0 : 0.80,
-                          curve: ElementMotion.easeInOutCubicEmphasized,
-                          alignment: Alignment.bottomLeft,
-                          child: Semantics(
-                            header: true,
-                            child: DefaultTextStyle(
-                              style: Theme.of(context).textTheme.titleLarge!,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              child: Builder(builder: (_) {
-                                double maxScale = 1.15;
+                        child: Semantics(
+                          header: true,
+                          child: DefaultTextStyle(
+                            style: Theme.of(context).textTheme.titleLarge!,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            child: Builder(builder: (_) {
+                              double maxScale = 1.15;
 
-                                if (components.largeTitle != null &&
-                                    components.largeTitle?.child is Text) {
-                                  final Text largeTitleText =
-                                      components.largeTitle!.child as Text;
+                              if (components.largeTitle != null &&
+                                  components.largeTitle?.child is Text) {
+                                final Text largeTitleText =
+                                    components.largeTitle!.child as Text;
 
-                                  final TextPainter painter = TextPainter(
-                                    textDirection: Directionality.of(context),
-                                    text: TextSpan(
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleLarge!,
-                                      text: largeTitleText.data,
-                                    ),
-                                  );
-
-                                  painter.layout();
-
-                                  maxScale = ((constraints.maxWidth -
-                                              _kNavBarEdgePadding) /
-                                          painter.maxIntrinsicWidth)
-                                      .clamp(1.0, 1.15);
-                                }
-
-                                return Transform.scale(
-                                  scale: (1.0 +
-                                          (constraints.maxHeight - maxExtent) /
-                                              maxExtent *
-                                              0.12)
-                                      .clamp(1.0, maxScale),
-                                  alignment: AlignmentDirectional.bottomStart,
-                                  child: components.largeTitle,
+                                final TextPainter painter = TextPainter(
+                                  textDirection: Directionality.of(context),
+                                  text: TextSpan(
+                                    style:
+                                        Theme.of(context).textTheme.titleLarge!,
+                                    text: largeTitleText.data,
+                                  ),
                                 );
-                              }),
-                            ),
+
+                                painter.layout();
+
+                                maxScale = ((constraints.maxWidth -
+                                            _kNavBarEdgePadding) /
+                                        painter.maxIntrinsicWidth)
+                                    .clamp(1.0, 1.15);
+                              }
+
+                              return Transform.scale(
+                                scale: shrinkOffset > 0
+                                    ? 1.0 - (0.25 * shrinkOffset / maxExtent)
+                                    : (1.0 +
+                                            (constraints.maxHeight -
+                                                    maxExtent) /
+                                                maxExtent *
+                                                0.12)
+                                        .clamp(1.0, maxScale),
+                                // : 1.00 - (shrinkOffset / maxExtent),
+                                alignment: AlignmentDirectional.bottomStart,
+                                child: components.largeTitle,
+                              );
+                            }),
                           ),
                         ),
                       ),
