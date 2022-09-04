@@ -8,10 +8,8 @@ part 'task_state.dart';
 part 'task_bloc.freezed.dart';
 
 class TaskBloc extends Bloc<TaskEvent, TaskState> {
-  final Task task;
-
   TaskBloc({
-    required this.task,
+    required Task task,
   }) : super(_TaskLoaded(task: task)) {
     on<_LoadTask>(_onLoadTask);
     on<_CloseTask>(_onCloseTask);

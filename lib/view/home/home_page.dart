@@ -2,6 +2,7 @@ import 'package:element/element_scale.dart';
 import 'package:flutter/material.dart';
 import 'package:matter/page/page.dart';
 import 'package:method/content/content.dart';
+import 'package:method/view/exercise/exercise_component.dart';
 import 'package:method/view/task/task_component.dart';
 
 class HomePage extends MethodPage {
@@ -23,6 +24,9 @@ class _HomeView extends StatelessWidget {
         padding: const EdgeInsets.all(ElementScale.spaceM),
         child: Column(
           children: const [
+            ExerciseComponent(
+              exercise: Content.exerciseThought,
+            ),
             TaskComponent(
               task: Content.taskCoreBelief,
             ),
