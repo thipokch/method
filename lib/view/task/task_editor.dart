@@ -36,7 +36,7 @@ class TaskEditorState extends State<TaskEditor> {
 
   @override
   Widget build(BuildContext context) {
-    final note = context.read<TaskBloc>().task.definitions.first;
+    final note = context.read<TaskBloc>().state.task.definitions.first;
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
 

@@ -969,23 +969,21 @@ abstract class _DeleteData implements TaskEvent {
 
 /// @nodoc
 mixin _$TaskState {
+  Task get task => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function(Task task) taskLoaded,
     required TResult Function(Task task, Entry entry) entryLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function(Task task)? taskLoaded,
     TResult Function(Task task, Entry entry)? entryLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function(Task task)? taskLoaded,
     TResult Function(Task task, Entry entry)? entryLoaded,
     required TResult orElse(),
@@ -993,25 +991,26 @@ mixin _$TaskState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
     required TResult Function(_TaskLoaded value) taskLoaded,
     required TResult Function(_EntryLoaded value) entryLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_TaskLoaded value)? taskLoaded,
     TResult Function(_EntryLoaded value)? entryLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_TaskLoaded value)? taskLoaded,
     TResult Function(_EntryLoaded value)? entryLoaded,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $TaskStateCopyWith<TaskState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1019,6 +1018,9 @@ mixin _$TaskState {
 abstract class $TaskStateCopyWith<$Res> {
   factory $TaskStateCopyWith(TaskState value, $Res Function(TaskState) then) =
       _$TaskStateCopyWithImpl<$Res>;
+  $Res call({Task task});
+
+  $TaskCopyWith<$Res> get task;
 }
 
 /// @nodoc
@@ -1028,124 +1030,37 @@ class _$TaskStateCopyWithImpl<$Res> implements $TaskStateCopyWith<$Res> {
   final TaskState _value;
   // ignore: unused_field
   final $Res Function(TaskState) _then;
+
+  @override
+  $Res call({
+    Object? task = freezed,
+  }) {
+    return _then(_value.copyWith(
+      task: task == freezed
+          ? _value.task
+          : task // ignore: cast_nullable_to_non_nullable
+              as Task,
+    ));
+  }
+
+  @override
+  $TaskCopyWith<$Res> get task {
+    return $TaskCopyWith<$Res>(_value.task, (value) {
+      return _then(_value.copyWith(task: value));
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_InitialCopyWithImpl<$Res> extends _$TaskStateCopyWithImpl<$Res>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
-      : super(_value, (v) => _then(v as _$_Initial));
-
-  @override
-  _$_Initial get _value => super._value as _$_Initial;
-}
-
-/// @nodoc
-
-class _$_Initial implements _Initial {
-  const _$_Initial();
-
-  @override
-  String toString() {
-    return 'TaskState.initial()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(Task task) taskLoaded,
-    required TResult Function(Task task, Entry entry) entryLoaded,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(Task task)? taskLoaded,
-    TResult Function(Task task, Entry entry)? entryLoaded,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(Task task)? taskLoaded,
-    TResult Function(Task task, Entry entry)? entryLoaded,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_TaskLoaded value) taskLoaded,
-    required TResult Function(_EntryLoaded value) entryLoaded,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_TaskLoaded value)? taskLoaded,
-    TResult Function(_EntryLoaded value)? entryLoaded,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_TaskLoaded value)? taskLoaded,
-    TResult Function(_EntryLoaded value)? entryLoaded,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements TaskState {
-  const factory _Initial() = _$_Initial;
-}
-
-/// @nodoc
-abstract class _$$_TaskLoadedCopyWith<$Res> {
+abstract class _$$_TaskLoadedCopyWith<$Res>
+    implements $TaskStateCopyWith<$Res> {
   factory _$$_TaskLoadedCopyWith(
           _$_TaskLoaded value, $Res Function(_$_TaskLoaded) then) =
       __$$_TaskLoadedCopyWithImpl<$Res>;
+  @override
   $Res call({Task task});
 
+  @override
   $TaskCopyWith<$Res> get task;
 }
 
@@ -1169,13 +1084,6 @@ class __$$_TaskLoadedCopyWithImpl<$Res> extends _$TaskStateCopyWithImpl<$Res>
           : task // ignore: cast_nullable_to_non_nullable
               as Task,
     ));
-  }
-
-  @override
-  $TaskCopyWith<$Res> get task {
-    return $TaskCopyWith<$Res>(_value.task, (value) {
-      return _then(_value.copyWith(task: value));
-    });
   }
 }
 
@@ -1212,7 +1120,6 @@ class _$_TaskLoaded implements _TaskLoaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function(Task task) taskLoaded,
     required TResult Function(Task task, Entry entry) entryLoaded,
   }) {
@@ -1222,7 +1129,6 @@ class _$_TaskLoaded implements _TaskLoaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function(Task task)? taskLoaded,
     TResult Function(Task task, Entry entry)? entryLoaded,
   }) {
@@ -1232,7 +1138,6 @@ class _$_TaskLoaded implements _TaskLoaded {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function(Task task)? taskLoaded,
     TResult Function(Task task, Entry entry)? entryLoaded,
     required TResult orElse(),
@@ -1246,7 +1151,6 @@ class _$_TaskLoaded implements _TaskLoaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
     required TResult Function(_TaskLoaded value) taskLoaded,
     required TResult Function(_EntryLoaded value) entryLoaded,
   }) {
@@ -1256,7 +1160,6 @@ class _$_TaskLoaded implements _TaskLoaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_TaskLoaded value)? taskLoaded,
     TResult Function(_EntryLoaded value)? entryLoaded,
   }) {
@@ -1266,7 +1169,6 @@ class _$_TaskLoaded implements _TaskLoaded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_TaskLoaded value)? taskLoaded,
     TResult Function(_EntryLoaded value)? entryLoaded,
     required TResult orElse(),
@@ -1281,19 +1183,24 @@ class _$_TaskLoaded implements _TaskLoaded {
 abstract class _TaskLoaded implements TaskState {
   const factory _TaskLoaded({required final Task task}) = _$_TaskLoaded;
 
+  @override
   Task get task;
+  @override
   @JsonKey(ignore: true)
   _$$_TaskLoadedCopyWith<_$_TaskLoaded> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_EntryLoadedCopyWith<$Res> {
+abstract class _$$_EntryLoadedCopyWith<$Res>
+    implements $TaskStateCopyWith<$Res> {
   factory _$$_EntryLoadedCopyWith(
           _$_EntryLoaded value, $Res Function(_$_EntryLoaded) then) =
       __$$_EntryLoadedCopyWithImpl<$Res>;
+  @override
   $Res call({Task task, Entry entry});
 
+  @override
   $TaskCopyWith<$Res> get task;
   $EntryCopyWith<$Res> get entry;
 }
@@ -1323,13 +1230,6 @@ class __$$_EntryLoadedCopyWithImpl<$Res> extends _$TaskStateCopyWithImpl<$Res>
           : entry // ignore: cast_nullable_to_non_nullable
               as Entry,
     ));
-  }
-
-  @override
-  $TaskCopyWith<$Res> get task {
-    return $TaskCopyWith<$Res>(_value.task, (value) {
-      return _then(_value.copyWith(task: value));
-    });
   }
 
   @override
@@ -1378,7 +1278,6 @@ class _$_EntryLoaded implements _EntryLoaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function(Task task) taskLoaded,
     required TResult Function(Task task, Entry entry) entryLoaded,
   }) {
@@ -1388,7 +1287,6 @@ class _$_EntryLoaded implements _EntryLoaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function(Task task)? taskLoaded,
     TResult Function(Task task, Entry entry)? entryLoaded,
   }) {
@@ -1398,7 +1296,6 @@ class _$_EntryLoaded implements _EntryLoaded {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function(Task task)? taskLoaded,
     TResult Function(Task task, Entry entry)? entryLoaded,
     required TResult orElse(),
@@ -1412,7 +1309,6 @@ class _$_EntryLoaded implements _EntryLoaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
     required TResult Function(_TaskLoaded value) taskLoaded,
     required TResult Function(_EntryLoaded value) entryLoaded,
   }) {
@@ -1422,7 +1318,6 @@ class _$_EntryLoaded implements _EntryLoaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_TaskLoaded value)? taskLoaded,
     TResult Function(_EntryLoaded value)? entryLoaded,
   }) {
@@ -1432,7 +1327,6 @@ class _$_EntryLoaded implements _EntryLoaded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_TaskLoaded value)? taskLoaded,
     TResult Function(_EntryLoaded value)? entryLoaded,
     required TResult orElse(),
@@ -1448,8 +1342,10 @@ abstract class _EntryLoaded implements TaskState {
   const factory _EntryLoaded(
       {required final Task task, required final Entry entry}) = _$_EntryLoaded;
 
+  @override
   Task get task;
   Entry get entry;
+  @override
   @JsonKey(ignore: true)
   _$$_EntryLoadedCopyWith<_$_EntryLoaded> get copyWith =>
       throw _privateConstructorUsedError;

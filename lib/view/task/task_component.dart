@@ -8,10 +8,12 @@ import 'package:method/view/task/task_editor.dart';
 
 class TaskComponent extends StatefulWidget {
   final Task task;
+  final Entry? entry;
 
   const TaskComponent({
     Key? key,
     required this.task,
+    this.entry,
   }) : super(key: key);
 
   @override
@@ -34,14 +36,12 @@ class TaskComponentState extends State<TaskComponent> {
     super.dispose();
   }
 
-  // void onTextEditEvent() {}
-
   @override
   Widget build(BuildContext context) => BlocProvider(
         create: (context) => TaskBloc(task: widget.task),
         child: BlocBuilder<TaskBloc, TaskState>(
           builder: (context, state) => ButtonTonal(
-            child: Text(context.read<TaskBloc>().task.name),
+            child: Text(context.read<TaskBloc>().state.task.name),
             onPressed: () {
               final bloc = context.read<TaskBloc>();
 
@@ -57,7 +57,7 @@ class TaskComponentState extends State<TaskComponent> {
               bloc.add(
                 TaskEvent.loadEntry(
                   entry: Entry.create(
-                    template: bloc.task,
+                    template: bloc.state.task,
                     collectionSlug: "collectionSlug",
                     hierarchyPath: "hierarchyPath",
                     id: "id",
