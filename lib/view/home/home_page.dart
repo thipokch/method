@@ -24,6 +24,9 @@ class _HomeView extends StatelessWidget {
         child: Column(
           children: const [
             TaskComponent(
+              task: Content.taskCoreBelief,
+            ),
+            TaskComponent(
               task: Content.taskContext,
             ),
           ],
