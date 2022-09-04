@@ -14,7 +14,7 @@ import 'package:flutter/services.dart';
 
 part 'nav_bar_extended.dart';
 
-const double _kNavBarPersistentHeight = kMinInteractiveDimension;
+const double _kNavBarPersistentHeight = kMinInteractiveDimension * 1.25;
 
 const double _kNavBarLargeTitleHeightExtension = 52.0;
 

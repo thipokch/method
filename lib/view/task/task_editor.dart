@@ -41,62 +41,67 @@ class TaskEditorState extends State<TaskEditor> {
 
     return Container(
       decoration: BoxDecoration(color: colorScheme.background),
-      child: Padding(
-        padding:
-            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-        child: CustomScrollView(
-          // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-          slivers: [
-            MethodExtendedSliverNavigationBar(
-              border: const Border(),
-              stretch: true,
-              largeTitle: Text(
-                note.name,
-                textAlign: TextAlign.center,
-              ),
-              trailing: IconButton(
-                icon: const Icon(ElementSymbol.dismiss),
-                iconSize: 24,
-                onPressed: () => Navigator.of(context).pop(),
-              ),
+      child: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) => <Widget>[
+          MethodExtendedSliverNavigationBar(
+            border: const Border(),
+            stretch: true,
+            largeTitle: Text(
+              note.name,
+              textAlign: TextAlign.start,
             ),
-            SliverFillRemaining(
-              child: SingleChildScrollView(
-                child: Material(
-                  type: MaterialType.transparency,
-                  child: Column(
-                    // mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: ElementScale.iconL,
-                          vertical: ElementScale.iconS,
-                        ),
-                        child: Text(
-                          note.description,
-                          textAlign: TextAlign.center,
-                          style: textTheme.labelLarge!.copyWith(
-                            color: colorScheme.onSurface.withOpacity(0.45),
+            trailing: IconButton(
+              icon: const Icon(ElementSymbol.dismiss),
+              iconSize: 24,
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ),
+        ],
+        body: Material(
+          type: MaterialType.transparency,
+          child: SafeArea(
+            top: false,
+            child: LayoutBuilder(
+              builder: (context, constraint) => SingleChildScrollView(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(minHeight: constraint.maxHeight),
+                  child: IntrinsicHeight(
+                    child: Column(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: ElementScale.spaceM,
+                            vertical: ElementScale.spaceM,
+                          ),
+                          child: Text(
+                            note.description,
+                            textAlign: TextAlign.start,
+                            style: textTheme.labelLarge!.copyWith(
+                              color: colorScheme.onSurface.withOpacity(0.45),
+                            ),
                           ),
                         ),
-                      ),
-                      TextField(
-                        style: textTheme.bodyLarge,
-                        maxLines: null,
-                        decoration: const InputDecoration(
-                          hintText: ' Start Writing...',
-                          border: InputBorder.none,
-                          contentPadding: EdgeInsets.all(
-                            ElementScale.spaceL,
+                        Expanded(
+                          child: TextField(
+                            style: textTheme.bodyLarge,
+                            expands: true,
+                            maxLines: null,
+                            decoration: const InputDecoration(
+                              hintText: ' Start Writing...',
+                              border: InputBorder.none,
+                              contentPadding: EdgeInsets.all(
+                                ElementScale.spaceM,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ],
+          ),
         ),
       ),
     );

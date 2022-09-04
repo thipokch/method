@@ -148,8 +148,7 @@ class _ExtendedNavigationBarSliverDelegate
   double get minExtent => persistentHeight;
 
   @override
-  double get maxExtent =>
-      persistentHeight + _kNavBarLargeTitleHeightExtension / 2;
+  double get maxExtent => persistentHeight + _kNavBarLargeTitleHeightExtension;
 
   @override
   OverScrollHeaderStretchConfiguration? stretchConfiguration;
@@ -203,11 +202,12 @@ class _ExtendedNavigationBarSliverDelegate
                           duration: _kNavBarTitleFadeDuration,
                           scale: showLargeTitle ? 1.0 : 0.80,
                           curve: ElementMotion.easeInOutCubicEmphasized,
+                          alignment: Alignment.bottomLeft,
                           child: Semantics(
                             header: true,
                             child: DefaultTextStyle(
                               style: Theme.of(context).textTheme.titleLarge!,
-                              maxLines: 1,
+                              maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               child: Builder(builder: (_) {
                                 double maxScale = 1.15;
@@ -241,7 +241,7 @@ class _ExtendedNavigationBarSliverDelegate
                                               maxExtent *
                                               0.12)
                                       .clamp(1.0, maxScale),
-                                  alignment: AlignmentDirectional.bottomCenter,
+                                  alignment: AlignmentDirectional.bottomStart,
                                   child: components.largeTitle,
                                 );
                               }),
