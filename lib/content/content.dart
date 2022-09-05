@@ -5,8 +5,32 @@ import 'package:core/model/task_definition.dart';
 class Content {
   const Content._();
 
+  //
+  // TASKS
+  //
+
+  static const taskNote = Task.linear(
+    icon: "✍️",
+    name: "",
+    description: "",
+    definitions: <TaskDefinition>[
+      TaskDefinition.note(
+        name: "",
+        description: "",
+        collectionSlug: "",
+        hierarchyPath: "",
+        id: "",
+        uuid: "",
+      ),
+    ],
+    collectionSlug: "",
+    hierarchyPath: "",
+    id: "",
+    uuid: "",
+  );
+
   static const taskContext = Task.converge(
-    icon: "",
+    icon: "👁",
     name: "Identify Context",
     description: "Take in your surroundings.",
     definitions: <TaskDefinition>[
@@ -20,6 +44,17 @@ class Content {
         uuid: "",
       ),
     ],
+    collectionSlug: "",
+    hierarchyPath: "",
+    id: "",
+    uuid: "",
+  );
+
+  static const taskDistortion = Task.diverge(
+    icon: "",
+    name: "Identify Distortions",
+    description: "description",
+    definitions: <TaskDefinition>[],
     collectionSlug: "",
     hierarchyPath: "",
     id: "",
@@ -67,21 +102,85 @@ class Content {
     uuid: "",
   );
 
-  static const exerciseThought = Exercise(
+  static const taskNeed = Task.converge(
+    icon: "",
+    name: "Identify Emotion",
+    description: "Express how you're feeling...",
+    definitions: <TaskDefinition>[],
+    collectionSlug: "",
+    hierarchyPath: "",
+    id: "",
+    uuid: "",
+  );
+
+  static const taskAction = Task.diverge(
+    icon: "",
+    name: "Identify Emotion",
+    description: "Express how you're feeling...",
+    definitions: <TaskDefinition>[],
+    collectionSlug: "",
+    hierarchyPath: "",
+    id: "",
+    uuid: "",
+  );
+
+  //
+  // EXECISE
+  //
+
+  static const exerciseNote = Exercise(
+    icon: "",
+    name: "Quick Notes",
+    description: "Jot your thoughts down...",
+    definitions: [taskNote],
+    collectionSlug: "",
+    hierarchyPath: "",
+    id: "",
+    uuid: "",
+  );
+
+  static const exerciseMood = Exercise(
     icon: "",
     name: "Mood Check",
-    description: "description",
+    description: "Jot your thoughts down...",
     definitions: [
       taskContext,
       taskEmotion,
+      taskNeed,
     ],
-    // const <Task>[
-    //   taskContext,
-    //   // taskEmotion
-    // ],
-    collectionSlug: "collectionSlug",
-    hierarchyPath: "hierarchyPath",
-    id: "mood-check",
+    collectionSlug: "",
+    hierarchyPath: "",
+    id: "",
+    uuid: "",
+  );
+
+  static const exerciseThought = Exercise(
+    icon: "",
+    name: "Thought Check",
+    description: "description",
+    definitions: [
+      taskContext,
+      taskCoreBelief,
+      taskDistortion,
+    ],
+    collectionSlug: "",
+    hierarchyPath: "",
+    id: "",
+    uuid: "",
+  );
+
+  static const exerciseAct = Exercise(
+    icon: "",
+    name: "Thought Check",
+    description: "description",
+    definitions: [
+      taskContext,
+      taskNeed,
+      taskDistortion,
+    ],
+    collectionSlug: "",
+    hierarchyPath: "",
+    id: "",
     uuid: "",
   );
 }
