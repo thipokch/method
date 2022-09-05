@@ -25,7 +25,7 @@ dependencies:
   go_router: ^4.3.0
   figma_squircle: ^0.5.3
   dots_indicator: ^2.1.0
-  carousel_slider: ^4.1.1
+  card_swiper : ^2.0.4
 
   component:
   core:

@@ -161,7 +161,7 @@ class Content {
     definitions: [
       taskContext,
       taskCoreBelief,
-      taskDistortion,
+      // taskDistortion,
     ],
     collectionSlug: "",
     hierarchyPath: "",

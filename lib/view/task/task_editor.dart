@@ -2,7 +2,6 @@ import 'package:component/task/task_bloc.dart';
 import 'package:element/element_scale.dart';
 import 'package:element/element_symbol.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matter/nav/nav_bar.dart';
 
@@ -21,13 +20,13 @@ class TaskEditorState extends State<TaskEditor> {
   void initState() {
     super.initState();
     textEditController.addListener(onTextEditEvent);
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
   }
 
   @override
   void dispose() {
     textEditController.dispose();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     super.dispose();
   }
 
