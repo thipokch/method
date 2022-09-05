@@ -23,7 +23,15 @@ class ExerciseComponent extends StatefulWidget {
 class ExerciseComponentState extends State<ExerciseComponent> {
   @override
   Widget build(BuildContext context) => BlocProvider(
-        create: (context) => ExerciseBloc(exercise: widget.exercise),
+        create: (context) {
+          final bloc = ExerciseBloc(exercise: widget.exercise);
+
+          if (widget.session != null) {
+            bloc.add(ExerciseEvent.loadSession(session: widget.session!));
+          }
+
+          return bloc;
+        },
         child: BlocBuilder<ExerciseBloc, ExerciseState>(
           builder: (context, state) => ButtonTonal(
             child: Text(context.read<ExerciseBloc>().state.exercise.name),
@@ -38,26 +46,8 @@ class ExerciseComponentState extends State<ExerciseComponent> {
                   ),
                 ),
               );
-
-              // bloc.add(
-              //   TaskEvent.loadEntry(
-              //     entry: Entry.create(
-              //       template: bloc.state.task,
-              //       collectionSlug: "collectionSlug",
-              //       hierarchyPath: "hierarchyPath",
-              //       id: "id",
-              //     ),
-              //   ),
-              // );
             },
           ),
-          // Column(
-          //   children: [
-          //     ...context.read<ExerciseBloc>().state.exercise.definitions.map(
-          //           (task) => TaskComponent(task: task),
-          //         ),
-          //   ],
-          // ),
         ),
       );
 }
