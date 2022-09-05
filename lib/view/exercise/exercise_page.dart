@@ -10,6 +10,7 @@ import 'package:matter/button/button_tonal.dart';
 import 'package:method/view/exercise/exercise_editor.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
+import '../../shader/noise.dart';
 import '../task/task_component.dart';
 
 class ExercisePage extends StatefulWidget {
@@ -59,13 +60,14 @@ class ExercisePageState extends State<ExercisePage>
                   onPressed: () => Navigator.of(context).pop(),
                 ),
                 pinned: true,
-                expandedHeight: 300,
+                expandedHeight: 450,
                 stretch: true,
                 onStretchTrigger: () async {
                   ElementTouch.select();
                 },
                 flexibleSpace: FlexibleSpaceBar(
                   expandedTitleScale: 1.0,
+                  background: const Noise(),
                   title: Builder(
                     builder: (context) {
                       final FlexibleSpaceBarSettings settings =
@@ -137,10 +139,10 @@ class ExercisePageState extends State<ExercisePage>
                     },
                   ),
 
-                  background: DecoratedBox(
-                    decoration:
-                        BoxDecoration(color: colorScheme.surfaceVariant),
-                  ),
+                  // background: DecoratedBox(
+                  //   decoration:
+                  //       BoxDecoration(color: colorScheme.surfaceVariant),
+                  // ),
                   // background: ,
                 ),
               ),
