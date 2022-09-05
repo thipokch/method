@@ -1,5 +1,6 @@
 import 'package:component/exercise/exercise_bloc.dart';
 import 'package:element/element_motion.dart';
+import 'package:element/element_scale.dart';
 import 'package:element/element_symbol.dart';
 import 'package:element/element_touch.dart';
 import 'package:flutter/foundation.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matter/button/button_tonal.dart';
 import 'package:method/view/exercise/exercise_editor.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../task/task_component.dart';
 
@@ -30,6 +32,14 @@ class ExercisePageState extends State<ExercisePage>
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  // ignore: no-empty-blo
+
+  @override
   Widget build(BuildContext context) =>
       BlocBuilder<ExerciseBloc, ExerciseState>(builder: (context, state) {
         final colorScheme = Theme.of(context).colorScheme;
@@ -37,7 +47,7 @@ class ExercisePageState extends State<ExercisePage>
         final exercise = context.read<ExerciseBloc>().state.exercise;
 
         return DecoratedBox(
-          decoration: BoxDecoration(color: colorScheme.background),
+          decoration: BoxDecoration(color: colorScheme.surface),
           child: CustomScrollView(
             physics: const BouncingScrollPhysics(
               parent: AlwaysScrollableScrollPhysics(),
@@ -91,18 +101,33 @@ class ExercisePageState extends State<ExercisePage>
                               child: Align(
                                 alignment: Alignment.topCenter,
                                 heightFactor: 1 - t,
-                                child: Column(
-                                  children: [
-                                    ButtonTonal(
-                                      // ignore: no-empty-block
-                                      onPressed: () {},
-                                      child: const Text("Start"),
-                                    ),
-                                    Text(
-                                      exercise.description,
-                                      style: textTheme.bodySmall,
-                                    ),
-                                  ],
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.all(ElementScale.spaceS),
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        exercise.description,
+                                        style: textTheme.bodySmall,
+                                      ),
+                                      ButtonTonal(
+                                        onPressed: () {
+                                          Navigator.of(context).push(
+                                            ModalBottomSheetRoute(
+                                              expanded: true,
+                                              builder: (childContext) =>
+                                                  BlocProvider.value(
+                                                value: context
+                                                    .read<ExerciseBloc>(),
+                                                child: const ExerciseEditor(),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                        child: const Text("Start"),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -120,28 +145,18 @@ class ExercisePageState extends State<ExercisePage>
                 ),
               ),
               SliverToBoxAdapter(
-                child: Column(
-                  children: <Widget>[
-                    ButtonTonal(
-                      child: const Text("Start"),
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (childContext) => BlocProvider.value(
-                              value: context.read<ExerciseBloc>(),
-                              child: const ExerciseEditor(),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                    ...context
-                        .read<ExerciseBloc>()
-                        .state
-                        .exercise
-                        .definitions
-                        .map((task) => TaskComponent(task: task)),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.all(ElementScale.spaceM),
+                  child: Column(
+                    children: <Widget>[
+                      ...context
+                          .read<ExerciseBloc>()
+                          .state
+                          .exercise
+                          .definitions
+                          .map((task) => TaskComponent(task: task)),
+                    ],
+                  ),
                 ),
               ),
             ],

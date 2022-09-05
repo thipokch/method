@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:matter/page/page.dart';
 import 'package:method/content/content.dart';
 import 'package:method/view/exercise/exercise_component.dart';
-import 'package:method/view/task/task_component.dart';
 
 class HomePage extends MethodPage {
   HomePage({
@@ -27,11 +26,11 @@ class _HomeView extends StatelessWidget {
             ExerciseComponent(
               exercise: Content.exerciseThought,
             ),
-            TaskComponent(
-              task: Content.taskCoreBelief,
+            ExerciseComponent(
+              exercise: Content.exerciseAct,
             ),
-            TaskComponent(
-              task: Content.taskContext,
+            ExerciseComponent(
+              exercise: Content.exerciseMood,
             ),
           ],
         ),

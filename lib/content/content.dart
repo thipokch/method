@@ -171,7 +171,7 @@ class Content {
 
   static const exerciseAct = Exercise(
     icon: "",
-    name: "Thought Check",
+    name: "Act Check",
     description: "description",
     definitions: [
       taskContext,
