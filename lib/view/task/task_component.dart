@@ -38,7 +38,15 @@ class TaskComponentState extends State<TaskComponent> {
 
   @override
   Widget build(BuildContext context) => BlocProvider(
-        create: (context) => TaskBloc(task: widget.task),
+        create: (context) {
+          final bloc = TaskBloc(task: widget.task);
+
+          if (widget.entry != null) {
+            bloc.add(TaskEvent.loadEntry(entry: widget.entry!));
+          }
+
+          return bloc;
+        },
         child: BlocBuilder<TaskBloc, TaskState>(
           builder: (context, state) => ButtonTonal(
             child: Text(context.read<TaskBloc>().state.task.name),
