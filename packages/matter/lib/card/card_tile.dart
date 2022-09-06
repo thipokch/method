@@ -11,7 +11,7 @@ class CardTile extends StatelessWidget {
     this.onTap,
   }) : super(key: key);
 
-  final String emoji;
+  final String? emoji;
   final String title;
   final String description;
   final GestureTapCallback? onTap;
@@ -24,16 +24,18 @@ class CardTile extends StatelessWidget {
 
     return ListTile(
       onTap: onTap,
-      leading: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            emoji,
-            style: ElementScale.emojiL,
-          ),
-        ],
-      ),
+      leading: emoji != null
+          ? Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  emoji!,
+                  style: ElementScale.emojiL,
+                ),
+              ],
+            )
+          : null,
       title: Text(
         title,
         style: textTheme.titleMedium,

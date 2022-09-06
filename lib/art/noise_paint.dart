@@ -10,6 +10,8 @@ class NoiseShaderPainter extends CustomPainter {
     this.colorTop,
     this.colorBottom,
     this.colorLeft,
+    this.height,
+    this.width,
   );
 
   final FragmentProgram fragmentProgram;
@@ -18,6 +20,8 @@ class NoiseShaderPainter extends CustomPainter {
   final Color colorTop; // Top
   final Color colorBottom; // Bottom
   final Color colorLeft; // Left
+  final double? height;
+  final double? width;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -33,8 +37,8 @@ class NoiseShaderPainter extends CustomPainter {
       floatUniforms: Float32List.fromList([
         frame,
         // Size
-        size.width,
-        size.height,
+        height ?? size.width,
+        width ?? size.height,
         ...colors
             .map((e) => <double>[
                   e.red.toDouble(),

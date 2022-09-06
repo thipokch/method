@@ -177,7 +177,7 @@ class Content {
   static const exerciseNote = Exercise(
     icon: "",
     name: "Quick Notes",
-    description: "Jot your thoughts down...",
+    description: "Space for messy thoughts.",
     definitions: [taskNote],
     collectionSlug: "",
     hierarchyPath: "",
@@ -189,7 +189,7 @@ class Content {
   static const exerciseMood = Exercise(
     icon: "",
     name: "Mood Check",
-    description: "Jot your thoughts down...",
+    description: "Uncover unmet needs.",
     definitions: [
       taskContext,
       taskEmotion,
@@ -205,7 +205,7 @@ class Content {
   static const exerciseThought = Exercise(
     icon: "",
     name: "Thought Check",
-    description: "Spot underlying belief and fallacies.",
+    description: "Spot patterns and fallacies.",
     definitions: [
       taskContext,
       taskCoreBelief,
@@ -221,7 +221,7 @@ class Content {
   static const exerciseAct = Exercise(
     icon: "",
     name: "Act Check",
-    description: "description",
+    description: "Respond, don't react.",
     definitions: [
       taskContext,
       taskNeed,

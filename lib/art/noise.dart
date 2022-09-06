@@ -13,6 +13,8 @@ class Noise extends StatefulWidget {
     required this.colorB,
     required this.colorC,
     required this.colorD,
+    this.height,
+    this.width,
   }) : super(key: key);
 
   final double frame;
@@ -20,6 +22,8 @@ class Noise extends StatefulWidget {
   final Color colorB;
   final Color colorC;
   final Color colorD;
+  final double? height;
+  final double? width;
 
   @override
   State<StatefulWidget> createState() => NoiseState();
@@ -51,6 +55,8 @@ class NoiseState extends State<Noise> {
               widget.colorB,
               widget.colorD,
               widget.colorA,
+              widget.height,
+              widget.width,
             ),
           ),
         );

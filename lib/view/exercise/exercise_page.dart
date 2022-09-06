@@ -86,24 +86,27 @@ class ExercisePageState extends State<ExercisePage>
                     onPressed: () => Navigator.of(context).pop(),
                   ),
                   pinned: true,
-                  expandedHeight: 330,
+                  expandedHeight: 440,
                   stretch: true,
                   onStretchTrigger: () async {
                     ElementTouch.select();
                   },
                   flexibleSpace: FlexibleSpaceBar(
                     expandedTitleScale: 1.0,
-                    background: Noise(
-                      // frame: Content.a.seed,
-                      // colorA: Content.a.colorA,
-                      // colorB: Content.a.colorB,
-                      // colorC: Content.a.colorC,
-                      // colorD: Content.a.colorD,
-                      frame: exercise.presentation.seed,
-                      colorA: exercise.presentation.colorA,
-                      colorB: exercise.presentation.colorB,
-                      colorC: exercise.presentation.colorC,
-                      colorD: exercise.presentation.colorD,
+                    background: Hero(
+                      tag: "noise/${exercise.name}",
+                      child: Noise(
+                        // frame: Content.a.seed,
+                        // colorA: Content.a.colorA,
+                        // colorB: Content.a.colorB,
+                        // colorC: Content.a.colorC,
+                        // colorD: Content.a.colorD,
+                        frame: exercise.presentation.seed,
+                        colorA: exercise.presentation.colorA,
+                        colorB: exercise.presentation.colorB,
+                        colorC: exercise.presentation.colorC,
+                        colorD: exercise.presentation.colorD,
+                      ),
                     ),
                     title: Builder(
                       builder: (context) {
@@ -157,7 +160,8 @@ class ExercisePageState extends State<ExercisePage>
                                       children: [
                                         Text(
                                           exercise.description,
-                                          style: textTheme.labelSmall!.copyWith(
+                                          style:
+                                              textTheme.labelMedium!.copyWith(
                                             color: Theme.of(context)
                                                 .colorScheme
                                                 .onBackground,
@@ -165,7 +169,7 @@ class ExercisePageState extends State<ExercisePage>
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.all(
-                                            ElementScale.spaceS,
+                                            ElementScale.spaceM,
                                           ),
                                           child: ButtonFilled(
                                             onPressed: () {
