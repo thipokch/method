@@ -24,6 +24,7 @@ mixin _$Exercise {
   String get hierarchyPath => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   String get uuid => throw _privateConstructorUsedError;
+  Presentation get presentation => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ExerciseCopyWith<Exercise> get copyWith =>
@@ -42,7 +43,10 @@ abstract class $ExerciseCopyWith<$Res> {
       String collectionSlug,
       String hierarchyPath,
       String id,
-      String uuid});
+      String uuid,
+      Presentation presentation});
+
+  $PresentationCopyWith<$Res> get presentation;
 }
 
 /// @nodoc
@@ -63,6 +67,7 @@ class _$ExerciseCopyWithImpl<$Res> implements $ExerciseCopyWith<$Res> {
     Object? hierarchyPath = freezed,
     Object? id = freezed,
     Object? uuid = freezed,
+    Object? presentation = freezed,
   }) {
     return _then(_value.copyWith(
       icon: icon == freezed
@@ -97,7 +102,18 @@ class _$ExerciseCopyWithImpl<$Res> implements $ExerciseCopyWith<$Res> {
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
               as String,
+      presentation: presentation == freezed
+          ? _value.presentation
+          : presentation // ignore: cast_nullable_to_non_nullable
+              as Presentation,
     ));
+  }
+
+  @override
+  $PresentationCopyWith<$Res> get presentation {
+    return $PresentationCopyWith<$Res>(_value.presentation, (value) {
+      return _then(_value.copyWith(presentation: value));
+    });
   }
 }
 
@@ -115,7 +131,11 @@ abstract class _$$_ExerciseCopyWith<$Res> implements $ExerciseCopyWith<$Res> {
       String collectionSlug,
       String hierarchyPath,
       String id,
-      String uuid});
+      String uuid,
+      Presentation presentation});
+
+  @override
+  $PresentationCopyWith<$Res> get presentation;
 }
 
 /// @nodoc
@@ -138,6 +158,7 @@ class __$$_ExerciseCopyWithImpl<$Res> extends _$ExerciseCopyWithImpl<$Res>
     Object? hierarchyPath = freezed,
     Object? id = freezed,
     Object? uuid = freezed,
+    Object? presentation = freezed,
   }) {
     return _then(_$_Exercise(
       icon: icon == freezed
@@ -172,6 +193,10 @@ class __$$_ExerciseCopyWithImpl<$Res> extends _$ExerciseCopyWithImpl<$Res>
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
               as String,
+      presentation: presentation == freezed
+          ? _value.presentation
+          : presentation // ignore: cast_nullable_to_non_nullable
+              as Presentation,
     ));
   }
 }
@@ -187,7 +212,8 @@ class _$_Exercise extends _Exercise {
       required this.collectionSlug,
       required this.hierarchyPath,
       required this.id,
-      required this.uuid})
+      required this.uuid,
+      required this.presentation})
       : _definitions = definitions,
         super._();
 
@@ -212,10 +238,12 @@ class _$_Exercise extends _Exercise {
   final String id;
   @override
   final String uuid;
+  @override
+  final Presentation presentation;
 
   @override
   String toString() {
-    return 'Exercise(icon: $icon, name: $name, description: $description, definitions: $definitions, collectionSlug: $collectionSlug, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
+    return 'Exercise(icon: $icon, name: $name, description: $description, definitions: $definitions, collectionSlug: $collectionSlug, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid, presentation: $presentation)';
   }
 
   @override
@@ -234,7 +262,9 @@ class _$_Exercise extends _Exercise {
             const DeepCollectionEquality()
                 .equals(other.hierarchyPath, hierarchyPath) &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.uuid, uuid));
+            const DeepCollectionEquality().equals(other.uuid, uuid) &&
+            const DeepCollectionEquality()
+                .equals(other.presentation, presentation));
   }
 
   @override
@@ -247,7 +277,8 @@ class _$_Exercise extends _Exercise {
       const DeepCollectionEquality().hash(collectionSlug),
       const DeepCollectionEquality().hash(hierarchyPath),
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(uuid));
+      const DeepCollectionEquality().hash(uuid),
+      const DeepCollectionEquality().hash(presentation));
 
   @JsonKey(ignore: true)
   @override
@@ -264,7 +295,8 @@ abstract class _Exercise extends Exercise {
       required final String collectionSlug,
       required final String hierarchyPath,
       required final String id,
-      required final String uuid}) = _$_Exercise;
+      required final String uuid,
+      required final Presentation presentation}) = _$_Exercise;
   const _Exercise._() : super._();
 
   @override
@@ -283,6 +315,8 @@ abstract class _Exercise extends Exercise {
   String get id;
   @override
   String get uuid;
+  @override
+  Presentation get presentation;
   @override
   @JsonKey(ignore: true)
   _$$_ExerciseCopyWith<_$_Exercise> get copyWith =>

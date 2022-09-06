@@ -32,6 +32,9 @@ class _HomeView extends StatelessWidget {
             ExerciseComponent(
               exercise: Content.exerciseMood,
             ),
+            ExerciseComponent(
+              exercise: Content.exerciseNote,
+            ),
           ],
         ),
       );

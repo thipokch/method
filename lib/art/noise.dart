@@ -16,10 +16,10 @@ class Noise extends StatefulWidget {
   }) : super(key: key);
 
   final double frame;
-  final Color colorC; // Right
-  final Color colorB; // Top
-  final Color colorD; // Bottom
-  final Color colorA; // Left
+  final Color colorA;
+  final Color colorB;
+  final Color colorC;
+  final Color colorD;
 
   @override
   State<StatefulWidget> createState() => NoiseState();
@@ -34,7 +34,11 @@ class NoiseState extends State<Noise> {
       builder: ((context, snapshot) {
         if (!snapshot.hasData) {
           /// Shader is loading
-          return const CircularProgressIndicator();
+          return SizedBox.expand(
+            child: DecoratedBox(
+              decoration: BoxDecoration(color: widget.colorA),
+            ),
+          );
         }
 
         /// Shader is ready to use
