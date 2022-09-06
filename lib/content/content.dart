@@ -28,7 +28,7 @@ class Content {
   );
 
   static const c = Presentation(
-    seed: 4196.0,
+    seed: 2048.0,
     colorA: Color.fromARGB(255, 198, 181, 061),
     colorB: Color.fromARGB(255, 151, 188, 059),
     colorC: Color.fromARGB(255, 087, 092, 070),
@@ -44,11 +44,11 @@ class Content {
   );
 
   static const e = Presentation(
-    seed: 1025.0,
-    colorA: Color.fromARGB(255, 147, 242, 232),
+    seed: 9064.0,
+    colorA: Color.fromARGB(255, 150, 162, 255),
     colorB: Color.fromARGB(255, 218, 203, 185),
-    colorC: Color.fromARGB(255, 167, 245, 216),
-    colorD: Color.fromARGB(255, 176, 218, 255),
+    colorC: Color.fromARGB(255, 150, 162, 255),
+    colorD: Color.fromARGB(255, 195, 255, 238),
   );
 
   //

@@ -24,6 +24,9 @@ class _HomeView extends StatelessWidget {
         child: Column(
           children: const [
             ExerciseComponent(
+              exercise: Content.exerciseNote,
+            ),
+            ExerciseComponent(
               exercise: Content.exerciseThought,
             ),
             ExerciseComponent(
@@ -31,9 +34,6 @@ class _HomeView extends StatelessWidget {
             ),
             ExerciseComponent(
               exercise: Content.exerciseMood,
-            ),
-            ExerciseComponent(
-              exercise: Content.exerciseNote,
             ),
           ],
         ),

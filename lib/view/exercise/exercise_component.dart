@@ -5,9 +5,9 @@ import 'package:element/element_scale.dart';
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:matter/card/card_tile.dart';
 import 'package:method/art/noise.dart';
 import 'package:method/view/exercise/exercise_page.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class ExerciseComponent extends StatefulWidget {
   final Exercise exercise;
@@ -38,56 +38,80 @@ class ExerciseComponentState extends State<ExerciseComponent> {
         child: BlocBuilder<ExerciseBloc, ExerciseState>(
           builder: (context, state) {
             final exercise = state.exercise;
+            final colorScheme = Theme.of(context).colorScheme;
+            final textTheme = Theme.of(context).textTheme;
 
-            return Card(
-              elevation: 0,
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              shape: const SmoothRectangleBorder(
-                borderRadius: SmoothBorderRadius.all(
-                  SmoothRadius(
-                    cornerRadius: ElementScale.cornerLarge,
-                    cornerSmoothing: ElementScale.cornerSmoothFactor,
+            return Hero(
+              tag: exercise.name,
+              child: Card(
+                elevation: 0,
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                shape: const SmoothRectangleBorder(
+                  borderRadius: SmoothBorderRadius.all(
+                    SmoothRadius(
+                      cornerRadius: ElementScale.cornerLarge,
+                      cornerSmoothing: ElementScale.cornerSmoothFactor,
+                    ),
                   ),
                 ),
-              ),
-              child: ConstrainedBox(
-                constraints: const BoxConstraints.expand(height: 100),
-                child: InkWell(
-                  onTap: () {
-                    final bloc = context.read<ExerciseBloc>();
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints.expand(height: 100),
+                  child: InkWell(
+                    onTap: () {
+                      final bloc = context.read<ExerciseBloc>();
 
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => BlocProvider.value(
-                          value: bloc,
-                          child: const ExercisePage(),
+                      Navigator.of(context).push(
+                        ModalBottomSheetRoute(
+                          expanded: true,
+                          builder: (context) => BlocProvider.value(
+                            value: bloc,
+                            child: const ExercisePage(),
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Hero(
-                        tag: "noise/${exercise.name}",
-                        child: Noise(
-                          frame: exercise.presentation.seed,
+                      );
+                    },
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Noise(
+                          // frame: exercise.presentation.seed,
+                          frame: 2048.0,
                           colorA: exercise.presentation.colorA,
-                          colorB: exercise.presentation.colorB,
-                          colorC: exercise.presentation.colorC,
+                          // colorB: exercise.presentation.colorB,
+                          // colorC: exercise.presentation.colorC,
+                          // colorD: colorScheme.surfaceVariant,
+                          colorB: colorScheme.surfaceVariant,
+                          colorC: colorScheme.surfaceVariant,
                           colorD: exercise.presentation.colorD,
-                          // height: 500,
+                          height: MediaQuery.of(context).size.width,
                         ),
-                      ),
-                      Hero(
-                        tag: "info/${exercise.name}",
-                        child: CardTile(
-                          emoji: "",
-                          title: exercise.name,
-                          description: exercise.description,
+                        ListTile(
+                          title: Text(
+                            exercise.name,
+                            style: textTheme.titleMedium!.copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: HSLColor.fromColor(
+                                exercise.presentation.colorC,
+                              )
+                                  .withLightness(0.25)
+                                  .withSaturation(0.35)
+                                  .toColor(),
+                            ),
+                          ),
+                          subtitle: Text(
+                            exercise.description,
+                            style: textTheme.labelMedium!.copyWith(
+                              color: HSLColor.fromColor(
+                                exercise.presentation.colorC,
+                              )
+                                  .withLightness(0.25)
+                                  .withSaturation(0.25)
+                                  .toColor(),
+                            ),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
