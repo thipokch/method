@@ -67,7 +67,13 @@ class ExercisePageState extends State<ExercisePage>
                 },
                 flexibleSpace: FlexibleSpaceBar(
                   expandedTitleScale: 1.0,
-                  background: const Noise(),
+                  background: const Noise(
+                    frame: 1025.0,
+                    colorA: Color.fromARGB(0, 110, 215, 205),
+                    colorB: Color.fromARGB(0, 218, 203, 185),
+                    colorC: Color.fromARGB(0, 124, 255, 207),
+                    colorD: Color.fromARGB(0, 176, 218, 255),
+                  ),
                   title: Builder(
                     builder: (context) {
                       final FlexibleSpaceBarSettings settings =

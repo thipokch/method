@@ -1,12 +1,23 @@
-import 'dart:math';
 import 'dart:typed_data';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class NoiseShaderPainter extends CustomPainter {
-  NoiseShaderPainter(this.fragmentProgram);
+  NoiseShaderPainter(
+    this.fragmentProgram,
+    this.frame,
+    this.colorRight,
+    this.colorTop,
+    this.colorBottom,
+    this.colorLeft,
+  );
 
   final FragmentProgram fragmentProgram;
+  final double frame;
+  final Color colorRight; // Right
+  final Color colorTop; // Top
+  final Color colorBottom; // Bottom
+  final Color colorLeft; // Left
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -16,13 +27,23 @@ class NoiseShaderPainter extends CustomPainter {
     // /// Draw a rectangle with the shader-paint
     // canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height), paint);
 
-    var time = (DateTime.now().millisecondsSinceEpoch) / 1000.0;
+    final colors = [colorRight, colorTop, colorBottom, colorLeft];
 
     final shader = fragmentProgram.shader(
       floatUniforms: Float32List.fromList([
-        (0.7 * pi) + (sin(pi * time) * (0.3 * pi)),
+        frame,
+        // Size
         size.width,
         size.height,
+        ...colors
+            .map((e) => <double>[
+                  e.red.toDouble(),
+                  e.green.toDouble(),
+                  e.blue.toDouble(),
+                ])
+            .expand((e) => e)
+            .toList()
+            .map((e) => e / 255.0),
       ]),
     );
 

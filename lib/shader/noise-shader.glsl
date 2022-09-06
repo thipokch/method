@@ -1,91 +1,86 @@
 #version 320 es
+#define S(a,b,t) smoothstep(a,b,t)
 
 precision highp float;
 
-layout(location = 0) out vec4 fragColor;
+layout(location=0)out vec4 fragColor;
 
-layout(location = 0) uniform float timeElapsed;
-layout(location = 1) uniform vec2 size;
+layout(location=0)uniform float timeElapsed;
+layout(location=1)uniform vec2 size;
+layout(location=2)uniform vec3 colorA;
+layout(location=3)uniform vec3 colorB;
+layout(location=4)uniform vec3 colorC;
+layout(location=5)uniform vec3 colorD;
 
 float random1f(vec2 st){
-    return fract(sin(dot(st.xy,vec2(12.9898,78.233)))*43758.5453123);
+    return fract(sin(dot(st.xy, vec2(22.9878, 178.233))) * 93758.5453123);
 }
 
-float map(float v,float a,float b,float c,float d){
-    float nv=(v-a)/(b-a);
-    nv=pow(nv,3.);
-    float o=nv*(d-c)+c;
-    
-    return o;
+mat2 Rot(float a)
+{
+    float s=sin(a);
+    float c=cos(a);
+    return mat2(c,-s,s,c);
 }
 
-void main() {
+vec2 hash(vec2 p)
+{
+    p=vec2(dot(p,vec2(2127.1,81.17)),dot(p,vec2(1269.5,283.37)));
+    return fract(sin(p)*43758.5453);
+}
+
+float noise(in vec2 p)
+{
+    vec2 i=floor(p);
+    vec2 f=fract(p);
     
-    vec2 uv=gl_FragCoord.xy/size.xy;
-    uv=uv*2.-1.;
-    uv.y/=size.x/size.y;
+    vec2 u=f*f*(3.-2.*f);
     
-    vec2 A=vec2(-.5,-.2);
-    vec2 B=vec2(.5,-.2);
-    vec2 C=vec2(0,.7);
-    vec2 D=vec2(.5,-.8);
-    vec2 E=vec2(.9,.79);
+    float n=mix(mix(dot(-1.+2.*hash(i+vec2(0.,0.)),f-vec2(0.,0.)),
+    dot(-1.+2.*hash(i+vec2(1.,0.)),f-vec2(1.,0.)),u.x),
+    mix(dot(-1.+2.*hash(i+vec2(0.,1.)),f-vec2(0.,1.)),
+    dot(-1.+2.*hash(i+vec2(1.,1.)),f-vec2(1.,1.)),u.x),u.y);
+    return .5+.5*n;
+}
+
+void main(){
+
+    vec2 uv = gl_FragCoord.xy/size.xy;
+    float ratio = size.x / size.y;
+
+    vec2 tuv = uv;
+    tuv -= .5;
+
+    // rotate with Noise
+    float degree = noise(vec2(timeElapsed*.1, tuv.x*tuv.y));
+
+    tuv.y *= 1./ratio;
+    tuv *= Rot(radians((degree-.5)*720.+180.));
+	tuv.y *= ratio;
+
     
-    float k1=.7;// size
-    float k2=3.;// shape
-    
-    // warp domains
-    vec2 uvA=uv*vec2(.69,.8);
-    uvA.x+=cos(uv.y*5.+timeElapsed)*.1;
-    vec2 uvB=uv*vec2(.7,.4);
-    uvB.x+=sin(uv.y*4.+timeElapsed)*.1;
-    vec2 uvC=uv*vec2(.6,.8);
-    uvC.y+=sin(uv.x*4.+timeElapsed)*.1;
-    vec2 uvD=uv*vec2(.2,.8);
-    uvD.y+=sin(uv.x*4.+timeElapsed)*.1;
-    vec2 uvE=uv*vec2(-1.1,.9);
-    uvE.x+=sin(uv.y*4.+timeElapsed)*.1;
-    
-    // create shaped gradient
-    float dA=max(0.,1.-pow(distance(uvA,A)/k1,k2));
-    float dB=max(0.,1.-pow(distance(uvB,B)/k1,k2));
-    float dC=max(0.,1.-pow(distance(uvC,C)/k1,k2));
-    float dD=max(0.,1.-pow(distance(uvD,D)/k1,k2));
-    float dE=max(0.,1.-pow(distance(uvE,E)/k1,k2));
-    
-    // smooth in, out
-    dA=smoothstep(0.,1.,dA);
-    dB=smoothstep(0.,1.,dB);
-    dC=smoothstep(0.,1.,dC);
-    dD=smoothstep(0.,1.,dD);
-    dE=smoothstep(0.,1.,dE);
-    
-    // define colors
-    
-    vec3 colorA=vec3(0.5882, 0.9294, 1.0);
-    vec3 colorB=vec3(0.749, 0.7176, 0.9765);
-    vec3 colorC=vec3(0.6235, 1.0, 0.8941);
-    vec3 colorD=vec3(1.0, 0.7059, 0.8157);
-    vec3 colorE=vec3(0.6039, 0.7804, 1.0);
-    
-    vec3 vanta=vec3(0.3647, 1.0, 0.6941);
+    // Wave warp with sin
+    float frequency = 5.;
+    float amplitude = 30.;
+    float speed = timeElapsed * .75;
+    tuv.x += sin(tuv.y*frequency+speed)/amplitude;
+   	tuv.y += sin(tuv.x*frequency*1.5+speed)/(amplitude*.5);
     
     
-    // lay in color blobs
-    vec3 color=vec3(0.7804, 0.7804, 0.7804);
-    color=mix(color,colorA,dA);
-    color=mix(color,colorB,dC);
-    color=mix(color,colorC,dB);
-    color=mix(color,colorD,dD);
-    color=mix(color,colorE,dE);
+    // draw the image
+    vec3 layer1 = mix(colorA, colorB, S(-.3, .2, (tuv*Rot(radians(-5.))).x));
     
-    // add noise
-    color+=vec3(
+    vec3 layer2 = mix(colorC, colorD, S(-.3, .2, (tuv*Rot(radians(-5.))).x));
+    
+    vec3 finalComp = mix(layer1, layer2, S(.5, -.3, tuv.y));
+    
+    vec3 col = finalComp;
+    
+    col +=vec3(
         random1f(uv),
         random1f(uv+1.),
         random1f(uv+2.)
     )*.2;
     
-    // Output to screen
-    fragColor=vec4(color,1.);
+    fragColor = vec4(col,1.0);
 }
