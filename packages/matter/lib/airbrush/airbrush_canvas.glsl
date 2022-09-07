@@ -1,5 +1,5 @@
 #version 320 es
-#define S(a,b,t) smoothstep(a,b,t)
+#define S(a,b,t)smoothstep(a,b,t)
 
 precision highp float;
 
@@ -13,7 +13,7 @@ layout(location=4)uniform vec3 colorC;
 layout(location=5)uniform vec3 colorD;
 
 float random1f(vec2 st){
-    return fract(sin(dot(st.xy, vec2(22.9878, 178.233))) * 93758.5453123);
+    return fract(sin(dot(st.xy,vec2(22.9878,178.233)))*93758.5453123);
 }
 
 mat2 Rot(float a)
@@ -40,47 +40,42 @@ float noise(in vec2 p)
     dot(-1.+2.*hash(i+vec2(1.,0.)),f-vec2(1.,0.)),u.x),
     mix(dot(-1.+2.*hash(i+vec2(0.,1.)),f-vec2(0.,1.)),
     dot(-1.+2.*hash(i+vec2(1.,1.)),f-vec2(1.,1.)),u.x),u.y);
-    return .5+.5*n;
+    return.5+.5*n;
 }
 
 void main(){
-
-    vec2 uv = gl_FragCoord.xy/size.xy;
-    float ratio = size.x / size.y;
-
-    vec2 tuv = uv;
-    tuv -= .5;
-
+    
+    vec2 uv=gl_FragCoord.xy/size.xy;
+    float ratio=size.x/size.y;
+    
+    vec2 tuv=uv-.5;
+    
     // rotate with Noise
-    float degree = noise(vec2(timeElapsed*.1, tuv.x*tuv.y));
-
-    tuv.y *= 1./ratio;
-    tuv *= Rot(radians((degree-.5)*720.+180.));
-	tuv.y *= ratio;
-
+    float degree=noise(vec2(timeElapsed*.1,tuv.x*tuv.y));
+    
+    tuv.y*=1./ratio;
+    tuv*=Rot(radians((degree-.5)*720.+180.));
+    tuv.y*=ratio;
     
     // Wave warp with sin
-    float frequency = 5.;
-    float amplitude = 30.;
-    float speed = timeElapsed * .75;
-    tuv.x += sin(tuv.y*frequency+speed)/amplitude;
-   	tuv.y += sin(tuv.x*frequency*1.5+speed)/(amplitude*.5);
-    
+    float frequency=5.;
+    float amplitude=30.;
+    float speed=timeElapsed*.75;
+    tuv.x+=sin(tuv.y*frequency+speed)/amplitude;
+    tuv.y+=sin(tuv.x*frequency*1.5+speed)/(amplitude*.5);
     
     // draw the image
-    vec3 layer1 = mix(colorA, colorB, S(-.3, .2, (tuv*Rot(radians(-5.))).x));
+    vec3 layer1=mix(colorA,colorB,S(-.3,.2,(tuv*Rot(radians(-5.))).x));
     
-    vec3 layer2 = mix(colorC, colorD, S(-.3, .2, (tuv*Rot(radians(-5.))).x));
+    vec3 layer2=mix(colorC,colorD,S(-.3,.2,(tuv*Rot(radians(-5.))).x));
     
-    vec3 finalComp = mix(layer1, layer2, S(.5, -.3, tuv.y));
+    vec3 comp=mix(layer1,layer2,S(.5,-.3,tuv.y));
     
-    vec3 col = finalComp;
-    
-    col +=vec3(
+    comp+=vec3(
         random1f(uv),
         random1f(uv+1.),
         random1f(uv+2.)
     )*.2;
     
-    fragColor = vec4(col,1.0);
+    fragColor=vec4(comp,1.);
 }

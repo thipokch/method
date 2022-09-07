@@ -13,42 +13,42 @@ class Content {
 
   static const a = Presentation(
     seed: 1800.0,
-    colorA: Color.fromARGB(255, 230, 212, 224),
-    colorB: Color.fromARGB(255, 241, 248, 204),
-    colorC: Color.fromARGB(255, 232, 166, 182),
-    colorD: Color.fromARGB(255, 166, 168, 233),
+    colorLighter: Color.fromARGB(255, 247, 246, 202),
+    colorLight: Color.fromARGB(255, 230, 212, 224),
+    colorDark: Color.fromARGB(255, 232, 166, 182),
+    colorDarker: Color.fromARGB(255, 149, 152, 238),
   );
 
   static const b = Presentation(
     seed: 400.0,
-    colorA: Color.fromARGB(255, 222, 224, 102),
-    colorB: Color.fromARGB(255, 232, 119, 050),
-    colorC: Color.fromARGB(255, 230, 157, 063),
-    colorD: Color.fromARGB(255, 237, 90, 49),
+    colorLighter: Color.fromARGB(255, 222, 224, 102),
+    colorLight: Color.fromARGB(255, 230, 157, 063),
+    colorDark: Color.fromARGB(255, 232, 119, 050),
+    colorDarker: Color.fromARGB(255, 237, 90, 49),
   );
 
   static const c = Presentation(
     seed: 2048.0,
-    colorA: Color.fromARGB(255, 198, 181, 061),
-    colorB: Color.fromARGB(255, 151, 188, 059),
-    colorC: Color.fromARGB(255, 087, 092, 070),
-    colorD: Color.fromARGB(255, 147, 188, 059),
+    colorLighter: Color.fromARGB(255, 198, 181, 061),
+    colorLight: Color.fromARGB(255, 151, 188, 059),
+    colorDark: Color.fromARGB(255, 087, 092, 070),
+    colorDarker: Color.fromARGB(255, 147, 188, 059),
   );
 
   static const d = Presentation(
     seed: 8192.0,
-    colorA: Color.fromARGB(255, 185, 142, 200),
-    colorB: Color.fromARGB(255, 176, 218, 255),
-    colorC: Color.fromARGB(255, 142, 064, 175),
-    colorD: Color.fromARGB(255, 207, 075, 135),
+    colorLighter: Color.fromARGB(255, 185, 142, 200),
+    colorLight: Color.fromARGB(255, 176, 218, 255),
+    colorDark: Color.fromARGB(255, 142, 064, 175),
+    colorDarker: Color.fromARGB(255, 207, 075, 135),
   );
 
   static const e = Presentation(
     seed: 9064.0,
-    colorA: Color.fromARGB(255, 150, 162, 255),
-    colorB: Color.fromARGB(255, 218, 203, 185),
-    colorC: Color.fromARGB(255, 150, 162, 255),
-    colorD: Color.fromARGB(255, 195, 255, 238),
+    colorLighter: Color.fromARGB(255, 218, 203, 185),
+    colorLight: Color.fromARGB(255, 195, 255, 238),
+    colorDark: Color.fromARGB(255, 150, 162, 255),
+    colorDarker: Color.fromARGB(255, 150, 162, 255),
   );
 
   //
@@ -175,7 +175,7 @@ class Content {
   //
 
   static const exerciseNote = Exercise(
-    icon: "",
+    icon: "assets/emoji_black_nib.png",
     name: "Quick Notes",
     description: "Space for messy thoughts.",
     definitions: [taskNote],
@@ -187,7 +187,7 @@ class Content {
   );
 
   static const exerciseMood = Exercise(
-    icon: "",
+    icon: "assets/emoji_performing_arts.png",
     name: "Mood Check",
     description: "Uncover unmet needs.",
     definitions: [
@@ -203,7 +203,7 @@ class Content {
   );
 
   static const exerciseThought = Exercise(
-    icon: "",
+    icon: "assets/emoji_thought_balloon.png",
     name: "Thought Check",
     description: "Spot patterns and fallacies.",
     definitions: [
@@ -219,7 +219,7 @@ class Content {
   );
 
   static const exerciseAct = Exercise(
-    icon: "",
+    icon: "assets/emoji_clapper_board.png",
     name: "Act Check",
     description: "Respond, don't react.",
     definitions: [

@@ -12,9 +12,9 @@ abstract class Present {
 class Presentation with _$Presentation {
   const factory Presentation({
     required double seed,
-    required Color colorA,
-    required Color colorB,
-    required Color colorC,
-    required Color colorD,
+    required Color colorLighter,
+    required Color colorLight,
+    required Color colorDark,
+    required Color colorDarker,
   }) = _Presentation;
 }

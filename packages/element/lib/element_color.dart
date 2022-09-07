@@ -145,7 +145,7 @@ class ElementColor {
       mdRefPaletteNeutral90; /* Inverse surface */
   static const mdSysColorInverseOnSurfaceDark =
       mdRefPaletteNeutral20; /* Inverse on surface */
-  static const mdSysColorBackgroundDark =
+  static const mdSyscolorLightackgroundDark =
       mdRefPaletteNeutral10; /* Background */
   static const mdSysColorOnBackgroundDark =
       mdRefPaletteNeutral90; /* On background */
@@ -193,7 +193,7 @@ class ElementColor {
       mdRefPaletteNeutral20; /* Inverse surface */
   static const mdSysColorInverseOnSurfaceLight =
       mdRefPaletteNeutral95; /* Inverse on surface */
-  static const mdSysColorBackgroundLight =
+  static const mdSyscolorLightackgroundLight =
       mdRefPaletteNeutral99; /* Background */
   static const mdSysColorOnBackgroundLight =
       mdRefPaletteNeutral10; /* On background */
@@ -238,8 +238,8 @@ class ElementColor {
       mdSysColorInverseSurfaceLight; /* Inverse surface */
   static const mdSysColorInverseOnSurface =
       mdSysColorInverseOnSurfaceLight; /* Inverse on surface */
-  static const mdSysColorBackground =
-      mdSysColorBackgroundLight; /* Background */
+  static const mdSyscolorLightackground =
+      mdSyscolorLightackgroundLight; /* Background */
   static const mdSysColorOnBackground =
       mdSysColorOnBackgroundLight; /* On background */
   static const mdSysColorOutline = mdSysColorOutlineLight; /* Outline */
@@ -282,7 +282,7 @@ class ElementColor {
     errorContainer: ElementColor.mdSysColorErrorContainerLight,
     onErrorContainer: ElementColor.mdSysColorOnErrorContainerLight,
     outline: ElementColor.mdSysColorOutlineLight,
-    background: ElementColor.mdSysColorBackgroundLight,
+    background: ElementColor.mdSyscolorLightackgroundLight,
     onBackground: ElementColor.mdSysColorOnBackgroundLight,
     surface: ElementColor.mdSysColorSurfaceLight,
     onSurface: ElementColor.mdSysColorOnSurfaceLight,
@@ -314,7 +314,7 @@ class ElementColor {
     errorContainer: ElementColor.mdSysColorErrorContainerDark,
     onErrorContainer: ElementColor.mdSysColorOnErrorContainerDark,
     outline: ElementColor.mdSysColorOutlineDark,
-    background: ElementColor.mdSysColorBackgroundDark,
+    background: ElementColor.mdSyscolorLightackgroundDark,
     onBackground: ElementColor.mdSysColorOnBackgroundDark,
     surface: ElementColor.mdSysColorSurfaceDark,
     onSurface: ElementColor.mdSysColorOnSurfaceDark,

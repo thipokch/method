@@ -10,11 +10,11 @@ import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:matter/airbrush/airbrush_painter.dart';
 import 'package:matter/button/button_filled.dart';
 import 'package:method/view/exercise/exercise_editor.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
-import '../../art/noise.dart';
 import '../task/task_component.dart';
 
 class ExercisePage extends StatefulWidget {
@@ -68,26 +68,30 @@ class ExercisePageState extends State<ExercisePage>
                   Theme(
                     data: Theme.of(context).copyWith(
                       colorScheme: Theme.of(context).colorScheme.copyWith(
-                            primary:
-                                HSLColor.fromColor(exercise.presentation.colorC)
-                                    .withLightness(0.25)
-                                    .withSaturation(0.45)
-                                    .toColor(),
-                            onPrimary:
-                                HSLColor.fromColor(exercise.presentation.colorC)
-                                    .withLightness(0.95)
-                                    .withSaturation(0.75)
-                                    .toColor(),
-                            onBackground:
-                                HSLColor.fromColor(exercise.presentation.colorC)
-                                    .withLightness(0.25)
-                                    .withSaturation(0.45)
-                                    .toColor(),
-                            onSurfaceVariant:
-                                HSLColor.fromColor(exercise.presentation.colorC)
-                                    .withLightness(0.15)
-                                    .withSaturation(0.45)
-                                    .toColor(),
+                            primary: HSLColor.fromColor(
+                              exercise.presentation.colorDark,
+                            )
+                                .withLightness(0.25)
+                                .withSaturation(0.45)
+                                .toColor(),
+                            onPrimary: HSLColor.fromColor(
+                              exercise.presentation.colorDark,
+                            )
+                                .withLightness(0.95)
+                                .withSaturation(0.75)
+                                .toColor(),
+                            onBackground: HSLColor.fromColor(
+                              exercise.presentation.colorDark,
+                            )
+                                .withLightness(0.25)
+                                .withSaturation(0.45)
+                                .toColor(),
+                            onSurfaceVariant: HSLColor.fromColor(
+                              exercise.presentation.colorDark,
+                            )
+                                .withLightness(0.15)
+                                .withSaturation(0.45)
+                                .toColor(),
                           ),
                     ),
                     child: SliverAppBar(
@@ -103,20 +107,15 @@ class ExercisePageState extends State<ExercisePage>
                       },
                       flexibleSpace: FlexibleSpaceBar(
                         expandedTitleScale: 1.0,
-                        background: Noise(
-                          // frame: Content.a.seed,
-                          // colorA: Content.a.colorA,
-                          // colorB: Content.a.colorB,
-                          // colorC: Content.a.colorC,
-                          // colorD: Content.a.colorD,
-                          frame: exercise.presentation.seed,
-                          colorA: exercise.presentation.colorA,
-                          // colorB: exercise.presentation.colorB,
-                          // colorC: exercise.presentation.colorC,
-                          // colorD: colorScheme.surfaceVariant,
-                          colorB: colorScheme.surfaceVariant,
-                          colorC: colorScheme.surfaceVariant,
-                          colorD: exercise.presentation.colorD,
+                        background: CustomPaint(
+                          painter: AirbrushPainter(
+                            context: context,
+                            frame: exercise.presentation.seed,
+                            colorLight: exercise.presentation.colorLight,
+                            colorDark: exercise.presentation.colorDark,
+                            colorLighter: exercise.presentation.colorLighter,
+                            colorDarker: exercise.presentation.colorDarker,
+                          ),
                         ),
                         title: Builder(
                           builder: (context) {

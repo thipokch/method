@@ -5,7 +5,7 @@ import 'package:element/element_scale.dart';
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:method/art/noise.dart';
+import 'package:matter/airbrush/airbrush_image.dart';
 import 'package:method/view/exercise/exercise_page.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
@@ -38,7 +38,6 @@ class ExerciseComponentState extends State<ExerciseComponent> {
         child: BlocBuilder<ExerciseBloc, ExerciseState>(
           builder: (context, state) {
             final exercise = state.exercise;
-            final colorScheme = Theme.of(context).colorScheme;
             final textTheme = Theme.of(context).textTheme;
 
             return Hero(
@@ -71,19 +70,50 @@ class ExerciseComponentState extends State<ExerciseComponent> {
                       );
                     },
                     child: Stack(
-                      alignment: Alignment.center,
+                      alignment: Alignment.bottomRight,
                       children: [
-                        Noise(
-                          // frame: exercise.presentation.seed,
-                          frame: 2048.0,
-                          colorA: exercise.presentation.colorA,
-                          // colorB: exercise.presentation.colorB,
-                          // colorC: exercise.presentation.colorC,
-                          // colorD: colorScheme.surfaceVariant,
-                          colorB: colorScheme.surfaceVariant,
-                          colorC: colorScheme.surfaceVariant,
-                          colorD: exercise.presentation.colorD,
-                          height: MediaQuery.of(context).size.width,
+                        // SizedBox.expand(
+                        //   child: CustomPaint(
+                        //     painter: AirbrushPainter(
+                        //       context: context,
+                        //       frame: exercise.presentation.seed * 2,
+                        //       // frame: 2048.0 * 2,
+                        //       colorLighter: exercise.presentation.colorLighter,
+                        //       colorLight: exercise.presentation.colorLight,
+                        //       colorDark: exercise.presentation.colorDark,
+                        //       colorDarker: exercise.presentation.colorDarker,
+                        //       // colorDarker: colorScheme.surfaceVariant,
+                        //     ),
+                        //   ),
+                        // ),
+                        SizedBox.expand(
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: HSLColor.fromColor(
+                                exercise.presentation.colorLight,
+                              )
+                                  .withLightness(0.95)
+                                  .withSaturation(0.35)
+                                  .toColor(),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 100,
+                          width: 100,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 20),
+                            child: AirbrushImage(
+                              assetString: exercise.icon,
+                              frame: exercise.presentation.seed,
+                              colorLighter: exercise.presentation.colorLighter,
+                              colorLight: exercise.presentation.colorLight,
+                              colorDark: exercise.presentation.colorDark,
+                              colorDarker: exercise.presentation.colorDarker,
+                              height: 100,
+                              width: 100,
+                            ),
+                          ),
                         ),
                         ListTile(
                           title: Text(
@@ -91,7 +121,7 @@ class ExerciseComponentState extends State<ExerciseComponent> {
                             style: textTheme.titleMedium!.copyWith(
                               fontWeight: FontWeight.w600,
                               color: HSLColor.fromColor(
-                                exercise.presentation.colorC,
+                                exercise.presentation.colorDarker,
                               )
                                   .withLightness(0.25)
                                   .withSaturation(0.35)
@@ -102,7 +132,7 @@ class ExerciseComponentState extends State<ExerciseComponent> {
                             exercise.description,
                             style: textTheme.labelMedium!.copyWith(
                               color: HSLColor.fromColor(
-                                exercise.presentation.colorC,
+                                exercise.presentation.colorDarker,
                               )
                                   .withLightness(0.25)
                                   .withSaturation(0.25)
