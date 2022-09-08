@@ -10,6 +10,7 @@ import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:matter/airbrush/airbrush_image.dart';
 import 'package:matter/airbrush/airbrush_painter.dart';
 import 'package:matter/button/button_filled.dart';
 import 'package:method/view/exercise/exercise_editor.dart';
@@ -18,7 +19,12 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import '../task/task_component.dart';
 
 class ExercisePage extends StatefulWidget {
-  const ExercisePage({super.key});
+  final ImageShader? imageShader;
+
+  const ExercisePage({
+    super.key,
+    this.imageShader,
+  });
 
   @override
   State<StatefulWidget> createState() => ExercisePageState();
@@ -69,25 +75,25 @@ class ExercisePageState extends State<ExercisePage>
                     data: Theme.of(context).copyWith(
                       colorScheme: Theme.of(context).colorScheme.copyWith(
                             primary: HSLColor.fromColor(
-                              exercise.presentation.colorDark,
+                              exercise.presentation.colorDarker,
                             )
                                 .withLightness(0.25)
                                 .withSaturation(0.45)
                                 .toColor(),
                             onPrimary: HSLColor.fromColor(
-                              exercise.presentation.colorDark,
+                              exercise.presentation.colorDarker,
                             )
                                 .withLightness(0.95)
                                 .withSaturation(0.75)
                                 .toColor(),
                             onBackground: HSLColor.fromColor(
-                              exercise.presentation.colorDark,
+                              exercise.presentation.colorDarker,
                             )
                                 .withLightness(0.25)
                                 .withSaturation(0.45)
                                 .toColor(),
                             onSurfaceVariant: HSLColor.fromColor(
-                              exercise.presentation.colorDark,
+                              exercise.presentation.colorDarker,
                             )
                                 .withLightness(0.15)
                                 .withSaturation(0.45)
@@ -140,6 +146,40 @@ class ExercisePageState extends State<ExercisePage>
                             return Column(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
+                                Opacity(
+                                  opacity: 1.0 -
+                                      ElementMotion.easeOutExpo.transform(t),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(
+                                      ElementScale.spaceS,
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(32.0),
+                                      child: SizedBox(
+                                        height: 125 * (1.0 - t),
+                                        width: 125 * (1.0 - t),
+                                        child: CustomPaint(
+                                          painter: AirbrushPainter(
+                                            // assetString: exercise.icon,
+                                            context: context,
+                                            imageShader: widget.imageShader,
+                                            frame: exercise.presentation.seed,
+                                            colorLighter:
+                                                exercise.presentation.colorDark,
+                                            colorLight: exercise
+                                                .presentation.colorDarker,
+                                            colorDark: exercise
+                                                .presentation.colorLighter,
+                                            colorDarker: exercise
+                                                .presentation.colorLight,
+                                            height: 125 * (1.0 - t),
+                                            width: 125 * (1.0 - t),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                                 DefaultTextStyleTransition(
                                   style: TextStyleTween(
                                     begin: textTheme.headlineSmall!.copyWith(

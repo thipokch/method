@@ -11,31 +11,31 @@ class Content {
   // PRESENTS
   //
 
-  static const a = Presentation(
+  static const pink = Presentation(
     seed: 1800.0,
-    colorLighter: Color.fromARGB(255, 247, 246, 202),
-    colorLight: Color.fromARGB(255, 230, 212, 224),
+    colorLighter: Color.fromARGB(255, 242, 242, 204),
+    colorLight: Color.fromARGB(255, 204, 177, 195),
     colorDark: Color.fromARGB(255, 232, 166, 182),
     colorDarker: Color.fromARGB(255, 149, 152, 238),
   );
 
-  static const b = Presentation(
+  static const yellow = Presentation(
     seed: 400.0,
     colorLighter: Color.fromARGB(255, 222, 224, 102),
-    colorLight: Color.fromARGB(255, 230, 157, 063),
+    colorLight: Color.fromARGB(255, 255, 191, 106),
     colorDark: Color.fromARGB(255, 232, 119, 050),
     colorDarker: Color.fromARGB(255, 237, 90, 49),
   );
 
   static const c = Presentation(
     seed: 2048.0,
-    colorLighter: Color.fromARGB(255, 198, 181, 061),
+    colorLighter: Color.fromARGB(255, 219, 226, 143),
     colorLight: Color.fromARGB(255, 151, 188, 059),
     colorDark: Color.fromARGB(255, 087, 092, 070),
     colorDarker: Color.fromARGB(255, 147, 188, 059),
   );
 
-  static const d = Presentation(
+  static const purple = Presentation(
     seed: 8192.0,
     colorLighter: Color.fromARGB(255, 185, 142, 200),
     colorLight: Color.fromARGB(255, 176, 218, 255),
@@ -44,10 +44,10 @@ class Content {
   );
 
   static const e = Presentation(
-    seed: 9064.0,
-    colorLighter: Color.fromARGB(255, 218, 203, 185),
-    colorLight: Color.fromARGB(255, 195, 255, 238),
-    colorDark: Color.fromARGB(255, 150, 162, 255),
+    seed: 4096.0,
+    colorLighter: Color.fromARGB(255, 184, 229, 231),
+    colorLight: Color.fromARGB(255, 150, 162, 255),
+    colorDark: Color.fromARGB(255, 218, 203, 185),
     colorDarker: Color.fromARGB(255, 150, 162, 255),
   );
 
@@ -128,7 +128,7 @@ class Content {
   );
 
   static const taskEmotion = Task.converge(
-    icon: "",
+    icon: "🎭",
     name: "Identify Emotion",
     description: "Express how you're feeling...",
     definitions: <TaskDefinition>[
@@ -149,8 +149,8 @@ class Content {
   );
 
   static const taskNeed = Task.converge(
-    icon: "",
-    name: "Identify Emotion",
+    icon: "❤️‍🔥",
+    name: "Identify Needs",
     description: "Express how you're feeling...",
     definitions: <TaskDefinition>[],
     collectionSlug: "",
@@ -161,7 +161,7 @@ class Content {
 
   static const taskAction = Task.diverge(
     icon: "",
-    name: "Identify Emotion",
+    name: "Identify Action",
     description: "Express how you're feeling...",
     definitions: <TaskDefinition>[],
     collectionSlug: "",
@@ -175,7 +175,7 @@ class Content {
   //
 
   static const exerciseNote = Exercise(
-    icon: "assets/emoji_black_nib.png",
+    icon: "assets/emoji_spiral_notepad.png",
     name: "Quick Notes",
     description: "Space for messy thoughts.",
     definitions: [taskNote],
@@ -183,11 +183,11 @@ class Content {
     hierarchyPath: "",
     id: "",
     uuid: "",
-    presentation: a,
+    presentation: pink,
   );
 
   static const exerciseMood = Exercise(
-    icon: "assets/emoji_performing_arts.png",
+    icon: "assets/emoji_moai.png",
     name: "Mood Check",
     description: "Uncover unmet needs.",
     definitions: [
@@ -199,11 +199,11 @@ class Content {
     hierarchyPath: "",
     id: "",
     uuid: "",
-    presentation: b,
+    presentation: yellow,
   );
 
   static const exerciseThought = Exercise(
-    icon: "assets/emoji_thought_balloon.png",
+    icon: "assets/emoji_magnifying_glass_left.png",
     name: "Thought Check",
     description: "Spot patterns and fallacies.",
     definitions: [

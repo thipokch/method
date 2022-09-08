@@ -21,7 +21,7 @@ class AcknowlegementsPage extends MethodPage {
     super.controller,
   }) : super(
           key: key,
-          title: "Acknowledgement",
+          title: "Acknowledgements",
           child: const _PackagesList(),
         );
 }
