@@ -6,8 +6,13 @@ class ElementSymbol {
 
   static const IconData dismiss = FluentIcons.dismiss_24_regular;
   static const IconData dismissFilled = FluentIcons.dismiss_24_filled;
+  static const IconData dismissCircle = FluentIcons.dismiss_circle_24_regular;
+  static const IconData dismissCircleFilled =
+      FluentIcons.dismiss_circle_24_filled;
   static const IconData add = FluentIcons.add_24_regular;
   static const IconData addFilled = FluentIcons.add_24_filled;
+  static const IconData addCircle = FluentIcons.add_circle_24_regular;
+  static const IconData addCircleFilled = FluentIcons.add_circle_24_filled;
   static const IconData apps = FluentIcons.grid_24_regular;
   static const IconData appsFilled = FluentIcons.grid_24_filled;
   static const IconData checkmark = FluentIcons.checkmark_24_regular;
@@ -46,6 +51,28 @@ class ElementSymbol {
   static const IconData chevronRight = FluentIcons.chevron_right_24_regular;
   static const IconData chevronUp = FluentIcons.chevron_up_24_regular;
   static const IconData chevronDown = FluentIcons.chevron_down_24_regular;
+
+  static const IconData chevronCircleBack = chevronCircleLeft;
+  static const IconData chevronCircleForward = chevronCircleRight;
+  static const IconData chevronCircleLeft =
+      FluentIcons.chevron_circle_left_24_regular;
+  static const IconData chevronCircleRight =
+      FluentIcons.chevron_circle_right_24_regular;
+  static const IconData chevronCircleUp =
+      FluentIcons.chevron_circle_up_24_regular;
+  static const IconData chevronCircleDown =
+      FluentIcons.chevron_circle_down_24_regular;
+
+  static const IconData chevronCircleBackFilled = chevronCircleLeftFilled;
+  static const IconData chevronCircleForwardFilled = chevronCircleRightFilled;
+  static const IconData chevronCircleLeftFilled =
+      FluentIcons.chevron_circle_left_24_filled;
+  static const IconData chevronCircleRightFilled =
+      FluentIcons.chevron_circle_right_24_filled;
+  static const IconData chevronCircleUpFilled =
+      FluentIcons.chevron_circle_up_24_filled;
+  static const IconData chevronCircleDownFilled =
+      FluentIcons.chevron_circle_down_24_filled;
 
   static const IconData person = FluentIcons.person_24_regular;
   static const IconData personFilled = FluentIcons.person_24_filled;

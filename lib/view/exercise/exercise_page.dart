@@ -102,8 +102,9 @@ class ExercisePageState extends State<ExercisePage>
                     ),
                     child: SliverAppBar(
                       leading: IconButton(
-                        icon: const Icon(ElementSymbol.chevronBack),
+                        icon: const Icon(ElementSymbol.chevronCircleBackFilled),
                         onPressed: () => Navigator.of(context).pop(),
+                        iconSize: 32.00,
                       ),
                       pinned: true,
                       expandedHeight: 440,

@@ -26,10 +26,24 @@ class ExerciseComponent extends StatefulWidget {
 
 class ExerciseComponentState extends State<ExerciseComponent> {
   ImageShader? imageShader;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) => BlocProvider(
         create: (context) {
           final bloc = ExerciseBloc(exercise: widget.exercise);
+
+          loadEmojiShader(bloc.state.exercise.icon).then(
+            (value) {
+              setState(() {
+                imageShader = value;
+              });
+            },
+          );
 
           if (widget.session != null) {
             bloc.add(ExerciseEvent.loadSession(session: widget.session!));
@@ -41,14 +55,6 @@ class ExerciseComponentState extends State<ExerciseComponent> {
           builder: (context, state) {
             final exercise = state.exercise;
             final textTheme = Theme.of(context).textTheme;
-
-            loadImageShader(exercise.icon).then(
-              (value) {
-                setState(() {
-                  imageShader = value;
-                });
-              },
-            );
 
             return Hero(
               tag: exercise.name,

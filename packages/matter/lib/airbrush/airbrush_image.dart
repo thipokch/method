@@ -1,3 +1,5 @@
+import 'package:emoji/constants.dart';
+import 'package:emoji/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:matter/airbrush/airbrush_painter.dart';
@@ -55,6 +57,28 @@ class AirbrushImage extends StatelessWidget {
 /// Loads JPEG image and the [FragmentProgram]
 Future<ImageShader> loadImageShader(String assetString) async {
   final asset = await rootBundle.load(assetString);
+  final image = await decodeImageFromList(asset.buffer.asUint8List());
+
+  return ImageShader(
+    image,
+    // Specify how image repetition is handled for x and y dimension
+    TileMode.repeated,
+    TileMode.repeated,
+    // Transformation matrix (identity matrix = no transformation)
+    Matrix4.identity().storage,
+  );
+}
+
+Future<ImageShader> loadEmojiShader(String emoji) async {
+  var cleanEmoji = '';
+  emoji.splitMapJoin(
+    regex,
+    onMatch: (m) => cleanEmoji = m.input.substring(m.start, m.end),
+  );
+  final unicode = emojiToUnicode(cleanEmoji);
+
+  final asset =
+      await rootBundle.load("packages/emoji/assets/webp/$unicode.webp");
   final image = await decodeImageFromList(asset.buffer.asUint8List());
 
   return ImageShader(

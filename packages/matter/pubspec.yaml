@@ -7,6 +7,7 @@ environment:
 
 dependencies:
   element:
+  emoji:
   flutter:
     sdk: flutter
     

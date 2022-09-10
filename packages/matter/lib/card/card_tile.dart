@@ -1,4 +1,6 @@
 import 'package:element/element_scale.dart';
+import 'package:emoji/enums.dart';
+import 'package:emoji/twemoji_text.dart';
 import 'package:flutter/material.dart';
 
 class CardTile extends StatelessWidget {
@@ -29,9 +31,10 @@ class CardTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  emoji!,
-                  style: ElementScale.emojiL,
+                TwemojiText(
+                  text: emoji!,
+                  twemojiFormat: TwemojiFormat.webp,
+                  style: ElementScale.emojiXL,
                 ),
               ],
             )

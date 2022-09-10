@@ -66,8 +66,8 @@ class TaskEditorState extends State<TaskEditor> with TickerProviderStateMixin {
               AspectRatio(
                 aspectRatio: 1,
                 child: IconButton(
-                  icon: const Icon(ElementSymbol.dismiss),
-                  iconSize: 24,
+                  icon: const Icon(ElementSymbol.dismissCircleFilled),
+                  iconSize: 32,
                   onPressed: () => Navigator.of(context).pop(),
                   highlightColor: Colors.transparent,
                 ),

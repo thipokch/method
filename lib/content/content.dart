@@ -56,7 +56,7 @@ class Content {
   //
 
   static const taskNote = Task.linear(
-    icon: "✍️",
+    icon: "✏️",
     name: "",
     description: "",
     definitions: <TaskDefinition>[
@@ -76,9 +76,9 @@ class Content {
   );
 
   static const taskContext = Task.converge(
-    icon: "👁",
-    name: "Identify Context",
-    description: "Take in your surroundings.",
+    icon: "🌤️",
+    name: "Recount Context",
+    description: "What’s going on?",
     definitions: <TaskDefinition>[
       TaskDefinition.note(
         name: "What’s going on?",
@@ -97,9 +97,9 @@ class Content {
   );
 
   static const taskDistortion = Task.diverge(
-    icon: "",
-    name: "Identify Distortions",
-    description: "description",
+    icon: "🤡",
+    name: "Spot Distortions",
+    description: "Is it true?",
     definitions: <TaskDefinition>[],
     collectionSlug: "",
     hierarchyPath: "",
@@ -108,9 +108,9 @@ class Content {
   );
 
   static const taskCoreBelief = Task.converge(
-    icon: "",
-    name: "Identify Core Belief",
-    description: "If that were true what would it mean to you?",
+    icon: "🕷",
+    name: "Examine Core Belief",
+    description: "What if it's true?",
     definitions: <TaskDefinition>[
       TaskDefinition.note(
         name: "If that were true,\nwhat would it mean to you?",
@@ -128,9 +128,9 @@ class Content {
   );
 
   static const taskEmotion = Task.converge(
-    icon: "🎭",
-    name: "Identify Emotion",
-    description: "Express how you're feeling...",
+    icon: "🫦",
+    name: "Discern Sensations",
+    description: "How am I feeling?",
     definitions: <TaskDefinition>[
       TaskDefinition.note(
         name: "How am I feeling?",
@@ -150,8 +150,8 @@ class Content {
 
   static const taskNeed = Task.converge(
     icon: "❤️‍🔥",
-    name: "Identify Needs",
-    description: "Express how you're feeling...",
+    name: "Universal Needs",
+    description: "What's your body telling you?",
     definitions: <TaskDefinition>[],
     collectionSlug: "",
     hierarchyPath: "",
@@ -160,9 +160,9 @@ class Content {
   );
 
   static const taskAction = Task.diverge(
-    icon: "",
-    name: "Identify Action",
-    description: "Express how you're feeling...",
+    icon: "🎯",
+    name: "Set Intentions",
+    description: "What can you do?",
     definitions: <TaskDefinition>[],
     collectionSlug: "",
     hierarchyPath: "",
@@ -175,7 +175,7 @@ class Content {
   //
 
   static const exerciseNote = Exercise(
-    icon: "assets/emoji_spiral_notepad.png",
+    icon: "🗒",
     name: "Quick Notes",
     description: "Space for messy thoughts.",
     definitions: [taskNote],
@@ -187,13 +187,14 @@ class Content {
   );
 
   static const exerciseMood = Exercise(
-    icon: "assets/emoji_moai.png",
+    icon: "🗿",
     name: "Mood Check",
     description: "Uncover unmet needs.",
     definitions: [
       taskContext,
       taskEmotion,
       taskNeed,
+      taskAction,
     ],
     collectionSlug: "",
     hierarchyPath: "",
@@ -203,13 +204,14 @@ class Content {
   );
 
   static const exerciseThought = Exercise(
-    icon: "assets/emoji_magnifying_glass_left.png",
+    icon: "🔍",
     name: "Thought Check",
     description: "Spot patterns and fallacies.",
     definitions: [
       taskContext,
       taskCoreBelief,
-      // taskDistortion,
+      taskDistortion,
+      taskAction,
     ],
     collectionSlug: "",
     hierarchyPath: "",
@@ -219,13 +221,14 @@ class Content {
   );
 
   static const exerciseAct = Exercise(
-    icon: "assets/emoji_clapper_board.png",
+    icon: "🎬",
     name: "Act Check",
     description: "Respond, don't react.",
     definitions: [
       taskContext,
       taskNeed,
       taskDistortion,
+      taskAction,
     ],
     collectionSlug: "",
     hierarchyPath: "",
