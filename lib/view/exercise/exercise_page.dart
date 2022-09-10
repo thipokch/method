@@ -10,7 +10,6 @@ import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:matter/airbrush/airbrush_image.dart';
 import 'package:matter/airbrush/airbrush_painter.dart';
 import 'package:matter/button/button_filled.dart';
 import 'package:method/view/exercise/exercise_editor.dart';

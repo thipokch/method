@@ -6,10 +6,10 @@ import 'airbrush.dart';
 class AirbrushPainter extends CustomPainter {
   final BuildContext context;
   final double frame;
-  final Color colorLighter;
-  final Color colorLight;
-  final Color colorDark;
-  final Color colorDarker;
+  final Color? colorLighter;
+  final Color? colorLight;
+  final Color? colorDark;
+  final Color? colorDarker;
   ImageShader? imageShader;
   final double? height;
   final double? width;
@@ -29,7 +29,13 @@ class AirbrushPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final AirbrushFP fp = Airbrush.of(context)!;
-    final colors = [colorLighter, colorLight, colorDark, colorDarker];
+    final isGradient = colorLighter != null &&
+        colorLight != null &&
+        colorDark != null &&
+        colorDarker != null;
+
+    final colors =
+        isGradient ? [colorLighter, colorLight, colorDark, colorDarker] : [];
 
     final floatUniforms = Float32List.fromList([
       frame,
@@ -46,14 +52,19 @@ class AirbrushPainter extends CustomPainter {
           .map((e) => e / 255.0),
     ]);
 
-    final shader = imageShader != null
-        ? fp.effectFp.shader(
+    final shader = imageShader == null
+        ? fp.gradientCanvasFp.shader(
             floatUniforms: floatUniforms,
-            samplerUniforms: [imageShader!],
           )
-        : fp.canvasFp.shader(
-            floatUniforms: floatUniforms,
-          );
+        : isGradient
+            ? fp.gradientEffectFP.shader(
+                floatUniforms: floatUniforms,
+                samplerUniforms: [imageShader!],
+              )
+            : fp.effectFP.shader(
+                floatUniforms: floatUniforms,
+                samplerUniforms: [imageShader!],
+              );
 
     canvas.drawRect(
       Rect.fromLTWH(0, 0, size.width, size.height),

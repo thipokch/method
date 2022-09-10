@@ -3,7 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:matter/airbrush/airbrush_effect_sprv.dart';
 
-import 'airbrush_canvas_sprv.dart';
+import 'airbrush_gradient_canvas_sprv.dart';
+import 'airbrush_gradient_effect_sprv.dart';
 
 class Airbrush extends StatelessWidget {
   final Widget child;
@@ -38,16 +39,17 @@ class _InheritedAirbrush extends InheritedWidget {
 }
 
 class AirbrushFP {
-  final FragmentProgram canvasFp;
-  final FragmentProgram effectFp;
+  final FragmentProgram gradientCanvasFp;
+  final FragmentProgram gradientEffectFP;
+  final FragmentProgram effectFP;
 
-  AirbrushFP(this.canvasFp, this.effectFp);
+  AirbrushFP(this.gradientCanvasFp, this.gradientEffectFP, this.effectFP);
 }
 
-/// Loads JPEG image and the [FragmentProgram]
 Future<AirbrushFP> _loadFp() async {
   return AirbrushFP(
-    await airbrushCanvasFragmentProgram(),
+    await airbrushGradientCanvasFragmentProgram(),
+    await airbrushGradientEffectFragmentProgram(),
     await airbrushEffectFragmentProgram(),
   );
 }

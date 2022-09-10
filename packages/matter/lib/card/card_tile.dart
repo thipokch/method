@@ -1,7 +1,5 @@
-import 'package:element/element_scale.dart';
-import 'package:emoji/enums.dart';
-import 'package:emoji/twemoji_text.dart';
 import 'package:flutter/material.dart';
+import 'package:matter/airbrush/airbrush_gradient_image.dart';
 
 class CardTile extends StatelessWidget {
   const CardTile({
@@ -27,17 +25,23 @@ class CardTile extends StatelessWidget {
     return ListTile(
       onTap: onTap,
       leading: emoji != null
-          ? Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                TwemojiText(
-                  text: emoji!,
-                  twemojiFormat: TwemojiFormat.webp,
-                  style: ElementScale.emojiXL,
-                ),
-              ],
+          ?
+          // Column(
+          //     mainAxisAlignment: MainAxisAlignment.center,
+          //     crossAxisAlignment: CrossAxisAlignment.center,
+          //     children: [
+          AirbrushEmoji(
+              emoji: emoji!,
+              width: 42,
+              height: 42,
             )
+          // TwemojiText(
+          //   text: emoji!,
+          //   twemojiFormat: TwemojiFormat.webp,
+          //   style: ElementScale.emojiXL,
+          // ),
+          //   ],
+          // )
           : null,
       title: Text(
         title,
