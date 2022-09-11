@@ -1,5 +1,6 @@
 // ignore_for_file: unused_import
 
+import 'package:card_swiper/card_swiper.dart';
 import 'package:component/exercise/exercise_bloc.dart';
 import 'package:element/element_motion.dart';
 import 'package:element/element_react.dart';

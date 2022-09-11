@@ -1,7 +1,6 @@
 import 'package:component/task/task_bloc.dart';
 import 'package:element/element_motion.dart';
 import 'package:element/element_scale.dart';
-import 'package:element/element_symbol.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -62,17 +61,6 @@ class TaskEditorState extends State<TaskEditor> with TickerProviderStateMixin {
             stretch: true,
             primary: false,
             expandedHeight: 220,
-            actions: [
-              AspectRatio(
-                aspectRatio: 1,
-                child: IconButton(
-                  icon: const Icon(ElementSymbol.dismissCircleFilled),
-                  iconSize: 32,
-                  onPressed: () => Navigator.of(context).pop(),
-                  highlightColor: Colors.transparent,
-                ),
-              ),
-            ],
             flexibleSpace: FlexibleSpaceBar(
               expandedTitleScale: 1.0,
               title: Builder(builder: (context) {
