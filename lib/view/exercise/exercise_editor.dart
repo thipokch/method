@@ -93,14 +93,17 @@ class ExerciseEditorState extends State<ExerciseEditor> {
 
 class ExerciseSwiperPlugin extends SwiperPlugin {
   @override
-  Widget build(BuildContext context, SwiperPluginConfig config) => Container(
-        alignment: Alignment.topRight,
-        height: MediaQuery.of(context).padding.top,
-        padding: const EdgeInsets.all(16),
-        child: IconButton(
-          icon: const Icon(ElementSymbol.dismissCircleFilled),
-          onPressed: () => Navigator.of(context).pop(),
-          iconSize: 32.00,
+  Widget build(BuildContext context, SwiperPluginConfig config) => SizedBox(
+        height: kToolbarHeight + MediaQuery.of(context).padding.top / 4,
+        child: NavigationToolbar(
+          trailing: AspectRatio(
+            aspectRatio: 1,
+            child: IconButton(
+              icon: const Icon(ElementSymbol.dismissCircleFilled),
+              onPressed: () => Navigator.of(context).pop(),
+              iconSize: 32.00,
+            ),
+          ),
         ),
       );
 }

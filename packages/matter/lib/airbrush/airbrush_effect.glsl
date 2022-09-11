@@ -13,6 +13,13 @@ float random1f(vec2 st){
     return fract(sin(dot(st.xy,vec2(222.9878,178.233)))*93758.5453123);
 }
 
+mat2 Rot(float a)
+{
+  float s=sin(a);
+  float c=cos(a);
+  return mat2(c,-s,s,c);
+}
+
 void main(){
     
     vec2 uv=gl_FragCoord.xy/size.xy;
