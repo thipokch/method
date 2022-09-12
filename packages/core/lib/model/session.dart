@@ -8,6 +8,7 @@ import '../abstract/locate.dart';
 import 'exercise.dart';
 
 part 'session.freezed.dart';
+part 'session.g.dart';
 
 @freezed
 class Session
@@ -17,7 +18,6 @@ class Session
   const factory Session({
     required final Exercise template,
     required final List<Entry> definitions,
-    required String collectionSlug,
     required String hierarchyPath,
     required String id,
     required String uuid,
@@ -34,9 +34,14 @@ class Session
       Session(
         template: template,
         definitions: definitions ?? [],
-        collectionSlug: collectionSlug,
         hierarchyPath: hierarchyPath,
         id: id,
         uuid: uuid ?? const Uuid().v4(),
       );
+
+  factory Session.fromJson(Map<String, dynamic> json) =>
+      _$SessionFromJson(json);
+
+  @override
+  String get collectionSlug => "session";
 }

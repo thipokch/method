@@ -14,15 +14,19 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Entry _$EntryFromJson(Map<String, dynamic> json) {
+  return _Entry.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Entry {
   Task get template => throw _privateConstructorUsedError;
   List<EntryDefinition> get definitions => throw _privateConstructorUsedError;
-  String get collectionSlug => throw _privateConstructorUsedError;
   String get hierarchyPath => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   String get uuid => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $EntryCopyWith<Entry> get copyWith => throw _privateConstructorUsedError;
 }
@@ -34,7 +38,6 @@ abstract class $EntryCopyWith<$Res> {
   $Res call(
       {Task template,
       List<EntryDefinition> definitions,
-      String collectionSlug,
       String hierarchyPath,
       String id,
       String uuid});
@@ -54,7 +57,6 @@ class _$EntryCopyWithImpl<$Res> implements $EntryCopyWith<$Res> {
   $Res call({
     Object? template = freezed,
     Object? definitions = freezed,
-    Object? collectionSlug = freezed,
     Object? hierarchyPath = freezed,
     Object? id = freezed,
     Object? uuid = freezed,
@@ -68,10 +70,6 @@ class _$EntryCopyWithImpl<$Res> implements $EntryCopyWith<$Res> {
           ? _value.definitions
           : definitions // ignore: cast_nullable_to_non_nullable
               as List<EntryDefinition>,
-      collectionSlug: collectionSlug == freezed
-          ? _value.collectionSlug
-          : collectionSlug // ignore: cast_nullable_to_non_nullable
-              as String,
       hierarchyPath: hierarchyPath == freezed
           ? _value.hierarchyPath
           : hierarchyPath // ignore: cast_nullable_to_non_nullable
@@ -103,7 +101,6 @@ abstract class _$$_EntryCopyWith<$Res> implements $EntryCopyWith<$Res> {
   $Res call(
       {Task template,
       List<EntryDefinition> definitions,
-      String collectionSlug,
       String hierarchyPath,
       String id,
       String uuid});
@@ -125,7 +122,6 @@ class __$$_EntryCopyWithImpl<$Res> extends _$EntryCopyWithImpl<$Res>
   $Res call({
     Object? template = freezed,
     Object? definitions = freezed,
-    Object? collectionSlug = freezed,
     Object? hierarchyPath = freezed,
     Object? id = freezed,
     Object? uuid = freezed,
@@ -139,10 +135,6 @@ class __$$_EntryCopyWithImpl<$Res> extends _$EntryCopyWithImpl<$Res>
           ? _value._definitions
           : definitions // ignore: cast_nullable_to_non_nullable
               as List<EntryDefinition>,
-      collectionSlug: collectionSlug == freezed
-          ? _value.collectionSlug
-          : collectionSlug // ignore: cast_nullable_to_non_nullable
-              as String,
       hierarchyPath: hierarchyPath == freezed
           ? _value.hierarchyPath
           : hierarchyPath // ignore: cast_nullable_to_non_nullable
@@ -160,17 +152,19 @@ class __$$_EntryCopyWithImpl<$Res> extends _$EntryCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Entry extends _Entry {
   const _$_Entry(
       {required this.template,
       required final List<EntryDefinition> definitions,
-      required this.collectionSlug,
       required this.hierarchyPath,
       required this.id,
       required this.uuid})
       : _definitions = definitions,
         super._();
+
+  factory _$_Entry.fromJson(Map<String, dynamic> json) =>
+      _$$_EntryFromJson(json);
 
   @override
   final Task template;
@@ -182,8 +176,6 @@ class _$_Entry extends _Entry {
   }
 
   @override
-  final String collectionSlug;
-  @override
   final String hierarchyPath;
   @override
   final String id;
@@ -192,7 +184,7 @@ class _$_Entry extends _Entry {
 
   @override
   String toString() {
-    return 'Entry(template: $template, definitions: $definitions, collectionSlug: $collectionSlug, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
+    return 'Entry(template: $template, definitions: $definitions, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
   }
 
   @override
@@ -204,19 +196,17 @@ class _$_Entry extends _Entry {
             const DeepCollectionEquality()
                 .equals(other._definitions, _definitions) &&
             const DeepCollectionEquality()
-                .equals(other.collectionSlug, collectionSlug) &&
-            const DeepCollectionEquality()
                 .equals(other.hierarchyPath, hierarchyPath) &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.uuid, uuid));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(template),
       const DeepCollectionEquality().hash(_definitions),
-      const DeepCollectionEquality().hash(collectionSlug),
       const DeepCollectionEquality().hash(hierarchyPath),
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(uuid));
@@ -225,24 +215,30 @@ class _$_Entry extends _Entry {
   @override
   _$$_EntryCopyWith<_$_Entry> get copyWith =>
       __$$_EntryCopyWithImpl<_$_Entry>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_EntryToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Entry extends Entry {
   const factory _Entry(
       {required final Task template,
       required final List<EntryDefinition> definitions,
-      required final String collectionSlug,
       required final String hierarchyPath,
       required final String id,
       required final String uuid}) = _$_Entry;
   const _Entry._() : super._();
 
+  factory _Entry.fromJson(Map<String, dynamic> json) = _$_Entry.fromJson;
+
   @override
   Task get template;
   @override
   List<EntryDefinition> get definitions;
-  @override
-  String get collectionSlug;
   @override
   String get hierarchyPath;
   @override

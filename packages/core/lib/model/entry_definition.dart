@@ -4,6 +4,7 @@ import '../abstract/identify.dart';
 import '../abstract/locate.dart';
 
 part 'entry_definition.freezed.dart';
+part 'entry_definition.g.dart';
 
 @freezed
 class EntryDefinition with _$EntryDefinition, Identify, Locate {
@@ -22,4 +23,13 @@ class EntryDefinition with _$EntryDefinition, Identify, Locate {
     required String id,
     required String uuid,
   }) = _Note;
+
+  @override
+  String get collectionSlug => map(
+        label: (_) => "label",
+        note: (_) => "note",
+      );
+
+  factory EntryDefinition.fromJson(Map<String, dynamic> json) =>
+      _$EntryDefinitionFromJson(json);
 }

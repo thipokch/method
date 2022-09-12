@@ -7,12 +7,11 @@ void main() {
       icon: "💫",
       description: "description",
       name: "name",
-      collectionSlug: "collectionSlug",
       hierarchyPath: "hierarchyPath",
     );
 
     expect(a.name, "name");
-    expect(a.collectionSlug, "collectionSlug");
+    expect(a.collectionSlug, "linear");
     expect(a.hierarchyPath, "hierarchyPath");
 
     expect(a.id, "name");
@@ -25,7 +24,6 @@ void main() {
       icon: "💫",
       name: "name",
       description: "description",
-      collectionSlug: "collectionSlug",
       hierarchyPath: "hierarchyPath",
     );
 
@@ -33,7 +31,6 @@ void main() {
       icon: "💫",
       name: "name",
       description: "description",
-      collectionSlug: "collectionSlug",
       hierarchyPath: "hierarchyPath",
       uuid: a.uuid,
     );
@@ -44,7 +41,6 @@ void main() {
       icon: "💫",
       name: "c",
       description: "description",
-      collectionSlug: "collectionSlug",
       hierarchyPath: "hierarchyPath",
       uuid: a.uuid,
     );
@@ -57,7 +53,6 @@ void main() {
       icon: "💫",
       name: "name",
       description: "description",
-      collectionSlug: "collectionSlug",
       hierarchyPath: "hierarchyPath",
     );
     Task a2 = a.copyWith();

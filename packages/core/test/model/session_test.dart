@@ -8,7 +8,6 @@ void main() {
       icon: "💫",
       description: "description",
       name: "name",
-      collectionSlug: "collectionSlug",
       hierarchyPath: "hierarchyPath",
     );
 
@@ -19,7 +18,6 @@ void main() {
       id: "id",
     );
 
-    expect(a.collectionSlug, "collectionSlug");
     expect(a.hierarchyPath, "hierarchyPath");
     expect(a.id, "id");
     expect(a.template, aTemplate);

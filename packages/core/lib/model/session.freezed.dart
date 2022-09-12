@@ -14,15 +14,19 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Session _$SessionFromJson(Map<String, dynamic> json) {
+  return _Session.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Session {
   Exercise get template => throw _privateConstructorUsedError;
   List<Entry> get definitions => throw _privateConstructorUsedError;
-  String get collectionSlug => throw _privateConstructorUsedError;
   String get hierarchyPath => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   String get uuid => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $SessionCopyWith<Session> get copyWith => throw _privateConstructorUsedError;
 }
@@ -34,7 +38,6 @@ abstract class $SessionCopyWith<$Res> {
   $Res call(
       {Exercise template,
       List<Entry> definitions,
-      String collectionSlug,
       String hierarchyPath,
       String id,
       String uuid});
@@ -54,7 +57,6 @@ class _$SessionCopyWithImpl<$Res> implements $SessionCopyWith<$Res> {
   $Res call({
     Object? template = freezed,
     Object? definitions = freezed,
-    Object? collectionSlug = freezed,
     Object? hierarchyPath = freezed,
     Object? id = freezed,
     Object? uuid = freezed,
@@ -68,10 +70,6 @@ class _$SessionCopyWithImpl<$Res> implements $SessionCopyWith<$Res> {
           ? _value.definitions
           : definitions // ignore: cast_nullable_to_non_nullable
               as List<Entry>,
-      collectionSlug: collectionSlug == freezed
-          ? _value.collectionSlug
-          : collectionSlug // ignore: cast_nullable_to_non_nullable
-              as String,
       hierarchyPath: hierarchyPath == freezed
           ? _value.hierarchyPath
           : hierarchyPath // ignore: cast_nullable_to_non_nullable
@@ -104,7 +102,6 @@ abstract class _$$_SessionCopyWith<$Res> implements $SessionCopyWith<$Res> {
   $Res call(
       {Exercise template,
       List<Entry> definitions,
-      String collectionSlug,
       String hierarchyPath,
       String id,
       String uuid});
@@ -126,7 +123,6 @@ class __$$_SessionCopyWithImpl<$Res> extends _$SessionCopyWithImpl<$Res>
   $Res call({
     Object? template = freezed,
     Object? definitions = freezed,
-    Object? collectionSlug = freezed,
     Object? hierarchyPath = freezed,
     Object? id = freezed,
     Object? uuid = freezed,
@@ -140,10 +136,6 @@ class __$$_SessionCopyWithImpl<$Res> extends _$SessionCopyWithImpl<$Res>
           ? _value._definitions
           : definitions // ignore: cast_nullable_to_non_nullable
               as List<Entry>,
-      collectionSlug: collectionSlug == freezed
-          ? _value.collectionSlug
-          : collectionSlug // ignore: cast_nullable_to_non_nullable
-              as String,
       hierarchyPath: hierarchyPath == freezed
           ? _value.hierarchyPath
           : hierarchyPath // ignore: cast_nullable_to_non_nullable
@@ -161,17 +153,19 @@ class __$$_SessionCopyWithImpl<$Res> extends _$SessionCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Session extends _Session {
   const _$_Session(
       {required this.template,
       required final List<Entry> definitions,
-      required this.collectionSlug,
       required this.hierarchyPath,
       required this.id,
       required this.uuid})
       : _definitions = definitions,
         super._();
+
+  factory _$_Session.fromJson(Map<String, dynamic> json) =>
+      _$$_SessionFromJson(json);
 
   @override
   final Exercise template;
@@ -183,8 +177,6 @@ class _$_Session extends _Session {
   }
 
   @override
-  final String collectionSlug;
-  @override
   final String hierarchyPath;
   @override
   final String id;
@@ -193,7 +185,7 @@ class _$_Session extends _Session {
 
   @override
   String toString() {
-    return 'Session(template: $template, definitions: $definitions, collectionSlug: $collectionSlug, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
+    return 'Session(template: $template, definitions: $definitions, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
   }
 
   @override
@@ -205,19 +197,17 @@ class _$_Session extends _Session {
             const DeepCollectionEquality()
                 .equals(other._definitions, _definitions) &&
             const DeepCollectionEquality()
-                .equals(other.collectionSlug, collectionSlug) &&
-            const DeepCollectionEquality()
                 .equals(other.hierarchyPath, hierarchyPath) &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.uuid, uuid));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(template),
       const DeepCollectionEquality().hash(_definitions),
-      const DeepCollectionEquality().hash(collectionSlug),
       const DeepCollectionEquality().hash(hierarchyPath),
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(uuid));
@@ -226,24 +216,30 @@ class _$_Session extends _Session {
   @override
   _$$_SessionCopyWith<_$_Session> get copyWith =>
       __$$_SessionCopyWithImpl<_$_Session>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_SessionToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Session extends Session {
   const factory _Session(
       {required final Exercise template,
       required final List<Entry> definitions,
-      required final String collectionSlug,
       required final String hierarchyPath,
       required final String id,
       required final String uuid}) = _$_Session;
   const _Session._() : super._();
 
+  factory _Session.fromJson(Map<String, dynamic> json) = _$_Session.fromJson;
+
   @override
   Exercise get template;
   @override
   List<Entry> get definitions;
-  @override
-  String get collectionSlug;
   @override
   String get hierarchyPath;
   @override

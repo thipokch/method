@@ -9,8 +9,9 @@ import '../abstract/inform.dart';
 import '../abstract/locate.dart';
 
 part 'task.freezed.dart';
+part 'task.g.dart';
 
-@freezed
+@Freezed(unionKey: "collectionSlug", unionValueCase: FreezedUnionCase.snake)
 class Task with _$Task, Identify, Locate, Inform, Define<TaskDefinition> {
   const Task._();
 
@@ -19,7 +20,6 @@ class Task with _$Task, Identify, Locate, Inform, Define<TaskDefinition> {
     required final String name,
     required final String description,
     required final List<TaskDefinition> definitions,
-    required String collectionSlug,
     required String hierarchyPath,
     required String id,
     required String uuid,
@@ -30,7 +30,6 @@ class Task with _$Task, Identify, Locate, Inform, Define<TaskDefinition> {
     required final String name,
     required final String description,
     required final List<TaskDefinition> definitions,
-    required String collectionSlug,
     required String hierarchyPath,
     required String id,
     required String uuid,
@@ -41,18 +40,26 @@ class Task with _$Task, Identify, Locate, Inform, Define<TaskDefinition> {
     required final String name,
     required final String description,
     required final List<TaskDefinition> definitions,
-    required String collectionSlug,
     required String hierarchyPath,
     required String id,
     required String uuid,
   }) = _Converge;
+
+  factory Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);
+
+  @override
+  String get collectionSlug => map(
+        linear: (_) => "linear",
+        diverge: (_) => "diverge",
+        converge: (_) => "converge",
+      );
 
   factory Task.createLinear({
     required final String icon,
     required final String name,
     required final String description,
     final List<TaskDefinition>? definitions,
-    required final String collectionSlug,
+    // required final String collectionSlug,
     required final String hierarchyPath,
     final String? id,
     final String? uuid,
@@ -62,7 +69,7 @@ class Task with _$Task, Identify, Locate, Inform, Define<TaskDefinition> {
         name: name,
         description: description,
         definitions: definitions ?? [],
-        collectionSlug: collectionSlug,
+        // collectionSlug: collectionSlug,
         hierarchyPath: hierarchyPath,
         id: id ?? slugify(name),
         uuid: uuid ?? const Uuid().v4(),
@@ -73,7 +80,7 @@ class Task with _$Task, Identify, Locate, Inform, Define<TaskDefinition> {
     required final String name,
     required final String description,
     final List<TaskDefinition>? definitions,
-    required final String collectionSlug,
+    // required final String collectionSlug,
     required final String hierarchyPath,
     final String? id,
     final String? uuid,
@@ -83,7 +90,7 @@ class Task with _$Task, Identify, Locate, Inform, Define<TaskDefinition> {
         name: name,
         description: description,
         definitions: definitions ?? [],
-        collectionSlug: collectionSlug,
+        // collectionSlug: collectionSlug,
         hierarchyPath: hierarchyPath,
         id: id ?? slugify(name),
         uuid: uuid ?? const Uuid().v4(),
@@ -94,7 +101,7 @@ class Task with _$Task, Identify, Locate, Inform, Define<TaskDefinition> {
     required final String name,
     required final String description,
     final List<TaskDefinition>? definitions,
-    required final String collectionSlug,
+    // required final String collectionSlug,
     required final String hierarchyPath,
     final String? id,
     final String? uuid,
@@ -104,7 +111,7 @@ class Task with _$Task, Identify, Locate, Inform, Define<TaskDefinition> {
         name: name,
         description: description,
         definitions: definitions ?? [],
-        collectionSlug: collectionSlug,
+        // collectionSlug: collectionSlug,
         hierarchyPath: hierarchyPath,
         id: id ?? slugify(name),
         uuid: uuid ?? const Uuid().v4(),

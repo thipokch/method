@@ -14,18 +14,22 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Exercise _$ExerciseFromJson(Map<String, dynamic> json) {
+  return _Exercise.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Exercise {
   String get icon => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   List<Task> get definitions => throw _privateConstructorUsedError;
-  String get collectionSlug => throw _privateConstructorUsedError;
   String get hierarchyPath => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   String get uuid => throw _privateConstructorUsedError;
   Presentation get presentation => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ExerciseCopyWith<Exercise> get copyWith =>
       throw _privateConstructorUsedError;
@@ -40,7 +44,6 @@ abstract class $ExerciseCopyWith<$Res> {
       String name,
       String description,
       List<Task> definitions,
-      String collectionSlug,
       String hierarchyPath,
       String id,
       String uuid,
@@ -63,7 +66,6 @@ class _$ExerciseCopyWithImpl<$Res> implements $ExerciseCopyWith<$Res> {
     Object? name = freezed,
     Object? description = freezed,
     Object? definitions = freezed,
-    Object? collectionSlug = freezed,
     Object? hierarchyPath = freezed,
     Object? id = freezed,
     Object? uuid = freezed,
@@ -86,10 +88,6 @@ class _$ExerciseCopyWithImpl<$Res> implements $ExerciseCopyWith<$Res> {
           ? _value.definitions
           : definitions // ignore: cast_nullable_to_non_nullable
               as List<Task>,
-      collectionSlug: collectionSlug == freezed
-          ? _value.collectionSlug
-          : collectionSlug // ignore: cast_nullable_to_non_nullable
-              as String,
       hierarchyPath: hierarchyPath == freezed
           ? _value.hierarchyPath
           : hierarchyPath // ignore: cast_nullable_to_non_nullable
@@ -128,7 +126,6 @@ abstract class _$$_ExerciseCopyWith<$Res> implements $ExerciseCopyWith<$Res> {
       String name,
       String description,
       List<Task> definitions,
-      String collectionSlug,
       String hierarchyPath,
       String id,
       String uuid,
@@ -154,7 +151,6 @@ class __$$_ExerciseCopyWithImpl<$Res> extends _$ExerciseCopyWithImpl<$Res>
     Object? name = freezed,
     Object? description = freezed,
     Object? definitions = freezed,
-    Object? collectionSlug = freezed,
     Object? hierarchyPath = freezed,
     Object? id = freezed,
     Object? uuid = freezed,
@@ -177,10 +173,6 @@ class __$$_ExerciseCopyWithImpl<$Res> extends _$ExerciseCopyWithImpl<$Res>
           ? _value._definitions
           : definitions // ignore: cast_nullable_to_non_nullable
               as List<Task>,
-      collectionSlug: collectionSlug == freezed
-          ? _value.collectionSlug
-          : collectionSlug // ignore: cast_nullable_to_non_nullable
-              as String,
       hierarchyPath: hierarchyPath == freezed
           ? _value.hierarchyPath
           : hierarchyPath // ignore: cast_nullable_to_non_nullable
@@ -202,20 +194,22 @@ class __$$_ExerciseCopyWithImpl<$Res> extends _$ExerciseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Exercise extends _Exercise {
   const _$_Exercise(
       {required this.icon,
       required this.name,
       required this.description,
       required final List<Task> definitions,
-      required this.collectionSlug,
       required this.hierarchyPath,
       required this.id,
       required this.uuid,
       required this.presentation})
       : _definitions = definitions,
         super._();
+
+  factory _$_Exercise.fromJson(Map<String, dynamic> json) =>
+      _$$_ExerciseFromJson(json);
 
   @override
   final String icon;
@@ -231,8 +225,6 @@ class _$_Exercise extends _Exercise {
   }
 
   @override
-  final String collectionSlug;
-  @override
   final String hierarchyPath;
   @override
   final String id;
@@ -243,7 +235,7 @@ class _$_Exercise extends _Exercise {
 
   @override
   String toString() {
-    return 'Exercise(icon: $icon, name: $name, description: $description, definitions: $definitions, collectionSlug: $collectionSlug, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid, presentation: $presentation)';
+    return 'Exercise(icon: $icon, name: $name, description: $description, definitions: $definitions, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid, presentation: $presentation)';
   }
 
   @override
@@ -258,8 +250,6 @@ class _$_Exercise extends _Exercise {
             const DeepCollectionEquality()
                 .equals(other._definitions, _definitions) &&
             const DeepCollectionEquality()
-                .equals(other.collectionSlug, collectionSlug) &&
-            const DeepCollectionEquality()
                 .equals(other.hierarchyPath, hierarchyPath) &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.uuid, uuid) &&
@@ -267,6 +257,7 @@ class _$_Exercise extends _Exercise {
                 .equals(other.presentation, presentation));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -274,7 +265,6 @@ class _$_Exercise extends _Exercise {
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(_definitions),
-      const DeepCollectionEquality().hash(collectionSlug),
       const DeepCollectionEquality().hash(hierarchyPath),
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(uuid),
@@ -284,6 +274,13 @@ class _$_Exercise extends _Exercise {
   @override
   _$$_ExerciseCopyWith<_$_Exercise> get copyWith =>
       __$$_ExerciseCopyWithImpl<_$_Exercise>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ExerciseToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Exercise extends Exercise {
@@ -292,12 +289,13 @@ abstract class _Exercise extends Exercise {
       required final String name,
       required final String description,
       required final List<Task> definitions,
-      required final String collectionSlug,
       required final String hierarchyPath,
       required final String id,
       required final String uuid,
       required final Presentation presentation}) = _$_Exercise;
   const _Exercise._() : super._();
+
+  factory _Exercise.fromJson(Map<String, dynamic> json) = _$_Exercise.fromJson;
 
   @override
   String get icon;
@@ -307,8 +305,6 @@ abstract class _Exercise extends Exercise {
   String get description;
   @override
   List<Task> get definitions;
-  @override
-  String get collectionSlug;
   @override
   String get hierarchyPath;
   @override

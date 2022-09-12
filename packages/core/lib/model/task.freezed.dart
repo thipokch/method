@@ -14,13 +14,27 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Task _$TaskFromJson(Map<String, dynamic> json) {
+  switch (json['collectionSlug']) {
+    case 'linear':
+      return _Linear.fromJson(json);
+    case 'diverge':
+      return _Diverge.fromJson(json);
+    case 'converge':
+      return _Converge.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(json, 'collectionSlug', 'Task',
+          'Invalid union type "${json['collectionSlug']}"!');
+  }
+}
+
 /// @nodoc
 mixin _$Task {
   String get icon => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   List<TaskDefinition> get definitions => throw _privateConstructorUsedError;
-  String get collectionSlug => throw _privateConstructorUsedError;
   String get hierarchyPath => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   String get uuid => throw _privateConstructorUsedError;
@@ -31,7 +45,6 @@ mixin _$Task {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)
@@ -41,7 +54,6 @@ mixin _$Task {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)
@@ -51,7 +63,6 @@ mixin _$Task {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)
@@ -65,7 +76,6 @@ mixin _$Task {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)?
@@ -75,7 +85,6 @@ mixin _$Task {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)?
@@ -85,7 +94,6 @@ mixin _$Task {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)?
@@ -99,7 +107,6 @@ mixin _$Task {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)?
@@ -109,7 +116,6 @@ mixin _$Task {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)?
@@ -119,7 +125,6 @@ mixin _$Task {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)?
@@ -149,7 +154,7 @@ mixin _$Task {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $TaskCopyWith<Task> get copyWith => throw _privateConstructorUsedError;
 }
@@ -163,7 +168,6 @@ abstract class $TaskCopyWith<$Res> {
       String name,
       String description,
       List<TaskDefinition> definitions,
-      String collectionSlug,
       String hierarchyPath,
       String id,
       String uuid});
@@ -183,7 +187,6 @@ class _$TaskCopyWithImpl<$Res> implements $TaskCopyWith<$Res> {
     Object? name = freezed,
     Object? description = freezed,
     Object? definitions = freezed,
-    Object? collectionSlug = freezed,
     Object? hierarchyPath = freezed,
     Object? id = freezed,
     Object? uuid = freezed,
@@ -205,10 +208,6 @@ class _$TaskCopyWithImpl<$Res> implements $TaskCopyWith<$Res> {
           ? _value.definitions
           : definitions // ignore: cast_nullable_to_non_nullable
               as List<TaskDefinition>,
-      collectionSlug: collectionSlug == freezed
-          ? _value.collectionSlug
-          : collectionSlug // ignore: cast_nullable_to_non_nullable
-              as String,
       hierarchyPath: hierarchyPath == freezed
           ? _value.hierarchyPath
           : hierarchyPath // ignore: cast_nullable_to_non_nullable
@@ -235,7 +234,6 @@ abstract class _$$_LinearCopyWith<$Res> implements $TaskCopyWith<$Res> {
       String name,
       String description,
       List<TaskDefinition> definitions,
-      String collectionSlug,
       String hierarchyPath,
       String id,
       String uuid});
@@ -256,7 +254,6 @@ class __$$_LinearCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
     Object? name = freezed,
     Object? description = freezed,
     Object? definitions = freezed,
-    Object? collectionSlug = freezed,
     Object? hierarchyPath = freezed,
     Object? id = freezed,
     Object? uuid = freezed,
@@ -278,10 +275,6 @@ class __$$_LinearCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
           ? _value._definitions
           : definitions // ignore: cast_nullable_to_non_nullable
               as List<TaskDefinition>,
-      collectionSlug: collectionSlug == freezed
-          ? _value.collectionSlug
-          : collectionSlug // ignore: cast_nullable_to_non_nullable
-              as String,
       hierarchyPath: hierarchyPath == freezed
           ? _value.hierarchyPath
           : hierarchyPath // ignore: cast_nullable_to_non_nullable
@@ -299,19 +292,23 @@ class __$$_LinearCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Linear extends _Linear {
   const _$_Linear(
       {required this.icon,
       required this.name,
       required this.description,
       required final List<TaskDefinition> definitions,
-      required this.collectionSlug,
       required this.hierarchyPath,
       required this.id,
-      required this.uuid})
+      required this.uuid,
+      final String? $type})
       : _definitions = definitions,
+        $type = $type ?? 'linear',
         super._();
+
+  factory _$_Linear.fromJson(Map<String, dynamic> json) =>
+      _$$_LinearFromJson(json);
 
   @override
   final String icon;
@@ -327,17 +324,18 @@ class _$_Linear extends _Linear {
   }
 
   @override
-  final String collectionSlug;
-  @override
   final String hierarchyPath;
   @override
   final String id;
   @override
   final String uuid;
 
+  @JsonKey(name: 'collectionSlug')
+  final String $type;
+
   @override
   String toString() {
-    return 'Task.linear(icon: $icon, name: $name, description: $description, definitions: $definitions, collectionSlug: $collectionSlug, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
+    return 'Task.linear(icon: $icon, name: $name, description: $description, definitions: $definitions, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
   }
 
   @override
@@ -352,13 +350,12 @@ class _$_Linear extends _Linear {
             const DeepCollectionEquality()
                 .equals(other._definitions, _definitions) &&
             const DeepCollectionEquality()
-                .equals(other.collectionSlug, collectionSlug) &&
-            const DeepCollectionEquality()
                 .equals(other.hierarchyPath, hierarchyPath) &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.uuid, uuid));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -366,7 +363,6 @@ class _$_Linear extends _Linear {
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(_definitions),
-      const DeepCollectionEquality().hash(collectionSlug),
       const DeepCollectionEquality().hash(hierarchyPath),
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(uuid));
@@ -384,7 +380,6 @@ class _$_Linear extends _Linear {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)
@@ -394,7 +389,6 @@ class _$_Linear extends _Linear {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)
@@ -404,14 +398,13 @@ class _$_Linear extends _Linear {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)
         converge,
   }) {
-    return linear(icon, name, description, definitions, collectionSlug,
-        hierarchyPath, id, uuid);
+    return linear(
+        icon, name, description, definitions, hierarchyPath, id, uuid);
   }
 
   @override
@@ -422,7 +415,6 @@ class _$_Linear extends _Linear {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)?
@@ -432,7 +424,6 @@ class _$_Linear extends _Linear {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)?
@@ -442,14 +433,13 @@ class _$_Linear extends _Linear {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)?
         converge,
   }) {
-    return linear?.call(icon, name, description, definitions, collectionSlug,
-        hierarchyPath, id, uuid);
+    return linear?.call(
+        icon, name, description, definitions, hierarchyPath, id, uuid);
   }
 
   @override
@@ -460,7 +450,6 @@ class _$_Linear extends _Linear {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)?
@@ -470,7 +459,6 @@ class _$_Linear extends _Linear {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)?
@@ -480,7 +468,6 @@ class _$_Linear extends _Linear {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)?
@@ -488,8 +475,8 @@ class _$_Linear extends _Linear {
     required TResult orElse(),
   }) {
     if (linear != null) {
-      return linear(icon, name, description, definitions, collectionSlug,
-          hierarchyPath, id, uuid);
+      return linear(
+          icon, name, description, definitions, hierarchyPath, id, uuid);
     }
     return orElse();
   }
@@ -527,6 +514,13 @@ class _$_Linear extends _Linear {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_LinearToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Linear extends Task {
@@ -535,11 +529,12 @@ abstract class _Linear extends Task {
       required final String name,
       required final String description,
       required final List<TaskDefinition> definitions,
-      required final String collectionSlug,
       required final String hierarchyPath,
       required final String id,
       required final String uuid}) = _$_Linear;
   const _Linear._() : super._();
+
+  factory _Linear.fromJson(Map<String, dynamic> json) = _$_Linear.fromJson;
 
   @override
   String get icon;
@@ -549,8 +544,6 @@ abstract class _Linear extends Task {
   String get description;
   @override
   List<TaskDefinition> get definitions;
-  @override
-  String get collectionSlug;
   @override
   String get hierarchyPath;
   @override
@@ -574,7 +567,6 @@ abstract class _$$_DivergeCopyWith<$Res> implements $TaskCopyWith<$Res> {
       String name,
       String description,
       List<TaskDefinition> definitions,
-      String collectionSlug,
       String hierarchyPath,
       String id,
       String uuid});
@@ -595,7 +587,6 @@ class __$$_DivergeCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
     Object? name = freezed,
     Object? description = freezed,
     Object? definitions = freezed,
-    Object? collectionSlug = freezed,
     Object? hierarchyPath = freezed,
     Object? id = freezed,
     Object? uuid = freezed,
@@ -617,10 +608,6 @@ class __$$_DivergeCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
           ? _value._definitions
           : definitions // ignore: cast_nullable_to_non_nullable
               as List<TaskDefinition>,
-      collectionSlug: collectionSlug == freezed
-          ? _value.collectionSlug
-          : collectionSlug // ignore: cast_nullable_to_non_nullable
-              as String,
       hierarchyPath: hierarchyPath == freezed
           ? _value.hierarchyPath
           : hierarchyPath // ignore: cast_nullable_to_non_nullable
@@ -638,19 +625,23 @@ class __$$_DivergeCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Diverge extends _Diverge {
   const _$_Diverge(
       {required this.icon,
       required this.name,
       required this.description,
       required final List<TaskDefinition> definitions,
-      required this.collectionSlug,
       required this.hierarchyPath,
       required this.id,
-      required this.uuid})
+      required this.uuid,
+      final String? $type})
       : _definitions = definitions,
+        $type = $type ?? 'diverge',
         super._();
+
+  factory _$_Diverge.fromJson(Map<String, dynamic> json) =>
+      _$$_DivergeFromJson(json);
 
   @override
   final String icon;
@@ -666,17 +657,18 @@ class _$_Diverge extends _Diverge {
   }
 
   @override
-  final String collectionSlug;
-  @override
   final String hierarchyPath;
   @override
   final String id;
   @override
   final String uuid;
 
+  @JsonKey(name: 'collectionSlug')
+  final String $type;
+
   @override
   String toString() {
-    return 'Task.diverge(icon: $icon, name: $name, description: $description, definitions: $definitions, collectionSlug: $collectionSlug, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
+    return 'Task.diverge(icon: $icon, name: $name, description: $description, definitions: $definitions, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
   }
 
   @override
@@ -691,13 +683,12 @@ class _$_Diverge extends _Diverge {
             const DeepCollectionEquality()
                 .equals(other._definitions, _definitions) &&
             const DeepCollectionEquality()
-                .equals(other.collectionSlug, collectionSlug) &&
-            const DeepCollectionEquality()
                 .equals(other.hierarchyPath, hierarchyPath) &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.uuid, uuid));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -705,7 +696,6 @@ class _$_Diverge extends _Diverge {
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(_definitions),
-      const DeepCollectionEquality().hash(collectionSlug),
       const DeepCollectionEquality().hash(hierarchyPath),
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(uuid));
@@ -723,7 +713,6 @@ class _$_Diverge extends _Diverge {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)
@@ -733,7 +722,6 @@ class _$_Diverge extends _Diverge {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)
@@ -743,14 +731,13 @@ class _$_Diverge extends _Diverge {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)
         converge,
   }) {
-    return diverge(icon, name, description, definitions, collectionSlug,
-        hierarchyPath, id, uuid);
+    return diverge(
+        icon, name, description, definitions, hierarchyPath, id, uuid);
   }
 
   @override
@@ -761,7 +748,6 @@ class _$_Diverge extends _Diverge {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)?
@@ -771,7 +757,6 @@ class _$_Diverge extends _Diverge {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)?
@@ -781,14 +766,13 @@ class _$_Diverge extends _Diverge {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)?
         converge,
   }) {
-    return diverge?.call(icon, name, description, definitions, collectionSlug,
-        hierarchyPath, id, uuid);
+    return diverge?.call(
+        icon, name, description, definitions, hierarchyPath, id, uuid);
   }
 
   @override
@@ -799,7 +783,6 @@ class _$_Diverge extends _Diverge {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)?
@@ -809,7 +792,6 @@ class _$_Diverge extends _Diverge {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)?
@@ -819,7 +801,6 @@ class _$_Diverge extends _Diverge {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)?
@@ -827,8 +808,8 @@ class _$_Diverge extends _Diverge {
     required TResult orElse(),
   }) {
     if (diverge != null) {
-      return diverge(icon, name, description, definitions, collectionSlug,
-          hierarchyPath, id, uuid);
+      return diverge(
+          icon, name, description, definitions, hierarchyPath, id, uuid);
     }
     return orElse();
   }
@@ -866,6 +847,13 @@ class _$_Diverge extends _Diverge {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_DivergeToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Diverge extends Task {
@@ -874,11 +862,12 @@ abstract class _Diverge extends Task {
       required final String name,
       required final String description,
       required final List<TaskDefinition> definitions,
-      required final String collectionSlug,
       required final String hierarchyPath,
       required final String id,
       required final String uuid}) = _$_Diverge;
   const _Diverge._() : super._();
+
+  factory _Diverge.fromJson(Map<String, dynamic> json) = _$_Diverge.fromJson;
 
   @override
   String get icon;
@@ -888,8 +877,6 @@ abstract class _Diverge extends Task {
   String get description;
   @override
   List<TaskDefinition> get definitions;
-  @override
-  String get collectionSlug;
   @override
   String get hierarchyPath;
   @override
@@ -913,7 +900,6 @@ abstract class _$$_ConvergeCopyWith<$Res> implements $TaskCopyWith<$Res> {
       String name,
       String description,
       List<TaskDefinition> definitions,
-      String collectionSlug,
       String hierarchyPath,
       String id,
       String uuid});
@@ -935,7 +921,6 @@ class __$$_ConvergeCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
     Object? name = freezed,
     Object? description = freezed,
     Object? definitions = freezed,
-    Object? collectionSlug = freezed,
     Object? hierarchyPath = freezed,
     Object? id = freezed,
     Object? uuid = freezed,
@@ -957,10 +942,6 @@ class __$$_ConvergeCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
           ? _value._definitions
           : definitions // ignore: cast_nullable_to_non_nullable
               as List<TaskDefinition>,
-      collectionSlug: collectionSlug == freezed
-          ? _value.collectionSlug
-          : collectionSlug // ignore: cast_nullable_to_non_nullable
-              as String,
       hierarchyPath: hierarchyPath == freezed
           ? _value.hierarchyPath
           : hierarchyPath // ignore: cast_nullable_to_non_nullable
@@ -978,19 +959,23 @@ class __$$_ConvergeCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Converge extends _Converge {
   const _$_Converge(
       {required this.icon,
       required this.name,
       required this.description,
       required final List<TaskDefinition> definitions,
-      required this.collectionSlug,
       required this.hierarchyPath,
       required this.id,
-      required this.uuid})
+      required this.uuid,
+      final String? $type})
       : _definitions = definitions,
+        $type = $type ?? 'converge',
         super._();
+
+  factory _$_Converge.fromJson(Map<String, dynamic> json) =>
+      _$$_ConvergeFromJson(json);
 
   @override
   final String icon;
@@ -1006,17 +991,18 @@ class _$_Converge extends _Converge {
   }
 
   @override
-  final String collectionSlug;
-  @override
   final String hierarchyPath;
   @override
   final String id;
   @override
   final String uuid;
 
+  @JsonKey(name: 'collectionSlug')
+  final String $type;
+
   @override
   String toString() {
-    return 'Task.converge(icon: $icon, name: $name, description: $description, definitions: $definitions, collectionSlug: $collectionSlug, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
+    return 'Task.converge(icon: $icon, name: $name, description: $description, definitions: $definitions, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
   }
 
   @override
@@ -1031,13 +1017,12 @@ class _$_Converge extends _Converge {
             const DeepCollectionEquality()
                 .equals(other._definitions, _definitions) &&
             const DeepCollectionEquality()
-                .equals(other.collectionSlug, collectionSlug) &&
-            const DeepCollectionEquality()
                 .equals(other.hierarchyPath, hierarchyPath) &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.uuid, uuid));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1045,7 +1030,6 @@ class _$_Converge extends _Converge {
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(_definitions),
-      const DeepCollectionEquality().hash(collectionSlug),
       const DeepCollectionEquality().hash(hierarchyPath),
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(uuid));
@@ -1063,7 +1047,6 @@ class _$_Converge extends _Converge {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)
@@ -1073,7 +1056,6 @@ class _$_Converge extends _Converge {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)
@@ -1083,14 +1065,13 @@ class _$_Converge extends _Converge {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)
         converge,
   }) {
-    return converge(icon, name, description, definitions, collectionSlug,
-        hierarchyPath, id, uuid);
+    return converge(
+        icon, name, description, definitions, hierarchyPath, id, uuid);
   }
 
   @override
@@ -1101,7 +1082,6 @@ class _$_Converge extends _Converge {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)?
@@ -1111,7 +1091,6 @@ class _$_Converge extends _Converge {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)?
@@ -1121,14 +1100,13 @@ class _$_Converge extends _Converge {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)?
         converge,
   }) {
-    return converge?.call(icon, name, description, definitions, collectionSlug,
-        hierarchyPath, id, uuid);
+    return converge?.call(
+        icon, name, description, definitions, hierarchyPath, id, uuid);
   }
 
   @override
@@ -1139,7 +1117,6 @@ class _$_Converge extends _Converge {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)?
@@ -1149,7 +1126,6 @@ class _$_Converge extends _Converge {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)?
@@ -1159,7 +1135,6 @@ class _$_Converge extends _Converge {
             String name,
             String description,
             List<TaskDefinition> definitions,
-            String collectionSlug,
             String hierarchyPath,
             String id,
             String uuid)?
@@ -1167,8 +1142,8 @@ class _$_Converge extends _Converge {
     required TResult orElse(),
   }) {
     if (converge != null) {
-      return converge(icon, name, description, definitions, collectionSlug,
-          hierarchyPath, id, uuid);
+      return converge(
+          icon, name, description, definitions, hierarchyPath, id, uuid);
     }
     return orElse();
   }
@@ -1206,6 +1181,13 @@ class _$_Converge extends _Converge {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ConvergeToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Converge extends Task {
@@ -1214,11 +1196,12 @@ abstract class _Converge extends Task {
       required final String name,
       required final String description,
       required final List<TaskDefinition> definitions,
-      required final String collectionSlug,
       required final String hierarchyPath,
       required final String id,
       required final String uuid}) = _$_Converge;
   const _Converge._() : super._();
+
+  factory _Converge.fromJson(Map<String, dynamic> json) = _$_Converge.fromJson;
 
   @override
   String get icon;
@@ -1228,8 +1211,6 @@ abstract class _Converge extends Task {
   String get description;
   @override
   List<TaskDefinition> get definitions;
-  @override
-  String get collectionSlug;
   @override
   String get hierarchyPath;
   @override

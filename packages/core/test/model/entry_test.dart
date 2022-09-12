@@ -8,18 +8,16 @@ void main() {
       icon: "💫",
       description: "description",
       name: "name",
-      collectionSlug: "collectionSlug",
+      // collectionSlug: "collectionSlug",
       hierarchyPath: "hierarchyPath",
     );
 
     Entry a = Entry.create(
       template: aTemplate,
-      collectionSlug: "collectionSlug",
       hierarchyPath: "hierarchyPath",
       id: "id",
     );
 
-    expect(a.collectionSlug, "collectionSlug");
     expect(a.hierarchyPath, "hierarchyPath");
     expect(a.id, "id");
     expect(a.template, aTemplate);

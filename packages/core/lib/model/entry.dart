@@ -8,6 +8,7 @@ import '../abstract/locate.dart';
 import 'entry_definition.dart';
 
 part 'entry.freezed.dart';
+part 'entry.g.dart';
 
 @freezed
 class Entry
@@ -17,7 +18,6 @@ class Entry
   const factory Entry({
     required final Task template,
     required final List<EntryDefinition> definitions,
-    required String collectionSlug,
     required String hierarchyPath,
     required String id,
     required String uuid,
@@ -25,7 +25,6 @@ class Entry
 
   factory Entry.create({
     required final Task template,
-    required String collectionSlug,
     final List<EntryDefinition>? definitions,
     required final String hierarchyPath,
     required final String id,
@@ -34,11 +33,15 @@ class Entry
       Entry(
         template: template,
         definitions: definitions ?? [],
-        collectionSlug: collectionSlug,
         hierarchyPath: hierarchyPath,
         id: id,
         uuid: uuid ?? const Uuid().v4(),
       );
+
+  factory Entry.fromJson(Map<String, dynamic> json) => _$EntryFromJson(json);
+
+  @override
+  String get collectionSlug => "exercise";
 }
 
 // @freezed

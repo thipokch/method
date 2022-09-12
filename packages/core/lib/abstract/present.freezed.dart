@@ -14,14 +14,23 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Presentation _$PresentationFromJson(Map<String, dynamic> json) {
+  return _Presentation.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Presentation {
   double get seed => throw _privateConstructorUsedError;
+  @ColorConverter()
   Color get colorLighter => throw _privateConstructorUsedError;
+  @ColorConverter()
   Color get colorLight => throw _privateConstructorUsedError;
+  @ColorConverter()
   Color get colorDark => throw _privateConstructorUsedError;
+  @ColorConverter()
   Color get colorDarker => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PresentationCopyWith<Presentation> get copyWith =>
       throw _privateConstructorUsedError;
@@ -34,10 +43,10 @@ abstract class $PresentationCopyWith<$Res> {
       _$PresentationCopyWithImpl<$Res>;
   $Res call(
       {double seed,
-      Color colorLighter,
-      Color colorLight,
-      Color colorDark,
-      Color colorDarker});
+      @ColorConverter() Color colorLighter,
+      @ColorConverter() Color colorLight,
+      @ColorConverter() Color colorDark,
+      @ColorConverter() Color colorDarker});
 }
 
 /// @nodoc
@@ -90,10 +99,10 @@ abstract class _$$_PresentationCopyWith<$Res>
   @override
   $Res call(
       {double seed,
-      Color colorLighter,
-      Color colorLight,
-      Color colorDark,
-      Color colorDarker});
+      @ColorConverter() Color colorLighter,
+      @ColorConverter() Color colorLight,
+      @ColorConverter() Color colorDark,
+      @ColorConverter() Color colorDarker});
 }
 
 /// @nodoc
@@ -141,24 +150,31 @@ class __$$_PresentationCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Presentation implements _Presentation {
   const _$_Presentation(
       {required this.seed,
-      required this.colorLighter,
-      required this.colorLight,
-      required this.colorDark,
-      required this.colorDarker});
+      @ColorConverter() required this.colorLighter,
+      @ColorConverter() required this.colorLight,
+      @ColorConverter() required this.colorDark,
+      @ColorConverter() required this.colorDarker});
+
+  factory _$_Presentation.fromJson(Map<String, dynamic> json) =>
+      _$$_PresentationFromJson(json);
 
   @override
   final double seed;
   @override
+  @ColorConverter()
   final Color colorLighter;
   @override
+  @ColorConverter()
   final Color colorLight;
   @override
+  @ColorConverter()
   final Color colorDark;
   @override
+  @ColorConverter()
   final Color colorDarker;
 
   @override
@@ -181,6 +197,7 @@ class _$_Presentation implements _Presentation {
                 .equals(other.colorDarker, colorDarker));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -194,25 +211,39 @@ class _$_Presentation implements _Presentation {
   @override
   _$$_PresentationCopyWith<_$_Presentation> get copyWith =>
       __$$_PresentationCopyWithImpl<_$_Presentation>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_PresentationToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Presentation implements Presentation {
   const factory _Presentation(
       {required final double seed,
-      required final Color colorLighter,
-      required final Color colorLight,
-      required final Color colorDark,
-      required final Color colorDarker}) = _$_Presentation;
+      @ColorConverter() required final Color colorLighter,
+      @ColorConverter() required final Color colorLight,
+      @ColorConverter() required final Color colorDark,
+      @ColorConverter() required final Color colorDarker}) = _$_Presentation;
+
+  factory _Presentation.fromJson(Map<String, dynamic> json) =
+      _$_Presentation.fromJson;
 
   @override
   double get seed;
   @override
+  @ColorConverter()
   Color get colorLighter;
   @override
+  @ColorConverter()
   Color get colorLight;
   @override
+  @ColorConverter()
   Color get colorDark;
   @override
+  @ColorConverter()
   Color get colorDarker;
   @override
   @JsonKey(ignore: true)

@@ -14,6 +14,19 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+EntryDefinition _$EntryDefinitionFromJson(Map<String, dynamic> json) {
+  switch (json['runtimeType']) {
+    case 'label':
+      return _Label.fromJson(json);
+    case 'note':
+      return _Note.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(json, 'runtimeType', 'EntryDefinition',
+          'Invalid union type "${json['runtimeType']}"!');
+  }
+}
+
 /// @nodoc
 mixin _$EntryDefinition {
   String get collectionSlug => throw _privateConstructorUsedError;
@@ -70,7 +83,7 @@ mixin _$EntryDefinition {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $EntryDefinitionCopyWith<EntryDefinition> get copyWith =>
       throw _privateConstructorUsedError;
@@ -170,14 +183,19 @@ class __$$_LabelCopyWithImpl<$Res> extends _$EntryDefinitionCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Label extends _Label {
   const _$_Label(
       {required this.collectionSlug,
       required this.hierarchyPath,
       required this.id,
-      required this.uuid})
-      : super._();
+      required this.uuid,
+      final String? $type})
+      : $type = $type ?? 'label',
+        super._();
+
+  factory _$_Label.fromJson(Map<String, dynamic> json) =>
+      _$$_LabelFromJson(json);
 
   @override
   final String collectionSlug;
@@ -187,6 +205,9 @@ class _$_Label extends _Label {
   final String id;
   @override
   final String uuid;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -206,6 +227,7 @@ class _$_Label extends _Label {
             const DeepCollectionEquality().equals(other.uuid, uuid));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -292,6 +314,13 @@ class _$_Label extends _Label {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_LabelToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Label extends EntryDefinition {
@@ -301,6 +330,8 @@ abstract class _Label extends EntryDefinition {
       required final String id,
       required final String uuid}) = _$_Label;
   const _Label._() : super._();
+
+  factory _Label.fromJson(Map<String, dynamic> json) = _$_Label.fromJson;
 
   @override
   String get collectionSlug;
@@ -364,14 +395,18 @@ class __$$_NoteCopyWithImpl<$Res> extends _$EntryDefinitionCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Note extends _Note {
   const _$_Note(
       {required this.collectionSlug,
       required this.hierarchyPath,
       required this.id,
-      required this.uuid})
-      : super._();
+      required this.uuid,
+      final String? $type})
+      : $type = $type ?? 'note',
+        super._();
+
+  factory _$_Note.fromJson(Map<String, dynamic> json) => _$$_NoteFromJson(json);
 
   @override
   final String collectionSlug;
@@ -381,6 +416,9 @@ class _$_Note extends _Note {
   final String id;
   @override
   final String uuid;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -400,6 +438,7 @@ class _$_Note extends _Note {
             const DeepCollectionEquality().equals(other.uuid, uuid));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -486,6 +525,13 @@ class _$_Note extends _Note {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_NoteToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Note extends EntryDefinition {
@@ -495,6 +541,8 @@ abstract class _Note extends EntryDefinition {
       required final String id,
       required final String uuid}) = _$_Note;
   const _Note._() : super._();
+
+  factory _Note.fromJson(Map<String, dynamic> json) = _$_Note.fromJson;
 
   @override
   String get collectionSlug;

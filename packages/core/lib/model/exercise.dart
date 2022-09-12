@@ -10,6 +10,7 @@ import '../abstract/inform.dart';
 import '../abstract/locate.dart';
 
 part 'exercise.freezed.dart';
+part 'exercise.g.dart';
 
 @freezed
 class Exercise with _$Exercise, Identify, Locate, Inform, Present {
@@ -20,7 +21,6 @@ class Exercise with _$Exercise, Identify, Locate, Inform, Present {
     required final String name,
     required final String description,
     required final List<Task> definitions,
-    required String collectionSlug,
     required String hierarchyPath,
     required String id,
     required String uuid,
@@ -31,7 +31,6 @@ class Exercise with _$Exercise, Identify, Locate, Inform, Present {
     required final String icon,
     required final String name,
     required final String description,
-    required String collectionSlug,
     final List<Task>? definitions,
     required final String hierarchyPath,
     final String? id,
@@ -43,7 +42,6 @@ class Exercise with _$Exercise, Identify, Locate, Inform, Present {
         name: name,
         description: description,
         definitions: definitions ?? [],
-        collectionSlug: collectionSlug,
         hierarchyPath: hierarchyPath,
         id: id ?? slugify(name),
         uuid: uuid ?? const Uuid().v4(),
@@ -56,4 +54,10 @@ class Exercise with _$Exercise, Identify, Locate, Inform, Present {
               colorDarker: Color.fromARGB(0, 171, 186, 206),
             ),
       );
+
+  factory Exercise.fromJson(Map<String, dynamic> json) =>
+      _$ExerciseFromJson(json);
+
+  @override
+  String get collectionSlug => "exercise";
 }
