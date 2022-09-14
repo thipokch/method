@@ -31,18 +31,18 @@ class Content {
 
   static const c = Presentation(
     seed: 1049.0,
-    primary: Color(0xFFDBF0AF),
-    secondary: Color.fromARGB(255, 174, 228, 226),
-    tertiary: Color(0xFFCABDF8),
+    primary: Color(0xFF5CC66C),
+    secondary: Color(0xFFE1E468),
+    tertiary: Color(0xFF80C8A3),
     neutral: Colors.transparent,
     neutralVariant: Colors.transparent,
   );
 
   static const d = Presentation(
     seed: 8192.0,
-    primary: Color(0xFFAE9BF2),
-    secondary: Color(0xFFA9BED9),
-    tertiary: Color.fromARGB(255, 172, 229, 242),
+    primary: Color(0xFFA9AEF2),
+    tertiary: Color(0xFFA9BED9),
+    secondary: Color.fromARGB(255, 172, 214, 242),
     neutral: Colors.transparent,
     neutralVariant: Colors.transparent,
   );
