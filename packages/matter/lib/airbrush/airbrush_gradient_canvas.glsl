@@ -67,15 +67,24 @@ void main(){
     // draw the image
     vec3 layer1=mix(colorA,colorB,S(-.3,.2,(tuv*Rot(radians(-5.))).x));
     
-    vec3 layer2=mix(colorC,colorD,S(-.3,.2,(tuv*Rot(radians(-5.))).x));
+    vec3 layer2=colorC;
+    // vec3 layer2=mix(colorC,colorD,S(-.3,.2,(tuv*Rot(radians(-5.))).x));
     
     vec3 comp=mix(layer1,layer2,S(.5,-.3,tuv.y));
     
-    comp+=vec3(
-        random1f(uv),
-        random1f(uv+1.),
-        random1f(uv+2.)
-    )*.2;
+    float alph=(random1f(uv)>.4?1.:0.);
+    comp=mix(colorD,comp,alph);
+    
+    // comp=colorA;
+    // alph*=(random1f(uv)>.5?1.:0.);
+    
+    // comp+=vec3(
+        //     random1f(uv)*.2,
+        //     1.,
+        //     1.
+        //     // random1f(uv),
+        //     // random1f(uv)
+    // );
     
     fragColor=vec4(comp,1.);
 }

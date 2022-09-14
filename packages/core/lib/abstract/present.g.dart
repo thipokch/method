@@ -9,18 +9,20 @@ part of 'present.dart';
 _$_Presentation _$$_PresentationFromJson(Map<String, dynamic> json) =>
     _$_Presentation(
       seed: (json['seed'] as num).toDouble(),
-      colorLighter:
-          const ColorConverter().fromJson(json['colorLighter'] as int),
-      colorLight: const ColorConverter().fromJson(json['colorLight'] as int),
-      colorDark: const ColorConverter().fromJson(json['colorDark'] as int),
-      colorDarker: const ColorConverter().fromJson(json['colorDarker'] as int),
+      primary: const ColorConverter().fromJson(json['primary'] as int),
+      secondary: const ColorConverter().fromJson(json['secondary'] as int),
+      tertiary: const ColorConverter().fromJson(json['tertiary'] as int),
+      neutral: const ColorConverter().fromJson(json['neutral'] as int),
+      neutralVariant:
+          const ColorConverter().fromJson(json['neutralVariant'] as int),
     );
 
 Map<String, dynamic> _$$_PresentationToJson(_$_Presentation instance) =>
     <String, dynamic>{
       'seed': instance.seed,
-      'colorLighter': const ColorConverter().toJson(instance.colorLighter),
-      'colorLight': const ColorConverter().toJson(instance.colorLight),
-      'colorDark': const ColorConverter().toJson(instance.colorDark),
-      'colorDarker': const ColorConverter().toJson(instance.colorDarker),
+      'primary': const ColorConverter().toJson(instance.primary),
+      'secondary': const ColorConverter().toJson(instance.secondary),
+      'tertiary': const ColorConverter().toJson(instance.tertiary),
+      'neutral': const ColorConverter().toJson(instance.neutral),
+      'neutralVariant': const ColorConverter().toJson(instance.neutralVariant),
     };

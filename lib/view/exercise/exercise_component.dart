@@ -54,116 +54,109 @@ class ExerciseComponentState extends State<ExerciseComponent> {
         child: BlocBuilder<ExerciseBloc, ExerciseState>(
           builder: (context, state) {
             final exercise = state.exercise;
-            final textTheme = Theme.of(context).textTheme;
+            final colorScheme =
+                state.exercise.presentation.colorScheme(Brightness.light);
+            final ThemeData themeData = Theme.of(context).copyWith(
+                // colorScheme: colorScheme,
+                );
+            final textTheme = themeData.textTheme;
+            // final colorScheme = themeData.colorScheme;
+            // final colors = themeData.extension<CustomColors>();
 
             return Hero(
               tag: exercise.name,
-              child: Card(
-                elevation: 0,
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                shape: const SmoothRectangleBorder(
-                  borderRadius: SmoothBorderRadius.all(
-                    SmoothRadius(
-                      cornerRadius: ElementScale.cornerLarge,
-                      cornerSmoothing: ElementScale.cornerSmoothFactor,
+              child: Theme(
+                data: themeData,
+                child: Card(
+                  elevation: 0,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  shape: const SmoothRectangleBorder(
+                    borderRadius: SmoothBorderRadius.all(
+                      SmoothRadius(
+                        cornerRadius: ElementScale.cornerLarge,
+                        cornerSmoothing: ElementScale.cornerSmoothFactor,
+                      ),
                     ),
                   ),
-                ),
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints.expand(height: 100),
-                  child: InkWell(
-                    onTap: () {
-                      final bloc = context.read<ExerciseBloc>();
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints.expand(height: 100),
+                    child: InkWell(
+                      onTap: () {
+                        final bloc = context.read<ExerciseBloc>();
 
-                      Navigator.of(context).push(
-                        ModalBottomSheetRoute(
-                          expanded: true,
-                          builder: (context) => BlocProvider.value(
-                            value: bloc,
-                            child: ExercisePage(
-                              imageShader: imageShader,
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                    child: Stack(
-                      alignment: Alignment.bottomRight,
-                      children: [
-                        SizedBox.expand(
-                          child: CustomPaint(
-                            painter: AirbrushPainter(
-                              context: context,
-                              frame: 400.0 * 2,
-                              // frame: 2048.0 * 2,
-                              colorLighter: exercise.presentation.colorLighter,
-                              colorLight: exercise.presentation.colorLight,
-                              colorDark: exercise.presentation.colorLighter,
-                              colorDarker: exercise.presentation.colorLight,
-                              // colorDarker: colorScheme.surfaceVariant,
-                            ),
-                          ),
-                        ),
-                        // SizedBox.expand(
-                        //   child: DecoratedBox(
-                        //     decoration: BoxDecoration(
-                        //       color: HSLColor.fromColor(
-                        //         exercise.presentation.colorLight,
-                        //       )
-                        //           .withLightness(0.95)
-                        //           .withSaturation(0.35)
-                        //           .toColor(),
-                        //     ),
-                        //   ),
-                        // ),
-                        SizedBox(
-                          height: 100,
-                          width: 100,
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 20),
-                            child: CustomPaint(
-                              painter: AirbrushPainter(
-                                context: context,
+                        Navigator.of(context).push(
+                          ModalBottomSheetRoute(
+                            expanded: true,
+                            builder: (context) => BlocProvider.value(
+                              value: bloc,
+                              child: ExercisePage(
                                 imageShader: imageShader,
-                                frame: exercise.presentation.seed,
-                                colorLighter:
-                                    exercise.presentation.colorLighter,
-                                colorLight: exercise.presentation.colorLight,
-                                colorDark: exercise.presentation.colorLighter,
-                                colorDarker: exercise.presentation.colorLight,
-                                height: 100,
-                                width: 100,
                               ),
                             ),
                           ),
-                        ),
-                        ListTile(
-                          title: Text(
-                            exercise.name,
-                            style: textTheme.titleMedium!.copyWith(
-                              fontWeight: FontWeight.w600,
-                              color: HSLColor.fromColor(
-                                exercise.presentation.colorDarker,
-                              )
-                                  .withLightness(0.20)
-                                  .withSaturation(0.55)
-                                  .toColor(),
+                        );
+                      },
+                      child: Stack(
+                        alignment: Alignment.bottomRight,
+                        children: [
+                          SizedBox.expand(
+                            // child: DecoratedBox(
+                            //   decoration: BoxDecoration(
+                            //     color: colorScheme.primaryContainer,
+                            //   ),
+                            // ),
+
+                            child: CustomPaint(
+                              painter: AirbrushPainter(
+                                context: context,
+                                frame: 812,
+                                // frame: 2048.0 * 2,
+                                colorLighter: colorScheme.tertiaryContainer,
+                                colorLight: colorScheme.secondaryContainer,
+                                colorDark: colorScheme.primaryContainer,
+                                colorDarker: colorScheme.background,
+                                // colorDarker: colorScheme.surfaceVariant,
+                              ),
                             ),
                           ),
-                          subtitle: Text(
-                            exercise.description,
-                            style: textTheme.labelMedium!.copyWith(
-                              fontWeight: FontWeight.w600,
-                              color: HSLColor.fromColor(
-                                exercise.presentation.colorDarker,
-                              )
-                                  .withLightness(0.20)
-                                  .withSaturation(0.55)
-                                  .toColor(),
+                          SizedBox(
+                            height: 100,
+                            width: 100,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 20),
+                              child: CustomPaint(
+                                painter: AirbrushPainter(
+                                  context: context,
+                                  imageShader: imageShader,
+                                  frame: exercise.presentation.seed,
+                                  colorLighter: colorScheme.secondaryContainer,
+                                  colorLight: colorScheme.primaryContainer,
+                                  colorDark: colorScheme.background,
+                                  colorDarker: colorScheme.primary,
+                                  height: 100,
+                                  width: 100,
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                          ListTile(
+                            title: Text(
+                              exercise.name,
+                              style: textTheme.titleMedium!.copyWith(
+                                fontWeight: FontWeight.w600,
+                                color: colorScheme.onPrimaryContainer,
+                              ),
+                            ),
+                            subtitle: Text(
+                              exercise.description,
+                              style: textTheme.labelMedium!.copyWith(
+                                fontWeight: FontWeight.w600,
+                                color: colorScheme.onPrimaryContainer,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

@@ -66,24 +66,31 @@ void main(){
   tuv.x+=sin(tuv.y*frequency+speed)/amplitude;
   tuv.y+=sin(tuv.x*frequency*1.5+speed)/(amplitude*.5);
   
+  vec4 img=texture(image,uv);
+  float gray=(img.r*.21+img.g*.72+img.b*.07);
+  // gray=gray>.5?1.:0.;
+  
   // draw the image
   vec3 layer1=mix(colorA,colorB,S(-.3,.2,(tuv*Rot(radians(-5.))).x));
-  vec3 layer2=mix(colorC,colorD,S(-.3,.2,(tuv*Rot(radians(-5.))).x));
-  vec3 comp=mix(layer1,layer2,S(.5,-.3,tuv.y));
-  
-  vec4 img=texture(image,uv);
+  layer1=mix(colorC,layer1,random1f(uv)>.125?1.:0.);
+
+  vec3 layer2=colorD;
+  // vec3 layer2=mix(colorC,colorD,S(-.3,.2,(tuv*Rot(radians(-5.))).x));
+
+  layer2=mix(colorA,layer2,random1f(uv)>.125?1.:0.);
+  vec3 comp=mix(layer2,layer1,gray);
   
   // Perceptual greyscale
-  vec3 gray=vec3(img.r*.21+img.g*.72+img.b*.07);
-  gray = 1. - (1. - colorD) * (1. - gray);
-
-  comp *= gray;
+  // gray = 1. - (1. - colorD) * (1. - gray);
   
-  comp+=vec3(
-    random1f(uv),
-    random1f(uv+1.),
-    random1f(uv+2.)
-  )*.2;
+  // comp *= gray;
+  // comp=mix(colorA,comp,gray);
+  
+  // comp+=vec3(
+  //   random1f(uv),
+  //   random1f(uv+1.),
+  //   random1f(uv+2.)
+  // )*.2;
   
   comp*=img.a;
   // gray +=

@@ -11,45 +11,50 @@ class Content {
   // PRESENTS
   //
 
-  static const pink = Presentation(
+  static const a = Presentation(
     seed: 1800.0,
-    colorLighter: Color.fromARGB(255, 242, 242, 204),
-    colorLight: Color.fromARGB(255, 204, 177, 195),
-    colorDark: Color.fromARGB(255, 232, 166, 182),
-    colorDarker: Color.fromARGB(255, 149, 152, 238),
+    primary: Color(0xFFF2AEAE),
+    secondary: Color(0xFFF2C48D),
+    tertiary: Color(0xFFBFB84E),
+    neutral: Colors.transparent,
+    neutralVariant: Colors.transparent,
   );
 
-  static const yellow = Presentation(
+  static const b = Presentation(
     seed: 400.0,
-    colorLighter: Color.fromARGB(255, 222, 224, 102),
-    colorLight: Color.fromARGB(255, 255, 191, 106),
-    colorDark: Color.fromARGB(255, 232, 119, 050),
-    colorDarker: Color.fromARGB(255, 237, 90, 49),
+    primary: Color.fromARGB(255, 222, 224, 102),
+    secondary: Color.fromARGB(255, 215, 160, 87),
+    tertiary: Color.fromARGB(255, 232, 119, 050),
+    neutral: Colors.transparent,
+    neutralVariant: Colors.transparent,
   );
 
   static const c = Presentation(
-    seed: 2048.0,
-    colorLighter: Color.fromARGB(255, 219, 226, 143),
-    colorLight: Color.fromARGB(255, 151, 188, 059),
-    colorDark: Color.fromARGB(255, 087, 092, 070),
-    colorDarker: Color.fromARGB(255, 147, 188, 059),
+    seed: 1049.0,
+    primary: Color(0xFFDBF0AF),
+    secondary: Color.fromARGB(255, 174, 228, 226),
+    tertiary: Color(0xFFCABDF8),
+    neutral: Colors.transparent,
+    neutralVariant: Colors.transparent,
   );
 
-  static const purple = Presentation(
+  static const d = Presentation(
     seed: 8192.0,
-    colorLighter: Color.fromARGB(255, 185, 142, 200),
-    colorLight: Color.fromARGB(255, 176, 218, 255),
-    colorDark: Color.fromARGB(255, 142, 064, 175),
-    colorDarker: Color.fromARGB(255, 207, 075, 135),
+    primary: Color(0xFFAE9BF2),
+    secondary: Color(0xFFA9BED9),
+    tertiary: Color.fromARGB(255, 172, 229, 242),
+    neutral: Colors.transparent,
+    neutralVariant: Colors.transparent,
   );
 
-  static const e = Presentation(
-    seed: 4096.0,
-    colorLighter: Color.fromARGB(255, 184, 229, 231),
-    colorLight: Color.fromARGB(255, 150, 162, 255),
-    colorDark: Color.fromARGB(255, 218, 203, 185),
-    colorDarker: Color.fromARGB(255, 150, 162, 255),
-  );
+  // static const e = Presentation(
+  //   seed: 4096.0,
+  //   primary: Color.fromARGB(255, 184, 229, 231),
+  //   secondary: Color.fromARGB(255, 150, 162, 255),
+  //   tertiary: Color.fromARGB(255, 218, 203, 185),
+  //   neutral: Colors.transparent,
+  //   neutralVariant: Colors.transparent,
+  // );
 
   //
   // TASKS
@@ -423,14 +428,14 @@ class Content {
   //
 
   static const exerciseNote = Exercise(
-    icon: "🗒",
+    icon: "💡",
     name: "Quick Notes",
     description: "Space for messy thoughts.",
     definitions: [taskNote],
     hierarchyPath: "",
     id: "",
     uuid: "51aeff45-8ba7-4669-a039-48a9f32246dc",
-    presentation: pink,
+    presentation: a,
   );
 
   static const exerciseMood = Exercise(
@@ -446,7 +451,7 @@ class Content {
     hierarchyPath: "",
     id: "",
     uuid: "bc0546a3-8ca8-477d-81cb-b1aa0dffa62c",
-    presentation: yellow,
+    presentation: b,
   );
 
   static const exerciseThought = Exercise(
@@ -462,7 +467,7 @@ class Content {
     hierarchyPath: "",
     id: "",
     uuid: "fa9bb353-1d11-43b0-ac15-f04abd9bc2e3",
-    presentation: e,
+    presentation: d,
   );
 
   static const exerciseAct = Exercise(

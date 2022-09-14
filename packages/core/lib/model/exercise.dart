@@ -48,10 +48,11 @@ class Exercise with _$Exercise, Identify, Locate, Inform, Present {
         presentation: presentation ??
             const Presentation(
               seed: 450.0,
-              colorLighter: Color.fromARGB(0, 227, 200, 214),
-              colorLight: Color.fromARGB(0, 236, 208, 188),
-              colorDark: Color.fromARGB(0, 213, 193, 215),
-              colorDarker: Color.fromARGB(0, 171, 186, 206),
+              primary: Color.fromARGB(0, 227, 200, 214),
+              secondary: Color.fromARGB(0, 227, 200, 214),
+              tertiary: Color.fromARGB(0, 227, 200, 214),
+              neutral: Color.fromARGB(0, 227, 200, 214),
+              neutralVariant: Color.fromARGB(0, 227, 200, 214),
             ),
       );
 

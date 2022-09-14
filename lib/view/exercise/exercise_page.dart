@@ -55,56 +55,31 @@ class ExercisePageState extends State<ExercisePage>
       BlocBuilder<ExerciseBloc, ExerciseState>(builder: (context, state) {
         final exercise = context.read<ExerciseBloc>().state.exercise;
 
-        final colorScheme = Theme.of(context).colorScheme;
+        final colorScheme = state.exercise.presentation
+            .colorScheme(Theme.of(context).brightness);
         final textTheme = Theme.of(context).textTheme;
 
         return Hero(
           tag: exercise.name,
-          child: ClipSmoothRect(
-            radius: SmoothBorderRadius.all(
-              ElementReact.screenCornerRadius(context),
-            ),
-            child: DecoratedBox(
-              decoration: BoxDecoration(color: colorScheme.surface),
-              child: CustomScrollView(
-                physics: const BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics(),
-                ),
-                slivers: [
-                  Theme(
-                    data: Theme.of(context).copyWith(
-                      colorScheme: Theme.of(context).colorScheme.copyWith(
-                            primary: HSLColor.fromColor(
-                              exercise.presentation.colorDarker,
-                            )
-                                .withLightness(0.25)
-                                .withSaturation(0.45)
-                                .toColor(),
-                            onPrimary: HSLColor.fromColor(
-                              exercise.presentation.colorDarker,
-                            )
-                                .withLightness(0.95)
-                                .withSaturation(0.75)
-                                .toColor(),
-                            onBackground: HSLColor.fromColor(
-                              exercise.presentation.colorDarker,
-                            )
-                                .withLightness(0.25)
-                                .withSaturation(0.45)
-                                .toColor(),
-                            onSurfaceVariant: HSLColor.fromColor(
-                              exercise.presentation.colorDarker,
-                            )
-                                .withLightness(0.15)
-                                .withSaturation(0.45)
-                                .toColor(),
-                          ),
-                    ),
-                    child: SliverAppBar(
+          child: Theme(
+            data: Theme.of(context).copyWith(colorScheme: colorScheme),
+            child: ClipSmoothRect(
+              radius: SmoothBorderRadius.all(
+                ElementReact.screenCornerRadius(context),
+              ),
+              child: DecoratedBox(
+                decoration: BoxDecoration(color: colorScheme.surface),
+                child: CustomScrollView(
+                  physics: const BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics(),
+                  ),
+                  slivers: [
+                    SliverAppBar(
                       leading: IconButton(
                         icon: const Icon(ElementSymbol.chevronCircleBackFilled),
                         onPressed: () => Navigator.of(context).pop(),
                         iconSize: 32.00,
+                        color: colorScheme.primary,
                       ),
                       pinned: true,
                       expandedHeight: 440,
@@ -118,10 +93,10 @@ class ExercisePageState extends State<ExercisePage>
                           painter: AirbrushPainter(
                             context: context,
                             frame: exercise.presentation.seed,
-                            colorLight: exercise.presentation.colorLight,
-                            colorDark: exercise.presentation.colorDark,
-                            colorLighter: exercise.presentation.colorLighter,
-                            colorDarker: exercise.presentation.colorDarker,
+                            colorLighter: colorScheme.tertiaryContainer,
+                            colorLight: colorScheme.secondaryContainer,
+                            colorDark: colorScheme.primaryContainer,
+                            colorDarker: colorScheme.background,
                           ),
                         ),
                         title: Builder(
@@ -166,13 +141,11 @@ class ExercisePageState extends State<ExercisePage>
                                             imageShader: widget.imageShader,
                                             frame: exercise.presentation.seed,
                                             colorLighter:
-                                                exercise.presentation.colorDark,
-                                            colorLight: exercise
-                                                .presentation.colorDarker,
-                                            colorDark: exercise
-                                                .presentation.colorLighter,
-                                            colorDarker: exercise
-                                                .presentation.colorLight,
+                                                colorScheme.secondaryContainer,
+                                            colorLight:
+                                                colorScheme.primaryContainer,
+                                            colorDark: colorScheme.background,
+                                            colorDarker: colorScheme.primary,
                                             height: 125 * (1.0 - t),
                                             width: 125 * (1.0 - t),
                                           ),
@@ -258,23 +231,23 @@ class ExercisePageState extends State<ExercisePage>
                         // background: ,
                       ),
                     ),
-                  ),
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.all(ElementScale.spaceM),
-                      child: Column(
-                        children: <Widget>[
-                          ...context
-                              .read<ExerciseBloc>()
-                              .state
-                              .exercise
-                              .definitions
-                              .map((task) => TaskComponent(task: task)),
-                        ],
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.all(ElementScale.spaceM),
+                        child: Column(
+                          children: <Widget>[
+                            ...context
+                                .read<ExerciseBloc>()
+                                .state
+                                .exercise
+                                .definitions
+                                .map((task) => TaskComponent(task: task)),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
