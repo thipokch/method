@@ -53,11 +53,45 @@ class Presentation with _$Presentation {
   // Scheme scheme(Brightness brightness) =>
   //     brightness == Brightness.light ? lightScheme() : darkScheme();
 
-  ColorScheme colorScheme(Brightness brightness) {
+  ColorScheme darkScheme() {
     final p = pallete();
 
     return ColorScheme(
-      brightness: brightness,
+      primary: Color(p.primary.get(80)),
+      onPrimary: Color(p.primary.get(20)),
+      primaryContainer: Color(p.primary.get(30)),
+      onPrimaryContainer: Color(p.primary.get(90)),
+      secondary: Color(p.secondary.get(80)),
+      onSecondary: Color(p.secondary.get(20)),
+      secondaryContainer: Color(p.secondary.get(30)),
+      onSecondaryContainer: Color(p.secondary.get(90)),
+      tertiary: Color(p.tertiary.get(80)),
+      onTertiary: Color(p.tertiary.get(20)),
+      tertiaryContainer: Color(p.tertiary.get(30)),
+      onTertiaryContainer: Color(p.tertiary.get(90)),
+      error: Color(p.error.get(80)),
+      onError: Color(p.error.get(20)),
+      errorContainer: Color(p.error.get(30)),
+      onErrorContainer: Color(p.error.get(80)),
+      background: Color(p.neutral.get(10)),
+      onBackground: Color(p.neutral.get(90)),
+      surface: Color(p.neutral.get(10)),
+      onSurface: Color(p.neutral.get(90)),
+      surfaceVariant: Color(p.neutralVariant.get(30)),
+      onSurfaceVariant: Color(p.neutralVariant.get(80)),
+      outline: Color(p.neutralVariant.get(60)),
+      shadow: Color(p.neutral.get(0)),
+      inverseSurface: Color(p.neutral.get(90)),
+      onInverseSurface: Color(p.neutral.get(20)),
+      inversePrimary: Color(p.primary.get(40)),
+      brightness: Brightness.dark,
+    );
+  }
+
+  ColorScheme lightScheme() {
+    final p = pallete();
+
+    return ColorScheme(
       primary: Color(p.primary.get(40)),
       onPrimary: Color(p.primary.get(100)),
       primaryContainer: Color(p.primary.get(90)),
@@ -85,8 +119,12 @@ class Presentation with _$Presentation {
       inverseSurface: Color(p.neutral.get(20)),
       onInverseSurface: Color(p.neutral.get(95)),
       inversePrimary: Color(p.primary.get(80)),
+      brightness: Brightness.light,
     );
   }
+
+  ColorScheme colorScheme(Brightness brightness) =>
+      brightness == Brightness.light ? lightScheme() : darkScheme();
 
   // Color graphicPrimary() => Color(toTonal(primary, 40).get(85));
   // Color graphicSecondary() => Color(toTonal(secondary, 40).get(85));

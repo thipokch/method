@@ -79,11 +79,13 @@ class AirbrushEmoji extends StatelessWidget {
                 child: CustomPaint(
                   painter: AirbrushPainter(
                     context: context,
-                    frame: 100,
-                    colorLighter: null,
-                    colorLight: null,
-                    colorDark: null,
-                    colorDarker: null,
+                    frame: 190,
+                    colorLighter:
+                        Theme.of(context).colorScheme.primaryContainer,
+                    colorLight:
+                        Theme.of(context).colorScheme.secondaryContainer,
+                    colorDark: Theme.of(context).colorScheme.background,
+                    colorDarker: Theme.of(context).colorScheme.primary,
                     height: height,
                     width: width,
                     imageShader: snapshot.data,

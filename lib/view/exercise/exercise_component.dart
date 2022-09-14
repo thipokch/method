@@ -1,6 +1,7 @@
 import 'package:component/exercise/exercise_bloc.dart';
 import 'package:core/model/exercise.dart';
 import 'package:core/model/session.dart';
+import 'package:element/element_color.dart';
 import 'package:element/element_scale.dart';
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
@@ -54,11 +55,12 @@ class ExerciseComponentState extends State<ExerciseComponent> {
         child: BlocBuilder<ExerciseBloc, ExerciseState>(
           builder: (context, state) {
             final exercise = state.exercise;
-            final colorScheme =
-                state.exercise.presentation.colorScheme(Brightness.light);
+            final colorScheme = state.exercise.presentation
+                .colorScheme(Theme.of(context).brightness)
+                .harmonizeWith(Theme.of(context).colorScheme.primary);
             final ThemeData themeData = Theme.of(context).copyWith(
-                // colorScheme: colorScheme,
-                );
+              colorScheme: colorScheme,
+            );
             final textTheme = themeData.textTheme;
             // final colorScheme = themeData.colorScheme;
             // final colors = themeData.extension<CustomColors>();

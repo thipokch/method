@@ -2,6 +2,7 @@
 
 import 'package:card_swiper/card_swiper.dart';
 import 'package:component/exercise/exercise_bloc.dart';
+import 'package:element/element_color.dart';
 import 'package:element/element_motion.dart';
 import 'package:element/element_react.dart';
 import 'package:element/element_scale.dart';
@@ -54,15 +55,17 @@ class ExercisePageState extends State<ExercisePage>
   Widget build(BuildContext context) =>
       BlocBuilder<ExerciseBloc, ExerciseState>(builder: (context, state) {
         final exercise = context.read<ExerciseBloc>().state.exercise;
-
         final colorScheme = state.exercise.presentation
-            .colorScheme(Theme.of(context).brightness);
+            .colorScheme(Theme.of(context).brightness)
+            .harmonizeWith(Theme.of(context).colorScheme.primary);
         final textTheme = Theme.of(context).textTheme;
 
         return Hero(
           tag: exercise.name,
           child: Theme(
-            data: Theme.of(context).copyWith(colorScheme: colorScheme),
+            data: Theme.of(context).copyWith(
+              colorScheme: colorScheme,
+            ),
             child: ClipSmoothRect(
               radius: SmoothBorderRadius.all(
                 ElementReact.screenCornerRadius(context),

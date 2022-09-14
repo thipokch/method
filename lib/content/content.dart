@@ -22,9 +22,9 @@ class Content {
 
   static const b = Presentation(
     seed: 400.0,
-    primary: Color.fromARGB(255, 222, 224, 102),
-    secondary: Color.fromARGB(255, 215, 160, 87),
-    tertiary: Color.fromARGB(255, 232, 119, 050),
+    primary: Color.fromARGB(255, 224, 191, 102),
+    secondary: Color.fromARGB(255, 232, 95, 10),
+    tertiary: Color.fromARGB(255, 215, 160, 87),
     neutral: Colors.transparent,
     neutralVariant: Colors.transparent,
   );
@@ -32,17 +32,17 @@ class Content {
   static const c = Presentation(
     seed: 1049.0,
     primary: Color(0xFF5CC66C),
-    secondary: Color(0xFFE1E468),
+    secondary: Color.fromARGB(255, 239, 242, 54),
     tertiary: Color(0xFF80C8A3),
     neutral: Colors.transparent,
     neutralVariant: Colors.transparent,
   );
 
   static const d = Presentation(
-    seed: 8192.0,
-    primary: Color(0xFFA9AEF2),
-    tertiary: Color(0xFFA9BED9),
-    secondary: Color.fromARGB(255, 172, 214, 242),
+    seed: 19.0,
+    primary: Color(0xFF143974),
+    secondary: Color.fromARGB(255, 146, 224, 237),
+    tertiary: Color(0xFF4188B3),
     neutral: Colors.transparent,
     neutralVariant: Colors.transparent,
   );
