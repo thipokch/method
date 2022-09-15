@@ -1,186 +1,84 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:component/exercise/exercise_bloc.dart';
+import 'package:component/task/task_bloc.dart';
 import 'package:core/model/exercise.dart';
 import 'package:core/model/session.dart';
 import 'package:element/element_color.dart';
+import 'package:element/element_motion.dart';
+import 'package:element/element_react.dart';
 import 'package:element/element_scale.dart';
+import 'package:element/element_symbol.dart';
+import 'package:element/element_touch.dart';
 import 'package:figma_squircle/figma_squircle.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matter/airbrush/airbrush_gradient_image.dart';
 import 'package:matter/airbrush/airbrush_painter.dart';
-import 'package:method/view/exercise/exercise_page.dart';
+import 'package:matter/button/button_filled.dart';
+import 'package:matter/util/theme_image_shader.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
-class ExerciseComponent extends StatefulWidget {
-  final Exercise exercise;
-  final Session? session;
+import '../task/task_component.dart';
+import '../task/task_editor.dart';
 
-  const ExerciseComponent({
+part 'exercise_card.dart';
+part 'exercise_page.dart';
+part 'exercise_editor.dart';
+
+class _ExerciseWidget extends StatelessWidget {
+  final Widget child;
+  final Exercise? _exercise;
+  final ExerciseBloc? _bloc;
+  final ThemeData? _theme;
+
+  const _ExerciseWidget({
+    // ignore: unused_element
     super.key,
-    required this.exercise,
-    this.session,
-  });
+    required Exercise exercise,
+    required this.child,
+  })  : _exercise = exercise,
+        _bloc = null,
+        _theme = null;
+
+  const _ExerciseWidget.from({
+    // ignore: unused_element
+    super.key,
+    required ExerciseBloc bloc,
+    required ThemeData theme,
+    required this.child,
+  })  : _exercise = null,
+        _bloc = bloc,
+        _theme = theme;
 
   @override
-  State<StatefulWidget> createState() => ExerciseComponentState();
-}
-
-class ExerciseComponentState extends State<ExerciseComponent> {
-  ImageShader? imageShader;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) => BlocProvider(
-        create: (context) {
-          final bloc = ExerciseBloc(exercise: widget.exercise);
-
-          loadEmojiShader(bloc.state.exercise.icon).then(
-            (value) {
-              setState(() {
-                imageShader = value;
-              });
-            },
-          );
-
-          if (widget.session != null) {
-            bloc.add(ExerciseEvent.loadSession(session: widget.session!));
-          }
-
-          return bloc;
-        },
-        child: BlocBuilder<ExerciseBloc, ExerciseState>(
-          builder: (context, state) {
-            final exercise = state.exercise;
-            final colorScheme = state.exercise.presentation
-                .colorScheme(Theme.of(context).brightness)
-                .harmonizeWith(Theme.of(context).colorScheme.primary);
-            final ThemeData themeData = Theme.of(context).copyWith(
-              colorScheme: colorScheme,
-            );
-            final textTheme = themeData.textTheme;
-            // final colorScheme = themeData.colorScheme;
-            // final colors = themeData.extension<CustomColors>();
-
-            return Hero(
-              tag: exercise.name,
-              child: Theme(
-                data: themeData,
-                child: Card(
-                  elevation: 0,
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  shape: const SmoothRectangleBorder(
-                    borderRadius: SmoothBorderRadius.all(
-                      SmoothRadius(
-                        cornerRadius: ElementScale.cornerLarge,
-                        cornerSmoothing: ElementScale.cornerSmoothFactor,
-                      ),
-                    ),
-                  ),
-                  child: ConstrainedBox(
-                    constraints: const BoxConstraints.expand(height: 100),
-                    child: InkWell(
-                      onTap: () {
-                        final bloc = context.read<ExerciseBloc>();
-
-                        Navigator.of(context).push(
-                          ModalBottomSheetRoute(
-                            expanded: true,
-                            builder: (context) => BlocProvider.value(
-                              value: bloc,
-                              child: ExercisePage(
-                                imageShader: imageShader,
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                      child: Stack(
-                        alignment: Alignment.bottomRight,
-                        children: [
-                          SizedBox.expand(
-                            // child: DecoratedBox(
-                            //   decoration: BoxDecoration(
-                            //     color: colorScheme.primaryContainer,
-                            //   ),
-                            // ),
-
-                            child: CustomPaint(
-                              painter: AirbrushPainter(
-                                context: context,
-                                // frame: 825,
-                                frame: 7,
-                                // frame: 2048.0 * 2,
-                                colorLighter: colorScheme.secondaryContainer,
-                                colorLight: colorScheme.primaryContainer,
-                                colorDark: colorScheme.primaryContainer,
-                                colorDarker: colorScheme.background,
-                                // colorDarker: colorScheme.surfaceVariant,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 100,
-                            width: 100,
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 20),
-                              child: CustomPaint(
-                                painter: AirbrushPainter(
-                                  context: context,
-                                  imageShader: imageShader,
-                                  frame: exercise.presentation.seed,
-                                  colorLighter: colorScheme.primaryContainer,
-                                  colorLight: colorScheme.secondaryContainer,
-                                  colorDark: colorScheme.background,
-                                  colorDarker: colorScheme.primary,
-                                  height: 100,
-                                  width: 100,
-                                ),
-                              ),
-                            ),
-                          ),
-                          ListTile(
-                            title: Text(
-                              exercise.name,
-                              style: textTheme.titleMedium!.copyWith(
-                                fontWeight: FontWeight.w600,
-                                color: colorScheme.onPrimaryContainer,
-                              ),
-                            ),
-                            subtitle: Text(
-                              exercise.description,
-                              style: textTheme.labelMedium!.copyWith(
-                                fontWeight: FontWeight.w600,
-                                color: colorScheme.onPrimaryContainer,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+  Widget build(BuildContext context) =>
+      (_exercise != null || _bloc == null || _theme == null)
+          ? FutureBuilder<ImageShader>(
+              future: loadEmojiShader(_exercise!.icon),
+              builder: (context, snapshot) => Theme(
+                data: Theme.of(context).copyWith(
+                  colorScheme: _exercise!.presentation
+                      .colorScheme(Theme.of(context).brightness)
+                      .harmonizeWith(Theme.of(context).colorScheme.primary),
+                  extensions: [
+                    ...Theme.of(context).extensions.values,
+                    ThemeImageShader(snapshot.data),
+                  ],
+                ),
+                child: BlocProvider(
+                  create: ((context) => ExerciseBloc(exercise: _exercise!)),
+                  child: child,
                 ),
               ),
+            )
+          : Theme(
+              data: _theme!,
+              child: BlocProvider.value(
+                value: _bloc!,
+                child: child,
+              ),
             );
-          },
-          // ButtonTonal(
-          //   child: Text(context.read<ExerciseBloc>().state.exercise.name),
-          //   onPressed: () {
-          //     final bloc = context.read<ExerciseBloc>();
-
-          //     Navigator.of(context).push(
-          //       MaterialPageRoute(
-          //         builder: (context) => BlocProvider.value(
-          //           value: bloc,
-          //           child: const ExercisePage(),
-          //         ),
-          //       ),
-          //     );
-          //   },
-          // ),
-        ),
-      );
 }

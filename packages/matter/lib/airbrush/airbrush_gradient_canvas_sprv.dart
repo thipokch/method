@@ -9,7 +9,8 @@ import 'dart:ui';
 /// Compiles the shader airbrushGradientCanvas into a usable [FragmentProgram].
 Future<FragmentProgram> airbrushGradientCanvasFragmentProgram() =>
     FragmentProgram.compile(
-        spirv: Uint8List.fromList(airbrushGradientCanvasBytes).buffer);
+      spirv: Uint8List.fromList(airbrushGradientCanvasBytes).buffer,
+    );
 
 /// Bytes of the compiled shader (airbrushGradientCanvas) in SPR-V format
 const airbrushGradientCanvasBytes = [
@@ -6680,5 +6681,5 @@ const airbrushGradientCanvasBytes = [
   56,
   0,
   1,
-  0
+  0,
 ];

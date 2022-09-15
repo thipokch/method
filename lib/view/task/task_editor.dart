@@ -165,6 +165,7 @@ class TaskEditorState extends State<TaskEditor> with TickerProviderStateMixin {
                                 style: textTheme.bodyLarge,
                                 expands: true,
                                 maxLines: null,
+                                cursorColor: colorScheme.primary,
                                 decoration: const InputDecoration(
                                   hintText: 'Start Writing...',
                                   border: InputBorder.none,

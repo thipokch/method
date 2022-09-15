@@ -435,7 +435,7 @@ class Content {
     hierarchyPath: "",
     id: "",
     uuid: "51aeff45-8ba7-4669-a039-48a9f32246dc",
-    presentation: a,
+    presentation: b,
   );
 
   static const exerciseMood = Exercise(
@@ -451,7 +451,7 @@ class Content {
     hierarchyPath: "",
     id: "",
     uuid: "bc0546a3-8ca8-477d-81cb-b1aa0dffa62c",
-    presentation: b,
+    presentation: a,
   );
 
   static const exerciseThought = Exercise(

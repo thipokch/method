@@ -1,3 +1,4 @@
+import 'package:core/model/exercise.dart';
 import 'package:element/element_scale.dart';
 import 'package:flutter/material.dart';
 import 'package:matter/page/page.dart';
@@ -22,20 +23,12 @@ class _HomeView extends StatelessWidget {
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.all(ElementScale.spaceM),
         child: Column(
-          children: const [
-            ExerciseComponent(
-              exercise: Content.exerciseNote,
-            ),
-            ExerciseComponent(
-              exercise: Content.exerciseThought,
-            ),
-            ExerciseComponent(
-              exercise: Content.exerciseAct,
-            ),
-            ExerciseComponent(
-              exercise: Content.exerciseMood,
-            ),
-          ],
+          children: <Exercise>[
+            Content.exerciseNote,
+            Content.exerciseThought,
+            Content.exerciseAct,
+            Content.exerciseMood,
+          ].map<Widget>((e) => ExerciseCard.create(exercise: e)).toList(),
         ),
       );
 }

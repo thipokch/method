@@ -1,16 +1,20 @@
-import 'package:card_swiper/card_swiper.dart';
-import 'package:component/exercise/exercise_bloc.dart';
-import 'package:component/task/task_bloc.dart';
-import 'package:core/model/session.dart';
-import 'package:element/element_scale.dart';
-import 'package:element/element_symbol.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:method/view/task/task_editor.dart';
+part of 'exercise_component.dart';
 
 class ExerciseEditor extends StatefulWidget {
   const ExerciseEditor({super.key});
+
+  static Route route({
+    required ExerciseBloc bloc,
+    required ThemeData theme,
+  }) =>
+      CupertinoPageRoute(
+        // expanded: true,
+        builder: (context) => _ExerciseWidget.from(
+          bloc: bloc,
+          theme: theme,
+          child: const ExerciseEditor(),
+        ),
+      );
 
   @override
   State<StatefulWidget> createState() => ExerciseEditorState();
@@ -40,6 +44,9 @@ class ExerciseEditorState extends State<ExerciseEditor> {
           builder: (context, state) {
             final bloc = context.read<ExerciseBloc>();
             final colorScheme = Theme.of(context).colorScheme;
+            // final colorScheme = state.exercise.presentation
+            //     .colorScheme(Theme.of(context).brightness)
+            //     .harmonizeWith(Theme.of(context).colorScheme.primary);
 
             state.whenOrNull(
               exerciseLoaded: (exercise) => bloc.add(
@@ -63,8 +70,8 @@ class ExerciseEditorState extends State<ExerciseEditor> {
                 builder: DotSwiperPaginationBuilder(
                   activeColor: colorScheme.primary,
                   color: colorScheme.onSurfaceVariant,
-                  size: ElementScale.cornerMedium,
-                  activeSize: ElementScale.cornerMedium,
+                  size: ElementScale.size03 + .0,
+                  activeSize: ElementScale.size03 + .0,
                 ),
               ),
               // pagination: DotSwiperPaginationBuilder(

@@ -1,31 +1,25 @@
-// ignore_for_file: unused_import
-
-import 'package:card_swiper/card_swiper.dart';
-import 'package:component/exercise/exercise_bloc.dart';
-import 'package:element/element_color.dart';
-import 'package:element/element_motion.dart';
-import 'package:element/element_react.dart';
-import 'package:element/element_scale.dart';
-import 'package:element/element_symbol.dart';
-import 'package:element/element_touch.dart';
-import 'package:figma_squircle/figma_squircle.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:matter/airbrush/airbrush_painter.dart';
-import 'package:matter/button/button_filled.dart';
-import 'package:method/view/exercise/exercise_editor.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-
-import '../task/task_component.dart';
+part of 'exercise_component.dart';
 
 class ExercisePage extends StatefulWidget {
-  final ImageShader? imageShader;
+  const ExercisePage({super.key});
 
-  const ExercisePage({
-    super.key,
-    this.imageShader,
-  });
+  static Widget create({required Exercise exercise}) => _ExerciseWidget(
+        exercise: exercise,
+        child: const ExercisePage(),
+      );
+
+  static Route route({
+    required ExerciseBloc bloc,
+    required ThemeData theme,
+  }) =>
+      ModalBottomSheetRoute(
+        expanded: true,
+        builder: (context) => _ExerciseWidget.from(
+          bloc: bloc,
+          theme: theme,
+          child: const ExercisePage(),
+        ),
+      );
 
   @override
   State<StatefulWidget> createState() => ExercisePageState();
@@ -49,23 +43,20 @@ class ExercisePageState extends State<ExercisePage>
     super.dispose();
   }
 
-  // ignore: no-empty-blo
-
   @override
   Widget build(BuildContext context) =>
       BlocBuilder<ExerciseBloc, ExerciseState>(builder: (context, state) {
-        final exercise = context.read<ExerciseBloc>().state.exercise;
-        final colorScheme = state.exercise.presentation
-            .colorScheme(Theme.of(context).brightness)
-            .harmonizeWith(Theme.of(context).colorScheme.primary);
-        final textTheme = Theme.of(context).textTheme;
+        final bloc = context.read<ExerciseBloc>();
+        final exercise = bloc.state.exercise;
+        final themeData = Theme.of(context);
+        final imageShader = themeData.extension<ThemeImageShader>()?.shader;
+        final colorScheme = themeData.colorScheme;
+        final textTheme = themeData.textTheme;
 
         return Hero(
           tag: exercise.name,
           child: Theme(
-            data: Theme.of(context).copyWith(
-              colorScheme: colorScheme,
-            ),
+            data: themeData,
             child: ClipSmoothRect(
               radius: SmoothBorderRadius.all(
                 ElementReact.screenCornerRadius(context),
@@ -141,7 +132,7 @@ class ExercisePageState extends State<ExercisePage>
                                           painter: AirbrushPainter(
                                             // assetString: exercise.icon,
                                             context: context,
-                                            imageShader: widget.imageShader,
+                                            imageShader: imageShader,
                                             frame: exercise.presentation.seed,
                                             colorLighter:
                                                 colorScheme.secondaryContainer,
@@ -160,14 +151,10 @@ class ExercisePageState extends State<ExercisePage>
                                 DefaultTextStyleTransition(
                                   style: TextStyleTween(
                                     begin: textTheme.headlineSmall!.copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onBackground,
+                                      color: colorScheme.onBackground,
                                     ),
                                     end: textTheme.titleMedium!.copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onBackground,
+                                      color: colorScheme.onBackground,
                                     ),
                                   ).animate(_controller),
                                   child: Text(exercise.name),
@@ -189,9 +176,7 @@ class ExercisePageState extends State<ExercisePage>
                                               exercise.description,
                                               style: textTheme.labelMedium!
                                                   .copyWith(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .onBackground,
+                                                color: colorScheme.onBackground,
                                               ),
                                             ),
                                             Padding(
@@ -201,16 +186,19 @@ class ExercisePageState extends State<ExercisePage>
                                               child: ButtonFilled(
                                                 onPressed: () {
                                                   Navigator.of(context).push(
-                                                    MaterialPageRoute(
-                                                      // expanded: true,
-                                                      builder: (childContext) =>
-                                                          BlocProvider.value(
-                                                        value: context.read<
-                                                            ExerciseBloc>(),
-                                                        child:
-                                                            const ExerciseEditor(),
-                                                      ),
+                                                    ExerciseEditor.route(
+                                                      bloc: bloc,
+                                                      theme: themeData,
                                                     ),
+                                                    // MaterialPageRoute(
+                                                    //   // expanded: true,
+                                                    //   builder: (childContext) =>
+                                                    //       BlocProvider.value(
+                                                    //     value: bloc,
+                                                    //     child:
+                                                    //         const ExerciseEditor(),
+                                                    //   ),
+                                                    // ),
                                                   );
                                                 },
                                                 child: const Text("Start"),
@@ -255,32 +243,5 @@ class ExercisePageState extends State<ExercisePage>
             ),
           ),
         );
-
-        // return MethodPage(
-        //   title: context.read<ExerciseBloc>().state.exercise.name,
-        //   child: Column(
-        //     children: <Widget>[
-        //       ButtonTonal(
-        //         child: const Text("Start"),
-        //         onPressed: () {
-        //           Navigator.of(context).push(
-        //             MaterialPageRoute(
-        //               builder: (childContext) => BlocProvider.value(
-        //                 value: context.read<ExerciseBloc>(),
-        //                 child: const ExerciseEditor(),
-        //               ),
-        //             ),
-        //           );
-        //         },
-        //       ),
-        //       ...context
-        //           .read<ExerciseBloc>()
-        //           .state
-        //           .exercise
-        //           .definitions
-        //           .map((task) => TaskComponent(task: task)),
-        //     ],
-        //   ),
-        // );
       });
 }
