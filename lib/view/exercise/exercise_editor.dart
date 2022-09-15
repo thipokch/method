@@ -69,7 +69,7 @@ class ExerciseEditorState extends State<ExerciseEditor> {
                 margin: const EdgeInsets.all(ElementScale.spaceM),
                 builder: DotSwiperPaginationBuilder(
                   activeColor: colorScheme.primary,
-                  color: colorScheme.onSurfaceVariant,
+                  color: colorScheme.surfaceVariant,
                   size: ElementScale.size03 + .0,
                   activeSize: ElementScale.size03 + .0,
                 ),

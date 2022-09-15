@@ -7,6 +7,7 @@ part of 'task_definition.dart';
 // **************************************************************************
 
 _$_Label _$$_LabelFromJson(Map<String, dynamic> json) => _$_Label(
+      icon: json['icon'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
       hierarchyPath: json['hierarchyPath'] as String,
@@ -16,6 +17,7 @@ _$_Label _$$_LabelFromJson(Map<String, dynamic> json) => _$_Label(
     );
 
 Map<String, dynamic> _$$_LabelToJson(_$_Label instance) => <String, dynamic>{
+      'icon': instance.icon,
       'name': instance.name,
       'description': instance.description,
       'hierarchyPath': instance.hierarchyPath,

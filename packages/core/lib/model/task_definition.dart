@@ -11,6 +11,7 @@ class TaskDefinition with _$TaskDefinition, Identify, Locate, Inform {
   const TaskDefinition._();
 
   const factory TaskDefinition.label({
+    required final String icon,
     required final String name,
     required final String description,
     required String hierarchyPath,

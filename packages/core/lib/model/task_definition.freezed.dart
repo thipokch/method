@@ -36,7 +36,7 @@ mixin _$TaskDefinition {
   String get uuid => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name, String description,
+    required TResult Function(String icon, String name, String description,
             String hierarchyPath, String id, String uuid)
         label,
     required TResult Function(String name, String description,
@@ -46,8 +46,8 @@ mixin _$TaskDefinition {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String name, String description, String hierarchyPath,
-            String id, String uuid)?
+    TResult Function(String icon, String name, String description,
+            String hierarchyPath, String id, String uuid)?
         label,
     TResult Function(String name, String description, String hierarchyPath,
             String id, String uuid)?
@@ -56,8 +56,8 @@ mixin _$TaskDefinition {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, String description, String hierarchyPath,
-            String id, String uuid)?
+    TResult Function(String icon, String name, String description,
+            String hierarchyPath, String id, String uuid)?
         label,
     TResult Function(String name, String description, String hierarchyPath,
             String id, String uuid)?
@@ -152,7 +152,8 @@ abstract class _$$_LabelCopyWith<$Res>
       __$$_LabelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String name,
+      {String icon,
+      String name,
       String description,
       String hierarchyPath,
       String id,
@@ -170,6 +171,7 @@ class __$$_LabelCopyWithImpl<$Res> extends _$TaskDefinitionCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? icon = freezed,
     Object? name = freezed,
     Object? description = freezed,
     Object? hierarchyPath = freezed,
@@ -177,6 +179,10 @@ class __$$_LabelCopyWithImpl<$Res> extends _$TaskDefinitionCopyWithImpl<$Res>
     Object? uuid = freezed,
   }) {
     return _then(_$_Label(
+      icon: icon == freezed
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -205,7 +211,8 @@ class __$$_LabelCopyWithImpl<$Res> extends _$TaskDefinitionCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Label extends _Label {
   const _$_Label(
-      {required this.name,
+      {required this.icon,
+      required this.name,
       required this.description,
       required this.hierarchyPath,
       required this.id,
@@ -217,6 +224,8 @@ class _$_Label extends _Label {
   factory _$_Label.fromJson(Map<String, dynamic> json) =>
       _$$_LabelFromJson(json);
 
+  @override
+  final String icon;
   @override
   final String name;
   @override
@@ -233,7 +242,7 @@ class _$_Label extends _Label {
 
   @override
   String toString() {
-    return 'TaskDefinition.label(name: $name, description: $description, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
+    return 'TaskDefinition.label(icon: $icon, name: $name, description: $description, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
   }
 
   @override
@@ -241,6 +250,7 @@ class _$_Label extends _Label {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Label &&
+            const DeepCollectionEquality().equals(other.icon, icon) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
@@ -254,6 +264,7 @@ class _$_Label extends _Label {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(icon),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(hierarchyPath),
@@ -268,34 +279,34 @@ class _$_Label extends _Label {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name, String description,
+    required TResult Function(String icon, String name, String description,
             String hierarchyPath, String id, String uuid)
         label,
     required TResult Function(String name, String description,
             String hierarchyPath, String id, String uuid)
         note,
   }) {
-    return label(name, description, hierarchyPath, id, uuid);
+    return label(icon, name, description, hierarchyPath, id, uuid);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String name, String description, String hierarchyPath,
-            String id, String uuid)?
+    TResult Function(String icon, String name, String description,
+            String hierarchyPath, String id, String uuid)?
         label,
     TResult Function(String name, String description, String hierarchyPath,
             String id, String uuid)?
         note,
   }) {
-    return label?.call(name, description, hierarchyPath, id, uuid);
+    return label?.call(icon, name, description, hierarchyPath, id, uuid);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, String description, String hierarchyPath,
-            String id, String uuid)?
+    TResult Function(String icon, String name, String description,
+            String hierarchyPath, String id, String uuid)?
         label,
     TResult Function(String name, String description, String hierarchyPath,
             String id, String uuid)?
@@ -303,7 +314,7 @@ class _$_Label extends _Label {
     required TResult orElse(),
   }) {
     if (label != null) {
-      return label(name, description, hierarchyPath, id, uuid);
+      return label(icon, name, description, hierarchyPath, id, uuid);
     }
     return orElse();
   }
@@ -349,7 +360,8 @@ class _$_Label extends _Label {
 
 abstract class _Label extends TaskDefinition {
   const factory _Label(
-      {required final String name,
+      {required final String icon,
+      required final String name,
       required final String description,
       required final String hierarchyPath,
       required final String id,
@@ -358,6 +370,7 @@ abstract class _Label extends TaskDefinition {
 
   factory _Label.fromJson(Map<String, dynamic> json) = _$_Label.fromJson;
 
+  String get icon;
   @override
   String get name;
   @override
@@ -495,7 +508,7 @@ class _$_Note extends _Note {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name, String description,
+    required TResult Function(String icon, String name, String description,
             String hierarchyPath, String id, String uuid)
         label,
     required TResult Function(String name, String description,
@@ -508,8 +521,8 @@ class _$_Note extends _Note {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String name, String description, String hierarchyPath,
-            String id, String uuid)?
+    TResult Function(String icon, String name, String description,
+            String hierarchyPath, String id, String uuid)?
         label,
     TResult Function(String name, String description, String hierarchyPath,
             String id, String uuid)?
@@ -521,8 +534,8 @@ class _$_Note extends _Note {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name, String description, String hierarchyPath,
-            String id, String uuid)?
+    TResult Function(String icon, String name, String description,
+            String hierarchyPath, String id, String uuid)?
         label,
     TResult Function(String name, String description, String hierarchyPath,
             String id, String uuid)?

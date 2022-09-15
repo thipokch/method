@@ -1,11 +1,12 @@
 import 'package:component/task/task_bloc.dart';
 import 'package:element/element_motion.dart';
 import 'package:element/element_scale.dart';
+import 'package:emoji/enums.dart';
+import 'package:emoji/twemoji_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matter/card/card.dart';
-import 'package:matter/chip/chip_emoji.dart';
 
 part 'task_editor_linear.dart';
 part 'task_editor_diverge.dart';
