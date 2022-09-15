@@ -1,4 +1,4 @@
-part of 'exercise_component.dart';
+part of 'exercise_widget.dart';
 
 class ExerciseCard extends StatelessWidget {
   const ExerciseCard({super.key});

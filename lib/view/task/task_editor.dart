@@ -4,6 +4,12 @@ import 'package:element/element_scale.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:matter/card/card.dart';
+import 'package:matter/chip/chip_emoji.dart';
+
+part 'task_editor_linear.dart';
+part 'task_editor_diverge.dart';
+part 'task_editor_converge.dart';
 
 class TaskEditor extends StatefulWidget {
   const TaskEditor({Key? key}) : super(key: key);
@@ -42,8 +48,8 @@ class TaskEditorState extends State<TaskEditor> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    // final task = context.read<TaskBloc>().state.task;
-    final note = context.read<TaskBloc>().state.task.definitions.first;
+    final task = context.read<TaskBloc>().state.task;
+    // final note = context.read<TaskBloc>().state.task.definitions.first;
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
 
@@ -98,23 +104,23 @@ class TaskEditorState extends State<TaskEditor> with TickerProviderStateMixin {
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Text(note.name),
+                            Text(task.name),
                           ],
                         ),
                       ),
-                      if (note.description.isNotEmpty)
+                      if (task.description.isNotEmpty)
                         Opacity(
                           opacity: 1 - ElementMotion.easeOutExpo.transform(t),
                           child: ClipRect(
                             child: Align(
-                              alignment: Alignment.topCenter,
+                              alignment: Alignment.topLeft,
                               heightFactor: 1 - t,
                               child: Padding(
                                 padding: const EdgeInsets.only(
                                   top: ElementScale.spaceM,
                                 ),
                                 child: Text(
-                                  note.description,
+                                  task.description,
                                   textAlign: TextAlign.start,
                                   style: textTheme.labelLarge!.copyWith(
                                     color:
@@ -150,35 +156,21 @@ class TaskEditorState extends State<TaskEditor> with TickerProviderStateMixin {
               type: MaterialType.transparency,
               child: SafeArea(
                 top: false,
-                child: LayoutBuilder(
-                  builder: (context, constraint) => SingleChildScrollView(
-                    controller: scrollController,
-                    child: ConstrainedBox(
-                      constraints:
-                          BoxConstraints(minHeight: constraint.maxHeight),
-                      child: IntrinsicHeight(
-                        child: Column(
-                          children: <Widget>[
-                            Expanded(
-                              child: TextField(
-                                autofocus: true,
-                                style: textTheme.bodyLarge,
-                                expands: true,
-                                maxLines: null,
-                                cursorColor: colorScheme.primary,
-                                decoration: const InputDecoration(
-                                  hintText: 'Start Writing...',
-                                  border: InputBorder.none,
-                                  contentPadding: EdgeInsets.all(
-                                    ElementScale.spaceM,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                child: task.map(
+                  linear: (value) => TaskEditorLinear(
+                    scrollController: scrollController,
+                    textTheme: textTheme,
+                    colorScheme: colorScheme,
+                  ),
+                  diverge: (value) => TaskEditorDiverge(
+                    scrollController: scrollController,
+                    textTheme: textTheme,
+                    colorScheme: colorScheme,
+                  ),
+                  converge: (value) => TaskEditorConverge(
+                    scrollController: scrollController,
+                    textTheme: textTheme,
+                    colorScheme: colorScheme,
                   ),
                 ),
               ),

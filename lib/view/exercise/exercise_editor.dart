@@ -1,4 +1,4 @@
-part of 'exercise_component.dart';
+part of 'exercise_widget.dart';
 
 class ExerciseEditor extends StatefulWidget {
   const ExerciseEditor({super.key});

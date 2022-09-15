@@ -3,7 +3,7 @@ import 'package:element/element_scale.dart';
 import 'package:flutter/material.dart';
 import 'package:matter/page/page.dart';
 import 'package:method/content/content.dart';
-import 'package:method/view/exercise/exercise_component.dart';
+import 'package:method/view/exercise/exercise_widget.dart';
 
 class HomePage extends MethodPage {
   HomePage({

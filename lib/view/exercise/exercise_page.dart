@@ -1,4 +1,4 @@
-part of 'exercise_component.dart';
+part of 'exercise_widget.dart';
 
 class ExercisePage extends StatefulWidget {
   const ExercisePage({super.key});
@@ -232,7 +232,7 @@ class ExercisePageState extends State<ExercisePage>
                                 .state
                                 .exercise
                                 .definitions
-                                .map((task) => TaskComponent(task: task)),
+                                .map((task) => TaskCard.create(task: task)),
                           ],
                         ),
                       ),

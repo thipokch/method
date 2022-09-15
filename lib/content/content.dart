@@ -66,10 +66,10 @@ class Content {
     description: "",
     definitions: <TaskDefinition>[
       TaskDefinition.note(
-        name: "",
-        description: "",
-        hierarchyPath: "",
-        id: "",
+        name: "---",
+        description: "---",
+        hierarchyPath: "---",
+        id: "---",
         uuid: "63c65144-4c0a-4341-8015-5592172536ef",
       ),
     ],
