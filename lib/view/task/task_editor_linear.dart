@@ -14,31 +14,38 @@ class TaskEditorLinear extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraint) => SingleChildScrollView(
-        controller: scrollController,
-        child: ConstrainedBox(
-          constraints: BoxConstraints(minHeight: constraint.maxHeight),
-          child: IntrinsicHeight(
-            child: Column(
-              children: <Widget>[
-                Expanded(
-                  child: TextField(
-                    autofocus: false,
-                    style: textTheme.bodyLarge,
-                    expands: true,
-                    maxLines: null,
-                    cursorColor: colorScheme.primary,
-                    decoration: const InputDecoration(
-                      hintText: 'Start Writing...',
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.all(
-                        ElementScale.spaceM,
+    final bloc = context.read<TaskBloc>();
+    final task = bloc.state.task;
+
+    return TaskEditorScaffold(
+      title: task.name,
+      description: task.description,
+      child: LayoutBuilder(
+        builder: (context, constraint) => SingleChildScrollView(
+          controller: scrollController,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(minHeight: constraint.maxHeight),
+            child: IntrinsicHeight(
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                    child: TextField(
+                      autofocus: false,
+                      style: textTheme.bodyLarge,
+                      expands: true,
+                      maxLines: null,
+                      cursorColor: colorScheme.primary,
+                      decoration: const InputDecoration(
+                        hintText: 'Start Writing...',
+                        border: InputBorder.none,
+                        contentPadding: EdgeInsets.all(
+                          ElementScale.spaceM,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

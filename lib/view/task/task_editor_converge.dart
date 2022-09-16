@@ -16,6 +16,8 @@ class TaskEditorConverge extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = context.read<TaskBloc>();
     final task = bloc.state.task;
+    final prompt = task.definitions.first;
+    assert(prompt.maybeMap(note: (_) => true, orElse: () => false));
 
     final labels = task.definitions
         .map<Widget?>(
@@ -69,33 +71,37 @@ class TaskEditorConverge extends StatelessWidget {
         .whereType<Widget>()
         .toList();
 
-    return SingleChildScrollView(
-      controller: scrollController,
-      child: Column(
-        children: <Widget>[
-          TextField(
-            autofocus: false,
-            style: textTheme.bodyLarge,
-            minLines: 4,
-            // expands: true,
-            maxLines: null,
-            cursorColor: colorScheme.primary,
-            decoration: const InputDecoration(
-              hintText: 'Start Writing...',
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.all(
-                ElementScale.spaceM,
+    return TaskEditorScaffold(
+      title: prompt.name,
+      description: prompt.description,
+      child: SingleChildScrollView(
+        controller: scrollController,
+        child: Column(
+          children: <Widget>[
+            TextField(
+              autofocus: false,
+              style: textTheme.bodyLarge,
+              minLines: 4,
+              // expands: true,
+              maxLines: null,
+              cursorColor: colorScheme.primary,
+              decoration: const InputDecoration(
+                hintText: 'Start Writing...',
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.all(
+                  ElementScale.spaceM,
+                ),
               ),
             ),
-          ),
-          GridView.count(
-            controller: scrollController,
-            padding: const EdgeInsets.all(ElementScale.spaceM),
-            shrinkWrap: true,
-            crossAxisCount: 3,
-            children: labels,
-          ),
-        ],
+            GridView.count(
+              controller: scrollController,
+              padding: const EdgeInsets.all(ElementScale.spaceM),
+              shrinkWrap: true,
+              crossAxisCount: 3,
+              children: labels,
+            ),
+          ],
+        ),
       ),
     );
   }

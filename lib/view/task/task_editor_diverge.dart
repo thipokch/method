@@ -17,37 +17,41 @@ class TaskEditorDiverge extends StatelessWidget {
     final bloc = context.read<TaskBloc>();
     final task = bloc.state.task;
 
-    return LayoutBuilder(
-      builder: (context, constraint) => SingleChildScrollView(
-        // controller: scrollController,
-        child: ConstrainedBox(
-          constraints: BoxConstraints(minHeight: constraint.maxHeight),
-          child: IntrinsicHeight(
-            child: Padding(
-              padding: const EdgeInsets.all(ElementScale.spaceM),
-              child: Column(
-                children: task.definitions
-                    .map<Widget?>(
-                      (e) => e.whenOrNull(
-                        note: ((
-                          icon,
-                          name,
-                          description,
-                          hierarchyPath,
-                          id,
-                          uuid,
-                        ) =>
-                            MethodCard(
-                              title: name,
-                              description: description,
-                              emoji: icon,
-                              isExpanded: false,
-                              // onTap: () {},
-                            )),
-                      ),
-                    )
-                    .whereType<Widget>()
-                    .toList(),
+    return TaskEditorScaffold(
+      title: task.name,
+      description: task.description,
+      child: LayoutBuilder(
+        builder: (context, constraint) => SingleChildScrollView(
+          // controller: scrollController,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(minHeight: constraint.maxHeight),
+            child: IntrinsicHeight(
+              child: Padding(
+                padding: const EdgeInsets.all(ElementScale.spaceM),
+                child: Column(
+                  children: task.definitions
+                      .map<Widget?>(
+                        (e) => e.whenOrNull(
+                          note: ((
+                            icon,
+                            name,
+                            description,
+                            hierarchyPath,
+                            id,
+                            uuid,
+                          ) =>
+                              MethodCard(
+                                title: name,
+                                description: description,
+                                emoji: icon,
+                                isExpanded: false,
+                                // onTap: () {},
+                              )),
+                        ),
+                      )
+                      .whereType<Widget>()
+                      .toList(),
+                ),
               ),
             ),
           ),

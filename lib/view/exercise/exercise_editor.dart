@@ -62,6 +62,9 @@ class ExerciseEditorState extends State<ExerciseEditor> {
             );
 
             return Swiper(
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
+              ),
               plugins: [ExerciseSwiperPlugin()],
               loop: false,
               pagination: SwiperPagination(

@@ -88,7 +88,7 @@ class Content {
         icon: "",
         name: "What’s going on?",
         description:
-            "Where am I? Who am I with? When did I start to notice a change in my emotion?",
+            "Where am I? Who am I with? When did I start to notice a change?",
         hierarchyPath: "",
         id: "context",
         uuid: "178aa923-e017-4508-b31d-42fdcd813053",
@@ -97,7 +97,7 @@ class Content {
       // LABEL - SOCIAL
 
       TaskDefinition.label(
-        icon: "👥",
+        icon: "🍻",
         name: "Friends",
         description: "",
         hierarchyPath: "context/social",
@@ -392,7 +392,7 @@ class Content {
       // OPTION - FINGER POINTING
 
       TaskDefinition.note(
-        icon: "🕳",
+        icon: "👉",
         name: "Self blaming",
         description: "They got bad grades, because I’m their friend.",
         hierarchyPath: "distortion/finger-pointing",
@@ -408,7 +408,7 @@ class Content {
         uuid: "75d88cbf-a193-404c-a3c5-cbb102018c69",
       ),
       TaskDefinition.note(
-        icon: "✅",
+        icon: "👑",
         name: "Always right",
         description: "I think that I’m fair and right.",
         hierarchyPath: "distortion/finger-pointing",
@@ -465,7 +465,8 @@ class Content {
         icon: "",
         name: "How am I feeling?",
         description:
-            "How strongly do I want to avoid or approach this emotion? How is my body responding to it? Where do I feel these sensations?",
+            // "How strongly do I want to avoid or approach this emotion? How is my body responding to it? Where do I feel these sensations?",
+            "How strongly is my body responding to the situation? Where do I feel these sensations?",
         hierarchyPath: "",
         id: "",
         uuid: "608b80a2-20b1-4056-8338-26a4e2dc6be6",
@@ -655,7 +656,8 @@ class Content {
       TaskDefinition.note(
         icon: "",
         name: "What's your body telling you?",
-        description: "",
+        description:
+            "Do I want to avoid or approach this? How does it relate to out universal needs?",
         hierarchyPath: "",
         id: "",
         uuid: "8b57cbff-faec-4efd-a855-f67ff168eec3",
@@ -833,7 +835,153 @@ class Content {
     icon: "🎯",
     name: "Set Intentions",
     description: "What can you do?",
-    definitions: <TaskDefinition>[],
+    definitions: <TaskDefinition>[
+      TaskDefinition.note(
+        icon: "🗿",
+        name: "Keep still",
+        description: "Sometimes doing nothing is doing something.",
+        hierarchyPath: "intentions/",
+        id: "do-nothing",
+        uuid: "da10b2a9-bb2d-4bca-9c93-e6f055f85621",
+      ),
+      TaskDefinition.note(
+        icon: "⚖️",
+        name: "Effort vs Impact Mapping",
+        description: "Gain a clearer picture of your task priorities.",
+        hierarchyPath: "intentions/motivation",
+        id: "effort-vs-impact",
+        uuid: "9dffb4cd-718a-4571-9c22-0c3d773b36d7",
+      ),
+      TaskDefinition.note(
+        icon: "🧱",
+        name: "Identify Barriers",
+        description: "Prepare for potential friction and opposing forces.",
+        hierarchyPath: "intentions/motivation",
+        id: "barriers",
+        uuid: "a149c25b-6de4-4a53-b311-3fdbe433eac2",
+      ),
+      TaskDefinition.note(
+        icon: "🔭",
+        name: "Seeing one’s way",
+        description: "Find authentic purpose and meaning in a task.",
+        hierarchyPath: "intentions/motivation",
+        id: "purpose",
+        uuid: "23c051f5-e08b-4b41-9666-572323ee0337",
+      ),
+      TaskDefinition.note(
+        icon: "🔍",
+        name: "See the bigger (and smaller) picture",
+        description: "Realize the benefits and costs of a task",
+        hierarchyPath: "intentions/motivation",
+        id: "f1a05eb0-8a92-4076-ab4b-fc6b0459c64e",
+        uuid: "00000",
+      ),
+      TaskDefinition.note(
+        icon: "🌊",
+        name: "Go with the current",
+        description: "Gain understanding as you go.",
+        hierarchyPath: "intentions/motivation",
+        id: "go",
+        uuid: "2a24765d-8fcc-41c5-87a6-e76647086b80",
+      ),
+
+      // NOTE - SOCIAL
+
+      TaskDefinition.note(
+        icon: "🙋",
+        name: "Asking for help",
+        description: "Knowing when you need help is a sign of strength.",
+        hierarchyPath: "intentions/social",
+        id: "ask-for-help",
+        uuid: "c60edbe6-6c11-4f2e-b664-cae30f81fb6c",
+      ),
+      TaskDefinition.note(
+        icon: "🧓",
+        name: "Get a wise opinion",
+        description: "In person, online or in books",
+        hierarchyPath: "intentions/social",
+        id: "opinion",
+        uuid: "36ae455d-7026-4cbe-b584-23cd6ce2d1e8",
+      ),
+      TaskDefinition.note(
+        icon: "👶",
+        name: "Explain it to a six year old.",
+        description: "A great way to simplify and clarify your thoughts.",
+        hierarchyPath: "intentions/social",
+        id: "explain-it-to-kids",
+        uuid: "6ba0a6ff-8a3e-4c1a-a478-3c013d2f6a3e",
+      ),
+
+      // NOTE - RETHINK
+
+      TaskDefinition.note(
+        icon: "🧪",
+        name: "Iterative testing",
+        description: "Conquer uncertainty by continuously learn and improve",
+        hierarchyPath: "intentions/rethink",
+        id: "iterative-testing",
+        uuid: "00000",
+      ),
+      TaskDefinition.note(
+        icon: "🌗",
+        name: "Become a contrarian.",
+        description: "Rethink, adapt and evolve to change.",
+        hierarchyPath: "intentions/rethink",
+        id: "contrarian",
+        uuid: "c852466a-d3b7-4b08-a3c7-89ea57a39a94",
+      ),
+      TaskDefinition.note(
+        icon: "💤",
+        name: "See it with fresh eyes.",
+        description: "Taking a break away from repetitive thoughts.",
+        hierarchyPath: "intentions/rethink",
+        id: "fresh-eyes",
+        uuid: "d9e9b5dc-7d8e-4329-b929-5ac5a4ad3806",
+      ),
+      TaskDefinition.note(
+        icon: "🛝",
+        name: "Youngblood",
+        description: "Find a creative, stupid, and enjoyable way to do it.",
+        hierarchyPath: "intention",
+        id: "young-blood",
+        uuid: "4c593178-1f51-4cb9-8d4c-c76f17216d89",
+      ),
+
+      // NOTE - SIMPLIFY
+
+      TaskDefinition.note(
+        icon: "🪥",
+        name: "Practice routine",
+        description: "Repetition helps your brain automate",
+        hierarchyPath: "action/simplify",
+        id: "routine",
+        uuid: "073c4252-abf0-4cb5-92a5-4ff844fe6912",
+      ),
+      TaskDefinition.note(
+        icon: "🐅",
+        name: "Acting on instinct",
+        description: "Understand and capitalized on your inclination",
+        hierarchyPath: "action/simplify",
+        id: "instinct",
+        uuid: "eaceb7b8-433e-4ecb-903e-6a9c77b2fb57",
+      ),
+      TaskDefinition.note(
+        icon: "🍄",
+        name: "Breaking things down",
+        description: "Turn overwhelming challenges into manageable tasks",
+        hierarchyPath: "action/simplify",
+        id: "breaking-things-down",
+        uuid: "c2acdde9-d302-4b54-8f64-8580347e91c7",
+      ),
+      TaskDefinition.note(
+        icon: "🪣",
+        name: "Bucketing",
+        description: "Group similar tasks to make decisions less exhausting",
+        hierarchyPath: "action/simplify",
+        id: "bucketing",
+        uuid: "9cc93fc1-22df-4843-8a03-d50b5be2ffcc",
+      ),
+    ],
     hierarchyPath: "",
     id: "",
     uuid: "88f0e492-cdbe-4720-8d84-25218ba87842",
