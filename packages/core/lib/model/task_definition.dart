@@ -20,6 +20,7 @@ class TaskDefinition with _$TaskDefinition, Identify, Locate, Inform {
   }) = _Label;
 
   const factory TaskDefinition.note({
+    required final String icon,
     required final String name,
     required final String description,
     required String hierarchyPath,

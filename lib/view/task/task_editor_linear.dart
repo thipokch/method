@@ -24,7 +24,7 @@ class TaskEditorLinear extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                   child: TextField(
-                    autofocus: true,
+                    autofocus: false,
                     style: textTheme.bodyLarge,
                     expands: true,
                     maxLines: null,

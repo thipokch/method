@@ -24,16 +24,23 @@ class TaskEditorDiverge extends StatelessWidget {
           constraints: BoxConstraints(minHeight: constraint.maxHeight),
           child: IntrinsicHeight(
             child: Padding(
-              padding: const EdgeInsets.all(ElementScale.spaceS),
+              padding: const EdgeInsets.all(ElementScale.spaceM),
               child: Column(
                 children: task.definitions
                     .map<Widget?>(
                       (e) => e.whenOrNull(
-                        note: ((name, description, hierarchyPath, id, uuid) =>
+                        note: ((
+                          icon,
+                          name,
+                          description,
+                          hierarchyPath,
+                          id,
+                          uuid,
+                        ) =>
                             MethodCard(
                               title: name,
                               description: description,
-                              emoji: task.icon,
+                              emoji: icon,
                               isExpanded: false,
                               // onTap: () {},
                             )),

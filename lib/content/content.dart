@@ -66,6 +66,7 @@ class Content {
     description: "",
     definitions: <TaskDefinition>[
       TaskDefinition.note(
+        icon: "",
         name: "---",
         description: "---",
         hierarchyPath: "---",
@@ -84,6 +85,7 @@ class Content {
     description: "What’s going on?",
     definitions: <TaskDefinition>[
       TaskDefinition.note(
+        icon: "",
         name: "What’s going on?",
         description:
             "Where am I? Who am I with? When did I start to notice a change in my emotion?",
@@ -277,6 +279,7 @@ class Content {
       // OPTION - JUMPING TO CONCLUSION
 
       TaskDefinition.note(
+        icon: "🧠",
         name: "Mind reading",
         description: "I bet they must be annoyed.",
         hierarchyPath: "distortion/jumping-to-conclusion",
@@ -284,6 +287,7 @@ class Content {
         uuid: "39b75f8e-52b6-4c3c-a0d6-94d20464abaf",
       ),
       TaskDefinition.note(
+        icon: "🔮",
         name: "Fortune telling",
         description: "I will always be alone.",
         hierarchyPath: "distortion/jumping-to-conclusion",
@@ -291,6 +295,7 @@ class Content {
         uuid: "f6ff5c76-cdcd-4c21-8688-61b30ffb43c0",
       ),
       TaskDefinition.note(
+        icon: "🌗",
         name: "All or nothing",
         description: "I havent figured myself out; I am a failure.",
         hierarchyPath: "distortion/jumping-to-conclusion",
@@ -298,6 +303,7 @@ class Content {
         uuid: "9f3fc20d-aed3-4863-9a07-13d169cf64f4",
       ),
       TaskDefinition.note(
+        icon: "🎭",
         name: "Emotion reasoning",
         description: "I feel lost; I must be wrong",
         hierarchyPath: "distortion/jumping-to-conclusion",
@@ -305,6 +311,7 @@ class Content {
         uuid: "c06b7c9f-f486-4bee-9f4d-76ec029f4d33",
       ),
       TaskDefinition.note(
+        icon: "🏷",
         name: "Labeling",
         description: "I'm stupid",
         hierarchyPath: "distortion/jumping-to-conclusion",
@@ -315,6 +322,7 @@ class Content {
       // OPTION - TOXIC POSITIVITY
 
       TaskDefinition.note(
+        icon: "👟",
         name: "Avoiding emotions",
         description: "Don’t be disappointed.",
         hierarchyPath: "distortion/toxic-positivity",
@@ -322,6 +330,7 @@ class Content {
         uuid: "5c35ee8e-151a-4d73-95a5-5d5a3144dec7",
       ),
       TaskDefinition.note(
+        icon: "🙏",
         name: "Gratitude shaming",
         description: "It could be worst.",
         hierarchyPath: "distortion/toxic-positivity",
@@ -329,6 +338,7 @@ class Content {
         uuid: "0e00f9de-6402-4416-b0af-b440e610e371",
       ),
       TaskDefinition.note(
+        icon: "⚖️",
         name: "Comparison trap",
         description: "Why is everyone advancing their careers.",
         hierarchyPath: "distortion/toxic-positivity",
@@ -336,6 +346,7 @@ class Content {
         uuid: "29a5dfa5-b6b9-4ee1-8351-482136f579b0",
       ),
       TaskDefinition.note(
+        icon: "🪄",
         name: "Magical thinking",
         description: "If I’m ______ , my life would be better.",
         hierarchyPath: "distortion/toxic-positivity",
@@ -343,9 +354,45 @@ class Content {
         uuid: "7719fed6-d24f-4c4a-861b-3d45b1f4dca7",
       ),
 
+      // OPTION - ASSUMING THE WORST
+
+      TaskDefinition.note(
+        icon: "☄️",
+        name: "Catastophizing",
+        description: "What if I blow this all up?",
+        hierarchyPath: "distortion/assuming-the-worst",
+        id: "catastophizing",
+        uuid: "4935779a-a837-4f73-9e76-1e12045962cc",
+      ),
+      TaskDefinition.note(
+        icon: "🙈",
+        name: "Discouting the positive",
+        description: "They are just congratulating me to be nice.",
+        hierarchyPath: "distortion/assuming-the-worst",
+        id: "discouting-the-positive",
+        uuid: "27ef73b4-f726-47a9-98f7-f1194b23fc77",
+      ),
+      TaskDefinition.note(
+        icon: "🔬",
+        name: "Magnifying the negative",
+        description: "That single error ruined everything.",
+        hierarchyPath: "distortion/assuming-the-worst",
+        id: "magnifying-the-negative",
+        uuid: "0000",
+      ),
+      TaskDefinition.note(
+        icon: "☂️",
+        name: "Overgeneralization",
+        description: "Everyone sucks.",
+        hierarchyPath: "distortion/assuming-the-worst",
+        id: "overgeneralization",
+        uuid: "355bdefc-318e-4aa0-8ea8-b6d0b86ab85b",
+      ),
+
       // OPTION - FINGER POINTING
 
       TaskDefinition.note(
+        icon: "🕳",
         name: "Self blaming",
         description: "They got bad grades, because I’m their friend.",
         hierarchyPath: "distortion/finger-pointing",
@@ -353,6 +400,7 @@ class Content {
         uuid: "87f7f049-69cd-461a-aa79-4c2624f40508",
       ),
       TaskDefinition.note(
+        icon: "👈",
         name: "Blaming others",
         description: "They are to blame for my unhappiness.",
         hierarchyPath: "distortion/finger-pointing",
@@ -360,6 +408,7 @@ class Content {
         uuid: "75d88cbf-a193-404c-a3c5-cbb102018c69",
       ),
       TaskDefinition.note(
+        icon: "✅",
         name: "Always right",
         description: "I think that I’m fair and right.",
         hierarchyPath: "distortion/finger-pointing",
@@ -367,6 +416,7 @@ class Content {
         uuid: "07b70c39-6d86-4b0d-983e-71a4443c8c55",
       ),
       TaskDefinition.note(
+        icon: "🎯",
         name: "Victim position",
         description: "The whole world is out to get me.",
         hierarchyPath: "distortion/finger-pointing",
@@ -374,6 +424,7 @@ class Content {
         uuid: "f22c6604-7e5b-4fd2-8119-1e865fa0f047",
       ),
       TaskDefinition.note(
+        icon: "👼",
         name: "Heaven's reward",
         description: "I’ve donated a lot. Why am I still poor?",
         hierarchyPath: "distortion/finger-pointing",
@@ -392,6 +443,7 @@ class Content {
     description: "What if it's true?",
     definitions: <TaskDefinition>[
       TaskDefinition.note(
+        icon: "",
         name: "If that were true,\nwhat would it mean to you?",
         description: "",
         hierarchyPath: "",
@@ -410,6 +462,7 @@ class Content {
     description: "How am I feeling?",
     definitions: <TaskDefinition>[
       TaskDefinition.note(
+        icon: "",
         name: "How am I feeling?",
         description:
             "How strongly do I want to avoid or approach this emotion? How is my body responding to it? Where do I feel these sensations?",
@@ -600,6 +653,7 @@ class Content {
     description: "What's your body telling you?",
     definitions: <TaskDefinition>[
       TaskDefinition.note(
+        icon: "",
         name: "What's your body telling you?",
         description: "",
         hierarchyPath: "",

@@ -74,7 +74,7 @@ class TaskEditorConverge extends StatelessWidget {
       child: Column(
         children: <Widget>[
           TextField(
-            autofocus: true,
+            autofocus: false,
             style: textTheme.bodyLarge,
             minLines: 4,
             // expands: true,

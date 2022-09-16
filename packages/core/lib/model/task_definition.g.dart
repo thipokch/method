@@ -27,6 +27,7 @@ Map<String, dynamic> _$$_LabelToJson(_$_Label instance) => <String, dynamic>{
     };
 
 _$_Note _$$_NoteFromJson(Map<String, dynamic> json) => _$_Note(
+      icon: json['icon'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
       hierarchyPath: json['hierarchyPath'] as String,
@@ -36,6 +37,7 @@ _$_Note _$$_NoteFromJson(Map<String, dynamic> json) => _$_Note(
     );
 
 Map<String, dynamic> _$$_NoteToJson(_$_Note instance) => <String, dynamic>{
+      'icon': instance.icon,
       'name': instance.name,
       'description': instance.description,
       'hierarchyPath': instance.hierarchyPath,

@@ -1,5 +1,6 @@
+import 'package:emoji/enums.dart';
+import 'package:emoji/twemoji_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:matter/airbrush/airbrush_gradient_image.dart';
 
 class CardTile extends StatelessWidget {
   const CardTile({
@@ -30,8 +31,9 @@ class CardTile extends StatelessWidget {
           //     mainAxisAlignment: MainAxisAlignment.center,
           //     crossAxisAlignment: CrossAxisAlignment.center,
           //     children: [
-          AirbrushEmoji(
+          Twemoji(
               emoji: emoji!,
+              twemojiFormat: TwemojiFormat.webp,
               width: 42,
               height: 42,
             )

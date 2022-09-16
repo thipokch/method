@@ -29,6 +29,7 @@ TaskDefinition _$TaskDefinitionFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TaskDefinition {
+  String get icon => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get hierarchyPath => throw _privateConstructorUsedError;
@@ -39,7 +40,7 @@ mixin _$TaskDefinition {
     required TResult Function(String icon, String name, String description,
             String hierarchyPath, String id, String uuid)
         label,
-    required TResult Function(String name, String description,
+    required TResult Function(String icon, String name, String description,
             String hierarchyPath, String id, String uuid)
         note,
   }) =>
@@ -49,8 +50,8 @@ mixin _$TaskDefinition {
     TResult Function(String icon, String name, String description,
             String hierarchyPath, String id, String uuid)?
         label,
-    TResult Function(String name, String description, String hierarchyPath,
-            String id, String uuid)?
+    TResult Function(String icon, String name, String description,
+            String hierarchyPath, String id, String uuid)?
         note,
   }) =>
       throw _privateConstructorUsedError;
@@ -59,8 +60,8 @@ mixin _$TaskDefinition {
     TResult Function(String icon, String name, String description,
             String hierarchyPath, String id, String uuid)?
         label,
-    TResult Function(String name, String description, String hierarchyPath,
-            String id, String uuid)?
+    TResult Function(String icon, String name, String description,
+            String hierarchyPath, String id, String uuid)?
         note,
     required TResult orElse(),
   }) =>
@@ -96,7 +97,8 @@ abstract class $TaskDefinitionCopyWith<$Res> {
           TaskDefinition value, $Res Function(TaskDefinition) then) =
       _$TaskDefinitionCopyWithImpl<$Res>;
   $Res call(
-      {String name,
+      {String icon,
+      String name,
       String description,
       String hierarchyPath,
       String id,
@@ -114,6 +116,7 @@ class _$TaskDefinitionCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? icon = freezed,
     Object? name = freezed,
     Object? description = freezed,
     Object? hierarchyPath = freezed,
@@ -121,6 +124,10 @@ class _$TaskDefinitionCopyWithImpl<$Res>
     Object? uuid = freezed,
   }) {
     return _then(_value.copyWith(
+      icon: icon == freezed
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -282,7 +289,7 @@ class _$_Label extends _Label {
     required TResult Function(String icon, String name, String description,
             String hierarchyPath, String id, String uuid)
         label,
-    required TResult Function(String name, String description,
+    required TResult Function(String icon, String name, String description,
             String hierarchyPath, String id, String uuid)
         note,
   }) {
@@ -295,8 +302,8 @@ class _$_Label extends _Label {
     TResult Function(String icon, String name, String description,
             String hierarchyPath, String id, String uuid)?
         label,
-    TResult Function(String name, String description, String hierarchyPath,
-            String id, String uuid)?
+    TResult Function(String icon, String name, String description,
+            String hierarchyPath, String id, String uuid)?
         note,
   }) {
     return label?.call(icon, name, description, hierarchyPath, id, uuid);
@@ -308,8 +315,8 @@ class _$_Label extends _Label {
     TResult Function(String icon, String name, String description,
             String hierarchyPath, String id, String uuid)?
         label,
-    TResult Function(String name, String description, String hierarchyPath,
-            String id, String uuid)?
+    TResult Function(String icon, String name, String description,
+            String hierarchyPath, String id, String uuid)?
         note,
     required TResult orElse(),
   }) {
@@ -370,6 +377,7 @@ abstract class _Label extends TaskDefinition {
 
   factory _Label.fromJson(Map<String, dynamic> json) = _$_Label.fromJson;
 
+  @override
   String get icon;
   @override
   String get name;
@@ -393,7 +401,8 @@ abstract class _$$_NoteCopyWith<$Res> implements $TaskDefinitionCopyWith<$Res> {
       __$$_NoteCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String name,
+      {String icon,
+      String name,
       String description,
       String hierarchyPath,
       String id,
@@ -411,6 +420,7 @@ class __$$_NoteCopyWithImpl<$Res> extends _$TaskDefinitionCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? icon = freezed,
     Object? name = freezed,
     Object? description = freezed,
     Object? hierarchyPath = freezed,
@@ -418,6 +428,10 @@ class __$$_NoteCopyWithImpl<$Res> extends _$TaskDefinitionCopyWithImpl<$Res>
     Object? uuid = freezed,
   }) {
     return _then(_$_Note(
+      icon: icon == freezed
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -446,7 +460,8 @@ class __$$_NoteCopyWithImpl<$Res> extends _$TaskDefinitionCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Note extends _Note {
   const _$_Note(
-      {required this.name,
+      {required this.icon,
+      required this.name,
       required this.description,
       required this.hierarchyPath,
       required this.id,
@@ -457,6 +472,8 @@ class _$_Note extends _Note {
 
   factory _$_Note.fromJson(Map<String, dynamic> json) => _$$_NoteFromJson(json);
 
+  @override
+  final String icon;
   @override
   final String name;
   @override
@@ -473,7 +490,7 @@ class _$_Note extends _Note {
 
   @override
   String toString() {
-    return 'TaskDefinition.note(name: $name, description: $description, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
+    return 'TaskDefinition.note(icon: $icon, name: $name, description: $description, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
   }
 
   @override
@@ -481,6 +498,7 @@ class _$_Note extends _Note {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Note &&
+            const DeepCollectionEquality().equals(other.icon, icon) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
@@ -494,6 +512,7 @@ class _$_Note extends _Note {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(icon),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(hierarchyPath),
@@ -511,11 +530,11 @@ class _$_Note extends _Note {
     required TResult Function(String icon, String name, String description,
             String hierarchyPath, String id, String uuid)
         label,
-    required TResult Function(String name, String description,
+    required TResult Function(String icon, String name, String description,
             String hierarchyPath, String id, String uuid)
         note,
   }) {
-    return note(name, description, hierarchyPath, id, uuid);
+    return note(icon, name, description, hierarchyPath, id, uuid);
   }
 
   @override
@@ -524,11 +543,11 @@ class _$_Note extends _Note {
     TResult Function(String icon, String name, String description,
             String hierarchyPath, String id, String uuid)?
         label,
-    TResult Function(String name, String description, String hierarchyPath,
-            String id, String uuid)?
+    TResult Function(String icon, String name, String description,
+            String hierarchyPath, String id, String uuid)?
         note,
   }) {
-    return note?.call(name, description, hierarchyPath, id, uuid);
+    return note?.call(icon, name, description, hierarchyPath, id, uuid);
   }
 
   @override
@@ -537,13 +556,13 @@ class _$_Note extends _Note {
     TResult Function(String icon, String name, String description,
             String hierarchyPath, String id, String uuid)?
         label,
-    TResult Function(String name, String description, String hierarchyPath,
-            String id, String uuid)?
+    TResult Function(String icon, String name, String description,
+            String hierarchyPath, String id, String uuid)?
         note,
     required TResult orElse(),
   }) {
     if (note != null) {
-      return note(name, description, hierarchyPath, id, uuid);
+      return note(icon, name, description, hierarchyPath, id, uuid);
     }
     return orElse();
   }
@@ -589,7 +608,8 @@ class _$_Note extends _Note {
 
 abstract class _Note extends TaskDefinition {
   const factory _Note(
-      {required final String name,
+      {required final String icon,
+      required final String name,
       required final String description,
       required final String hierarchyPath,
       required final String id,
@@ -598,6 +618,8 @@ abstract class _Note extends TaskDefinition {
 
   factory _Note.fromJson(Map<String, dynamic> json) = _$_Note.fromJson;
 
+  @override
+  String get icon;
   @override
   String get name;
   @override
