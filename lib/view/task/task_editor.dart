@@ -1,4 +1,5 @@
 import 'package:component/task/task_bloc.dart';
+import 'package:core/model/task_definition.dart';
 import 'package:element/element_motion.dart';
 import 'package:element/element_scale.dart';
 import 'package:emoji/enums.dart';
@@ -24,17 +25,14 @@ class TaskEditor extends StatelessWidget {
 
           return state.task.map(
             linear: (value) => TaskEditorLinear(
-              scrollController: ScrollController(),
               textTheme: textTheme,
               colorScheme: colorScheme,
             ),
             diverge: (value) => TaskEditorDiverge(
-              scrollController: ScrollController(),
               textTheme: textTheme,
               colorScheme: colorScheme,
             ),
             converge: (value) => TaskEditorConverge(
-              scrollController: ScrollController(),
               textTheme: textTheme,
               colorScheme: colorScheme,
             ),

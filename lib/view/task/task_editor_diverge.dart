@@ -3,12 +3,10 @@ part of 'task_editor.dart';
 class TaskEditorDiverge extends StatelessWidget {
   const TaskEditorDiverge({
     Key? key,
-    required this.scrollController,
     required this.textTheme,
     required this.colorScheme,
   }) : super(key: key);
 
-  final ScrollController scrollController;
   final TextTheme textTheme;
   final ColorScheme colorScheme;
 
@@ -17,46 +15,33 @@ class TaskEditorDiverge extends StatelessWidget {
     final bloc = context.read<TaskBloc>();
     final task = bloc.state.task;
 
+    final definitions = task.definitions
+        .map<TaskDefinition?>((e) => e.mapOrNull(note: (_) => _))
+        .whereType<TaskDefinition>()
+        .toList();
+
     return TaskEditorScaffold(
       title: task.name,
       description: task.description,
-      child: LayoutBuilder(
-        builder: (context, constraint) => SingleChildScrollView(
-          // controller: scrollController,
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: constraint.maxHeight),
-            child: IntrinsicHeight(
-              child: Padding(
-                padding: const EdgeInsets.all(ElementScale.spaceM),
-                child: Column(
-                  children: task.definitions
-                      .map<Widget?>(
-                        (e) => e.whenOrNull(
-                          note: ((
-                            icon,
-                            name,
-                            description,
-                            hierarchyPath,
-                            id,
-                            uuid,
-                          ) =>
-                              MethodCard(
-                                title: name,
-                                description: description,
-                                emoji: icon,
-                                isExpanded: false,
-                                // onTap: () {},
-                              )),
-                        ),
-                      )
-                      .whereType<Widget>()
-                      .toList(),
+      slivers: [
+        SliverSafeArea(
+          sliver: SliverPadding(
+            padding: const EdgeInsets.all(ElementScale.spaceM),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate(
+                childCount: definitions.length,
+                (context, index) => MethodCard(
+                  title: definitions[index].name,
+                  description: definitions[index].description,
+                  emoji: definitions[index].icon,
+                  isExpanded: false,
+                  // onTap: () {},
                 ),
               ),
             ),
           ),
         ),
-      ),
+      ],
     );
   }
 }
