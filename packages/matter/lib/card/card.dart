@@ -11,7 +11,6 @@ class MethodCard extends StatefulWidget {
   final String title;
   final String description;
   final String emoji;
-  final bool isExpanded;
   final bool? autofocus;
   final ValueChanged<String>? onChanged;
   final GestureTapCallback? onTap;
@@ -22,7 +21,6 @@ class MethodCard extends StatefulWidget {
     required this.title,
     required this.description,
     required this.emoji,
-    required this.isExpanded,
     this.autofocus,
     this.onChanged,
     this.onTap,
@@ -34,6 +32,7 @@ class MethodCard extends StatefulWidget {
 }
 
 class _MethodCardState extends State<MethodCard> {
+  bool isExpanded = false;
   @override
   Widget build(BuildContext context) {
     final tile = CardTile(
@@ -43,9 +42,8 @@ class _MethodCardState extends State<MethodCard> {
       trailing: AnimatedCrossFade(
         firstChild: const Icon(ElementSymbol.dismiss),
         secondChild: const Icon(ElementSymbol.add),
-        crossFadeState: widget.isExpanded
-            ? CrossFadeState.showFirst
-            : CrossFadeState.showSecond,
+        crossFadeState:
+            isExpanded ? CrossFadeState.showFirst : CrossFadeState.showSecond,
         duration: ElementMotion.moderate,
       ),
       // AnimatedSwitcher(
@@ -76,14 +74,19 @@ class _MethodCardState extends State<MethodCard> {
         ),
       ),
       child: InkWell(
-        onTap: widget.onTap,
+        onTap: (() {
+          widget.onTap?.call();
+          setState(() {
+            isExpanded = !isExpanded;
+          });
+        }),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: AnimatedSize(
             alignment: Alignment.topCenter,
             duration: ElementMotion.moderate,
             curve: ElementMotion.linear,
-            child: widget.isExpanded
+            child: isExpanded
                 ? AspectRatio(
                     aspectRatio: 1,
                     child: Column(
@@ -103,7 +106,7 @@ class _MethodCardState extends State<MethodCard> {
                         //     ),
                         //   ),
 
-                        if (widget.isExpanded)
+                        if (isExpanded)
                           TextArea(
                             controller: widget.controller,
                             onTap: widget.onTap,

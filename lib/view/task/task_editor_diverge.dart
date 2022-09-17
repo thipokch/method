@@ -34,7 +34,7 @@ class TaskEditorDiverge extends StatelessWidget {
                   title: definitions[index].name,
                   description: definitions[index].description,
                   emoji: definitions[index].icon,
-                  isExpanded: false,
+                  // isExpanded: false,
                   // onTap: () {},
                 ),
               ),

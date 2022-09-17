@@ -60,6 +60,41 @@ class Content {
   // TASKS
   //
 
+  static const taskFeedback = Task.feedback(
+    icon: "",
+    name: "Feedback",
+    description: "How was the session?",
+    definitions: [
+      TaskDefinition.label(
+        icon: "👍",
+        name: "Good",
+        description: "",
+        hierarchyPath: "feedback/rating",
+        id: "good",
+        uuid: "b71b82b8-11ac-48d7-875d-6a066a4ba647",
+      ),
+      TaskDefinition.label(
+        icon: "👌",
+        name: "Okay",
+        description: "",
+        hierarchyPath: "feedback/rating",
+        id: "okay",
+        uuid: "a5118e1a-4477-46eb-80e4-ada1a8c51807",
+      ),
+      TaskDefinition.label(
+        icon: "👎",
+        name: "Bad",
+        description: "",
+        hierarchyPath: "feedback/rating",
+        id: "bad",
+        uuid: "6c459f1f-4356-4deb-acc3-b2aff3d8494f",
+      ),
+    ],
+    hierarchyPath: "feedback",
+    id: "feedback",
+    uuid: "e8918473-f8c4-441b-9a31-1b68fa5056c0",
+  );
+
   static const taskNote = Task.linear(
     icon: "✏️",
     name: "",
@@ -1019,6 +1054,7 @@ class Content {
       taskEmotion,
       taskNeed,
       taskAction,
+      taskFeedback,
     ],
     hierarchyPath: "",
     id: "",
@@ -1035,6 +1071,7 @@ class Content {
       taskCoreBelief,
       taskDistortion,
       taskAction,
+      taskFeedback,
     ],
     hierarchyPath: "",
     id: "",
@@ -1051,6 +1088,7 @@ class Content {
       taskNeed,
       taskDistortion,
       taskAction,
+      taskFeedback,
     ],
     hierarchyPath: "",
     id: "",

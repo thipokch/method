@@ -13,6 +13,7 @@ part 'task_editor_scaffold.dart';
 part 'task_editor_linear.dart';
 part 'task_editor_diverge.dart';
 part 'task_editor_converge.dart';
+part 'task_editor_feedback.dart';
 
 class TaskEditor extends StatelessWidget {
   const TaskEditor({super.key});
@@ -33,6 +34,10 @@ class TaskEditor extends StatelessWidget {
               colorScheme: colorScheme,
             ),
             converge: (value) => TaskEditorConverge(
+              textTheme: textTheme,
+              colorScheme: colorScheme,
+            ),
+            feedback: (value) => TaskEditorFeedback(
               textTheme: textTheme,
               colorScheme: colorScheme,
             ),

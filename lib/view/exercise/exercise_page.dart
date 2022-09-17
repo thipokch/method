@@ -12,7 +12,7 @@ class ExercisePage extends StatefulWidget {
     required ExerciseBloc bloc,
     required ThemeData theme,
   }) =>
-      ModalBottomSheetRoute(
+      CupertinoModalBottomSheetRoute(
         expanded: true,
         builder: (context) => _ExerciseWidget.from(
           bloc: bloc,
@@ -48,6 +48,7 @@ class ExercisePageState extends State<ExercisePage>
       BlocBuilder<ExerciseBloc, ExerciseState>(builder: (context, state) {
         final bloc = context.read<ExerciseBloc>();
         final exercise = bloc.state.exercise;
+        final definitions = exercise.definitions;
         final themeData = Theme.of(context);
         final imageShader = themeData.extension<ThemeImageShader>()?.shader;
         final colorScheme = themeData.colorScheme;
@@ -130,7 +131,6 @@ class ExercisePageState extends State<ExercisePage>
                                         width: 125 * (1.0 - t),
                                         child: CustomPaint(
                                           painter: AirbrushPainter(
-                                            // assetString: exercise.icon,
                                             context: context,
                                             imageShader: imageShader,
                                             frame: exercise.presentation.seed,
@@ -190,15 +190,6 @@ class ExercisePageState extends State<ExercisePage>
                                                       bloc: bloc,
                                                       theme: themeData,
                                                     ),
-                                                    // MaterialPageRoute(
-                                                    //   // expanded: true,
-                                                    //   builder: (childContext) =>
-                                                    //       BlocProvider.value(
-                                                    //     value: bloc,
-                                                    //     child:
-                                                    //         const ExerciseEditor(),
-                                                    //   ),
-                                                    // ),
                                                   );
                                                 },
                                                 child: const Text("Start"),
@@ -214,26 +205,18 @@ class ExercisePageState extends State<ExercisePage>
                             );
                           },
                         ),
-
-                        // background: DecoratedBox(
-                        //   decoration:
-                        //       BoxDecoration(color: colorScheme.surfaceVariant),
-                        // ),
-                        // background: ,
                       ),
                     ),
-                    SliverToBoxAdapter(
-                      child: Padding(
+                    SliverSafeArea(
+                      top: false,
+                      sliver: SliverPadding(
                         padding: const EdgeInsets.all(ElementScale.spaceM),
-                        child: Column(
-                          children: <Widget>[
-                            ...context
-                                .read<ExerciseBloc>()
-                                .state
-                                .exercise
-                                .definitions
-                                .map((task) => TaskCard.create(task: task)),
-                          ],
+                        sliver: SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                            childCount: definitions.length,
+                            (context, index) =>
+                                TaskCard.create(task: definitions[index]),
+                          ),
                         ),
                       ),
                     ),

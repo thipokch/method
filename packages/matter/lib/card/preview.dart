@@ -19,7 +19,7 @@ class CardPreview extends StatelessWidget {
           title: "Collapse",
           description: "Tap to collapse...",
           emoji: "👅",
-          isExpanded: false,
+          // isExpanded: false,
           // ignore: no-empty-block
           onTap: () {},
         ),
@@ -28,7 +28,7 @@ class CardPreview extends StatelessWidget {
           title: "Expanded",
           description: "Tap to start writing...",
           emoji: "👌",
-          isExpanded: true,
+          // isExpanded: true,
           // ignore: no-empty-block
           onTap: () {},
         ),

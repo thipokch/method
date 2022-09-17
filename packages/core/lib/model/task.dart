@@ -45,6 +45,16 @@ class Task with _$Task, Identify, Locate, Inform, Define<TaskDefinition> {
     required String uuid,
   }) = _Converge;
 
+  const factory Task.feedback({
+    required final String icon,
+    required final String name,
+    required final String description,
+    required final List<TaskDefinition> definitions,
+    required String hierarchyPath,
+    required String id,
+    required String uuid,
+  }) = _Feedback;
+
   factory Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);
 
   @override
@@ -52,6 +62,7 @@ class Task with _$Task, Identify, Locate, Inform, Define<TaskDefinition> {
         linear: (_) => "linear",
         diverge: (_) => "diverge",
         converge: (_) => "converge",
+        feedback: (_) => "feedback",
       );
 
   factory Task.createLinear({

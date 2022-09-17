@@ -22,7 +22,7 @@ class TaskCard extends StatelessWidget {
             title: task.name,
             description: task.description,
             emoji: task.icon,
-            isExpanded: false,
+            // isExpanded: false,
             // onTap: () {},
           );
         },

@@ -1,7 +1,7 @@
 part of 'task_editor.dart';
 
-class TaskEditorConverge extends StatelessWidget {
-  const TaskEditorConverge({
+class TaskEditorFeedback extends StatelessWidget {
+  const TaskEditorFeedback({
     Key? key,
     required this.textTheme,
     required this.colorScheme,
@@ -14,8 +14,6 @@ class TaskEditorConverge extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = context.read<TaskBloc>();
     final task = bloc.state.task;
-    final prompt = task.definitions.first;
-    assert(prompt.maybeMap(note: (_) => true, orElse: () => false));
 
     final labels = task.definitions
         .map<Widget?>(
@@ -72,25 +70,9 @@ class TaskEditorConverge extends StatelessWidget {
         .toList();
 
     return TaskEditorScaffold(
-      title: prompt.name,
-      description: prompt.description,
+      title: task.name,
+      description: task.description,
       slivers: [
-        SliverToBoxAdapter(
-          child: TextField(
-            autofocus: false,
-            style: textTheme.bodyLarge,
-            minLines: 4,
-            maxLines: null,
-            cursorColor: colorScheme.primary,
-            decoration: const InputDecoration(
-              hintText: 'Start Writing...',
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.all(
-                ElementScale.spaceM,
-              ),
-            ),
-          ),
-        ),
         SliverSafeArea(
           top: false,
           sliver: SliverPadding(
@@ -102,35 +84,6 @@ class TaskEditorConverge extends StatelessWidget {
           ),
         ),
       ],
-      // Column(
-      //   mainAxisSize: MainAxisSize.max,
-      //   children: <Widget>[
-      //     TextField(
-      //       autofocus: false,
-      //       style: textTheme.bodyLarge,
-      //       minLines: 4,
-      //       // expands: true,
-      //       maxLines: null,
-      //       cursorColor: colorScheme.primary,
-      //       decoration: const InputDecoration(
-      //         hintText: 'Start Writing...',
-      //         border: InputBorder.none,
-      //         contentPadding: EdgeInsets.all(
-      //           ElementScale.spaceM,
-      //         ),
-      //       ),
-      //     ),
-      //     Expanded(
-      //       child: GridView.count(
-      //         padding: const EdgeInsets.all(ElementScale.spaceM),
-      //         // shrinkWrap: true,
-      //         physics: const NeverScrollableScrollPhysics(),
-      //         crossAxisCount: 3,
-      //         children: labels,
-      //       ),
-      //     ),
-      //   ],
-      // ),
     );
   }
 }

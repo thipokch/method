@@ -22,6 +22,8 @@ Task _$TaskFromJson(Map<String, dynamic> json) {
       return _Diverge.fromJson(json);
     case 'converge':
       return _Converge.fromJson(json);
+    case 'feedback':
+      return _Feedback.fromJson(json);
 
     default:
       throw CheckedFromJsonException(json, 'collectionSlug', 'Task',
@@ -67,6 +69,15 @@ mixin _$Task {
             String id,
             String uuid)
         converge,
+    required TResult Function(
+            String icon,
+            String name,
+            String description,
+            List<TaskDefinition> definitions,
+            String hierarchyPath,
+            String id,
+            String uuid)
+        feedback,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -98,6 +109,15 @@ mixin _$Task {
             String id,
             String uuid)?
         converge,
+    TResult Function(
+            String icon,
+            String name,
+            String description,
+            List<TaskDefinition> definitions,
+            String hierarchyPath,
+            String id,
+            String uuid)?
+        feedback,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -129,6 +149,15 @@ mixin _$Task {
             String id,
             String uuid)?
         converge,
+    TResult Function(
+            String icon,
+            String name,
+            String description,
+            List<TaskDefinition> definitions,
+            String hierarchyPath,
+            String id,
+            String uuid)?
+        feedback,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -137,6 +166,7 @@ mixin _$Task {
     required TResult Function(_Linear value) linear,
     required TResult Function(_Diverge value) diverge,
     required TResult Function(_Converge value) converge,
+    required TResult Function(_Feedback value) feedback,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -144,6 +174,7 @@ mixin _$Task {
     TResult Function(_Linear value)? linear,
     TResult Function(_Diverge value)? diverge,
     TResult Function(_Converge value)? converge,
+    TResult Function(_Feedback value)? feedback,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -151,6 +182,7 @@ mixin _$Task {
     TResult Function(_Linear value)? linear,
     TResult Function(_Diverge value)? diverge,
     TResult Function(_Converge value)? converge,
+    TResult Function(_Feedback value)? feedback,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -402,6 +434,15 @@ class _$_Linear extends _Linear {
             String id,
             String uuid)
         converge,
+    required TResult Function(
+            String icon,
+            String name,
+            String description,
+            List<TaskDefinition> definitions,
+            String hierarchyPath,
+            String id,
+            String uuid)
+        feedback,
   }) {
     return linear(
         icon, name, description, definitions, hierarchyPath, id, uuid);
@@ -437,6 +478,15 @@ class _$_Linear extends _Linear {
             String id,
             String uuid)?
         converge,
+    TResult Function(
+            String icon,
+            String name,
+            String description,
+            List<TaskDefinition> definitions,
+            String hierarchyPath,
+            String id,
+            String uuid)?
+        feedback,
   }) {
     return linear?.call(
         icon, name, description, definitions, hierarchyPath, id, uuid);
@@ -472,6 +522,15 @@ class _$_Linear extends _Linear {
             String id,
             String uuid)?
         converge,
+    TResult Function(
+            String icon,
+            String name,
+            String description,
+            List<TaskDefinition> definitions,
+            String hierarchyPath,
+            String id,
+            String uuid)?
+        feedback,
     required TResult orElse(),
   }) {
     if (linear != null) {
@@ -487,6 +546,7 @@ class _$_Linear extends _Linear {
     required TResult Function(_Linear value) linear,
     required TResult Function(_Diverge value) diverge,
     required TResult Function(_Converge value) converge,
+    required TResult Function(_Feedback value) feedback,
   }) {
     return linear(this);
   }
@@ -497,6 +557,7 @@ class _$_Linear extends _Linear {
     TResult Function(_Linear value)? linear,
     TResult Function(_Diverge value)? diverge,
     TResult Function(_Converge value)? converge,
+    TResult Function(_Feedback value)? feedback,
   }) {
     return linear?.call(this);
   }
@@ -507,6 +568,7 @@ class _$_Linear extends _Linear {
     TResult Function(_Linear value)? linear,
     TResult Function(_Diverge value)? diverge,
     TResult Function(_Converge value)? converge,
+    TResult Function(_Feedback value)? feedback,
     required TResult orElse(),
   }) {
     if (linear != null) {
@@ -735,6 +797,15 @@ class _$_Diverge extends _Diverge {
             String id,
             String uuid)
         converge,
+    required TResult Function(
+            String icon,
+            String name,
+            String description,
+            List<TaskDefinition> definitions,
+            String hierarchyPath,
+            String id,
+            String uuid)
+        feedback,
   }) {
     return diverge(
         icon, name, description, definitions, hierarchyPath, id, uuid);
@@ -770,6 +841,15 @@ class _$_Diverge extends _Diverge {
             String id,
             String uuid)?
         converge,
+    TResult Function(
+            String icon,
+            String name,
+            String description,
+            List<TaskDefinition> definitions,
+            String hierarchyPath,
+            String id,
+            String uuid)?
+        feedback,
   }) {
     return diverge?.call(
         icon, name, description, definitions, hierarchyPath, id, uuid);
@@ -805,6 +885,15 @@ class _$_Diverge extends _Diverge {
             String id,
             String uuid)?
         converge,
+    TResult Function(
+            String icon,
+            String name,
+            String description,
+            List<TaskDefinition> definitions,
+            String hierarchyPath,
+            String id,
+            String uuid)?
+        feedback,
     required TResult orElse(),
   }) {
     if (diverge != null) {
@@ -820,6 +909,7 @@ class _$_Diverge extends _Diverge {
     required TResult Function(_Linear value) linear,
     required TResult Function(_Diverge value) diverge,
     required TResult Function(_Converge value) converge,
+    required TResult Function(_Feedback value) feedback,
   }) {
     return diverge(this);
   }
@@ -830,6 +920,7 @@ class _$_Diverge extends _Diverge {
     TResult Function(_Linear value)? linear,
     TResult Function(_Diverge value)? diverge,
     TResult Function(_Converge value)? converge,
+    TResult Function(_Feedback value)? feedback,
   }) {
     return diverge?.call(this);
   }
@@ -840,6 +931,7 @@ class _$_Diverge extends _Diverge {
     TResult Function(_Linear value)? linear,
     TResult Function(_Diverge value)? diverge,
     TResult Function(_Converge value)? converge,
+    TResult Function(_Feedback value)? feedback,
     required TResult orElse(),
   }) {
     if (diverge != null) {
@@ -1069,6 +1161,15 @@ class _$_Converge extends _Converge {
             String id,
             String uuid)
         converge,
+    required TResult Function(
+            String icon,
+            String name,
+            String description,
+            List<TaskDefinition> definitions,
+            String hierarchyPath,
+            String id,
+            String uuid)
+        feedback,
   }) {
     return converge(
         icon, name, description, definitions, hierarchyPath, id, uuid);
@@ -1104,6 +1205,15 @@ class _$_Converge extends _Converge {
             String id,
             String uuid)?
         converge,
+    TResult Function(
+            String icon,
+            String name,
+            String description,
+            List<TaskDefinition> definitions,
+            String hierarchyPath,
+            String id,
+            String uuid)?
+        feedback,
   }) {
     return converge?.call(
         icon, name, description, definitions, hierarchyPath, id, uuid);
@@ -1139,6 +1249,15 @@ class _$_Converge extends _Converge {
             String id,
             String uuid)?
         converge,
+    TResult Function(
+            String icon,
+            String name,
+            String description,
+            List<TaskDefinition> definitions,
+            String hierarchyPath,
+            String id,
+            String uuid)?
+        feedback,
     required TResult orElse(),
   }) {
     if (converge != null) {
@@ -1154,6 +1273,7 @@ class _$_Converge extends _Converge {
     required TResult Function(_Linear value) linear,
     required TResult Function(_Diverge value) diverge,
     required TResult Function(_Converge value) converge,
+    required TResult Function(_Feedback value) feedback,
   }) {
     return converge(this);
   }
@@ -1164,6 +1284,7 @@ class _$_Converge extends _Converge {
     TResult Function(_Linear value)? linear,
     TResult Function(_Diverge value)? diverge,
     TResult Function(_Converge value)? converge,
+    TResult Function(_Feedback value)? feedback,
   }) {
     return converge?.call(this);
   }
@@ -1174,6 +1295,7 @@ class _$_Converge extends _Converge {
     TResult Function(_Linear value)? linear,
     TResult Function(_Diverge value)? diverge,
     TResult Function(_Converge value)? converge,
+    TResult Function(_Feedback value)? feedback,
     required TResult orElse(),
   }) {
     if (converge != null) {
@@ -1220,5 +1342,369 @@ abstract class _Converge extends Task {
   @override
   @JsonKey(ignore: true)
   _$$_ConvergeCopyWith<_$_Converge> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_FeedbackCopyWith<$Res> implements $TaskCopyWith<$Res> {
+  factory _$$_FeedbackCopyWith(
+          _$_Feedback value, $Res Function(_$_Feedback) then) =
+      __$$_FeedbackCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {String icon,
+      String name,
+      String description,
+      List<TaskDefinition> definitions,
+      String hierarchyPath,
+      String id,
+      String uuid});
+}
+
+/// @nodoc
+class __$$_FeedbackCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
+    implements _$$_FeedbackCopyWith<$Res> {
+  __$$_FeedbackCopyWithImpl(
+      _$_Feedback _value, $Res Function(_$_Feedback) _then)
+      : super(_value, (v) => _then(v as _$_Feedback));
+
+  @override
+  _$_Feedback get _value => super._value as _$_Feedback;
+
+  @override
+  $Res call({
+    Object? icon = freezed,
+    Object? name = freezed,
+    Object? description = freezed,
+    Object? definitions = freezed,
+    Object? hierarchyPath = freezed,
+    Object? id = freezed,
+    Object? uuid = freezed,
+  }) {
+    return _then(_$_Feedback(
+      icon: icon == freezed
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      definitions: definitions == freezed
+          ? _value._definitions
+          : definitions // ignore: cast_nullable_to_non_nullable
+              as List<TaskDefinition>,
+      hierarchyPath: hierarchyPath == freezed
+          ? _value.hierarchyPath
+          : hierarchyPath // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      uuid: uuid == freezed
+          ? _value.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_Feedback extends _Feedback {
+  const _$_Feedback(
+      {required this.icon,
+      required this.name,
+      required this.description,
+      required final List<TaskDefinition> definitions,
+      required this.hierarchyPath,
+      required this.id,
+      required this.uuid,
+      final String? $type})
+      : _definitions = definitions,
+        $type = $type ?? 'feedback',
+        super._();
+
+  factory _$_Feedback.fromJson(Map<String, dynamic> json) =>
+      _$$_FeedbackFromJson(json);
+
+  @override
+  final String icon;
+  @override
+  final String name;
+  @override
+  final String description;
+  final List<TaskDefinition> _definitions;
+  @override
+  List<TaskDefinition> get definitions {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_definitions);
+  }
+
+  @override
+  final String hierarchyPath;
+  @override
+  final String id;
+  @override
+  final String uuid;
+
+  @JsonKey(name: 'collectionSlug')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'Task.feedback(icon: $icon, name: $name, description: $description, definitions: $definitions, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Feedback &&
+            const DeepCollectionEquality().equals(other.icon, icon) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
+            const DeepCollectionEquality()
+                .equals(other._definitions, _definitions) &&
+            const DeepCollectionEquality()
+                .equals(other.hierarchyPath, hierarchyPath) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.uuid, uuid));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(icon),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(_definitions),
+      const DeepCollectionEquality().hash(hierarchyPath),
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(uuid));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_FeedbackCopyWith<_$_Feedback> get copyWith =>
+      __$$_FeedbackCopyWithImpl<_$_Feedback>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String icon,
+            String name,
+            String description,
+            List<TaskDefinition> definitions,
+            String hierarchyPath,
+            String id,
+            String uuid)
+        linear,
+    required TResult Function(
+            String icon,
+            String name,
+            String description,
+            List<TaskDefinition> definitions,
+            String hierarchyPath,
+            String id,
+            String uuid)
+        diverge,
+    required TResult Function(
+            String icon,
+            String name,
+            String description,
+            List<TaskDefinition> definitions,
+            String hierarchyPath,
+            String id,
+            String uuid)
+        converge,
+    required TResult Function(
+            String icon,
+            String name,
+            String description,
+            List<TaskDefinition> definitions,
+            String hierarchyPath,
+            String id,
+            String uuid)
+        feedback,
+  }) {
+    return feedback(
+        icon, name, description, definitions, hierarchyPath, id, uuid);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            String icon,
+            String name,
+            String description,
+            List<TaskDefinition> definitions,
+            String hierarchyPath,
+            String id,
+            String uuid)?
+        linear,
+    TResult Function(
+            String icon,
+            String name,
+            String description,
+            List<TaskDefinition> definitions,
+            String hierarchyPath,
+            String id,
+            String uuid)?
+        diverge,
+    TResult Function(
+            String icon,
+            String name,
+            String description,
+            List<TaskDefinition> definitions,
+            String hierarchyPath,
+            String id,
+            String uuid)?
+        converge,
+    TResult Function(
+            String icon,
+            String name,
+            String description,
+            List<TaskDefinition> definitions,
+            String hierarchyPath,
+            String id,
+            String uuid)?
+        feedback,
+  }) {
+    return feedback?.call(
+        icon, name, description, definitions, hierarchyPath, id, uuid);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            String icon,
+            String name,
+            String description,
+            List<TaskDefinition> definitions,
+            String hierarchyPath,
+            String id,
+            String uuid)?
+        linear,
+    TResult Function(
+            String icon,
+            String name,
+            String description,
+            List<TaskDefinition> definitions,
+            String hierarchyPath,
+            String id,
+            String uuid)?
+        diverge,
+    TResult Function(
+            String icon,
+            String name,
+            String description,
+            List<TaskDefinition> definitions,
+            String hierarchyPath,
+            String id,
+            String uuid)?
+        converge,
+    TResult Function(
+            String icon,
+            String name,
+            String description,
+            List<TaskDefinition> definitions,
+            String hierarchyPath,
+            String id,
+            String uuid)?
+        feedback,
+    required TResult orElse(),
+  }) {
+    if (feedback != null) {
+      return feedback(
+          icon, name, description, definitions, hierarchyPath, id, uuid);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Linear value) linear,
+    required TResult Function(_Diverge value) diverge,
+    required TResult Function(_Converge value) converge,
+    required TResult Function(_Feedback value) feedback,
+  }) {
+    return feedback(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Linear value)? linear,
+    TResult Function(_Diverge value)? diverge,
+    TResult Function(_Converge value)? converge,
+    TResult Function(_Feedback value)? feedback,
+  }) {
+    return feedback?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Linear value)? linear,
+    TResult Function(_Diverge value)? diverge,
+    TResult Function(_Converge value)? converge,
+    TResult Function(_Feedback value)? feedback,
+    required TResult orElse(),
+  }) {
+    if (feedback != null) {
+      return feedback(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_FeedbackToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Feedback extends Task {
+  const factory _Feedback(
+      {required final String icon,
+      required final String name,
+      required final String description,
+      required final List<TaskDefinition> definitions,
+      required final String hierarchyPath,
+      required final String id,
+      required final String uuid}) = _$_Feedback;
+  const _Feedback._() : super._();
+
+  factory _Feedback.fromJson(Map<String, dynamic> json) = _$_Feedback.fromJson;
+
+  @override
+  String get icon;
+  @override
+  String get name;
+  @override
+  String get description;
+  @override
+  List<TaskDefinition> get definitions;
+  @override
+  String get hierarchyPath;
+  @override
+  String get id;
+  @override
+  String get uuid;
+  @override
+  @JsonKey(ignore: true)
+  _$$_FeedbackCopyWith<_$_Feedback> get copyWith =>
       throw _privateConstructorUsedError;
 }

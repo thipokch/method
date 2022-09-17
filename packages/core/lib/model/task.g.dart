@@ -79,3 +79,28 @@ Map<String, dynamic> _$$_ConvergeToJson(_$_Converge instance) =>
       'uuid': instance.uuid,
       'collectionSlug': instance.$type,
     };
+
+_$_Feedback _$$_FeedbackFromJson(Map<String, dynamic> json) => _$_Feedback(
+      icon: json['icon'] as String,
+      name: json['name'] as String,
+      description: json['description'] as String,
+      definitions: (json['definitions'] as List<dynamic>)
+          .map((e) => TaskDefinition.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      hierarchyPath: json['hierarchyPath'] as String,
+      id: json['id'] as String,
+      uuid: json['uuid'] as String,
+      $type: json['collectionSlug'] as String?,
+    );
+
+Map<String, dynamic> _$$_FeedbackToJson(_$_Feedback instance) =>
+    <String, dynamic>{
+      'icon': instance.icon,
+      'name': instance.name,
+      'description': instance.description,
+      'definitions': instance.definitions,
+      'hierarchyPath': instance.hierarchyPath,
+      'id': instance.id,
+      'uuid': instance.uuid,
+      'collectionSlug': instance.$type,
+    };

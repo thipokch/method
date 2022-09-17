@@ -8,7 +8,6 @@ class ExerciseEditor extends StatefulWidget {
     required ThemeData theme,
   }) =>
       CupertinoPageRoute(
-        // expanded: true,
         builder: (context) => _ExerciseWidget.from(
           bloc: bloc,
           theme: theme,
@@ -44,9 +43,6 @@ class ExerciseEditorState extends State<ExerciseEditor> {
           builder: (context, state) {
             final bloc = context.read<ExerciseBloc>();
             final colorScheme = Theme.of(context).colorScheme;
-            // final colorScheme = state.exercise.presentation
-            //     .colorScheme(Theme.of(context).brightness)
-            //     .harmonizeWith(Theme.of(context).colorScheme.primary);
 
             state.whenOrNull(
               exerciseLoaded: (exercise) => bloc.add(
@@ -77,11 +73,6 @@ class ExerciseEditorState extends State<ExerciseEditor> {
                   activeSize: ElementScale.size03 + .0,
                 ),
               ),
-              // pagination: DotSwiperPaginationBuilder(
-              //   activeColor: colorScheme.primary,
-              //   color: colorScheme.surface,
-
-              // ),
               itemCount: state.exercise.definitions.length,
               itemBuilder: (context, index) => BlocProvider(
                 create: (context) =>
@@ -89,13 +80,6 @@ class ExerciseEditorState extends State<ExerciseEditor> {
                 child: const TaskEditor(),
               ),
             );
-
-            // return BlocProvider(
-            //   create: (context) => TaskBloc(
-            //     task: context.read<ExerciseBloc>().state.exercise.definitions.first,
-            //   ),
-            //   child: const TaskEditor(),
-            // );
           },
         ),
       );
