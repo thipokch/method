@@ -338,7 +338,7 @@ class Content {
         uuid: "9f3fc20d-aed3-4863-9a07-13d169cf64f4",
       ),
       TaskDefinition.note(
-        icon: "🎭",
+        icon: "👺",
         name: "Emotion reasoning",
         description: "I feel lost; I must be wrong",
         hierarchyPath: "distortion/jumping-to-conclusion",
