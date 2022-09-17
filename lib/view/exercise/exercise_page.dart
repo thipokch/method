@@ -213,9 +213,11 @@ class ExercisePageState extends State<ExercisePage>
                         padding: const EdgeInsets.all(ElementScale.spaceM),
                         sliver: SliverList(
                           delegate: SliverChildBuilderDelegate(
-                            childCount: definitions.length,
-                            (context, index) =>
-                                TaskCard.create(task: definitions[index]),
+                            childCount: definitions.length - 1,
+                            (context, index) => Material(
+                              type: MaterialType.transparency,
+                              child: TaskTile.create(task: definitions[index]),
+                            ),
                           ),
                         ),
                       ),

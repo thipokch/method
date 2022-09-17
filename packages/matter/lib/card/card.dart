@@ -35,6 +35,8 @@ class _MethodCardState extends State<MethodCard> {
   bool isExpanded = false;
   @override
   Widget build(BuildContext context) {
+    // final themeData = Theme.of(context);
+
     final tile = CardTile(
       emoji: widget.emoji,
       title: widget.title,
@@ -59,20 +61,21 @@ class _MethodCardState extends State<MethodCard> {
     );
 
     return Card(
-      elevation: 0,
+      elevation: 1,
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      shape: SmoothRectangleBorder(
-        side: BorderSide(
-          color: Theme.of(context).colorScheme.outline,
-          width: ElementScale.strokeL,
-        ),
-        borderRadius: const SmoothBorderRadius.all(
+      shape: const SmoothRectangleBorder(
+        // side: BorderSide(
+        //   color: Theme.of(context).colorScheme.outline,
+        //   width: ElementScale.strokeL,
+        // ),
+        borderRadius: SmoothBorderRadius.all(
           SmoothRadius(
             cornerRadius: ElementScale.cornerLarge,
             cornerSmoothing: ElementScale.cornerSmoothFactor,
           ),
         ),
       ),
+      // color: colorScheme.surface,
       child: InkWell(
         onTap: (() {
           widget.onTap?.call();
@@ -81,7 +84,10 @@ class _MethodCardState extends State<MethodCard> {
           });
         }),
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(
+            vertical: 12.0,
+            horizontal: 8.0,
+          ),
           child: AnimatedSize(
             alignment: Alignment.topCenter,
             duration: ElementMotion.moderate,

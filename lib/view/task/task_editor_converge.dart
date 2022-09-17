@@ -75,22 +75,34 @@ class TaskEditorConverge extends StatelessWidget {
       title: prompt.name,
       description: prompt.description,
       slivers: [
-        SliverToBoxAdapter(
-          child: TextField(
-            autofocus: false,
-            style: textTheme.bodyLarge,
-            minLines: 4,
-            maxLines: null,
-            cursorColor: colorScheme.primary,
-            decoration: const InputDecoration(
-              hintText: 'Start Writing...',
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.all(
-                ElementScale.spaceM,
-              ),
+        const SliverToBoxAdapter(
+          child: Padding(
+            padding: EdgeInsets.all(16.0),
+            child: MethodCard(
+              title: "",
+              description: "",
+              emoji: "",
+              // isExpanded: false,
+              // onTap: () {},
             ),
           ),
         ),
+        // SliverToBoxAdapter(
+        //   child: TextField(
+        //     autofocus: false,
+        //     style: textTheme.bodyLarge,
+        //     minLines: 4,
+        //     maxLines: null,
+        //     cursorColor: colorScheme.primary,
+        //     decoration: const InputDecoration(
+        //       hintText: 'Start Writing...',
+        //       border: InputBorder.none,
+        //       contentPadding: EdgeInsets.all(
+        //         ElementScale.spaceM,
+        //       ),
+        //     ),
+        //   ),
+        // ),
         SliverSafeArea(
           top: false,
           sliver: SliverPadding(
