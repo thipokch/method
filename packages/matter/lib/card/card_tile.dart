@@ -49,7 +49,10 @@ class CardTile extends StatelessWidget {
         title,
         style: textTheme.titleMedium,
       ),
-      subtitle: Text(description, style: textTheme.labelMedium),
+      subtitle: Text(
+        description,
+        style: textTheme.labelSmall,
+      ),
       trailing: trailing,
       // onTap: () {},
     );

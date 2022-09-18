@@ -7,7 +7,8 @@ class ExerciseEditor extends StatefulWidget {
     required ExerciseBloc bloc,
     required ThemeData theme,
   }) =>
-      CupertinoPageRoute(
+      ModalBottomSheetRoute(
+        expanded: true,
         builder: (context) => _ExerciseWidget.from(
           bloc: bloc,
           theme: theme,
@@ -60,7 +61,7 @@ class ExerciseEditorState extends State<ExerciseEditor> {
               physics: const BouncingScrollPhysics(
                 parent: AlwaysScrollableScrollPhysics(),
               ),
-              plugins: [ExerciseSwiperDismiss()],
+              // plugins: [ExerciseSwiperDismiss()],
               loop: false,
               indicatorLayout: PageIndicatorLayout.WARM,
               pagination: SwiperPagination(
@@ -88,15 +89,23 @@ class ExerciseEditorState extends State<ExerciseEditor> {
 
 class ExerciseSwiperDismiss extends SwiperPlugin {
   @override
-  Widget build(BuildContext context, SwiperPluginConfig config) => SizedBox(
-        height: kToolbarHeight + MediaQuery.of(context).padding.top / 4,
-        child: NavigationToolbar(
-          trailing: AspectRatio(
-            aspectRatio: 1,
-            child: IconButton(
-              icon: const Icon(ElementSymbol.dismissCircleFilled),
-              onPressed: () => Navigator.of(context).pop(),
-              iconSize: 32.00,
+  Widget build(BuildContext context, SwiperPluginConfig config) => Align(
+        alignment: Alignment.bottomCenter,
+        child: SizedBox(
+          height: kToolbarHeight + MediaQuery.of(context).padding.top / 4,
+          child: NavigationToolbar(
+            leading: AspectRatio(
+              aspectRatio: 1,
+              child: IconButton(
+                icon: const Icon(ElementSymbol.dismissCircleFilled),
+                onPressed: () => Navigator.of(context).pop(),
+                iconSize: 32.00,
+                style: IconButton.styleFrom(
+                  backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
+                  disabledBackgroundColor:
+                      Theme.of(context).colorScheme.onSurface.withOpacity(0.12),
+                ),
+              ),
             ),
           ),
         ),
@@ -109,44 +118,64 @@ class ExerciseSwiperPagination extends SwiperPlugin {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Container(
-      height: MediaQuery.of(context).padding.bottom * 3,
+      height: MediaQuery.of(context).padding.bottom * 4,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
             colorScheme.outline.withOpacity(0),
-            colorScheme.outline.withOpacity(.16),
+            colorScheme.outline.withOpacity(.24),
           ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
       ),
       alignment: Alignment.center,
-      child: Container(
-        padding: const EdgeInsets.symmetric(
-          vertical: ElementScale.spaceS * 1.25,
-          horizontal: ElementScale.spaceS * 1.5,
-        ),
-        decoration: BoxDecoration(
-          color: colorScheme.surface,
-          borderRadius: const BorderRadius.all(
-            Radius.circular(ElementScale.cornerLarge),
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: colorScheme.outline.withOpacity(.12),
-              blurRadius: 10,
-              spreadRadius: 1,
+      child: NavigationToolbar(
+        leading: AspectRatio(
+          aspectRatio: 1,
+          child: IconButton(
+            icon: const Icon(ElementSymbol.dismissCircleFilled),
+            onPressed: () => Navigator.of(context).pop(),
+            iconSize: 48.00,
+            color: colorScheme.surface,
+            style: IconButton.styleFrom(
+              // shadowColor: colorScheme.outline.withOpacity(.12),
+              elevation: 1,
+              // fixedSize: Size(48, 48),
+              // backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
+              // disabledBackgroundColor:
+              //     Theme.of(context).colorScheme.onSurface.withOpacity(0.12),
             ),
-          ],
+          ),
         ),
-        clipBehavior: Clip.antiAlias,
-        child: DotSwiperPaginationBuilder(
-          activeColor: colorScheme.primary,
-          color: colorScheme.surfaceVariant,
-          size: ElementScale.size03 + .0,
-          activeSize: ElementScale.size03 + .0,
-        ).build(context, config),
+        middle: Container(
+          padding: const EdgeInsets.symmetric(
+            vertical: ElementScale.spaceM,
+            horizontal: ElementScale.spaceM * 1.2,
+          ),
+          decoration: BoxDecoration(
+            color: colorScheme.surface,
+            borderRadius: const BorderRadius.all(
+              Radius.circular(ElementScale.cornerExtraLarge),
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: colorScheme.outline.withOpacity(.12),
+                blurRadius: 10,
+                spreadRadius: 1,
+              ),
+            ],
+          ),
+          clipBehavior: Clip.antiAlias,
+          child: DotSwiperPaginationBuilder(
+            activeColor: colorScheme.primary,
+            color: colorScheme.surfaceVariant,
+            size: ElementScale.size03 + .0,
+            space: ElementScale.size03 + .0,
+            activeSize: ElementScale.size03 + .0,
+          ).build(context, config),
+        ),
       ),
     );
   }

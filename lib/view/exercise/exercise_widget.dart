@@ -10,7 +10,6 @@ import 'package:element/element_scale.dart';
 import 'package:element/element_symbol.dart';
 import 'package:element/element_touch.dart';
 import 'package:figma_squircle/figma_squircle.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

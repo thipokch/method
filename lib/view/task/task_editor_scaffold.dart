@@ -137,13 +137,12 @@ class TaskEditorScaffoldState extends State<TaskEditorScaffold>
                 }),
               ),
             ),
-            // SliverFillRemaining(
-            //   child: PrimaryScrollController(
-            //     controller: scrollController,
-            //     child: widget.child,
-            //   ),
-            // ),
             ...widget.slivers,
+            SliverPadding(
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).padding.bottom,
+              ),
+            ),
           ],
         ),
       ),

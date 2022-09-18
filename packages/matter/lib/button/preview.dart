@@ -38,7 +38,10 @@ class _ButtonsState extends State<Buttons> {
           ],
         ),
         _divider,
-        const ButtonAction(),
+        const ButtonAction(
+          onPressed: null,
+          action: "action button",
+        ),
         _divider,
         const FloatingActionButtons(),
       ],

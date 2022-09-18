@@ -3,7 +3,13 @@ import 'package:element/element_touch.dart';
 import 'package:flutter/material.dart';
 
 class ButtonAction extends StatelessWidget {
-  const ButtonAction({Key? key}) : super(key: key);
+  final String action;
+  final void Function()? onPressed;
+  const ButtonAction({
+    super.key,
+    required this.action,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +28,10 @@ class ButtonAction extends StatelessWidget {
         ),
         onPressed: () {
           ElementTouch.select();
+          onPressed?.call();
         },
         label: Text(
-          "Action Button".toUpperCase(),
+          action.toUpperCase(),
           style: textTheme.labelLarge?.copyWith(
             color: colorScheme.onPrimary,
             letterSpacing: 1.0,

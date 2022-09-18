@@ -12,7 +12,7 @@ class ExercisePage extends StatefulWidget {
     required ExerciseBloc bloc,
     required ThemeData theme,
   }) =>
-      CupertinoModalBottomSheetRoute(
+      ModalBottomSheetRoute(
         expanded: true,
         builder: (context) => _ExerciseWidget.from(
           bloc: bloc,
@@ -181,18 +181,24 @@ class ExercisePageState extends State<ExercisePage>
                                             ),
                                             Padding(
                                               padding: const EdgeInsets.all(
-                                                ElementScale.spaceM,
+                                                ElementScale.spaceL,
                                               ),
-                                              child: ButtonFilled(
-                                                onPressed: () {
-                                                  Navigator.of(context).push(
-                                                    ExerciseEditor.route(
-                                                      bloc: bloc,
-                                                      theme: themeData,
-                                                    ),
-                                                  );
-                                                },
-                                                child: const Text("Start"),
+                                              child: SizedBox(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    2,
+                                                child: ButtonFilled(
+                                                  onPressed: () {
+                                                    Navigator.of(context).push(
+                                                      ExerciseEditor.route(
+                                                        bloc: bloc,
+                                                        theme: themeData,
+                                                      ),
+                                                    );
+                                                  },
+                                                  child: const Text("Start"),
+                                                ),
                                               ),
                                             ),
                                           ],

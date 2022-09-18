@@ -35,8 +35,6 @@ class _MethodCardState extends State<MethodCard> {
   bool isExpanded = false;
   @override
   Widget build(BuildContext context) {
-    // final themeData = Theme.of(context);
-
     final tile = CardTile(
       emoji: widget.emoji,
       title: widget.title,
@@ -48,26 +46,12 @@ class _MethodCardState extends State<MethodCard> {
             isExpanded ? CrossFadeState.showFirst : CrossFadeState.showSecond,
         duration: ElementMotion.moderate,
       ),
-      // AnimatedSwitcher(
-      //   transitionBuilder: (child, animation) => ScaleTransition(
-      //     scale: animation,
-      //     child: child,
-      //   ),
-      //   duration: Duration(milliseconds: 300),
-      //   child: widget.isExpanded
-      //       ? Icon(ElementSymbol.dismiss)
-      //       : Icon(ElementSymbol.add),
-      // ),
     );
 
     return Card(
       elevation: 1,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       shape: const SmoothRectangleBorder(
-        // side: BorderSide(
-        //   color: Theme.of(context).colorScheme.outline,
-        //   width: ElementScale.strokeL,
-        // ),
         borderRadius: SmoothBorderRadius.all(
           SmoothRadius(
             cornerRadius: ElementScale.cornerLarge,
@@ -75,7 +59,6 @@ class _MethodCardState extends State<MethodCard> {
           ),
         ),
       ),
-      // color: colorScheme.surface,
       child: InkWell(
         onTap: (() {
           widget.onTap?.call();
@@ -98,20 +81,6 @@ class _MethodCardState extends State<MethodCard> {
                     child: Column(
                       children: [
                         tile,
-                        // if (widget.isExpanded)
-                        //   Expanded(
-                        //     child: Container(
-                        //       decoration: BoxDecoration(
-                        //         color: Theme.of(context).colorScheme.primary,
-                        //       ),
-                        //       // child: TextArea(
-                        //       //   onTap: widget.onTap,
-                        //       //   autofocus: widget.autofocus,
-                        //       //   onChanged: widget.onChanged,
-                        //       // ),
-                        //     ),
-                        //   ),
-
                         if (isExpanded)
                           TextArea(
                             controller: widget.controller,
