@@ -1,4 +1,6 @@
+import 'package:core/util/uuid.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:uuid/uuid.dart';
 
 import '../abstract/identify.dart';
 import '../abstract/locate.dart';
@@ -11,17 +13,15 @@ class EntryDefinition with _$EntryDefinition, Identify, Locate {
   const EntryDefinition._();
 
   const factory EntryDefinition.label({
-    required String collectionSlug,
     required String hierarchyPath,
     required String id,
-    required String uuid,
+    @UuidConverter() UuidValue? uuid,
   }) = _Label;
 
   const factory EntryDefinition.note({
-    required String collectionSlug,
     required String hierarchyPath,
     required String id,
-    required String uuid,
+    @UuidConverter() UuidValue? uuid,
   }) = _Note;
 
   @override

@@ -1,10 +1,12 @@
 import 'package:core/model/entry.dart';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:uuid/uuid.dart';
 
 import '../abstract/define.dart';
 import '../abstract/identify.dart';
 import '../abstract/locate.dart';
+import '../util/uuid.dart';
 import 'exercise.dart';
 
 part 'session.freezed.dart';
@@ -20,7 +22,7 @@ class Session
     required final List<Entry> definitions,
     required String hierarchyPath,
     required String id,
-    required String uuid,
+    @UuidConverter() UuidValue? uuid,
   }) = _Session;
 
   factory Session.create({
@@ -36,7 +38,9 @@ class Session
         definitions: definitions ?? [],
         hierarchyPath: hierarchyPath,
         id: id,
-        uuid: uuid ?? const Uuid().v4(),
+        uuid: uuid != null && uuid.isNotEmpty
+            ? UuidValue(uuid)
+            : const Uuid().v4obj(),
       );
 
   factory Session.fromJson(Map<String, dynamic> json) =>

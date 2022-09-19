@@ -1,4 +1,5 @@
 import 'package:core/model/task_definition.dart';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:slugify/slugify.dart';
 import 'package:uuid/uuid.dart';
@@ -7,6 +8,7 @@ import '../abstract/define.dart';
 import '../abstract/identify.dart';
 import '../abstract/inform.dart';
 import '../abstract/locate.dart';
+import '../util/uuid.dart';
 
 part 'task.freezed.dart';
 part 'task.g.dart';
@@ -22,7 +24,7 @@ class Task with _$Task, Identify, Locate, Inform, Define<TaskDefinition> {
     required final List<TaskDefinition> definitions,
     required String hierarchyPath,
     required String id,
-    required String uuid,
+    @UuidConverter() UuidValue? uuid,
   }) = _Linear;
 
   const factory Task.diverge({
@@ -32,7 +34,7 @@ class Task with _$Task, Identify, Locate, Inform, Define<TaskDefinition> {
     required final List<TaskDefinition> definitions,
     required String hierarchyPath,
     required String id,
-    required String uuid,
+    @UuidConverter() UuidValue? uuid,
   }) = _Diverge;
 
   const factory Task.converge({
@@ -42,7 +44,7 @@ class Task with _$Task, Identify, Locate, Inform, Define<TaskDefinition> {
     required final List<TaskDefinition> definitions,
     required String hierarchyPath,
     required String id,
-    required String uuid,
+    @UuidConverter() UuidValue? uuid,
   }) = _Converge;
 
   const factory Task.feedback({
@@ -52,7 +54,7 @@ class Task with _$Task, Identify, Locate, Inform, Define<TaskDefinition> {
     required final List<TaskDefinition> definitions,
     required String hierarchyPath,
     required String id,
-    required String uuid,
+    @UuidConverter() UuidValue? uuid,
   }) = _Feedback;
 
   factory Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);
@@ -83,7 +85,9 @@ class Task with _$Task, Identify, Locate, Inform, Define<TaskDefinition> {
         // collectionSlug: collectionSlug,
         hierarchyPath: hierarchyPath,
         id: id ?? slugify(name),
-        uuid: uuid ?? const Uuid().v4(),
+        uuid: uuid != null && uuid.isNotEmpty
+            ? UuidValue(uuid)
+            : const Uuid().v4obj(),
       );
 
   factory Task.createDiverge({
@@ -104,7 +108,9 @@ class Task with _$Task, Identify, Locate, Inform, Define<TaskDefinition> {
         // collectionSlug: collectionSlug,
         hierarchyPath: hierarchyPath,
         id: id ?? slugify(name),
-        uuid: uuid ?? const Uuid().v4(),
+        uuid: uuid != null && uuid.isNotEmpty
+            ? UuidValue(uuid)
+            : const Uuid().v4obj(),
       );
 
   factory Task.createConverge({
@@ -125,6 +131,8 @@ class Task with _$Task, Identify, Locate, Inform, Define<TaskDefinition> {
         // collectionSlug: collectionSlug,
         hierarchyPath: hierarchyPath,
         id: id ?? slugify(name),
-        uuid: uuid ?? const Uuid().v4(),
+        uuid: uuid != null && uuid.isNotEmpty
+            ? UuidValue(uuid)
+            : const Uuid().v4obj(),
       );
 }

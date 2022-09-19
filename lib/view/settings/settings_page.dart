@@ -8,6 +8,7 @@ import 'package:matter/nav/nav_context.dart';
 import 'package:matter/page/page.dart';
 import 'package:matter/scroll/pairing_scroll_controller.dart';
 import 'package:method/view/settings/appearance_page.dart';
+import 'package:method/view/settings/reset_page.dart';
 
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -61,6 +62,16 @@ class SettingsList extends StatelessWidget {
                   ),
         };
 
+        final Map<String, MethodPageBuilder> security = {
+          "Erase Content":
+              // When ShellRoute becomes available
+              // (context) => AppearancePage().push(context),
+              (context) => ResetPage(
+                    trailing: NavigationContext.of(context)?.exit,
+                    controller: PairingScrollController.of(context)?.push(),
+                  ),
+        };
+
         final List<Widget> items = [
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
@@ -70,6 +81,18 @@ class SettingsList extends StatelessWidget {
             ),
           ),
           ...general.entries.map((e) => ListTile(
+                title: Text(e.key),
+                trailing: const Icon(ElementSymbol.chevronForward),
+                onTap: () => show(context: context, builder: e.value),
+              )),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 24, 16, 8),
+            child: Text(
+              "SECURITY & PRIVACY",
+              style: Theme.of(context).textTheme.caption,
+            ),
+          ),
+          ...security.entries.map((e) => ListTile(
                 title: Text(e.key),
                 trailing: const Icon(ElementSymbol.chevronForward),
                 onTap: () => show(context: context, builder: e.value),

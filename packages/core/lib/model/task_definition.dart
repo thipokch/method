@@ -1,7 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:uuid/uuid.dart';
 import '../abstract/identify.dart';
 import '../abstract/inform.dart';
 import '../abstract/locate.dart';
+import '../util/uuid.dart';
 
 part 'task_definition.freezed.dart';
 part 'task_definition.g.dart';
@@ -16,7 +18,7 @@ class TaskDefinition with _$TaskDefinition, Identify, Locate, Inform {
     required final String description,
     required String hierarchyPath,
     required String id,
-    required String uuid,
+    @UuidConverter() UuidValue? uuid,
   }) = _Label;
 
   const factory TaskDefinition.note({
@@ -25,7 +27,7 @@ class TaskDefinition with _$TaskDefinition, Identify, Locate, Inform {
     required final String description,
     required String hierarchyPath,
     required String id,
-    required String uuid,
+    @UuidConverter() UuidValue? uuid,
   }) = _Note;
 
   factory TaskDefinition.fromJson(Map<String, dynamic> json) =>

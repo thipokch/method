@@ -24,7 +24,8 @@ mixin _$Entry {
   List<EntryDefinition> get definitions => throw _privateConstructorUsedError;
   String get hierarchyPath => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
-  String get uuid => throw _privateConstructorUsedError;
+  @UuidConverter()
+  UuidValue? get uuid => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,7 +41,7 @@ abstract class $EntryCopyWith<$Res> {
       List<EntryDefinition> definitions,
       String hierarchyPath,
       String id,
-      String uuid});
+      @UuidConverter() UuidValue? uuid});
 
   $TaskCopyWith<$Res> get template;
 }
@@ -81,7 +82,7 @@ class _$EntryCopyWithImpl<$Res> implements $EntryCopyWith<$Res> {
       uuid: uuid == freezed
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
-              as String,
+              as UuidValue?,
     ));
   }
 
@@ -103,7 +104,7 @@ abstract class _$$_EntryCopyWith<$Res> implements $EntryCopyWith<$Res> {
       List<EntryDefinition> definitions,
       String hierarchyPath,
       String id,
-      String uuid});
+      @UuidConverter() UuidValue? uuid});
 
   @override
   $TaskCopyWith<$Res> get template;
@@ -146,7 +147,7 @@ class __$$_EntryCopyWithImpl<$Res> extends _$EntryCopyWithImpl<$Res>
       uuid: uuid == freezed
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
-              as String,
+              as UuidValue?,
     ));
   }
 }
@@ -159,7 +160,7 @@ class _$_Entry extends _Entry {
       required final List<EntryDefinition> definitions,
       required this.hierarchyPath,
       required this.id,
-      required this.uuid})
+      @UuidConverter() this.uuid})
       : _definitions = definitions,
         super._();
 
@@ -180,7 +181,8 @@ class _$_Entry extends _Entry {
   @override
   final String id;
   @override
-  final String uuid;
+  @UuidConverter()
+  final UuidValue? uuid;
 
   @override
   String toString() {
@@ -230,7 +232,7 @@ abstract class _Entry extends Entry {
       required final List<EntryDefinition> definitions,
       required final String hierarchyPath,
       required final String id,
-      required final String uuid}) = _$_Entry;
+      @UuidConverter() final UuidValue? uuid}) = _$_Entry;
   const _Entry._() : super._();
 
   factory _Entry.fromJson(Map<String, dynamic> json) = _$_Entry.fromJson;
@@ -244,7 +246,8 @@ abstract class _Entry extends Entry {
   @override
   String get id;
   @override
-  String get uuid;
+  @UuidConverter()
+  UuidValue? get uuid;
   @override
   @JsonKey(ignore: true)
   _$$_EntryCopyWith<_$_Entry> get copyWith =>

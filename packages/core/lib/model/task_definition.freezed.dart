@@ -34,34 +34,35 @@ mixin _$TaskDefinition {
   String get description => throw _privateConstructorUsedError;
   String get hierarchyPath => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
-  String get uuid => throw _privateConstructorUsedError;
+  @UuidConverter()
+  UuidValue? get uuid => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String icon, String name, String description,
-            String hierarchyPath, String id, String uuid)
+            String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)
         label,
     required TResult Function(String icon, String name, String description,
-            String hierarchyPath, String id, String uuid)
+            String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)
         note,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String icon, String name, String description,
-            String hierarchyPath, String id, String uuid)?
+            String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)?
         label,
     TResult Function(String icon, String name, String description,
-            String hierarchyPath, String id, String uuid)?
+            String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)?
         note,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String icon, String name, String description,
-            String hierarchyPath, String id, String uuid)?
+            String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)?
         label,
     TResult Function(String icon, String name, String description,
-            String hierarchyPath, String id, String uuid)?
+            String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)?
         note,
     required TResult orElse(),
   }) =>
@@ -102,7 +103,7 @@ abstract class $TaskDefinitionCopyWith<$Res> {
       String description,
       String hierarchyPath,
       String id,
-      String uuid});
+      @UuidConverter() UuidValue? uuid});
 }
 
 /// @nodoc
@@ -147,7 +148,7 @@ class _$TaskDefinitionCopyWithImpl<$Res>
       uuid: uuid == freezed
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
-              as String,
+              as UuidValue?,
     ));
   }
 }
@@ -164,7 +165,7 @@ abstract class _$$_LabelCopyWith<$Res>
       String description,
       String hierarchyPath,
       String id,
-      String uuid});
+      @UuidConverter() UuidValue? uuid});
 }
 
 /// @nodoc
@@ -209,7 +210,7 @@ class __$$_LabelCopyWithImpl<$Res> extends _$TaskDefinitionCopyWithImpl<$Res>
       uuid: uuid == freezed
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
-              as String,
+              as UuidValue?,
     ));
   }
 }
@@ -223,7 +224,7 @@ class _$_Label extends _Label {
       required this.description,
       required this.hierarchyPath,
       required this.id,
-      required this.uuid,
+      @UuidConverter() this.uuid,
       final String? $type})
       : $type = $type ?? 'label',
         super._();
@@ -242,7 +243,8 @@ class _$_Label extends _Label {
   @override
   final String id;
   @override
-  final String uuid;
+  @UuidConverter()
+  final UuidValue? uuid;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
@@ -287,10 +289,10 @@ class _$_Label extends _Label {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String icon, String name, String description,
-            String hierarchyPath, String id, String uuid)
+            String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)
         label,
     required TResult Function(String icon, String name, String description,
-            String hierarchyPath, String id, String uuid)
+            String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)
         note,
   }) {
     return label(icon, name, description, hierarchyPath, id, uuid);
@@ -300,10 +302,10 @@ class _$_Label extends _Label {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String icon, String name, String description,
-            String hierarchyPath, String id, String uuid)?
+            String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)?
         label,
     TResult Function(String icon, String name, String description,
-            String hierarchyPath, String id, String uuid)?
+            String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)?
         note,
   }) {
     return label?.call(icon, name, description, hierarchyPath, id, uuid);
@@ -313,10 +315,10 @@ class _$_Label extends _Label {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String icon, String name, String description,
-            String hierarchyPath, String id, String uuid)?
+            String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)?
         label,
     TResult Function(String icon, String name, String description,
-            String hierarchyPath, String id, String uuid)?
+            String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)?
         note,
     required TResult orElse(),
   }) {
@@ -372,7 +374,7 @@ abstract class _Label extends TaskDefinition {
       required final String description,
       required final String hierarchyPath,
       required final String id,
-      required final String uuid}) = _$_Label;
+      @UuidConverter() final UuidValue? uuid}) = _$_Label;
   const _Label._() : super._();
 
   factory _Label.fromJson(Map<String, dynamic> json) = _$_Label.fromJson;
@@ -388,7 +390,8 @@ abstract class _Label extends TaskDefinition {
   @override
   String get id;
   @override
-  String get uuid;
+  @UuidConverter()
+  UuidValue? get uuid;
   @override
   @JsonKey(ignore: true)
   _$$_LabelCopyWith<_$_Label> get copyWith =>
@@ -406,7 +409,7 @@ abstract class _$$_NoteCopyWith<$Res> implements $TaskDefinitionCopyWith<$Res> {
       String description,
       String hierarchyPath,
       String id,
-      String uuid});
+      @UuidConverter() UuidValue? uuid});
 }
 
 /// @nodoc
@@ -451,7 +454,7 @@ class __$$_NoteCopyWithImpl<$Res> extends _$TaskDefinitionCopyWithImpl<$Res>
       uuid: uuid == freezed
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
-              as String,
+              as UuidValue?,
     ));
   }
 }
@@ -465,7 +468,7 @@ class _$_Note extends _Note {
       required this.description,
       required this.hierarchyPath,
       required this.id,
-      required this.uuid,
+      @UuidConverter() this.uuid,
       final String? $type})
       : $type = $type ?? 'note',
         super._();
@@ -483,7 +486,8 @@ class _$_Note extends _Note {
   @override
   final String id;
   @override
-  final String uuid;
+  @UuidConverter()
+  final UuidValue? uuid;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
@@ -528,10 +532,10 @@ class _$_Note extends _Note {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String icon, String name, String description,
-            String hierarchyPath, String id, String uuid)
+            String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)
         label,
     required TResult Function(String icon, String name, String description,
-            String hierarchyPath, String id, String uuid)
+            String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)
         note,
   }) {
     return note(icon, name, description, hierarchyPath, id, uuid);
@@ -541,10 +545,10 @@ class _$_Note extends _Note {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String icon, String name, String description,
-            String hierarchyPath, String id, String uuid)?
+            String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)?
         label,
     TResult Function(String icon, String name, String description,
-            String hierarchyPath, String id, String uuid)?
+            String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)?
         note,
   }) {
     return note?.call(icon, name, description, hierarchyPath, id, uuid);
@@ -554,10 +558,10 @@ class _$_Note extends _Note {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String icon, String name, String description,
-            String hierarchyPath, String id, String uuid)?
+            String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)?
         label,
     TResult Function(String icon, String name, String description,
-            String hierarchyPath, String id, String uuid)?
+            String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)?
         note,
     required TResult orElse(),
   }) {
@@ -613,7 +617,7 @@ abstract class _Note extends TaskDefinition {
       required final String description,
       required final String hierarchyPath,
       required final String id,
-      required final String uuid}) = _$_Note;
+      @UuidConverter() final UuidValue? uuid}) = _$_Note;
   const _Note._() : super._();
 
   factory _Note.fromJson(Map<String, dynamic> json) = _$_Note.fromJson;
@@ -629,7 +633,8 @@ abstract class _Note extends TaskDefinition {
   @override
   String get id;
   @override
-  String get uuid;
+  @UuidConverter()
+  UuidValue? get uuid;
   @override
   @JsonKey(ignore: true)
   _$$_NoteCopyWith<_$_Note> get copyWith => throw _privateConstructorUsedError;

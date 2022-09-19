@@ -7,33 +7,45 @@ part of 'entry_definition.dart';
 // **************************************************************************
 
 _$_Label _$$_LabelFromJson(Map<String, dynamic> json) => _$_Label(
-      collectionSlug: json['collectionSlug'] as String,
       hierarchyPath: json['hierarchyPath'] as String,
       id: json['id'] as String,
-      uuid: json['uuid'] as String,
+      uuid: _$JsonConverterFromJson<String, UuidValue>(
+          json['uuid'], const UuidConverter().fromJson),
       $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$_LabelToJson(_$_Label instance) => <String, dynamic>{
-      'collectionSlug': instance.collectionSlug,
       'hierarchyPath': instance.hierarchyPath,
       'id': instance.id,
-      'uuid': instance.uuid,
+      'uuid': _$JsonConverterToJson<String, UuidValue>(
+          instance.uuid, const UuidConverter().toJson),
       'runtimeType': instance.$type,
     };
 
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) =>
+    json == null ? null : fromJson(json as Json);
+
+Json? _$JsonConverterToJson<Json, Value>(
+  Value? value,
+  Json? Function(Value value) toJson,
+) =>
+    value == null ? null : toJson(value);
+
 _$_Note _$$_NoteFromJson(Map<String, dynamic> json) => _$_Note(
-      collectionSlug: json['collectionSlug'] as String,
       hierarchyPath: json['hierarchyPath'] as String,
       id: json['id'] as String,
-      uuid: json['uuid'] as String,
+      uuid: _$JsonConverterFromJson<String, UuidValue>(
+          json['uuid'], const UuidConverter().fromJson),
       $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$_NoteToJson(_$_Note instance) => <String, dynamic>{
-      'collectionSlug': instance.collectionSlug,
       'hierarchyPath': instance.hierarchyPath,
       'id': instance.id,
-      'uuid': instance.uuid,
+      'uuid': _$JsonConverterToJson<String, UuidValue>(
+          instance.uuid, const UuidConverter().toJson),
       'runtimeType': instance.$type,
     };

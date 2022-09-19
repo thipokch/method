@@ -26,12 +26,15 @@ dependencies:
   figma_squircle: ^0.5.3
   dots_indicator: ^2.1.0
   card_swiper : ^2.0.4
+  uuid: ^3.0.6
 
   component:
   core:
   matter:
   element:
   emoji:
+  persistence:
+  repository:
 
 dev_dependencies:
   flutter_test:

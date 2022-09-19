@@ -1,4 +1,6 @@
+import 'package:uuid/uuid.dart';
+
 abstract class Identify {
   String get id;
-  String get uuid;
+  UuidValue? get uuid;
 }

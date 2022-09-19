@@ -1,5 +1,6 @@
 import 'package:core/abstract/present.dart';
 import 'package:core/model/task.dart';
+
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:slugify/slugify.dart';
@@ -8,6 +9,7 @@ import 'package:uuid/uuid.dart';
 import '../abstract/identify.dart';
 import '../abstract/inform.dart';
 import '../abstract/locate.dart';
+import '../util/uuid.dart';
 
 part 'exercise.freezed.dart';
 part 'exercise.g.dart';
@@ -23,7 +25,7 @@ class Exercise with _$Exercise, Identify, Locate, Inform, Present {
     required final List<Task> definitions,
     required String hierarchyPath,
     required String id,
-    required String uuid,
+    @UuidConverter() UuidValue? uuid,
     required Presentation presentation,
   }) = _Exercise;
 
@@ -44,7 +46,9 @@ class Exercise with _$Exercise, Identify, Locate, Inform, Present {
         definitions: definitions ?? [],
         hierarchyPath: hierarchyPath,
         id: id ?? slugify(name),
-        uuid: uuid ?? const Uuid().v4(),
+        uuid: uuid != null && uuid.isNotEmpty
+            ? UuidValue(uuid)
+            : const Uuid().v4obj(),
         presentation: presentation ??
             const Presentation(
               seed: 450.0,

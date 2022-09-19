@@ -15,7 +15,7 @@ void main() {
     expect(a.hierarchyPath, "hierarchyPath");
 
     expect(a.id, "name");
-    expect(a.uuid, isNotEmpty);
+    expect(a.uuid, isNotNull);
     expect(a.definitions, isEmpty);
   });
 
@@ -32,7 +32,7 @@ void main() {
       name: "name",
       description: "description",
       hierarchyPath: "hierarchyPath",
-      uuid: a.uuid,
+      uuid: a.uuid.toString(),
     );
 
     expect(b, a);
@@ -42,7 +42,7 @@ void main() {
       name: "c",
       description: "description",
       hierarchyPath: "hierarchyPath",
-      uuid: a.uuid,
+      uuid: a.uuid.toString(),
     );
 
     expect(c, isNot(a));
