@@ -24,7 +24,8 @@ mixin _$Session {
   List<Entry> get definitions => throw _privateConstructorUsedError;
   String get hierarchyPath => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
-  String get uuid => throw _privateConstructorUsedError;
+  @UuidConverter()
+  UuidValue? get uuid => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,7 +41,7 @@ abstract class $SessionCopyWith<$Res> {
       List<Entry> definitions,
       String hierarchyPath,
       String id,
-      String uuid});
+      @UuidConverter() UuidValue? uuid});
 
   $ExerciseCopyWith<$Res> get template;
 }
@@ -81,7 +82,7 @@ class _$SessionCopyWithImpl<$Res> implements $SessionCopyWith<$Res> {
       uuid: uuid == freezed
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
-              as String,
+              as UuidValue?,
     ));
   }
 
@@ -104,7 +105,7 @@ abstract class _$$_SessionCopyWith<$Res> implements $SessionCopyWith<$Res> {
       List<Entry> definitions,
       String hierarchyPath,
       String id,
-      String uuid});
+      @UuidConverter() UuidValue? uuid});
 
   @override
   $ExerciseCopyWith<$Res> get template;
@@ -147,7 +148,7 @@ class __$$_SessionCopyWithImpl<$Res> extends _$SessionCopyWithImpl<$Res>
       uuid: uuid == freezed
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
-              as String,
+              as UuidValue?,
     ));
   }
 }
@@ -160,7 +161,7 @@ class _$_Session extends _Session {
       required final List<Entry> definitions,
       required this.hierarchyPath,
       required this.id,
-      required this.uuid})
+      @UuidConverter() this.uuid})
       : _definitions = definitions,
         super._();
 
@@ -181,7 +182,8 @@ class _$_Session extends _Session {
   @override
   final String id;
   @override
-  final String uuid;
+  @UuidConverter()
+  final UuidValue? uuid;
 
   @override
   String toString() {
@@ -231,7 +233,7 @@ abstract class _Session extends Session {
       required final List<Entry> definitions,
       required final String hierarchyPath,
       required final String id,
-      required final String uuid}) = _$_Session;
+      @UuidConverter() final UuidValue? uuid}) = _$_Session;
   const _Session._() : super._();
 
   factory _Session.fromJson(Map<String, dynamic> json) = _$_Session.fromJson;
@@ -245,7 +247,8 @@ abstract class _Session extends Session {
   @override
   String get id;
   @override
-  String get uuid;
+  @UuidConverter()
+  UuidValue? get uuid;
   @override
   @JsonKey(ignore: true)
   _$$_SessionCopyWith<_$_Session> get copyWith =>

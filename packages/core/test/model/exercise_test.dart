@@ -14,7 +14,7 @@ void main() {
     expect(a.hierarchyPath, "hierarchyPath");
 
     expect(a.id, "name");
-    expect(a.uuid, isNotEmpty);
+    expect(a.uuid, isNotNull);
     expect(a.definitions, isEmpty);
   });
 }

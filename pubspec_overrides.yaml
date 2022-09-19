@@ -1,4 +1,4 @@
-# melos_managed_dependency_overrides: component,core,element,emoji,matter
+# melos_managed_dependency_overrides: component,core,element,emoji,matter,persistence,repository
 dependency_overrides:
   component:
     path: packages/component
@@ -10,3 +10,7 @@ dependency_overrides:
     path: packages/emoji
   matter:
     path: packages/matter
+  persistence:
+    path: packages/persistence
+  repository:
+    path: packages/repository

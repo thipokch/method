@@ -22,7 +22,7 @@ void main() {
     expect(a.id, "id");
     expect(a.template, aTemplate);
 
-    expect(a.uuid, isNotEmpty);
+    expect(a.uuid, isNotNull);
     expect(a.definitions, isEmpty);
   });
 }

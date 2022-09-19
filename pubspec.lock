@@ -618,6 +618,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
+  isar:
+    dependency: transitive
+    description:
+      name: isar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0"
+  isar_flutter_libs:
+    dependency: transitive
+    description:
+      name: isar_flutter_libs
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0"
   js:
     dependency: transitive
     description:
@@ -800,6 +814,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.0"
+  persistence:
+    dependency: "direct main"
+    description:
+      path: "packages/persistence"
+      relative: true
+    source: path
+    version: "0.0.0"
   petitparser:
     dependency: transitive
     description:
@@ -884,6 +905,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.0"
+  repository:
+    dependency: "direct main"
+    description:
+      path: "packages/repository"
+      relative: true
+    source: path
+    version: "0.0.0"
   shelf:
     dependency: transitive
     description:
@@ -1002,7 +1030,7 @@ packages:
     source: hosted
     version: "1.0.0"
   uuid:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: uuid
       url: "https://pub.dartlang.org"

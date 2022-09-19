@@ -1,10 +1,12 @@
 import 'package:core/model/task.dart';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:uuid/uuid.dart';
 
 import '../abstract/define.dart';
 import '../abstract/identify.dart';
 import '../abstract/locate.dart';
+import '../util/uuid.dart';
 import 'entry_definition.dart';
 
 part 'entry.freezed.dart';
@@ -20,7 +22,7 @@ class Entry
     required final List<EntryDefinition> definitions,
     required String hierarchyPath,
     required String id,
-    required String uuid,
+    @UuidConverter() UuidValue? uuid,
   }) = _Entry;
 
   factory Entry.create({
@@ -35,7 +37,9 @@ class Entry
         definitions: definitions ?? [],
         hierarchyPath: hierarchyPath,
         id: id,
-        uuid: uuid ?? const Uuid().v4(),
+        uuid: uuid != null && uuid.isNotEmpty
+            ? UuidValue(uuid)
+            : const Uuid().v4obj(),
       );
 
   factory Entry.fromJson(Map<String, dynamic> json) => _$EntryFromJson(json);

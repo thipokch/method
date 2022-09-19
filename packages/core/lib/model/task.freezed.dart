@@ -39,7 +39,8 @@ mixin _$Task {
   List<TaskDefinition> get definitions => throw _privateConstructorUsedError;
   String get hierarchyPath => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
-  String get uuid => throw _privateConstructorUsedError;
+  @UuidConverter()
+  UuidValue? get uuid => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
@@ -49,7 +50,7 @@ mixin _$Task {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)
+            @UuidConverter() UuidValue? uuid)
         linear,
     required TResult Function(
             String icon,
@@ -58,7 +59,7 @@ mixin _$Task {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)
+            @UuidConverter() UuidValue? uuid)
         diverge,
     required TResult Function(
             String icon,
@@ -67,7 +68,7 @@ mixin _$Task {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)
+            @UuidConverter() UuidValue? uuid)
         converge,
     required TResult Function(
             String icon,
@@ -76,7 +77,7 @@ mixin _$Task {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)
+            @UuidConverter() UuidValue? uuid)
         feedback,
   }) =>
       throw _privateConstructorUsedError;
@@ -89,7 +90,7 @@ mixin _$Task {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         linear,
     TResult Function(
             String icon,
@@ -98,7 +99,7 @@ mixin _$Task {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         diverge,
     TResult Function(
             String icon,
@@ -107,7 +108,7 @@ mixin _$Task {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         converge,
     TResult Function(
             String icon,
@@ -116,7 +117,7 @@ mixin _$Task {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         feedback,
   }) =>
       throw _privateConstructorUsedError;
@@ -129,7 +130,7 @@ mixin _$Task {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         linear,
     TResult Function(
             String icon,
@@ -138,7 +139,7 @@ mixin _$Task {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         diverge,
     TResult Function(
             String icon,
@@ -147,7 +148,7 @@ mixin _$Task {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         converge,
     TResult Function(
             String icon,
@@ -156,7 +157,7 @@ mixin _$Task {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         feedback,
     required TResult orElse(),
   }) =>
@@ -202,7 +203,7 @@ abstract class $TaskCopyWith<$Res> {
       List<TaskDefinition> definitions,
       String hierarchyPath,
       String id,
-      String uuid});
+      @UuidConverter() UuidValue? uuid});
 }
 
 /// @nodoc
@@ -251,7 +252,7 @@ class _$TaskCopyWithImpl<$Res> implements $TaskCopyWith<$Res> {
       uuid: uuid == freezed
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
-              as String,
+              as UuidValue?,
     ));
   }
 }
@@ -268,7 +269,7 @@ abstract class _$$_LinearCopyWith<$Res> implements $TaskCopyWith<$Res> {
       List<TaskDefinition> definitions,
       String hierarchyPath,
       String id,
-      String uuid});
+      @UuidConverter() UuidValue? uuid});
 }
 
 /// @nodoc
@@ -318,7 +319,7 @@ class __$$_LinearCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
       uuid: uuid == freezed
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
-              as String,
+              as UuidValue?,
     ));
   }
 }
@@ -333,7 +334,7 @@ class _$_Linear extends _Linear {
       required final List<TaskDefinition> definitions,
       required this.hierarchyPath,
       required this.id,
-      required this.uuid,
+      @UuidConverter() this.uuid,
       final String? $type})
       : _definitions = definitions,
         $type = $type ?? 'linear',
@@ -360,7 +361,8 @@ class _$_Linear extends _Linear {
   @override
   final String id;
   @override
-  final String uuid;
+  @UuidConverter()
+  final UuidValue? uuid;
 
   @JsonKey(name: 'collectionSlug')
   final String $type;
@@ -414,7 +416,7 @@ class _$_Linear extends _Linear {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)
+            @UuidConverter() UuidValue? uuid)
         linear,
     required TResult Function(
             String icon,
@@ -423,7 +425,7 @@ class _$_Linear extends _Linear {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)
+            @UuidConverter() UuidValue? uuid)
         diverge,
     required TResult Function(
             String icon,
@@ -432,7 +434,7 @@ class _$_Linear extends _Linear {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)
+            @UuidConverter() UuidValue? uuid)
         converge,
     required TResult Function(
             String icon,
@@ -441,7 +443,7 @@ class _$_Linear extends _Linear {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)
+            @UuidConverter() UuidValue? uuid)
         feedback,
   }) {
     return linear(
@@ -458,7 +460,7 @@ class _$_Linear extends _Linear {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         linear,
     TResult Function(
             String icon,
@@ -467,7 +469,7 @@ class _$_Linear extends _Linear {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         diverge,
     TResult Function(
             String icon,
@@ -476,7 +478,7 @@ class _$_Linear extends _Linear {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         converge,
     TResult Function(
             String icon,
@@ -485,7 +487,7 @@ class _$_Linear extends _Linear {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         feedback,
   }) {
     return linear?.call(
@@ -502,7 +504,7 @@ class _$_Linear extends _Linear {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         linear,
     TResult Function(
             String icon,
@@ -511,7 +513,7 @@ class _$_Linear extends _Linear {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         diverge,
     TResult Function(
             String icon,
@@ -520,7 +522,7 @@ class _$_Linear extends _Linear {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         converge,
     TResult Function(
             String icon,
@@ -529,7 +531,7 @@ class _$_Linear extends _Linear {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         feedback,
     required TResult orElse(),
   }) {
@@ -593,7 +595,7 @@ abstract class _Linear extends Task {
       required final List<TaskDefinition> definitions,
       required final String hierarchyPath,
       required final String id,
-      required final String uuid}) = _$_Linear;
+      @UuidConverter() final UuidValue? uuid}) = _$_Linear;
   const _Linear._() : super._();
 
   factory _Linear.fromJson(Map<String, dynamic> json) = _$_Linear.fromJson;
@@ -611,7 +613,8 @@ abstract class _Linear extends Task {
   @override
   String get id;
   @override
-  String get uuid;
+  @UuidConverter()
+  UuidValue? get uuid;
   @override
   @JsonKey(ignore: true)
   _$$_LinearCopyWith<_$_Linear> get copyWith =>
@@ -631,7 +634,7 @@ abstract class _$$_DivergeCopyWith<$Res> implements $TaskCopyWith<$Res> {
       List<TaskDefinition> definitions,
       String hierarchyPath,
       String id,
-      String uuid});
+      @UuidConverter() UuidValue? uuid});
 }
 
 /// @nodoc
@@ -681,7 +684,7 @@ class __$$_DivergeCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
       uuid: uuid == freezed
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
-              as String,
+              as UuidValue?,
     ));
   }
 }
@@ -696,7 +699,7 @@ class _$_Diverge extends _Diverge {
       required final List<TaskDefinition> definitions,
       required this.hierarchyPath,
       required this.id,
-      required this.uuid,
+      @UuidConverter() this.uuid,
       final String? $type})
       : _definitions = definitions,
         $type = $type ?? 'diverge',
@@ -723,7 +726,8 @@ class _$_Diverge extends _Diverge {
   @override
   final String id;
   @override
-  final String uuid;
+  @UuidConverter()
+  final UuidValue? uuid;
 
   @JsonKey(name: 'collectionSlug')
   final String $type;
@@ -777,7 +781,7 @@ class _$_Diverge extends _Diverge {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)
+            @UuidConverter() UuidValue? uuid)
         linear,
     required TResult Function(
             String icon,
@@ -786,7 +790,7 @@ class _$_Diverge extends _Diverge {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)
+            @UuidConverter() UuidValue? uuid)
         diverge,
     required TResult Function(
             String icon,
@@ -795,7 +799,7 @@ class _$_Diverge extends _Diverge {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)
+            @UuidConverter() UuidValue? uuid)
         converge,
     required TResult Function(
             String icon,
@@ -804,7 +808,7 @@ class _$_Diverge extends _Diverge {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)
+            @UuidConverter() UuidValue? uuid)
         feedback,
   }) {
     return diverge(
@@ -821,7 +825,7 @@ class _$_Diverge extends _Diverge {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         linear,
     TResult Function(
             String icon,
@@ -830,7 +834,7 @@ class _$_Diverge extends _Diverge {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         diverge,
     TResult Function(
             String icon,
@@ -839,7 +843,7 @@ class _$_Diverge extends _Diverge {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         converge,
     TResult Function(
             String icon,
@@ -848,7 +852,7 @@ class _$_Diverge extends _Diverge {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         feedback,
   }) {
     return diverge?.call(
@@ -865,7 +869,7 @@ class _$_Diverge extends _Diverge {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         linear,
     TResult Function(
             String icon,
@@ -874,7 +878,7 @@ class _$_Diverge extends _Diverge {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         diverge,
     TResult Function(
             String icon,
@@ -883,7 +887,7 @@ class _$_Diverge extends _Diverge {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         converge,
     TResult Function(
             String icon,
@@ -892,7 +896,7 @@ class _$_Diverge extends _Diverge {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         feedback,
     required TResult orElse(),
   }) {
@@ -956,7 +960,7 @@ abstract class _Diverge extends Task {
       required final List<TaskDefinition> definitions,
       required final String hierarchyPath,
       required final String id,
-      required final String uuid}) = _$_Diverge;
+      @UuidConverter() final UuidValue? uuid}) = _$_Diverge;
   const _Diverge._() : super._();
 
   factory _Diverge.fromJson(Map<String, dynamic> json) = _$_Diverge.fromJson;
@@ -974,7 +978,8 @@ abstract class _Diverge extends Task {
   @override
   String get id;
   @override
-  String get uuid;
+  @UuidConverter()
+  UuidValue? get uuid;
   @override
   @JsonKey(ignore: true)
   _$$_DivergeCopyWith<_$_Diverge> get copyWith =>
@@ -994,7 +999,7 @@ abstract class _$$_ConvergeCopyWith<$Res> implements $TaskCopyWith<$Res> {
       List<TaskDefinition> definitions,
       String hierarchyPath,
       String id,
-      String uuid});
+      @UuidConverter() UuidValue? uuid});
 }
 
 /// @nodoc
@@ -1045,7 +1050,7 @@ class __$$_ConvergeCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
       uuid: uuid == freezed
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
-              as String,
+              as UuidValue?,
     ));
   }
 }
@@ -1060,7 +1065,7 @@ class _$_Converge extends _Converge {
       required final List<TaskDefinition> definitions,
       required this.hierarchyPath,
       required this.id,
-      required this.uuid,
+      @UuidConverter() this.uuid,
       final String? $type})
       : _definitions = definitions,
         $type = $type ?? 'converge',
@@ -1087,7 +1092,8 @@ class _$_Converge extends _Converge {
   @override
   final String id;
   @override
-  final String uuid;
+  @UuidConverter()
+  final UuidValue? uuid;
 
   @JsonKey(name: 'collectionSlug')
   final String $type;
@@ -1141,7 +1147,7 @@ class _$_Converge extends _Converge {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)
+            @UuidConverter() UuidValue? uuid)
         linear,
     required TResult Function(
             String icon,
@@ -1150,7 +1156,7 @@ class _$_Converge extends _Converge {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)
+            @UuidConverter() UuidValue? uuid)
         diverge,
     required TResult Function(
             String icon,
@@ -1159,7 +1165,7 @@ class _$_Converge extends _Converge {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)
+            @UuidConverter() UuidValue? uuid)
         converge,
     required TResult Function(
             String icon,
@@ -1168,7 +1174,7 @@ class _$_Converge extends _Converge {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)
+            @UuidConverter() UuidValue? uuid)
         feedback,
   }) {
     return converge(
@@ -1185,7 +1191,7 @@ class _$_Converge extends _Converge {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         linear,
     TResult Function(
             String icon,
@@ -1194,7 +1200,7 @@ class _$_Converge extends _Converge {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         diverge,
     TResult Function(
             String icon,
@@ -1203,7 +1209,7 @@ class _$_Converge extends _Converge {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         converge,
     TResult Function(
             String icon,
@@ -1212,7 +1218,7 @@ class _$_Converge extends _Converge {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         feedback,
   }) {
     return converge?.call(
@@ -1229,7 +1235,7 @@ class _$_Converge extends _Converge {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         linear,
     TResult Function(
             String icon,
@@ -1238,7 +1244,7 @@ class _$_Converge extends _Converge {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         diverge,
     TResult Function(
             String icon,
@@ -1247,7 +1253,7 @@ class _$_Converge extends _Converge {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         converge,
     TResult Function(
             String icon,
@@ -1256,7 +1262,7 @@ class _$_Converge extends _Converge {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         feedback,
     required TResult orElse(),
   }) {
@@ -1320,7 +1326,7 @@ abstract class _Converge extends Task {
       required final List<TaskDefinition> definitions,
       required final String hierarchyPath,
       required final String id,
-      required final String uuid}) = _$_Converge;
+      @UuidConverter() final UuidValue? uuid}) = _$_Converge;
   const _Converge._() : super._();
 
   factory _Converge.fromJson(Map<String, dynamic> json) = _$_Converge.fromJson;
@@ -1338,7 +1344,8 @@ abstract class _Converge extends Task {
   @override
   String get id;
   @override
-  String get uuid;
+  @UuidConverter()
+  UuidValue? get uuid;
   @override
   @JsonKey(ignore: true)
   _$$_ConvergeCopyWith<_$_Converge> get copyWith =>
@@ -1358,7 +1365,7 @@ abstract class _$$_FeedbackCopyWith<$Res> implements $TaskCopyWith<$Res> {
       List<TaskDefinition> definitions,
       String hierarchyPath,
       String id,
-      String uuid});
+      @UuidConverter() UuidValue? uuid});
 }
 
 /// @nodoc
@@ -1409,7 +1416,7 @@ class __$$_FeedbackCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
       uuid: uuid == freezed
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
-              as String,
+              as UuidValue?,
     ));
   }
 }
@@ -1424,7 +1431,7 @@ class _$_Feedback extends _Feedback {
       required final List<TaskDefinition> definitions,
       required this.hierarchyPath,
       required this.id,
-      required this.uuid,
+      @UuidConverter() this.uuid,
       final String? $type})
       : _definitions = definitions,
         $type = $type ?? 'feedback',
@@ -1451,7 +1458,8 @@ class _$_Feedback extends _Feedback {
   @override
   final String id;
   @override
-  final String uuid;
+  @UuidConverter()
+  final UuidValue? uuid;
 
   @JsonKey(name: 'collectionSlug')
   final String $type;
@@ -1505,7 +1513,7 @@ class _$_Feedback extends _Feedback {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)
+            @UuidConverter() UuidValue? uuid)
         linear,
     required TResult Function(
             String icon,
@@ -1514,7 +1522,7 @@ class _$_Feedback extends _Feedback {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)
+            @UuidConverter() UuidValue? uuid)
         diverge,
     required TResult Function(
             String icon,
@@ -1523,7 +1531,7 @@ class _$_Feedback extends _Feedback {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)
+            @UuidConverter() UuidValue? uuid)
         converge,
     required TResult Function(
             String icon,
@@ -1532,7 +1540,7 @@ class _$_Feedback extends _Feedback {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)
+            @UuidConverter() UuidValue? uuid)
         feedback,
   }) {
     return feedback(
@@ -1549,7 +1557,7 @@ class _$_Feedback extends _Feedback {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         linear,
     TResult Function(
             String icon,
@@ -1558,7 +1566,7 @@ class _$_Feedback extends _Feedback {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         diverge,
     TResult Function(
             String icon,
@@ -1567,7 +1575,7 @@ class _$_Feedback extends _Feedback {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         converge,
     TResult Function(
             String icon,
@@ -1576,7 +1584,7 @@ class _$_Feedback extends _Feedback {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         feedback,
   }) {
     return feedback?.call(
@@ -1593,7 +1601,7 @@ class _$_Feedback extends _Feedback {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         linear,
     TResult Function(
             String icon,
@@ -1602,7 +1610,7 @@ class _$_Feedback extends _Feedback {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         diverge,
     TResult Function(
             String icon,
@@ -1611,7 +1619,7 @@ class _$_Feedback extends _Feedback {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         converge,
     TResult Function(
             String icon,
@@ -1620,7 +1628,7 @@ class _$_Feedback extends _Feedback {
             List<TaskDefinition> definitions,
             String hierarchyPath,
             String id,
-            String uuid)?
+            @UuidConverter() UuidValue? uuid)?
         feedback,
     required TResult orElse(),
   }) {
@@ -1684,7 +1692,7 @@ abstract class _Feedback extends Task {
       required final List<TaskDefinition> definitions,
       required final String hierarchyPath,
       required final String id,
-      required final String uuid}) = _$_Feedback;
+      @UuidConverter() final UuidValue? uuid}) = _$_Feedback;
   const _Feedback._() : super._();
 
   factory _Feedback.fromJson(Map<String, dynamic> json) = _$_Feedback.fromJson;
@@ -1702,7 +1710,8 @@ abstract class _Feedback extends Task {
   @override
   String get id;
   @override
-  String get uuid;
+  @UuidConverter()
+  UuidValue? get uuid;
   @override
   @JsonKey(ignore: true)
   _$$_FeedbackCopyWith<_$_Feedback> get copyWith =>

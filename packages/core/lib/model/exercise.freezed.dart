@@ -26,7 +26,8 @@ mixin _$Exercise {
   List<Task> get definitions => throw _privateConstructorUsedError;
   String get hierarchyPath => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
-  String get uuid => throw _privateConstructorUsedError;
+  @UuidConverter()
+  UuidValue? get uuid => throw _privateConstructorUsedError;
   Presentation get presentation => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,7 +47,7 @@ abstract class $ExerciseCopyWith<$Res> {
       List<Task> definitions,
       String hierarchyPath,
       String id,
-      String uuid,
+      @UuidConverter() UuidValue? uuid,
       Presentation presentation});
 
   $PresentationCopyWith<$Res> get presentation;
@@ -99,7 +100,7 @@ class _$ExerciseCopyWithImpl<$Res> implements $ExerciseCopyWith<$Res> {
       uuid: uuid == freezed
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
-              as String,
+              as UuidValue?,
       presentation: presentation == freezed
           ? _value.presentation
           : presentation // ignore: cast_nullable_to_non_nullable
@@ -128,7 +129,7 @@ abstract class _$$_ExerciseCopyWith<$Res> implements $ExerciseCopyWith<$Res> {
       List<Task> definitions,
       String hierarchyPath,
       String id,
-      String uuid,
+      @UuidConverter() UuidValue? uuid,
       Presentation presentation});
 
   @override
@@ -184,7 +185,7 @@ class __$$_ExerciseCopyWithImpl<$Res> extends _$ExerciseCopyWithImpl<$Res>
       uuid: uuid == freezed
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
-              as String,
+              as UuidValue?,
       presentation: presentation == freezed
           ? _value.presentation
           : presentation // ignore: cast_nullable_to_non_nullable
@@ -203,7 +204,7 @@ class _$_Exercise extends _Exercise {
       required final List<Task> definitions,
       required this.hierarchyPath,
       required this.id,
-      required this.uuid,
+      @UuidConverter() this.uuid,
       required this.presentation})
       : _definitions = definitions,
         super._();
@@ -229,7 +230,8 @@ class _$_Exercise extends _Exercise {
   @override
   final String id;
   @override
-  final String uuid;
+  @UuidConverter()
+  final UuidValue? uuid;
   @override
   final Presentation presentation;
 
@@ -291,7 +293,7 @@ abstract class _Exercise extends Exercise {
       required final List<Task> definitions,
       required final String hierarchyPath,
       required final String id,
-      required final String uuid,
+      @UuidConverter() final UuidValue? uuid,
       required final Presentation presentation}) = _$_Exercise;
   const _Exercise._() : super._();
 
@@ -310,7 +312,8 @@ abstract class _Exercise extends Exercise {
   @override
   String get id;
   @override
-  String get uuid;
+  @UuidConverter()
+  UuidValue? get uuid;
   @override
   Presentation get presentation;
   @override

@@ -13,7 +13,8 @@ _$_Session _$$_SessionFromJson(Map<String, dynamic> json) => _$_Session(
           .toList(),
       hierarchyPath: json['hierarchyPath'] as String,
       id: json['id'] as String,
-      uuid: json['uuid'] as String,
+      uuid: _$JsonConverterFromJson<String, UuidValue>(
+          json['uuid'], const UuidConverter().fromJson),
     );
 
 Map<String, dynamic> _$$_SessionToJson(_$_Session instance) =>
@@ -22,5 +23,18 @@ Map<String, dynamic> _$$_SessionToJson(_$_Session instance) =>
       'definitions': instance.definitions,
       'hierarchyPath': instance.hierarchyPath,
       'id': instance.id,
-      'uuid': instance.uuid,
+      'uuid': _$JsonConverterToJson<String, UuidValue>(
+          instance.uuid, const UuidConverter().toJson),
     };
+
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) =>
+    json == null ? null : fromJson(json as Json);
+
+Json? _$JsonConverterToJson<Json, Value>(
+  Value? value,
+  Json? Function(Value value) toJson,
+) =>
+    value == null ? null : toJson(value);
