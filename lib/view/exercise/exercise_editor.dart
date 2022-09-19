@@ -61,19 +61,12 @@ class ExerciseEditorState extends State<ExerciseEditor> {
               physics: const BouncingScrollPhysics(
                 parent: AlwaysScrollableScrollPhysics(),
               ),
-              // plugins: [ExerciseSwiperDismiss()],
               loop: false,
               indicatorLayout: PageIndicatorLayout.WARM,
               pagination: SwiperPagination(
                 alignment: Alignment.bottomCenter,
                 margin: const EdgeInsets.all(ElementScale.spaceNone),
                 builder: ExerciseSwiperPagination(),
-                // builder: DotSwiperPaginationBuilder(
-                //   activeColor: colorScheme.primary,
-                //   color: colorScheme.surfaceVariant,
-                //   size: ElementScale.size03 + .0,
-                //   activeSize: ElementScale.size03 + .0,
-                // ),
               ),
               itemCount: state.exercise.definitions.length,
               itemBuilder: (context, index) => BlocProvider(
@@ -118,64 +111,65 @@ class ExerciseSwiperPagination extends SwiperPlugin {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Container(
-      height: MediaQuery.of(context).padding.bottom * 4,
-      width: MediaQuery.of(context).size.width,
+      // height: MediaQuery.of(context).padding.bottom * 4,
+      constraints:
+          BoxConstraints(maxHeight: MediaQuery.of(context).padding.bottom * 4),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            colorScheme.outline.withOpacity(0),
-            colorScheme.outline.withOpacity(.24),
+            colorScheme.background.withOpacity(0),
+            colorScheme.background,
           ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
       ),
       alignment: Alignment.center,
-      child: NavigationToolbar(
-        leading: AspectRatio(
-          aspectRatio: 1,
-          child: IconButton(
-            icon: const Icon(ElementSymbol.dismissCircleFilled),
-            onPressed: () => Navigator.of(context).pop(),
-            iconSize: 48.00,
-            color: colorScheme.surface,
-            style: IconButton.styleFrom(
-              // shadowColor: colorScheme.outline.withOpacity(.12),
-              elevation: 1,
-              // fixedSize: Size(48, 48),
-              // backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
-              // disabledBackgroundColor:
-              //     Theme.of(context).colorScheme.onSurface.withOpacity(0.12),
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        // crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Container(
+            // alignment: Alignment.centerLeft,
+            decoration: const BoxDecoration(
+              color: Colors.black,
             ),
           ),
-        ),
-        middle: Container(
-          padding: const EdgeInsets.symmetric(
-            vertical: ElementScale.spaceM,
-            horizontal: ElementScale.spaceM * 1.2,
-          ),
-          decoration: BoxDecoration(
-            color: colorScheme.surface,
-            borderRadius: const BorderRadius.all(
-              Radius.circular(ElementScale.cornerExtraLarge),
+          Container(
+            padding: const EdgeInsets.symmetric(
+              vertical: ElementScale.spaceM,
+              horizontal: ElementScale.spaceM * 1.2,
             ),
-            boxShadow: [
-              BoxShadow(
-                color: colorScheme.outline.withOpacity(.12),
-                blurRadius: 10,
-                spreadRadius: 1,
+            decoration: BoxDecoration(
+              color: colorScheme.surface,
+              borderRadius: const BorderRadius.all(
+                Radius.circular(ElementScale.cornerExtraLarge),
               ),
-            ],
+              boxShadow: [
+                BoxShadow(
+                  color: colorScheme.outline.withOpacity(.16),
+                  blurRadius: 10,
+                  spreadRadius: 1,
+                ),
+              ],
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: DotSwiperPaginationBuilder(
+              activeColor: colorScheme.primary,
+              color: colorScheme.surfaceVariant,
+              size: ElementScale.size03 + .0,
+              space: ElementScale.size03 + .0,
+              activeSize: ElementScale.size03 + .0,
+            ).build(context, config),
           ),
-          clipBehavior: Clip.antiAlias,
-          child: DotSwiperPaginationBuilder(
-            activeColor: colorScheme.primary,
-            color: colorScheme.surfaceVariant,
-            size: ElementScale.size03 + .0,
-            space: ElementScale.size03 + .0,
-            activeSize: ElementScale.size03 + .0,
-          ).build(context, config),
-        ),
+          Container(
+            // alignment: Alignment.centerLeft,
+            decoration: const BoxDecoration(
+              color: Colors.black,
+            ),
+          ),
+        ],
       ),
     );
   }
