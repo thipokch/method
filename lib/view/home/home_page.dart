@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matter/page/page.dart';
 import 'package:method/content/content.dart';
-import 'package:method/view/exercise/exercise_widget.dart';
-import 'package:method/view/history/history_widget.dart';
+import 'package:method/view/session/session_widget.dart';
+import 'package:method/view/session_list/session_list_widget.dart';
 import 'package:repository/repository.dart';
 
 class HomePage extends MethodPage {
@@ -31,8 +31,8 @@ class _HomeView extends StatelessWidget {
             Content.exerciseThought,
             Content.exerciseAct,
             Content.exerciseMood,
-          ].map<Widget>((e) => ExerciseCard.create(exercise: e)).toList(),
-          HistoryList.create(repo: context.read<Repository>()),
+          ].map<Widget>((e) => SessionCard.create(exercise: e)).toList(),
+          SessionListView.create(repo: context.read<Repository>()),
         ]),
       );
 }

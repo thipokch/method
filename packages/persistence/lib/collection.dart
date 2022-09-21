@@ -17,6 +17,9 @@ abstract class Collection<DOM, DAO extends CollectionObject<DOM>>
 
   IsarCollection<DAO> get collection => source.instance.collection<DAO>();
 
+  Function<T>(Future<T> Function(), {bool silent}) get write =>
+      source.instance.writeTxn;
+
   // METADATA
 
   bool get isEmpty => count > 0;
@@ -44,45 +47,35 @@ abstract class Collection<DOM, DAO extends CollectionObject<DOM>>
 
   // PUT
 
-  Future<int> put(DOM model) => collection.put(dboFrom(model));
-  Future<List<int>> putAll(List<DOM> models) =>
-      collection.putAll(models.map<DAO>((e) => dboFrom(e)).toList());
+  Future<int> put(DOM model) => write(
+        () => collection.put(dboFrom(model)),
+      );
+
+  Future<List<int>> putAll(List<DOM> models) => write(
+        () => collection.putAll(models.map<DAO>((e) => dboFrom(e)).toList()),
+      );
+  // collection.putAll(models.map<DAO>((e) => dboFrom(e)).toList());
 
   // GET
 
   // GET - ASYNC
 
-  // Stream<List<OBJ>>
-  // streamMany(List<Uniform> uniforms) => collection
-  //     .where()
-  //     .anyOf(uniforms, (q, uniform) => q.)
-  // .watch().map<List<OBJS>>((event) => null);
-
-  //     queryUniforms.watch();
-  //     .query(
-  //       queryId.oneOf(uniforms.map((e) => e.id).toList()) &
-  //           queryHierachyPath
-  //               .oneOf(uniforms.map((e) => e.hierarchyPath).toList()),
-  //     )
-  //     .watch(triggerImmediately: true)
-  //     .map<List<OBJ>>(
-  //       (query) => query.find().map<OBJ>((e) => e.toModel()).toList(),
-  //     );
-
   Stream<List<DOM>> streamCollection() => collection
       .where()
-      .watch()
+      .watch(fireImmediately: true)
       .map<List<DOM>>((event) => event.map<DOM>((e) => e.toModel()).toList());
 
   Stream<List<DOM>> streamUniform(List<Uniform> uniforms) => collection
       .where()
       .anyOf(uniforms, queryUniforms)
-      .watch()
+      .watch(fireImmediately: true)
       .map<List<DOM>>((event) => event.map<DOM>((e) => e.toModel()).toList());
 
   // CLEAR
 
-  Future<void> clear() => collection.clear();
+  Future<void> clear() => write(
+        () => collection.clear(),
+      );
 }
 
 typedef WhereRepeatModifier<OBJ, R, E> = QueryBuilder<OBJ, R, QAfterWhereClause>

@@ -27,26 +27,11 @@ class PersistenceDriver extends Source<Isar> {
         DbTaskDefinitionSchema,
         DbEntryDefinitionSchema,
       ],
-      inspector: false,
+      // inspector: false,
     );
 
     return PersistenceDriver(instance);
   }
-
-  // @override
-  // Future<void> init() async {
-  //   instance = await Isar.open(
-  //     [
-  //       DbTaskSchema,
-  //       DbSessionSchema,
-  //       DbExerciseSchema,
-  //       DbEntrySchema,
-  //       DbTaskDefinitionSchema,
-  //       DbEntryDefinitionSchema,
-  //     ],
-  //     inspector: false,
-  //   );
-  // }
 }
 
 class TaskRepository extends Collection<Task, DbTask> {
