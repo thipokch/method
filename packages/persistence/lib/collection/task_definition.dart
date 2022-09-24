@@ -1,4 +1,5 @@
 import 'package:core/model/task_definition.dart';
+import 'package:core/util/uuid.dart';
 import 'package:isar/isar.dart';
 
 import '../collection.dart';
@@ -6,21 +7,7 @@ import '../collection.dart';
 part 'task_definition.g.dart';
 
 @collection
-class DbTaskDefinition extends CollectionObject<TaskDefinition> {
-  Id? dbid;
-
-  String collectionSlug;
-
-  @override
-  @Index(composite: [CompositeIndex('id')])
-  String hierarchyPath;
-
-  List<byte> uuid;
-
-  @override
-  @Index(unique: true)
-  String id;
-
+class DbTaskDefinition extends Dao<TaskDefinition> {
   String icon;
   String name;
   String description;
@@ -29,60 +16,62 @@ class DbTaskDefinition extends CollectionObject<TaskDefinition> {
     required this.icon,
     required this.name,
     required this.description,
-    required this.collectionSlug,
-    required this.hierarchyPath,
-    required this.id,
-    required this.uuid,
+    required super.collectionSlug,
+    required super.hierarchyPath,
+    required super.id,
+    required super.uuid,
   });
+}
 
-  static DbTaskDefinition from({
-    required TaskDefinition model,
+class TaskDefinitionMapper {
+  const TaskDefinitionMapper._();
+
+  static DbTaskDefinition toDao({
+    required TaskDefinition dom,
   }) =>
       DbTaskDefinition(
-        icon: model.icon,
-        name: model.name,
-        description: model.description,
-        collectionSlug: model.collectionSlug,
-        hierarchyPath: model.hierarchyPath,
-        id: model.id,
-        uuid: model.uuid!.toBytes(),
+        icon: dom.icon,
+        name: dom.name,
+        description: dom.description,
+        collectionSlug: dom.collectionSlug,
+        hierarchyPath: dom.hierarchyPath,
+        id: dom.id,
+        uuid: dom.uuid?.toBytes() ?? const Uuid().v4obj().toBytes(),
       );
 
-  @override
-  TaskDefinition toModel() {
-    switch (collectionSlug) {
+  static TaskDefinition toDom({
+    required DbTaskDefinition dao,
+  }) {
+    switch (dao.collectionSlug) {
       case "label":
         return TaskDefinition.label(
-          icon: icon,
-          name: name,
-          description: description,
-          hierarchyPath: hierarchyPath,
-          id: id,
+          icon: dao.icon,
+          name: dao.name,
+          description: dao.description,
+          hierarchyPath: dao.hierarchyPath,
+          id: dao.id,
+          uuid: UuidValue.fromList(dao.uuid),
         );
 
       case "note":
         return TaskDefinition.note(
-          icon: icon,
-          name: name,
-          description: description,
-          hierarchyPath: hierarchyPath,
-          id: id,
+          icon: dao.icon,
+          name: dao.name,
+          description: dao.description,
+          hierarchyPath: dao.hierarchyPath,
+          id: dao.id,
+          uuid: UuidValue.fromList(dao.uuid),
         );
 
       default:
         return TaskDefinition.note(
-          icon: icon,
-          name: name,
-          description: description,
-          hierarchyPath: hierarchyPath,
-          id: id,
+          icon: dao.icon,
+          name: dao.name,
+          description: dao.description,
+          hierarchyPath: dao.hierarchyPath,
+          id: dao.id,
+          uuid: UuidValue.fromList(dao.uuid),
         );
     }
   }
-}
-
-enum DbTaskDefinitionType {
-  unknown,
-  label,
-  note,
 }

@@ -15,12 +15,23 @@ class ExerciseListView extends StatelessWidget {
           initial: () => TextButton(
             // ignore: no-empty-block
             onPressed: () {},
-            child: const Text("add session"),
+            child: const Text("add exercise"),
           ),
           loaded: (exercises) => Column(
             children: exercises
                 .map<Widget>((e) => SessionCard.create(exercise: e))
-                .toList(),
+                .toList()
+              ..add(TextButton(
+                onPressed: () => context
+                    .read<ExerciseListBloc>()
+                    .add(const ExerciseListEvent.load(boostrap: [
+                      Content.exerciseNote,
+                      Content.exerciseThought,
+                      Content.exerciseAct,
+                      Content.exerciseMood,
+                    ])),
+                child: const Text("Load Exercises"),
+              )),
           ),
         ),
       );

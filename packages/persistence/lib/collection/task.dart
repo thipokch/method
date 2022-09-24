@@ -1,5 +1,8 @@
+import 'package:core/abstract/uniform.dart';
 import 'package:core/model/task.dart';
-import 'package:isar/isar.dart';
+import 'package:core/model/task_definition.dart';
+import 'package:core/util/uuid.dart';
+import 'package:isar/isar.dart' hide Collection, WhereRepeatModifier;
 import 'package:persistence/collection/task_definition.dart';
 
 import '../collection.dart';
@@ -7,21 +10,8 @@ import '../collection.dart';
 part 'task.g.dart';
 
 @collection
-class DbTask extends CollectionObject<Task> {
-  Id? dbid;
-
-  @override
-  @Index(composite: [CompositeIndex('id')])
-  String hierarchyPath;
-
-  List<byte> uuid;
-
-  @override
-  @Index(unique: true)
-  String id;
-
-  final definitions = IsarLink<DbTaskDefinition>();
-
+class DbTask
+    extends DaoWithDefinitions<Task, TaskDefinition, DbTaskDefinition> {
   String icon;
   String name;
   String description;
@@ -30,33 +20,62 @@ class DbTask extends CollectionObject<Task> {
     required this.icon,
     required this.name,
     required this.description,
-    required this.hierarchyPath,
-    required this.id,
-    required this.uuid,
-  });
+    required super.hierarchyPath,
+    required super.id,
+    required super.uuid,
+  }) : super(collectionSlug: "task");
+}
 
-  static DbTask from({
-    required Task model,
+class TaskMapper {
+  const TaskMapper._();
+
+  static DbTask toDao({
+    required Task dom,
   }) =>
       DbTask(
-        icon: model.icon,
-        name: model.name,
-        description: model.description,
-        hierarchyPath: model.hierarchyPath,
-        id: model.id,
-        uuid: model.uuid!.toBytes(),
+        icon: dom.icon,
+        name: dom.name,
+        description: dom.description,
+        hierarchyPath: dom.hierarchyPath,
+        id: dom.id,
+        uuid: dom.uuid?.toBytes() ?? const Uuid().v4obj().toBytes(),
       );
 
-  @override
-  Task toModel() => Task.linear(
-        icon: icon,
-        name: name,
-        description: description,
-        definitions: [],
-        // definitions
-        //     .map<TaskDefinition>((element) => element.toModel())
-        //     .toList(),
-        hierarchyPath: hierarchyPath,
-        id: id,
+  static Task toDom({
+    required DbTask dao,
+    List<TaskDefinition> definitions = const [],
+  }) =>
+      Task.linear(
+        icon: dao.icon,
+        name: dao.name,
+        description: dao.description,
+        definitions: definitions,
+        hierarchyPath: dao.hierarchyPath,
+        id: dao.id,
+        uuid: UuidValue.fromList(dao.uuid),
       );
+}
+
+class TaskRepository extends CollectionWithDefinitions<Task, DbTask,
+    TaskDefinition, DbTaskDefinition> {
+  const TaskRepository(super.driver);
+
+  @override
+  final parentToDao = TaskMapper.toDao;
+
+  @override
+  final parentToDom = TaskMapper.toDom;
+
+  @override
+  final childToDao = TaskDefinitionMapper.toDao;
+
+  @override
+  final childToDom = TaskDefinitionMapper.toDom;
+
+  @override
+  WhereRepeatModifier<DbTask, DbTask, Uniform> get uniformEqualTo =>
+      (q, uniform) => q.hierarchyPathIdEqualTo(
+            uniform.hierarchyPath,
+            uniform.id,
+          );
 }

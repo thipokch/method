@@ -62,7 +62,7 @@ class Content {
   //
 
   static const taskFeedback = Task.feedback(
-    icon: "",
+    icon: "⭐️",
     name: "Feedback",
     description: "How was the session?",
     definitions: [
@@ -276,7 +276,7 @@ class Content {
       ),
     ],
     hierarchyPath: "",
-    id: "",
+    id: "context",
   );
 
   static const taskDistortion = Task.diverge(
@@ -423,12 +423,12 @@ class Content {
       ),
     ],
     hierarchyPath: "",
-    id: "",
+    id: "distortion",
   );
 
-  static const taskCoreBelief = Task.converge(
+  static const taskFear = Task.converge(
     icon: "🕷",
-    name: "Examine Core Belief",
+    name: "Examine Fear",
     description: "What if it's true?",
     definitions: <TaskDefinition>[
       TaskDefinition.note(
@@ -440,7 +440,7 @@ class Content {
       ),
     ],
     hierarchyPath: "",
-    id: "",
+    id: "fear",
   );
 
   static const taskEmotion = Task.converge(
@@ -609,7 +609,7 @@ class Content {
       ),
     ],
     hierarchyPath: "",
-    id: "",
+    id: "emotion",
   );
 
   static const taskNeed = Task.converge(
@@ -777,10 +777,10 @@ class Content {
       ),
     ],
     hierarchyPath: "",
-    id: "",
+    id: "need",
   );
 
-  static const taskAction = Task.diverge(
+  static const taskIntention = Task.diverge(
     icon: "🎯",
     name: "Set Intentions",
     description: "What can you do?",
@@ -915,7 +915,7 @@ class Content {
       ),
     ],
     hierarchyPath: "",
-    id: "",
+    id: "intention",
   );
 
   //
@@ -928,7 +928,7 @@ class Content {
     description: "Space for messy thoughts.",
     definitions: [taskNote],
     hierarchyPath: "",
-    id: "",
+    id: "note",
     presentation: b,
   );
 
@@ -940,11 +940,11 @@ class Content {
       taskContext,
       taskEmotion,
       taskNeed,
-      taskAction,
+      taskIntention,
       taskFeedback,
     ],
     hierarchyPath: "",
-    id: "",
+    id: "mood",
     presentation: a,
   );
 
@@ -954,13 +954,13 @@ class Content {
     description: "Spot patterns and fallacies.",
     definitions: [
       taskContext,
-      taskCoreBelief,
+      taskFear,
       taskDistortion,
-      taskAction,
+      taskIntention,
       taskFeedback,
     ],
     hierarchyPath: "",
-    id: "",
+    id: "thought",
     presentation: d,
   );
 
@@ -972,11 +972,11 @@ class Content {
       taskContext,
       taskNeed,
       taskDistortion,
-      taskAction,
+      taskIntention,
       taskFeedback,
     ],
     hierarchyPath: "",
-    id: "",
+    id: "act",
     presentation: c,
   );
 }

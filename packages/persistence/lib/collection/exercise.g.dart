@@ -17,38 +17,48 @@ const DbExerciseSchema = CollectionSchema(
   name: r'DbExercise',
   id: 2260980542576749276,
   properties: {
-    r'description': PropertySchema(
+    r'collectionSlug': PropertySchema(
       id: 0,
+      name: r'collectionSlug',
+      type: IsarType.string,
+    ),
+    r'definitionIds': PropertySchema(
+      id: 1,
+      name: r'definitionIds',
+      type: IsarType.stringList,
+    ),
+    r'description': PropertySchema(
+      id: 2,
       name: r'description',
       type: IsarType.string,
     ),
     r'hierarchyPath': PropertySchema(
-      id: 1,
+      id: 3,
       name: r'hierarchyPath',
       type: IsarType.string,
     ),
     r'icon': PropertySchema(
-      id: 2,
+      id: 4,
       name: r'icon',
       type: IsarType.string,
     ),
     r'id': PropertySchema(
-      id: 3,
+      id: 5,
       name: r'id',
       type: IsarType.string,
     ),
     r'name': PropertySchema(
-      id: 4,
+      id: 6,
       name: r'name',
       type: IsarType.string,
     ),
     r'presentation': PropertySchema(
-      id: 5,
+      id: 7,
       name: r'presentation',
       type: IsarType.string,
     ),
     r'uuid': PropertySchema(
-      id: 6,
+      id: 8,
       name: r'uuid',
       type: IsarType.byteList,
     )
@@ -81,7 +91,7 @@ const DbExerciseSchema = CollectionSchema(
       id: -3268401673993471357,
       name: r'id',
       unique: true,
-      replace: false,
+      replace: true,
       properties: [
         IndexPropertySchema(
           name: r'id',
@@ -91,19 +101,12 @@ const DbExerciseSchema = CollectionSchema(
       ],
     )
   },
-  links: {
-    r'definitions': LinkSchema(
-      id: 4035028943532917791,
-      name: r'definitions',
-      target: r'DbTask',
-      single: false,
-    )
-  },
+  links: {},
   embeddedSchemas: {},
   getId: _dbExerciseGetId,
   getLinks: _dbExerciseGetLinks,
   attach: _dbExerciseAttach,
-  version: '3.0.0',
+  version: '3.0.1',
 );
 
 int _dbExerciseEstimateSize(
@@ -112,6 +115,14 @@ int _dbExerciseEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
+  bytesCount += 3 + object.collectionSlug.length * 3;
+  bytesCount += 3 + object.definitionIds.length * 3;
+  {
+    for (var i = 0; i < object.definitionIds.length; i++) {
+      final value = object.definitionIds[i];
+      bytesCount += value.length * 3;
+    }
+  }
   bytesCount += 3 + object.description.length * 3;
   bytesCount += 3 + object.hierarchyPath.length * 3;
   bytesCount += 3 + object.icon.length * 3;
@@ -128,13 +139,15 @@ void _dbExerciseSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeString(offsets[0], object.description);
-  writer.writeString(offsets[1], object.hierarchyPath);
-  writer.writeString(offsets[2], object.icon);
-  writer.writeString(offsets[3], object.id);
-  writer.writeString(offsets[4], object.name);
-  writer.writeString(offsets[5], object.presentation);
-  writer.writeByteList(offsets[6], object.uuid);
+  writer.writeString(offsets[0], object.collectionSlug);
+  writer.writeStringList(offsets[1], object.definitionIds);
+  writer.writeString(offsets[2], object.description);
+  writer.writeString(offsets[3], object.hierarchyPath);
+  writer.writeString(offsets[4], object.icon);
+  writer.writeString(offsets[5], object.id);
+  writer.writeString(offsets[6], object.name);
+  writer.writeString(offsets[7], object.presentation);
+  writer.writeByteList(offsets[8], object.uuid);
 }
 
 DbExercise _dbExerciseDeserialize(
@@ -144,15 +157,17 @@ DbExercise _dbExerciseDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = DbExercise(
-    description: reader.readString(offsets[0]),
-    hierarchyPath: reader.readString(offsets[1]),
-    icon: reader.readString(offsets[2]),
-    id: reader.readString(offsets[3]),
-    name: reader.readString(offsets[4]),
-    presentation: reader.readString(offsets[5]),
-    uuid: reader.readByteList(offsets[6]) ?? [],
+    description: reader.readString(offsets[2]),
+    hierarchyPath: reader.readString(offsets[3]),
+    icon: reader.readString(offsets[4]),
+    id: reader.readString(offsets[5]),
+    name: reader.readString(offsets[6]),
+    presentation: reader.readString(offsets[7]),
+    uuid: reader.readByteList(offsets[8]) ?? [],
   );
+  object.collectionSlug = reader.readString(offsets[0]);
   object.dbid = id;
+  object.definitionIds = reader.readStringList(offsets[1]) ?? [];
   return object;
 }
 
@@ -166,7 +181,7 @@ P _dbExerciseDeserializeProp<P>(
     case 0:
       return (reader.readString(offset)) as P;
     case 1:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringList(offset) ?? []) as P;
     case 2:
       return (reader.readString(offset)) as P;
     case 3:
@@ -176,6 +191,10 @@ P _dbExerciseDeserializeProp<P>(
     case 5:
       return (reader.readString(offset)) as P;
     case 6:
+      return (reader.readString(offset)) as P;
+    case 7:
+      return (reader.readString(offset)) as P;
+    case 8:
       return (reader.readByteList(offset) ?? []) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -187,13 +206,11 @@ Id _dbExerciseGetId(DbExercise object) {
 }
 
 List<IsarLinkBase<dynamic>> _dbExerciseGetLinks(DbExercise object) {
-  return [object.definitions];
+  return [];
 }
 
 void _dbExerciseAttach(IsarCollection<dynamic> col, Id id, DbExercise object) {
   object.dbid = id;
-  object.definitions
-      .attach(col, col.isar.collection<DbTask>(), r'definitions', id);
 }
 
 extension DbExerciseByIndex on IsarCollection<DbExercise> {
@@ -465,6 +482,142 @@ extension DbExerciseQueryWhere
 
 extension DbExerciseQueryFilter
     on QueryBuilder<DbExercise, DbExercise, QFilterCondition> {
+  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
+      collectionSlugEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'collectionSlug',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
+      collectionSlugGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'collectionSlug',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
+      collectionSlugLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'collectionSlug',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
+      collectionSlugBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'collectionSlug',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
+      collectionSlugStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'collectionSlug',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
+      collectionSlugEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'collectionSlug',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
+      collectionSlugContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'collectionSlug',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
+      collectionSlugMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'collectionSlug',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
+      collectionSlugIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'collectionSlug',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
+      collectionSlugIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'collectionSlug',
+        value: '',
+      ));
+    });
+  }
+
   QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition> dbidIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -531,6 +684,231 @@ extension DbExerciseQueryFilter
         upper: upper,
         includeUpper: includeUpper,
       ));
+    });
+  }
+
+  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
+      definitionIdsElementEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'definitionIds',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
+      definitionIdsElementGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'definitionIds',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
+      definitionIdsElementLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'definitionIds',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
+      definitionIdsElementBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'definitionIds',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
+      definitionIdsElementStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'definitionIds',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
+      definitionIdsElementEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'definitionIds',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
+      definitionIdsElementContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'definitionIds',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
+      definitionIdsElementMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'definitionIds',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
+      definitionIdsElementIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'definitionIds',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
+      definitionIdsElementIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'definitionIds',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
+      definitionIdsLengthEqualTo(int length) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'definitionIds',
+        length,
+        true,
+        length,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
+      definitionIdsIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'definitionIds',
+        0,
+        true,
+        0,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
+      definitionIdsIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'definitionIds',
+        0,
+        false,
+        999999,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
+      definitionIdsLengthLessThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'definitionIds',
+        0,
+        true,
+        length,
+        include,
+      );
+    });
+  }
+
+  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
+      definitionIdsLengthGreaterThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'definitionIds',
+        length,
+        include,
+        999999,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
+      definitionIdsLengthBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'definitionIds',
+        lower,
+        includeLower,
+        upper,
+        includeUpper,
+      );
     });
   }
 
@@ -1479,71 +1857,23 @@ extension DbExerciseQueryObject
     on QueryBuilder<DbExercise, DbExercise, QFilterCondition> {}
 
 extension DbExerciseQueryLinks
-    on QueryBuilder<DbExercise, DbExercise, QFilterCondition> {
-  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition> definitions(
-      FilterQuery<DbTask> q) {
-    return QueryBuilder.apply(this, (query) {
-      return query.link(q, r'definitions');
-    });
-  }
-
-  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
-      definitionsLengthEqualTo(int length) {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'definitions', length, true, length, true);
-    });
-  }
-
-  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
-      definitionsIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'definitions', 0, true, 0, true);
-    });
-  }
-
-  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
-      definitionsIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'definitions', 0, false, 999999, true);
-    });
-  }
-
-  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
-      definitionsLengthLessThan(
-    int length, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'definitions', 0, true, length, include);
-    });
-  }
-
-  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
-      definitionsLengthGreaterThan(
-    int length, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'definitions', length, include, 999999, true);
-    });
-  }
-
-  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
-      definitionsLengthBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(
-          r'definitions', lower, includeLower, upper, includeUpper);
-    });
-  }
-}
+    on QueryBuilder<DbExercise, DbExercise, QFilterCondition> {}
 
 extension DbExerciseQuerySortBy
     on QueryBuilder<DbExercise, DbExercise, QSortBy> {
+  QueryBuilder<DbExercise, DbExercise, QAfterSortBy> sortByCollectionSlug() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'collectionSlug', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DbExercise, DbExercise, QAfterSortBy>
+      sortByCollectionSlugDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'collectionSlug', Sort.desc);
+    });
+  }
+
   QueryBuilder<DbExercise, DbExercise, QAfterSortBy> sortByDescription() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'description', Sort.asc);
@@ -1619,6 +1949,19 @@ extension DbExerciseQuerySortBy
 
 extension DbExerciseQuerySortThenBy
     on QueryBuilder<DbExercise, DbExercise, QSortThenBy> {
+  QueryBuilder<DbExercise, DbExercise, QAfterSortBy> thenByCollectionSlug() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'collectionSlug', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DbExercise, DbExercise, QAfterSortBy>
+      thenByCollectionSlugDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'collectionSlug', Sort.desc);
+    });
+  }
+
   QueryBuilder<DbExercise, DbExercise, QAfterSortBy> thenByDbid() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'dbid', Sort.asc);
@@ -1706,6 +2049,20 @@ extension DbExerciseQuerySortThenBy
 
 extension DbExerciseQueryWhereDistinct
     on QueryBuilder<DbExercise, DbExercise, QDistinct> {
+  QueryBuilder<DbExercise, DbExercise, QDistinct> distinctByCollectionSlug(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'collectionSlug',
+          caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<DbExercise, DbExercise, QDistinct> distinctByDefinitionIds() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'definitionIds');
+    });
+  }
+
   QueryBuilder<DbExercise, DbExercise, QDistinct> distinctByDescription(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1761,6 +2118,19 @@ extension DbExerciseQueryProperty
   QueryBuilder<DbExercise, int, QQueryOperations> dbidProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'dbid');
+    });
+  }
+
+  QueryBuilder<DbExercise, String, QQueryOperations> collectionSlugProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'collectionSlug');
+    });
+  }
+
+  QueryBuilder<DbExercise, List<String>, QQueryOperations>
+      definitionIdsProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'definitionIds');
     });
   }
 

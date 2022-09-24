@@ -1,3 +1,7 @@
+import 'package:persistence/collection/entry.dart';
+import 'package:persistence/collection/exercise.dart';
+import 'package:persistence/collection/session.dart';
+import 'package:persistence/collection/task.dart';
 import 'package:persistence/source.dart';
 
 class Repository {

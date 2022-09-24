@@ -1,8 +1,11 @@
 import 'dart:convert';
 
 import 'package:core/abstract/present.dart';
+import 'package:core/abstract/uniform.dart';
 import 'package:core/model/exercise.dart';
-import 'package:isar/isar.dart';
+import 'package:core/model/task.dart';
+import 'package:core/util/uuid.dart';
+import 'package:isar/isar.dart' hide Collection, WhereRepeatModifier;
 import 'package:persistence/collection/task.dart';
 
 import '../collection.dart';
@@ -10,21 +13,7 @@ import '../collection.dart';
 part 'exercise.g.dart';
 
 @collection
-class DbExercise extends CollectionObject<Exercise> {
-  Id? dbid;
-
-  @override
-  @Index(composite: [CompositeIndex('id')])
-  String hierarchyPath;
-
-  List<byte> uuid;
-
-  @override
-  @Index(unique: true)
-  String id;
-
-  final definitions = IsarLinks<DbTask>();
-
+class DbExercise extends DaoWithDefinitions<Exercise, Task, DbTask> {
   String icon;
   String name;
   String description;
@@ -35,33 +24,65 @@ class DbExercise extends CollectionObject<Exercise> {
     required this.icon,
     required this.name,
     required this.description,
-    required this.hierarchyPath,
-    required this.id,
-    required this.uuid,
+    required super.hierarchyPath,
+    required super.id,
+    required super.uuid,
     required this.presentation,
-  });
+  }) : super(collectionSlug: "exercise");
+}
 
-  static DbExercise from({
-    required Exercise model,
+class ExerciseMapper {
+  const ExerciseMapper._();
+
+  static DbExercise toDao({
+    required Exercise dom,
   }) =>
       DbExercise(
-        icon: model.icon,
-        name: model.name,
-        description: model.description,
-        hierarchyPath: model.hierarchyPath,
-        id: model.id,
-        uuid: model.uuid!.toBytes(),
-        presentation: jsonEncode(model.presentation.toJson()),
+        icon: dom.icon,
+        name: dom.name,
+        description: dom.description,
+        hierarchyPath: dom.hierarchyPath,
+        id: dom.id,
+        uuid: dom.uuid?.toBytes() ?? const Uuid().v4obj().toBytes(),
+        presentation: jsonEncode(dom.presentation.toJson()),
       );
 
-  @override
-  Exercise toModel() => Exercise(
-        icon: icon,
-        name: name,
-        description: description,
-        definitions: [],
-        hierarchyPath: hierarchyPath,
-        id: id,
-        presentation: Presentation.fromJson(jsonDecode(presentation)),
+  static Exercise toDom({
+    required DbExercise dao,
+    List<Task> definitions = const [],
+  }) =>
+      Exercise(
+        icon: dao.icon,
+        name: dao.name,
+        description: dao.description,
+        definitions: definitions,
+        hierarchyPath: dao.hierarchyPath,
+        id: dao.id,
+        uuid: UuidValue.fromList(dao.uuid),
+        presentation: Presentation.fromJson(jsonDecode(dao.presentation)),
       );
+}
+
+class ExerciseRepository
+    extends CollectionWithDefinitions<Exercise, DbExercise, Task, DbTask> {
+  const ExerciseRepository(super.driver);
+
+  @override
+  final parentToDao = ExerciseMapper.toDao;
+
+  @override
+  final parentToDom = ExerciseMapper.toDom;
+
+  @override
+  final childToDao = TaskMapper.toDao;
+
+  @override
+  final childToDom = TaskMapper.toDom;
+
+  @override
+  WhereRepeatModifier<DbExercise, DbExercise, Uniform> get uniformEqualTo =>
+      (q, uniform) => q.hierarchyPathIdEqualTo(
+            uniform.hierarchyPath,
+            uniform.id,
+          );
 }

@@ -1,7 +1,6 @@
 import 'package:core/model/entry.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:uuid/uuid.dart';
 
 import '../abstract/define.dart';
 import '../abstract/identify.dart';
@@ -13,8 +12,7 @@ part 'session.freezed.dart';
 part 'session.g.dart';
 
 @freezed
-class Session
-    with _$Session, Identify, Locate, DefineDocument<Entry, Exercise> {
+class Session with _$Session, Identify, Locate, Define<Entry> {
   const Session._();
 
   const factory Session({

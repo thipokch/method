@@ -1,6 +1,5 @@
 import 'package:core/util/uuid.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:uuid/uuid.dart';
 
 import '../abstract/identify.dart';
 import '../abstract/locate.dart';

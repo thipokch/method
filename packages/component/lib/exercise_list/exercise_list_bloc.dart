@@ -21,6 +21,10 @@ class ExerciseListBloc extends Bloc<ExerciseListEvent, ExerciseListState> {
     repo.exercises.streamCollection().listen((event) {
       add(_Update(exercises: event));
     });
+
+    if (event.boostrap != null && repo.exercises.count == 0) {
+      repo.exercises.putAll(event.boostrap!);
+    }
   }
 
   void _update(_Update event, Emitter<ExerciseListState> emit) {

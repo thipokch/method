@@ -98,10 +98,10 @@ jobs:
             build-command: and
             build-dir: /build/app/outputs/apk/
 
-          - os: ubuntu-22.04
-            target: Web
-            build-command: web
-            build-dir: /build/web/
+          # - os: ubuntu-22.04
+          #   target: Web
+          #   build-command: web
+          #   build-dir: /build/web/
 
     runs-on: ${{ matrix.os }}
     steps:

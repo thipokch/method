@@ -4,8 +4,8 @@ import 'package:core/model/task.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:slugify/slugify.dart';
-import 'package:uuid/uuid.dart';
 
+import '../abstract/define.dart';
 import '../abstract/identify.dart';
 import '../abstract/inform.dart';
 import '../abstract/locate.dart';
@@ -15,7 +15,8 @@ part 'exercise.freezed.dart';
 part 'exercise.g.dart';
 
 @freezed
-class Exercise with _$Exercise, Identify, Locate, Inform, Present {
+class Exercise
+    with _$Exercise, Identify, Locate, Inform, Present, Define<Task> {
   const Exercise._();
 
   const factory Exercise({
