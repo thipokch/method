@@ -150,6 +150,7 @@ DbTask _dbTaskDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = DbTask(
+    collectionSlug: reader.readString(offsets[0]),
     description: reader.readString(offsets[2]),
     hierarchyPath: reader.readString(offsets[3]),
     icon: reader.readString(offsets[4]),
@@ -157,7 +158,6 @@ DbTask _dbTaskDeserialize(
     name: reader.readString(offsets[6]),
     uuid: reader.readByteList(offsets[7]) ?? [],
   );
-  object.collectionSlug = reader.readString(offsets[0]);
   object.dbid = id;
   object.definitionIds = reader.readStringList(offsets[1]) ?? [];
   return object;

@@ -20,10 +20,11 @@ class DbTask
     required this.icon,
     required this.name,
     required this.description,
+    required super.collectionSlug,
     required super.hierarchyPath,
     required super.id,
     required super.uuid,
-  }) : super(collectionSlug: "task");
+  });
 }
 
 class TaskMapper {
@@ -36,6 +37,7 @@ class TaskMapper {
         icon: dom.icon,
         name: dom.name,
         description: dom.description,
+        collectionSlug: dom.collectionSlug,
         hierarchyPath: dom.hierarchyPath,
         id: dom.id,
         uuid: dom.uuid?.toBytes() ?? const Uuid().v4obj().toBytes(),
@@ -44,16 +46,53 @@ class TaskMapper {
   static Task toDom({
     required DbTask dao,
     List<TaskDefinition> definitions = const [],
-  }) =>
-      Task.linear(
-        icon: dao.icon,
-        name: dao.name,
-        description: dao.description,
-        definitions: definitions,
-        hierarchyPath: dao.hierarchyPath,
-        id: dao.id,
-        uuid: UuidValue.fromList(dao.uuid),
-      );
+  }) {
+    switch (dao.collectionSlug) {
+      case "diverge":
+        return Task.diverge(
+          icon: dao.icon,
+          name: dao.name,
+          description: dao.description,
+          definitions: definitions,
+          hierarchyPath: dao.hierarchyPath,
+          id: dao.id,
+          uuid: UuidValue.fromList(dao.uuid),
+        );
+
+      case "converge":
+        return Task.converge(
+          icon: dao.icon,
+          name: dao.name,
+          description: dao.description,
+          definitions: definitions,
+          hierarchyPath: dao.hierarchyPath,
+          id: dao.id,
+          uuid: UuidValue.fromList(dao.uuid),
+        );
+
+      case "feedback":
+        return Task.feedback(
+          icon: dao.icon,
+          name: dao.name,
+          description: dao.description,
+          definitions: definitions,
+          hierarchyPath: dao.hierarchyPath,
+          id: dao.id,
+          uuid: UuidValue.fromList(dao.uuid),
+        );
+
+      default:
+        return Task.linear(
+          icon: dao.icon,
+          name: dao.name,
+          description: dao.description,
+          definitions: definitions,
+          hierarchyPath: dao.hierarchyPath,
+          id: dao.id,
+          uuid: UuidValue.fromList(dao.uuid),
+        );
+    }
+  }
 }
 
 class TaskRepository extends CollectionWithDefinitions<Task, DbTask,
