@@ -1,6 +1,7 @@
+import 'package:core/abstract/uniform.dart';
 import 'package:core/model/entry_definition.dart';
 import 'package:core/util/uuid.dart';
-import 'package:isar/isar.dart';
+import 'package:isar/isar.dart' hide Collection, WhereRepeatModifier;
 
 import '../collection.dart';
 
@@ -55,4 +56,24 @@ class EntryDefinitionMapper {
         );
     }
   }
+}
+
+class EntryDefinitionRepository
+    extends Collection<EntryDefinition, DbEntryDefinition> {
+  EntryDefinitionRepository(super.driver);
+
+  @override
+  DbEntryDefinition toDao(EntryDefinition dom) =>
+      EntryDefinitionMapper.toDao(dom: dom);
+
+  @override
+  EntryDefinition toDom(DbEntryDefinition dao) =>
+      EntryDefinitionMapper.toDom(dao: dao);
+
+  @override
+  WhereRepeatModifier<DbEntryDefinition, DbEntryDefinition, Uniform>
+      get uniformEqualTo => (q, uniform) => q.hierarchyPathIdEqualTo(
+            uniform.hierarchyPath,
+            uniform.id,
+          );
 }

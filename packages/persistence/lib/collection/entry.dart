@@ -58,15 +58,13 @@ class EntryRepository extends CollectionWithDefinitions<Entry, DbEntry,
   final parentToDom = EntryMapper.toDom;
 
   @override
-  final childToDao = EntryDefinitionMapper.toDao;
-
-  @override
-  final childToDom = EntryDefinitionMapper.toDom;
-
-  @override
   WhereRepeatModifier<DbEntry, DbEntry, Uniform> get uniformEqualTo =>
       (q, uniform) => q.hierarchyPathIdEqualTo(
             uniform.hierarchyPath,
             uniform.id,
           );
+
+  @override
+  Collection<EntryDefinition, DbEntryDefinition> get childCollection =>
+      EntryDefinitionRepository(source);
 }

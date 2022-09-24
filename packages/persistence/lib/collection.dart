@@ -48,7 +48,8 @@ abstract class Collection<DOM, DAO extends Dao<DOM>>
 
   DAO toDao(DOM dom);
   DOM toDom(DAO dao);
-  List<DAO> toDaos(List<DOM> dom) => dom.map<DAO>((e) => toDao(e)).toList();
+  List<DAO> toDaos(List<DOM> doms) => doms.map<DAO>((e) => toDao(e)).toList();
+  List<DOM> toDoms(List<DAO> daos) => daos.map<DOM>((e) => toDom(e)).toList();
 
   List<T> assignDaoID<T extends Dao>(List<T> dao, List<int> ids) =>
       dao.length == ids.length
@@ -68,6 +69,27 @@ abstract class Collection<DOM, DAO extends Dao<DOM>>
       write(() => collection.putAllByIndex('id', toDaos(doms)));
 
   // GET
+
+  Future<DOM?> get(String id) => collection.getByIndex(
+        'id',
+        [id],
+      ).then((value) => value != null ? toDom(value) : null);
+
+  Future<List<DOM>> getAll(List<String> ids) => collection
+      .getAllByIndex(
+        'id',
+        ids.map((e) => [e]).toList(),
+      )
+      .then((dao) => toDoms(dao.whereType<DAO>().toList()));
+
+  List<DOM> getAllSync(List<String> ids) => collection
+      .getAllByIndexSync(
+        'id',
+        ids.map((e) => [e]).toList(),
+      )
+      .whereType<DAO>()
+      .map<DOM>((element) => toDom(element))
+      .toList();
 
   // GET - ASYNC
 

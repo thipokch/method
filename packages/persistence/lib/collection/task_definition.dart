@@ -1,6 +1,7 @@
+import 'package:core/abstract/uniform.dart';
 import 'package:core/model/task_definition.dart';
 import 'package:core/util/uuid.dart';
-import 'package:isar/isar.dart';
+import 'package:isar/isar.dart' hide Collection, WhereRepeatModifier;
 
 import '../collection.dart';
 
@@ -74,4 +75,24 @@ class TaskDefinitionMapper {
         );
     }
   }
+}
+
+class TaskDefinitionRepository
+    extends Collection<TaskDefinition, DbTaskDefinition> {
+  TaskDefinitionRepository(super.driver);
+
+  @override
+  DbTaskDefinition toDao(TaskDefinition dom) =>
+      TaskDefinitionMapper.toDao(dom: dom);
+
+  @override
+  TaskDefinition toDom(DbTaskDefinition dao) =>
+      TaskDefinitionMapper.toDom(dao: dao);
+
+  @override
+  WhereRepeatModifier<DbTaskDefinition, DbTaskDefinition, Uniform>
+      get uniformEqualTo => (q, uniform) => q.hierarchyPathIdEqualTo(
+            uniform.hierarchyPath,
+            uniform.id,
+          );
 }

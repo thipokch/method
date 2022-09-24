@@ -57,15 +57,12 @@ class SessionRepository
   final parentToDom = SessionMapper.toDom;
 
   @override
-  final childToDao = EntryMapper.toDao;
-
-  @override
-  final childToDom = EntryMapper.toDom;
-
-  @override
   WhereRepeatModifier<DbSession, DbSession, Uniform> get uniformEqualTo =>
       (q, uniform) => q.hierarchyPathIdEqualTo(
             uniform.hierarchyPath,
             uniform.id,
           );
+
+  @override
+  Collection<Entry, DbEntry> get childCollection => EntryRepository(source);
 }

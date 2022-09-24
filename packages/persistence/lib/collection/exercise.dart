@@ -7,6 +7,7 @@ import 'package:core/model/task.dart';
 import 'package:core/util/uuid.dart';
 import 'package:isar/isar.dart' hide Collection, WhereRepeatModifier;
 import 'package:persistence/collection/task.dart';
+import 'package:persistence/collection/task_definition.dart';
 
 import '../collection.dart';
 
@@ -74,15 +75,12 @@ class ExerciseRepository
   final parentToDom = ExerciseMapper.toDom;
 
   @override
-  final childToDao = TaskMapper.toDao;
-
-  @override
-  final childToDom = TaskMapper.toDom;
-
-  @override
   WhereRepeatModifier<DbExercise, DbExercise, Uniform> get uniformEqualTo =>
       (q, uniform) => q.hierarchyPathIdEqualTo(
             uniform.hierarchyPath,
             uniform.id,
           );
+
+  @override
+  Collection<Task, DbTask> get childCollection => TaskRepository(source);
 }

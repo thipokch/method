@@ -67,15 +67,13 @@ class TaskRepository extends CollectionWithDefinitions<Task, DbTask,
   final parentToDom = TaskMapper.toDom;
 
   @override
-  final childToDao = TaskDefinitionMapper.toDao;
-
-  @override
-  final childToDom = TaskDefinitionMapper.toDom;
-
-  @override
   WhereRepeatModifier<DbTask, DbTask, Uniform> get uniformEqualTo =>
       (q, uniform) => q.hierarchyPathIdEqualTo(
             uniform.hierarchyPath,
             uniform.id,
           );
+
+  @override
+  Collection<TaskDefinition, DbTaskDefinition> get childCollection =>
+      TaskDefinitionRepository(source);
 }
