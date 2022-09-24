@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/view/session/session_widget.dart';
 import 'package:repository/repository.dart';
 
+import '../../content/content.dart';
+
 part 'exercise_list_view.dart';
 
 class _ExerciseListWidget extends StatelessWidget {

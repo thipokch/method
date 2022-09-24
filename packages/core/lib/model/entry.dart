@@ -1,7 +1,6 @@
 import 'package:core/model/task.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:uuid/uuid.dart';
 
 import '../abstract/define.dart';
 import '../abstract/identify.dart';
@@ -13,8 +12,7 @@ part 'entry.freezed.dart';
 part 'entry.g.dart';
 
 @freezed
-class Entry
-    with _$Entry, Identify, Locate, DefineDocument<EntryDefinition, Task> {
+class Entry with _$Entry, Identify, Locate, Define<EntryDefinition> {
   const Entry._();
 
   const factory Entry({

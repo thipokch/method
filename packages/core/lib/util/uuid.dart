@@ -1,6 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:uuid/uuid.dart';
 
+export 'package:uuid/uuid.dart';
+
 class UuidConverter implements JsonConverter<UuidValue, String> {
   const UuidConverter();
 

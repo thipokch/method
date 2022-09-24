@@ -1,23 +1,42 @@
-// import 'package:core/abstract/uniform.dart';
+// ignore_for_file: invalid_use_of_protected_member
+
+import 'package:core/abstract/define.dart';
 import 'package:core/abstract/uniform.dart';
+import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 import 'package:persistence/source.dart';
 import 'package:repository/collection.dart';
 
-abstract class CollectionObject<DOM> {
-  DOM toModel();
+part 'collection_definitions.dart';
 
-  String get hierarchyPath;
-  String get id;
+abstract class Dao<DOM> {
+  Id? dbid; // Used by Isar
+
+  String collectionSlug;
+
+  @Index(composite: [CompositeIndex('id')])
+  String hierarchyPath;
+
+  List<byte> uuid;
+
+  @Index(unique: true, replace: true)
+  String id;
+
+  Dao({
+    required this.collectionSlug,
+    required this.hierarchyPath,
+    required this.id,
+    required this.uuid,
+  });
 }
 
-abstract class Collection<DOM, DAO extends CollectionObject<DOM>>
+abstract class Collection<DOM, DAO extends Dao<DOM>>
     extends RepositoryCollection<PersistenceDriver> {
   const Collection(super.driver);
 
   IsarCollection<DAO> get collection => source.instance.collection<DAO>();
 
-  Function<T>(Future<T> Function(), {bool silent}) get write =>
+  Future<T> Function<T>(Future<T> Function(), {bool silent}) get write =>
       source.instance.writeTxn;
 
   // METADATA
@@ -27,34 +46,26 @@ abstract class Collection<DOM, DAO extends CollectionObject<DOM>>
 
   // MAPPER
 
-  DAO dboFrom(DOM model);
-  WhereRepeatModifier<DAO, DAO, Uniform> get queryUniforms;
-  // QueryBuilder<DBO, DBO, QAfterWhereClause>
-  // WhereRepeatModifier<DBO, , E> modifier
-  // QueryBuilder<DBO, DBO, QAfterWhereClause> Function(QueryBuilder<DBO, DBO, QWhereClause>, Uniform)
+  DAO toDao(DOM dom);
+  DOM toDom(DAO dao);
+  List<DAO> toDaos(List<DOM> dom) => dom.map<DAO>((e) => toDao(e)).toList();
 
-  // Stream<List<DBO>> queryUniforms(List<Uniform> uniforms);
-  // QueryBuilder<DBO> get queryHierachyPath;
-  // QueryBuilder<DBO> get queryId;
-  // QueryBuilder<DBO> get queryUuid;
+  List<T> assignDaoID<T extends Dao>(List<T> dao, List<int> ids) =>
+      dao.length == ids.length
+          ? dao.asMap().entries.map((e) => e.value..dbid = ids[e.key]).toList()
+          : throw Error();
 
-  // Condition<DBO>?  querier();
+  WhereRepeatModifier<DAO, DAO, Uniform> get uniformEqualTo;
 
   // CONTAINS
 
-  // bool contains(int dbid) => box.contains(dbid);
-  // bool containsMany(List<int> dbids) => box.containsMany(dbids);
-
   // PUT
 
-  Future<int> put(DOM model) => write(
-        () => collection.put(dboFrom(model)),
-      );
+  Future<int> put(DOM model) =>
+      write(() => collection.putByIndex('id', toDao(model)));
 
-  Future<List<int>> putAll(List<DOM> models) => write(
-        () => collection.putAll(models.map<DAO>((e) => dboFrom(e)).toList()),
-      );
-  // collection.putAll(models.map<DAO>((e) => dboFrom(e)).toList());
+  Future<List<int>> putAll(List<DOM> doms) =>
+      write(() => collection.putAllByIndex('id', toDaos(doms)));
 
   // GET
 
@@ -63,19 +74,17 @@ abstract class Collection<DOM, DAO extends CollectionObject<DOM>>
   Stream<List<DOM>> streamCollection() => collection
       .where()
       .watch(fireImmediately: true)
-      .map<List<DOM>>((event) => event.map<DOM>((e) => e.toModel()).toList());
+      .map<List<DOM>>((event) => event.map<DOM>((e) => toDom(e)).toList());
 
   Stream<List<DOM>> streamUniform(List<Uniform> uniforms) => collection
       .where()
-      .anyOf(uniforms, queryUniforms)
+      .anyOf(uniforms, uniformEqualTo)
       .watch(fireImmediately: true)
-      .map<List<DOM>>((event) => event.map<DOM>((e) => e.toModel()).toList());
+      .map<List<DOM>>((event) => event.map<DOM>((e) => toDom(e)).toList());
 
   // CLEAR
 
-  Future<void> clear() => write(
-        () => collection.clear(),
-      );
+  Future<void> clear() => write(() => collection.clear());
 }
 
 typedef WhereRepeatModifier<OBJ, R, E> = QueryBuilder<OBJ, R, QAfterWhereClause>

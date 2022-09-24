@@ -2,7 +2,6 @@ import 'package:core/model/task_definition.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:slugify/slugify.dart';
-import 'package:uuid/uuid.dart';
 
 import '../abstract/define.dart';
 import '../abstract/identify.dart';

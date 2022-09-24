@@ -17,33 +17,43 @@ const DbTaskSchema = CollectionSchema(
   name: r'DbTask',
   id: 6920614639584873659,
   properties: {
-    r'description': PropertySchema(
+    r'collectionSlug': PropertySchema(
       id: 0,
+      name: r'collectionSlug',
+      type: IsarType.string,
+    ),
+    r'definitionIds': PropertySchema(
+      id: 1,
+      name: r'definitionIds',
+      type: IsarType.stringList,
+    ),
+    r'description': PropertySchema(
+      id: 2,
       name: r'description',
       type: IsarType.string,
     ),
     r'hierarchyPath': PropertySchema(
-      id: 1,
+      id: 3,
       name: r'hierarchyPath',
       type: IsarType.string,
     ),
     r'icon': PropertySchema(
-      id: 2,
+      id: 4,
       name: r'icon',
       type: IsarType.string,
     ),
     r'id': PropertySchema(
-      id: 3,
+      id: 5,
       name: r'id',
       type: IsarType.string,
     ),
     r'name': PropertySchema(
-      id: 4,
+      id: 6,
       name: r'name',
       type: IsarType.string,
     ),
     r'uuid': PropertySchema(
-      id: 5,
+      id: 7,
       name: r'uuid',
       type: IsarType.byteList,
     )
@@ -76,7 +86,7 @@ const DbTaskSchema = CollectionSchema(
       id: -3268401673993471357,
       name: r'id',
       unique: true,
-      replace: false,
+      replace: true,
       properties: [
         IndexPropertySchema(
           name: r'id',
@@ -86,19 +96,12 @@ const DbTaskSchema = CollectionSchema(
       ],
     )
   },
-  links: {
-    r'definitions': LinkSchema(
-      id: -5836899664448676371,
-      name: r'definitions',
-      target: r'DbTaskDefinition',
-      single: true,
-    )
-  },
+  links: {},
   embeddedSchemas: {},
   getId: _dbTaskGetId,
   getLinks: _dbTaskGetLinks,
   attach: _dbTaskAttach,
-  version: '3.0.0',
+  version: '3.0.1',
 );
 
 int _dbTaskEstimateSize(
@@ -107,6 +110,14 @@ int _dbTaskEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
+  bytesCount += 3 + object.collectionSlug.length * 3;
+  bytesCount += 3 + object.definitionIds.length * 3;
+  {
+    for (var i = 0; i < object.definitionIds.length; i++) {
+      final value = object.definitionIds[i];
+      bytesCount += value.length * 3;
+    }
+  }
   bytesCount += 3 + object.description.length * 3;
   bytesCount += 3 + object.hierarchyPath.length * 3;
   bytesCount += 3 + object.icon.length * 3;
@@ -122,12 +133,14 @@ void _dbTaskSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeString(offsets[0], object.description);
-  writer.writeString(offsets[1], object.hierarchyPath);
-  writer.writeString(offsets[2], object.icon);
-  writer.writeString(offsets[3], object.id);
-  writer.writeString(offsets[4], object.name);
-  writer.writeByteList(offsets[5], object.uuid);
+  writer.writeString(offsets[0], object.collectionSlug);
+  writer.writeStringList(offsets[1], object.definitionIds);
+  writer.writeString(offsets[2], object.description);
+  writer.writeString(offsets[3], object.hierarchyPath);
+  writer.writeString(offsets[4], object.icon);
+  writer.writeString(offsets[5], object.id);
+  writer.writeString(offsets[6], object.name);
+  writer.writeByteList(offsets[7], object.uuid);
 }
 
 DbTask _dbTaskDeserialize(
@@ -137,14 +150,16 @@ DbTask _dbTaskDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = DbTask(
-    description: reader.readString(offsets[0]),
-    hierarchyPath: reader.readString(offsets[1]),
-    icon: reader.readString(offsets[2]),
-    id: reader.readString(offsets[3]),
-    name: reader.readString(offsets[4]),
-    uuid: reader.readByteList(offsets[5]) ?? [],
+    description: reader.readString(offsets[2]),
+    hierarchyPath: reader.readString(offsets[3]),
+    icon: reader.readString(offsets[4]),
+    id: reader.readString(offsets[5]),
+    name: reader.readString(offsets[6]),
+    uuid: reader.readByteList(offsets[7]) ?? [],
   );
+  object.collectionSlug = reader.readString(offsets[0]);
   object.dbid = id;
+  object.definitionIds = reader.readStringList(offsets[1]) ?? [];
   return object;
 }
 
@@ -158,7 +173,7 @@ P _dbTaskDeserializeProp<P>(
     case 0:
       return (reader.readString(offset)) as P;
     case 1:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringList(offset) ?? []) as P;
     case 2:
       return (reader.readString(offset)) as P;
     case 3:
@@ -166,6 +181,10 @@ P _dbTaskDeserializeProp<P>(
     case 4:
       return (reader.readString(offset)) as P;
     case 5:
+      return (reader.readString(offset)) as P;
+    case 6:
+      return (reader.readString(offset)) as P;
+    case 7:
       return (reader.readByteList(offset) ?? []) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -177,13 +196,11 @@ Id _dbTaskGetId(DbTask object) {
 }
 
 List<IsarLinkBase<dynamic>> _dbTaskGetLinks(DbTask object) {
-  return [object.definitions];
+  return [];
 }
 
 void _dbTaskAttach(IsarCollection<dynamic> col, Id id, DbTask object) {
   object.dbid = id;
-  object.definitions
-      .attach(col, col.isar.collection<DbTaskDefinition>(), r'definitions', id);
 }
 
 extension DbTaskByIndex on IsarCollection<DbTask> {
@@ -449,6 +466,137 @@ extension DbTaskQueryWhere on QueryBuilder<DbTask, DbTask, QWhereClause> {
 }
 
 extension DbTaskQueryFilter on QueryBuilder<DbTask, DbTask, QFilterCondition> {
+  QueryBuilder<DbTask, DbTask, QAfterFilterCondition> collectionSlugEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'collectionSlug',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbTask, DbTask, QAfterFilterCondition> collectionSlugGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'collectionSlug',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbTask, DbTask, QAfterFilterCondition> collectionSlugLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'collectionSlug',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbTask, DbTask, QAfterFilterCondition> collectionSlugBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'collectionSlug',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbTask, DbTask, QAfterFilterCondition> collectionSlugStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'collectionSlug',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbTask, DbTask, QAfterFilterCondition> collectionSlugEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'collectionSlug',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbTask, DbTask, QAfterFilterCondition> collectionSlugContains(
+      String value,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'collectionSlug',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbTask, DbTask, QAfterFilterCondition> collectionSlugMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'collectionSlug',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbTask, DbTask, QAfterFilterCondition> collectionSlugIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'collectionSlug',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<DbTask, DbTask, QAfterFilterCondition>
+      collectionSlugIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'collectionSlug',
+        value: '',
+      ));
+    });
+  }
+
   QueryBuilder<DbTask, DbTask, QAfterFilterCondition> dbidIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -514,6 +662,230 @@ extension DbTaskQueryFilter on QueryBuilder<DbTask, DbTask, QFilterCondition> {
         upper: upper,
         includeUpper: includeUpper,
       ));
+    });
+  }
+
+  QueryBuilder<DbTask, DbTask, QAfterFilterCondition>
+      definitionIdsElementEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'definitionIds',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbTask, DbTask, QAfterFilterCondition>
+      definitionIdsElementGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'definitionIds',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbTask, DbTask, QAfterFilterCondition>
+      definitionIdsElementLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'definitionIds',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbTask, DbTask, QAfterFilterCondition>
+      definitionIdsElementBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'definitionIds',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbTask, DbTask, QAfterFilterCondition>
+      definitionIdsElementStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'definitionIds',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbTask, DbTask, QAfterFilterCondition>
+      definitionIdsElementEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'definitionIds',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbTask, DbTask, QAfterFilterCondition>
+      definitionIdsElementContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'definitionIds',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbTask, DbTask, QAfterFilterCondition>
+      definitionIdsElementMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'definitionIds',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbTask, DbTask, QAfterFilterCondition>
+      definitionIdsElementIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'definitionIds',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<DbTask, DbTask, QAfterFilterCondition>
+      definitionIdsElementIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'definitionIds',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<DbTask, DbTask, QAfterFilterCondition>
+      definitionIdsLengthEqualTo(int length) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'definitionIds',
+        length,
+        true,
+        length,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<DbTask, DbTask, QAfterFilterCondition> definitionIdsIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'definitionIds',
+        0,
+        true,
+        0,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<DbTask, DbTask, QAfterFilterCondition>
+      definitionIdsIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'definitionIds',
+        0,
+        false,
+        999999,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<DbTask, DbTask, QAfterFilterCondition>
+      definitionIdsLengthLessThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'definitionIds',
+        0,
+        true,
+        length,
+        include,
+      );
+    });
+  }
+
+  QueryBuilder<DbTask, DbTask, QAfterFilterCondition>
+      definitionIdsLengthGreaterThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'definitionIds',
+        length,
+        include,
+        999999,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<DbTask, DbTask, QAfterFilterCondition>
+      definitionIdsLengthBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'definitionIds',
+        lower,
+        includeLower,
+        upper,
+        includeUpper,
+      );
     });
   }
 
@@ -1304,22 +1676,21 @@ extension DbTaskQueryFilter on QueryBuilder<DbTask, DbTask, QFilterCondition> {
 
 extension DbTaskQueryObject on QueryBuilder<DbTask, DbTask, QFilterCondition> {}
 
-extension DbTaskQueryLinks on QueryBuilder<DbTask, DbTask, QFilterCondition> {
-  QueryBuilder<DbTask, DbTask, QAfterFilterCondition> definitions(
-      FilterQuery<DbTaskDefinition> q) {
-    return QueryBuilder.apply(this, (query) {
-      return query.link(q, r'definitions');
-    });
-  }
-
-  QueryBuilder<DbTask, DbTask, QAfterFilterCondition> definitionsIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'definitions', 0, true, 0, true);
-    });
-  }
-}
+extension DbTaskQueryLinks on QueryBuilder<DbTask, DbTask, QFilterCondition> {}
 
 extension DbTaskQuerySortBy on QueryBuilder<DbTask, DbTask, QSortBy> {
+  QueryBuilder<DbTask, DbTask, QAfterSortBy> sortByCollectionSlug() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'collectionSlug', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DbTask, DbTask, QAfterSortBy> sortByCollectionSlugDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'collectionSlug', Sort.desc);
+    });
+  }
+
   QueryBuilder<DbTask, DbTask, QAfterSortBy> sortByDescription() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'description', Sort.asc);
@@ -1382,6 +1753,18 @@ extension DbTaskQuerySortBy on QueryBuilder<DbTask, DbTask, QSortBy> {
 }
 
 extension DbTaskQuerySortThenBy on QueryBuilder<DbTask, DbTask, QSortThenBy> {
+  QueryBuilder<DbTask, DbTask, QAfterSortBy> thenByCollectionSlug() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'collectionSlug', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DbTask, DbTask, QAfterSortBy> thenByCollectionSlugDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'collectionSlug', Sort.desc);
+    });
+  }
+
   QueryBuilder<DbTask, DbTask, QAfterSortBy> thenByDbid() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'dbid', Sort.asc);
@@ -1456,6 +1839,20 @@ extension DbTaskQuerySortThenBy on QueryBuilder<DbTask, DbTask, QSortThenBy> {
 }
 
 extension DbTaskQueryWhereDistinct on QueryBuilder<DbTask, DbTask, QDistinct> {
+  QueryBuilder<DbTask, DbTask, QDistinct> distinctByCollectionSlug(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'collectionSlug',
+          caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<DbTask, DbTask, QDistinct> distinctByDefinitionIds() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'definitionIds');
+    });
+  }
+
   QueryBuilder<DbTask, DbTask, QDistinct> distinctByDescription(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1503,6 +1900,18 @@ extension DbTaskQueryProperty on QueryBuilder<DbTask, DbTask, QQueryProperty> {
   QueryBuilder<DbTask, int, QQueryOperations> dbidProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'dbid');
+    });
+  }
+
+  QueryBuilder<DbTask, String, QQueryOperations> collectionSlugProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'collectionSlug');
+    });
+  }
+
+  QueryBuilder<DbTask, List<String>, QQueryOperations> definitionIdsProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'definitionIds');
     });
   }
 

@@ -10,7 +10,7 @@ part 'entry_bloc.freezed.dart';
 
 class EntryBloc extends Bloc<EntryEvent, EntryState> {
   final Repository repo;
-  
+
   EntryBloc({
     required this.repo,
     required Task task,

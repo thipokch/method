@@ -18,19 +18,19 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ExerciseListEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() load,
+    required TResult Function(List<Exercise>? boostrap) load,
     required TResult Function(List<Exercise> exercises) update,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? load,
+    TResult Function(List<Exercise>? boostrap)? load,
     TResult Function(List<Exercise> exercises)? update,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? load,
+    TResult Function(List<Exercise>? boostrap)? load,
     TResult Function(List<Exercise> exercises)? update,
     required TResult orElse(),
   }) =>
@@ -77,6 +77,7 @@ class _$ExerciseListEventCopyWithImpl<$Res>
 abstract class _$$_LoadCopyWith<$Res> {
   factory _$$_LoadCopyWith(_$_Load value, $Res Function(_$_Load) then) =
       __$$_LoadCopyWithImpl<$Res>;
+  $Res call({List<Exercise>? boostrap});
 }
 
 /// @nodoc
@@ -87,54 +88,84 @@ class __$$_LoadCopyWithImpl<$Res> extends _$ExerciseListEventCopyWithImpl<$Res>
 
   @override
   _$_Load get _value => super._value as _$_Load;
+
+  @override
+  $Res call({
+    Object? boostrap = freezed,
+  }) {
+    return _then(_$_Load(
+      boostrap: boostrap == freezed
+          ? _value._boostrap
+          : boostrap // ignore: cast_nullable_to_non_nullable
+              as List<Exercise>?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_Load implements _Load {
-  const _$_Load();
+  const _$_Load({final List<Exercise>? boostrap = null}) : _boostrap = boostrap;
+
+  final List<Exercise>? _boostrap;
+  @override
+  @JsonKey()
+  List<Exercise>? get boostrap {
+    final value = _boostrap;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'ExerciseListEvent.load()';
+    return 'ExerciseListEvent.load(boostrap: $boostrap)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Load);
+        (other.runtimeType == runtimeType &&
+            other is _$_Load &&
+            const DeepCollectionEquality().equals(other._boostrap, _boostrap));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_boostrap));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_LoadCopyWith<_$_Load> get copyWith =>
+      __$$_LoadCopyWithImpl<_$_Load>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() load,
+    required TResult Function(List<Exercise>? boostrap) load,
     required TResult Function(List<Exercise> exercises) update,
   }) {
-    return load();
+    return load(boostrap);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? load,
+    TResult Function(List<Exercise>? boostrap)? load,
     TResult Function(List<Exercise> exercises)? update,
   }) {
-    return load?.call();
+    return load?.call(boostrap);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? load,
+    TResult Function(List<Exercise>? boostrap)? load,
     TResult Function(List<Exercise> exercises)? update,
     required TResult orElse(),
   }) {
     if (load != null) {
-      return load();
+      return load(boostrap);
     }
     return orElse();
   }
@@ -172,7 +203,11 @@ class _$_Load implements _Load {
 }
 
 abstract class _Load implements ExerciseListEvent {
-  const factory _Load() = _$_Load;
+  const factory _Load({final List<Exercise>? boostrap}) = _$_Load;
+
+  List<Exercise>? get boostrap;
+  @JsonKey(ignore: true)
+  _$$_LoadCopyWith<_$_Load> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -244,7 +279,7 @@ class _$_Update implements _Update {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() load,
+    required TResult Function(List<Exercise>? boostrap) load,
     required TResult Function(List<Exercise> exercises) update,
   }) {
     return update(exercises);
@@ -253,7 +288,7 @@ class _$_Update implements _Update {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? load,
+    TResult Function(List<Exercise>? boostrap)? load,
     TResult Function(List<Exercise> exercises)? update,
   }) {
     return update?.call(exercises);
@@ -262,7 +297,7 @@ class _$_Update implements _Update {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? load,
+    TResult Function(List<Exercise>? boostrap)? load,
     TResult Function(List<Exercise> exercises)? update,
     required TResult orElse(),
   }) {

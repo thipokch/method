@@ -66,7 +66,7 @@ const DbEntryDefinitionSchema = CollectionSchema(
       id: -3268401673993471357,
       name: r'id',
       unique: true,
-      replace: false,
+      replace: true,
       properties: [
         IndexPropertySchema(
           name: r'id',
@@ -81,7 +81,7 @@ const DbEntryDefinitionSchema = CollectionSchema(
   getId: _dbEntryDefinitionGetId,
   getLinks: _dbEntryDefinitionGetLinks,
   attach: _dbEntryDefinitionAttach,
-  version: '3.0.0',
+  version: '3.0.1',
 );
 
 int _dbEntryDefinitionEstimateSize(

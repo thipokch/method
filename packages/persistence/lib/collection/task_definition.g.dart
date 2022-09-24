@@ -81,7 +81,7 @@ const DbTaskDefinitionSchema = CollectionSchema(
       id: -3268401673993471357,
       name: r'id',
       unique: true,
-      replace: false,
+      replace: true,
       properties: [
         IndexPropertySchema(
           name: r'id',
@@ -96,7 +96,7 @@ const DbTaskDefinitionSchema = CollectionSchema(
   getId: _dbTaskDefinitionGetId,
   getLinks: _dbTaskDefinitionGetLinks,
   attach: _dbTaskDefinitionAttach,
-  version: '3.0.0',
+  version: '3.0.1',
 );
 
 int _dbTaskDefinitionEstimateSize(
