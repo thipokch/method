@@ -33,7 +33,12 @@ class EntryEditorConverge extends StatelessWidget {
                       padding: const EdgeInsets.all(ElementScale.spaceM),
                       // onPressed: null,
                       onPressed: (() {
-                        bloc.add(const EntryEvent.addData(text: "test"));
+                        bloc.add(const EntryEvent.addData(
+                          definition: EntryDefinition.note(
+                            hierarchyPath: "hierarchyPath",
+                            id: "id",
+                          ),
+                        ));
                       }),
                       color: colorScheme.primaryContainer,
                       icon: SizedBox(

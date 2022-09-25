@@ -90,11 +90,7 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
           final updated = index > 0
               ? session.copyWith(
                   definitions: session.definitions.toList()
-                    ..setAll(
-                      session.definitions
-                          .indexWhere((e) => event.entry.id == e.id),
-                      [event.entry],
-                    ),
+                    ..setAll(index, [event.entry]),
                 )
               : session.copyWith(
                   definitions: session.definitions.toList()..add(event.entry),

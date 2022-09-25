@@ -21,9 +21,9 @@ mixin _$EntryEvent {
     required TResult Function(Task task) loadTask,
     required TResult Function() closeTask,
     required TResult Function(Entry entry) loadEntry,
-    required TResult Function(String text) addData,
-    required TResult Function() updateData,
-    required TResult Function() deleteData,
+    required TResult Function(EntryDefinition definition) addData,
+    required TResult Function(EntryDefinition definition) updateData,
+    required TResult Function(EntryDefinition definition) deleteData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -31,9 +31,9 @@ mixin _$EntryEvent {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry entry)? loadEntry,
-    TResult Function(String text)? addData,
-    TResult Function()? updateData,
-    TResult Function()? deleteData,
+    TResult Function(EntryDefinition definition)? addData,
+    TResult Function(EntryDefinition definition)? updateData,
+    TResult Function(EntryDefinition definition)? deleteData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,9 +41,9 @@ mixin _$EntryEvent {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry entry)? loadEntry,
-    TResult Function(String text)? addData,
-    TResult Function()? updateData,
-    TResult Function()? deleteData,
+    TResult Function(EntryDefinition definition)? addData,
+    TResult Function(EntryDefinition definition)? updateData,
+    TResult Function(EntryDefinition definition)? deleteData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -172,9 +172,9 @@ class _$_LoadTask implements _LoadTask {
     required TResult Function(Task task) loadTask,
     required TResult Function() closeTask,
     required TResult Function(Entry entry) loadEntry,
-    required TResult Function(String text) addData,
-    required TResult Function() updateData,
-    required TResult Function() deleteData,
+    required TResult Function(EntryDefinition definition) addData,
+    required TResult Function(EntryDefinition definition) updateData,
+    required TResult Function(EntryDefinition definition) deleteData,
   }) {
     return loadTask(task);
   }
@@ -185,9 +185,9 @@ class _$_LoadTask implements _LoadTask {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry entry)? loadEntry,
-    TResult Function(String text)? addData,
-    TResult Function()? updateData,
-    TResult Function()? deleteData,
+    TResult Function(EntryDefinition definition)? addData,
+    TResult Function(EntryDefinition definition)? updateData,
+    TResult Function(EntryDefinition definition)? deleteData,
   }) {
     return loadTask?.call(task);
   }
@@ -198,9 +198,9 @@ class _$_LoadTask implements _LoadTask {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry entry)? loadEntry,
-    TResult Function(String text)? addData,
-    TResult Function()? updateData,
-    TResult Function()? deleteData,
+    TResult Function(EntryDefinition definition)? addData,
+    TResult Function(EntryDefinition definition)? updateData,
+    TResult Function(EntryDefinition definition)? deleteData,
     required TResult orElse(),
   }) {
     if (loadTask != null) {
@@ -305,9 +305,9 @@ class _$_CloseTask implements _CloseTask {
     required TResult Function(Task task) loadTask,
     required TResult Function() closeTask,
     required TResult Function(Entry entry) loadEntry,
-    required TResult Function(String text) addData,
-    required TResult Function() updateData,
-    required TResult Function() deleteData,
+    required TResult Function(EntryDefinition definition) addData,
+    required TResult Function(EntryDefinition definition) updateData,
+    required TResult Function(EntryDefinition definition) deleteData,
   }) {
     return closeTask();
   }
@@ -318,9 +318,9 @@ class _$_CloseTask implements _CloseTask {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry entry)? loadEntry,
-    TResult Function(String text)? addData,
-    TResult Function()? updateData,
-    TResult Function()? deleteData,
+    TResult Function(EntryDefinition definition)? addData,
+    TResult Function(EntryDefinition definition)? updateData,
+    TResult Function(EntryDefinition definition)? deleteData,
   }) {
     return closeTask?.call();
   }
@@ -331,9 +331,9 @@ class _$_CloseTask implements _CloseTask {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry entry)? loadEntry,
-    TResult Function(String text)? addData,
-    TResult Function()? updateData,
-    TResult Function()? deleteData,
+    TResult Function(EntryDefinition definition)? addData,
+    TResult Function(EntryDefinition definition)? updateData,
+    TResult Function(EntryDefinition definition)? deleteData,
     required TResult orElse(),
   }) {
     if (closeTask != null) {
@@ -466,9 +466,9 @@ class _$_LoadEntry implements _LoadEntry {
     required TResult Function(Task task) loadTask,
     required TResult Function() closeTask,
     required TResult Function(Entry entry) loadEntry,
-    required TResult Function(String text) addData,
-    required TResult Function() updateData,
-    required TResult Function() deleteData,
+    required TResult Function(EntryDefinition definition) addData,
+    required TResult Function(EntryDefinition definition) updateData,
+    required TResult Function(EntryDefinition definition) deleteData,
   }) {
     return loadEntry(entry);
   }
@@ -479,9 +479,9 @@ class _$_LoadEntry implements _LoadEntry {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry entry)? loadEntry,
-    TResult Function(String text)? addData,
-    TResult Function()? updateData,
-    TResult Function()? deleteData,
+    TResult Function(EntryDefinition definition)? addData,
+    TResult Function(EntryDefinition definition)? updateData,
+    TResult Function(EntryDefinition definition)? deleteData,
   }) {
     return loadEntry?.call(entry);
   }
@@ -492,9 +492,9 @@ class _$_LoadEntry implements _LoadEntry {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry entry)? loadEntry,
-    TResult Function(String text)? addData,
-    TResult Function()? updateData,
-    TResult Function()? deleteData,
+    TResult Function(EntryDefinition definition)? addData,
+    TResult Function(EntryDefinition definition)? updateData,
+    TResult Function(EntryDefinition definition)? deleteData,
     required TResult orElse(),
   }) {
     if (loadEntry != null) {
@@ -561,7 +561,9 @@ abstract class _$$_AddDataCopyWith<$Res> {
   factory _$$_AddDataCopyWith(
           _$_AddData value, $Res Function(_$_AddData) then) =
       __$$_AddDataCopyWithImpl<$Res>;
-  $Res call({String text});
+  $Res call({EntryDefinition definition});
+
+  $EntryDefinitionCopyWith<$Res> get definition;
 }
 
 /// @nodoc
@@ -575,28 +577,35 @@ class __$$_AddDataCopyWithImpl<$Res> extends _$EntryEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? text = freezed,
+    Object? definition = freezed,
   }) {
     return _then(_$_AddData(
-      text: text == freezed
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
+      definition: definition == freezed
+          ? _value.definition
+          : definition // ignore: cast_nullable_to_non_nullable
+              as EntryDefinition,
     ));
+  }
+
+  @override
+  $EntryDefinitionCopyWith<$Res> get definition {
+    return $EntryDefinitionCopyWith<$Res>(_value.definition, (value) {
+      return _then(_value.copyWith(definition: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$_AddData implements _AddData {
-  const _$_AddData({required this.text});
+  const _$_AddData({required this.definition});
 
   @override
-  final String text;
+  final EntryDefinition definition;
 
   @override
   String toString() {
-    return 'EntryEvent.addData(text: $text)';
+    return 'EntryEvent.addData(definition: $definition)';
   }
 
   @override
@@ -604,12 +613,13 @@ class _$_AddData implements _AddData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AddData &&
-            const DeepCollectionEquality().equals(other.text, text));
+            const DeepCollectionEquality()
+                .equals(other.definition, definition));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(text));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(definition));
 
   @JsonKey(ignore: true)
   @override
@@ -622,11 +632,11 @@ class _$_AddData implements _AddData {
     required TResult Function(Task task) loadTask,
     required TResult Function() closeTask,
     required TResult Function(Entry entry) loadEntry,
-    required TResult Function(String text) addData,
-    required TResult Function() updateData,
-    required TResult Function() deleteData,
+    required TResult Function(EntryDefinition definition) addData,
+    required TResult Function(EntryDefinition definition) updateData,
+    required TResult Function(EntryDefinition definition) deleteData,
   }) {
-    return addData(text);
+    return addData(definition);
   }
 
   @override
@@ -635,11 +645,11 @@ class _$_AddData implements _AddData {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry entry)? loadEntry,
-    TResult Function(String text)? addData,
-    TResult Function()? updateData,
-    TResult Function()? deleteData,
+    TResult Function(EntryDefinition definition)? addData,
+    TResult Function(EntryDefinition definition)? updateData,
+    TResult Function(EntryDefinition definition)? deleteData,
   }) {
-    return addData?.call(text);
+    return addData?.call(definition);
   }
 
   @override
@@ -648,13 +658,13 @@ class _$_AddData implements _AddData {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry entry)? loadEntry,
-    TResult Function(String text)? addData,
-    TResult Function()? updateData,
-    TResult Function()? deleteData,
+    TResult Function(EntryDefinition definition)? addData,
+    TResult Function(EntryDefinition definition)? updateData,
+    TResult Function(EntryDefinition definition)? deleteData,
     required TResult orElse(),
   }) {
     if (addData != null) {
-      return addData(text);
+      return addData(definition);
     }
     return orElse();
   }
@@ -704,9 +714,10 @@ class _$_AddData implements _AddData {
 }
 
 abstract class _AddData implements EntryEvent {
-  const factory _AddData({required final String text}) = _$_AddData;
+  const factory _AddData({required final EntryDefinition definition}) =
+      _$_AddData;
 
-  String get text;
+  EntryDefinition get definition;
   @JsonKey(ignore: true)
   _$$_AddDataCopyWith<_$_AddData> get copyWith =>
       throw _privateConstructorUsedError;
@@ -717,6 +728,9 @@ abstract class _$$_UpdateDataCopyWith<$Res> {
   factory _$$_UpdateDataCopyWith(
           _$_UpdateData value, $Res Function(_$_UpdateData) then) =
       __$$_UpdateDataCopyWithImpl<$Res>;
+  $Res call({EntryDefinition definition});
+
+  $EntryDefinitionCopyWith<$Res> get definition;
 }
 
 /// @nodoc
@@ -728,26 +742,57 @@ class __$$_UpdateDataCopyWithImpl<$Res> extends _$EntryEventCopyWithImpl<$Res>
 
   @override
   _$_UpdateData get _value => super._value as _$_UpdateData;
+
+  @override
+  $Res call({
+    Object? definition = freezed,
+  }) {
+    return _then(_$_UpdateData(
+      definition: definition == freezed
+          ? _value.definition
+          : definition // ignore: cast_nullable_to_non_nullable
+              as EntryDefinition,
+    ));
+  }
+
+  @override
+  $EntryDefinitionCopyWith<$Res> get definition {
+    return $EntryDefinitionCopyWith<$Res>(_value.definition, (value) {
+      return _then(_value.copyWith(definition: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$_UpdateData implements _UpdateData {
-  const _$_UpdateData();
+  const _$_UpdateData({required this.definition});
+
+  @override
+  final EntryDefinition definition;
 
   @override
   String toString() {
-    return 'EntryEvent.updateData()';
+    return 'EntryEvent.updateData(definition: $definition)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_UpdateData);
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateData &&
+            const DeepCollectionEquality()
+                .equals(other.definition, definition));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(definition));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_UpdateDataCopyWith<_$_UpdateData> get copyWith =>
+      __$$_UpdateDataCopyWithImpl<_$_UpdateData>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -755,11 +800,11 @@ class _$_UpdateData implements _UpdateData {
     required TResult Function(Task task) loadTask,
     required TResult Function() closeTask,
     required TResult Function(Entry entry) loadEntry,
-    required TResult Function(String text) addData,
-    required TResult Function() updateData,
-    required TResult Function() deleteData,
+    required TResult Function(EntryDefinition definition) addData,
+    required TResult Function(EntryDefinition definition) updateData,
+    required TResult Function(EntryDefinition definition) deleteData,
   }) {
-    return updateData();
+    return updateData(definition);
   }
 
   @override
@@ -768,11 +813,11 @@ class _$_UpdateData implements _UpdateData {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry entry)? loadEntry,
-    TResult Function(String text)? addData,
-    TResult Function()? updateData,
-    TResult Function()? deleteData,
+    TResult Function(EntryDefinition definition)? addData,
+    TResult Function(EntryDefinition definition)? updateData,
+    TResult Function(EntryDefinition definition)? deleteData,
   }) {
-    return updateData?.call();
+    return updateData?.call(definition);
   }
 
   @override
@@ -781,13 +826,13 @@ class _$_UpdateData implements _UpdateData {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry entry)? loadEntry,
-    TResult Function(String text)? addData,
-    TResult Function()? updateData,
-    TResult Function()? deleteData,
+    TResult Function(EntryDefinition definition)? addData,
+    TResult Function(EntryDefinition definition)? updateData,
+    TResult Function(EntryDefinition definition)? deleteData,
     required TResult orElse(),
   }) {
     if (updateData != null) {
-      return updateData();
+      return updateData(definition);
     }
     return orElse();
   }
@@ -837,7 +882,13 @@ class _$_UpdateData implements _UpdateData {
 }
 
 abstract class _UpdateData implements EntryEvent {
-  const factory _UpdateData() = _$_UpdateData;
+  const factory _UpdateData({required final EntryDefinition definition}) =
+      _$_UpdateData;
+
+  EntryDefinition get definition;
+  @JsonKey(ignore: true)
+  _$$_UpdateDataCopyWith<_$_UpdateData> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -845,6 +896,9 @@ abstract class _$$_DeleteDataCopyWith<$Res> {
   factory _$$_DeleteDataCopyWith(
           _$_DeleteData value, $Res Function(_$_DeleteData) then) =
       __$$_DeleteDataCopyWithImpl<$Res>;
+  $Res call({EntryDefinition definition});
+
+  $EntryDefinitionCopyWith<$Res> get definition;
 }
 
 /// @nodoc
@@ -856,26 +910,57 @@ class __$$_DeleteDataCopyWithImpl<$Res> extends _$EntryEventCopyWithImpl<$Res>
 
   @override
   _$_DeleteData get _value => super._value as _$_DeleteData;
+
+  @override
+  $Res call({
+    Object? definition = freezed,
+  }) {
+    return _then(_$_DeleteData(
+      definition: definition == freezed
+          ? _value.definition
+          : definition // ignore: cast_nullable_to_non_nullable
+              as EntryDefinition,
+    ));
+  }
+
+  @override
+  $EntryDefinitionCopyWith<$Res> get definition {
+    return $EntryDefinitionCopyWith<$Res>(_value.definition, (value) {
+      return _then(_value.copyWith(definition: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$_DeleteData implements _DeleteData {
-  const _$_DeleteData();
+  const _$_DeleteData({required this.definition});
+
+  @override
+  final EntryDefinition definition;
 
   @override
   String toString() {
-    return 'EntryEvent.deleteData()';
+    return 'EntryEvent.deleteData(definition: $definition)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_DeleteData);
+        (other.runtimeType == runtimeType &&
+            other is _$_DeleteData &&
+            const DeepCollectionEquality()
+                .equals(other.definition, definition));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(definition));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_DeleteDataCopyWith<_$_DeleteData> get copyWith =>
+      __$$_DeleteDataCopyWithImpl<_$_DeleteData>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -883,11 +968,11 @@ class _$_DeleteData implements _DeleteData {
     required TResult Function(Task task) loadTask,
     required TResult Function() closeTask,
     required TResult Function(Entry entry) loadEntry,
-    required TResult Function(String text) addData,
-    required TResult Function() updateData,
-    required TResult Function() deleteData,
+    required TResult Function(EntryDefinition definition) addData,
+    required TResult Function(EntryDefinition definition) updateData,
+    required TResult Function(EntryDefinition definition) deleteData,
   }) {
-    return deleteData();
+    return deleteData(definition);
   }
 
   @override
@@ -896,11 +981,11 @@ class _$_DeleteData implements _DeleteData {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry entry)? loadEntry,
-    TResult Function(String text)? addData,
-    TResult Function()? updateData,
-    TResult Function()? deleteData,
+    TResult Function(EntryDefinition definition)? addData,
+    TResult Function(EntryDefinition definition)? updateData,
+    TResult Function(EntryDefinition definition)? deleteData,
   }) {
-    return deleteData?.call();
+    return deleteData?.call(definition);
   }
 
   @override
@@ -909,13 +994,13 @@ class _$_DeleteData implements _DeleteData {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry entry)? loadEntry,
-    TResult Function(String text)? addData,
-    TResult Function()? updateData,
-    TResult Function()? deleteData,
+    TResult Function(EntryDefinition definition)? addData,
+    TResult Function(EntryDefinition definition)? updateData,
+    TResult Function(EntryDefinition definition)? deleteData,
     required TResult orElse(),
   }) {
     if (deleteData != null) {
-      return deleteData();
+      return deleteData(definition);
     }
     return orElse();
   }
@@ -965,7 +1050,13 @@ class _$_DeleteData implements _DeleteData {
 }
 
 abstract class _DeleteData implements EntryEvent {
-  const factory _DeleteData() = _$_DeleteData;
+  const factory _DeleteData({required final EntryDefinition definition}) =
+      _$_DeleteData;
+
+  EntryDefinition get definition;
+  @JsonKey(ignore: true)
+  _$$_DeleteDataCopyWith<_$_DeleteData> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

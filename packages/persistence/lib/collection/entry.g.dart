@@ -22,9 +22,9 @@ const DbEntrySchema = CollectionSchema(
       name: r'collectionSlug',
       type: IsarType.string,
     ),
-    r'definitionIds': PropertySchema(
+    r'definitionsIds': PropertySchema(
       id: 1,
-      name: r'definitionIds',
+      name: r'definitionsIds',
       type: IsarType.stringList,
     ),
     r'hierarchyPath': PropertySchema(
@@ -103,10 +103,10 @@ int _dbEntryEstimateSize(
 ) {
   var bytesCount = offsets.last;
   bytesCount += 3 + object.collectionSlug.length * 3;
-  bytesCount += 3 + object.definitionIds.length * 3;
+  bytesCount += 3 + object.definitionsIds.length * 3;
   {
-    for (var i = 0; i < object.definitionIds.length; i++) {
-      final value = object.definitionIds[i];
+    for (var i = 0; i < object.definitionsIds.length; i++) {
+      final value = object.definitionsIds[i];
       bytesCount += value.length * 3;
     }
   }
@@ -123,7 +123,7 @@ void _dbEntrySerialize(
   Map<Type, List<int>> allOffsets,
 ) {
   writer.writeString(offsets[0], object.collectionSlug);
-  writer.writeStringList(offsets[1], object.definitionIds);
+  writer.writeStringList(offsets[1], object.definitionsIds);
   writer.writeString(offsets[2], object.hierarchyPath);
   writer.writeString(offsets[3], object.id);
   writer.writeByteList(offsets[4], object.uuid);
@@ -142,7 +142,7 @@ DbEntry _dbEntryDeserialize(
   );
   object.collectionSlug = reader.readString(offsets[0]);
   object.dbid = id;
-  object.definitionIds = reader.readStringList(offsets[1]) ?? [];
+  object.definitionsIds = reader.readStringList(offsets[1]) ?? [];
   return object;
 }
 
@@ -648,13 +648,13 @@ extension DbEntryQueryFilter
   }
 
   QueryBuilder<DbEntry, DbEntry, QAfterFilterCondition>
-      definitionIdsElementEqualTo(
+      definitionsIdsElementEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'definitionIds',
+        property: r'definitionsIds',
         value: value,
         caseSensitive: caseSensitive,
       ));
@@ -662,7 +662,7 @@ extension DbEntryQueryFilter
   }
 
   QueryBuilder<DbEntry, DbEntry, QAfterFilterCondition>
-      definitionIdsElementGreaterThan(
+      definitionsIdsElementGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -670,7 +670,7 @@ extension DbEntryQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'definitionIds',
+        property: r'definitionsIds',
         value: value,
         caseSensitive: caseSensitive,
       ));
@@ -678,7 +678,7 @@ extension DbEntryQueryFilter
   }
 
   QueryBuilder<DbEntry, DbEntry, QAfterFilterCondition>
-      definitionIdsElementLessThan(
+      definitionsIdsElementLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -686,7 +686,7 @@ extension DbEntryQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'definitionIds',
+        property: r'definitionsIds',
         value: value,
         caseSensitive: caseSensitive,
       ));
@@ -694,7 +694,7 @@ extension DbEntryQueryFilter
   }
 
   QueryBuilder<DbEntry, DbEntry, QAfterFilterCondition>
-      definitionIdsElementBetween(
+      definitionsIdsElementBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -703,7 +703,7 @@ extension DbEntryQueryFilter
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'definitionIds',
+        property: r'definitionsIds',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -714,13 +714,13 @@ extension DbEntryQueryFilter
   }
 
   QueryBuilder<DbEntry, DbEntry, QAfterFilterCondition>
-      definitionIdsElementStartsWith(
+      definitionsIdsElementStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'definitionIds',
+        property: r'definitionsIds',
         value: value,
         caseSensitive: caseSensitive,
       ));
@@ -728,13 +728,13 @@ extension DbEntryQueryFilter
   }
 
   QueryBuilder<DbEntry, DbEntry, QAfterFilterCondition>
-      definitionIdsElementEndsWith(
+      definitionsIdsElementEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'definitionIds',
+        property: r'definitionsIds',
         value: value,
         caseSensitive: caseSensitive,
       ));
@@ -742,10 +742,10 @@ extension DbEntryQueryFilter
   }
 
   QueryBuilder<DbEntry, DbEntry, QAfterFilterCondition>
-      definitionIdsElementContains(String value, {bool caseSensitive = true}) {
+      definitionsIdsElementContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
-        property: r'definitionIds',
+        property: r'definitionsIds',
         value: value,
         caseSensitive: caseSensitive,
       ));
@@ -753,10 +753,11 @@ extension DbEntryQueryFilter
   }
 
   QueryBuilder<DbEntry, DbEntry, QAfterFilterCondition>
-      definitionIdsElementMatches(String pattern, {bool caseSensitive = true}) {
+      definitionsIdsElementMatches(String pattern,
+          {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
-        property: r'definitionIds',
+        property: r'definitionsIds',
         wildcard: pattern,
         caseSensitive: caseSensitive,
       ));
@@ -764,30 +765,30 @@ extension DbEntryQueryFilter
   }
 
   QueryBuilder<DbEntry, DbEntry, QAfterFilterCondition>
-      definitionIdsElementIsEmpty() {
+      definitionsIdsElementIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'definitionIds',
+        property: r'definitionsIds',
         value: '',
       ));
     });
   }
 
   QueryBuilder<DbEntry, DbEntry, QAfterFilterCondition>
-      definitionIdsElementIsNotEmpty() {
+      definitionsIdsElementIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'definitionIds',
+        property: r'definitionsIds',
         value: '',
       ));
     });
   }
 
   QueryBuilder<DbEntry, DbEntry, QAfterFilterCondition>
-      definitionIdsLengthEqualTo(int length) {
+      definitionsIdsLengthEqualTo(int length) {
     return QueryBuilder.apply(this, (query) {
       return query.listLength(
-        r'definitionIds',
+        r'definitionsIds',
         length,
         true,
         length,
@@ -796,10 +797,11 @@ extension DbEntryQueryFilter
     });
   }
 
-  QueryBuilder<DbEntry, DbEntry, QAfterFilterCondition> definitionIdsIsEmpty() {
+  QueryBuilder<DbEntry, DbEntry, QAfterFilterCondition>
+      definitionsIdsIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.listLength(
-        r'definitionIds',
+        r'definitionsIds',
         0,
         true,
         0,
@@ -809,10 +811,10 @@ extension DbEntryQueryFilter
   }
 
   QueryBuilder<DbEntry, DbEntry, QAfterFilterCondition>
-      definitionIdsIsNotEmpty() {
+      definitionsIdsIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.listLength(
-        r'definitionIds',
+        r'definitionsIds',
         0,
         false,
         999999,
@@ -822,13 +824,13 @@ extension DbEntryQueryFilter
   }
 
   QueryBuilder<DbEntry, DbEntry, QAfterFilterCondition>
-      definitionIdsLengthLessThan(
+      definitionsIdsLengthLessThan(
     int length, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.listLength(
-        r'definitionIds',
+        r'definitionsIds',
         0,
         true,
         length,
@@ -838,13 +840,13 @@ extension DbEntryQueryFilter
   }
 
   QueryBuilder<DbEntry, DbEntry, QAfterFilterCondition>
-      definitionIdsLengthGreaterThan(
+      definitionsIdsLengthGreaterThan(
     int length, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.listLength(
-        r'definitionIds',
+        r'definitionsIds',
         length,
         include,
         999999,
@@ -854,7 +856,7 @@ extension DbEntryQueryFilter
   }
 
   QueryBuilder<DbEntry, DbEntry, QAfterFilterCondition>
-      definitionIdsLengthBetween(
+      definitionsIdsLengthBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -862,7 +864,7 @@ extension DbEntryQueryFilter
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.listLength(
-        r'definitionIds',
+        r'definitionsIds',
         lower,
         includeLower,
         upper,
@@ -1388,9 +1390,9 @@ extension DbEntryQueryWhereDistinct
     });
   }
 
-  QueryBuilder<DbEntry, DbEntry, QDistinct> distinctByDefinitionIds() {
+  QueryBuilder<DbEntry, DbEntry, QDistinct> distinctByDefinitionsIds() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'definitionIds');
+      return query.addDistinctBy(r'definitionsIds');
     });
   }
 
@@ -1431,9 +1433,9 @@ extension DbEntryQueryProperty
   }
 
   QueryBuilder<DbEntry, List<String>, QQueryOperations>
-      definitionIdsProperty() {
+      definitionsIdsProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'definitionIds');
+      return query.addPropertyName(r'definitionsIds');
     });
   }
 

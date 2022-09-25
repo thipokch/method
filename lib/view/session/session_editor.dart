@@ -49,7 +49,7 @@ class SessionEditorState extends State<SessionEditor> {
                 SessionEvent.loadSession(
                   session: Session.create(
                     template: state.exercise,
-                    hierarchyPath: exercise.collectionSlug,
+                    hierarchyPath: "${exercise.hierarchyPath}/${exercise.id}",
                     id: DateTime.now().millisecondsSinceEpoch.toString(),
                   ),
                 ),

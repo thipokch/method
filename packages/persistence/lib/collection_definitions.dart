@@ -5,26 +5,24 @@ part of 'collection.dart';
 abstract class DaoWithDefinitions<DOM, CDOM, CDAO extends Dao<CDOM>>
     extends Dao<DOM> {
   @protected
-  List<String> definitionIds = [];
+  List<String> definitionsIds;
 
-  DaoWithDefinitions({
-    required super.collectionSlug,
-    required super.hierarchyPath,
-    required super.id,
-    required super.uuid,
-  });
-
-  // ignore: invalid_annotation_target
-  @ignore
-  set definitions(List<CDAO> definitions) =>
-      definitionIds = definitions.map((e) => e.id).toList();
+  set definitions(List<CDAO> defObjs) => defObjs.map((e) => e.id).toList();
 
   @ignore
   List<CDAO> get definitions => Isar.getInstance()!
       .collection<CDAO>()
-      .getAllByIndexSync('id', definitionIds.map((e) => [e]).toList())
+      .getAllByIndexSync('id', definitionsIds.map((e) => [e]).toList())
       .whereType<CDAO>()
       .toList();
+
+  DaoWithDefinitions({
+    required List<CDAO> definitions,
+    required super.collectionSlug,
+    required super.hierarchyPath,
+    required super.id,
+    required super.uuid,
+  }) : definitionsIds = definitions.map((e) => e.id).toList();
 }
 
 abstract class CollectionWithDefinitions<
@@ -37,17 +35,14 @@ abstract class CollectionWithDefinitions<
   Collection<CDOM, CDAO> get childCollection;
 
   DAO Function({required DOM dom}) get parentToDao;
-  DOM Function({required DAO dao, List<CDOM> definitions}) get parentToDom;
+  DOM Function({required DAO dao}) get parentToDom;
 
   @override
   DAO toDao(DOM dom) => parentToDao(dom: dom)
     ..definitions = childCollection.toDaos(dom.definitions);
 
   @override
-  DOM toDom(DAO dao) => parentToDom(
-        dao: dao,
-        definitions: childCollection.getAllSync(dao.definitionIds),
-      );
+  DOM toDom(DAO dao) => parentToDom(dao: dao);
 
   @override
   Future<int> put(DOM dom) async {

@@ -51,10 +51,10 @@ abstract class Collection<DOM, DAO extends Dao<DOM>>
   List<DAO> toDaos(List<DOM> doms) => doms.map<DAO>((e) => toDao(e)).toList();
   List<DOM> toDoms(List<DAO> daos) => daos.map<DOM>((e) => toDom(e)).toList();
 
-  List<T> assignDaoID<T extends Dao>(List<T> dao, List<int> ids) =>
-      dao.length == ids.length
-          ? dao.asMap().entries.map((e) => e.value..dbid = ids[e.key]).toList()
-          : throw Error();
+  // List<T> assignDaoID<T extends Dao>(List<T> dao, List<int> ids) =>
+  //     dao.length == ids.length
+  //         ? dao.asMap().entries.map((e) => e.value..dbid = ids[e.key]).toList()
+  //         : throw Error();
 
   WhereRepeatModifier<DAO, DAO, Uniform> get uniformEqualTo;
 

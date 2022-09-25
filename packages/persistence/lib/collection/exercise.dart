@@ -24,6 +24,7 @@ class DbExercise extends DaoWithDefinitions<Exercise, Task, DbTask> {
     required this.icon,
     required this.name,
     required this.description,
+    super.definitions = const [],
     required super.hierarchyPath,
     required super.id,
     required super.uuid,
@@ -41,6 +42,8 @@ class ExerciseMapper {
         icon: dom.icon,
         name: dom.name,
         description: dom.description,
+        definitions:
+            dom.definitions.map((dom) => TaskMapper.toDao(dom: dom)).toList(),
         hierarchyPath: dom.hierarchyPath,
         id: dom.id,
         uuid: dom.uuid?.toBytes() ?? const Uuid().v4obj().toBytes(),
@@ -49,13 +52,13 @@ class ExerciseMapper {
 
   static Exercise toDom({
     required DbExercise dao,
-    List<Task> definitions = const [],
   }) =>
       Exercise(
         icon: dao.icon,
         name: dao.name,
         description: dao.description,
-        definitions: definitions,
+        definitions:
+            dao.definitions.map((dao) => TaskMapper.toDom(dao: dao)).toList(),
         hierarchyPath: dao.hierarchyPath,
         id: dao.id,
         uuid: UuidValue.fromList(dao.uuid),

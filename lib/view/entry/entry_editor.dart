@@ -1,4 +1,5 @@
 import 'package:component/entry/entry_bloc.dart';
+import 'package:core/model/entry_definition.dart';
 import 'package:core/model/task_definition.dart';
 import 'package:element/element_motion.dart';
 import 'package:element/element_scale.dart';

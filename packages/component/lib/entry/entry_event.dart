@@ -13,10 +13,14 @@ class EntryEvent with _$EntryEvent {
   }) = _LoadEntry;
 
   const factory EntryEvent.addData({
-    required String text,
+    required EntryDefinition definition,
   }) = _AddData;
 
-  const factory EntryEvent.updateData() = _UpdateData;
+  const factory EntryEvent.updateData({
+    required EntryDefinition definition,
+  }) = _UpdateData;
 
-  const factory EntryEvent.deleteData() = _DeleteData;
+  const factory EntryEvent.deleteData({
+    required EntryDefinition definition,
+  }) = _DeleteData;
 }

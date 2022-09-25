@@ -15,6 +15,7 @@ class DbSession extends DaoWithDefinitions<Session, Entry, DbEntry> {
   final template = IsarLink<DbExercise>();
 
   DbSession({
+    super.definitions = const [],
     required super.hierarchyPath,
     required super.id,
     required super.uuid,
@@ -28,6 +29,8 @@ class SessionMapper {
     required Session dom,
   }) =>
       DbSession(
+        definitions:
+            dom.definitions.map((dom) => EntryMapper.toDao(dom: dom)).toList(),
         hierarchyPath: dom.hierarchyPath,
         id: dom.id,
         uuid: dom.uuid?.toBytes() ?? const Uuid().v4obj().toBytes(),
@@ -35,11 +38,11 @@ class SessionMapper {
 
   static Session toDom({
     required DbSession dao,
-    List<Entry> definitions = const [],
   }) =>
       Session(
         template: ExerciseMapper.toDom(dao: dao.template.value!),
-        definitions: definitions,
+        definitions:
+            dao.definitions.map((dao) => EntryMapper.toDom(dao: dao)).toList(),
         hierarchyPath: dao.hierarchyPath,
         id: dao.id,
         uuid: UuidValue.fromList(dao.uuid),

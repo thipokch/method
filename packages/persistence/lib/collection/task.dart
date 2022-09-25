@@ -20,6 +20,7 @@ class DbTask
     required this.icon,
     required this.name,
     required this.description,
+    super.definitions = const [],
     required super.collectionSlug,
     required super.hierarchyPath,
     required super.id,
@@ -37,6 +38,9 @@ class TaskMapper {
         icon: dom.icon,
         name: dom.name,
         description: dom.description,
+        definitions: dom.definitions
+            .map((dom) => TaskDefinitionMapper.toDao(dom: dom))
+            .toList(),
         collectionSlug: dom.collectionSlug,
         hierarchyPath: dom.hierarchyPath,
         id: dom.id,
@@ -45,15 +49,18 @@ class TaskMapper {
 
   static Task toDom({
     required DbTask dao,
-    List<TaskDefinition> definitions = const [],
   }) {
+    final domDefinitions = dao.definitions
+        .map((dao) => TaskDefinitionMapper.toDom(dao: dao))
+        .toList();
+
     switch (dao.collectionSlug) {
       case "diverge":
         return Task.diverge(
           icon: dao.icon,
           name: dao.name,
           description: dao.description,
-          definitions: definitions,
+          definitions: domDefinitions,
           hierarchyPath: dao.hierarchyPath,
           id: dao.id,
           uuid: UuidValue.fromList(dao.uuid),
@@ -64,7 +71,7 @@ class TaskMapper {
           icon: dao.icon,
           name: dao.name,
           description: dao.description,
-          definitions: definitions,
+          definitions: domDefinitions,
           hierarchyPath: dao.hierarchyPath,
           id: dao.id,
           uuid: UuidValue.fromList(dao.uuid),
@@ -75,7 +82,7 @@ class TaskMapper {
           icon: dao.icon,
           name: dao.name,
           description: dao.description,
-          definitions: definitions,
+          definitions: domDefinitions,
           hierarchyPath: dao.hierarchyPath,
           id: dao.id,
           uuid: UuidValue.fromList(dao.uuid),
@@ -86,7 +93,7 @@ class TaskMapper {
           icon: dao.icon,
           name: dao.name,
           description: dao.description,
-          definitions: definitions,
+          definitions: domDefinitions,
           hierarchyPath: dao.hierarchyPath,
           id: dao.id,
           uuid: UuidValue.fromList(dao.uuid),

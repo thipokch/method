@@ -16,6 +16,7 @@ class DbEntry
   final template = IsarLink<DbTask>();
 
   DbEntry({
+    super.definitions = const [],
     required super.hierarchyPath,
     required super.id,
     required super.uuid,
@@ -29,6 +30,9 @@ class EntryMapper {
     required Entry dom,
   }) =>
       DbEntry(
+        definitions: dom.definitions
+            .map((dom) => EntryDefinitionMapper.toDao(dom: dom))
+            .toList(),
         hierarchyPath: dom.hierarchyPath,
         id: dom.id,
         uuid: dom.uuid?.toBytes() ?? const Uuid().v4obj().toBytes(),
@@ -36,11 +40,12 @@ class EntryMapper {
 
   static Entry toDom({
     required DbEntry dao,
-    List<EntryDefinition> definitions = const [],
   }) =>
       Entry(
         template: TaskMapper.toDom(dao: dao.template.value!),
-        definitions: definitions,
+        definitions: dao.definitions
+            .map((dao) => EntryDefinitionMapper.toDom(dao: dao))
+            .toList(),
         hierarchyPath: dao.hierarchyPath,
         uuid: UuidValue.fromList(dao.uuid),
         id: dao.id,
@@ -70,15 +75,15 @@ class EntryRepository extends CollectionWithDefinitions<Entry, DbEntry,
 
   @override
   Future<int> put(Entry dom) => super.put(dom)
-    ..then((dbid) => this.collection.getSync(dbid)!
+    ..then((isarId) => this.collection.getSync(isarId)!
           ..template.value =
               source.instance.dbTasks.getByIdSync(dom.template.id)!)
         .then((dao) => write(() => dao.template.save()));
 
   @override
   Future<List<int>> putAll(List<Entry> doms) => super.putAll(doms)
-    ..then((dbids) =>
-        this.collection.getAllSync(dbids).asMap().entries.forEach((e) {
+    ..then((isarId) =>
+        this.collection.getAllSync(isarId).asMap().entries.forEach((e) {
           if (e.value != null) {
             e.value!.template.value =
                 source.instance.dbTasks.getByIdSync(doms[e.key].template.id);
