@@ -49,9 +49,8 @@ class SessionEditorState extends State<SessionEditor> {
                 SessionEvent.loadSession(
                   session: Session.create(
                     template: state.exercise,
-                    collectionSlug: "",
-                    hierarchyPath: "",
-                    id: "",
+                    hierarchyPath: exercise.collectionSlug,
+                    id: DateTime.now().millisecondsSinceEpoch.toString(),
                   ),
                 ),
               ),
@@ -74,7 +73,9 @@ class SessionEditorState extends State<SessionEditor> {
                   repo: context.read<Repository>(),
                   task: state.exercise.definitions[index],
                 ),
-                child: const EntryEditor(),
+                child: EntryPage(
+                  listener: bloc.handleEntryBlocState,
+                ),
               ),
             );
           },

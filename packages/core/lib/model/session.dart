@@ -25,7 +25,6 @@ class Session with _$Session, Identify, Locate, Define<Entry> {
 
   factory Session.create({
     required final Exercise template,
-    required String collectionSlug,
     final List<Entry>? definitions,
     required final String hierarchyPath,
     required final String id,

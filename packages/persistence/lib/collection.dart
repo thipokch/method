@@ -62,8 +62,8 @@ abstract class Collection<DOM, DAO extends Dao<DOM>>
 
   // PUT
 
-  Future<int> put(DOM model) =>
-      write(() => collection.putByIndex('id', toDao(model)));
+  Future<int> put(DOM dom) =>
+      write(() => collection.putByIndex('id', toDao(dom)));
 
   Future<List<int>> putAll(List<DOM> doms) =>
       write(() => collection.putAllByIndex('id', toDaos(doms)));

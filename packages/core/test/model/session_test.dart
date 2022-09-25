@@ -13,7 +13,6 @@ void main() {
 
     Session a = Session.create(
       template: aTemplate,
-      collectionSlug: "collectionSlug",
       hierarchyPath: "hierarchyPath",
       id: "id",
     );

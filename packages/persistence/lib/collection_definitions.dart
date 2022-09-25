@@ -36,8 +36,6 @@ abstract class CollectionWithDefinitions<
 
   Collection<CDOM, CDAO> get childCollection;
 
-  // IsarCollection<CDAO> get xxx => source.instance.collection<CDAO>();
-
   DAO Function({required DOM dom}) get parentToDao;
   DOM Function({required DAO dao, List<CDOM> definitions}) get parentToDom;
 
@@ -50,6 +48,13 @@ abstract class CollectionWithDefinitions<
         dao: dao,
         definitions: childCollection.getAllSync(dao.definitionIds),
       );
+
+  @override
+  Future<int> put(DOM dom) async {
+    await childCollection.putAll(dom.definitions);
+
+    return super.put(dom);
+  }
 
   @override
   Future<List<int>> putAll(List<DOM> doms) async {

@@ -32,7 +32,7 @@ class EntryMapper {
         hierarchyPath: dom.hierarchyPath,
         id: dom.id,
         uuid: dom.uuid?.toBytes() ?? const Uuid().v4obj().toBytes(),
-      )..template.value = TaskMapper.toDao(dom: dom.template);
+      );
 
   static Entry toDom({
     required DbEntry dao,
@@ -67,4 +67,23 @@ class EntryRepository extends CollectionWithDefinitions<Entry, DbEntry,
   @override
   Collection<EntryDefinition, DbEntryDefinition> get childCollection =>
       EntryDefinitionRepository(source);
+
+  @override
+  Future<int> put(Entry dom) => super.put(dom)
+    ..then((dbid) => this.collection.getSync(dbid)!
+          ..template.value =
+              source.instance.dbTasks.getByIdSync(dom.template.id)!)
+        .then((dao) => write(() => dao.template.save()));
+
+  @override
+  Future<List<int>> putAll(List<Entry> doms) => super.putAll(doms)
+    ..then((dbids) =>
+        this.collection.getAllSync(dbids).asMap().entries.forEach((e) {
+          if (e.value != null) {
+            e.value!.template.value =
+                source.instance.dbTasks.getByIdSync(doms[e.key].template.id);
+
+            write(() => e.value!.template.save());
+          }
+        }));
 }

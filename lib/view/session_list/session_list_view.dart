@@ -17,7 +17,6 @@ class SessionListView extends StatelessWidget {
                   () => context.read<Repository>().sessions.put(
                         Session.create(
                           template: Content.exerciseNote,
-                          collectionSlug: "collectionSlug",
                           hierarchyPath: "hierarchyPath",
                           id: "id",
                         ),
@@ -32,7 +31,6 @@ class SessionListView extends StatelessWidget {
                 onPressed: () => context.read<Repository>().sessions.put(
                       Session.create(
                         template: Content.exerciseNote,
-                        collectionSlug: "collectionSlug",
                         hierarchyPath: "hierarchyPath",
                         id: "id",
                       ),

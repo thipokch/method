@@ -31,7 +31,10 @@ class EntryEditorConverge extends StatelessWidget {
                             colorScheme.onSurface.withOpacity(0.12),
                       ),
                       padding: const EdgeInsets.all(ElementScale.spaceM),
-                      onPressed: null,
+                      // onPressed: null,
+                      onPressed: (() {
+                        bloc.add(const EntryEvent.addData(text: "test"));
+                      }),
                       color: colorScheme.primaryContainer,
                       icon: SizedBox(
                         height: 36.0,
@@ -80,8 +83,10 @@ class EntryEditorConverge extends StatelessWidget {
                   ),
                 ),
                 child: InkWell(
-                  // ignore: no-empty-block
-                  onTap: (() {}),
+                  // onTap: (() {
+                  //   print("inkwell");
+                  //   bloc.add(const EntryEvent.addData(text: "test"));
+                  // }),
                   child: TextField(
                     textAlign: TextAlign.center,
                     textAlignVertical: TextAlignVertical.center,

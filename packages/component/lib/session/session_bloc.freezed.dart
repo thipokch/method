@@ -21,9 +21,9 @@ mixin _$SessionEvent {
     required TResult Function(Exercise exercise) loadExercise,
     required TResult Function() closeExercise,
     required TResult Function(Session session) loadSession,
-    required TResult Function(String text) addData,
-    required TResult Function() updateData,
-    required TResult Function() deleteData,
+    required TResult Function(Entry entry) addData,
+    required TResult Function(Entry entry) updateData,
+    required TResult Function(Entry entry) deleteData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -31,9 +31,9 @@ mixin _$SessionEvent {
     TResult Function(Exercise exercise)? loadExercise,
     TResult Function()? closeExercise,
     TResult Function(Session session)? loadSession,
-    TResult Function(String text)? addData,
-    TResult Function()? updateData,
-    TResult Function()? deleteData,
+    TResult Function(Entry entry)? addData,
+    TResult Function(Entry entry)? updateData,
+    TResult Function(Entry entry)? deleteData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,9 +41,9 @@ mixin _$SessionEvent {
     TResult Function(Exercise exercise)? loadExercise,
     TResult Function()? closeExercise,
     TResult Function(Session session)? loadSession,
-    TResult Function(String text)? addData,
-    TResult Function()? updateData,
-    TResult Function()? deleteData,
+    TResult Function(Entry entry)? addData,
+    TResult Function(Entry entry)? updateData,
+    TResult Function(Entry entry)? deleteData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -173,9 +173,9 @@ class _$_LoadExercise implements _LoadExercise {
     required TResult Function(Exercise exercise) loadExercise,
     required TResult Function() closeExercise,
     required TResult Function(Session session) loadSession,
-    required TResult Function(String text) addData,
-    required TResult Function() updateData,
-    required TResult Function() deleteData,
+    required TResult Function(Entry entry) addData,
+    required TResult Function(Entry entry) updateData,
+    required TResult Function(Entry entry) deleteData,
   }) {
     return loadExercise(exercise);
   }
@@ -186,9 +186,9 @@ class _$_LoadExercise implements _LoadExercise {
     TResult Function(Exercise exercise)? loadExercise,
     TResult Function()? closeExercise,
     TResult Function(Session session)? loadSession,
-    TResult Function(String text)? addData,
-    TResult Function()? updateData,
-    TResult Function()? deleteData,
+    TResult Function(Entry entry)? addData,
+    TResult Function(Entry entry)? updateData,
+    TResult Function(Entry entry)? deleteData,
   }) {
     return loadExercise?.call(exercise);
   }
@@ -199,9 +199,9 @@ class _$_LoadExercise implements _LoadExercise {
     TResult Function(Exercise exercise)? loadExercise,
     TResult Function()? closeExercise,
     TResult Function(Session session)? loadSession,
-    TResult Function(String text)? addData,
-    TResult Function()? updateData,
-    TResult Function()? deleteData,
+    TResult Function(Entry entry)? addData,
+    TResult Function(Entry entry)? updateData,
+    TResult Function(Entry entry)? deleteData,
     required TResult orElse(),
   }) {
     if (loadExercise != null) {
@@ -308,9 +308,9 @@ class _$_CloseExercise implements _CloseExercise {
     required TResult Function(Exercise exercise) loadExercise,
     required TResult Function() closeExercise,
     required TResult Function(Session session) loadSession,
-    required TResult Function(String text) addData,
-    required TResult Function() updateData,
-    required TResult Function() deleteData,
+    required TResult Function(Entry entry) addData,
+    required TResult Function(Entry entry) updateData,
+    required TResult Function(Entry entry) deleteData,
   }) {
     return closeExercise();
   }
@@ -321,9 +321,9 @@ class _$_CloseExercise implements _CloseExercise {
     TResult Function(Exercise exercise)? loadExercise,
     TResult Function()? closeExercise,
     TResult Function(Session session)? loadSession,
-    TResult Function(String text)? addData,
-    TResult Function()? updateData,
-    TResult Function()? deleteData,
+    TResult Function(Entry entry)? addData,
+    TResult Function(Entry entry)? updateData,
+    TResult Function(Entry entry)? deleteData,
   }) {
     return closeExercise?.call();
   }
@@ -334,9 +334,9 @@ class _$_CloseExercise implements _CloseExercise {
     TResult Function(Exercise exercise)? loadExercise,
     TResult Function()? closeExercise,
     TResult Function(Session session)? loadSession,
-    TResult Function(String text)? addData,
-    TResult Function()? updateData,
-    TResult Function()? deleteData,
+    TResult Function(Entry entry)? addData,
+    TResult Function(Entry entry)? updateData,
+    TResult Function(Entry entry)? deleteData,
     required TResult orElse(),
   }) {
     if (closeExercise != null) {
@@ -470,9 +470,9 @@ class _$_LoadSession implements _LoadSession {
     required TResult Function(Exercise exercise) loadExercise,
     required TResult Function() closeExercise,
     required TResult Function(Session session) loadSession,
-    required TResult Function(String text) addData,
-    required TResult Function() updateData,
-    required TResult Function() deleteData,
+    required TResult Function(Entry entry) addData,
+    required TResult Function(Entry entry) updateData,
+    required TResult Function(Entry entry) deleteData,
   }) {
     return loadSession(session);
   }
@@ -483,9 +483,9 @@ class _$_LoadSession implements _LoadSession {
     TResult Function(Exercise exercise)? loadExercise,
     TResult Function()? closeExercise,
     TResult Function(Session session)? loadSession,
-    TResult Function(String text)? addData,
-    TResult Function()? updateData,
-    TResult Function()? deleteData,
+    TResult Function(Entry entry)? addData,
+    TResult Function(Entry entry)? updateData,
+    TResult Function(Entry entry)? deleteData,
   }) {
     return loadSession?.call(session);
   }
@@ -496,9 +496,9 @@ class _$_LoadSession implements _LoadSession {
     TResult Function(Exercise exercise)? loadExercise,
     TResult Function()? closeExercise,
     TResult Function(Session session)? loadSession,
-    TResult Function(String text)? addData,
-    TResult Function()? updateData,
-    TResult Function()? deleteData,
+    TResult Function(Entry entry)? addData,
+    TResult Function(Entry entry)? updateData,
+    TResult Function(Entry entry)? deleteData,
     required TResult orElse(),
   }) {
     if (loadSession != null) {
@@ -565,7 +565,9 @@ abstract class _$$_AddDataCopyWith<$Res> {
   factory _$$_AddDataCopyWith(
           _$_AddData value, $Res Function(_$_AddData) then) =
       __$$_AddDataCopyWithImpl<$Res>;
-  $Res call({String text});
+  $Res call({Entry entry});
+
+  $EntryCopyWith<$Res> get entry;
 }
 
 /// @nodoc
@@ -579,28 +581,35 @@ class __$$_AddDataCopyWithImpl<$Res> extends _$SessionEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? text = freezed,
+    Object? entry = freezed,
   }) {
     return _then(_$_AddData(
-      text: text == freezed
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
+      entry: entry == freezed
+          ? _value.entry
+          : entry // ignore: cast_nullable_to_non_nullable
+              as Entry,
     ));
+  }
+
+  @override
+  $EntryCopyWith<$Res> get entry {
+    return $EntryCopyWith<$Res>(_value.entry, (value) {
+      return _then(_value.copyWith(entry: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$_AddData implements _AddData {
-  const _$_AddData({required this.text});
+  const _$_AddData({required this.entry});
 
   @override
-  final String text;
+  final Entry entry;
 
   @override
   String toString() {
-    return 'SessionEvent.addData(text: $text)';
+    return 'SessionEvent.addData(entry: $entry)';
   }
 
   @override
@@ -608,12 +617,12 @@ class _$_AddData implements _AddData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AddData &&
-            const DeepCollectionEquality().equals(other.text, text));
+            const DeepCollectionEquality().equals(other.entry, entry));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(text));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(entry));
 
   @JsonKey(ignore: true)
   @override
@@ -626,11 +635,11 @@ class _$_AddData implements _AddData {
     required TResult Function(Exercise exercise) loadExercise,
     required TResult Function() closeExercise,
     required TResult Function(Session session) loadSession,
-    required TResult Function(String text) addData,
-    required TResult Function() updateData,
-    required TResult Function() deleteData,
+    required TResult Function(Entry entry) addData,
+    required TResult Function(Entry entry) updateData,
+    required TResult Function(Entry entry) deleteData,
   }) {
-    return addData(text);
+    return addData(entry);
   }
 
   @override
@@ -639,11 +648,11 @@ class _$_AddData implements _AddData {
     TResult Function(Exercise exercise)? loadExercise,
     TResult Function()? closeExercise,
     TResult Function(Session session)? loadSession,
-    TResult Function(String text)? addData,
-    TResult Function()? updateData,
-    TResult Function()? deleteData,
+    TResult Function(Entry entry)? addData,
+    TResult Function(Entry entry)? updateData,
+    TResult Function(Entry entry)? deleteData,
   }) {
-    return addData?.call(text);
+    return addData?.call(entry);
   }
 
   @override
@@ -652,13 +661,13 @@ class _$_AddData implements _AddData {
     TResult Function(Exercise exercise)? loadExercise,
     TResult Function()? closeExercise,
     TResult Function(Session session)? loadSession,
-    TResult Function(String text)? addData,
-    TResult Function()? updateData,
-    TResult Function()? deleteData,
+    TResult Function(Entry entry)? addData,
+    TResult Function(Entry entry)? updateData,
+    TResult Function(Entry entry)? deleteData,
     required TResult orElse(),
   }) {
     if (addData != null) {
-      return addData(text);
+      return addData(entry);
     }
     return orElse();
   }
@@ -708,9 +717,9 @@ class _$_AddData implements _AddData {
 }
 
 abstract class _AddData implements SessionEvent {
-  const factory _AddData({required final String text}) = _$_AddData;
+  const factory _AddData({required final Entry entry}) = _$_AddData;
 
-  String get text;
+  Entry get entry;
   @JsonKey(ignore: true)
   _$$_AddDataCopyWith<_$_AddData> get copyWith =>
       throw _privateConstructorUsedError;
@@ -721,6 +730,9 @@ abstract class _$$_UpdateDataCopyWith<$Res> {
   factory _$$_UpdateDataCopyWith(
           _$_UpdateData value, $Res Function(_$_UpdateData) then) =
       __$$_UpdateDataCopyWithImpl<$Res>;
+  $Res call({Entry entry});
+
+  $EntryCopyWith<$Res> get entry;
 }
 
 /// @nodoc
@@ -732,26 +744,56 @@ class __$$_UpdateDataCopyWithImpl<$Res> extends _$SessionEventCopyWithImpl<$Res>
 
   @override
   _$_UpdateData get _value => super._value as _$_UpdateData;
+
+  @override
+  $Res call({
+    Object? entry = freezed,
+  }) {
+    return _then(_$_UpdateData(
+      entry: entry == freezed
+          ? _value.entry
+          : entry // ignore: cast_nullable_to_non_nullable
+              as Entry,
+    ));
+  }
+
+  @override
+  $EntryCopyWith<$Res> get entry {
+    return $EntryCopyWith<$Res>(_value.entry, (value) {
+      return _then(_value.copyWith(entry: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$_UpdateData implements _UpdateData {
-  const _$_UpdateData();
+  const _$_UpdateData({required this.entry});
+
+  @override
+  final Entry entry;
 
   @override
   String toString() {
-    return 'SessionEvent.updateData()';
+    return 'SessionEvent.updateData(entry: $entry)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_UpdateData);
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateData &&
+            const DeepCollectionEquality().equals(other.entry, entry));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(entry));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_UpdateDataCopyWith<_$_UpdateData> get copyWith =>
+      __$$_UpdateDataCopyWithImpl<_$_UpdateData>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -759,11 +801,11 @@ class _$_UpdateData implements _UpdateData {
     required TResult Function(Exercise exercise) loadExercise,
     required TResult Function() closeExercise,
     required TResult Function(Session session) loadSession,
-    required TResult Function(String text) addData,
-    required TResult Function() updateData,
-    required TResult Function() deleteData,
+    required TResult Function(Entry entry) addData,
+    required TResult Function(Entry entry) updateData,
+    required TResult Function(Entry entry) deleteData,
   }) {
-    return updateData();
+    return updateData(entry);
   }
 
   @override
@@ -772,11 +814,11 @@ class _$_UpdateData implements _UpdateData {
     TResult Function(Exercise exercise)? loadExercise,
     TResult Function()? closeExercise,
     TResult Function(Session session)? loadSession,
-    TResult Function(String text)? addData,
-    TResult Function()? updateData,
-    TResult Function()? deleteData,
+    TResult Function(Entry entry)? addData,
+    TResult Function(Entry entry)? updateData,
+    TResult Function(Entry entry)? deleteData,
   }) {
-    return updateData?.call();
+    return updateData?.call(entry);
   }
 
   @override
@@ -785,13 +827,13 @@ class _$_UpdateData implements _UpdateData {
     TResult Function(Exercise exercise)? loadExercise,
     TResult Function()? closeExercise,
     TResult Function(Session session)? loadSession,
-    TResult Function(String text)? addData,
-    TResult Function()? updateData,
-    TResult Function()? deleteData,
+    TResult Function(Entry entry)? addData,
+    TResult Function(Entry entry)? updateData,
+    TResult Function(Entry entry)? deleteData,
     required TResult orElse(),
   }) {
     if (updateData != null) {
-      return updateData();
+      return updateData(entry);
     }
     return orElse();
   }
@@ -841,7 +883,12 @@ class _$_UpdateData implements _UpdateData {
 }
 
 abstract class _UpdateData implements SessionEvent {
-  const factory _UpdateData() = _$_UpdateData;
+  const factory _UpdateData({required final Entry entry}) = _$_UpdateData;
+
+  Entry get entry;
+  @JsonKey(ignore: true)
+  _$$_UpdateDataCopyWith<_$_UpdateData> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -849,6 +896,9 @@ abstract class _$$_DeleteDataCopyWith<$Res> {
   factory _$$_DeleteDataCopyWith(
           _$_DeleteData value, $Res Function(_$_DeleteData) then) =
       __$$_DeleteDataCopyWithImpl<$Res>;
+  $Res call({Entry entry});
+
+  $EntryCopyWith<$Res> get entry;
 }
 
 /// @nodoc
@@ -860,26 +910,56 @@ class __$$_DeleteDataCopyWithImpl<$Res> extends _$SessionEventCopyWithImpl<$Res>
 
   @override
   _$_DeleteData get _value => super._value as _$_DeleteData;
+
+  @override
+  $Res call({
+    Object? entry = freezed,
+  }) {
+    return _then(_$_DeleteData(
+      entry: entry == freezed
+          ? _value.entry
+          : entry // ignore: cast_nullable_to_non_nullable
+              as Entry,
+    ));
+  }
+
+  @override
+  $EntryCopyWith<$Res> get entry {
+    return $EntryCopyWith<$Res>(_value.entry, (value) {
+      return _then(_value.copyWith(entry: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$_DeleteData implements _DeleteData {
-  const _$_DeleteData();
+  const _$_DeleteData({required this.entry});
+
+  @override
+  final Entry entry;
 
   @override
   String toString() {
-    return 'SessionEvent.deleteData()';
+    return 'SessionEvent.deleteData(entry: $entry)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_DeleteData);
+        (other.runtimeType == runtimeType &&
+            other is _$_DeleteData &&
+            const DeepCollectionEquality().equals(other.entry, entry));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(entry));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_DeleteDataCopyWith<_$_DeleteData> get copyWith =>
+      __$$_DeleteDataCopyWithImpl<_$_DeleteData>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -887,11 +967,11 @@ class _$_DeleteData implements _DeleteData {
     required TResult Function(Exercise exercise) loadExercise,
     required TResult Function() closeExercise,
     required TResult Function(Session session) loadSession,
-    required TResult Function(String text) addData,
-    required TResult Function() updateData,
-    required TResult Function() deleteData,
+    required TResult Function(Entry entry) addData,
+    required TResult Function(Entry entry) updateData,
+    required TResult Function(Entry entry) deleteData,
   }) {
-    return deleteData();
+    return deleteData(entry);
   }
 
   @override
@@ -900,11 +980,11 @@ class _$_DeleteData implements _DeleteData {
     TResult Function(Exercise exercise)? loadExercise,
     TResult Function()? closeExercise,
     TResult Function(Session session)? loadSession,
-    TResult Function(String text)? addData,
-    TResult Function()? updateData,
-    TResult Function()? deleteData,
+    TResult Function(Entry entry)? addData,
+    TResult Function(Entry entry)? updateData,
+    TResult Function(Entry entry)? deleteData,
   }) {
-    return deleteData?.call();
+    return deleteData?.call(entry);
   }
 
   @override
@@ -913,13 +993,13 @@ class _$_DeleteData implements _DeleteData {
     TResult Function(Exercise exercise)? loadExercise,
     TResult Function()? closeExercise,
     TResult Function(Session session)? loadSession,
-    TResult Function(String text)? addData,
-    TResult Function()? updateData,
-    TResult Function()? deleteData,
+    TResult Function(Entry entry)? addData,
+    TResult Function(Entry entry)? updateData,
+    TResult Function(Entry entry)? deleteData,
     required TResult orElse(),
   }) {
     if (deleteData != null) {
-      return deleteData();
+      return deleteData(entry);
     }
     return orElse();
   }
@@ -969,7 +1049,12 @@ class _$_DeleteData implements _DeleteData {
 }
 
 abstract class _DeleteData implements SessionEvent {
-  const factory _DeleteData() = _$_DeleteData;
+  const factory _DeleteData({required final Entry entry}) = _$_DeleteData;
+
+  Entry get entry;
+  @JsonKey(ignore: true)
+  _$$_DeleteDataCopyWith<_$_DeleteData> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

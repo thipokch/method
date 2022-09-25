@@ -10,17 +10,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matter/card/card.dart';
 
-part 'editor/scaffold.dart';
-part 'editor/linear.dart';
-part 'editor/diverge.dart';
-part 'editor/converge.dart';
-part 'editor/feedback.dart';
+part 'page/scaffold.dart';
+part 'page/linear.dart';
+part 'page/diverge.dart';
+part 'page/converge.dart';
+part 'page/feedback.dart';
 
-class EntryEditor extends StatelessWidget {
-  const EntryEditor({super.key});
+class EntryPage extends StatelessWidget {
+  const EntryPage({
+    super.key,
+    required this.listener,
+  });
+
+  final BlocWidgetListener<EntryState> listener;
 
   @override
-  Widget build(BuildContext context) => BlocBuilder<EntryBloc, EntryState>(
+  Widget build(BuildContext context) => BlocConsumer<EntryBloc, EntryState>(
+        listener: listener,
         builder: ((context, state) {
           final textTheme = Theme.of(context).textTheme;
           final colorScheme = Theme.of(context).colorScheme;

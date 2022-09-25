@@ -110,6 +110,12 @@ scripts:
       melos build:runner && \
       melos build:splash
 
+  build:watch:
+    description: Run all code generators.
+    run: |
+      melos exec --depends-on="build_runner" -- \
+        flutter pub run build_runner watch --delete-conflicting-outputs
+
   build:runner:
     run: |
       melos exec --depends-on="build_runner" -- \

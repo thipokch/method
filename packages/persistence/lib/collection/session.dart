@@ -39,7 +39,7 @@ class SessionMapper {
   }) =>
       Session(
         template: ExerciseMapper.toDom(dao: dao.template.value!),
-        definitions: [],
+        definitions: definitions,
         hierarchyPath: dao.hierarchyPath,
         id: dao.id,
         uuid: UuidValue.fromList(dao.uuid),
@@ -65,4 +65,11 @@ class SessionRepository
 
   @override
   Collection<Entry, DbEntry> get childCollection => EntryRepository(source);
+
+  @override
+  Future<int> put(Session dom) => super.put(dom)
+    ..then((dbid) => this.collection.getSync(dbid)!
+          ..template.value =
+              source.instance.dbExercises.getByIdSync(dom.template.id)!)
+        .then((dao) => write(() => dao.template.save()));
 }

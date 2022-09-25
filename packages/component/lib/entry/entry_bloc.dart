@@ -53,17 +53,29 @@ class EntryBloc extends Bloc<EntryEvent, EntryState> {
         orElse: () => null,
       );
 
-  void _onAddData(_AddData event, Emitter<EntryState> emit) => state.maybeWhen(
-        entryLoaded: (task, entry) => emit(
-          EntryState.entryLoaded(
-            task: task,
-            entry: entry.copyWith(
-              id: event.text,
-            ),
+  void _onAddData(_AddData event, Emitter<EntryState> emit) {
+    state.maybeWhen(
+      entryLoaded: (task, entry) => emit(
+        EntryState.entryLoaded(
+          task: task,
+          entry: entry.copyWith(
+            id: event.text,
           ),
         ),
-        orElse: () => throw UnimplementedError(),
-      );
+      ),
+      taskLoaded: (task) => emit(
+        EntryState.entryLoaded(
+          task: task,
+          entry: Entry.create(
+            template: task,
+            hierarchyPath: task.hierarchyPath,
+            id: task.id,
+          ),
+        ),
+      ),
+      orElse: () => throw UnimplementedError(),
+    );
+  }
 
   void _onUpdateData(_UpdateData event, Emitter<EntryState> emit) =>
       state.maybeWhen(

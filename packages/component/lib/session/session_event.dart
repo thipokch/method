@@ -13,10 +13,14 @@ class SessionEvent with _$SessionEvent {
   }) = _LoadSession;
 
   const factory SessionEvent.addData({
-    required String text,
+    required Entry entry,
   }) = _AddData;
 
-  const factory SessionEvent.updateData() = _UpdateData;
+  const factory SessionEvent.updateData({
+    required Entry entry,
+  }) = _UpdateData;
 
-  const factory SessionEvent.deleteData() = _DeleteData;
+  const factory SessionEvent.deleteData({
+    required Entry entry,
+  }) = _DeleteData;
 }
