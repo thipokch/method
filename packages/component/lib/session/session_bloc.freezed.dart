@@ -20,8 +20,7 @@ mixin _$SessionEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(Exercise exercise) loadExercise,
     required TResult Function() closeExercise,
-    required TResult Function(Session session) loadSession,
-    required TResult Function(Entry entry) addData,
+    required TResult Function(Session? session) loadSession,
     required TResult Function(Entry entry) updateData,
     required TResult Function(Entry entry) deleteData,
   }) =>
@@ -30,8 +29,7 @@ mixin _$SessionEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Exercise exercise)? loadExercise,
     TResult Function()? closeExercise,
-    TResult Function(Session session)? loadSession,
-    TResult Function(Entry entry)? addData,
+    TResult Function(Session? session)? loadSession,
     TResult Function(Entry entry)? updateData,
     TResult Function(Entry entry)? deleteData,
   }) =>
@@ -40,8 +38,7 @@ mixin _$SessionEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Exercise exercise)? loadExercise,
     TResult Function()? closeExercise,
-    TResult Function(Session session)? loadSession,
-    TResult Function(Entry entry)? addData,
+    TResult Function(Session? session)? loadSession,
     TResult Function(Entry entry)? updateData,
     TResult Function(Entry entry)? deleteData,
     required TResult orElse(),
@@ -52,7 +49,6 @@ mixin _$SessionEvent {
     required TResult Function(_LoadExercise value) loadExercise,
     required TResult Function(_CloseExercise value) closeExercise,
     required TResult Function(_LoadSession value) loadSession,
-    required TResult Function(_AddData value) addData,
     required TResult Function(_UpdateData value) updateData,
     required TResult Function(_DeleteData value) deleteData,
   }) =>
@@ -62,7 +58,6 @@ mixin _$SessionEvent {
     TResult Function(_LoadExercise value)? loadExercise,
     TResult Function(_CloseExercise value)? closeExercise,
     TResult Function(_LoadSession value)? loadSession,
-    TResult Function(_AddData value)? addData,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
   }) =>
@@ -72,7 +67,6 @@ mixin _$SessionEvent {
     TResult Function(_LoadExercise value)? loadExercise,
     TResult Function(_CloseExercise value)? closeExercise,
     TResult Function(_LoadSession value)? loadSession,
-    TResult Function(_AddData value)? addData,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
     required TResult orElse(),
@@ -172,8 +166,7 @@ class _$_LoadExercise implements _LoadExercise {
   TResult when<TResult extends Object?>({
     required TResult Function(Exercise exercise) loadExercise,
     required TResult Function() closeExercise,
-    required TResult Function(Session session) loadSession,
-    required TResult Function(Entry entry) addData,
+    required TResult Function(Session? session) loadSession,
     required TResult Function(Entry entry) updateData,
     required TResult Function(Entry entry) deleteData,
   }) {
@@ -185,8 +178,7 @@ class _$_LoadExercise implements _LoadExercise {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Exercise exercise)? loadExercise,
     TResult Function()? closeExercise,
-    TResult Function(Session session)? loadSession,
-    TResult Function(Entry entry)? addData,
+    TResult Function(Session? session)? loadSession,
     TResult Function(Entry entry)? updateData,
     TResult Function(Entry entry)? deleteData,
   }) {
@@ -198,8 +190,7 @@ class _$_LoadExercise implements _LoadExercise {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Exercise exercise)? loadExercise,
     TResult Function()? closeExercise,
-    TResult Function(Session session)? loadSession,
-    TResult Function(Entry entry)? addData,
+    TResult Function(Session? session)? loadSession,
     TResult Function(Entry entry)? updateData,
     TResult Function(Entry entry)? deleteData,
     required TResult orElse(),
@@ -216,7 +207,6 @@ class _$_LoadExercise implements _LoadExercise {
     required TResult Function(_LoadExercise value) loadExercise,
     required TResult Function(_CloseExercise value) closeExercise,
     required TResult Function(_LoadSession value) loadSession,
-    required TResult Function(_AddData value) addData,
     required TResult Function(_UpdateData value) updateData,
     required TResult Function(_DeleteData value) deleteData,
   }) {
@@ -229,7 +219,6 @@ class _$_LoadExercise implements _LoadExercise {
     TResult Function(_LoadExercise value)? loadExercise,
     TResult Function(_CloseExercise value)? closeExercise,
     TResult Function(_LoadSession value)? loadSession,
-    TResult Function(_AddData value)? addData,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
   }) {
@@ -242,7 +231,6 @@ class _$_LoadExercise implements _LoadExercise {
     TResult Function(_LoadExercise value)? loadExercise,
     TResult Function(_CloseExercise value)? closeExercise,
     TResult Function(_LoadSession value)? loadSession,
-    TResult Function(_AddData value)? addData,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
     required TResult orElse(),
@@ -307,8 +295,7 @@ class _$_CloseExercise implements _CloseExercise {
   TResult when<TResult extends Object?>({
     required TResult Function(Exercise exercise) loadExercise,
     required TResult Function() closeExercise,
-    required TResult Function(Session session) loadSession,
-    required TResult Function(Entry entry) addData,
+    required TResult Function(Session? session) loadSession,
     required TResult Function(Entry entry) updateData,
     required TResult Function(Entry entry) deleteData,
   }) {
@@ -320,8 +307,7 @@ class _$_CloseExercise implements _CloseExercise {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Exercise exercise)? loadExercise,
     TResult Function()? closeExercise,
-    TResult Function(Session session)? loadSession,
-    TResult Function(Entry entry)? addData,
+    TResult Function(Session? session)? loadSession,
     TResult Function(Entry entry)? updateData,
     TResult Function(Entry entry)? deleteData,
   }) {
@@ -333,8 +319,7 @@ class _$_CloseExercise implements _CloseExercise {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Exercise exercise)? loadExercise,
     TResult Function()? closeExercise,
-    TResult Function(Session session)? loadSession,
-    TResult Function(Entry entry)? addData,
+    TResult Function(Session? session)? loadSession,
     TResult Function(Entry entry)? updateData,
     TResult Function(Entry entry)? deleteData,
     required TResult orElse(),
@@ -351,7 +336,6 @@ class _$_CloseExercise implements _CloseExercise {
     required TResult Function(_LoadExercise value) loadExercise,
     required TResult Function(_CloseExercise value) closeExercise,
     required TResult Function(_LoadSession value) loadSession,
-    required TResult Function(_AddData value) addData,
     required TResult Function(_UpdateData value) updateData,
     required TResult Function(_DeleteData value) deleteData,
   }) {
@@ -364,7 +348,6 @@ class _$_CloseExercise implements _CloseExercise {
     TResult Function(_LoadExercise value)? loadExercise,
     TResult Function(_CloseExercise value)? closeExercise,
     TResult Function(_LoadSession value)? loadSession,
-    TResult Function(_AddData value)? addData,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
   }) {
@@ -377,7 +360,6 @@ class _$_CloseExercise implements _CloseExercise {
     TResult Function(_LoadExercise value)? loadExercise,
     TResult Function(_CloseExercise value)? closeExercise,
     TResult Function(_LoadSession value)? loadSession,
-    TResult Function(_AddData value)? addData,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
     required TResult orElse(),
@@ -398,9 +380,9 @@ abstract class _$$_LoadSessionCopyWith<$Res> {
   factory _$$_LoadSessionCopyWith(
           _$_LoadSession value, $Res Function(_$_LoadSession) then) =
       __$$_LoadSessionCopyWithImpl<$Res>;
-  $Res call({Session session});
+  $Res call({Session? session});
 
-  $SessionCopyWith<$Res> get session;
+  $SessionCopyWith<$Res>? get session;
 }
 
 /// @nodoc
@@ -422,13 +404,17 @@ class __$$_LoadSessionCopyWithImpl<$Res>
       session: session == freezed
           ? _value.session
           : session // ignore: cast_nullable_to_non_nullable
-              as Session,
+              as Session?,
     ));
   }
 
   @override
-  $SessionCopyWith<$Res> get session {
-    return $SessionCopyWith<$Res>(_value.session, (value) {
+  $SessionCopyWith<$Res>? get session {
+    if (_value.session == null) {
+      return null;
+    }
+
+    return $SessionCopyWith<$Res>(_value.session!, (value) {
       return _then(_value.copyWith(session: value));
     });
   }
@@ -437,10 +423,10 @@ class __$$_LoadSessionCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_LoadSession implements _LoadSession {
-  const _$_LoadSession({required this.session});
+  const _$_LoadSession({this.session});
 
   @override
-  final Session session;
+  final Session? session;
 
   @override
   String toString() {
@@ -469,8 +455,7 @@ class _$_LoadSession implements _LoadSession {
   TResult when<TResult extends Object?>({
     required TResult Function(Exercise exercise) loadExercise,
     required TResult Function() closeExercise,
-    required TResult Function(Session session) loadSession,
-    required TResult Function(Entry entry) addData,
+    required TResult Function(Session? session) loadSession,
     required TResult Function(Entry entry) updateData,
     required TResult Function(Entry entry) deleteData,
   }) {
@@ -482,8 +467,7 @@ class _$_LoadSession implements _LoadSession {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Exercise exercise)? loadExercise,
     TResult Function()? closeExercise,
-    TResult Function(Session session)? loadSession,
-    TResult Function(Entry entry)? addData,
+    TResult Function(Session? session)? loadSession,
     TResult Function(Entry entry)? updateData,
     TResult Function(Entry entry)? deleteData,
   }) {
@@ -495,8 +479,7 @@ class _$_LoadSession implements _LoadSession {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Exercise exercise)? loadExercise,
     TResult Function()? closeExercise,
-    TResult Function(Session session)? loadSession,
-    TResult Function(Entry entry)? addData,
+    TResult Function(Session? session)? loadSession,
     TResult Function(Entry entry)? updateData,
     TResult Function(Entry entry)? deleteData,
     required TResult orElse(),
@@ -513,7 +496,6 @@ class _$_LoadSession implements _LoadSession {
     required TResult Function(_LoadExercise value) loadExercise,
     required TResult Function(_CloseExercise value) closeExercise,
     required TResult Function(_LoadSession value) loadSession,
-    required TResult Function(_AddData value) addData,
     required TResult Function(_UpdateData value) updateData,
     required TResult Function(_DeleteData value) deleteData,
   }) {
@@ -526,7 +508,6 @@ class _$_LoadSession implements _LoadSession {
     TResult Function(_LoadExercise value)? loadExercise,
     TResult Function(_CloseExercise value)? closeExercise,
     TResult Function(_LoadSession value)? loadSession,
-    TResult Function(_AddData value)? addData,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
   }) {
@@ -539,7 +520,6 @@ class _$_LoadSession implements _LoadSession {
     TResult Function(_LoadExercise value)? loadExercise,
     TResult Function(_CloseExercise value)? closeExercise,
     TResult Function(_LoadSession value)? loadSession,
-    TResult Function(_AddData value)? addData,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
     required TResult orElse(),
@@ -552,176 +532,11 @@ class _$_LoadSession implements _LoadSession {
 }
 
 abstract class _LoadSession implements SessionEvent {
-  const factory _LoadSession({required final Session session}) = _$_LoadSession;
+  const factory _LoadSession({final Session? session}) = _$_LoadSession;
 
-  Session get session;
+  Session? get session;
   @JsonKey(ignore: true)
   _$$_LoadSessionCopyWith<_$_LoadSession> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_AddDataCopyWith<$Res> {
-  factory _$$_AddDataCopyWith(
-          _$_AddData value, $Res Function(_$_AddData) then) =
-      __$$_AddDataCopyWithImpl<$Res>;
-  $Res call({Entry entry});
-
-  $EntryCopyWith<$Res> get entry;
-}
-
-/// @nodoc
-class __$$_AddDataCopyWithImpl<$Res> extends _$SessionEventCopyWithImpl<$Res>
-    implements _$$_AddDataCopyWith<$Res> {
-  __$$_AddDataCopyWithImpl(_$_AddData _value, $Res Function(_$_AddData) _then)
-      : super(_value, (v) => _then(v as _$_AddData));
-
-  @override
-  _$_AddData get _value => super._value as _$_AddData;
-
-  @override
-  $Res call({
-    Object? entry = freezed,
-  }) {
-    return _then(_$_AddData(
-      entry: entry == freezed
-          ? _value.entry
-          : entry // ignore: cast_nullable_to_non_nullable
-              as Entry,
-    ));
-  }
-
-  @override
-  $EntryCopyWith<$Res> get entry {
-    return $EntryCopyWith<$Res>(_value.entry, (value) {
-      return _then(_value.copyWith(entry: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$_AddData implements _AddData {
-  const _$_AddData({required this.entry});
-
-  @override
-  final Entry entry;
-
-  @override
-  String toString() {
-    return 'SessionEvent.addData(entry: $entry)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_AddData &&
-            const DeepCollectionEquality().equals(other.entry, entry));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(entry));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_AddDataCopyWith<_$_AddData> get copyWith =>
-      __$$_AddDataCopyWithImpl<_$_AddData>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Exercise exercise) loadExercise,
-    required TResult Function() closeExercise,
-    required TResult Function(Session session) loadSession,
-    required TResult Function(Entry entry) addData,
-    required TResult Function(Entry entry) updateData,
-    required TResult Function(Entry entry) deleteData,
-  }) {
-    return addData(entry);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Exercise exercise)? loadExercise,
-    TResult Function()? closeExercise,
-    TResult Function(Session session)? loadSession,
-    TResult Function(Entry entry)? addData,
-    TResult Function(Entry entry)? updateData,
-    TResult Function(Entry entry)? deleteData,
-  }) {
-    return addData?.call(entry);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Exercise exercise)? loadExercise,
-    TResult Function()? closeExercise,
-    TResult Function(Session session)? loadSession,
-    TResult Function(Entry entry)? addData,
-    TResult Function(Entry entry)? updateData,
-    TResult Function(Entry entry)? deleteData,
-    required TResult orElse(),
-  }) {
-    if (addData != null) {
-      return addData(entry);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_LoadExercise value) loadExercise,
-    required TResult Function(_CloseExercise value) closeExercise,
-    required TResult Function(_LoadSession value) loadSession,
-    required TResult Function(_AddData value) addData,
-    required TResult Function(_UpdateData value) updateData,
-    required TResult Function(_DeleteData value) deleteData,
-  }) {
-    return addData(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_LoadExercise value)? loadExercise,
-    TResult Function(_CloseExercise value)? closeExercise,
-    TResult Function(_LoadSession value)? loadSession,
-    TResult Function(_AddData value)? addData,
-    TResult Function(_UpdateData value)? updateData,
-    TResult Function(_DeleteData value)? deleteData,
-  }) {
-    return addData?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadExercise value)? loadExercise,
-    TResult Function(_CloseExercise value)? closeExercise,
-    TResult Function(_LoadSession value)? loadSession,
-    TResult Function(_AddData value)? addData,
-    TResult Function(_UpdateData value)? updateData,
-    TResult Function(_DeleteData value)? deleteData,
-    required TResult orElse(),
-  }) {
-    if (addData != null) {
-      return addData(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _AddData implements SessionEvent {
-  const factory _AddData({required final Entry entry}) = _$_AddData;
-
-  Entry get entry;
-  @JsonKey(ignore: true)
-  _$$_AddDataCopyWith<_$_AddData> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -800,8 +615,7 @@ class _$_UpdateData implements _UpdateData {
   TResult when<TResult extends Object?>({
     required TResult Function(Exercise exercise) loadExercise,
     required TResult Function() closeExercise,
-    required TResult Function(Session session) loadSession,
-    required TResult Function(Entry entry) addData,
+    required TResult Function(Session? session) loadSession,
     required TResult Function(Entry entry) updateData,
     required TResult Function(Entry entry) deleteData,
   }) {
@@ -813,8 +627,7 @@ class _$_UpdateData implements _UpdateData {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Exercise exercise)? loadExercise,
     TResult Function()? closeExercise,
-    TResult Function(Session session)? loadSession,
-    TResult Function(Entry entry)? addData,
+    TResult Function(Session? session)? loadSession,
     TResult Function(Entry entry)? updateData,
     TResult Function(Entry entry)? deleteData,
   }) {
@@ -826,8 +639,7 @@ class _$_UpdateData implements _UpdateData {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Exercise exercise)? loadExercise,
     TResult Function()? closeExercise,
-    TResult Function(Session session)? loadSession,
-    TResult Function(Entry entry)? addData,
+    TResult Function(Session? session)? loadSession,
     TResult Function(Entry entry)? updateData,
     TResult Function(Entry entry)? deleteData,
     required TResult orElse(),
@@ -844,7 +656,6 @@ class _$_UpdateData implements _UpdateData {
     required TResult Function(_LoadExercise value) loadExercise,
     required TResult Function(_CloseExercise value) closeExercise,
     required TResult Function(_LoadSession value) loadSession,
-    required TResult Function(_AddData value) addData,
     required TResult Function(_UpdateData value) updateData,
     required TResult Function(_DeleteData value) deleteData,
   }) {
@@ -857,7 +668,6 @@ class _$_UpdateData implements _UpdateData {
     TResult Function(_LoadExercise value)? loadExercise,
     TResult Function(_CloseExercise value)? closeExercise,
     TResult Function(_LoadSession value)? loadSession,
-    TResult Function(_AddData value)? addData,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
   }) {
@@ -870,7 +680,6 @@ class _$_UpdateData implements _UpdateData {
     TResult Function(_LoadExercise value)? loadExercise,
     TResult Function(_CloseExercise value)? closeExercise,
     TResult Function(_LoadSession value)? loadSession,
-    TResult Function(_AddData value)? addData,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
     required TResult orElse(),
@@ -966,8 +775,7 @@ class _$_DeleteData implements _DeleteData {
   TResult when<TResult extends Object?>({
     required TResult Function(Exercise exercise) loadExercise,
     required TResult Function() closeExercise,
-    required TResult Function(Session session) loadSession,
-    required TResult Function(Entry entry) addData,
+    required TResult Function(Session? session) loadSession,
     required TResult Function(Entry entry) updateData,
     required TResult Function(Entry entry) deleteData,
   }) {
@@ -979,8 +787,7 @@ class _$_DeleteData implements _DeleteData {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Exercise exercise)? loadExercise,
     TResult Function()? closeExercise,
-    TResult Function(Session session)? loadSession,
-    TResult Function(Entry entry)? addData,
+    TResult Function(Session? session)? loadSession,
     TResult Function(Entry entry)? updateData,
     TResult Function(Entry entry)? deleteData,
   }) {
@@ -992,8 +799,7 @@ class _$_DeleteData implements _DeleteData {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Exercise exercise)? loadExercise,
     TResult Function()? closeExercise,
-    TResult Function(Session session)? loadSession,
-    TResult Function(Entry entry)? addData,
+    TResult Function(Session? session)? loadSession,
     TResult Function(Entry entry)? updateData,
     TResult Function(Entry entry)? deleteData,
     required TResult orElse(),
@@ -1010,7 +816,6 @@ class _$_DeleteData implements _DeleteData {
     required TResult Function(_LoadExercise value) loadExercise,
     required TResult Function(_CloseExercise value) closeExercise,
     required TResult Function(_LoadSession value) loadSession,
-    required TResult Function(_AddData value) addData,
     required TResult Function(_UpdateData value) updateData,
     required TResult Function(_DeleteData value) deleteData,
   }) {
@@ -1023,7 +828,6 @@ class _$_DeleteData implements _DeleteData {
     TResult Function(_LoadExercise value)? loadExercise,
     TResult Function(_CloseExercise value)? closeExercise,
     TResult Function(_LoadSession value)? loadSession,
-    TResult Function(_AddData value)? addData,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
   }) {
@@ -1036,7 +840,6 @@ class _$_DeleteData implements _DeleteData {
     TResult Function(_LoadExercise value)? loadExercise,
     TResult Function(_CloseExercise value)? closeExercise,
     TResult Function(_LoadSession value)? loadSession,
-    TResult Function(_AddData value)? addData,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
     required TResult orElse(),

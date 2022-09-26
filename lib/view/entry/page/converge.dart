@@ -33,10 +33,10 @@ class EntryEditorConverge extends StatelessWidget {
                       padding: const EdgeInsets.all(ElementScale.spaceM),
                       // onPressed: null,
                       onPressed: (() {
-                        bloc.add(const EntryEvent.addData(
-                          definition: EntryDefinition.note(
-                            hierarchyPath: "hierarchyPath",
-                            id: "id",
+                        bloc.add(EntryEvent.updateData(
+                          definition: EntryDefinition.label(
+                            hierarchyPath: hierarchyPath,
+                            id: id,
                           ),
                         ));
                       }),
@@ -88,10 +88,6 @@ class EntryEditorConverge extends StatelessWidget {
                   ),
                 ),
                 child: InkWell(
-                  // onTap: (() {
-                  //   print("inkwell");
-                  //   bloc.add(const EntryEvent.addData(text: "test"));
-                  // }),
                   child: TextField(
                     textAlign: TextAlign.center,
                     textAlignVertical: TextAlignVertical.center,

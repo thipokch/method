@@ -26,21 +26,7 @@ class SessionListView extends StatelessWidget {
           ),
           loaded: (session) => Column(
             children: [
-              Text(session.length.toString()),
-              TextButton(
-                onPressed: () => context.read<Repository>().sessions.put(
-                      Session.create(
-                        template: Content.exerciseNote,
-                        hierarchyPath: "hierarchyPath",
-                        id: "id",
-                      ),
-                    ),
-                child: const Text("add session"),
-              ),
-              TextButton(
-                onPressed: () => context.read<Repository>().sessions.clear(),
-                child: const Text("nuke history"),
-              ),
+              Text("${session.length} sessions"),
             ],
           ),
         ),

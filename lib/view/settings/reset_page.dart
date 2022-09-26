@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matter/page/page.dart';
+import 'package:repository/repository.dart';
 
 class ResetPage extends MethodPage {
   const ResetPage({
@@ -10,7 +12,7 @@ class ResetPage extends MethodPage {
     super.controller,
   }) : super(
           key: key,
-          title: "Appearance",
+          title: "Reset",
           child: const _ResetView(),
         );
 }
@@ -29,9 +31,9 @@ class _ResetView extends StatelessWidget {
               // ignore: no-empty-block
               onTap: () {},
             ),
-            const ListTile(
-              title: Text("Erase All Content and Settings"),
-              // onTap: () => context.read<SessionRepository>().removeAll(),
+            ListTile(
+              title: const Text("Erase All Content and Settings"),
+              onTap: () => context.read<Repository>().clear(),
             ),
           ],
         ),

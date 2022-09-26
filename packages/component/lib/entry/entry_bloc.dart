@@ -19,7 +19,6 @@ class EntryBloc extends Bloc<EntryEvent, EntryState> {
     on<_LoadTask>(_onLoadTask);
     on<_CloseTask>(_onCloseTask);
     on<_LoadEntry>(_onLoadEntry);
-    on<_AddData>(_onAddData);
     on<_UpdateData>(_onUpdateData);
     on<_DeleteData>(_onDeleteData);
   }
@@ -40,7 +39,7 @@ class EntryBloc extends Bloc<EntryEvent, EntryState> {
             task: task,
           ),
         ),
-        orElse: () => null,
+        orElse: () => throw UnimplementedError(),
       );
 
   void _onLoadEntry(_LoadEntry event, Emitter<EntryState> emit) =>
@@ -48,35 +47,16 @@ class EntryBloc extends Bloc<EntryEvent, EntryState> {
         taskLoaded: (task) => emit(
           EntryState.entryLoaded(
             task: task,
-            entry: event.entry,
+            entry: event.entry ??
+                Entry.create(
+                  template: task,
+                  hierarchyPath: "${task.hierarchyPath}/${task.id}",
+                  id: DateTime.now().millisecondsSinceEpoch.toString(),
+                ),
           ),
         ),
-        orElse: () => null,
+        orElse: () => throw UnimplementedError(),
       );
-
-  void _onAddData(_AddData event, Emitter<EntryState> emit) {
-    state.maybeWhen(
-      entryLoaded: (task, entry) => emit(
-        EntryState.entryLoaded(
-          task: task,
-          entry: entry.copyWith(
-            definitions: entry.definitions.toList()..add(event.definition),
-          ),
-        ),
-      ),
-      taskLoaded: (task) => emit(
-        EntryState.entryLoaded(
-          task: task,
-          entry: Entry.create(
-            template: task,
-            hierarchyPath: "${task.hierarchyPath}/${task.id}",
-            id: DateTime.now().millisecondsSinceEpoch.toString(),
-          ),
-        ),
-      ),
-      orElse: () => throw UnimplementedError(),
-    );
-  }
 
   void _onUpdateData(_UpdateData event, Emitter<EntryState> emit) =>
       state.maybeWhen(
@@ -101,7 +81,7 @@ class EntryBloc extends Bloc<EntryEvent, EntryState> {
 
           return repo.entries.put(updated);
         },
-        orElse: () => throw UnimplementedError(),
+        orElse: () => throw UnimplementedError(state.toString()),
       );
 
   void _onDeleteData(_DeleteData event, Emitter<EntryState> emit) =>

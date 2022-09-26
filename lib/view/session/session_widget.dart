@@ -31,6 +31,7 @@ part 'session_editor.dart';
 class _SessionWidget extends StatelessWidget {
   final Widget child;
   final Exercise? _exercise;
+  // final Session? _session;
   final SessionBloc? _bloc;
   final ThemeData? _theme;
 
@@ -38,8 +39,10 @@ class _SessionWidget extends StatelessWidget {
     // ignore: unused_element
     super.key,
     required Exercise exercise,
+    required Session? session,
     required this.child,
   })  : _exercise = exercise,
+        // _session = session,
         _bloc = null,
         _theme = null;
 
@@ -50,6 +53,7 @@ class _SessionWidget extends StatelessWidget {
     required ThemeData theme,
     required this.child,
   })  : _exercise = null,
+        // _session = null,
         _bloc = bloc,
         _theme = theme;
 
@@ -69,10 +73,10 @@ class _SessionWidget extends StatelessWidget {
                   ],
                 ),
                 child: BlocProvider(
-                  create: ((context) => SessionBloc(
-                        repo: context.read<Repository>(),
-                        exercise: _exercise!,
-                      )),
+                  create: (context) => SessionBloc(
+                    repo: context.read<Repository>(),
+                    exercise: _exercise!,
+                  ),
                   child: child,
                 ),
               ),

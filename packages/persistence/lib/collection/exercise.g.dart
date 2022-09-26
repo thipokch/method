@@ -165,7 +165,6 @@ DbExercise _dbExerciseDeserialize(
     presentation: reader.readString(offsets[7]),
     uuid: reader.readByteList(offsets[8]) ?? [],
   );
-  object.collectionSlug = reader.readString(offsets[0]);
   object.dbid = id;
   object.definitionsIds = reader.readStringList(offsets[1]) ?? [];
   return object;

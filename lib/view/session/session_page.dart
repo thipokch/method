@@ -3,8 +3,13 @@ part of 'session_widget.dart';
 class SessionPage extends StatefulWidget {
   const SessionPage({super.key});
 
-  static Widget create({required Exercise exercise}) => _SessionWidget(
+  static Widget create({
+    required Exercise exercise,
+    Session? session,
+  }) =>
+      _SessionWidget(
         exercise: exercise,
+        session: session,
         child: const SessionPage(),
       );
 

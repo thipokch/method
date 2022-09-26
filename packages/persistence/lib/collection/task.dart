@@ -1,6 +1,4 @@
-import 'package:core/abstract/uniform.dart';
 import 'package:core/model/task.dart';
-import 'package:core/model/task_definition.dart';
 import 'package:core/util/uuid.dart';
 import 'package:isar/isar.dart' hide Collection, WhereRepeatModifier;
 import 'package:persistence/collection/task_definition.dart';
@@ -10,18 +8,22 @@ import '../collection.dart';
 part 'task.g.dart';
 
 @collection
-class DbTask
-    extends DaoWithDefinitions<Task, TaskDefinition, DbTaskDefinition> {
-  String icon;
-  String name;
-  String description;
+class DbTask extends DaoObject {
+  @override
+  final String collectionSlug;
+
+  final String icon;
+  final String name;
+  final String description;
+
+  List<DbTaskDefinition> definitions;
 
   DbTask({
     required this.icon,
     required this.name,
     required this.description,
-    super.definitions = const [],
-    required super.collectionSlug,
+    this.definitions = const [],
+    required this.collectionSlug,
     required super.hierarchyPath,
     required super.id,
     required super.uuid,
@@ -102,24 +104,12 @@ class TaskMapper {
   }
 }
 
-class TaskRepository extends CollectionWithDefinitions<Task, DbTask,
-    TaskDefinition, DbTaskDefinition> {
+class TaskRepository extends Collection<Task, DbTask> {
   const TaskRepository(super.driver);
 
   @override
-  final parentToDao = TaskMapper.toDao;
+  DbTask toDao(Task dom) => TaskMapper.toDao(dom: dom);
 
   @override
-  final parentToDom = TaskMapper.toDom;
-
-  @override
-  WhereRepeatModifier<DbTask, DbTask, Uniform> get uniformEqualTo =>
-      (q, uniform) => q.hierarchyPathIdEqualTo(
-            uniform.hierarchyPath,
-            uniform.id,
-          );
-
-  @override
-  Collection<TaskDefinition, DbTaskDefinition> get childCollection =>
-      TaskDefinitionRepository(source);
+  Task toDom(DbTask dao) => TaskMapper.toDom(dao: dao);
 }

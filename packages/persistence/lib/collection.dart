@@ -1,7 +1,6 @@
 // ignore_for_file: invalid_use_of_protected_member
 
 import 'package:core/abstract/define.dart';
-import 'package:core/abstract/uniform.dart';
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 import 'package:persistence/source.dart';
@@ -9,28 +8,48 @@ import 'package:repository/collection.dart';
 
 part 'collection_definitions.dart';
 
-abstract class Dao<DOM> {
+abstract class Dao {
+  String get collectionSlug;
+  String get hierarchyPath;
+  String get id;
+
+  const Dao();
+}
+
+abstract class DaoObject extends Dao {
   Id? dbid; // Used by Isar
 
-  String collectionSlug;
-
+  @override
   @Index(composite: [CompositeIndex('id')])
-  String hierarchyPath;
+  final String hierarchyPath;
 
-  List<byte> uuid;
-
+  @override
   @Index(unique: true, replace: true)
-  String id;
+  final String id;
 
-  Dao({
-    required this.collectionSlug,
+  final List<byte> uuid;
+
+  DaoObject({
     required this.hierarchyPath,
     required this.id,
     required this.uuid,
   });
 }
 
-abstract class Collection<DOM, DAO extends Dao<DOM>>
+abstract class DaoEmbeded extends Dao {
+  @override
+  final String hierarchyPath;
+
+  @override
+  final String id;
+
+  const DaoEmbeded({
+    required this.hierarchyPath,
+    required this.id,
+  });
+}
+
+abstract class Collection<DOM, DAO extends Dao>
     extends RepositoryCollection<PersistenceDriver> {
   const Collection(super.driver);
 
@@ -51,22 +70,17 @@ abstract class Collection<DOM, DAO extends Dao<DOM>>
   List<DAO> toDaos(List<DOM> doms) => doms.map<DAO>((e) => toDao(e)).toList();
   List<DOM> toDoms(List<DAO> daos) => daos.map<DOM>((e) => toDom(e)).toList();
 
-  // List<T> assignDaoID<T extends Dao>(List<T> dao, List<int> ids) =>
-  //     dao.length == ids.length
-  //         ? dao.asMap().entries.map((e) => e.value..dbid = ids[e.key]).toList()
-  //         : throw Error();
-
-  WhereRepeatModifier<DAO, DAO, Uniform> get uniformEqualTo;
-
   // CONTAINS
 
   // PUT
 
-  Future<int> put(DOM dom) =>
-      write(() => collection.putByIndex('id', toDao(dom)));
+  Future<int> put(DOM dom) {
+    return write(() => collection.putByIndex('id', toDao(dom)));
+  }
 
-  Future<List<int>> putAll(List<DOM> doms) =>
-      write(() => collection.putAllByIndex('id', toDaos(doms)));
+  Future<List<int>> putAll(List<DOM> doms) {
+    return write(() => collection.putAllByIndex('id', toDaos(doms)));
+  }
 
   // GET
 
@@ -95,12 +109,6 @@ abstract class Collection<DOM, DAO extends Dao<DOM>>
 
   Stream<List<DOM>> streamCollection() => collection
       .where()
-      .watch(fireImmediately: true)
-      .map<List<DOM>>((event) => event.map<DOM>((e) => toDom(e)).toList());
-
-  Stream<List<DOM>> streamUniform(List<Uniform> uniforms) => collection
-      .where()
-      .anyOf(uniforms, uniformEqualTo)
       .watch(fireImmediately: true)
       .map<List<DOM>>((event) => event.map<DOM>((e) => toDom(e)).toList());
 

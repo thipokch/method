@@ -7,9 +7,11 @@ class TaskCard extends StatelessWidget {
 
   static Widget create({
     required Task task,
+    Entry? entry,
   }) =>
       _EntryWidget(
         task: task,
+        entry: entry,
         child: const TaskCard(),
       );
 

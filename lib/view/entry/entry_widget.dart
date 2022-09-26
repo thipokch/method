@@ -1,4 +1,5 @@
 import 'package:component/entry/entry_bloc.dart';
+import 'package:core/model/entry.dart';
 import 'package:core/model/task.dart';
 import 'package:emoji/enums.dart';
 import 'package:emoji/twemoji_widget.dart';
@@ -13,11 +14,13 @@ part 'entry_tile.dart';
 class _EntryWidget extends StatelessWidget {
   final Widget child;
   final Task task;
+  final Entry? entry;
 
   const _EntryWidget({
     // ignore: unused_element
     super.key,
     required this.task,
+    required this.entry,
     required this.child,
   });
 

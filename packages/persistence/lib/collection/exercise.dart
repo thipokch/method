@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:core/abstract/present.dart';
-import 'package:core/abstract/uniform.dart';
 import 'package:core/model/exercise.dart';
 import 'package:core/model/task.dart';
 import 'package:core/util/uuid.dart';
@@ -14,6 +13,9 @@ part 'exercise.g.dart';
 
 @collection
 class DbExercise extends DaoWithDefinitions<Exercise, Task, DbTask> {
+  @override
+  final String collectionSlug = "exercise";
+
   String icon;
   String name;
   String description;
@@ -29,7 +31,7 @@ class DbExercise extends DaoWithDefinitions<Exercise, Task, DbTask> {
     required super.id,
     required super.uuid,
     required this.presentation,
-  }) : super(collectionSlug: "exercise");
+  });
 }
 
 class ExerciseMapper {
@@ -75,13 +77,6 @@ class ExerciseRepository
 
   @override
   final parentToDom = ExerciseMapper.toDom;
-
-  @override
-  WhereRepeatModifier<DbExercise, DbExercise, Uniform> get uniformEqualTo =>
-      (q, uniform) => q.hierarchyPathIdEqualTo(
-            uniform.hierarchyPath,
-            uniform.id,
-          );
 
   @override
   Collection<Task, DbTask> get childCollection => TaskRepository(source);

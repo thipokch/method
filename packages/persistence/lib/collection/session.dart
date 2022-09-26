@@ -1,4 +1,5 @@
-import 'package:core/abstract/uniform.dart';
+// ignore_for_file: invalid_use_of_protected_member
+
 import 'package:core/model/entry.dart';
 import 'package:core/model/session.dart';
 import 'package:core/util/uuid.dart';
@@ -12,6 +13,9 @@ part 'session.g.dart';
 
 @collection
 class DbSession extends DaoWithDefinitions<Session, Entry, DbEntry> {
+  @override
+  final String collectionSlug = "session";
+
   final template = IsarLink<DbExercise>();
 
   DbSession({
@@ -19,7 +23,7 @@ class DbSession extends DaoWithDefinitions<Session, Entry, DbEntry> {
     required super.hierarchyPath,
     required super.id,
     required super.uuid,
-  }) : super(collectionSlug: "session");
+  });
 }
 
 class SessionMapper {
@@ -60,19 +64,36 @@ class SessionRepository
   final parentToDom = SessionMapper.toDom;
 
   @override
-  WhereRepeatModifier<DbSession, DbSession, Uniform> get uniformEqualTo =>
-      (q, uniform) => q.hierarchyPathIdEqualTo(
-            uniform.hierarchyPath,
-            uniform.id,
-          );
-
-  @override
   Collection<Entry, DbEntry> get childCollection => EntryRepository(source);
 
   @override
-  Future<int> put(Session dom) => super.put(dom)
-    ..then((dbid) => this.collection.getSync(dbid)!
-          ..template.value =
-              source.instance.dbExercises.getByIdSync(dom.template.id)!)
-        .then((dao) => write(() => dao.template.save()));
+  Future<int> put(Session dom) async =>
+      write(() => this.collection.putByIndex('id', toDao(dom)), silent: true)
+        ..then((dbid) => this.collection.get(dbid))
+            .then((dao) => dao!
+              ..template.value =
+                  source.instance.dbExercises.getByIdSync(dom.template.id)!)
+            .then((dao) => write(() => dao.template.save()));
+
+  @override
+  Future<List<int>> putAll(List<Session> doms) async {
+    final prom = super.putAll(doms);
+
+    await prom
+        .then((dbids) => this.collection.getAll(dbids))
+        .then((daos) => daos.whereType<DbSession>().toList())
+        .then((daos) {
+      final daosExercise = source.instance.dbExercises
+          .getAllByIdSync(doms.map((e) => e.template.id).toList());
+
+      final writeSync = Isar.getInstance()!.writeTxnSync;
+
+      daos.asMap().entries.forEach((e) {
+        e.value.template.value = daosExercise[e.key];
+        writeSync(() => e.value.template.saveSync());
+      });
+    });
+
+    return prom;
+  }
 }

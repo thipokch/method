@@ -14,9 +14,8 @@ class Repository {
 
   Repository._(this.local);
 
-  static Future<Repository> load() async {
-    final local = await PersistenceDriver.load();
+  static Future<Repository> load() async =>
+      Repository._(await PersistenceDriver.load());
 
-    return Repository._(local);
-  }
+  Future<void> clear() => local.instance.writeTxn(() => local.instance.clear());
 }

@@ -9,12 +9,8 @@ class SessionEvent with _$SessionEvent {
   const factory SessionEvent.closeExercise() = _CloseExercise;
 
   const factory SessionEvent.loadSession({
-    required Session session,
+    Session? session,
   }) = _LoadSession;
-
-  const factory SessionEvent.addData({
-    required Entry entry,
-  }) = _AddData;
 
   const factory SessionEvent.updateData({
     required Entry entry,

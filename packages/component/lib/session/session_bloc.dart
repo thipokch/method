@@ -22,7 +22,6 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
     on<_LoadExercise>(_onLoadExercise);
     on<_CloseExercise>(_onCloseExercise);
     on<_LoadSession>(_onLoadSession);
-    on<_AddData>(_onAddData);
     on<_UpdateData>(_onUpdateData);
     on<_DeleteData>(_onDeleteData);
   }
@@ -40,17 +39,7 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
 
   void _onCloseExercise(_CloseExercise event, Emitter<SessionState> emit) =>
       state.maybeWhen(
-        sessionLoaded: (exercise, session) => emit(
-          SessionState.exerciseLoaded(
-            exercise: exercise,
-          ),
-        ),
-        exerciseLoaded: (exercise) => emit(
-          SessionState.exerciseLoaded(
-            exercise: exercise,
-          ),
-        ),
-        orElse: () => null,
+        orElse: () => throw UnimplementedError(),
       );
 
   void _onLoadSession(_LoadSession event, Emitter<SessionState> emit) =>
@@ -58,27 +47,15 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
         exerciseLoaded: (exercise) => emit(
           SessionState.sessionLoaded(
             exercise: exercise,
-            session: event.session,
+            session: event.session ??
+                Session.create(
+                  template: exercise,
+                  hierarchyPath: "${exercise.hierarchyPath}/${exercise.id}",
+                  id: DateTime.now().millisecondsSinceEpoch.toString(),
+                ),
           ),
         ),
         orElse: () => null,
-      );
-
-  void _onAddData(_AddData event, Emitter<SessionState> emit) =>
-      state.maybeWhen(
-        sessionLoaded: (exercise, session) {
-          final updated = session.copyWith(
-            definitions: session.definitions.toList()..add(event.entry),
-          );
-
-          emit(SessionState.sessionLoaded(
-            exercise: exercise,
-            session: updated,
-          ));
-
-          return repo.sessions.put(updated);
-        },
-        orElse: () => throw UnimplementedError(),
       );
 
   void _onUpdateData(_UpdateData event, Emitter<SessionState> emit) =>

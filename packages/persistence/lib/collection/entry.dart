@@ -1,6 +1,4 @@
-import 'package:core/abstract/uniform.dart';
 import 'package:core/model/entry.dart';
-import 'package:core/model/entry_definition.dart';
 import 'package:core/util/uuid.dart';
 import 'package:isar/isar.dart' hide Collection, WhereRepeatModifier;
 import 'package:persistence/collection/entry_definition.dart';
@@ -11,16 +9,19 @@ import '../collection.dart';
 part 'entry.g.dart';
 
 @collection
-class DbEntry
-    extends DaoWithDefinitions<Entry, EntryDefinition, DbEntryDefinition> {
+class DbEntry extends DaoObject {
+  @override
+  final String collectionSlug = "entry";
+
   final template = IsarLink<DbTask>();
+  List<DbEntryDefinition> definitions;
 
   DbEntry({
-    super.definitions = const [],
+    this.definitions = const [],
     required super.hierarchyPath,
     required super.id,
     required super.uuid,
-  }) : super(collectionSlug: "entry");
+  });
 }
 
 class EntryMapper {
@@ -52,43 +53,48 @@ class EntryMapper {
       );
 }
 
-class EntryRepository extends CollectionWithDefinitions<Entry, DbEntry,
-    EntryDefinition, DbEntryDefinition> {
+class EntryRepository extends Collection<Entry, DbEntry> {
   const EntryRepository(super.driver);
 
   @override
-  final parentToDao = EntryMapper.toDao;
+  DbEntry toDao(Entry dom) => EntryMapper.toDao(dom: dom);
 
   @override
-  final parentToDom = EntryMapper.toDom;
+  Entry toDom(DbEntry dao) => EntryMapper.toDom(dao: dao);
 
   @override
-  WhereRepeatModifier<DbEntry, DbEntry, Uniform> get uniformEqualTo =>
-      (q, uniform) => q.hierarchyPathIdEqualTo(
-            uniform.hierarchyPath,
-            uniform.id,
-          );
+  Future<int> put(Entry dom) async {
+    final prom = super.put(dom);
 
-  @override
-  Collection<EntryDefinition, DbEntryDefinition> get childCollection =>
-      EntryDefinitionRepository(source);
-
-  @override
-  Future<int> put(Entry dom) => super.put(dom)
-    ..then((isarId) => this.collection.getSync(isarId)!
+    await prom
+        .then((dbid) => this.collection.get(dbid))
+        .then((dao) => dao!
           ..template.value =
               source.instance.dbTasks.getByIdSync(dom.template.id)!)
         .then((dao) => write(() => dao.template.save()));
 
-  @override
-  Future<List<int>> putAll(List<Entry> doms) => super.putAll(doms)
-    ..then((isarId) =>
-        this.collection.getAllSync(isarId).asMap().entries.forEach((e) {
-          if (e.value != null) {
-            e.value!.template.value =
-                source.instance.dbTasks.getByIdSync(doms[e.key].template.id);
+    return prom;
+  }
 
-            write(() => e.value!.template.save());
-          }
-        }));
+  @override
+  Future<List<int>> putAll(List<Entry> doms) async {
+    final prom = super.putAll(doms);
+
+    await prom
+        .then((dbids) => this.collection.getAll(dbids))
+        .then((daos) => daos.whereType<DbEntry>().toList())
+        .then((daos) {
+      final daosTask = source.instance.dbTasks
+          .getAllByIdSync(doms.map((e) => e.template.id).toList());
+
+      final writeSync = Isar.getInstance()!.writeTxnSync;
+
+      daos.asMap().entries.forEach((e) {
+        e.value.template.value = daosTask[e.key];
+        writeSync(() => e.value.template.saveSync());
+      });
+    });
+
+    return prom;
+  }
 }

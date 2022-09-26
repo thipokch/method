@@ -10,7 +10,7 @@ class SessionEditor extends StatefulWidget {
       ModalBottomSheetRoute(
         expanded: true,
         builder: (context) => _SessionWidget.from(
-          bloc: bloc,
+          bloc: bloc..add(const SessionEvent.loadSession()),
           theme: theme,
           child: const SessionEditor(),
         ),
@@ -44,18 +44,6 @@ class SessionEditorState extends State<SessionEditor> {
           builder: (context, state) {
             final bloc = context.read<SessionBloc>();
 
-            state.whenOrNull(
-              exerciseLoaded: (exercise) => bloc.add(
-                SessionEvent.loadSession(
-                  session: Session.create(
-                    template: state.exercise,
-                    hierarchyPath: "${exercise.hierarchyPath}/${exercise.id}",
-                    id: DateTime.now().millisecondsSinceEpoch.toString(),
-                  ),
-                ),
-              ),
-            );
-
             return Swiper(
               physics: const BouncingScrollPhysics(
                 parent: AlwaysScrollableScrollPhysics(),
@@ -72,7 +60,7 @@ class SessionEditorState extends State<SessionEditor> {
                 create: (context) => EntryBloc(
                   repo: context.read<Repository>(),
                   task: state.exercise.definitions[index],
-                ),
+                )..add(const EntryEvent.loadEntry()),
                 child: EntryPage(
                   listener: bloc.handleEntryBlocState,
                 ),

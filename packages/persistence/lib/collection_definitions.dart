@@ -2,8 +2,8 @@
 
 part of 'collection.dart';
 
-abstract class DaoWithDefinitions<DOM, CDOM, CDAO extends Dao<CDOM>>
-    extends Dao<DOM> {
+abstract class DaoWithDefinitions<DOM, CDOM, CDAO extends DaoObject>
+    extends DaoObject {
   @protected
   List<String> definitionsIds;
 
@@ -18,7 +18,6 @@ abstract class DaoWithDefinitions<DOM, CDOM, CDAO extends Dao<CDOM>>
 
   DaoWithDefinitions({
     required List<CDAO> definitions,
-    required super.collectionSlug,
     required super.hierarchyPath,
     required super.id,
     required super.uuid,
@@ -29,7 +28,7 @@ abstract class CollectionWithDefinitions<
     DOM extends Define<CDOM>,
     DAO extends DaoWithDefinitions<DOM, CDOM, CDAO>,
     CDOM,
-    CDAO extends Dao<CDOM>> extends Collection<DOM, DAO> {
+    CDAO extends DaoObject> extends Collection<DOM, DAO> {
   const CollectionWithDefinitions(super.driver);
 
   Collection<CDOM, CDAO> get childCollection;

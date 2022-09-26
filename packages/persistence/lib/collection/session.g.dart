@@ -140,7 +140,6 @@ DbSession _dbSessionDeserialize(
     id: reader.readString(offsets[3]),
     uuid: reader.readByteList(offsets[4]) ?? [],
   );
-  object.collectionSlug = reader.readString(offsets[0]);
   object.dbid = id;
   object.definitionsIds = reader.readStringList(offsets[1]) ?? [];
   return object;
