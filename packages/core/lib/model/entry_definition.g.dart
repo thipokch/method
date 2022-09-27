@@ -35,6 +35,7 @@ Json? _$JsonConverterToJson<Json, Value>(
     value == null ? null : toJson(value);
 
 _$_Note _$$_NoteFromJson(Map<String, dynamic> json) => _$_Note(
+      data: json['data'] as String,
       hierarchyPath: json['hierarchyPath'] as String,
       id: json['id'] as String,
       uuid: _$JsonConverterFromJson<String, UuidValue>(
@@ -43,6 +44,7 @@ _$_Note _$$_NoteFromJson(Map<String, dynamic> json) => _$_Note(
     );
 
 Map<String, dynamic> _$$_NoteToJson(_$_Note instance) => <String, dynamic>{
+      'data': instance.data,
       'hierarchyPath': instance.hierarchyPath,
       'id': instance.id,
       'uuid': _$JsonConverterToJson<String, UuidValue>(

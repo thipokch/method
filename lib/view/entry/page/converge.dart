@@ -14,8 +14,8 @@ class EntryEditorConverge extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = context.read<EntryBloc>();
     final task = bloc.state.task;
-    final prompt = task.definitions.first;
-    assert(prompt.maybeMap(note: (_) => true, orElse: () => false));
+    final note = task.definitions.first;
+    assert(note.maybeMap(note: (_) => true, orElse: () => false));
 
     final mappedDefinitions = bloc.state.whenOrNull(
       entryLoaded: (task, entry) => entry.mappedDefinitions,
@@ -27,6 +27,13 @@ class EntryEditorConverge extends StatelessWidget {
             label: (taskDef) => DefinitionLabel(
               taskDef: taskDef,
               entryDef: mappedDefinitions?[e],
+              onPressed: () => bloc
+                ..add(EntryEvent.updateData(
+                  definition: EntryDefinition.label(
+                    hierarchyPath: taskDef.hierarchyPath,
+                    id: taskDef.id,
+                  ),
+                )),
             ),
           ),
         )
@@ -34,8 +41,8 @@ class EntryEditorConverge extends StatelessWidget {
         .toList();
 
     return EntryEditorScaffold(
-      title: prompt.name,
-      description: prompt.description,
+      title: note.name,
+      description: note.description,
       slivers: [
         SliverToBoxAdapter(
           child: AspectRatio(
@@ -64,6 +71,14 @@ class EntryEditorConverge extends StatelessWidget {
                       hintText: 'Start Writing...',
                       border: InputBorder.none,
                     ),
+                    onChanged: (value) => bloc
+                      ..add(EntryEvent.updateData(
+                        definition: EntryDefinition.note(
+                          data: value,
+                          hierarchyPath: note.hierarchyPath,
+                          id: note.id,
+                        ),
+                      )),
                   ),
                 ),
               ),

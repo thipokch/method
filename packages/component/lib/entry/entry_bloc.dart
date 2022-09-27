@@ -65,7 +65,7 @@ class EntryBloc extends Bloc<EntryEvent, EntryState> {
           final index =
               entry.definitions.indexWhere((e) => event.definition.id == e.id);
 
-          final updated = index > 0
+          final updated = index >= 0
               ? entry.copyWith(
                   definitions: entry.definitions.toList()
                     ..setAll(index, [event.definition]),

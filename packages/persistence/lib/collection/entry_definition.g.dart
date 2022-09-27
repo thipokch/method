@@ -18,13 +18,18 @@ const DbEntryDefinitionSchema = Schema(
       name: r'collectionSlug',
       type: IsarType.string,
     ),
-    r'hierarchyPath': PropertySchema(
+    r'data': PropertySchema(
       id: 1,
+      name: r'data',
+      type: IsarType.string,
+    ),
+    r'hierarchyPath': PropertySchema(
+      id: 2,
       name: r'hierarchyPath',
       type: IsarType.string,
     ),
     r'id': PropertySchema(
-      id: 2,
+      id: 3,
       name: r'id',
       type: IsarType.string,
     )
@@ -42,6 +47,7 @@ int _dbEntryDefinitionEstimateSize(
 ) {
   var bytesCount = offsets.last;
   bytesCount += 3 + object.collectionSlug.length * 3;
+  bytesCount += 3 + object.data.length * 3;
   bytesCount += 3 + object.hierarchyPath.length * 3;
   bytesCount += 3 + object.id.length * 3;
   return bytesCount;
@@ -54,8 +60,9 @@ void _dbEntryDefinitionSerialize(
   Map<Type, List<int>> allOffsets,
 ) {
   writer.writeString(offsets[0], object.collectionSlug);
-  writer.writeString(offsets[1], object.hierarchyPath);
-  writer.writeString(offsets[2], object.id);
+  writer.writeString(offsets[1], object.data);
+  writer.writeString(offsets[2], object.hierarchyPath);
+  writer.writeString(offsets[3], object.id);
 }
 
 DbEntryDefinition _dbEntryDefinitionDeserialize(
@@ -66,8 +73,9 @@ DbEntryDefinition _dbEntryDefinitionDeserialize(
 ) {
   final object = DbEntryDefinition(
     collectionSlug: reader.readStringOrNull(offsets[0]) ?? "",
-    hierarchyPath: reader.readStringOrNull(offsets[1]) ?? "",
-    id: reader.readStringOrNull(offsets[2]) ?? "",
+    data: reader.readStringOrNull(offsets[1]) ?? "",
+    hierarchyPath: reader.readStringOrNull(offsets[2]) ?? "",
+    id: reader.readStringOrNull(offsets[3]) ?? "",
   );
   return object;
 }
@@ -84,6 +92,8 @@ P _dbEntryDefinitionDeserializeProp<P>(
     case 1:
       return (reader.readStringOrNull(offset) ?? "") as P;
     case 2:
+      return (reader.readStringOrNull(offset) ?? "") as P;
+    case 3:
       return (reader.readStringOrNull(offset) ?? "") as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -223,6 +233,142 @@ extension DbEntryDefinitionQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'collectionSlug',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<DbEntryDefinition, DbEntryDefinition, QAfterFilterCondition>
+      dataEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'data',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbEntryDefinition, DbEntryDefinition, QAfterFilterCondition>
+      dataGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'data',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbEntryDefinition, DbEntryDefinition, QAfterFilterCondition>
+      dataLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'data',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbEntryDefinition, DbEntryDefinition, QAfterFilterCondition>
+      dataBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'data',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbEntryDefinition, DbEntryDefinition, QAfterFilterCondition>
+      dataStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'data',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbEntryDefinition, DbEntryDefinition, QAfterFilterCondition>
+      dataEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'data',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbEntryDefinition, DbEntryDefinition, QAfterFilterCondition>
+      dataContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'data',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbEntryDefinition, DbEntryDefinition, QAfterFilterCondition>
+      dataMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'data',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DbEntryDefinition, DbEntryDefinition, QAfterFilterCondition>
+      dataIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'data',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<DbEntryDefinition, DbEntryDefinition, QAfterFilterCondition>
+      dataIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'data',
         value: '',
       ));
     });

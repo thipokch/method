@@ -38,8 +38,8 @@ mixin _$EntryDefinition {
     required TResult Function(
             String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)
         label,
-    required TResult Function(
-            String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)
+    required TResult Function(String data, String hierarchyPath, String id,
+            @UuidConverter() UuidValue? uuid)
         note,
   }) =>
       throw _privateConstructorUsedError;
@@ -48,8 +48,8 @@ mixin _$EntryDefinition {
     TResult Function(
             String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)?
         label,
-    TResult Function(
-            String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)?
+    TResult Function(String data, String hierarchyPath, String id,
+            @UuidConverter() UuidValue? uuid)?
         note,
   }) =>
       throw _privateConstructorUsedError;
@@ -58,8 +58,8 @@ mixin _$EntryDefinition {
     TResult Function(
             String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)?
         label,
-    TResult Function(
-            String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)?
+    TResult Function(String data, String hierarchyPath, String id,
+            @UuidConverter() UuidValue? uuid)?
         note,
     required TResult orElse(),
   }) =>
@@ -232,8 +232,8 @@ class _$_Label extends _Label {
     required TResult Function(
             String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)
         label,
-    required TResult Function(
-            String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)
+    required TResult Function(String data, String hierarchyPath, String id,
+            @UuidConverter() UuidValue? uuid)
         note,
   }) {
     return label(hierarchyPath, id, uuid);
@@ -245,8 +245,8 @@ class _$_Label extends _Label {
     TResult Function(
             String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)?
         label,
-    TResult Function(
-            String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)?
+    TResult Function(String data, String hierarchyPath, String id,
+            @UuidConverter() UuidValue? uuid)?
         note,
   }) {
     return label?.call(hierarchyPath, id, uuid);
@@ -258,8 +258,8 @@ class _$_Label extends _Label {
     TResult Function(
             String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)?
         label,
-    TResult Function(
-            String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)?
+    TResult Function(String data, String hierarchyPath, String id,
+            @UuidConverter() UuidValue? uuid)?
         note,
     required TResult orElse(),
   }) {
@@ -337,7 +337,10 @@ abstract class _$$_NoteCopyWith<$Res>
       __$$_NoteCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String hierarchyPath, String id, @UuidConverter() UuidValue? uuid});
+      {String data,
+      String hierarchyPath,
+      String id,
+      @UuidConverter() UuidValue? uuid});
 }
 
 /// @nodoc
@@ -351,11 +354,16 @@ class __$$_NoteCopyWithImpl<$Res> extends _$EntryDefinitionCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? data = freezed,
     Object? hierarchyPath = freezed,
     Object? id = freezed,
     Object? uuid = freezed,
   }) {
     return _then(_$_Note(
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as String,
       hierarchyPath: hierarchyPath == freezed
           ? _value.hierarchyPath
           : hierarchyPath // ignore: cast_nullable_to_non_nullable
@@ -376,7 +384,8 @@ class __$$_NoteCopyWithImpl<$Res> extends _$EntryDefinitionCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Note extends _Note {
   const _$_Note(
-      {required this.hierarchyPath,
+      {required this.data,
+      required this.hierarchyPath,
       required this.id,
       @UuidConverter() this.uuid,
       final String? $type})
@@ -385,6 +394,8 @@ class _$_Note extends _Note {
 
   factory _$_Note.fromJson(Map<String, dynamic> json) => _$$_NoteFromJson(json);
 
+  @override
+  final String data;
   @override
   final String hierarchyPath;
   @override
@@ -398,7 +409,7 @@ class _$_Note extends _Note {
 
   @override
   String toString() {
-    return 'EntryDefinition.note(hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
+    return 'EntryDefinition.note(data: $data, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
   }
 
   @override
@@ -406,6 +417,7 @@ class _$_Note extends _Note {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Note &&
+            const DeepCollectionEquality().equals(other.data, data) &&
             const DeepCollectionEquality()
                 .equals(other.hierarchyPath, hierarchyPath) &&
             const DeepCollectionEquality().equals(other.id, id) &&
@@ -416,6 +428,7 @@ class _$_Note extends _Note {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(data),
       const DeepCollectionEquality().hash(hierarchyPath),
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(uuid));
@@ -431,11 +444,11 @@ class _$_Note extends _Note {
     required TResult Function(
             String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)
         label,
-    required TResult Function(
-            String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)
+    required TResult Function(String data, String hierarchyPath, String id,
+            @UuidConverter() UuidValue? uuid)
         note,
   }) {
-    return note(hierarchyPath, id, uuid);
+    return note(data, hierarchyPath, id, uuid);
   }
 
   @override
@@ -444,11 +457,11 @@ class _$_Note extends _Note {
     TResult Function(
             String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)?
         label,
-    TResult Function(
-            String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)?
+    TResult Function(String data, String hierarchyPath, String id,
+            @UuidConverter() UuidValue? uuid)?
         note,
   }) {
-    return note?.call(hierarchyPath, id, uuid);
+    return note?.call(data, hierarchyPath, id, uuid);
   }
 
   @override
@@ -457,13 +470,13 @@ class _$_Note extends _Note {
     TResult Function(
             String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)?
         label,
-    TResult Function(
-            String hierarchyPath, String id, @UuidConverter() UuidValue? uuid)?
+    TResult Function(String data, String hierarchyPath, String id,
+            @UuidConverter() UuidValue? uuid)?
         note,
     required TResult orElse(),
   }) {
     if (note != null) {
-      return note(hierarchyPath, id, uuid);
+      return note(data, hierarchyPath, id, uuid);
     }
     return orElse();
   }
@@ -509,13 +522,15 @@ class _$_Note extends _Note {
 
 abstract class _Note extends EntryDefinition {
   const factory _Note(
-      {required final String hierarchyPath,
+      {required final String data,
+      required final String hierarchyPath,
       required final String id,
       @UuidConverter() final UuidValue? uuid}) = _$_Note;
   const _Note._() : super._();
 
   factory _Note.fromJson(Map<String, dynamic> json) = _$_Note.fromJson;
 
+  String get data;
   @override
   String get hierarchyPath;
   @override

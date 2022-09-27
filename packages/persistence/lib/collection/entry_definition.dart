@@ -9,8 +9,10 @@ part 'entry_definition.g.dart';
 class DbEntryDefinition extends DaoEmbeded {
   @override
   final String collectionSlug;
+  final String data;
 
   const DbEntryDefinition({
+    this.data = "",
     this.collectionSlug = "",
     super.hierarchyPath = "",
     super.id = "",
@@ -24,6 +26,10 @@ class EntryDefinitionMapper {
     required EntryDefinition dom,
   }) =>
       DbEntryDefinition(
+        data: dom.whenOrNull(
+              note: (data, hierarchyPath, id, uuid) => data,
+            ) ??
+            "",
         collectionSlug: dom.collectionSlug,
         hierarchyPath: dom.hierarchyPath,
         id: dom.id,
@@ -41,12 +47,14 @@ class EntryDefinitionMapper {
 
       case "note":
         return EntryDefinition.note(
+          data: dao.data,
           hierarchyPath: dao.hierarchyPath,
           id: dao.id,
         );
 
       default:
         return EntryDefinition.note(
+          data: dao.data,
           hierarchyPath: dao.hierarchyPath,
           id: dao.id,
         );

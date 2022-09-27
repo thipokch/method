@@ -1,27 +1,27 @@
-import 'package:component/entry/entry_bloc.dart';
 import 'package:core/model/entry_definition.dart';
 import 'package:core/model/task_definition.dart';
 import 'package:element/element_scale.dart';
 import 'package:emoji/enums.dart';
 import 'package:emoji/twemoji_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DefinitionLabel extends StatelessWidget {
   const DefinitionLabel({
     super.key,
     required this.taskDef,
     required this.entryDef,
+    required this.onPressed,
   });
 
   final TaskDefinition taskDef;
   final EntryDefinition? entryDef;
+  final VoidCallback? onPressed;
 
   bool get isSelected => entryDef != null;
 
   @override
   Widget build(BuildContext context) {
-    final bloc = context.read<EntryBloc>();
+    // final bloc = context.read<EntryBloc>();
 
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
@@ -32,14 +32,7 @@ class DefinitionLabel extends StatelessWidget {
           iconSize: 36.0,
           style: enabledFilledButtonStyle(isSelected, colorScheme),
           padding: const EdgeInsets.all(ElementScale.spaceM),
-          onPressed: () => bloc
-            ..add(const EntryEvent.clearData())
-            ..add(EntryEvent.updateData(
-              definition: EntryDefinition.label(
-                hierarchyPath: taskDef.hierarchyPath,
-                id: taskDef.id,
-              ),
-            )),
+          onPressed: onPressed,
           // color: colorScheme.primaryContainer,
           icon: SizedBox(
             height: 36.0,

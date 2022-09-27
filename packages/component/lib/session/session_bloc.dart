@@ -64,7 +64,7 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
           final index =
               session.definitions.indexWhere((e) => event.entry.id == e.id);
 
-          final updated = index > 0
+          final updated = index >= 0
               ? session.copyWith(
                   definitions: session.definitions.toList()
                     ..setAll(index, [event.entry]),

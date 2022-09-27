@@ -15,10 +15,6 @@ class EntryEditorFeedback extends StatelessWidget {
     final bloc = context.read<EntryBloc>();
     final state = bloc.state;
 
-    // final entry = bloc.state.whenOrNull(
-    //   entryLoaded: (task, entry) => entry,
-    // );
-
     final mappedDefinitions = bloc.state.whenOrNull(
       entryLoaded: (task, entry) => entry.mappedDefinitions,
     );
@@ -29,6 +25,14 @@ class EntryEditorFeedback extends StatelessWidget {
             label: (taskDef) => DefinitionLabel(
               taskDef: taskDef,
               entryDef: mappedDefinitions?[e],
+              onPressed: () => bloc
+                ..add(const EntryEvent.clearData())
+                ..add(EntryEvent.updateData(
+                  definition: EntryDefinition.label(
+                    hierarchyPath: taskDef.hierarchyPath,
+                    id: taskDef.id,
+                  ),
+                )),
             ),
           ),
         )

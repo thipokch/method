@@ -35,6 +35,22 @@ class EntryEditorDiverge extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 4.0),
                   child: DefinitionCard(
                     taskDef: definitions[index],
+                    onTap: () => bloc
+                      ..add(EntryEvent.updateData(
+                        definition: EntryDefinition.note(
+                          data: "",
+                          hierarchyPath: definitions[index].hierarchyPath,
+                          id: definitions[index].id,
+                        ),
+                      )),
+                    onChanged: (value) => bloc
+                      ..add(EntryEvent.updateData(
+                        definition: EntryDefinition.note(
+                          data: value,
+                          hierarchyPath: definitions[index].hierarchyPath,
+                          id: definitions[index].id,
+                        ),
+                      )),
                   ),
                 ),
               ),

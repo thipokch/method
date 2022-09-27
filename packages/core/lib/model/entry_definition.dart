@@ -18,6 +18,7 @@ class EntryDefinition with _$EntryDefinition, Identify, Locate {
   }) = _Label;
 
   const factory EntryDefinition.note({
+    required String data,
     required String hierarchyPath,
     required String id,
     @UuidConverter() UuidValue? uuid,
