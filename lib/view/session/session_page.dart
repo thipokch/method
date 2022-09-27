@@ -233,6 +233,12 @@ class SessionPageState extends State<SessionPage>
                         ),
                       ),
                     ),
+                    SliverToBoxAdapter(
+                      child: SessionListView.createByExercise(
+                        // repo: repo,
+                        exercise: exercise,
+                      ),
+                    ),
                   ],
                 ),
               ),

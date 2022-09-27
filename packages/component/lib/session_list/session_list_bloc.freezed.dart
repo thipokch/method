@@ -19,38 +19,50 @@ mixin _$SessionListEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
+    required TResult Function(Exercise exercise) loadByExercise,
     required TResult Function(List<Session> sessions) update,
+    required TResult Function() close,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function(Exercise exercise)? loadByExercise,
     TResult Function(List<Session> sessions)? update,
+    TResult Function()? close,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function(Exercise exercise)? loadByExercise,
     TResult Function(List<Session> sessions)? update,
+    TResult Function()? close,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
+    required TResult Function(_LoadByExercise value) loadByExercise,
     required TResult Function(_Update value) update,
+    required TResult Function(_Close value) close,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Load value)? load,
+    TResult Function(_LoadByExercise value)? loadByExercise,
     TResult Function(_Update value)? update,
+    TResult Function(_Close value)? close,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
+    TResult Function(_LoadByExercise value)? loadByExercise,
     TResult Function(_Update value)? update,
+    TResult Function(_Close value)? close,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -112,7 +124,9 @@ class _$_Load implements _Load {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
+    required TResult Function(Exercise exercise) loadByExercise,
     required TResult Function(List<Session> sessions) update,
+    required TResult Function() close,
   }) {
     return load();
   }
@@ -121,7 +135,9 @@ class _$_Load implements _Load {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function(Exercise exercise)? loadByExercise,
     TResult Function(List<Session> sessions)? update,
+    TResult Function()? close,
   }) {
     return load?.call();
   }
@@ -130,7 +146,9 @@ class _$_Load implements _Load {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function(Exercise exercise)? loadByExercise,
     TResult Function(List<Session> sessions)? update,
+    TResult Function()? close,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -143,7 +161,9 @@ class _$_Load implements _Load {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
+    required TResult Function(_LoadByExercise value) loadByExercise,
     required TResult Function(_Update value) update,
+    required TResult Function(_Close value) close,
   }) {
     return load(this);
   }
@@ -152,7 +172,9 @@ class _$_Load implements _Load {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Load value)? load,
+    TResult Function(_LoadByExercise value)? loadByExercise,
     TResult Function(_Update value)? update,
+    TResult Function(_Close value)? close,
   }) {
     return load?.call(this);
   }
@@ -161,7 +183,9 @@ class _$_Load implements _Load {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
+    TResult Function(_LoadByExercise value)? loadByExercise,
     TResult Function(_Update value)? update,
+    TResult Function(_Close value)? close,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -173,6 +197,162 @@ class _$_Load implements _Load {
 
 abstract class _Load implements SessionListEvent {
   const factory _Load() = _$_Load;
+}
+
+/// @nodoc
+abstract class _$$_LoadByExerciseCopyWith<$Res> {
+  factory _$$_LoadByExerciseCopyWith(
+          _$_LoadByExercise value, $Res Function(_$_LoadByExercise) then) =
+      __$$_LoadByExerciseCopyWithImpl<$Res>;
+  $Res call({Exercise exercise});
+
+  $ExerciseCopyWith<$Res> get exercise;
+}
+
+/// @nodoc
+class __$$_LoadByExerciseCopyWithImpl<$Res>
+    extends _$SessionListEventCopyWithImpl<$Res>
+    implements _$$_LoadByExerciseCopyWith<$Res> {
+  __$$_LoadByExerciseCopyWithImpl(
+      _$_LoadByExercise _value, $Res Function(_$_LoadByExercise) _then)
+      : super(_value, (v) => _then(v as _$_LoadByExercise));
+
+  @override
+  _$_LoadByExercise get _value => super._value as _$_LoadByExercise;
+
+  @override
+  $Res call({
+    Object? exercise = freezed,
+  }) {
+    return _then(_$_LoadByExercise(
+      exercise: exercise == freezed
+          ? _value.exercise
+          : exercise // ignore: cast_nullable_to_non_nullable
+              as Exercise,
+    ));
+  }
+
+  @override
+  $ExerciseCopyWith<$Res> get exercise {
+    return $ExerciseCopyWith<$Res>(_value.exercise, (value) {
+      return _then(_value.copyWith(exercise: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_LoadByExercise implements _LoadByExercise {
+  const _$_LoadByExercise({required this.exercise});
+
+  @override
+  final Exercise exercise;
+
+  @override
+  String toString() {
+    return 'SessionListEvent.loadByExercise(exercise: $exercise)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_LoadByExercise &&
+            const DeepCollectionEquality().equals(other.exercise, exercise));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(exercise));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_LoadByExerciseCopyWith<_$_LoadByExercise> get copyWith =>
+      __$$_LoadByExerciseCopyWithImpl<_$_LoadByExercise>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(Exercise exercise) loadByExercise,
+    required TResult Function(List<Session> sessions) update,
+    required TResult Function() close,
+  }) {
+    return loadByExercise(exercise);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(Exercise exercise)? loadByExercise,
+    TResult Function(List<Session> sessions)? update,
+    TResult Function()? close,
+  }) {
+    return loadByExercise?.call(exercise);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(Exercise exercise)? loadByExercise,
+    TResult Function(List<Session> sessions)? update,
+    TResult Function()? close,
+    required TResult orElse(),
+  }) {
+    if (loadByExercise != null) {
+      return loadByExercise(exercise);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Load value) load,
+    required TResult Function(_LoadByExercise value) loadByExercise,
+    required TResult Function(_Update value) update,
+    required TResult Function(_Close value) close,
+  }) {
+    return loadByExercise(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Load value)? load,
+    TResult Function(_LoadByExercise value)? loadByExercise,
+    TResult Function(_Update value)? update,
+    TResult Function(_Close value)? close,
+  }) {
+    return loadByExercise?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Load value)? load,
+    TResult Function(_LoadByExercise value)? loadByExercise,
+    TResult Function(_Update value)? update,
+    TResult Function(_Close value)? close,
+    required TResult orElse(),
+  }) {
+    if (loadByExercise != null) {
+      return loadByExercise(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadByExercise implements SessionListEvent {
+  const factory _LoadByExercise({required final Exercise exercise}) =
+      _$_LoadByExercise;
+
+  Exercise get exercise;
+  @JsonKey(ignore: true)
+  _$$_LoadByExerciseCopyWith<_$_LoadByExercise> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -243,7 +423,9 @@ class _$_Update implements _Update {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
+    required TResult Function(Exercise exercise) loadByExercise,
     required TResult Function(List<Session> sessions) update,
+    required TResult Function() close,
   }) {
     return update(sessions);
   }
@@ -252,7 +434,9 @@ class _$_Update implements _Update {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function(Exercise exercise)? loadByExercise,
     TResult Function(List<Session> sessions)? update,
+    TResult Function()? close,
   }) {
     return update?.call(sessions);
   }
@@ -261,7 +445,9 @@ class _$_Update implements _Update {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function(Exercise exercise)? loadByExercise,
     TResult Function(List<Session> sessions)? update,
+    TResult Function()? close,
     required TResult orElse(),
   }) {
     if (update != null) {
@@ -274,7 +460,9 @@ class _$_Update implements _Update {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
+    required TResult Function(_LoadByExercise value) loadByExercise,
     required TResult Function(_Update value) update,
+    required TResult Function(_Close value) close,
   }) {
     return update(this);
   }
@@ -283,7 +471,9 @@ class _$_Update implements _Update {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Load value)? load,
+    TResult Function(_LoadByExercise value)? loadByExercise,
     TResult Function(_Update value)? update,
+    TResult Function(_Close value)? close,
   }) {
     return update?.call(this);
   }
@@ -292,7 +482,9 @@ class _$_Update implements _Update {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
+    TResult Function(_LoadByExercise value)? loadByExercise,
     TResult Function(_Update value)? update,
+    TResult Function(_Close value)? close,
     required TResult orElse(),
   }) {
     if (update != null) {
@@ -309,6 +501,120 @@ abstract class _Update implements SessionListEvent {
   @JsonKey(ignore: true)
   _$$_UpdateCopyWith<_$_Update> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_CloseCopyWith<$Res> {
+  factory _$$_CloseCopyWith(_$_Close value, $Res Function(_$_Close) then) =
+      __$$_CloseCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_CloseCopyWithImpl<$Res> extends _$SessionListEventCopyWithImpl<$Res>
+    implements _$$_CloseCopyWith<$Res> {
+  __$$_CloseCopyWithImpl(_$_Close _value, $Res Function(_$_Close) _then)
+      : super(_value, (v) => _then(v as _$_Close));
+
+  @override
+  _$_Close get _value => super._value as _$_Close;
+}
+
+/// @nodoc
+
+class _$_Close implements _Close {
+  const _$_Close();
+
+  @override
+  String toString() {
+    return 'SessionListEvent.close()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Close);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(Exercise exercise) loadByExercise,
+    required TResult Function(List<Session> sessions) update,
+    required TResult Function() close,
+  }) {
+    return close();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(Exercise exercise)? loadByExercise,
+    TResult Function(List<Session> sessions)? update,
+    TResult Function()? close,
+  }) {
+    return close?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(Exercise exercise)? loadByExercise,
+    TResult Function(List<Session> sessions)? update,
+    TResult Function()? close,
+    required TResult orElse(),
+  }) {
+    if (close != null) {
+      return close();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Load value) load,
+    required TResult Function(_LoadByExercise value) loadByExercise,
+    required TResult Function(_Update value) update,
+    required TResult Function(_Close value) close,
+  }) {
+    return close(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Load value)? load,
+    TResult Function(_LoadByExercise value)? loadByExercise,
+    TResult Function(_Update value)? update,
+    TResult Function(_Close value)? close,
+  }) {
+    return close?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Load value)? load,
+    TResult Function(_LoadByExercise value)? loadByExercise,
+    TResult Function(_Update value)? update,
+    TResult Function(_Close value)? close,
+    required TResult orElse(),
+  }) {
+    if (close != null) {
+      return close(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Close implements SessionListEvent {
+  const factory _Close() = _$_Close;
 }
 
 /// @nodoc

@@ -6,6 +6,8 @@ class ExerciseListEvent with _$ExerciseListEvent {
     @Default(null) List<Exercise>? boostrap,
   }) = _Load;
 
+  const factory ExerciseListEvent.close() = _Close;
+
   const factory ExerciseListEvent.update({
     required List<Exercise> exercises,
   }) = _Update;

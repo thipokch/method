@@ -19,4 +19,6 @@ class EntryEvent with _$EntryEvent {
   const factory EntryEvent.deleteData({
     required EntryDefinition definition,
   }) = _DeleteData;
+
+  const factory EntryEvent.clearData() = _ClearData;
 }

@@ -12,7 +12,7 @@ import '../collection.dart';
 part 'exercise.g.dart';
 
 @collection
-class DbExercise extends DaoWithDefinitions<Exercise, Task, DbTask> {
+class DbExercise extends DaoDefinition<Exercise, Task, DbTask> {
   @override
   final String collectionSlug = "exercise";
 
@@ -69,7 +69,7 @@ class ExerciseMapper {
 }
 
 class ExerciseRepository
-    extends CollectionWithDefinitions<Exercise, DbExercise, Task, DbTask> {
+    extends DaoDefinitionCollection<Exercise, DbExercise, Task, DbTask> {
   const ExerciseRepository(super.driver);
 
   @override
@@ -80,4 +80,8 @@ class ExerciseRepository
 
   @override
   Collection<Task, DbTask> get childCollection => TaskRepository(source);
+
+  @override
+  WhereRepeatModifier<DbExercise, DbExercise, String> get idEqualTo =>
+      ((q, element) => q.idEqualTo(element));
 }

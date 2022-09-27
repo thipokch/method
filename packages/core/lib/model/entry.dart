@@ -12,7 +12,13 @@ part 'entry.freezed.dart';
 part 'entry.g.dart';
 
 @freezed
-class Entry with _$Entry, Identify, Locate, Define<EntryDefinition> {
+class Entry
+    with
+        _$Entry,
+        Identify,
+        Locate,
+        DefineDefinitions<EntryDefinition>,
+        DefineTemplate<Task> {
   const Entry._();
 
   const factory Entry({

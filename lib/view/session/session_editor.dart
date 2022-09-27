@@ -60,7 +60,14 @@ class SessionEditorState extends State<SessionEditor> {
                 create: (context) => EntryBloc(
                   repo: context.read<Repository>(),
                   task: state.exercise.definitions[index],
-                )..add(const EntryEvent.loadEntry()),
+                )..add(EntryEvent.loadEntry(
+                    entry: state.whenOrNull<Entry?>(
+                      sessionLoaded: (exercise, session) =>
+                          index < session.definitions.length
+                              ? session.definitions[index]
+                              : null,
+                    ),
+                  )),
                 child: EntryPage(
                   listener: bloc.handleEntryBlocState,
                 ),

@@ -29,7 +29,14 @@ class EntryEditorFeedback extends StatelessWidget {
                             colorScheme.onSurface.withOpacity(0.12),
                       ),
                       padding: const EdgeInsets.all(ElementScale.spaceM),
-                      onPressed: null,
+                      onPressed: (() => bloc
+                        ..add(const EntryEvent.clearData())
+                        ..add(EntryEvent.updateData(
+                          definition: EntryDefinition.label(
+                            hierarchyPath: hierarchyPath,
+                            id: id,
+                          ),
+                        ))),
                       color: colorScheme.primaryContainer,
                       icon: SizedBox(
                         height: 36.0,

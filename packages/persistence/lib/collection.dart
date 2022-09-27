@@ -1,12 +1,14 @@
 // ignore_for_file: invalid_use_of_protected_member
 
 import 'package:core/abstract/define.dart';
+import 'package:core/abstract/identify.dart';
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 import 'package:persistence/source.dart';
 import 'package:repository/collection.dart';
 
-part 'collection_definitions.dart';
+part 'collection_definition.dart';
+part 'collection_template.dart';
 
 abstract class Dao {
   String get collectionSlug;
@@ -70,6 +72,8 @@ abstract class Collection<DOM, DAO extends Dao>
   List<DAO> toDaos(List<DOM> doms) => doms.map<DAO>((e) => toDao(e)).toList();
   List<DOM> toDoms(List<DAO> daos) => daos.map<DOM>((e) => toDom(e)).toList();
 
+  WhereRepeatModifier<DAO, DAO, String> get idEqualTo;
+
   // CONTAINS
 
   // PUT
@@ -106,6 +110,12 @@ abstract class Collection<DOM, DAO extends Dao>
       .toList();
 
   // GET - ASYNC
+
+  Stream<DOM> stream(String id) => collection
+      .where()
+      .anyOf([id], idEqualTo)
+      .watch(fireImmediately: true)
+      .map<DOM>((event) => toDom(event.first));
 
   Stream<List<DOM>> streamCollection() => collection
       .where()

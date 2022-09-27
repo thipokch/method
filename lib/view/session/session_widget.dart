@@ -1,6 +1,7 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:component/session/session_bloc.dart';
 import 'package:component/entry/entry_bloc.dart';
+import 'package:core/model/entry.dart';
 import 'package:core/model/exercise.dart';
 import 'package:core/model/session.dart';
 import 'package:element/element_color.dart';
@@ -18,6 +19,7 @@ import 'package:matter/airbrush/airbrush_gradient_image.dart';
 import 'package:matter/airbrush/airbrush_painter.dart';
 import 'package:matter/button/button_filled.dart';
 import 'package:matter/util/theme_image_shader.dart';
+import 'package:method/view/session_list/session_list_widget.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:repository/repository.dart';
 

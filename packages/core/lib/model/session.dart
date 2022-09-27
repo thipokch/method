@@ -12,7 +12,13 @@ part 'session.freezed.dart';
 part 'session.g.dart';
 
 @freezed
-class Session with _$Session, Identify, Locate, Define<Entry> {
+class Session
+    with
+        _$Session,
+        Identify,
+        Locate,
+        DefineDefinitions<Entry>,
+        DefineTemplate<Exercise> {
   const Session._();
 
   const factory Session({

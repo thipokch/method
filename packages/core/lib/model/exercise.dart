@@ -16,7 +16,13 @@ part 'exercise.g.dart';
 
 @freezed
 class Exercise
-    with _$Exercise, Identify, Locate, Inform, Present, Define<Task> {
+    with
+        _$Exercise,
+        Identify,
+        Locate,
+        Inform,
+        Present,
+        DefineDefinitions<Task> {
   const Exercise._();
 
   const factory Exercise({

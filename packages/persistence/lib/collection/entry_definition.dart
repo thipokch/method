@@ -53,16 +53,3 @@ class EntryDefinitionMapper {
     }
   }
 }
-
-class EntryDefinitionRepository
-    extends Collection<EntryDefinition, DbEntryDefinition> {
-  EntryDefinitionRepository(super.driver);
-
-  @override
-  DbEntryDefinition toDao(EntryDefinition dom) =>
-      EntryDefinitionMapper.toDao(dom: dom);
-
-  @override
-  EntryDefinition toDom(DbEntryDefinition dao) =>
-      EntryDefinitionMapper.toDom(dao: dao);
-}

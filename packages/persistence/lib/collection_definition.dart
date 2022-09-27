@@ -2,7 +2,7 @@
 
 part of 'collection.dart';
 
-abstract class DaoWithDefinitions<DOM, CDOM, CDAO extends DaoObject>
+abstract class DaoDefinition<DOM, CDOM, CDAO extends DaoObject>
     extends DaoObject {
   @protected
   List<String> definitionsIds;
@@ -16,7 +16,7 @@ abstract class DaoWithDefinitions<DOM, CDOM, CDAO extends DaoObject>
       .whereType<CDAO>()
       .toList();
 
-  DaoWithDefinitions({
+  DaoDefinition({
     required List<CDAO> definitions,
     required super.hierarchyPath,
     required super.id,
@@ -24,12 +24,12 @@ abstract class DaoWithDefinitions<DOM, CDOM, CDAO extends DaoObject>
   }) : definitionsIds = definitions.map((e) => e.id).toList();
 }
 
-abstract class CollectionWithDefinitions<
-    DOM extends Define<CDOM>,
-    DAO extends DaoWithDefinitions<DOM, CDOM, CDAO>,
+abstract class DaoDefinitionCollection<
+    DOM extends DefineDefinitions<CDOM>,
+    DAO extends DaoDefinition<DOM, CDOM, CDAO>,
     CDOM,
     CDAO extends DaoObject> extends Collection<DOM, DAO> {
-  const CollectionWithDefinitions(super.driver);
+  const DaoDefinitionCollection(super.driver);
 
   Collection<CDOM, CDAO> get childCollection;
 

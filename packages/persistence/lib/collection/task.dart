@@ -112,4 +112,8 @@ class TaskRepository extends Collection<Task, DbTask> {
 
   @override
   Task toDom(DbTask dao) => TaskMapper.toDom(dao: dao);
+
+  @override
+  WhereRepeatModifier<DbTask, DbTask, String> get idEqualTo =>
+      ((q, element) => q.idEqualTo(element));
 }

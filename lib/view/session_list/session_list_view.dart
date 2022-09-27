@@ -3,8 +3,18 @@ part of 'session_list_widget.dart';
 class SessionListView extends StatelessWidget {
   const SessionListView({super.key});
 
-  static Widget create({required Repository repo}) => _ExerciseListWidget(
-        repo: repo,
+  static Widget create() => _ExerciseListWidget.create(
+        // repo: repo,
+        child: const SessionListView(),
+      );
+
+  static Widget createByExercise({
+    // required final Repository repo,
+    required final Exercise exercise,
+  }) =>
+      _ExerciseListWidget.createByExercise(
+        // repo: repo,
+        exercise: exercise,
         child: const SessionListView(),
       );
 

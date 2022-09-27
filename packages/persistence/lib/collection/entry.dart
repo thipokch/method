@@ -1,4 +1,7 @@
+// ignore_for_file: invalid_use_of_protected_member
+
 import 'package:core/model/entry.dart';
+import 'package:core/model/task.dart';
 import 'package:core/util/uuid.dart';
 import 'package:isar/isar.dart' hide Collection, WhereRepeatModifier;
 import 'package:persistence/collection/entry_definition.dart';
@@ -9,11 +12,10 @@ import '../collection.dart';
 part 'entry.g.dart';
 
 @collection
-class DbEntry extends DaoObject {
+class DbEntry extends DaoObject with DaoTemplate<DbTask> {
   @override
   final String collectionSlug = "entry";
 
-  final template = IsarLink<DbTask>();
   List<DbEntryDefinition> definitions;
 
   DbEntry({
@@ -53,7 +55,8 @@ class EntryMapper {
       );
 }
 
-class EntryRepository extends Collection<Entry, DbEntry> {
+class EntryRepository extends Collection<Entry, DbEntry>
+    with DaoTemplateCollection<Entry, DbEntry, Task, DbTask> {
   const EntryRepository(super.driver);
 
   @override
@@ -63,38 +66,9 @@ class EntryRepository extends Collection<Entry, DbEntry> {
   Entry toDom(DbEntry dao) => EntryMapper.toDom(dao: dao);
 
   @override
-  Future<int> put(Entry dom) async {
-    final prom = super.put(dom);
-
-    await prom
-        .then((dbid) => this.collection.get(dbid))
-        .then((dao) => dao!
-          ..template.value =
-              source.instance.dbTasks.getByIdSync(dom.template.id)!)
-        .then((dao) => write(() => dao.template.save()));
-
-    return prom;
-  }
+  IsarCollection<DbTask> get templateCollection => source.instance.dbTasks;
 
   @override
-  Future<List<int>> putAll(List<Entry> doms) async {
-    final prom = super.putAll(doms);
-
-    await prom
-        .then((dbids) => this.collection.getAll(dbids))
-        .then((daos) => daos.whereType<DbEntry>().toList())
-        .then((daos) {
-      final daosTask = source.instance.dbTasks
-          .getAllByIdSync(doms.map((e) => e.template.id).toList());
-
-      final writeSync = Isar.getInstance()!.writeTxnSync;
-
-      daos.asMap().entries.forEach((e) {
-        e.value.template.value = daosTask[e.key];
-        writeSync(() => e.value.template.saveSync());
-      });
-    });
-
-    return prom;
-  }
+  WhereRepeatModifier<DbEntry, DbEntry, String> get idEqualTo =>
+      ((q, element) => q.idEqualTo(element));
 }

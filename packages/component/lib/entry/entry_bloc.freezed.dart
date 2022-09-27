@@ -23,6 +23,7 @@ mixin _$EntryEvent {
     required TResult Function(Entry? entry) loadEntry,
     required TResult Function(EntryDefinition definition) updateData,
     required TResult Function(EntryDefinition definition) deleteData,
+    required TResult Function() clearData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +33,7 @@ mixin _$EntryEvent {
     TResult Function(Entry? entry)? loadEntry,
     TResult Function(EntryDefinition definition)? updateData,
     TResult Function(EntryDefinition definition)? deleteData,
+    TResult Function()? clearData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +43,7 @@ mixin _$EntryEvent {
     TResult Function(Entry? entry)? loadEntry,
     TResult Function(EntryDefinition definition)? updateData,
     TResult Function(EntryDefinition definition)? deleteData,
+    TResult Function()? clearData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,6 +54,7 @@ mixin _$EntryEvent {
     required TResult Function(_LoadEntry value) loadEntry,
     required TResult Function(_UpdateData value) updateData,
     required TResult Function(_DeleteData value) deleteData,
+    required TResult Function(_ClearData value) clearData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +64,7 @@ mixin _$EntryEvent {
     TResult Function(_LoadEntry value)? loadEntry,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
+    TResult Function(_ClearData value)? clearData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +74,7 @@ mixin _$EntryEvent {
     TResult Function(_LoadEntry value)? loadEntry,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
+    TResult Function(_ClearData value)? clearData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -168,6 +174,7 @@ class _$_LoadTask implements _LoadTask {
     required TResult Function(Entry? entry) loadEntry,
     required TResult Function(EntryDefinition definition) updateData,
     required TResult Function(EntryDefinition definition) deleteData,
+    required TResult Function() clearData,
   }) {
     return loadTask(task);
   }
@@ -180,6 +187,7 @@ class _$_LoadTask implements _LoadTask {
     TResult Function(Entry? entry)? loadEntry,
     TResult Function(EntryDefinition definition)? updateData,
     TResult Function(EntryDefinition definition)? deleteData,
+    TResult Function()? clearData,
   }) {
     return loadTask?.call(task);
   }
@@ -192,6 +200,7 @@ class _$_LoadTask implements _LoadTask {
     TResult Function(Entry? entry)? loadEntry,
     TResult Function(EntryDefinition definition)? updateData,
     TResult Function(EntryDefinition definition)? deleteData,
+    TResult Function()? clearData,
     required TResult orElse(),
   }) {
     if (loadTask != null) {
@@ -208,6 +217,7 @@ class _$_LoadTask implements _LoadTask {
     required TResult Function(_LoadEntry value) loadEntry,
     required TResult Function(_UpdateData value) updateData,
     required TResult Function(_DeleteData value) deleteData,
+    required TResult Function(_ClearData value) clearData,
   }) {
     return loadTask(this);
   }
@@ -220,6 +230,7 @@ class _$_LoadTask implements _LoadTask {
     TResult Function(_LoadEntry value)? loadEntry,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
+    TResult Function(_ClearData value)? clearData,
   }) {
     return loadTask?.call(this);
   }
@@ -232,6 +243,7 @@ class _$_LoadTask implements _LoadTask {
     TResult Function(_LoadEntry value)? loadEntry,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
+    TResult Function(_ClearData value)? clearData,
     required TResult orElse(),
   }) {
     if (loadTask != null) {
@@ -295,6 +307,7 @@ class _$_CloseTask implements _CloseTask {
     required TResult Function(Entry? entry) loadEntry,
     required TResult Function(EntryDefinition definition) updateData,
     required TResult Function(EntryDefinition definition) deleteData,
+    required TResult Function() clearData,
   }) {
     return closeTask();
   }
@@ -307,6 +320,7 @@ class _$_CloseTask implements _CloseTask {
     TResult Function(Entry? entry)? loadEntry,
     TResult Function(EntryDefinition definition)? updateData,
     TResult Function(EntryDefinition definition)? deleteData,
+    TResult Function()? clearData,
   }) {
     return closeTask?.call();
   }
@@ -319,6 +333,7 @@ class _$_CloseTask implements _CloseTask {
     TResult Function(Entry? entry)? loadEntry,
     TResult Function(EntryDefinition definition)? updateData,
     TResult Function(EntryDefinition definition)? deleteData,
+    TResult Function()? clearData,
     required TResult orElse(),
   }) {
     if (closeTask != null) {
@@ -335,6 +350,7 @@ class _$_CloseTask implements _CloseTask {
     required TResult Function(_LoadEntry value) loadEntry,
     required TResult Function(_UpdateData value) updateData,
     required TResult Function(_DeleteData value) deleteData,
+    required TResult Function(_ClearData value) clearData,
   }) {
     return closeTask(this);
   }
@@ -347,6 +363,7 @@ class _$_CloseTask implements _CloseTask {
     TResult Function(_LoadEntry value)? loadEntry,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
+    TResult Function(_ClearData value)? clearData,
   }) {
     return closeTask?.call(this);
   }
@@ -359,6 +376,7 @@ class _$_CloseTask implements _CloseTask {
     TResult Function(_LoadEntry value)? loadEntry,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
+    TResult Function(_ClearData value)? clearData,
     required TResult orElse(),
   }) {
     if (closeTask != null) {
@@ -454,6 +472,7 @@ class _$_LoadEntry implements _LoadEntry {
     required TResult Function(Entry? entry) loadEntry,
     required TResult Function(EntryDefinition definition) updateData,
     required TResult Function(EntryDefinition definition) deleteData,
+    required TResult Function() clearData,
   }) {
     return loadEntry(entry);
   }
@@ -466,6 +485,7 @@ class _$_LoadEntry implements _LoadEntry {
     TResult Function(Entry? entry)? loadEntry,
     TResult Function(EntryDefinition definition)? updateData,
     TResult Function(EntryDefinition definition)? deleteData,
+    TResult Function()? clearData,
   }) {
     return loadEntry?.call(entry);
   }
@@ -478,6 +498,7 @@ class _$_LoadEntry implements _LoadEntry {
     TResult Function(Entry? entry)? loadEntry,
     TResult Function(EntryDefinition definition)? updateData,
     TResult Function(EntryDefinition definition)? deleteData,
+    TResult Function()? clearData,
     required TResult orElse(),
   }) {
     if (loadEntry != null) {
@@ -494,6 +515,7 @@ class _$_LoadEntry implements _LoadEntry {
     required TResult Function(_LoadEntry value) loadEntry,
     required TResult Function(_UpdateData value) updateData,
     required TResult Function(_DeleteData value) deleteData,
+    required TResult Function(_ClearData value) clearData,
   }) {
     return loadEntry(this);
   }
@@ -506,6 +528,7 @@ class _$_LoadEntry implements _LoadEntry {
     TResult Function(_LoadEntry value)? loadEntry,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
+    TResult Function(_ClearData value)? clearData,
   }) {
     return loadEntry?.call(this);
   }
@@ -518,6 +541,7 @@ class _$_LoadEntry implements _LoadEntry {
     TResult Function(_LoadEntry value)? loadEntry,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
+    TResult Function(_ClearData value)? clearData,
     required TResult orElse(),
   }) {
     if (loadEntry != null) {
@@ -615,6 +639,7 @@ class _$_UpdateData implements _UpdateData {
     required TResult Function(Entry? entry) loadEntry,
     required TResult Function(EntryDefinition definition) updateData,
     required TResult Function(EntryDefinition definition) deleteData,
+    required TResult Function() clearData,
   }) {
     return updateData(definition);
   }
@@ -627,6 +652,7 @@ class _$_UpdateData implements _UpdateData {
     TResult Function(Entry? entry)? loadEntry,
     TResult Function(EntryDefinition definition)? updateData,
     TResult Function(EntryDefinition definition)? deleteData,
+    TResult Function()? clearData,
   }) {
     return updateData?.call(definition);
   }
@@ -639,6 +665,7 @@ class _$_UpdateData implements _UpdateData {
     TResult Function(Entry? entry)? loadEntry,
     TResult Function(EntryDefinition definition)? updateData,
     TResult Function(EntryDefinition definition)? deleteData,
+    TResult Function()? clearData,
     required TResult orElse(),
   }) {
     if (updateData != null) {
@@ -655,6 +682,7 @@ class _$_UpdateData implements _UpdateData {
     required TResult Function(_LoadEntry value) loadEntry,
     required TResult Function(_UpdateData value) updateData,
     required TResult Function(_DeleteData value) deleteData,
+    required TResult Function(_ClearData value) clearData,
   }) {
     return updateData(this);
   }
@@ -667,6 +695,7 @@ class _$_UpdateData implements _UpdateData {
     TResult Function(_LoadEntry value)? loadEntry,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
+    TResult Function(_ClearData value)? clearData,
   }) {
     return updateData?.call(this);
   }
@@ -679,6 +708,7 @@ class _$_UpdateData implements _UpdateData {
     TResult Function(_LoadEntry value)? loadEntry,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
+    TResult Function(_ClearData value)? clearData,
     required TResult orElse(),
   }) {
     if (updateData != null) {
@@ -777,6 +807,7 @@ class _$_DeleteData implements _DeleteData {
     required TResult Function(Entry? entry) loadEntry,
     required TResult Function(EntryDefinition definition) updateData,
     required TResult Function(EntryDefinition definition) deleteData,
+    required TResult Function() clearData,
   }) {
     return deleteData(definition);
   }
@@ -789,6 +820,7 @@ class _$_DeleteData implements _DeleteData {
     TResult Function(Entry? entry)? loadEntry,
     TResult Function(EntryDefinition definition)? updateData,
     TResult Function(EntryDefinition definition)? deleteData,
+    TResult Function()? clearData,
   }) {
     return deleteData?.call(definition);
   }
@@ -801,6 +833,7 @@ class _$_DeleteData implements _DeleteData {
     TResult Function(Entry? entry)? loadEntry,
     TResult Function(EntryDefinition definition)? updateData,
     TResult Function(EntryDefinition definition)? deleteData,
+    TResult Function()? clearData,
     required TResult orElse(),
   }) {
     if (deleteData != null) {
@@ -817,6 +850,7 @@ class _$_DeleteData implements _DeleteData {
     required TResult Function(_LoadEntry value) loadEntry,
     required TResult Function(_UpdateData value) updateData,
     required TResult Function(_DeleteData value) deleteData,
+    required TResult Function(_ClearData value) clearData,
   }) {
     return deleteData(this);
   }
@@ -829,6 +863,7 @@ class _$_DeleteData implements _DeleteData {
     TResult Function(_LoadEntry value)? loadEntry,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
+    TResult Function(_ClearData value)? clearData,
   }) {
     return deleteData?.call(this);
   }
@@ -841,6 +876,7 @@ class _$_DeleteData implements _DeleteData {
     TResult Function(_LoadEntry value)? loadEntry,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
+    TResult Function(_ClearData value)? clearData,
     required TResult orElse(),
   }) {
     if (deleteData != null) {
@@ -858,6 +894,134 @@ abstract class _DeleteData implements EntryEvent {
   @JsonKey(ignore: true)
   _$$_DeleteDataCopyWith<_$_DeleteData> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_ClearDataCopyWith<$Res> {
+  factory _$$_ClearDataCopyWith(
+          _$_ClearData value, $Res Function(_$_ClearData) then) =
+      __$$_ClearDataCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_ClearDataCopyWithImpl<$Res> extends _$EntryEventCopyWithImpl<$Res>
+    implements _$$_ClearDataCopyWith<$Res> {
+  __$$_ClearDataCopyWithImpl(
+      _$_ClearData _value, $Res Function(_$_ClearData) _then)
+      : super(_value, (v) => _then(v as _$_ClearData));
+
+  @override
+  _$_ClearData get _value => super._value as _$_ClearData;
+}
+
+/// @nodoc
+
+class _$_ClearData implements _ClearData {
+  const _$_ClearData();
+
+  @override
+  String toString() {
+    return 'EntryEvent.clearData()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_ClearData);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Task task) loadTask,
+    required TResult Function() closeTask,
+    required TResult Function(Entry? entry) loadEntry,
+    required TResult Function(EntryDefinition definition) updateData,
+    required TResult Function(EntryDefinition definition) deleteData,
+    required TResult Function() clearData,
+  }) {
+    return clearData();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Task task)? loadTask,
+    TResult Function()? closeTask,
+    TResult Function(Entry? entry)? loadEntry,
+    TResult Function(EntryDefinition definition)? updateData,
+    TResult Function(EntryDefinition definition)? deleteData,
+    TResult Function()? clearData,
+  }) {
+    return clearData?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Task task)? loadTask,
+    TResult Function()? closeTask,
+    TResult Function(Entry? entry)? loadEntry,
+    TResult Function(EntryDefinition definition)? updateData,
+    TResult Function(EntryDefinition definition)? deleteData,
+    TResult Function()? clearData,
+    required TResult orElse(),
+  }) {
+    if (clearData != null) {
+      return clearData();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadTask value) loadTask,
+    required TResult Function(_CloseTask value) closeTask,
+    required TResult Function(_LoadEntry value) loadEntry,
+    required TResult Function(_UpdateData value) updateData,
+    required TResult Function(_DeleteData value) deleteData,
+    required TResult Function(_ClearData value) clearData,
+  }) {
+    return clearData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_LoadTask value)? loadTask,
+    TResult Function(_CloseTask value)? closeTask,
+    TResult Function(_LoadEntry value)? loadEntry,
+    TResult Function(_UpdateData value)? updateData,
+    TResult Function(_DeleteData value)? deleteData,
+    TResult Function(_ClearData value)? clearData,
+  }) {
+    return clearData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadTask value)? loadTask,
+    TResult Function(_CloseTask value)? closeTask,
+    TResult Function(_LoadEntry value)? loadEntry,
+    TResult Function(_UpdateData value)? updateData,
+    TResult Function(_DeleteData value)? deleteData,
+    TResult Function(_ClearData value)? clearData,
+    required TResult orElse(),
+  }) {
+    if (clearData != null) {
+      return clearData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearData implements EntryEvent {
+  const factory _ClearData() = _$_ClearData;
 }
 
 /// @nodoc
