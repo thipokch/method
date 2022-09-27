@@ -1,10 +1,12 @@
 import 'package:core/model/entry.dart';
+import 'package:core/model/task.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../abstract/define.dart';
 import '../abstract/identify.dart';
 import '../abstract/locate.dart';
+import '../util/map.dart';
 import '../util/uuid.dart';
 import 'exercise.dart';
 
@@ -51,4 +53,7 @@ class Session
 
   @override
   String get collectionSlug => "session";
+
+  Map<Task, Entry?> get mappedDefinitions =>
+      zipById(keys: template.definitions, values: definitions);
 }

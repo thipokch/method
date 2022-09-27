@@ -5,7 +5,6 @@ import 'package:emoji/enums.dart';
 import 'package:emoji/twemoji_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:matter/card/card.dart';
 import 'package:repository/repository.dart';
 
 part 'entry_card.dart';

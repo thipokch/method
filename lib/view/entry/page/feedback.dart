@@ -13,60 +13,31 @@ class EntryEditorFeedback extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<EntryBloc>();
-    final task = bloc.state.task;
+    final state = bloc.state;
 
-    final labels = task.definitions
+    // final entry = bloc.state.whenOrNull(
+    //   entryLoaded: (task, entry) => entry,
+    // );
+
+    final mappedDefinitions = bloc.state.whenOrNull(
+      entryLoaded: (task, entry) => entry.mappedDefinitions,
+    );
+
+    List<Widget> labels = state.task.definitions
         .map<Widget?>(
-          (e) => e.whenOrNull(
-            label: ((icon, name, description, hierarchyPath, id, uuid) =>
-                Column(
-                  children: [
-                    IconButton(
-                      iconSize: 36.0,
-                      style: IconButton.styleFrom(
-                        backgroundColor: colorScheme.surfaceVariant,
-                        disabledBackgroundColor:
-                            colorScheme.onSurface.withOpacity(0.12),
-                      ),
-                      padding: const EdgeInsets.all(ElementScale.spaceM),
-                      onPressed: (() => bloc
-                        ..add(const EntryEvent.clearData())
-                        ..add(EntryEvent.updateData(
-                          definition: EntryDefinition.label(
-                            hierarchyPath: hierarchyPath,
-                            id: id,
-                          ),
-                        ))),
-                      color: colorScheme.primaryContainer,
-                      icon: SizedBox(
-                        height: 36.0,
-                        width: 36.0,
-                        child: Twemoji(
-                          emoji: icon,
-                          twemojiFormat: TwemojiFormat.webp,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: ElementScale.spaceS),
-                      child: Text(
-                        name.toLowerCase(),
-                        style: textTheme.labelSmall!.copyWith(
-                          color: colorScheme.onSurfaceVariant,
-                          letterSpacing: 0.125,
-                        ),
-                      ),
-                    ),
-                  ],
-                )),
+          (e) => e.mapOrNull(
+            label: (taskDef) => DefinitionLabel(
+              taskDef: taskDef,
+              entryDef: mappedDefinitions?[e],
+            ),
           ),
         )
         .whereType<Widget>()
         .toList();
 
     return EntryEditorScaffold(
-      title: task.name,
-      description: task.description,
+      title: state.task.name,
+      description: state.task.description,
       slivers: [
         SliverSafeArea(
           top: false,

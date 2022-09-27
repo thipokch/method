@@ -1,4 +1,6 @@
 import 'package:core/model/task.dart';
+import 'package:core/model/task_definition.dart';
+import 'package:core/util/map.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -50,6 +52,9 @@ class Entry
 
   @override
   String get collectionSlug => "exercise";
+
+  Map<TaskDefinition, EntryDefinition?> get mappedDefinitions =>
+      zipById(keys: template.definitions, values: definitions);
 }
 
 // @freezed

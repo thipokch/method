@@ -33,12 +33,8 @@ class EntryEditorDiverge extends StatelessWidget {
                 childCount: definitions.length,
                 (context, index) => Padding(
                   padding: const EdgeInsets.symmetric(vertical: 4.0),
-                  child: MethodCard(
-                    title: definitions[index].name,
-                    description: definitions[index].description,
-                    emoji: definitions[index].icon,
-                    // isExpanded: false,
-                    // onTap: () {},
+                  child: DefinitionCard(
+                    taskDef: definitions[index],
                   ),
                 ),
               ),

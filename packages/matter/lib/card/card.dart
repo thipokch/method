@@ -7,7 +7,7 @@ import 'package:matter/card/card_tile.dart';
 
 import '../text/text_area.dart';
 
-class MethodCard extends StatefulWidget {
+class MethodCard extends StatelessWidget {
   final String title;
   final String description;
   final String emoji;
@@ -15,12 +15,14 @@ class MethodCard extends StatefulWidget {
   final ValueChanged<String>? onChanged;
   final GestureTapCallback? onTap;
   final TextEditingController? controller;
+  final bool isExpanded;
 
   const MethodCard({
     Key? key,
     required this.title,
     required this.description,
     required this.emoji,
+    required this.isExpanded,
     this.autofocus,
     this.onChanged,
     this.onTap,
@@ -28,17 +30,11 @@ class MethodCard extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<MethodCard> createState() => _MethodCardState();
-}
-
-class _MethodCardState extends State<MethodCard> {
-  bool isExpanded = false;
-  @override
   Widget build(BuildContext context) {
     final tile = CardTile(
-      emoji: widget.emoji,
-      title: widget.title,
-      description: widget.description,
+      emoji: emoji,
+      title: title,
+      description: description,
       trailing: AnimatedCrossFade(
         firstChild: const Icon(ElementSymbol.dismiss),
         secondChild: const Icon(ElementSymbol.add),
@@ -61,10 +57,10 @@ class _MethodCardState extends State<MethodCard> {
       ),
       child: InkWell(
         onTap: (() {
-          widget.onTap?.call();
-          setState(() {
-            isExpanded = !isExpanded;
-          });
+          onTap?.call();
+          // setState(() {
+          //   isExpanded = !isExpanded;
+          // });
         }),
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -83,10 +79,10 @@ class _MethodCardState extends State<MethodCard> {
                         tile,
                         if (isExpanded)
                           TextArea(
-                            controller: widget.controller,
-                            onTap: widget.onTap,
-                            autofocus: widget.autofocus,
-                            onChanged: widget.onChanged,
+                            controller: controller,
+                            onTap: onTap,
+                            autofocus: autofocus,
+                            onChanged: onChanged,
                           ),
                       ],
                     ),
