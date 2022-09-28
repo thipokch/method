@@ -1,32 +1,28 @@
 part of '../entry_editor.dart';
 
-class EntryEditorConverge extends StatelessWidget {
+class EntryEditorConverge extends StatelessWidget with EntryEditor {
   const EntryEditorConverge({
-    Key? key,
-    required this.textTheme,
-    required this.colorScheme,
-  }) : super(key: key);
+    super.key,
+    required this.bloc,
+  });
 
-  final TextTheme textTheme;
-  final ColorScheme colorScheme;
+  @override
+  final EntryBloc bloc;
 
   @override
   Widget build(BuildContext context) {
-    final bloc = context.read<EntryBloc>();
-    final task = bloc.state.task;
-    final note = task.definitions.first;
-    assert(note.maybeMap(note: (_) => true, orElse: () => false));
+    final textTheme = Theme.of(context).textTheme;
 
-    final mappedDefinitions = bloc.state.whenOrNull(
-      entryLoaded: (task, entry) => entry.mappedDefinitions,
-    );
+    final note = taskDefinitions.first;
+    assert(note.maybeMap(note: (_) => true, orElse: () => false));
 
     final labels = task.definitions
         .map<Widget?>(
           (e) => e.mapOrNull(
             label: (taskDef) => DefinitionLabel(
-              taskDef: taskDef,
-              entryDef: mappedDefinitions?[e],
+              bloc: bloc,
+              taskDefinition: taskDef,
+              entryDefinition: mappedDefinitions?[e.id],
               onPressed: () => bloc
                 ..add(EntryEvent.updateData(
                   definition: EntryDefinition.label(

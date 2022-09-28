@@ -1,24 +1,18 @@
 part of '../entry_editor.dart';
 
-class EntryEditorDiverge extends StatelessWidget {
+class EntryEditorDiverge extends StatelessWidget with EntryEditor {
   const EntryEditorDiverge({
-    Key? key,
-    required this.textTheme,
-    required this.colorScheme,
-  }) : super(key: key);
+    super.key,
+    required this.bloc,
+  });
 
-  final TextTheme textTheme;
-  final ColorScheme colorScheme;
+  @override
+  final EntryBloc bloc;
 
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<EntryBloc>();
     final task = bloc.state.task;
-
-    final definitions = task.definitions
-        .map<TaskDefinition?>((e) => e.mapOrNull(note: (_) => _))
-        .whereType<TaskDefinition>()
-        .toList();
 
     return EntryEditorScaffold(
       title: task.name,
@@ -30,29 +24,36 @@ class EntryEditorDiverge extends StatelessWidget {
             padding: const EdgeInsets.all(ElementScale.spaceM),
             sliver: SliverList(
               delegate: SliverChildBuilderDelegate(
-                childCount: definitions.length,
-                (context, index) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4.0),
-                  child: DefinitionCard(
-                    taskDef: definitions[index],
-                    onTap: () => bloc
-                      ..add(EntryEvent.updateData(
-                        definition: EntryDefinition.note(
-                          data: "",
-                          hierarchyPath: definitions[index].hierarchyPath,
-                          id: definitions[index].id,
-                        ),
-                      )),
-                    onChanged: (value) => bloc
-                      ..add(EntryEvent.updateData(
-                        definition: EntryDefinition.note(
-                          data: value,
-                          hierarchyPath: definitions[index].hierarchyPath,
-                          id: definitions[index].id,
-                        ),
-                      )),
-                  ),
-                ),
+                childCount: taskDefinitions.length,
+                (context, index) {
+                  final taskDefinition = taskDefinitions[index];
+                  final entryDefinition = mappedDefinitions?[taskDefinition.id];
+
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 4.0),
+                    child: DefinitionCard(
+                      bloc: bloc,
+                      taskDefinition: taskDefinition,
+                      entryDefinition: entryDefinition,
+                      onTap: () => bloc
+                        ..add(EntryEvent.updateData(
+                          definition: EntryDefinition.note(
+                            data: "",
+                            hierarchyPath: taskDefinition.hierarchyPath,
+                            id: taskDefinition.id,
+                          ),
+                        )),
+                      onChanged: (value) => bloc
+                        ..add(EntryEvent.updateData(
+                          definition: EntryDefinition.note(
+                            data: value,
+                            hierarchyPath: taskDefinition.hierarchyPath,
+                            id: taskDefinition.id,
+                          ),
+                        )),
+                    ),
+                  );
+                },
               ),
             ),
           ),

@@ -1,30 +1,26 @@
 part of '../entry_editor.dart';
 
-class EntryEditorFeedback extends StatelessWidget {
+class EntryEditorFeedback extends StatelessWidget with EntryEditor {
   const EntryEditorFeedback({
-    Key? key,
-    required this.textTheme,
-    required this.colorScheme,
-  }) : super(key: key);
+    super.key,
+    required this.bloc,
+  });
 
-  final TextTheme textTheme;
-  final ColorScheme colorScheme;
+  @override
+  final EntryBloc bloc;
 
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<EntryBloc>();
     final state = bloc.state;
 
-    final mappedDefinitions = bloc.state.whenOrNull(
-      entryLoaded: (task, entry) => entry.mappedDefinitions,
-    );
-
     List<Widget> labels = state.task.definitions
         .map<Widget?>(
           (e) => e.mapOrNull(
             label: (taskDef) => DefinitionLabel(
-              taskDef: taskDef,
-              entryDef: mappedDefinitions?[e],
+              bloc: bloc,
+              taskDefinition: taskDef,
+              entryDefinition: mappedDefinitions?[e.id],
               onPressed: () => bloc
                 ..add(const EntryEvent.clearData())
                 ..add(EntryEvent.updateData(

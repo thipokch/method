@@ -1,3 +1,4 @@
+import 'package:component/entry/entry_bloc.dart';
 import 'package:core/model/entry_definition.dart';
 import 'package:core/model/task_definition.dart';
 import 'package:element/element_scale.dart';
@@ -5,24 +6,31 @@ import 'package:emoji/enums.dart';
 import 'package:emoji/twemoji_widget.dart';
 import 'package:flutter/material.dart';
 
-class DefinitionLabel extends StatelessWidget {
+import '../entry/entry_editor.dart';
+import 'definition_widget.dart';
+
+class DefinitionLabel extends StatelessWidget
+    with EntryEditor, DefinitionEditor {
   const DefinitionLabel({
     super.key,
-    required this.taskDef,
-    required this.entryDef,
+    required this.taskDefinition,
+    required this.entryDefinition,
+    required this.bloc,
     required this.onPressed,
   });
+  @override
+  final EntryBloc bloc;
 
-  final TaskDefinition taskDef;
-  final EntryDefinition? entryDef;
+  @override
+  final TaskDefinition taskDefinition;
+
+  @override
+  final EntryDefinition? entryDefinition;
+
   final VoidCallback? onPressed;
-
-  bool get isSelected => entryDef != null;
 
   @override
   Widget build(BuildContext context) {
-    // final bloc = context.read<EntryBloc>();
-
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
 
@@ -38,7 +46,7 @@ class DefinitionLabel extends StatelessWidget {
             height: 36.0,
             width: 36.0,
             child: Twemoji(
-              emoji: taskDef.icon,
+              emoji: taskDefinition.icon,
               twemojiFormat: TwemojiFormat.webp,
             ),
           ),
@@ -46,7 +54,7 @@ class DefinitionLabel extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(top: ElementScale.spaceS),
           child: Text(
-            taskDef.name.toLowerCase(),
+            taskDefinition.name.toLowerCase(),
             style: textTheme.labelSmall!.copyWith(
               color: colorScheme.onSurfaceVariant,
               letterSpacing: 0.125,

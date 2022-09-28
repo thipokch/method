@@ -1,5 +1,7 @@
 import 'package:component/entry/entry_bloc.dart';
+import 'package:core/model/entry.dart';
 import 'package:core/model/entry_definition.dart';
+import 'package:core/model/task.dart';
 import 'package:core/model/task_definition.dart';
 import 'package:element/element_motion.dart';
 import 'package:element/element_scale.dart';
@@ -28,28 +30,29 @@ class EntryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocConsumer<EntryBloc, EntryState>(
         listener: listener,
-        builder: ((context, state) {
-          final textTheme = Theme.of(context).textTheme;
-          final colorScheme = Theme.of(context).colorScheme;
+        builder: (context, state) {
+          final bloc = context.read<EntryBloc>();
 
           return state.task.map(
-            linear: (value) => EntryEditorLinear(
-              textTheme: textTheme,
-              colorScheme: colorScheme,
-            ),
-            diverge: (value) => EntryEditorDiverge(
-              textTheme: textTheme,
-              colorScheme: colorScheme,
-            ),
-            converge: (value) => EntryEditorConverge(
-              textTheme: textTheme,
-              colorScheme: colorScheme,
-            ),
-            feedback: (value) => EntryEditorFeedback(
-              textTheme: textTheme,
-              colorScheme: colorScheme,
-            ),
+            linear: (_) => EntryEditorLinear(bloc: bloc),
+            diverge: (_) => EntryEditorDiverge(bloc: bloc),
+            converge: (_) => EntryEditorConverge(bloc: bloc),
+            feedback: (_) => EntryEditorFeedback(bloc: bloc),
           );
-        }),
+        },
       );
+}
+
+mixin EntryEditor on Widget {
+  EntryBloc get bloc;
+
+  EntryState get state => bloc.state;
+  Task get task => bloc.state.task;
+  Entry? get entry =>
+      bloc.state.whenOrNull(entryLoaded: (task, entry) => entry);
+
+  List<TaskDefinition> get taskDefinitions => task.definitions;
+  List<EntryDefinition>? get entryDefinitions => entry?.definitions;
+  Map<String, EntryDefinition?>? get mappedDefinitions =>
+      entry?.mappedDefinitions;
 }

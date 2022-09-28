@@ -1,19 +1,18 @@
 part of '../entry_editor.dart';
 
-class EntryEditorLinear extends StatelessWidget {
+class EntryEditorLinear extends StatelessWidget with EntryEditor {
   const EntryEditorLinear({
-    Key? key,
-    required this.textTheme,
-    required this.colorScheme,
-  }) : super(key: key);
+    super.key,
+    required this.bloc,
+  });
 
-  final TextTheme textTheme;
-  final ColorScheme colorScheme;
+  @override
+  final EntryBloc bloc;
 
   @override
   Widget build(BuildContext context) {
-    final bloc = context.read<EntryBloc>();
-    final task = bloc.state.task;
+    final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Theme.of(context).colorScheme;
 
     return EntryEditorScaffold(
       title: task.name,
@@ -21,7 +20,6 @@ class EntryEditorLinear extends StatelessWidget {
       slivers: [
         SliverFillRemaining(
           child: TextField(
-            //                 autofocus: false,
             style: textTheme.bodyLarge,
             expands: true,
             maxLines: null,

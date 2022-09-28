@@ -1,4 +1,5 @@
 import 'package:component/definition/definition_bloc.dart';
+import 'package:core/model/entry_definition.dart';
 import 'package:core/model/task_definition.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,4 +28,11 @@ class _DefinitionWidget extends StatelessWidget {
         ),
         child: child,
       );
+}
+
+mixin DefinitionEditor on Widget {
+  TaskDefinition get taskDefinition;
+  EntryDefinition? get entryDefinition;
+
+  bool get isSelected => entryDefinition != null;
 }

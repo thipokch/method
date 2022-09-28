@@ -1,5 +1,4 @@
 import 'package:core/model/task.dart';
-import 'package:core/model/task_definition.dart';
 import 'package:core/util/map.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -26,8 +25,8 @@ class Entry
   const factory Entry({
     required final Task template,
     required final List<EntryDefinition> definitions,
-    required String hierarchyPath,
-    required String id,
+    required final String hierarchyPath,
+    required final String id,
     @UuidConverter() UuidValue? uuid,
   }) = _Entry;
 
@@ -51,10 +50,10 @@ class Entry
   factory Entry.fromJson(Map<String, dynamic> json) => _$EntryFromJson(json);
 
   @override
-  String get collectionSlug => "exercise";
+  final String collectionSlug = "exercise";
 
-  Map<TaskDefinition, EntryDefinition?> get mappedDefinitions =>
-      zipById(keys: template.definitions, values: definitions);
+  Map<String, EntryDefinition?> get mappedDefinitions =>
+      mapId(keys: template.definitions, values: definitions);
 }
 
 // @freezed

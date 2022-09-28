@@ -1,5 +1,4 @@
 import 'package:core/model/entry.dart';
-import 'package:core/model/task.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -54,6 +53,6 @@ class Session
   @override
   String get collectionSlug => "session";
 
-  Map<Task, Entry?> get mappedDefinitions =>
-      zipById(keys: template.definitions, values: definitions);
+  Map<String, Entry?> get mappedDefinitions =>
+      mapId(keys: template.definitions, values: definitions);
 }
