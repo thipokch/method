@@ -32,6 +32,7 @@ class EntryEditorDiverge extends StatelessWidget with EntryEditor {
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4.0),
                     child: DefinitionCard(
+                      key: ValueKey(entryDefinition?.id ?? taskDefinition.uuid),
                       bloc: bloc,
                       taskDefinition: taskDefinition,
                       entryDefinition: entryDefinition,

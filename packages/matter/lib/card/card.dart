@@ -10,7 +10,7 @@ import '../text/text_area.dart';
 class MethodCard extends StatelessWidget {
   final String title;
   final String description;
-  final String emoji;
+  final String? emoji;
   final bool? autofocus;
   final ValueChanged<String>? onChanged;
   final GestureTapCallback? onTap;

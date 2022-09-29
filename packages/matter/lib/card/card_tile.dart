@@ -25,25 +25,13 @@ class CardTile extends StatelessWidget {
 
     return ListTile(
       onTap: onTap,
-      leading: emoji != null
-          ?
-          // Column(
-          //     mainAxisAlignment: MainAxisAlignment.center,
-          //     crossAxisAlignment: CrossAxisAlignment.center,
-          //     children: [
-          Twemoji(
+      leading: emoji != null && emoji!.isNotEmpty
+          ? Twemoji(
               emoji: emoji!,
               twemojiFormat: TwemojiFormat.webp,
               width: 42,
               height: 42,
             )
-          // TwemojiText(
-          //   text: emoji!,
-          //   twemojiFormat: TwemojiFormat.webp,
-          //   style: ElementScale.emojiXL,
-          // ),
-          //   ],
-          // )
           : null,
       title: Text(
         title,

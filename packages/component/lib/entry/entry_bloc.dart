@@ -15,6 +15,7 @@ class EntryBloc extends Bloc<EntryEvent, EntryState> {
   EntryBloc({
     required this.repo,
     required Task task,
+    Entry? entry,
   }) : super(_TaskLoaded(task: task)) {
     on<_LoadTask>(_onLoadTask);
     on<_CloseTask>(_onCloseTask);

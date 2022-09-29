@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:component/entry/entry_bloc.dart';
 import 'package:core/model/entry_definition.dart';
 import 'package:core/model/task_definition.dart';
@@ -15,9 +13,10 @@ class DefinitionCard extends StatefulWidget with EntryEditor, DefinitionEditor {
     required this.taskDefinition,
     required this.entryDefinition,
     required this.bloc,
+    bool? isSelected,
     this.onTap,
     this.onChanged,
-  });
+  }) : _isSelected = isSelected;
 
   @override
   final EntryBloc bloc;
@@ -28,6 +27,10 @@ class DefinitionCard extends StatefulWidget with EntryEditor, DefinitionEditor {
   @override
   final EntryDefinition? entryDefinition;
 
+  @override
+  bool get isSelected => _isSelected ?? super.isSelected;
+  final bool? _isSelected;
+
   final VoidCallback? onTap;
   final ValueChanged<String>? onChanged;
 
@@ -36,18 +39,21 @@ class DefinitionCard extends StatefulWidget with EntryEditor, DefinitionEditor {
 }
 
 class _DefinitionCardState extends State<DefinitionCard> {
-  late final TextEditingController controller;
+  late TextEditingController controller;
 
   @override
   void initState() {
-    final initialText = widget.entryDefinition?.whenOrNull(
-      note: (data, hierarchyPath, id, uuid) => data,
-    );
-
-    log(initialText ?? "no intial text");
-    controller = TextEditingController(text: initialText);
+    final text = widget.entryDefinition
+        ?.whenOrNull(note: (data, hierarchyPath, id, uuid) => data);
+    controller = TextEditingController(text: text);
 
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   @override

@@ -11,11 +11,17 @@ class EntryEditorConverge extends StatelessWidget with EntryEditor {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-
     final note = taskDefinitions.first;
-    assert(note.maybeMap(note: (_) => true, orElse: () => false));
 
+    // if (mappedDefinitions?[taskDefinitions.first] == null) {
+    //   bloc.add(EntryEvent.updateData(
+    //     definition: EntryDefinition.note(
+    //       data: "",
+    //       hierarchyPath: note.hierarchyPath,
+    //       id: note.id,
+    //     ),
+    //   ));
+    // }
     final labels = task.definitions
         .map<Widget?>(
           (e) => e.mapOrNull(
@@ -45,38 +51,22 @@ class EntryEditorConverge extends StatelessWidget with EntryEditor {
             aspectRatio: 1,
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Card(
-                elevation: 1,
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                shape: const SmoothRectangleBorder(
-                  borderRadius: SmoothBorderRadius.all(
-                    SmoothRadius(
-                      cornerRadius: ElementScale.cornerLarge,
-                      cornerSmoothing: ElementScale.cornerSmoothFactor,
-                    ),
-                  ),
+              child: DefinitionCard(
+                key: ValueKey(
+                  mappedDefinitions?[note.id]?.id ?? ValueKey(note.uuid),
                 ),
-                child: InkWell(
-                  child: TextField(
-                    textAlign: TextAlign.center,
-                    textAlignVertical: TextAlignVertical.center,
-                    style: textTheme.bodyLarge,
-                    expands: true,
-                    maxLines: null,
-                    decoration: const InputDecoration(
-                      hintText: 'Start Writing...',
-                      border: InputBorder.none,
+                bloc: bloc,
+                taskDefinition: note,
+                entryDefinition: mappedDefinitions?[note.id],
+                onChanged: (value) => bloc
+                  ..add(EntryEvent.updateData(
+                    definition: EntryDefinition.note(
+                      data: value,
+                      hierarchyPath: note.hierarchyPath,
+                      id: note.id,
                     ),
-                    onChanged: (value) => bloc
-                      ..add(EntryEvent.updateData(
-                        definition: EntryDefinition.note(
-                          data: value,
-                          hierarchyPath: note.hierarchyPath,
-                          id: note.id,
-                        ),
-                      )),
-                  ),
-                ),
+                  )),
+                isSelected: true,
               ),
             ),
           ),
