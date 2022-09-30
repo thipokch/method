@@ -1,6 +1,0 @@
-# melos_managed_dependency_overrides: element,emoji
-dependency_overrides:
-  element:
-    path: ../element
-  emoji:
-    path: ../emoji

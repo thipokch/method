@@ -2,6 +2,7 @@ name: method
 repository: https://github.com/thipokch/method
 
 packages:
+  - '*'
   - packages/**
 
 command:
@@ -49,7 +50,7 @@ scripts:
   setup:analysis:
     run: |
       melos exec -c 6 --ignore="method" -- \
-        cp ../method/analysis_options.yaml ./analysis_options.yaml
+        cp $MELOS_ROOT_PATH/analysis_options.yaml ./analysis_options.yaml
 
   setup:githook:
     description: Setup scripts to run on git hook events.
@@ -68,7 +69,6 @@ scripts:
         echo "Environment variables from .env exported..."
 
       export SECRETS_DIR=$MELOS_ROOT_PATH/.secrets
-      export METHOD_DIR=$MELOS_ROOT_PATH/packages/method
       echo "Using '$SECRETS_DIR'..."
 
       echo "Cleaning previous secrets repo..."
@@ -84,14 +84,14 @@ scripts:
       done
 
       echo "Copying Google service configurations..."
-      cp -v -r "$SECRETS_DIR/google/android/"* "$METHOD_DIR/android/app/src/"
-      cp -v -r "$SECRETS_DIR/google/darwin/"* "$METHOD_DIR/ios/"
-      cp -v -r "$SECRETS_DIR/google/web/"* "$METHOD_DIR/web/"
+      cp -v -r "$SECRETS_DIR/google/android/"* "$MELOS_ROOT_PATH/android/app/src/"
+      cp -v -r "$SECRETS_DIR/google/darwin/"* "$MELOS_ROOT_PATH/ios/"
+      cp -v -r "$SECRETS_DIR/google/web/"* "$MELOS_ROOT_PATH/web/"
       
-      cp -v -r "$SECRETS_DIR/google/flutter/dev/"* "$METHOD_DIR"
-      cp -v -r $SECRETS_DIR/google/flutter/*/lib/config/firebase.*.dart "$METHOD_DIR/lib/config/"
+      cp -v -r "$SECRETS_DIR/google/flutter/dev/"* "$MELOS_ROOT_PATH"
+      cp -v -r $SECRETS_DIR/google/flutter/*/lib/config/firebase.*.dart "$MELOS_ROOT_PATH/lib/config/"
 
-      flutter format $METHOD_DIR/lib/config/firebase.*.dart
+      flutter format ./lib/config/firebase.*.dart
 
   #
   #   Build
@@ -102,7 +102,7 @@ scripts:
       Bump build number
       For local development, use .env to set variables
         BUILD_NUM - build number
-    run: dart ./packages/method/script/version_build.dart
+    run: dart ./script/version_build.dart
 
   build:generate:
     description: Run all code generators.
@@ -171,7 +171,7 @@ scripts:
       echo "Copying Google service configurations for $BUILD_ENV environment..." && \
       cp -v -r "$MELOS_ROOT_PATH/.secrets/google/flutter/$BUILD_ENV/"* "$MELOS_ROOT_PATH" && \
 
-      flutter build apk --verbose --release --flavor=$BUILD_ENV --target=packages/method/lib/main.$BUILD_ENV.dart
+      flutter build apk --verbose --release --flavor=$BUILD_ENV --target=lib/main.$BUILD_ENV.dart
 
   build:and:dev:
     description: Builds android for development.
@@ -192,7 +192,7 @@ scripts:
       Build web for given environment.
       For local development, use .env to set variables
         BUILD_ENV - build environment (dev, stg, prd)
-    run: flutter build web --verbose --release --target=packages/method/lib/main.$BUILD_ENV.dart
+    run: flutter build web --verbose --release --target=lib/main.$BUILD_ENV.dart
 
   build:web:dev:
     description: Builds web for development.
@@ -300,7 +300,7 @@ scripts:
       export APP_STORE_CONNECT_API_KEY_ISSUER_ID=$ASC_ISSUER_ID
       export APP_STORE_CONNECT_API_KEY_KEY=$ASC_KEY_CONTENT
 
-      cd packages/method/ios && \
+      cd ios && \
       bundle exec fastlane deploy_$BUILD_ENV
 
   deploy:ios:dev:

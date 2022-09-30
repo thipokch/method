@@ -55,28 +55,28 @@ jobs:
       - name: Hygiene - Analyse
         run: melos hygiene:analyze
 
-      - name: Setup Dart Code Metrics
-        working-directory: ${{ runner.temp }}
-        run: |
-          git clone https://github.com/dart-code-checker/dart-code-metrics-action --branch v2.0.0 --single-branch
-          cd ./dart-code-metrics-action/action_app/
-          flutter pub get
+      # - name: Setup Dart Code Metrics
+      #   working-directory: ${{ runner.temp }}
+      #   run: |
+      #     git clone https://github.com/dart-code-checker/dart-code-metrics-action --branch v2.0.0 --single-branch
+      #     cd ./dart-code-metrics-action/action_app/
+      #     flutter pub get
 
-      - name: Hygiene - Code Metrics
-        env:
-          INPUT_FOLDERS: "lib, ./packages/core/lib, ./packages/core/element, ./packages/core/matter"
-          INPUT_GITHUB_TOKEN: ${{ github.token }}
-          # Defaults
-          INPUT_RELATIVE_PATH: ""
-          INPUT_PULL_REQUEST_COMMENT: false
-          INPUT_ANALYZE_REPORT_TITLE_PATTERN: "Code Metrics: $packageName ${{ github.ref_name }} #${{ steps.hash.outputs.build_num }}"
-          INPUT_FATAL_WARNINGS: false
-          INPUT_FATAL_PERFORMANCE: false
-          INPUT_FATAL_STYLE: false
-          INPUT_CHECK_UNUSED_FILES: false
-          INPUT_UNUSED_FILES_REPORT_TITLE_PATTERN: "Dart Code Metrics unused files report of $packageName."
-        run: |
-          dart run ${{ runner.temp }}/dart-code-metrics-action/action_app/bin/main.dart
+      # - name: Hygiene - Code Metrics
+      #   env:
+      #     INPUT_FOLDERS: "./packages/method, ./packages/method_bloc, ./packages/method_core, ./packages/method_emoji, ./packages/method_isar, ./packages/method_repo, ./packages/method_style, ./packages/method_ui"
+      #     INPUT_GITHUB_TOKEN: ${{ github.token }}
+      #     # Defaults
+      #     INPUT_RELATIVE_PATH: ""
+      #     INPUT_PULL_REQUEST_COMMENT: false
+      #     INPUT_ANALYZE_REPORT_TITLE_PATTERN: "Code Metrics: $packageName ${{ github.ref_name }} #${{ steps.hash.outputs.build_num }}"
+      #     INPUT_FATAL_WARNINGS: false
+      #     INPUT_FATAL_PERFORMANCE: false
+      #     INPUT_FATAL_STYLE: false
+      #     INPUT_CHECK_UNUSED_FILES: false
+      #     INPUT_UNUSED_FILES_REPORT_TITLE_PATTERN: "Dart Code Metrics unused files report of $packageName."
+      #   run: |
+      #     dart run ${{ runner.temp }}/dart-code-metrics-action/action_app/bin/main.dart
 
       - name: Flutter fail-fast test
         run: melos test:fast
@@ -91,12 +91,12 @@ jobs:
           - os: macos-12
             target: iOS
             build-command: ios
-            build-dir: /build/ipa/
+            build-dir: /packages/method/build/ipa/
 
           - os: ubuntu-22.04
             target: Android
             build-command: and
-            build-dir: /build/app/outputs/apk/
+            build-dir: /packages/method/build/app/outputs/apk/
 
           # - os: ubuntu-22.04
           #   target: Web
@@ -122,7 +122,7 @@ jobs:
         with:
           ruby-version: "3.0" # Not needed with a .ruby-version file
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-          working-directory: ${{ github.workspace }}/ios
+          working-directory: ${{ github.workspace }}/packages/method/ios
 
       - name: Bootstraping Melos
         env:
@@ -342,7 +342,7 @@ jobs:
         with:
           ruby-version: "3.0" # Not needed with a .ruby-version file
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-          working-directory: ${{ github.workspace }}/ios
+          working-directory: ${{ github.workspace }}/packages/method/ios
 
       - name: Bootstraping Melos
         run: |

@@ -1,0 +1,10 @@
+# melos_managed_dependency_overrides: method_core,method_isar,method_repo,method_style
+dependency_overrides:
+  method_core:
+    path: ../method_core
+  method_isar:
+    path: ../method_isar
+  method_repo:
+    path: ../method_repo
+  method_style:
+    path: ../method_style
