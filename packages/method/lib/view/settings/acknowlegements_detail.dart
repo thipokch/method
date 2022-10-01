@@ -1,24 +1,35 @@
 part of 'acknowlegements_page.dart';
 
-class AcknowlegementsDetail extends MethodPage {
+class AcknowlegementsDetail extends StatelessWidget {
+  final Widget? leading;
+  final Widget? trailing;
+
   final String packageName;
   final List<LicenseEntry> licenseEntries;
 
-  AcknowlegementsDetail({
-    Key? key,
+  const AcknowlegementsDetail({
+    super.key,
     required this.packageName,
     required this.licenseEntries,
-    super.trailing,
-    super.leading,
-    super.controller,
-  }) : super(
-          key: key,
-          title: packageName,
-          child: _PackageLicensePage(
-            packageName: packageName,
-            licenseEntries: licenseEntries,
+    this.leading,
+    this.trailing,
+  });
+
+  @override
+  Widget build(BuildContext context) => MtPage(
+        name: packageName,
+        description: "",
+        leading: leading,
+        trailing: trailing,
+        slivers: [
+          SliverToBoxAdapter(
+            child: _PackageLicensePage(
+              packageName: packageName,
+              licenseEntries: licenseEntries,
+            ),
           ),
-        );
+        ],
+      );
 }
 
 class _PackageLicensePage extends StatefulWidget {

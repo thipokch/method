@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method_ui/nav/nav_context.dart';
 import 'package:method_ui/page/page.dart';
-import 'package:method_ui/scroll/pairing_scroll_controller.dart';
 import 'package:method/view/settings/appearance_page.dart';
 import 'package:method/view/settings/reset_page.dart';
 
@@ -15,18 +14,27 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'acknowlegements_page.dart';
 import 'developer_page.dart';
 
-class SettingsPage extends MethodPage {
+class SettingsPage extends StatelessWidget {
+  final Widget? leading;
+  final Widget? trailing;
+
   const SettingsPage({
-    Key? key,
-    super.heroTag,
-    super.leading,
-    super.trailing,
-    super.controller,
-  }) : super(
-          key: key,
-          title: "Settings",
-          child: const SettingsList(),
-        );
+    super.key,
+    this.leading,
+    this.trailing,
+  });
+
+  @override
+  Widget build(BuildContext context) => MtPage(
+        name: "Settings",
+        leading: leading,
+        trailing: trailing,
+        slivers: const [
+          SliverToBoxAdapter(
+            child: SettingsList(),
+          ),
+        ],
+      );
 }
 
 class SettingsList extends StatelessWidget {
@@ -35,40 +43,36 @@ class SettingsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
       BlocBuilder<SettingsBloc, SettingsState>(builder: (context, state) {
-        final Map<String, MethodPageBuilder> about = {
+        final Map<String, WidgetBuilder> about = {
           "Acknowledgements":
               // When ShellRoute becomes available
               // (context) => AcknowledgementRoute().push(context),
               (context) => AcknowlegementsPage(
                     trailing: NavigationContext.of(context)?.exit,
-                    controller: PairingScrollController.of(context)?.push(),
                   ),
           "Developer":
               // When ShellRoute becomes available
               // (context) => DeveloperRoute().push(context),
               (context) => DeveloperPage(
                     trailing: NavigationContext.of(context)?.exit,
-                    controller: PairingScrollController.of(context)?.push(),
                   ),
         };
 
-        final Map<String, MethodPageBuilder> general = {
+        final Map<String, WidgetBuilder> general = {
           "Appearance":
               // When ShellRoute becomes available
               // (context) => AppearancePage().push(context),
               (context) => AppearancePage(
                     trailing: NavigationContext.of(context)?.exit,
-                    controller: PairingScrollController.of(context)?.push(),
                   ),
         };
 
-        final Map<String, MethodPageBuilder> security = {
+        final Map<String, WidgetBuilder> security = {
           "Erase Content":
               // When ShellRoute becomes available
               // (context) => AppearancePage().push(context),
               (context) => ResetPage(
                     trailing: NavigationContext.of(context)?.exit,
-                    controller: PairingScrollController.of(context)?.push(),
                   ),
         };
 

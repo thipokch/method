@@ -4,18 +4,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method_ui/page/page.dart';
 
-class AppearancePage extends MethodPage {
+class AppearancePage extends StatelessWidget {
+  final Widget? leading;
+  final Widget? trailing;
+
   const AppearancePage({
-    Key? key,
-    super.heroTag,
-    super.leading,
-    super.trailing,
-    super.controller,
-  }) : super(
-          key: key,
-          title: "Appearance",
-          child: const _AppearanceList(),
-        );
+    super.key,
+    this.leading,
+    this.trailing,
+  });
+
+  @override
+  Widget build(BuildContext context) => MtPage(
+        name: "Appearance",
+        leading: leading,
+        trailing: trailing,
+        slivers: const [
+          SliverToBoxAdapter(
+            child: _AppearanceList(),
+          ),
+        ],
+      );
 }
 
 class _AppearanceList extends StatelessWidget {

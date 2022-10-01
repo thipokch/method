@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class NavigationContext extends InheritedWidget {
   const NavigationContext({
-    Key? key,
+    super.key,
     required super.child,
     this.exit,
-  }) : super(key: key);
+  });
 
   final Widget? exit;
 

@@ -3,12 +3,11 @@ import 'package:method_core/model/entry.dart';
 import 'package:method_core/model/entry_definition.dart';
 import 'package:method_core/model/task.dart';
 import 'package:method_core/model/task_definition.dart';
-import 'package:method_style/element_motion.dart';
 import 'package:method_style/element_scale.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/view/definition/definition_card.dart';
+import 'package:method_ui/app_bar/app_bar.dart';
 
 import '../definition/definition_label.dart';
 

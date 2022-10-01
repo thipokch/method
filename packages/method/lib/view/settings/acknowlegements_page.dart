@@ -8,22 +8,29 @@ import 'package:flutter/material.dart' hide Flow;
 import 'package:flutter/scheduler.dart';
 import 'package:method_ui/nav/nav_context.dart';
 import 'package:method_ui/page/page.dart';
-import 'package:method_ui/scroll/pairing_scroll_controller.dart';
 
 part 'acknowlegements_detail.dart';
 
-class AcknowlegementsPage extends MethodPage {
+class AcknowlegementsPage extends StatelessWidget {
+  final Widget? leading;
+  final Widget? trailing;
+
   const AcknowlegementsPage({
-    Key? key,
-    super.heroTag,
-    super.leading,
-    super.trailing,
-    super.controller,
-  }) : super(
-          key: key,
-          title: "Acknowledgements",
-          child: const _PackagesList(),
-        );
+    super.key,
+    this.leading,
+    this.trailing,
+  });
+
+  @override
+  Widget build(BuildContext context) => MtPage(
+        name: "Acknowledgements",
+        description: "",
+        leading: leading,
+        trailing: trailing,
+        slivers: const [
+          SliverToBoxAdapter(child: _PackagesList()),
+        ],
+      );
 }
 
 class _PackagesList extends StatefulWidget {
@@ -98,7 +105,6 @@ class _PackagesListState extends State<_PackagesList> {
           onTap: () => show(
             context: context,
             builder: (context) => AcknowlegementsDetail(
-              controller: PairingScrollController.of(context)?.push(),
               packageName: packageName,
               licenseEntries: licenses,
               trailing: NavigationContext.of(context)?.exit,
@@ -111,18 +117,6 @@ class _PackagesListState extends State<_PackagesList> {
     return Column(
       children: packages,
     );
-    // return ListView.separated(
-    //   controller: PairingScrollController.of(context)?.push(),
-    //   padding: const EdgeInsets.symmetric(vertical: 16.0),
-    //   itemBuilder: (context, index) => packages[index],
-    //   separatorBuilder: (context, index) => const Padding(
-    //     padding: EdgeInsets.symmetric(horizontal: 12),
-    //     child: Divider(
-    //       height: 0,
-    //     ),
-    //   ),
-    //   itemCount: packages.length,
-    // );
   }
 }
 

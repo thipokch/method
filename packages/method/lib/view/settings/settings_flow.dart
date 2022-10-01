@@ -41,8 +41,6 @@ class SettingsFlowState extends State<SettingsFlow> {
                 onGenerateRoute: (settings) => MaterialWithModalsPageRoute(
                   settings: settings,
                   builder: (childContext) => SettingsPage(
-                    // key: const ObjectKey("SettingsPage"),
-                    controller: rootScrollingController,
                     trailing: NavigationContext.of(childContext)?.exit,
                   ),
                 ),

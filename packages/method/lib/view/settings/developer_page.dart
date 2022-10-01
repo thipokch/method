@@ -3,18 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:method_ui/page/page.dart';
 import 'package:method_ui/preview.dart';
 
-class DeveloperPage extends MethodPage {
+class DeveloperPage extends StatelessWidget {
+  final Widget? leading;
+  final Widget? trailing;
+
   const DeveloperPage({
-    Key? key,
-    super.heroTag,
-    super.leading,
-    super.trailing,
-    super.controller,
-  }) : super(
-          key: key,
-          title: "Developer",
-          child: const _DeveloperList(),
-        );
+    super.key,
+    this.leading,
+    this.trailing,
+  });
+
+  @override
+  Widget build(BuildContext context) => MtPage(
+        name: "Developer",
+        leading: leading,
+        trailing: trailing,
+        slivers: const [
+          SliverToBoxAdapter(
+            child: _DeveloperList(),
+          ),
+        ],
+      );
 }
 
 class _DeveloperList extends StatelessWidget {

@@ -1,20 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:method_ui/page/page.dart';
 import 'package:method_repo/repository.dart';
+import 'package:method_ui/page/page.dart';
 
-class ResetPage extends MethodPage {
+class ResetPage extends StatelessWidget {
+  final Widget? leading;
+  final Widget? trailing;
+
   const ResetPage({
-    Key? key,
-    super.heroTag,
-    super.leading,
-    super.trailing,
-    super.controller,
-  }) : super(
-          key: key,
-          title: "Reset",
-          child: const _ResetView(),
-        );
+    super.key,
+    this.leading,
+    this.trailing,
+  });
+
+  @override
+  Widget build(BuildContext context) => MtPage(
+        name: "Reset",
+        leading: leading,
+        trailing: trailing,
+        slivers: const [
+          SliverToBoxAdapter(
+            child: _ResetView(),
+          ),
+        ],
+      );
 }
 
 class _ResetView extends StatelessWidget {
