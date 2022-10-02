@@ -34,10 +34,19 @@ class SessionListView extends StatelessWidget {
                 ),
             child: const Text("add session"),
           ),
-          loaded: (session) => Column(
-            children: [
-              Text("${session.length} sessions"),
-            ],
+          loaded: (sessions) => Column(
+            children: sessions
+                .map((e) => Card(
+                      child: ListTile(
+                        leading: Twemoji(
+                          emoji: e.template.icon,
+                          twemojiFormat: TwemojiFormat.webp,
+                        ),
+                        title: Text(e.template.name),
+                        subtitle: Text(e.id),
+                      ),
+                    ))
+                .toList(),
           ),
         ),
       );
