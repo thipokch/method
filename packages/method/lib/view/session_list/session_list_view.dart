@@ -1,11 +1,11 @@
 part of 'session_list_widget.dart';
 
-class SessionListView extends StatelessWidget {
-  const SessionListView({super.key});
+class SessionListV extends StatelessWidget {
+  const SessionListV({super.key});
 
   static Widget create() => _ExerciseListWidget.create(
         // repo: repo,
-        child: const SessionListView(),
+        child: const SessionListV(),
       );
 
   static Widget createByExercise({
@@ -15,7 +15,7 @@ class SessionListView extends StatelessWidget {
       _ExerciseListWidget.createByExercise(
         // repo: repo,
         exercise: exercise,
-        child: const SessionListView(),
+        child: const SessionListV(),
       );
 
   @override
@@ -36,14 +36,14 @@ class SessionListView extends StatelessWidget {
           ),
           loaded: (sessions) => Column(
             children: sessions
-                .map((e) => Card(
-                      child: ListTile(
-                        leading: Twemoji(
-                          emoji: e.template.icon,
-                          twemojiFormat: TwemojiFormat.webp,
+                .map((session) => SessionCard(
+                      session: session,
+                      onTap: () => Navigator.push(
+                        context,
+                        SessionEditor.route(
+                          exercise: session.template,
+                          session: session,
                         ),
-                        title: Text(e.template.name),
-                        subtitle: Text(e.id),
                       ),
                     ))
                 .toList(),

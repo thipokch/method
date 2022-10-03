@@ -19,7 +19,12 @@ class ExerciseListView extends StatelessWidget {
           ),
           loaded: (exercises) => Column(
             children: exercises
-                .map<Widget>((e) => SessionCard.create(exercise: e))
+                .map<Widget>((e) => ExerciseCard(
+                      exercise: e,
+                      onTap: () => Navigator.of(context).push(
+                        SessionPage.route(exercise: e),
+                      ),
+                    ))
                 .toList()
               ..add(TextButton(
                 onPressed: () => context

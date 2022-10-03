@@ -4,13 +4,15 @@ class SessionEditor extends StatefulWidget {
   const SessionEditor({super.key});
 
   static Route route({
-    required SessionBloc bloc,
-    required ThemeData theme,
+    required Exercise exercise,
+    Session? session,
+    ThemeData? theme,
   }) =>
       ModalBottomSheetRoute(
         expanded: true,
-        builder: (context) => _SessionWidget.from(
-          bloc: bloc..add(const SessionEvent.loadSession()),
+        builder: (context) => _SessionWidget(
+          exercise: exercise,
+          session: session,
           theme: theme,
           child: const SessionEditor(),
         ),

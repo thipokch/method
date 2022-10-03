@@ -1,12 +1,13 @@
+import 'package:method/view/session/session_widget.dart';
 import 'package:method_bloc/session_list/session_list_bloc.dart';
 import 'package:method_core/model/exercise.dart';
 import 'package:method_core/model/session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/content/content.dart';
-import 'package:method_emoji/enums.dart';
-import 'package:method_emoji/twemoji_widget.dart';
 import 'package:method_repo/repository.dart';
+
+import '../session/session_card.dart';
 
 part 'session_list_view.dart';
 
