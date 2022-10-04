@@ -28,7 +28,7 @@ class MtCard extends StatelessWidget {
           ),
           child: AspectRatio(
             aspectRatio: 1,
-            child: Text(text),
+            child: Center(child: Text(text)),
           ),
         ),
       );
