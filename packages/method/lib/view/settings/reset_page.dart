@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method_repo/repository.dart';
-import 'package:method_ui/page/page.dart';
+import 'package:method_ui/page/app_page.dart';
 
 class ResetPage extends StatelessWidget {
   final Widget? leading;
@@ -14,7 +14,7 @@ class ResetPage extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => MtPage(
+  Widget build(BuildContext context) => MtTitlePage(
         name: "Reset",
         leading: leading,
         trailing: trailing,

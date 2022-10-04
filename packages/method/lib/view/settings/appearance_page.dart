@@ -2,7 +2,7 @@ import 'package:method_bloc/settings/settings_bloc.dart';
 import 'package:method_style/element_symbol.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:method_ui/page/page.dart';
+import 'package:method_ui/page/app_page.dart';
 
 class AppearancePage extends StatelessWidget {
   final Widget? leading;
@@ -15,7 +15,7 @@ class AppearancePage extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => MtPage(
+  Widget build(BuildContext context) => MtTitlePage(
         name: "Appearance",
         leading: leading,
         trailing: trailing,

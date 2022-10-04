@@ -29,13 +29,19 @@ class EntryEditorConverge extends StatelessWidget with EntryEditor {
               bloc: bloc,
               taskDefinition: taskDef,
               entryDefinition: mappedDefinitions?[e.id],
-              onPressed: () => bloc
-                ..add(EntryEvent.updateData(
-                  definition: EntryDefinition.label(
-                    hierarchyPath: taskDef.hierarchyPath,
-                    id: taskDef.id,
-                  ),
-                )),
+              onPressed: () => mappedDefinitions?.containsKey(e.id) ?? false
+                  ? bloc.add(EntryEvent.deleteData(
+                      definition: EntryDefinition.label(
+                        hierarchyPath: taskDef.hierarchyPath,
+                        id: taskDef.id,
+                      ),
+                    ))
+                  : bloc.add(EntryEvent.updateData(
+                      definition: EntryDefinition.label(
+                        hierarchyPath: taskDef.hierarchyPath,
+                        id: taskDef.id,
+                      ),
+                    )),
             ),
           ),
         )
@@ -43,8 +49,6 @@ class EntryEditorConverge extends StatelessWidget with EntryEditor {
         .toList();
 
     return MtPage(
-      name: "",
-      description: "",
       // name: note.name,
       // description: note.description,
       slivers: [
@@ -68,7 +72,7 @@ class EntryEditorConverge extends StatelessWidget with EntryEditor {
                       id: note.id,
                     ),
                   )),
-                isSelected: true,
+                isStatic: true,
               ),
             ),
           ),

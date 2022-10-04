@@ -7,7 +7,7 @@ import 'package:method_ui/card/card_tile.dart';
 
 import '../text/text_area.dart';
 
-class MethodCard extends StatelessWidget {
+class MtCard extends StatelessWidget {
   final String title;
   final String description;
   final String? emoji;
@@ -15,14 +15,16 @@ class MethodCard extends StatelessWidget {
   final ValueChanged<String>? onChanged;
   final GestureTapCallback? onTap;
   final TextEditingController? controller;
-  final bool isExpanded;
+  final bool isStatic;
+  final bool isSelected;
 
-  const MethodCard({
+  const MtCard({
     Key? key,
     required this.title,
     required this.description,
     required this.emoji,
-    required this.isExpanded,
+    required this.isSelected,
+    required this.isStatic,
     this.autofocus,
     this.onChanged,
     this.onTap,
@@ -35,13 +37,16 @@ class MethodCard extends StatelessWidget {
       emoji: emoji,
       title: title,
       description: description,
-      trailing: AnimatedCrossFade(
-        firstChild: const Icon(ElementSymbol.dismiss),
-        secondChild: const Icon(ElementSymbol.add),
-        crossFadeState:
-            isExpanded ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-        duration: ElementMotion.moderate,
-      ),
+      trailing: isStatic
+          ? null
+          : AnimatedCrossFade(
+              firstChild: const Icon(ElementSymbol.dismiss),
+              secondChild: const Icon(ElementSymbol.add),
+              crossFadeState: isSelected
+                  ? CrossFadeState.showFirst
+                  : CrossFadeState.showSecond,
+              duration: ElementMotion.moderate,
+            ),
     );
 
     return Card(
@@ -71,13 +76,13 @@ class MethodCard extends StatelessWidget {
             alignment: Alignment.topCenter,
             duration: ElementMotion.moderate,
             curve: ElementMotion.linear,
-            child: isExpanded
+            child: isSelected || isStatic
                 ? AspectRatio(
                     aspectRatio: 1,
                     child: Column(
                       children: [
                         tile,
-                        if (isExpanded)
+                        if (isSelected || isStatic)
                           TextArea(
                             controller: controller,
                             onTap: onTap,

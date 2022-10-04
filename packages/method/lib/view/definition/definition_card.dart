@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:method_ui/card/card.dart';
 import 'package:method/view/entry/entry_editor.dart';
 
-import 'definition_widget.dart';
+import 'definition.dart';
 
 class DefinitionCard extends StatefulWidget with EntryEditor, DefinitionEditor {
   const DefinitionCard({
@@ -13,10 +13,10 @@ class DefinitionCard extends StatefulWidget with EntryEditor, DefinitionEditor {
     required this.taskDefinition,
     required this.entryDefinition,
     required this.bloc,
-    bool? isSelected,
+    this.isStatic = false,
     this.onTap,
     this.onChanged,
-  }) : _isSelected = isSelected;
+  });
 
   @override
   final EntryBloc bloc;
@@ -27,9 +27,7 @@ class DefinitionCard extends StatefulWidget with EntryEditor, DefinitionEditor {
   @override
   final EntryDefinition? entryDefinition;
 
-  @override
-  bool get isSelected => _isSelected ?? super.isSelected;
-  final bool? _isSelected;
+  final bool isStatic;
 
   final VoidCallback? onTap;
   final ValueChanged<String>? onChanged;
@@ -57,15 +55,14 @@ class _DefinitionCardState extends State<DefinitionCard> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return MethodCard(
-      controller: controller,
-      title: widget.taskDefinition.name,
-      description: widget.taskDefinition.description,
-      emoji: widget.taskDefinition.icon,
-      isExpanded: widget.isSelected,
-      onTap: widget.onTap,
-      onChanged: widget.onChanged,
-    );
-  }
+  Widget build(BuildContext context) => MtCard(
+        controller: controller,
+        title: widget.taskDefinition.name,
+        description: widget.taskDefinition.description,
+        emoji: widget.taskDefinition.icon,
+        isStatic: widget.isStatic,
+        isSelected: widget.isSelected,
+        onTap: widget.onTap,
+        onChanged: widget.onChanged,
+      );
 }

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/view/exercise_list/exercise_list_widget.dart';
 import 'package:method/view/session_list/session_list_widget.dart';
 import 'package:method_repo/repository.dart';
-import 'package:method_ui/page/page.dart';
+import 'package:method_ui/page/app_page.dart';
 
 class HomePage extends StatelessWidget {
   final Widget? leading;
@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => MtPage(
+  Widget build(BuildContext context) => MtTitlePage(
         name: "method",
         description: "",
         leading: leading,

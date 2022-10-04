@@ -7,7 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' hide Flow;
 import 'package:flutter/scheduler.dart';
 import 'package:method_ui/nav/nav_context.dart';
-import 'package:method_ui/page/page.dart';
+import 'package:method_ui/page/app_page.dart';
 
 part 'acknowlegements_detail.dart';
 
@@ -22,7 +22,7 @@ class AcknowlegementsPage extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => MtPage(
+  Widget build(BuildContext context) => MtTitlePage(
         name: "Acknowledgements",
         description: "",
         leading: leading,

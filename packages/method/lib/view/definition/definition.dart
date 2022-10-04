@@ -9,11 +9,11 @@ import 'package:method_repo/repository.dart';
 // part 'definition_tile.dart';
 
 // ignore: unused_element
-class _DefinitionWidget extends StatelessWidget {
+class _Definition extends StatelessWidget {
   final Widget child;
   final TaskDefinition task;
 
-  const _DefinitionWidget({
+  const _Definition({
     // ignore: unused_element
     super.key,
     required this.task,

@@ -15,20 +15,22 @@ class CardPreview extends StatelessWidget {
       children: [
         const _MaterialCardPreview(),
         _divider,
-        MethodCard(
+        MtCard(
           title: "Collapse",
           description: "Tap to collapse...",
           emoji: "👅",
-          isExpanded: false,
+          isSelected: false,
+          isStatic: false,
           // ignore: no-empty-block
           onTap: () {},
         ),
         _divider,
-        MethodCard(
+        MtCard(
           title: "Expanded",
           description: "Tap to start writing...",
           emoji: "👌",
-          isExpanded: true,
+          isSelected: true,
+          isStatic: true,
           // ignore: no-empty-block
           onTap: () {},
         ),

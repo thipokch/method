@@ -17,37 +17,38 @@ class MtRisoEmoji extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => FutureBuilder<ImageShader>(
-      future: loadEmojiShader(emoji),
-      builder: (context, snapshot) {
-        final themeData = Theme.of(context);
-        final colorScheme = themeData.colorScheme;
-        final isLight = themeData.brightness == Brightness.light;
+        future: loadEmojiShader(emoji),
+        builder: (context, snapshot) {
+          final themeData = Theme.of(context);
+          final colorScheme = themeData.colorScheme;
+          final isLight = themeData.brightness == Brightness.light;
 
-        return SizedBox(
-          height: height ?? 32,
-          width: width ?? 32,
-          child: snapshot.hasData
-              ? CustomPaint(
-                  painter: AirbrushPainter(
-                    context: context,
-                    frame: 190,
-                    colorLighter: isLight
-                        ? colorScheme.primaryContainer
-                        : colorScheme.primary,
-                    colorLight: isLight
-                        ? colorScheme.secondaryContainer
-                        : colorScheme.secondary,
-                    colorDark: isLight
-                        ? colorScheme.background
-                        : colorScheme.onBackground,
-                    colorDarker:
-                        isLight ? colorScheme.primary : colorScheme.onPrimary,
-                    height: height,
-                    width: width,
-                    imageShader: snapshot.data,
-                  ),
-                )
-              : Container(),
-        );
-      });
+          return SizedBox(
+            height: height ?? 32,
+            width: width ?? 32,
+            child: snapshot.hasData
+                ? CustomPaint(
+                    painter: AirbrushPainter(
+                      context: context,
+                      frame: 190,
+                      colorLighter: isLight
+                          ? colorScheme.primaryContainer
+                          : colorScheme.primary,
+                      colorLight: isLight
+                          ? colorScheme.secondaryContainer
+                          : colorScheme.secondary,
+                      colorDark: isLight
+                          ? colorScheme.background
+                          : colorScheme.onBackground,
+                      colorDarker:
+                          isLight ? colorScheme.primary : colorScheme.onPrimary,
+                      height: height,
+                      width: width,
+                      imageShader: snapshot.data,
+                    ),
+                  )
+                : Container(),
+          );
+        },
+      );
 }

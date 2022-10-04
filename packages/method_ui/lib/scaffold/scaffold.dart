@@ -17,12 +17,14 @@ class MtScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
         decoration: BoxDecoration(
-            color: color ?? Theme.of(context).colorScheme.background),
+          color: color ?? Theme.of(context).colorScheme.background,
+        ),
         child: CustomScrollView(
           controller: controller,
           physics: physics ??
               const BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics()),
+                parent: AlwaysScrollableScrollPhysics(),
+              ),
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           slivers: [
             ...slivers,

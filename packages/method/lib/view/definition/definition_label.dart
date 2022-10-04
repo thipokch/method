@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:method_ui/emoji/riso_emoji.dart';
 
 import '../entry/entry_editor.dart';
-import 'definition_widget.dart';
+import 'definition.dart';
 
 class DefinitionLabel extends StatelessWidget
     with EntryEditor, DefinitionEditor {

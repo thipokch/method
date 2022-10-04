@@ -16,7 +16,7 @@ class AcknowlegementsDetail extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => MtPage(
+  Widget build(BuildContext context) => MtTitlePage(
         name: packageName,
         description: "",
         leading: leading,

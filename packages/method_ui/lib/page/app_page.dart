@@ -1,26 +1,20 @@
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
 import 'package:method_style/element_react.dart';
-import 'package:method_ui/app_bar/art_bar.dart';
+import 'package:method_ui/app_bar/app_bar.dart';
 import 'package:method_ui/scaffold/scaffold.dart';
 
-class MtArtPage extends StatelessWidget {
-  final String emoji;
+class MtTitlePage extends StatelessWidget {
   final String name;
-  final String description;
-  final String cta;
-  final VoidCallback? onCtaPressed;
+  final String? description;
   final List<Widget> slivers;
   final Widget? leading;
   final Widget? trailing;
 
-  const MtArtPage({
+  const MtTitlePage({
     super.key,
-    required this.emoji,
     required this.name,
-    required this.description,
-    required this.cta,
-    required this.onCtaPressed,
+    this.description,
     required this.slivers,
     this.leading,
     this.trailing,
@@ -33,12 +27,9 @@ class MtArtPage extends StatelessWidget {
         ),
         child: MtScaffold(
           slivers: [
-            MtSliverArtBar(
-              emoji: emoji,
+            MtSliverAppBar(
               name: name,
               description: description,
-              cta: cta,
-              onCtaPressed: onCtaPressed,
               leading: leading,
               trailing: trailing,
             ),
@@ -47,3 +38,11 @@ class MtArtPage extends StatelessWidget {
         ),
       );
 }
+
+void show({
+  required BuildContext context,
+  required WidgetBuilder builder,
+}) =>
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (BuildContext context) => builder(context),
+    ));

@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method_ui/nav/nav_context.dart';
-import 'package:method_ui/page/page.dart';
+import 'package:method_ui/page/app_page.dart';
 import 'package:method/view/settings/appearance_page.dart';
 import 'package:method/view/settings/reset_page.dart';
 
@@ -25,7 +25,7 @@ class SettingsPage extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => MtPage(
+  Widget build(BuildContext context) => MtTitlePage(
         name: "Settings",
         leading: leading,
         trailing: trailing,

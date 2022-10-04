@@ -1,23 +1,14 @@
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
 import 'package:method_style/element_react.dart';
-import 'package:method_ui/app_bar/app_bar.dart';
 import 'package:method_ui/scaffold/scaffold.dart';
 
 class MtPage extends StatelessWidget {
-  final String name;
-  final String? description;
   final List<Widget> slivers;
-  final Widget? leading;
-  final Widget? trailing;
 
   const MtPage({
     super.key,
-    required this.name,
-    this.description,
     required this.slivers,
-    this.leading,
-    this.trailing,
   });
 
   @override
@@ -27,22 +18,13 @@ class MtPage extends StatelessWidget {
         ),
         child: MtScaffold(
           slivers: [
-            MtSliverAppBar(
-              name: name,
-              description: description,
-              leading: leading,
-              trailing: trailing,
+            SliverPadding(
+              padding: EdgeInsets.only(
+                top: MediaQuery.of(context).padding.top,
+              ),
             ),
             ...slivers,
           ],
         ),
       );
 }
-
-void show({
-  required BuildContext context,
-  required WidgetBuilder builder,
-}) =>
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (BuildContext context) => builder(context),
-    ));

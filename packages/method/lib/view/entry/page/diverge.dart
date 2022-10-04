@@ -14,7 +14,7 @@ class EntryEditorDiverge extends StatelessWidget with EntryEditor {
     final bloc = context.read<EntryBloc>();
     final task = bloc.state.task;
 
-    return MtPage(
+    return MtTitlePage(
       // name: "",
       // description: "",
       name: task.name,
