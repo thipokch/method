@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method_repo/repository.dart';
 import 'package:method_ui/emoji/riso_emoji.dart';
 
-part 'entry_card.dart';
 part 'entry_tile.dart';
 
 class _EntryWidget extends StatelessWidget {

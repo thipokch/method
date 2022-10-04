@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../preview_helper.dart';
-import 'card.dart';
+import 'card_editing.dart';
 
 class CardPreview extends StatelessWidget {
   const CardPreview({super.key});
@@ -15,7 +15,7 @@ class CardPreview extends StatelessWidget {
       children: [
         const _MaterialCardPreview(),
         _divider,
-        MtCard(
+        MtEditingCard(
           title: "Collapse",
           description: "Tap to collapse...",
           emoji: "👅",
@@ -25,7 +25,7 @@ class CardPreview extends StatelessWidget {
           onTap: () {},
         ),
         _divider,
-        MtCard(
+        MtEditingCard(
           title: "Expanded",
           description: "Tap to start writing...",
           emoji: "👌",

@@ -12,8 +12,8 @@ class CardTile extends StatelessWidget {
   }) : super(key: key);
 
   final String? emoji;
-  final String title;
-  final String description;
+  final String? title;
+  final String? description;
   final GestureTapCallback? onTap;
   final Widget? trailing;
 
@@ -31,14 +31,10 @@ class CardTile extends StatelessWidget {
               height: 42,
             )
           : null,
-      title: Text(
-        title,
-        style: textTheme.titleMedium,
-      ),
-      subtitle: Text(
-        description,
-        style: textTheme.labelSmall,
-      ),
+      title: title != null ? Text(title!, style: textTheme.titleMedium) : null,
+      subtitle: description != null
+          ? Text(description!, style: textTheme.labelSmall)
+          : null,
       trailing: trailing,
       // onTap: () {},
     );

@@ -1,32 +1,33 @@
-part of 'entry_widget.dart';
+import 'package:method/view/entry/entry_editor.dart';
+import 'package:method_bloc/entry/entry_bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:method_ui/card/card_editing.dart';
 
-// class TaskCard extends StatelessWidget {
-//   const TaskCard({
-//     Key? key,
-//   }) : super(key: key);
+part 'card/linear.dart';
+part 'card/diverge.dart';
+part 'card/converge.dart';
 
-//   static Widget create({
-//     required Task task,
-//     Entry? entry,
-//   }) =>
-//       _EntryWidget(
-//         task: task,
-//         entry: entry,
-//         child: const TaskCard(),
-//       );
+class EntryCard extends StatelessWidget {
+  const EntryCard({
+    super.key,
+    required this.listener,
+  });
 
-//   @override
-//   Widget build(BuildContext context) => BlocBuilder<EntryBloc, EntryState>(
-//         builder: (context, state) {
-//           final task = context.read<EntryBloc>().state.task;
+  final BlocWidgetListener<EntryState> listener;
 
-//           return MethodCard(
-//             title: task.name,
-//             description: task.description,
-//             emoji: task.icon,
-//             // isExpanded: false,
-//             // onTap: () {},
-//           );
-//         },
-//       );
-// }
+  @override
+  Widget build(BuildContext context) => BlocConsumer<EntryBloc, EntryState>(
+        listener: listener,
+        builder: (context, state) {
+          final bloc = context.read<EntryBloc>();
+
+          return state.task.map(
+            linear: (_) => EntryCardLinear(bloc: bloc),
+            diverge: (_) => EntryCardDiverge(bloc: bloc),
+            converge: (_) => EntryCardConverge(bloc: bloc),
+            feedback: (_) => throw UnimplementedError(),
+          );
+        },
+      );
+}

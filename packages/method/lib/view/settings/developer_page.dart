@@ -1,6 +1,6 @@
 import 'package:method_style/element_symbol.dart';
 import 'package:flutter/material.dart';
-import 'package:method_ui/page/app_page.dart';
+import 'package:method_ui/page/page.dart';
 import 'package:method_ui/preview.dart';
 
 class DeveloperPage extends StatelessWidget {
@@ -14,7 +14,7 @@ class DeveloperPage extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => MtTitlePage(
+  Widget build(BuildContext context) => MtAppPage(
         name: "Developer",
         leading: leading,
         trailing: trailing,

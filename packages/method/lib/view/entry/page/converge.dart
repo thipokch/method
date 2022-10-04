@@ -1,6 +1,6 @@
 part of '../entry_editor.dart';
 
-class EntryEditorConverge extends StatelessWidget with EntryEditor {
+class EntryEditorConverge extends StatelessWidget with EntryDefinitionConsumer {
   const EntryEditorConverge({
     super.key,
     required this.bloc,
@@ -48,9 +48,10 @@ class EntryEditorConverge extends StatelessWidget with EntryEditor {
         .whereType<Widget>()
         .toList();
 
-    return MtPage(
-      // name: note.name,
-      // description: note.description,
+    return MtAppPage(
+      name: note.name,
+      description: note.description,
+      implyLeading: false,
       slivers: [
         SliverToBoxAdapter(
           child: AspectRatio(
@@ -72,6 +73,7 @@ class EntryEditorConverge extends StatelessWidget with EntryEditor {
                       id: note.id,
                     ),
                   )),
+                showMeta: false,
                 isStatic: true,
               ),
             ),

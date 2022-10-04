@@ -1,6 +1,6 @@
 part of '../entry_editor.dart';
 
-class EntryEditorDiverge extends StatelessWidget with EntryEditor {
+class EntryEditorDiverge extends StatelessWidget with EntryDefinitionConsumer {
   const EntryEditorDiverge({
     super.key,
     required this.bloc,
@@ -14,11 +14,12 @@ class EntryEditorDiverge extends StatelessWidget with EntryEditor {
     final bloc = context.read<EntryBloc>();
     final task = bloc.state.task;
 
-    return MtTitlePage(
+    return MtAppPage(
       // name: "",
       // description: "",
       name: task.name,
       description: task.description,
+      implyLeading: false,
       slivers: [
         SliverSafeArea(
           top: false,

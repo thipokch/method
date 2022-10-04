@@ -67,9 +67,12 @@ class SessionPage extends StatelessWidget {
                 ),
               ),
               SliverToBoxAdapter(
-                child: SessionListV.createByExercise(
-                  // repo: repo,
-                  exercise: exercise,
+                child: Material(
+                  type: MaterialType.transparency,
+                  child: SessionListV.createByExercise(
+                    // repo: repo,
+                    exercise: exercise,
+                  ),
                 ),
               ),
             ],

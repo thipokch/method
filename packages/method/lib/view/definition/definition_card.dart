@@ -1,18 +1,23 @@
+// ignore_for_file: unused_import
+
 import 'package:method_bloc/entry/entry_bloc.dart';
 import 'package:method_core/model/entry_definition.dart';
 import 'package:method_core/model/task_definition.dart';
 import 'package:flutter/material.dart';
 import 'package:method_ui/card/card.dart';
 import 'package:method/view/entry/entry_editor.dart';
+import 'package:method_ui/card/card_editing.dart';
 
 import 'definition.dart';
 
-class DefinitionCard extends StatefulWidget with EntryEditor, DefinitionEditor {
+class DefinitionCard extends StatefulWidget
+    with EntryDefinitionConsumer, DefinitionEditor {
   const DefinitionCard({
     super.key,
     required this.taskDefinition,
     required this.entryDefinition,
     required this.bloc,
+    this.showMeta = true,
     this.isStatic = false,
     this.onTap,
     this.onChanged,
@@ -28,6 +33,7 @@ class DefinitionCard extends StatefulWidget with EntryEditor, DefinitionEditor {
   final EntryDefinition? entryDefinition;
 
   final bool isStatic;
+  final bool showMeta;
 
   final VoidCallback? onTap;
   final ValueChanged<String>? onChanged;
@@ -55,11 +61,12 @@ class _DefinitionCardState extends State<DefinitionCard> {
   }
 
   @override
-  Widget build(BuildContext context) => MtCard(
+  Widget build(BuildContext context) => MtEditingCard(
         controller: controller,
         title: widget.taskDefinition.name,
         description: widget.taskDefinition.description,
         emoji: widget.taskDefinition.icon,
+        showMeta: widget.showMeta,
         isStatic: widget.isStatic,
         isSelected: widget.isSelected,
         onTap: widget.onTap,

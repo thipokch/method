@@ -43,10 +43,8 @@ class SessionEditorState extends State<SessionEditor> {
           bottom: MediaQuery.of(context).viewInsets.bottom,
         ),
         child: BlocBuilder<SessionBloc, SessionState>(
-          builder: (context, state) {
-            final bloc = context.read<SessionBloc>();
-
-            return Swiper(
+          builder: (context, state) => state.maybeWhen(
+            sessionLoaded: (exercise, session) => Swiper(
               physics: const BouncingScrollPhysics(
                 parent: AlwaysScrollableScrollPhysics(),
               ),
@@ -63,19 +61,17 @@ class SessionEditorState extends State<SessionEditor> {
                   repo: context.read<Repository>(),
                   task: state.exercise.definitions[index],
                 )..add(EntryEvent.loadEntry(
-                    entry: state.whenOrNull<Entry?>(
-                      sessionLoaded: (exercise, session) =>
-                          index < session.definitions.length
-                              ? session.definitions[index]
-                              : null,
-                    ),
+                    entry: index < session.definitions.length
+                        ? session.definitions[index]
+                        : null,
                   )),
                 child: EntryPage(
-                  listener: bloc.handleEntryBlocState,
+                  listener: context.read<SessionBloc>().handleEntryBlocState,
                 ),
               ),
-            );
-          },
+            ),
+            orElse: () => const CupertinoActivityIndicator(),
+          ),
         ),
       );
 }

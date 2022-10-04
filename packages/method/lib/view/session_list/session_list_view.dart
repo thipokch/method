@@ -36,7 +36,7 @@ class SessionListV extends StatelessWidget {
           ),
           loaded: (sessions) => Column(
             children: sessions
-                .map((session) => SessionCard(
+                .map((session) => SessionCardPreview(
                       session: session,
                       onTap: () => Navigator.push(
                         context,

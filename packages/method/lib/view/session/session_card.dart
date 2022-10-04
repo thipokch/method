@@ -16,7 +16,9 @@ class SessionCard extends StatelessWidget {
   Widget build(BuildContext context) => Card(
         clipBehavior: Clip.antiAlias,
         child: ListTile(
-          leading: MtRisoEmoji(emoji: session.template.icon),
+          leading: MtRisoEmoji(
+            emoji: session.template.icon,
+          ),
           title: Text(session.template.name),
           subtitle: Text(session.id),
           onTap: onTap,

@@ -9,7 +9,7 @@ import '../entry/entry_editor.dart';
 import 'definition.dart';
 
 class DefinitionLabel extends StatelessWidget
-    with EntryEditor, DefinitionEditor {
+    with EntryDefinitionConsumer, DefinitionEditor {
   const DefinitionLabel({
     super.key,
     required this.taskDefinition,

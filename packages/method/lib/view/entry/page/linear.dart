@@ -1,6 +1,6 @@
 part of '../entry_editor.dart';
 
-class EntryEditorLinear extends StatelessWidget with EntryEditor {
+class EntryEditorLinear extends StatelessWidget with EntryDefinitionConsumer {
   const EntryEditorLinear({
     super.key,
     required this.bloc,
@@ -14,9 +14,10 @@ class EntryEditorLinear extends StatelessWidget with EntryEditor {
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
 
-    return MtTitlePage(
+    return MtAppPage(
       name: "",
       description: "",
+      implyLeading: false,
       // name: task.name,
       // description: task.description,
       slivers: [

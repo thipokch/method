@@ -18,6 +18,7 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
   SessionBloc({
     required this.repo,
     required Exercise exercise,
+    Session? session,
   }) : super(_ExerciseLoaded(exercise: exercise)) {
     on<_LoadExercise>(_onLoadExercise);
     on<_CloseExercise>(_onCloseExercise);

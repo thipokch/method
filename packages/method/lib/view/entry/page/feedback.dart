@@ -1,6 +1,6 @@
 part of '../entry_editor.dart';
 
-class EntryEditorFeedback extends StatelessWidget with EntryEditor {
+class EntryEditorFeedback extends StatelessWidget with EntryDefinitionConsumer {
   const EntryEditorFeedback({
     super.key,
     required this.bloc,
@@ -35,9 +35,10 @@ class EntryEditorFeedback extends StatelessWidget with EntryEditor {
         .whereType<Widget>()
         .toList();
 
-    return MtTitlePage(
+    return MtAppPage(
       name: state.task.name,
       description: state.task.description,
+      implyLeading: false,
       slivers: [
         SliverSafeArea(
           top: false,

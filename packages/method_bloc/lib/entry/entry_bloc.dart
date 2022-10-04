@@ -25,9 +25,8 @@ class EntryBloc extends Bloc<EntryEvent, EntryState> {
     on<_ClearData>(_onClearData);
   }
 
-  void _onLoadTask(_LoadTask event, Emitter<EntryState> emit) {
-    emit(EntryState.taskLoaded(task: event.task));
-  }
+  void _onLoadTask(_LoadTask event, Emitter<EntryState> emit) =>
+      emit(EntryState.taskLoaded(task: event.task));
 
   void _onCloseTask(_CloseTask event, Emitter<EntryState> emit) =>
       state.maybeWhen(

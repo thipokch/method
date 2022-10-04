@@ -1,4 +1,7 @@
+// ignore_for_file: unused_import
+
 import 'package:card_swiper/card_swiper.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:method_bloc/session/session_bloc.dart';
 import 'package:method_bloc/entry/entry_bloc.dart';
 import 'package:method_core/model/entry.dart';
@@ -36,10 +39,10 @@ class _Session extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: ((context) => SessionBloc(
-            repo: context.read<Repository>(),
-            exercise: exercise,
-          )),
+      create: (context) => SessionBloc(
+        repo: context.read<Repository>(),
+        exercise: exercise,
+      )..add(SessionEvent.loadSession(session: session)),
       child: child,
     );
 

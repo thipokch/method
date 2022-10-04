@@ -9,6 +9,7 @@ class MtSliverAppBar extends StatefulWidget {
   final String? emoji;
   final String name;
   final String? description;
+  final bool implyLeading;
   final Widget? leading;
   final Widget? trailing;
   final bool isImmersive;
@@ -18,6 +19,7 @@ class MtSliverAppBar extends StatefulWidget {
     this.emoji,
     required this.name,
     this.description,
+    this.implyLeading = true,
     this.leading,
     this.trailing,
     this.isImmersive = false,
@@ -61,13 +63,13 @@ class _MtSliverAppBarState extends State<MtSliverAppBar>
     return SliverAppBar(
       actions: widget.trailing != null ? [widget.trailing!] : null,
       leading: widget.leading ??
-          (ModalRoute.of(context)?.canPop ?? false
+          (widget.implyLeading && (ModalRoute.of(context)?.canPop ?? false)
               ? IconButton(
                   onPressed: () => Navigator.of(context).pop(),
                   icon: const Icon(ElementSymbol.chevronBack),
                   iconSize: ElementScale.iconM,
                 )
-              : null),
+              : Container()),
       toolbarHeight: 72,
       collapsedHeight: 72,
       automaticallyImplyLeading: true,
