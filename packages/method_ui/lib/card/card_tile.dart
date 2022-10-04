@@ -1,6 +1,5 @@
-import 'package:method_emoji/enums.dart';
-import 'package:method_emoji/twemoji_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:method_ui/emoji/riso_emoji.dart';
 
 class CardTile extends StatelessWidget {
   const CardTile({
@@ -26,9 +25,8 @@ class CardTile extends StatelessWidget {
     return ListTile(
       onTap: onTap,
       leading: emoji != null && emoji!.isNotEmpty
-          ? Twemoji(
+          ? MtRisoEmoji(
               emoji: emoji!,
-              twemojiFormat: TwemojiFormat.webp,
               width: 42,
               height: 42,
             )

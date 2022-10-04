@@ -35,8 +35,8 @@ class EntryEditorFeedback extends StatelessWidget with EntryEditor {
         .whereType<Widget>()
         .toList();
 
-    return EntryEditorScaffold(
-      title: state.task.name,
+    return MtPage(
+      name: state.task.name,
       description: state.task.description,
       slivers: [
         SliverSafeArea(

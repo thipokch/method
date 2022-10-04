@@ -6,6 +6,7 @@ import 'package:method_style/element_scale.dart';
 import 'package:method_style/element_symbol.dart';
 
 class MtSliverAppBar extends StatefulWidget {
+  final String? emoji;
   final String name;
   final String? description;
   final Widget? leading;
@@ -14,6 +15,7 @@ class MtSliverAppBar extends StatefulWidget {
 
   const MtSliverAppBar({
     super.key,
+    this.emoji,
     required this.name,
     this.description,
     this.leading,

@@ -16,8 +16,8 @@ class MtPage extends StatelessWidget {
     required this.name,
     this.description,
     required this.slivers,
-    required this.leading,
-    required this.trailing,
+    this.leading,
+    this.trailing,
   });
 
   @override

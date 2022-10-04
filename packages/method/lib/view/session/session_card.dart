@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:method_core/model/session.dart';
-import 'package:method_emoji/enums.dart';
-import 'package:method_emoji/twemoji_widget.dart';
+import 'package:method_ui/emoji/riso_emoji.dart';
 
 class SessionCard extends StatelessWidget {
   final Session session;
@@ -14,17 +13,13 @@ class SessionCard extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        leading: Twemoji(
-          emoji: session.template.icon,
-          twemojiFormat: TwemojiFormat.webp,
+  Widget build(BuildContext context) => Card(
+        clipBehavior: Clip.antiAlias,
+        child: ListTile(
+          leading: MtRisoEmoji(emoji: session.template.icon),
+          title: Text(session.template.name),
+          subtitle: Text(session.id),
+          onTap: onTap,
         ),
-        title: Text(session.template.name),
-        subtitle: Text(session.id),
-        onTap: onTap,
-      ),
-    );
-  }
+      );
 }

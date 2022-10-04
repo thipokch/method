@@ -5,12 +5,13 @@ import 'package:method_style/element_motion.dart';
 import 'package:method_style/element_scale.dart';
 import 'package:method_style/element_symbol.dart';
 import 'package:method_style/element_touch.dart';
+import 'package:method_ui/emoji/riso_emoji.dart';
 
 import '../airbrush/airbrush_painter.dart';
 import '../button/button_filled.dart';
-import '../util/theme_image_shader.dart';
 
 class MtSliverArtBar extends StatefulWidget {
+  final String emoji;
   final String name;
   final String description;
   final String cta;
@@ -21,6 +22,7 @@ class MtSliverArtBar extends StatefulWidget {
 
   const MtSliverArtBar({
     super.key,
+    required this.emoji,
     required this.name,
     required this.description,
     required this.cta,
@@ -59,7 +61,6 @@ class _MtSliverArtBarState extends State<MtSliverArtBar>
   @override
   Widget build(BuildContext context) {
     final themeData = Theme.of(context);
-    final imageShader = themeData.extension<ThemeImageShader>()?.shader;
     final colorScheme = themeData.colorScheme;
     final textTheme = themeData.textTheme;
 
@@ -123,18 +124,10 @@ class _MtSliverArtBarState extends State<MtSliverArtBar>
                       child: SizedBox(
                         height: 125 * (1.0 - t),
                         width: 125 * (1.0 - t),
-                        child: CustomPaint(
-                          painter: AirbrushPainter(
-                            context: context,
-                            imageShader: imageShader,
-                            frame: 400,
-                            colorLighter: colorScheme.secondaryContainer,
-                            colorLight: colorScheme.primaryContainer,
-                            colorDark: colorScheme.background,
-                            colorDarker: colorScheme.primary,
-                            height: 125 * (1.0 - t),
-                            width: 125 * (1.0 - t),
-                          ),
+                        child: MtRisoEmoji(
+                          emoji: widget.emoji,
+                          height: 125 * (1.0 - t),
+                          width: 125 * (1.0 - t),
                         ),
                       ),
                     ),

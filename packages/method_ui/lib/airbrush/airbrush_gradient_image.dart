@@ -57,49 +57,6 @@ class GradientAirbrushImage extends StatelessWidget {
       );
 }
 
-class AirbrushEmoji extends StatelessWidget {
-  final String emoji;
-  final double? height;
-  final double? width;
-
-  const AirbrushEmoji({
-    super.key,
-    required this.emoji,
-    this.height,
-    this.width,
-  });
-
-  @override
-  Widget build(BuildContext context) => FutureBuilder<ImageShader>(
-        future: loadEmojiShader(emoji),
-        builder: (context, snapshot) => snapshot.hasData
-            ? SizedBox(
-                height: height,
-                width: width,
-                child: CustomPaint(
-                  painter: AirbrushPainter(
-                    context: context,
-                    frame: 190,
-                    colorLighter:
-                        Theme.of(context).colorScheme.primaryContainer,
-                    colorLight:
-                        Theme.of(context).colorScheme.secondaryContainer,
-                    colorDark: Theme.of(context).colorScheme.background,
-                    colorDarker: Theme.of(context).colorScheme.primary,
-                    height: height,
-                    width: width,
-                    imageShader: snapshot.data,
-                  ),
-                ),
-              )
-            : SizedBox(
-                height: height,
-                width: width,
-                child: const CupertinoActivityIndicator(),
-              ),
-      );
-}
-
 /// Loads JPEG image and the [FragmentProgram]
 Future<ImageShader> loadImageShader(String assetString) async {
   final asset = await rootBundle.load(assetString);

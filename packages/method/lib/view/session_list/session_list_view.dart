@@ -3,7 +3,7 @@ part of 'session_list_widget.dart';
 class SessionListV extends StatelessWidget {
   const SessionListV({super.key});
 
-  static Widget create() => _ExerciseListWidget.create(
+  static Widget create() => _ExerciseList.create(
         // repo: repo,
         child: const SessionListV(),
       );
@@ -12,7 +12,7 @@ class SessionListV extends StatelessWidget {
     // required final Repository repo,
     required final Exercise exercise,
   }) =>
-      _ExerciseListWidget.createByExercise(
+      _ExerciseList.createByExercise(
         // repo: repo,
         exercise: exercise,
         child: const SessionListV(),

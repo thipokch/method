@@ -23,9 +23,10 @@ class TaskTile extends StatelessWidget {
           return ListTile(
             title: Text(task.name),
             subtitle: Text(task.description),
-            leading: Twemoji(
+            leading: MtRisoEmoji(
               emoji: task.icon,
-              twemojiFormat: TwemojiFormat.webp,
+              width: 48,
+              height: 48,
             ),
             // isExpanded: false,
             // onTap: () {},

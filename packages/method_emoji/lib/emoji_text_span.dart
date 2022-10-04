@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'constants.dart';
 import 'enums.dart';
-import 'twemoji_widget.dart';
+import 'emoji_widget.dart';
 
-/// The [TwemojiTextSpan] widget extends [TextSpan]
+/// The [MtEmojiTextSpan] widget extends [TextSpan]
 /// widget and it can be used in a [RichText] widget
 /// and it also renders text with twitter emojis
-class TwemojiTextSpan extends TextSpan {
-  TwemojiTextSpan({
+class MtEmojiTextSpan extends TextSpan {
+  MtEmojiTextSpan({
     TextStyle? style,
     required String text,
     List<TextSpan>? children,
@@ -44,7 +44,7 @@ class TwemojiTextSpan extends TextSpan {
                 horizontal: emojiStyle.letterSpacing ?? 1,
                 vertical: emojiStyle.height ?? 2,
               ),
-              child: Twemoji(
+              child: MtEmoji(
                 emoji: emojiStr,
                 twemojiFormat: twemojiFormat,
                 height: emojiStyle.fontSize,

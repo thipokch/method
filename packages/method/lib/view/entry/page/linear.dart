@@ -14,9 +14,11 @@ class EntryEditorLinear extends StatelessWidget with EntryEditor {
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
 
-    return EntryEditorScaffold(
-      title: task.name,
-      description: task.description,
+    return MtPage(
+      name: "",
+      description: "",
+      // name: task.name,
+      // description: task.description,
       slivers: [
         SliverFillRemaining(
           child: TextField(

@@ -32,7 +32,6 @@ dependencies:
   method_core:
   method_ui:
   method_style:
-  method_emoji:
   method_isar:
   method_repo:
 

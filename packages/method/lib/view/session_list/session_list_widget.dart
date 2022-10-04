@@ -11,13 +11,13 @@ import '../session/session_card.dart';
 
 part 'session_list_view.dart';
 
-class _ExerciseListWidget extends StatelessWidget {
+class _ExerciseList extends StatelessWidget {
   final Widget child;
   final SessionListBloc Function(BuildContext context, Repository repo)
       onCreate;
   // final Repository repo;
 
-  const _ExerciseListWidget._({
+  const _ExerciseList._({
     // ignore: unused_element
     super.key,
     // required this.repo,
@@ -25,23 +25,23 @@ class _ExerciseListWidget extends StatelessWidget {
     required this.child,
   });
 
-  factory _ExerciseListWidget.create({
+  factory _ExerciseList.create({
     // required final Repository repo,
     required final Widget child,
   }) =>
-      _ExerciseListWidget._(
+      _ExerciseList._(
         // repo: repo,
         onCreate: ((context, repo) =>
             SessionListBloc(repo: repo)..add(const SessionListEvent.load())),
         child: child,
       );
 
-  factory _ExerciseListWidget.createByExercise({
+  factory _ExerciseList.createByExercise({
     // required final Repository repo,
     required final Exercise exercise,
     required final Widget child,
   }) =>
-      _ExerciseListWidget._(
+      _ExerciseList._(
         // repo: repo,
         onCreate: ((context, repo) => SessionListBloc(repo: repo)
           ..add(SessionListEvent.loadByExercise(exercise: exercise))),

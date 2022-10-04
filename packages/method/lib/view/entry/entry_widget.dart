@@ -1,11 +1,10 @@
 import 'package:method_bloc/entry/entry_bloc.dart';
 import 'package:method_core/model/entry.dart';
 import 'package:method_core/model/task.dart';
-import 'package:method_emoji/enums.dart';
-import 'package:method_emoji/twemoji_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method_repo/repository.dart';
+import 'package:method_ui/emoji/riso_emoji.dart';
 
 part 'entry_card.dart';
 part 'entry_tile.dart';

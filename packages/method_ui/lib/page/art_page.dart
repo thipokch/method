@@ -5,6 +5,7 @@ import 'package:method_ui/app_bar/art_bar.dart';
 import 'package:method_ui/scaffold/scaffold.dart';
 
 class MtArtPage extends StatelessWidget {
+  final String emoji;
   final String name;
   final String description;
   final String cta;
@@ -15,6 +16,7 @@ class MtArtPage extends StatelessWidget {
 
   const MtArtPage(
       {super.key,
+      required this.emoji,
       required this.name,
       required this.description,
       required this.cta,
@@ -31,6 +33,7 @@ class MtArtPage extends StatelessWidget {
         child: MtScaffold(
           slivers: [
             MtSliverArtBar(
+              emoji: emoji,
               name: name,
               description: description,
               cta: cta,

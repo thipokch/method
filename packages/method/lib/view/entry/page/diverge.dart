@@ -14,8 +14,10 @@ class EntryEditorDiverge extends StatelessWidget with EntryEditor {
     final bloc = context.read<EntryBloc>();
     final task = bloc.state.task;
 
-    return EntryEditorScaffold(
-      title: task.name,
+    return MtPage(
+      // name: "",
+      // description: "",
+      name: task.name,
       description: task.description,
       slivers: [
         SliverSafeArea(

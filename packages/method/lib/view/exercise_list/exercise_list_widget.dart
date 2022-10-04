@@ -5,6 +5,7 @@ import 'package:method/view/session/session_widget.dart';
 import 'package:method_repo/repository.dart';
 
 import '../../content/content.dart';
+import '../session/exercise_card.dart';
 
 part 'exercise_list_view.dart';
 
@@ -13,8 +14,6 @@ class _ExerciseListWidget extends StatelessWidget {
   final Repository repo;
 
   const _ExerciseListWidget({
-    // ignore: unused_element
-    super.key,
     required this.repo,
     required this.child,
   });

@@ -1,4 +1,9 @@
-part of 'session_widget.dart';
+import 'package:figma_squircle/figma_squircle.dart';
+import 'package:flutter/material.dart';
+import 'package:method_core/model/exercise.dart';
+import 'package:method_style/element_scale.dart';
+import 'package:method_ui/airbrush/airbrush_painter.dart';
+import 'package:method_ui/emoji/riso_emoji.dart';
 
 class ExerciseCard extends StatelessWidget {
   final Exercise exercise;
@@ -15,8 +20,6 @@ class ExerciseCard extends StatelessWidget {
     final themeData = Theme.of(context);
     final colorScheme = themeData.colorScheme;
     final textTheme = themeData.textTheme;
-
-    final imageShader = themeData.extension<ThemeImageShader>()?.shader;
 
     return Hero(
       tag: exercise.name,
@@ -61,18 +64,10 @@ class ExerciseCard extends StatelessWidget {
                     width: 100,
                     child: Padding(
                       padding: const EdgeInsets.only(top: 20),
-                      child: CustomPaint(
-                        painter: AirbrushPainter(
-                          context: context,
-                          imageShader: imageShader,
-                          frame: exercise.presentation.seed,
-                          colorLighter: colorScheme.primaryContainer,
-                          colorLight: colorScheme.secondaryContainer,
-                          colorDark: colorScheme.background,
-                          colorDarker: colorScheme.primary,
-                          height: 100,
-                          width: 100,
-                        ),
+                      child: MtRisoEmoji(
+                        emoji: exercise.icon,
+                        height: 100,
+                        width: 100,
                       ),
                     ),
                   ),

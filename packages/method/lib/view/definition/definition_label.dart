@@ -2,9 +2,8 @@ import 'package:method_bloc/entry/entry_bloc.dart';
 import 'package:method_core/model/entry_definition.dart';
 import 'package:method_core/model/task_definition.dart';
 import 'package:method_style/element_scale.dart';
-import 'package:method_emoji/enums.dart';
-import 'package:method_emoji/twemoji_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:method_ui/emoji/riso_emoji.dart';
 
 import '../entry/entry_editor.dart';
 import 'definition_widget.dart';
@@ -45,10 +44,7 @@ class DefinitionLabel extends StatelessWidget
           icon: SizedBox(
             height: 36.0,
             width: 36.0,
-            child: Twemoji(
-              emoji: taskDefinition.icon,
-              twemojiFormat: TwemojiFormat.webp,
-            ),
+            child: MtRisoEmoji(emoji: taskDefinition.icon),
           ),
         ),
         Padding(
@@ -69,7 +65,9 @@ class DefinitionLabel extends StatelessWidget
 ButtonStyle enabledFilledButtonStyle(bool selected, ColorScheme colors) {
   return IconButton.styleFrom(
     foregroundColor: selected ? colors.onPrimary : colors.primary,
-    backgroundColor: selected ? colors.primary : colors.surfaceVariant,
+    backgroundColor:
+        selected ? colors.primary : colors.primary.withOpacity(0.12),
+    // backgroundColor: selected ? colors.primary : colors.surfaceVariant,
     disabledForegroundColor: colors.onSurface.withOpacity(0.38),
     disabledBackgroundColor: colors.onSurface.withOpacity(0.12),
     hoverColor: selected

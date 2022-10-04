@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'enums.dart';
-import 'twemoji_text_span.dart';
+import 'emoji_text_span.dart';
 
 /// returns a widget with rendered text with twitter emojis
-class TwemojiText extends StatelessWidget {
-  const TwemojiText({
+class MtEmojiText extends StatelessWidget {
+  const MtEmojiText({
     Key? key,
     required this.text,
     this.style,
@@ -31,7 +31,7 @@ class TwemojiText extends StatelessWidget {
   final TwemojiFormat twemojiFormat;
   @override
   Widget build(BuildContext context) => RichText(
-        text: TwemojiTextSpan(
+        text: MtEmojiTextSpan(
           text: text,
           emojiFontMultiplier: emojiFontMultiplier,
           twemojiFormat: twemojiFormat,

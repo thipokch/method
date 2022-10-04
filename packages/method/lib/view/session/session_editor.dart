@@ -6,14 +6,14 @@ class SessionEditor extends StatefulWidget {
   static Route route({
     required Exercise exercise,
     Session? session,
-    ThemeData? theme,
+    // ThemeData? theme,
   }) =>
       ModalBottomSheetRoute(
         expanded: true,
-        builder: (context) => _SessionWidget(
+        builder: (context) => _Session(
           exercise: exercise,
           session: session,
-          theme: theme,
+          // theme: theme,
           child: const SessionEditor(),
         ),
       );

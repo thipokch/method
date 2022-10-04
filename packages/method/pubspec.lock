@@ -689,7 +689,7 @@ packages:
     source: path
     version: "0.0.0"
   method_emoji:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       path: "../method_emoji"
       relative: true

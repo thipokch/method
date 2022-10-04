@@ -7,7 +7,7 @@ class SessionPage extends StatelessWidget {
     required Exercise exercise,
     Session? session,
   }) =>
-      _SessionWidget(
+      _Session(
         exercise: exercise,
         session: session,
         theme: null,
@@ -22,7 +22,7 @@ class SessionPage extends StatelessWidget {
   }) =>
       ModalBottomSheetRoute(
         expanded: true,
-        builder: (context) => _SessionWidget(
+        builder: (context) => _Session(
           theme: theme,
           exercise: exercise,
           session: session,
@@ -36,46 +36,43 @@ class SessionPage extends StatelessWidget {
         // final bloc = context.read<SessionBloc>();
         final exercise = state.exercise;
         final definitions = exercise.definitions;
-        final themeData = Theme.of(context);
 
         return Hero(
           tag: exercise.name,
-          child: Theme(
-            data: themeData,
-            child: MtArtPage(
-              name: exercise.name,
-              description: exercise.description,
-              cta: "Start",
-              onCtaPressed: () => Navigator.of(context).push(
-                SessionEditor.route(
-                  exercise: exercise,
-                  theme: themeData,
-                ),
+          child: MtArtPage(
+            emoji: exercise.icon,
+            name: exercise.name,
+            description: exercise.description,
+            cta: "Start",
+            onCtaPressed: () => Navigator.of(context).push(
+              SessionEditor.route(
+                exercise: exercise,
+                // theme: themeData,
               ),
-              slivers: [
-                SliverSafeArea(
-                  top: false,
-                  sliver: SliverPadding(
-                    padding: const EdgeInsets.all(ElementScale.spaceM),
-                    sliver: SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                        childCount: definitions.length - 1,
-                        (context, index) => Material(
-                          type: MaterialType.transparency,
-                          child: TaskTile.create(task: definitions[index]),
-                        ),
+            ),
+            slivers: [
+              SliverSafeArea(
+                top: false,
+                sliver: SliverPadding(
+                  padding: const EdgeInsets.all(ElementScale.spaceM),
+                  sliver: SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      childCount: definitions.length - 1,
+                      (context, index) => Material(
+                        type: MaterialType.transparency,
+                        child: TaskTile.create(task: definitions[index]),
                       ),
                     ),
                   ),
                 ),
-                SliverToBoxAdapter(
-                  child: SessionListV.createByExercise(
-                    // repo: repo,
-                    exercise: exercise,
-                  ),
+              ),
+              SliverToBoxAdapter(
+                child: SessionListV.createByExercise(
+                  // repo: repo,
+                  exercise: exercise,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         );
       });

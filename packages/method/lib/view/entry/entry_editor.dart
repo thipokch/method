@@ -7,11 +7,11 @@ import 'package:method_style/element_scale.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/view/definition/definition_card.dart';
-import 'package:method_ui/app_bar/app_bar.dart';
+import 'package:method_ui/page/page.dart';
 
 import '../definition/definition_label.dart';
 
-part 'page/scaffold.dart';
+// part 'page/scaffold.dart';
 part 'page/linear.dart';
 part 'page/diverge.dart';
 part 'page/converge.dart';

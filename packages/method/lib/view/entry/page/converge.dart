@@ -42,9 +42,11 @@ class EntryEditorConverge extends StatelessWidget with EntryEditor {
         .whereType<Widget>()
         .toList();
 
-    return EntryEditorScaffold(
-      title: note.name,
-      description: note.description,
+    return MtPage(
+      name: "",
+      description: "",
+      // name: note.name,
+      // description: note.description,
       slivers: [
         SliverToBoxAdapter(
           child: AspectRatio(
