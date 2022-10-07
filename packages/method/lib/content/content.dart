@@ -632,7 +632,7 @@ class Content {
         icon: "🖖",
         name: "Prosperity",
         description: "",
-        hierarchyPath: "prosperoty",
+        hierarchyPath: "prosperity",
         id: "needs",
       ),
       TaskDefinition.label(

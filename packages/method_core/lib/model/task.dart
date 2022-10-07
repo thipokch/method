@@ -13,8 +13,7 @@ part 'task.freezed.dart';
 part 'task.g.dart';
 
 @Freezed(unionKey: "collectionSlug", unionValueCase: FreezedUnionCase.snake)
-class Task
-    with _$Task, Identify, Locate, Inform, DefineDefinitions<TaskDefinition> {
+class Task with _$Task, Identify, Locate, Inform, Template<TaskDefinition> {
   const Task._();
 
   const factory Task.linear({
@@ -135,4 +134,7 @@ class Task
             ? UuidValue(uuid)
             : const Uuid().v4obj(),
       );
+
+  @override
+  List<TaskDefinition> get definitions;
 }

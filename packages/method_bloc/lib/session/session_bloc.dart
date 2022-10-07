@@ -62,17 +62,15 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
   void _onUpdateData(_UpdateData event, Emitter<SessionState> emit) =>
       state.maybeWhen(
         sessionLoaded: (exercise, session) {
-          final index =
-              session.definitions.indexWhere((e) => event.entry.id == e.id);
+          final index = exercise.definitions
+              .indexWhere((e) => event.entry.template.id == e.id);
 
           final updated = index >= 0
               ? session.copyWith(
                   definitions: session.definitions.toList()
                     ..setAll(index, [event.entry]),
                 )
-              : session.copyWith(
-                  definitions: session.definitions.toList()..add(event.entry),
-                );
+              : session;
 
           emit(SessionState.sessionLoaded(
             exercise: exercise,
@@ -89,7 +87,7 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
         sessionLoaded: (exercise, session) {
           final updated = session.copyWith(
             definitions: session.definitions.toList()
-              ..removeWhere((e) => event.entry.id == e.id),
+              ..removeWhere((e) => event.entry.id == e?.id),
           );
 
           emit(SessionState.sessionLoaded(

@@ -9,7 +9,9 @@ part of 'entry.dart';
 _$_Entry _$$_EntryFromJson(Map<String, dynamic> json) => _$_Entry(
       template: Task.fromJson(json['template'] as Map<String, dynamic>),
       definitions: (json['definitions'] as List<dynamic>)
-          .map((e) => EntryDefinition.fromJson(e as Map<String, dynamic>))
+          .map((e) => e == null
+              ? null
+              : EntryDefinition.fromJson(e as Map<String, dynamic>))
           .toList(),
       hierarchyPath: json['hierarchyPath'] as String,
       id: json['id'] as String,

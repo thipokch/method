@@ -5,7 +5,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../abstract/define.dart';
 import '../abstract/identify.dart';
 import '../abstract/locate.dart';
-import '../util/map.dart';
 import '../util/uuid.dart';
 import 'exercise.dart';
 
@@ -13,18 +12,12 @@ part 'session.freezed.dart';
 part 'session.g.dart';
 
 @freezed
-class Session
-    with
-        _$Session,
-        Identify,
-        Locate,
-        DefineDefinitions<Entry>,
-        DefineTemplate<Exercise> {
+class Session with _$Session, Identify, Locate, Document<Exercise, Entry> {
   const Session._();
 
   const factory Session({
     required final Exercise template,
-    required final List<Entry> definitions,
+    required final List<Entry?> definitions,
     required String hierarchyPath,
     required String id,
     @UuidConverter() UuidValue? uuid,
@@ -32,14 +25,15 @@ class Session
 
   factory Session.create({
     required final Exercise template,
-    final List<Entry>? definitions,
+    final List<Entry?>? definitions,
     required final String hierarchyPath,
     required final String id,
     final String? uuid,
   }) =>
       Session(
         template: template,
-        definitions: definitions ?? [],
+        definitions:
+            definitions ?? List.filled(template.definitions.length, null),
         hierarchyPath: hierarchyPath,
         id: id,
         uuid: uuid != null && uuid.isNotEmpty
@@ -53,6 +47,6 @@ class Session
   @override
   String get collectionSlug => "session";
 
-  Map<String, Entry?> get mappedDefinitions =>
-      mapId(keys: template.definitions, values: definitions);
+  // Map<String, Entry?> get mappedDefinitions =>
+  //     mapId(keys: template.definitions, values: definitions);
 }

@@ -14,13 +14,16 @@ class EntryEditorFeedback extends StatelessWidget with EntryDefinitionConsumer {
     final bloc = context.read<EntryBloc>();
     final state = bloc.state;
 
-    List<Widget> labels = state.task.definitions
+    final labels = List.generate(task.definitions.length, (_) => _)
         .map<Widget?>(
-          (e) => e.mapOrNull(
-            label: (taskDef) => DefinitionLabel(
+          (index) {
+            final taskDef = taskDefinitions[index];
+            final entryDef = entryDefinitions?.elementAtOrNull(index);
+
+            return DefinitionLabel(
               bloc: bloc,
               taskDefinition: taskDef,
-              entryDefinition: mappedDefinitions?[e.id],
+              entryDefinition: entryDef,
               onPressed: () => bloc
                 ..add(const EntryEvent.clearData())
                 ..add(EntryEvent.updateData(
@@ -29,8 +32,8 @@ class EntryEditorFeedback extends StatelessWidget with EntryDefinitionConsumer {
                     id: taskDef.id,
                   ),
                 )),
-            ),
-          ),
+            );
+          },
         )
         .whereType<Widget>()
         .toList();

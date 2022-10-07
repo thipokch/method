@@ -6,11 +6,13 @@ mixin DaoTemplate<DAO extends Dao> on Dao {
   final template = IsarLink<DAO>();
 }
 
-mixin DaoTemplateCollection<
-    DOM extends DefineTemplate<TDOM>,
+abstract class DaoTemplateCollection<
+    DOM extends Document<TDOM, Object>,
     DAO extends DaoTemplate<TDAO>,
     TDOM extends Identify,
-    TDAO extends DaoObject> on Collection<DOM, DAO> {
+    TDAO extends DaoObject> extends Collection<DOM, DAO> {
+  const DaoTemplateCollection(super.driver);
+
   IsarCollection<TDAO> get templateCollection;
 
   @override

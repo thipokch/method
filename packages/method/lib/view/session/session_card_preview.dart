@@ -19,19 +19,24 @@ class SessionCardPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final entryIndex = session.definitions.indexWhere(
-      (entry) => entry.template.maybeMap(
-        feedback: (_) => false,
-        orElse: () => true,
-      ),
+      (entry) =>
+          entry?.template.maybeMap(
+            feedback: (_) => false,
+            orElse: () => true,
+          ) ??
+          false,
     );
 
     final defIndex = entryIndex < 0
         ? -1
-        : session.definitions[entryIndex].definitions
-            .indexWhere((def) => def.maybeMap(
+        : session.definitions[entryIndex]!.definitions.indexWhere(
+            (def) =>
+                def?.maybeMap(
                   note: (_) => true,
                   orElse: () => false,
-                ));
+                ) ??
+                false,
+          );
 
     return Column(
       children: [
@@ -45,8 +50,8 @@ class SessionCardPreview extends StatelessWidget {
         ),
         if (entryIndex >= 0 && defIndex >= 0)
           MtCard(
-            text:
-                session.definitions[entryIndex].definitions[defIndex].maybeMap(
+            text: session.definitions[entryIndex]!.definitions[defIndex]!
+                .maybeMap(
               note: (value) => value.data,
               orElse: () => throw UnimplementedError(),
             ),

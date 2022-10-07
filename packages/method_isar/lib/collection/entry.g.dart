@@ -109,8 +109,10 @@ int _dbEntryEstimateSize(
     final offsets = allOffsets[DbEntryDefinition]!;
     for (var i = 0; i < object.definitions.length; i++) {
       final value = object.definitions[i];
-      bytesCount +=
-          DbEntryDefinitionSchema.estimateSize(value, offsets, allOffsets);
+      if (value != null) {
+        bytesCount +=
+            DbEntryDefinitionSchema.estimateSize(value, offsets, allOffsets);
+      }
     }
   }
   bytesCount += 3 + object.hierarchyPath.length * 3;
@@ -144,11 +146,10 @@ DbEntry _dbEntryDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = DbEntry(
-    definitions: reader.readObjectList<DbEntryDefinition>(
+    definitions: reader.readObjectOrNullList<DbEntryDefinition>(
           offsets[1],
           DbEntryDefinitionSchema.deserialize,
           allOffsets,
-          DbEntryDefinition(),
         ) ??
         const [],
     hierarchyPath: reader.readString(offsets[2]),
@@ -169,11 +170,10 @@ P _dbEntryDeserializeProp<P>(
     case 0:
       return (reader.readString(offset)) as P;
     case 1:
-      return (reader.readObjectList<DbEntryDefinition>(
+      return (reader.readObjectOrNullList<DbEntryDefinition>(
             offset,
             DbEntryDefinitionSchema.deserialize,
             allOffsets,
-            DbEntryDefinition(),
           ) ??
           const []) as P;
     case 2:
@@ -662,6 +662,24 @@ extension DbEntryQueryFilter
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<DbEntry, DbEntry, QAfterFilterCondition>
+      definitionsElementIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.elementIsNull(
+        property: r'definitions',
+      ));
+    });
+  }
+
+  QueryBuilder<DbEntry, DbEntry, QAfterFilterCondition>
+      definitionsElementIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.elementIsNotNull(
+        property: r'definitions',
       ));
     });
   }
@@ -1314,7 +1332,7 @@ extension DbEntryQueryProperty
     });
   }
 
-  QueryBuilder<DbEntry, List<DbEntryDefinition>, QQueryOperations>
+  QueryBuilder<DbEntry, List<DbEntryDefinition?>, QQueryOperations>
       definitionsProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'definitions');

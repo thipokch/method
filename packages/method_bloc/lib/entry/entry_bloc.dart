@@ -63,17 +63,14 @@ class EntryBloc extends Bloc<EntryEvent, EntryState> {
       state.maybeWhen(
         entryLoaded: (task, entry) {
           final index =
-              entry.definitions.indexWhere((e) => event.definition.id == e.id);
+              task.definitions.indexWhere((e) => event.definition.id == e.id);
 
           final updated = index >= 0
               ? entry.copyWith(
                   definitions: entry.definitions.toList()
                     ..setAll(index, [event.definition]),
                 )
-              : entry.copyWith(
-                  definitions: entry.definitions.toList()
-                    ..add(event.definition),
-                );
+              : entry;
 
           emit(EntryState.entryLoaded(
             task: task,
@@ -90,7 +87,7 @@ class EntryBloc extends Bloc<EntryEvent, EntryState> {
         entryLoaded: (task, entry) {
           final updated = entry.copyWith(
             definitions: entry.definitions.toList()
-              ..removeWhere((e) => event.definition.id == e.id),
+              ..removeWhere((e) => event.definition.id == e?.id),
           );
 
           emit(EntryState.entryLoaded(

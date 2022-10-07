@@ -21,7 +21,7 @@ Entry _$EntryFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Entry {
   Task get template => throw _privateConstructorUsedError;
-  List<EntryDefinition> get definitions => throw _privateConstructorUsedError;
+  List<EntryDefinition?> get definitions => throw _privateConstructorUsedError;
   String get hierarchyPath => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   @UuidConverter()
@@ -38,7 +38,7 @@ abstract class $EntryCopyWith<$Res> {
       _$EntryCopyWithImpl<$Res>;
   $Res call(
       {Task template,
-      List<EntryDefinition> definitions,
+      List<EntryDefinition?> definitions,
       String hierarchyPath,
       String id,
       @UuidConverter() UuidValue? uuid});
@@ -70,7 +70,7 @@ class _$EntryCopyWithImpl<$Res> implements $EntryCopyWith<$Res> {
       definitions: definitions == freezed
           ? _value.definitions
           : definitions // ignore: cast_nullable_to_non_nullable
-              as List<EntryDefinition>,
+              as List<EntryDefinition?>,
       hierarchyPath: hierarchyPath == freezed
           ? _value.hierarchyPath
           : hierarchyPath // ignore: cast_nullable_to_non_nullable
@@ -101,7 +101,7 @@ abstract class _$$_EntryCopyWith<$Res> implements $EntryCopyWith<$Res> {
   @override
   $Res call(
       {Task template,
-      List<EntryDefinition> definitions,
+      List<EntryDefinition?> definitions,
       String hierarchyPath,
       String id,
       @UuidConverter() UuidValue? uuid});
@@ -135,7 +135,7 @@ class __$$_EntryCopyWithImpl<$Res> extends _$EntryCopyWithImpl<$Res>
       definitions: definitions == freezed
           ? _value._definitions
           : definitions // ignore: cast_nullable_to_non_nullable
-              as List<EntryDefinition>,
+              as List<EntryDefinition?>,
       hierarchyPath: hierarchyPath == freezed
           ? _value.hierarchyPath
           : hierarchyPath // ignore: cast_nullable_to_non_nullable
@@ -157,7 +157,7 @@ class __$$_EntryCopyWithImpl<$Res> extends _$EntryCopyWithImpl<$Res>
 class _$_Entry extends _Entry {
   const _$_Entry(
       {required this.template,
-      required final List<EntryDefinition> definitions,
+      required final List<EntryDefinition?> definitions,
       required this.hierarchyPath,
       required this.id,
       @UuidConverter() this.uuid})
@@ -169,9 +169,9 @@ class _$_Entry extends _Entry {
 
   @override
   final Task template;
-  final List<EntryDefinition> _definitions;
+  final List<EntryDefinition?> _definitions;
   @override
-  List<EntryDefinition> get definitions {
+  List<EntryDefinition?> get definitions {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_definitions);
   }
@@ -229,7 +229,7 @@ class _$_Entry extends _Entry {
 abstract class _Entry extends Entry {
   const factory _Entry(
       {required final Task template,
-      required final List<EntryDefinition> definitions,
+      required final List<EntryDefinition?> definitions,
       required final String hierarchyPath,
       required final String id,
       @UuidConverter() final UuidValue? uuid}) = _$_Entry;
@@ -240,7 +240,7 @@ abstract class _Entry extends Entry {
   @override
   Task get template;
   @override
-  List<EntryDefinition> get definitions;
+  List<EntryDefinition?> get definitions;
   @override
   String get hierarchyPath;
   @override

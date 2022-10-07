@@ -13,37 +13,57 @@ class EntryEditorConverge extends StatelessWidget with EntryDefinitionConsumer {
   Widget build(BuildContext context) {
     final note = taskDefinitions.first;
 
-    // if (mappedDefinitions?[taskDefinitions.first] == null) {
-    //   bloc.add(EntryEvent.updateData(
-    //     definition: EntryDefinition.note(
-    //       data: "",
-    //       hierarchyPath: note.hierarchyPath,
-    //       id: note.id,
-    //     ),
-    //   ));
-    // }
-    final labels = task.definitions
+    // final labels = task.definitions
+    //     .map<Widget?>(
+    //       (e) => e.mapOrNull(
+    //         label: (taskDef) => DefinitionLabel(
+    //           bloc: bloc,
+    //           taskDefinition: taskDef,
+    //           entryDefinition: mappedDefinitions?[e.id],
+    //           onPressed: () => mappedDefinitions?.containsKey(e.id) ?? false
+    //               ? bloc.add(EntryEvent.deleteData(
+    //                   definition: EntryDefinition.label(
+    //                     hierarchyPath: taskDef.hierarchyPath,
+    //                     id: taskDef.id,
+    //                   ),
+    //                 ))
+    //               : bloc.add(EntryEvent.updateData(
+    //                   definition: EntryDefinition.label(
+    //                     hierarchyPath: taskDef.hierarchyPath,
+    //                     id: taskDef.id,
+    //                   ),
+    //                 )),
+    //         ),
+    //       ),
+    //     )
+    //     .whereType<Widget>()
+    //     .toList();
+
+    final labels = List.generate(task.definitions.length - 1, (_) => _ + 1)
         .map<Widget?>(
-          (e) => e.mapOrNull(
-            label: (taskDef) => DefinitionLabel(
+          (index) {
+            final taskDef = taskDefinitions[index];
+            final entryDef = entryDefinitions?.elementAtOrNull(index);
+
+            return DefinitionLabel(
               bloc: bloc,
               taskDefinition: taskDef,
-              entryDefinition: mappedDefinitions?[e.id],
-              onPressed: () => mappedDefinitions?.containsKey(e.id) ?? false
-                  ? bloc.add(EntryEvent.deleteData(
+              entryDefinition: entryDef,
+              onPressed: () => entryDef == null
+                  ? bloc.add(EntryEvent.updateData(
                       definition: EntryDefinition.label(
                         hierarchyPath: taskDef.hierarchyPath,
                         id: taskDef.id,
                       ),
                     ))
-                  : bloc.add(EntryEvent.updateData(
+                  : bloc.add(EntryEvent.deleteData(
                       definition: EntryDefinition.label(
                         hierarchyPath: taskDef.hierarchyPath,
                         id: taskDef.id,
                       ),
                     )),
-            ),
-          ),
+            );
+          },
         )
         .whereType<Widget>()
         .toList();
@@ -59,12 +79,12 @@ class EntryEditorConverge extends StatelessWidget with EntryDefinitionConsumer {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: DefinitionCard(
-                key: ValueKey(
-                  mappedDefinitions?[note.id]?.id ?? ValueKey(note.uuid),
-                ),
+                // key: ValueKey(
+                //   mappedDefinitions?[note.id]?.id ?? ValueKey(note.uuid),
+                // ),
                 bloc: bloc,
                 taskDefinition: note,
-                entryDefinition: mappedDefinitions?[note.id],
+                entryDefinition: entryDefinitions?.elementAtOrNull(0),
                 onChanged: (value) => bloc
                   ..add(EntryEvent.updateData(
                     definition: EntryDefinition.note(

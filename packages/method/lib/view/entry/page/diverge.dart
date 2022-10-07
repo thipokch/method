@@ -30,7 +30,8 @@ class EntryEditorDiverge extends StatelessWidget with EntryDefinitionConsumer {
                 childCount: taskDefinitions.length,
                 (context, index) {
                   final taskDefinition = taskDefinitions[index];
-                  final entryDefinition = mappedDefinitions?[taskDefinition.id];
+                  final entryDefinition =
+                      entryDefinitions?.elementAtOrNull(index);
 
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4.0),

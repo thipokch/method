@@ -21,7 +21,7 @@ Session _$SessionFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Session {
   Exercise get template => throw _privateConstructorUsedError;
-  List<Entry> get definitions => throw _privateConstructorUsedError;
+  List<Entry?> get definitions => throw _privateConstructorUsedError;
   String get hierarchyPath => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   @UuidConverter()
@@ -38,7 +38,7 @@ abstract class $SessionCopyWith<$Res> {
       _$SessionCopyWithImpl<$Res>;
   $Res call(
       {Exercise template,
-      List<Entry> definitions,
+      List<Entry?> definitions,
       String hierarchyPath,
       String id,
       @UuidConverter() UuidValue? uuid});
@@ -70,7 +70,7 @@ class _$SessionCopyWithImpl<$Res> implements $SessionCopyWith<$Res> {
       definitions: definitions == freezed
           ? _value.definitions
           : definitions // ignore: cast_nullable_to_non_nullable
-              as List<Entry>,
+              as List<Entry?>,
       hierarchyPath: hierarchyPath == freezed
           ? _value.hierarchyPath
           : hierarchyPath // ignore: cast_nullable_to_non_nullable
@@ -102,7 +102,7 @@ abstract class _$$_SessionCopyWith<$Res> implements $SessionCopyWith<$Res> {
   @override
   $Res call(
       {Exercise template,
-      List<Entry> definitions,
+      List<Entry?> definitions,
       String hierarchyPath,
       String id,
       @UuidConverter() UuidValue? uuid});
@@ -136,7 +136,7 @@ class __$$_SessionCopyWithImpl<$Res> extends _$SessionCopyWithImpl<$Res>
       definitions: definitions == freezed
           ? _value._definitions
           : definitions // ignore: cast_nullable_to_non_nullable
-              as List<Entry>,
+              as List<Entry?>,
       hierarchyPath: hierarchyPath == freezed
           ? _value.hierarchyPath
           : hierarchyPath // ignore: cast_nullable_to_non_nullable
@@ -158,7 +158,7 @@ class __$$_SessionCopyWithImpl<$Res> extends _$SessionCopyWithImpl<$Res>
 class _$_Session extends _Session {
   const _$_Session(
       {required this.template,
-      required final List<Entry> definitions,
+      required final List<Entry?> definitions,
       required this.hierarchyPath,
       required this.id,
       @UuidConverter() this.uuid})
@@ -170,9 +170,9 @@ class _$_Session extends _Session {
 
   @override
   final Exercise template;
-  final List<Entry> _definitions;
+  final List<Entry?> _definitions;
   @override
-  List<Entry> get definitions {
+  List<Entry?> get definitions {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_definitions);
   }
@@ -230,7 +230,7 @@ class _$_Session extends _Session {
 abstract class _Session extends Session {
   const factory _Session(
       {required final Exercise template,
-      required final List<Entry> definitions,
+      required final List<Entry?> definitions,
       required final String hierarchyPath,
       required final String id,
       @UuidConverter() final UuidValue? uuid}) = _$_Session;
@@ -241,7 +241,7 @@ abstract class _Session extends Session {
   @override
   Exercise get template;
   @override
-  List<Entry> get definitions;
+  List<Entry?> get definitions;
   @override
   String get hierarchyPath;
   @override

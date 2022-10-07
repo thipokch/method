@@ -16,13 +16,7 @@ part 'exercise.g.dart';
 
 @freezed
 class Exercise
-    with
-        _$Exercise,
-        Identify,
-        Locate,
-        Inform,
-        Present,
-        DefineDefinitions<Task> {
+    with _$Exercise, Identify, Locate, Inform, Present, Template<Task> {
   const Exercise._();
 
   const factory Exercise({
@@ -66,6 +60,9 @@ class Exercise
               neutralVariant: Color.fromARGB(0, 227, 200, 214),
             ),
       );
+
+  @override
+  List<Task> get definitions;
 
   factory Exercise.fromJson(Map<String, dynamic> json) =>
       _$ExerciseFromJson(json);

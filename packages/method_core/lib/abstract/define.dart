@@ -1,5 +1,5 @@
 /// Implements a list of given [D] definitions.
-abstract class DefineDefinitions<D> {
+abstract class Template<D> {
   List<D> get definitions;
 }
 
@@ -8,6 +8,7 @@ abstract class DefineDefinitions<D> {
 //   T get template;
 // }
 
-abstract class DefineTemplate<T> {
+abstract class Document<T, D> {
   T get template;
+  List<D?> get definitions;
 }

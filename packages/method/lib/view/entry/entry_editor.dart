@@ -3,6 +3,7 @@ import 'package:method_core/model/entry.dart';
 import 'package:method_core/model/entry_definition.dart';
 import 'package:method_core/model/task.dart';
 import 'package:method_core/model/task_definition.dart';
+import 'package:method_core/util/list.dart';
 import 'package:method_style/element_scale.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -49,7 +50,5 @@ mixin EntryDefinitionConsumer on Widget {
       bloc.state.whenOrNull(entryLoaded: (task, entry) => entry);
 
   List<TaskDefinition> get taskDefinitions => task.definitions;
-  List<EntryDefinition>? get entryDefinitions => entry?.definitions;
-  Map<String, EntryDefinition?>? get mappedDefinitions =>
-      entry?.mappedDefinitions;
+  List<EntryDefinition?>? get entryDefinitions => entry?.definitions;
 }

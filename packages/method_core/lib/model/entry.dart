@@ -1,5 +1,4 @@
 import 'package:method_core/model/task.dart';
-import 'package:method_core/util/map.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -13,18 +12,12 @@ part 'entry.freezed.dart';
 part 'entry.g.dart';
 
 @freezed
-class Entry
-    with
-        _$Entry,
-        Identify,
-        Locate,
-        DefineDefinitions<EntryDefinition>,
-        DefineTemplate<Task> {
+class Entry with _$Entry, Identify, Locate, Document<Task, EntryDefinition> {
   const Entry._();
 
   const factory Entry({
     required final Task template,
-    required final List<EntryDefinition> definitions,
+    required final List<EntryDefinition?> definitions,
     required final String hierarchyPath,
     required final String id,
     @UuidConverter() UuidValue? uuid,
@@ -32,14 +25,15 @@ class Entry
 
   factory Entry.create({
     required final Task template,
-    final List<EntryDefinition>? definitions,
+    final List<EntryDefinition?>? definitions,
     required final String hierarchyPath,
     required final String id,
     final String? uuid,
   }) =>
       Entry(
         template: template,
-        definitions: definitions ?? [],
+        definitions:
+            definitions ?? List.filled(template.definitions.length, null),
         hierarchyPath: hierarchyPath,
         id: id,
         uuid: uuid != null && uuid.isNotEmpty
@@ -52,8 +46,8 @@ class Entry
   @override
   final String collectionSlug = "exercise";
 
-  Map<String, EntryDefinition?> get mappedDefinitions =>
-      mapId(keys: template.definitions, values: definitions);
+  // Map<String, EntryDefinition?> get mappedDefinitions =>
+  //     mapId(keys: template.definitions, values: definitions);
 }
 
 // @freezed

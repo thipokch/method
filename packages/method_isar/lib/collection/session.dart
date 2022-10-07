@@ -33,8 +33,9 @@ class SessionMapper {
     required Session dom,
   }) =>
       DbSession(
-        definitions:
-            dom.definitions.map((dom) => EntryMapper.toDao(dom: dom)).toList(),
+        definitions: dom.definitions
+            .map((dom) => dom != null ? EntryMapper.toDao(dom: dom) : null)
+            .toList(),
         hierarchyPath: dom.hierarchyPath,
         id: dom.id,
         uuid: dom.uuid?.toBytes() ?? const Uuid().v4obj().toBytes(),
@@ -45,8 +46,9 @@ class SessionMapper {
   }) =>
       Session(
         template: ExerciseMapper.toDom(dao: dao.template.value!),
-        definitions:
-            dao.definitions.map((dao) => EntryMapper.toDom(dao: dao)).toList(),
+        definitions: dao.definitions
+            .map((dao) => dao != null ? EntryMapper.toDom(dao: dao) : null)
+            .toList(),
         hierarchyPath: dao.hierarchyPath,
         id: dao.id,
         uuid: UuidValue.fromList(dao.uuid),
@@ -54,22 +56,12 @@ class SessionMapper {
 }
 
 class SessionRepository
-    extends DaoDefinitionCollection<Session, DbSession, Entry, DbEntry>
-    with DaoTemplateCollection<Session, DbSession, Exercise, DbExercise> {
+    extends DaoTemplateCollection<Session, DbSession, Exercise, DbExercise> {
   const SessionRepository(super.driver);
-
-  @override
-  final parentToDao = SessionMapper.toDao;
-
-  @override
-  final parentToDom = SessionMapper.toDom;
 
   @override
   IsarCollection<DbExercise> get templateCollection =>
       source.instance.dbExercises;
-
-  @override
-  Collection<Entry, DbEntry> get childCollection => EntryRepository(source);
 
   Stream<List<Session>> streamByExercise(Exercise exercise) => this
       .collection
@@ -83,4 +75,10 @@ class SessionRepository
   @override
   WhereRepeatModifier<DbSession, DbSession, String> get idEqualTo =>
       ((q, element) => q.idEqualTo(element));
+
+  @override
+  DbSession toDao(Session dom) => SessionMapper.toDao(dom: dom);
+
+  @override
+  Session toDom(DbSession dao) => SessionMapper.toDom(dao: dao);
 }

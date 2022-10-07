@@ -9,7 +9,8 @@ part of 'session.dart';
 _$_Session _$$_SessionFromJson(Map<String, dynamic> json) => _$_Session(
       template: Exercise.fromJson(json['template'] as Map<String, dynamic>),
       definitions: (json['definitions'] as List<dynamic>)
-          .map((e) => Entry.fromJson(e as Map<String, dynamic>))
+          .map((e) =>
+              e == null ? null : Entry.fromJson(e as Map<String, dynamic>))
           .toList(),
       hierarchyPath: json['hierarchyPath'] as String,
       id: json['id'] as String,

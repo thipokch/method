@@ -16,7 +16,7 @@ class DbEntry extends DaoObject with DaoTemplate<DbTask> {
   @override
   final String collectionSlug = "entry";
 
-  List<DbEntryDefinition> definitions;
+  List<DbEntryDefinition?> definitions;
 
   DbEntry({
     this.definitions = const [],
@@ -34,7 +34,8 @@ class EntryMapper {
   }) =>
       DbEntry(
         definitions: dom.definitions
-            .map((dom) => EntryDefinitionMapper.toDao(dom: dom))
+            .map((dom) =>
+                dom != null ? EntryDefinitionMapper.toDao(dom: dom) : null)
             .toList(),
         hierarchyPath: dom.hierarchyPath,
         id: dom.id,
@@ -47,7 +48,8 @@ class EntryMapper {
       Entry(
         template: TaskMapper.toDom(dao: dao.template.value!),
         definitions: dao.definitions
-            .map((dao) => EntryDefinitionMapper.toDom(dao: dao))
+            .map((dao) =>
+                dao != null ? EntryDefinitionMapper.toDom(dao: dao) : null)
             .toList(),
         hierarchyPath: dao.hierarchyPath,
         uuid: UuidValue.fromList(dao.uuid),
@@ -55,8 +57,8 @@ class EntryMapper {
       );
 }
 
-class EntryRepository extends Collection<Entry, DbEntry>
-    with DaoTemplateCollection<Entry, DbEntry, Task, DbTask> {
+class EntryRepository
+    extends DaoTemplateCollection<Entry, DbEntry, Task, DbTask> {
   const EntryRepository(super.driver);
 
   @override

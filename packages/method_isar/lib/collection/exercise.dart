@@ -60,7 +60,7 @@ class ExerciseMapper {
         name: dao.name,
         description: dao.description,
         definitions:
-            dao.definitions.map((dao) => TaskMapper.toDom(dao: dao)).toList(),
+            dao.definitions.map((dao) => TaskMapper.toDom(dao: dao!)).toList(),
         hierarchyPath: dao.hierarchyPath,
         id: dao.id,
         uuid: UuidValue.fromList(dao.uuid),
@@ -69,7 +69,7 @@ class ExerciseMapper {
 }
 
 class ExerciseRepository
-    extends DaoDefinitionCollection<Exercise, DbExercise, Task, DbTask> {
+    extends DaoDocumentCollection<Exercise, DbExercise, Task, DbTask> {
   const ExerciseRepository(super.driver);
 
   @override

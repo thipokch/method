@@ -107,7 +107,9 @@ int _dbSessionEstimateSize(
   {
     for (var i = 0; i < object.definitionsIds.length; i++) {
       final value = object.definitionsIds[i];
-      bytesCount += value.length * 3;
+      if (value != null) {
+        bytesCount += value.length * 3;
+      }
     }
   }
   bytesCount += 3 + object.hierarchyPath.length * 3;
@@ -141,7 +143,7 @@ DbSession _dbSessionDeserialize(
     uuid: reader.readByteList(offsets[4]) ?? [],
   );
   object.dbid = id;
-  object.definitionsIds = reader.readStringList(offsets[1]) ?? [];
+  object.definitionsIds = reader.readStringOrNullList(offsets[1]) ?? [];
   return object;
 }
 
@@ -155,7 +157,7 @@ P _dbSessionDeserializeProp<P>(
     case 0:
       return (reader.readString(offset)) as P;
     case 1:
-      return (reader.readStringList(offset) ?? []) as P;
+      return (reader.readStringOrNullList(offset) ?? []) as P;
     case 2:
       return (reader.readString(offset)) as P;
     case 3:
@@ -655,8 +657,26 @@ extension DbSessionQueryFilter
   }
 
   QueryBuilder<DbSession, DbSession, QAfterFilterCondition>
+      definitionsIdsElementIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.elementIsNull(
+        property: r'definitionsIds',
+      ));
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterFilterCondition>
+      definitionsIdsElementIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.elementIsNotNull(
+        property: r'definitionsIds',
+      ));
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterFilterCondition>
       definitionsIdsElementEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -670,7 +690,7 @@ extension DbSessionQueryFilter
 
   QueryBuilder<DbSession, DbSession, QAfterFilterCondition>
       definitionsIdsElementGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -686,7 +706,7 @@ extension DbSessionQueryFilter
 
   QueryBuilder<DbSession, DbSession, QAfterFilterCondition>
       definitionsIdsElementLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -702,8 +722,8 @@ extension DbSessionQueryFilter
 
   QueryBuilder<DbSession, DbSession, QAfterFilterCondition>
       definitionsIdsElementBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1446,7 +1466,7 @@ extension DbSessionQueryProperty
     });
   }
 
-  QueryBuilder<DbSession, List<String>, QQueryOperations>
+  QueryBuilder<DbSession, List<String?>, QQueryOperations>
       definitionsIdsProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'definitionsIds');
