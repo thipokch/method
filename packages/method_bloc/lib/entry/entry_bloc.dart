@@ -16,7 +16,15 @@ class EntryBloc extends Bloc<EntryEvent, EntryState> {
     required this.repo,
     required Task task,
     Entry? entry,
-  }) : super(_TaskLoaded(task: task)) {
+  }) : super(_EntryLoaded(
+          task: task,
+          entry: entry ??
+              Entry.create(
+                template: task,
+                hierarchyPath: "${task.hierarchyPath}/${task.id}",
+                id: DateTime.now().millisecondsSinceEpoch.toString(),
+              ),
+        )) {
     on<_LoadTask>(_onLoadTask);
     on<_CloseTask>(_onCloseTask);
     on<_LoadEntry>(_onLoadEntry);

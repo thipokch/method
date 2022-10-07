@@ -80,7 +80,7 @@ class EntryEditorConverge extends StatelessWidget with EntryDefinitionConsumer {
               padding: const EdgeInsets.all(16.0),
               child: DefinitionCard(
                 // key: ValueKey(
-                //   mappedDefinitions?[note.id]?.id ?? ValueKey(note.uuid),
+                //   entryDefinitions?.elementAtOrNull(0)?.id,
                 // ),
                 bloc: bloc,
                 taskDefinition: note,

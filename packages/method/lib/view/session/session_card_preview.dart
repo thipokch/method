@@ -38,25 +38,28 @@ class SessionCardPreview extends StatelessWidget {
                 false,
           );
 
-    return Column(
-      children: [
-        ListTile(
-          leading: MtRisoEmoji(
-            emoji: session.template.icon,
-          ),
-          title: Text(session.template.name),
-          // subtitle: Text(session.id),
-          onTap: onTap,
-        ),
-        if (entryIndex >= 0 && defIndex >= 0)
-          MtCard(
-            text: session.definitions[entryIndex]!.definitions[defIndex]!
-                .maybeMap(
-              note: (value) => value.data,
-              orElse: () => throw UnimplementedError(),
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          ListTile(
+            leading: MtRisoEmoji(
+              emoji: session.template.icon,
             ),
+            title: Text(session.template.name),
+            // subtitle: Text(session.id),
+            // onTap: onTap,
           ),
-      ],
+          if (entryIndex >= 0 && defIndex >= 0)
+            MtCard(
+              text: session.definitions[entryIndex]!.definitions[defIndex]!
+                  .maybeMap(
+                note: (value) => value.data,
+                orElse: () => throw UnimplementedError(),
+              ),
+            ),
+        ],
+      ),
     );
   }
 }
