@@ -85,10 +85,15 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
   void _onDeleteData(_DeleteData event, Emitter<SessionState> emit) =>
       state.maybeWhen(
         sessionLoaded: (exercise, session) {
-          final updated = session.copyWith(
-            definitions: session.definitions.toList()
-              ..removeWhere((e) => event.entry.id == e?.id),
-          );
+          final index = exercise.definitions
+              .indexWhere((e) => event.entry.template.id == e.id);
+
+          final updated = index >= 0
+              ? session.copyWith(
+                  definitions: session.definitions.toList()
+                    ..setAll(index, [null]),
+                )
+              : session;
 
           emit(SessionState.sessionLoaded(
             exercise: exercise,

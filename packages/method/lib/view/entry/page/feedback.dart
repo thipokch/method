@@ -14,7 +14,7 @@ class EntryEditorFeedback extends StatelessWidget with EntryDefinitionConsumer {
     final bloc = context.read<EntryBloc>();
     final state = bloc.state;
 
-    final labels = List.generate(task.definitions.length, (_) => _)
+    final labels = List.generate(taskDefinitions.length, (_) => _)
         .map<Widget?>(
           (index) {
             final taskDef = taskDefinitions[index];

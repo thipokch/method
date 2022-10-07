@@ -85,10 +85,16 @@ class EntryBloc extends Bloc<EntryEvent, EntryState> {
   void _onDeleteData(_DeleteData event, Emitter<EntryState> emit) =>
       state.maybeWhen(
         entryLoaded: (task, entry) {
-          final updated = entry.copyWith(
-            definitions: entry.definitions.toList()
-              ..removeWhere((e) => event.definition.id == e?.id),
-          );
+          final index =
+              task.definitions.indexWhere((e) => event.definition.id == e.id);
+
+          // doesn't use RemoveAt to maintain order
+          final updated = index >= 0
+              ? entry.copyWith(
+                  definitions: entry.definitions.toList()
+                    ..setAll(index, [null]),
+                )
+              : entry;
 
           emit(EntryState.entryLoaded(
             task: task,
@@ -103,7 +109,9 @@ class EntryBloc extends Bloc<EntryEvent, EntryState> {
   void _onClearData(_ClearData event, Emitter<EntryState> emit) =>
       state.maybeWhen(
         entryLoaded: (task, entry) {
-          final updated = entry.copyWith(definitions: const []);
+          final updated = entry.copyWith(
+            definitions: List.filled(task.definitions.length, null),
+          );
 
           emit(EntryState.entryLoaded(
             task: task,
