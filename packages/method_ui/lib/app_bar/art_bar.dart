@@ -120,7 +120,7 @@ class _MtSliverArtBarState extends State<MtSliverArtBar>
                       ElementScale.spaceS,
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(32.0),
+                      padding: EdgeInsets.all(32.0 * (1.0 - t)),
                       child: SizedBox(
                         height: 125 * (1.0 - t),
                         width: 125 * (1.0 - t),

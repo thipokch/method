@@ -69,7 +69,7 @@ class ExerciseMapper {
 }
 
 class ExerciseRepository
-    extends DaoDocumentCollection<Exercise, DbExercise, Task, DbTask> {
+    extends DaoDefinitionCollection<Exercise, DbExercise, Task, DbTask> {
   const ExerciseRepository(super.driver);
 
   @override

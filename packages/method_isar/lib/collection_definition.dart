@@ -24,12 +24,12 @@ abstract class DaoDefinition<DOM, CDOM, CDAO extends DaoObject>
   }) : definitionsIds = definitions.map((e) => e?.id).toList();
 }
 
-abstract class DaoDocumentCollection<
+abstract class DaoDefinitionCollection<
     DOM extends Template<CDOM>,
     DAO extends DaoDefinition<DOM, CDOM, CDAO>,
     CDOM,
     CDAO extends DaoObject> extends Collection<DOM, DAO> {
-  const DaoDocumentCollection(super.driver);
+  const DaoDefinitionCollection(super.driver);
 
   Collection<CDOM, CDAO> get childCollection;
 

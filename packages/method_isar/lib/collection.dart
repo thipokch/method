@@ -3,12 +3,12 @@
 import 'package:method_core/abstract/define.dart';
 import 'package:method_core/abstract/identify.dart';
 import 'package:flutter/material.dart';
-import 'package:isar/isar.dart';
+import 'package:isar/isar.dart' hide collection;
 import 'package:method_isar/source.dart';
 import 'package:method_repo/collection.dart';
 
 part 'collection_definition.dart';
-part 'collection_template.dart';
+part 'collection_document.dart';
 
 abstract class Dao {
   String get collectionSlug;
@@ -78,13 +78,11 @@ abstract class Collection<DOM, DAO extends Dao>
 
   // PUT
 
-  Future<int> put(DOM dom) {
-    return write(() => collection.putByIndex('id', toDao(dom)));
-  }
+  Future<int> put(DOM dom) =>
+      write(() => collection.putByIndex('id', toDao(dom)));
 
-  Future<List<int>> putAll(List<DOM> doms) {
-    return write(() => collection.putAllByIndex('id', toDaos(doms)));
-  }
+  Future<List<int>> putAll(List<DOM> doms) =>
+      write(() => collection.putAllByIndex('id', toDaos(doms)));
 
   // GET
 

@@ -58,7 +58,7 @@ class EntryMapper {
 }
 
 class EntryRepository
-    extends DaoTemplateCollection<Entry, DbEntry, Task, DbTask> {
+    extends DaoDocumentCollection<Entry, DbEntry, Task, DbTask> {
   const EntryRepository(super.driver);
 
   @override

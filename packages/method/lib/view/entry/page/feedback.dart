@@ -24,14 +24,17 @@ class EntryEditorFeedback extends StatelessWidget with EntryDefinitionConsumer {
               bloc: bloc,
               taskDefinition: taskDef,
               entryDefinition: entryDef,
-              onPressed: () => bloc
-                ..add(const EntryEvent.clearData())
-                ..add(EntryEvent.updateData(
-                  definition: EntryDefinition.label(
-                    hierarchyPath: taskDef.hierarchyPath,
-                    id: taskDef.id,
-                  ),
-                )),
+              onPressed: () {
+                bloc.add(const EntryEvent.clearData());
+                if (entryDef == null) {
+                  bloc.add(EntryEvent.updateData(
+                    definition: EntryDefinition.label(
+                      hierarchyPath: taskDef.hierarchyPath,
+                      id: taskDef.id,
+                    ),
+                  ));
+                }
+              },
             );
           },
         )

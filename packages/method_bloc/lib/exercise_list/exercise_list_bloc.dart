@@ -11,7 +11,7 @@ part 'exercise_list_bloc.freezed.dart';
 
 class ExerciseListBloc extends Bloc<ExerciseListEvent, ExerciseListState> {
   final Repository repo;
-  late StreamSubscription<List<Exercise>> subscription;
+  StreamSubscription<List<Exercise>>? subscription;
 
   ExerciseListBloc({
     required this.repo,
@@ -36,7 +36,14 @@ class ExerciseListBloc extends Bloc<ExerciseListEvent, ExerciseListState> {
   }
 
   void _close(_Close event, Emitter<ExerciseListState> emit) {
-    subscription.cancel();
+    subscription?.cancel();
     emit(const ExerciseListState.initial());
+  }
+
+  @override
+  Future<void> close() {
+    subscription?.cancel();
+
+    return super.close();
   }
 }

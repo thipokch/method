@@ -56,7 +56,7 @@ class SessionMapper {
 }
 
 class SessionRepository
-    extends DaoTemplateCollection<Session, DbSession, Exercise, DbExercise> {
+    extends DaoDocumentCollection<Session, DbSession, Exercise, DbExercise> {
   const SessionRepository(super.driver);
 
   @override

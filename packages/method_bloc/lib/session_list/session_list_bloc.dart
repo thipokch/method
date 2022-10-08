@@ -12,7 +12,7 @@ part 'session_list_bloc.freezed.dart';
 
 class SessionListBloc extends Bloc<SessionListEvent, SessionListState> {
   final Repository repo;
-  late StreamSubscription<List<Session>> subscription;
+  StreamSubscription<List<Session>>? subscription;
 
   SessionListBloc({
     required this.repo,
@@ -30,17 +30,25 @@ class SessionListBloc extends Bloc<SessionListEvent, SessionListState> {
   }
 
   void _close(_Close event, Emitter<SessionListState> emit) {
-    subscription.cancel();
+    subscription?.cancel();
     emit(const SessionListState.initial());
   }
 
   void _loadByExercise(_LoadByExercise event, Emitter<SessionListState> emit) {
-    repo.sessions.streamByExercise(event.exercise).listen((event) {
+    subscription =
+        repo.sessions.streamByExercise(event.exercise).listen((event) {
       add(_Update(sessions: event));
     });
   }
 
   void _update(_Update event, Emitter<SessionListState> emit) {
     emit(SessionListState.loaded(sessions: event.sessions));
+  }
+
+  @override
+  Future<void> close() {
+    subscription?.cancel();
+
+    return super.close();
   }
 }
