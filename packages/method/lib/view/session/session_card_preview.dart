@@ -1,9 +1,8 @@
-// ignore_for_file: unused_import
-
+import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
 import 'package:method_core/model/session.dart';
-import 'package:method_ui/card/card.dart';
-import 'package:method_ui/card/card_editing.dart';
+import 'package:method_style/element_scale.dart';
+import 'package:method_ui/emoji/emoji.dart';
 import 'package:method_ui/emoji/riso_emoji.dart';
 
 class SessionCardPreview extends StatelessWidget {
@@ -18,6 +17,8 @@ class SessionCardPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
     final entryIndex = session.definitions.indexWhere(
       (entry) =>
           entry?.template.maybeMap(
@@ -40,25 +41,73 @@ class SessionCardPreview extends StatelessWidget {
 
     return GestureDetector(
       onTap: onTap,
-      child: Column(
-        children: [
-          ListTile(
-            leading: MtRisoEmoji(
-              emoji: session.template.icon,
+      child: Card(
+        elevation: 1,
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        shape: const SmoothRectangleBorder(
+          borderRadius: SmoothBorderRadius.all(
+            SmoothRadius(
+              cornerRadius: ElementScale.cornerLarge,
+              cornerSmoothing: ElementScale.cornerSmoothFactor,
             ),
-            title: Text(session.template.name),
-            // subtitle: Text(session.id),
-            // onTap: onTap,
           ),
-          if (entryIndex >= 0 && defIndex >= 0)
-            MtCard(
-              text: session.definitions[entryIndex]!.definitions[defIndex]!
-                  .maybeMap(
-                note: (value) => value.data,
-                orElse: () => throw UnimplementedError(),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: 12.0,
+            horizontal: 8.0,
+          ),
+          child: Column(
+            children: [
+              ListTile(
+                leading: MtRisoEmoji(
+                  emoji: session.template.icon,
+                ),
+                title: Text(session.template.name),
               ),
-            ),
-        ],
+              if (entryIndex >= 0 && defIndex >= 0)
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 128.0,
+                    horizontal: 8.0,
+                  ),
+                  child: Center(
+                    child: Text(
+                      session.definitions[entryIndex]!.definitions[defIndex]!
+                          .maybeMap(
+                        note: (value) => value.data,
+                        orElse: () => throw UnimplementedError(),
+                      ),
+                      style: textTheme.titleMedium,
+                    ),
+                  ),
+                ),
+              if (entryIndex >= 0)
+                Wrap(
+                  spacing: 10,
+                  alignment: WrapAlignment.start,
+                  children: session.labels
+                      .map<Widget>((e) => Chip(
+                            label: Text(e.name),
+                            labelStyle: textTheme.labelMedium,
+                            avatar: MtEmoji(emoji: e.icon),
+                            padding: const EdgeInsets.fromLTRB(10, 6, 5, 6),
+                            backgroundColor: colorScheme.surface,
+                            shape: const SmoothRectangleBorder(
+                              borderRadius: SmoothBorderRadius.all(
+                                SmoothRadius(
+                                  cornerRadius: ElementScale.cornerLarge,
+                                  cornerSmoothing:
+                                      ElementScale.cornerSmoothFactor,
+                                ),
+                              ),
+                            ),
+                          ))
+                      .toList(),
+                ),
+            ],
+          ),
+        ),
       ),
     );
   }

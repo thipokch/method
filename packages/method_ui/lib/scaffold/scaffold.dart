@@ -30,7 +30,7 @@ class MtScaffold extends StatelessWidget {
             ...slivers,
             SliverPadding(
               padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).padding.bottom,
+                bottom: MediaQuery.of(context).padding.bottom * 2,
               ),
             ),
           ],

@@ -40,7 +40,7 @@ class _HomeView extends StatelessWidget {
           //   Content.exerciseMood,
           // ].map<Widget>((e) => SessionCard.create(exercise: e)).toList(),
           ExerciseListView.create(repo: context.read<Repository>()),
-          SessionListV.create(),
+          SessionList.create(),
         ]),
       );
 }

@@ -1,6 +1,7 @@
 import 'package:method_core/model/entry.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:method_core/model/task_definition.dart';
 
 import '../abstract/define.dart';
 import '../abstract/identify.dart';
@@ -46,6 +47,12 @@ class Session with _$Session, Identify, Locate, Document<Exercise, Entry> {
 
   @override
   String get collectionSlug => "session";
+
+  List<TaskDefinition> get labels => definitions
+      .map((e) => e?.labels)
+      .whereType<List<TaskDefinition>>()
+      .expand((e) => e)
+      .toList();
 
   // Map<String, Entry?> get mappedDefinitions =>
   //     mapId(keys: template.definitions, values: definitions);

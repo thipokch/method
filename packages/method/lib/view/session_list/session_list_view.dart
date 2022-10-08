@@ -1,11 +1,11 @@
 part of 'session_list_widget.dart';
 
-class SessionListV extends StatelessWidget {
-  const SessionListV({super.key});
+class SessionList extends StatelessWidget {
+  const SessionList({super.key});
 
   static Widget create() => _ExerciseList.create(
         // repo: repo,
-        child: const SessionListV(),
+        child: const SessionList(),
       );
 
   static Widget createByExercise({
@@ -15,7 +15,7 @@ class SessionListV extends StatelessWidget {
       _ExerciseList.createByExercise(
         // repo: repo,
         exercise: exercise,
-        child: const SessionListV(),
+        child: const SessionList(),
       );
 
   @override

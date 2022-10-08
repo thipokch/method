@@ -17,8 +17,8 @@ part 'page/diverge.dart';
 part 'page/converge.dart';
 part 'page/feedback.dart';
 
-class EntryPage extends StatelessWidget {
-  const EntryPage({
+class EntryEditor extends StatelessWidget {
+  const EntryEditor({
     super.key,
     required this.listener,
   });

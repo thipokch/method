@@ -53,7 +53,7 @@ class SessionEditorState extends State<SessionEditor> {
               pagination: SwiperPagination(
                 alignment: Alignment.bottomCenter,
                 margin: const EdgeInsets.all(ElementScale.spaceNone),
-                builder: ExerciseSwiperPagination(),
+                builder: ExerciseSwiperNavigation(),
               ),
               itemCount: state.exercise.definitions.length,
               itemBuilder: (context, index) => BlocProvider(
@@ -64,7 +64,7 @@ class SessionEditorState extends State<SessionEditor> {
                       ? session.definitions[index]
                       : null,
                 ),
-                child: EntryPage(
+                child: EntryEditor(
                   listener: context.read<SessionBloc>().handleEntryBlocState,
                 ),
               ),
@@ -100,71 +100,48 @@ class ExerciseSwiperDismiss extends SwiperPlugin {
       );
 }
 
-class ExerciseSwiperPagination extends SwiperPlugin {
+class ExerciseSwiperNavigation extends SwiperPlugin {
   @override
   Widget build(BuildContext context, SwiperPluginConfig config) {
     final colorScheme = Theme.of(context).colorScheme;
 
-    return Container(
-      // height: MediaQuery.of(context).padding.bottom * 4,
-      constraints:
-          BoxConstraints(maxHeight: MediaQuery.of(context).padding.bottom * 4),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            colorScheme.background.withOpacity(0),
-            colorScheme.background,
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ),
-      ),
-      alignment: Alignment.center,
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        // crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Container(
-            // alignment: Alignment.centerLeft,
-            decoration: const BoxDecoration(
-              color: Colors.black,
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.symmetric(
-              vertical: ElementScale.spaceM,
-              horizontal: ElementScale.spaceM * 1.2,
-            ),
-            decoration: BoxDecoration(
-              color: colorScheme.surface,
-              borderRadius: const BorderRadius.all(
-                Radius.circular(ElementScale.cornerExtraLarge),
+    return FloatScaffold(
+      leading: FloatContainer(
+        padding: EdgeInsets.zero,
+        child: config.activeIndex == 0
+            ? IconButton(
+                icon: const Icon(ElementSymbol.dismiss),
+                color: colorScheme.primary,
+                onPressed: () => Navigator.of(context).pop(),
+              )
+            : IconButton(
+                icon: const Icon(ElementSymbol.chevronBack),
+                color: colorScheme.primary,
+                onPressed: () => config.controller.previous(),
               ),
-              boxShadow: [
-                BoxShadow(
-                  color: colorScheme.outline.withOpacity(.16),
-                  blurRadius: 10,
-                  spreadRadius: 1,
-                ),
-              ],
-            ),
-            clipBehavior: Clip.antiAlias,
-            child: DotSwiperPaginationBuilder(
-              activeColor: colorScheme.primary,
-              color: colorScheme.surfaceVariant,
-              size: ElementScale.size03 + .0,
-              space: ElementScale.size03 + .0,
-              activeSize: ElementScale.size03 + .0,
-            ).build(context, config),
-          ),
-          Container(
-            // alignment: Alignment.centerLeft,
-            decoration: const BoxDecoration(
-              color: Colors.black,
-            ),
-          ),
-        ],
+      ),
+      middle: FloatContainer(
+        child: DotSwiperPaginationBuilder(
+          activeColor: colorScheme.primary,
+          color: colorScheme.surfaceVariant,
+          size: ElementScale.size03 + .0,
+          space: ElementScale.size03 + .0,
+          activeSize: ElementScale.size03 + .0,
+        ).build(context, config),
+      ),
+      trailing: FloatContainer(
+        padding: EdgeInsets.zero,
+        child: config.activeIndex == config.itemCount - 1
+            ? IconButton(
+                icon: const Icon(ElementSymbol.checkmark),
+                color: colorScheme.primary,
+                onPressed: () => Navigator.of(context).pop(),
+              )
+            : IconButton(
+                icon: const Icon(ElementSymbol.chevronForward),
+                color: colorScheme.primary,
+                onPressed: () => config.controller.next(),
+              ),
       ),
     );
   }

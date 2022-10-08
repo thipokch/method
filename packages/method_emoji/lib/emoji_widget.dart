@@ -15,7 +15,7 @@ class MtEmoji extends StatelessWidget {
     required this.emoji,
     this.height,
     this.width,
-    this.twemojiFormat = TwemojiFormat.svg,
+    this.twemojiFormat = TwemojiFormat.webp,
     this.fit,
   }) : super(key: key);
 

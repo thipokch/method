@@ -12,7 +12,10 @@ import 'package:method_style/element_symbol.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:method_ui/button/button_filled.dart';
+import 'package:method_ui/float/float_container.dart';
 import 'package:method_ui/page/art_page.dart';
+import 'package:method_ui/float/float_scaffold.dart';
 import 'package:method/view/session_list/session_list_widget.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:method_repo/repository.dart';
@@ -20,7 +23,7 @@ import 'package:method_repo/repository.dart';
 import '../entry/entry_widget.dart';
 import '../entry/entry_editor.dart';
 
-part 'session_page.dart';
+part 'exercise_page.dart';
 part 'session_editor.dart';
 
 class _Session extends StatelessWidget {

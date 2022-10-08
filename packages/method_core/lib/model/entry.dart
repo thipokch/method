@@ -1,6 +1,7 @@
 import 'package:method_core/model/task.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:method_core/model/task_definition.dart';
 
 import '../abstract/define.dart';
 import '../abstract/identify.dart';
@@ -45,6 +46,19 @@ class Entry with _$Entry, Identify, Locate, Document<Task, EntryDefinition> {
 
   @override
   final String collectionSlug = "exercise";
+
+  List<TaskDefinition> get labels => definitions
+      .asMap()
+      .entries
+      .map((e) => (e.value != null &&
+              e.value!.maybeMap(
+                label: (_) => true,
+                orElse: () => false,
+              ))
+          ? template.definitions[e.key]
+          : null)
+      .whereType<TaskDefinition>()
+      .toList();
 
   // Map<String, EntryDefinition?> get mappedDefinitions =>
   //     mapId(keys: template.definitions, values: definitions);

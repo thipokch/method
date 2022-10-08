@@ -22,7 +22,7 @@ class ExerciseListView extends StatelessWidget {
                 .map<Widget>((e) => ExerciseCard(
                       exercise: e,
                       onTap: () => Navigator.of(context).push(
-                        SessionPage.route(exercise: e),
+                        ExercisePage.route(exercise: e),
                       ),
                     ))
                 .toList()

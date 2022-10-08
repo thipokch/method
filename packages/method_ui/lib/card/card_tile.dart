@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:method_ui/emoji/riso_emoji.dart';
+import 'package:method_ui/emoji/emoji.dart';
 
 class CardTile extends StatelessWidget {
   const CardTile({
@@ -25,7 +25,7 @@ class CardTile extends StatelessWidget {
     return ListTile(
       onTap: onTap,
       leading: emoji != null && emoji!.isNotEmpty
-          ? MtRisoEmoji(
+          ? MtEmoji(
               emoji: emoji!,
               width: 42,
               height: 42,

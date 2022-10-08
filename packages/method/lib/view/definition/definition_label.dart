@@ -3,7 +3,7 @@ import 'package:method_core/model/entry_definition.dart';
 import 'package:method_core/model/task_definition.dart';
 import 'package:method_style/element_scale.dart';
 import 'package:flutter/material.dart';
-import 'package:method_ui/emoji/riso_emoji.dart';
+import 'package:method_ui/emoji/emoji.dart';
 
 import '../entry/entry_editor.dart';
 import 'definition.dart';
@@ -44,7 +44,7 @@ class DefinitionLabel extends StatelessWidget
           icon: SizedBox(
             height: 36.0,
             width: 36.0,
-            child: MtRisoEmoji(emoji: taskDefinition.icon),
+            child: MtEmoji(emoji: taskDefinition.icon),
           ),
         ),
         Padding(
