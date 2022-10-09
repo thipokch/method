@@ -82,4 +82,9 @@ class ElementSymbol {
   static const IconData todayFilled = FluentIcons.weather_sunny_low_24_filled;
   static const IconData settings = FluentIcons.settings_24_regular;
   static const IconData settingsFilled = FluentIcons.settings_24_filled;
+
+  static const IconData delete = FluentIcons.delete_24_regular;
+  static const IconData deleteFilled = FluentIcons.delete_24_filled;
+  static const IconData edit = FluentIcons.edit_24_regular;
+  static const IconData editFilled = FluentIcons.edit_24_filled;
 }

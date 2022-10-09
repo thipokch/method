@@ -107,7 +107,7 @@ abstract class Collection<DOM, DAO extends Dao>
       .map<DOM>((element) => toDom(element))
       .toList();
 
-  // GET - ASYNC
+  // STREAM
 
   Stream<DOM> stream(String id) => collection
       .where()
@@ -119,6 +119,17 @@ abstract class Collection<DOM, DAO extends Dao>
       .where()
       .watch(fireImmediately: true)
       .map<List<DOM>>((event) => event.map<DOM>((e) => toDom(e)).toList());
+
+  // REMOVE
+
+  Future<bool> delete(DOM dom) =>
+      write(() => collection.deleteByIndex('id', [toDao(dom).id]));
+
+  Future<int> deleteAll(List<DOM> doms) =>
+      write(() => collection.deleteAllByIndex(
+            'id',
+            toDaos(doms).map((e) => [e.id]).toList(),
+          ));
 
   // CLEAR
 

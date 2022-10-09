@@ -1,12 +1,14 @@
+import 'package:figma_squircle/figma_squircle.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:method/view/session/session_card_preview.dart';
 import 'package:method/view/session/session_widget.dart';
 import 'package:method_bloc/session_list/session_list_bloc.dart';
 import 'package:method_core/model/exercise.dart';
-import 'package:method_core/model/session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:method/content/content.dart';
 import 'package:method_repo/repository.dart';
+import 'package:method_style/element_scale.dart';
+import 'package:method_style/element_symbol.dart';
 
 part 'session_list_view.dart';
 

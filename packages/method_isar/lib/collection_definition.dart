@@ -57,4 +57,19 @@ abstract class DaoDefinitionCollection<
 
     return super.putAll(doms);
   }
+
+  @override
+  Future<bool> delete(DOM dom) async {
+    await childCollection.deleteAll(dom.definitions);
+
+    return super.delete(dom);
+  }
+
+  @override
+  Future<int> deleteAll(List<DOM> doms) async {
+    await childCollection
+        .deleteAll(doms.expand((element) => element.definitions).toList());
+
+    return super.deleteAll(doms);
+  }
 }

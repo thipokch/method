@@ -12,5 +12,9 @@ class SessionListEvent with _$SessionListEvent {
     required List<Session> sessions,
   }) = _Update;
 
+  const factory SessionListEvent.delete({
+    required Session session,
+  }) = _Delete;
+
   const factory SessionListEvent.close() = _Close;
 }

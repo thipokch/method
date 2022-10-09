@@ -20,6 +20,7 @@ class SessionListBloc extends Bloc<SessionListEvent, SessionListState> {
     on<_Load>(_load);
     on<_LoadByExercise>(_loadByExercise);
     on<_Update>(_update);
+    on<_Delete>(_delete);
     on<_Close>(_close);
   }
 
@@ -43,6 +44,10 @@ class SessionListBloc extends Bloc<SessionListEvent, SessionListState> {
 
   void _update(_Update event, Emitter<SessionListState> emit) {
     emit(SessionListState.loaded(sessions: event.sessions));
+  }
+
+  void _delete(_Delete event, Emitter<SessionListState> emit) {
+    repo.sessions.delete(event.session);
   }
 
   @override

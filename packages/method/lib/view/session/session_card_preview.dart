@@ -5,13 +5,15 @@ import 'package:method_style/element_scale.dart';
 import 'package:method_ui/emoji/emoji.dart';
 import 'package:method_ui/emoji/riso_emoji.dart';
 
-class SessionCardPreview extends StatelessWidget {
+class SessionCardPreview<T> extends StatelessWidget {
   final Session session;
   final GestureTapCallback? onTap;
+  final Widget? actions;
 
   const SessionCardPreview({
     super.key,
     required this.session,
+    this.actions,
     this.onTap,
   });
 
@@ -60,10 +62,9 @@ class SessionCardPreview extends StatelessWidget {
           child: Column(
             children: [
               ListTile(
-                leading: MtRisoEmoji(
-                  emoji: session.template.icon,
-                ),
+                leading: MtRisoEmoji(emoji: session.template.icon),
                 title: Text(session.template.name),
+                trailing: actions,
               ),
               if (entryIndex >= 0 && defIndex >= 0)
                 Padding(
