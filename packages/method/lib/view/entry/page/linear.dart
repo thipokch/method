@@ -11,32 +11,45 @@ class EntryEditorLinear extends StatelessWidget with EntryDefinitionConsumer {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-    final colorScheme = Theme.of(context).colorScheme;
+    final note = taskDefinitions.first;
+
+    final notes = List.generate(entryDefinitions?.length ?? 0, (_) => _)
+        .map<Widget>((index) {
+      final entryDef = entryDefinitions?.elementAtOrNull(index);
+
+      return SliverToBoxAdapter(
+        child: DefinitionCard(
+          bloc: bloc,
+          taskDefinition: note,
+          entryDefinition: entryDef,
+          onChanged: (value) => entryDef == null
+              ? bloc.add(EntryEvent.addData(
+                  definition: EntryDefinition.note(
+                    data: value,
+                    hierarchyPath: note.hierarchyPath,
+                    id: note.id,
+                  ),
+                ))
+              : bloc.add(EntryEvent.updateData(
+                  definition: EntryDefinition.note(
+                    data: value,
+                    hierarchyPath: note.hierarchyPath,
+                    id: note.id,
+                  ),
+                )),
+          showMeta: false,
+          isStatic: true,
+        ),
+      );
+    }).toList();
 
     return MtAppPage(
-      name: "",
-      description: "",
+      name: note.name,
+      description: note.description,
       implyLeading: false,
       // name: task.name,
       // description: task.description,
-      slivers: [
-        SliverFillRemaining(
-          child: TextField(
-            style: textTheme.bodyLarge,
-            expands: true,
-            maxLines: null,
-            cursorColor: colorScheme.primary,
-            decoration: const InputDecoration(
-              hintText: 'Start Writing...',
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.all(
-                ElementScale.spaceM,
-              ),
-            ),
-          ),
-        ),
-      ],
+      slivers: notes,
     );
   }
 }

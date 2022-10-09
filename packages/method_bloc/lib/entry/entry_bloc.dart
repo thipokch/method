@@ -28,6 +28,7 @@ class EntryBloc extends Bloc<EntryEvent, EntryState> {
     on<_LoadTask>(_onLoadTask);
     on<_CloseTask>(_onCloseTask);
     on<_LoadEntry>(_onLoadEntry);
+    on<_AddData>(_onAddData);
     on<_UpdateData>(_onUpdateData);
     on<_DeleteData>(_onDeleteData);
     on<_ClearData>(_onClearData);
@@ -77,6 +78,28 @@ class EntryBloc extends Bloc<EntryEvent, EntryState> {
               ? entry.copyWith(
                   definitions: entry.definitions.toList()
                     ..setAll(index, [event.definition]),
+                )
+              : entry;
+
+          emit(EntryState.entryLoaded(
+            task: task,
+            entry: updated,
+          ));
+
+          return repo.entries.put(updated);
+        },
+        orElse: () => throw UnimplementedError(state.toString()),
+      );
+
+  void _onAddData(_AddData event, Emitter<EntryState> emit) => state.maybeWhen(
+        entryLoaded: (task, entry) {
+          final index =
+              task.definitions.indexWhere((e) => event.definition.id == e.id);
+
+          final updated = index >= 0
+              ? entry.copyWith(
+                  definitions: entry.definitions.toList()
+                    ..add(event.definition),
                 )
               : entry;
 

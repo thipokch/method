@@ -426,7 +426,7 @@ class Content {
     id: "distortion",
   );
 
-  static const taskFear = Task.converge(
+  static const taskFear = Task.linear(
     icon: "🕷",
     name: "Examine Fear",
     description: "What if it's true?",

@@ -5,7 +5,7 @@ import 'package:method_style/element_scale.dart';
 import 'package:method_ui/emoji/emoji.dart';
 import 'package:method_ui/emoji/riso_emoji.dart';
 
-class SessionCardPreview<T> extends StatelessWidget {
+class SessionCardPreview extends StatelessWidget {
   final Session session;
   final GestureTapCallback? onTap;
   final Widget? actions;

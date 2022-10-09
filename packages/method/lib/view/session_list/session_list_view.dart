@@ -40,6 +40,7 @@ class SessionList extends StatelessWidget {
                         ),
                         actions: PopupMenuButton(
                           icon: const Icon(ElementSymbol.moreVertical),
+                          position: PopupMenuPosition.under,
                           shape: const SmoothRectangleBorder(
                             borderRadius: SmoothBorderRadius.all(
                               SmoothRadius(
@@ -52,6 +53,13 @@ class SessionList extends StatelessWidget {
                           itemBuilder: (BuildContext context) =>
                               <PopupMenuEntry>[
                             PopupMenuItem(
+                              onTap: () => Navigator.push(
+                                context,
+                                SessionEditor.route(
+                                  exercise: session.template,
+                                  session: session,
+                                ),
+                              ),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:
@@ -68,7 +76,11 @@ class SessionList extends StatelessWidget {
                                 ],
                               ),
                             ),
+                            const PopupMenuDivider(),
                             PopupMenuItem(
+                              onTap: () => bloc.add(
+                                SessionListEvent.delete(session: session),
+                              ),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:
@@ -83,9 +95,6 @@ class SessionList extends StatelessWidget {
                                     color: colorScheme.error,
                                   ),
                                 ],
-                              ),
-                              onTap: () => bloc.add(
-                                SessionListEvent.delete(session: session),
                               ),
                             ),
                           ],

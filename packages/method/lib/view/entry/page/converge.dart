@@ -39,34 +39,36 @@ class EntryEditorConverge extends StatelessWidget with EntryDefinitionConsumer {
     //     .whereType<Widget>()
     //     .toList();
 
-    final labels = List.generate(task.definitions.length - 1, (_) => _ + 1)
-        .map<Widget?>(
-          (index) {
-            final taskDef = taskDefinitions[index];
-            final entryDef = entryDefinitions?.elementAtOrNull(index);
+    final labels = entryDefinitions?.elementAtOrNull(0) == null
+        ? <Widget>[]
+        : List.generate(task.definitions.length - 1, (_) => _ + 1)
+            .map<Widget?>(
+              (index) {
+                final taskDef = taskDefinitions[index];
+                final entryDef = entryDefinitions?.elementAtOrNull(index);
 
-            return DefinitionLabel(
-              bloc: bloc,
-              taskDefinition: taskDef,
-              entryDefinition: entryDef,
-              onPressed: () => entryDef == null
-                  ? bloc.add(EntryEvent.updateData(
-                      definition: EntryDefinition.label(
-                        hierarchyPath: taskDef.hierarchyPath,
-                        id: taskDef.id,
-                      ),
-                    ))
-                  : bloc.add(EntryEvent.deleteData(
-                      definition: EntryDefinition.label(
-                        hierarchyPath: taskDef.hierarchyPath,
-                        id: taskDef.id,
-                      ),
-                    )),
-            );
-          },
-        )
-        .whereType<Widget>()
-        .toList();
+                return DefinitionLabel(
+                  bloc: bloc,
+                  taskDefinition: taskDef,
+                  entryDefinition: entryDef,
+                  onPressed: () => entryDef == null
+                      ? bloc.add(EntryEvent.updateData(
+                          definition: EntryDefinition.label(
+                            hierarchyPath: taskDef.hierarchyPath,
+                            id: taskDef.id,
+                          ),
+                        ))
+                      : bloc.add(EntryEvent.deleteData(
+                          definition: EntryDefinition.label(
+                            hierarchyPath: taskDef.hierarchyPath,
+                            id: taskDef.id,
+                          ),
+                        )),
+                );
+              },
+            )
+            .whereType<Widget>()
+            .toList();
 
     return MtAppPage(
       name: note.name,
