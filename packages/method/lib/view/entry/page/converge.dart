@@ -13,32 +13,6 @@ class EntryEditorConverge extends StatelessWidget with EntryDefinitionConsumer {
   Widget build(BuildContext context) {
     final note = taskDefinitions.first;
 
-    // final labels = task.definitions
-    //     .map<Widget?>(
-    //       (e) => e.mapOrNull(
-    //         label: (taskDef) => DefinitionLabel(
-    //           bloc: bloc,
-    //           taskDefinition: taskDef,
-    //           entryDefinition: mappedDefinitions?[e.id],
-    //           onPressed: () => mappedDefinitions?.containsKey(e.id) ?? false
-    //               ? bloc.add(EntryEvent.deleteData(
-    //                   definition: EntryDefinition.label(
-    //                     hierarchyPath: taskDef.hierarchyPath,
-    //                     id: taskDef.id,
-    //                   ),
-    //                 ))
-    //               : bloc.add(EntryEvent.updateData(
-    //                   definition: EntryDefinition.label(
-    //                     hierarchyPath: taskDef.hierarchyPath,
-    //                     id: taskDef.id,
-    //                   ),
-    //                 )),
-    //         ),
-    //       ),
-    //     )
-    //     .whereType<Widget>()
-    //     .toList();
-
     final labels = entryDefinitions?.elementAtOrNull(0) == null
         ? <Widget>[]
         : List.generate(task.definitions.length - 1, (_) => _ + 1)

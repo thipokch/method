@@ -68,18 +68,18 @@ class ExercisePage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SliverPadding(
-                    padding: const EdgeInsets.all(ElementScale.spaceM),
-                    sliver: SliverToBoxAdapter(
-                      child: Material(
-                        type: MaterialType.transparency,
-                        child: SessionList.createByExercise(
-                          // repo: repo,
-                          exercise: exercise,
-                        ),
-                      ),
-                    ),
-                  ),
+                  // SliverPadding(
+                  //   padding: const EdgeInsets.all(ElementScale.spaceM),
+                  //   sliver: SliverToBoxAdapter(
+                  //     child: Material(
+                  //       type: MaterialType.transparency,
+                  //       child: SessionList.createByExercise(
+                  //         // repo: repo,
+                  //         exercise: exercise,
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
               const Align(
