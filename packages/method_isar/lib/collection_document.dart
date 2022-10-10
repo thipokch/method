@@ -2,13 +2,19 @@
 
 part of 'collection.dart';
 
-mixin DaoTemplate<DAO extends Dao> on Dao {
+mixin DaoDocument<DAO extends Dao> on Dao {
   final template = IsarLink<DAO>();
+
+  DateTime get createdAt;
+  DateTime get readAt;
+  DateTime get updatedAt;
+  DateTime? get commitedAt;
+  DateTime? get deletedAt;
 }
 
 abstract class DaoDocumentCollection<
     DOM extends Document<TDOM, Object>,
-    DAO extends DaoTemplate<TDAO>,
+    DAO extends DaoDocument<TDAO>,
     TDOM extends Identify,
     TDAO extends DaoObject> extends Collection<DOM, DAO> {
   const DaoDocumentCollection(super.driver);

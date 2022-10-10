@@ -4,6 +4,7 @@ import 'package:method_core/model/session.dart';
 import 'package:method_style/element_scale.dart';
 import 'package:method_ui/emoji/emoji.dart';
 import 'package:method_ui/emoji/riso_emoji.dart';
+import 'package:timeago_flutter/timeago_flutter.dart';
 
 class SessionCardPreview extends StatelessWidget {
   final Session session;
@@ -64,6 +65,11 @@ class SessionCardPreview extends StatelessWidget {
               ListTile(
                 leading: MtRisoEmoji(emoji: session.template.icon),
                 title: Text(session.template.name),
+                subtitle: Timeago(
+                  builder: (_, value) => Text(value),
+                  date: session.createdAt,
+                ),
+                // subtitle: Text(format(session.commitedAt!)),
                 trailing: actions,
               ),
               if (entryIndex >= 0 && defIndex >= 0)

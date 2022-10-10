@@ -27,6 +27,7 @@ dependencies:
   dots_indicator: ^2.1.0
   card_swiper : ^2.0.4
   uuid: ^3.0.6
+  timeago_flutter: ^1.2.0
 
   method_bloc:
   method_core:

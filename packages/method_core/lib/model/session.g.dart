@@ -16,6 +16,15 @@ _$_Session _$$_SessionFromJson(Map<String, dynamic> json) => _$_Session(
       id: json['id'] as String,
       uuid: _$JsonConverterFromJson<String, UuidValue>(
           json['uuid'], const UuidConverter().fromJson),
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      readAt: DateTime.parse(json['readAt'] as String),
+      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      commitedAt: json['commitedAt'] == null
+          ? null
+          : DateTime.parse(json['commitedAt'] as String),
+      deletedAt: json['deletedAt'] == null
+          ? null
+          : DateTime.parse(json['deletedAt'] as String),
     );
 
 Map<String, dynamic> _$$_SessionToJson(_$_Session instance) =>
@@ -26,6 +35,11 @@ Map<String, dynamic> _$$_SessionToJson(_$_Session instance) =>
       'id': instance.id,
       'uuid': _$JsonConverterToJson<String, UuidValue>(
           instance.uuid, const UuidConverter().toJson),
+      'createdAt': instance.createdAt.toIso8601String(),
+      'readAt': instance.readAt.toIso8601String(),
+      'updatedAt': instance.updatedAt.toIso8601String(),
+      'commitedAt': instance.commitedAt?.toIso8601String(),
+      'deletedAt': instance.deletedAt?.toIso8601String(),
     };
 
 Value? _$JsonConverterFromJson<Json, Value>(

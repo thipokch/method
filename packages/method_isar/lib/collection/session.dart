@@ -14,15 +14,31 @@ part 'session.g.dart';
 
 @collection
 class DbSession extends DaoDefinition<Session, Entry, DbEntry>
-    with DaoTemplate<DbExercise> {
+    with DaoDocument<DbExercise> {
   @override
   final String collectionSlug = "session";
+
+  @override
+  final DateTime createdAt;
+  @override
+  final DateTime readAt;
+  @override
+  final DateTime updatedAt;
+  @override
+  final DateTime? commitedAt;
+  @override
+  final DateTime? deletedAt;
 
   DbSession({
     super.definitions = const [],
     required super.hierarchyPath,
     required super.id,
     required super.uuid,
+    required this.createdAt,
+    required this.readAt,
+    required this.updatedAt,
+    this.commitedAt,
+    this.deletedAt,
   });
 }
 
@@ -39,6 +55,11 @@ class SessionMapper {
         hierarchyPath: dom.hierarchyPath,
         id: dom.id,
         uuid: dom.uuid?.toBytes() ?? const Uuid().v4obj().toBytes(),
+        createdAt: dom.createdAt,
+        readAt: dom.readAt,
+        updatedAt: dom.updatedAt,
+        commitedAt: dom.commitedAt,
+        deletedAt: dom.deletedAt,
       );
 
   static Session toDom({
@@ -52,6 +73,11 @@ class SessionMapper {
         hierarchyPath: dao.hierarchyPath,
         id: dao.id,
         uuid: UuidValue.fromList(dao.uuid),
+        createdAt: dao.createdAt,
+        readAt: dao.readAt,
+        updatedAt: dao.updatedAt,
+        commitedAt: dao.commitedAt,
+        deletedAt: dao.deletedAt,
       );
 }
 

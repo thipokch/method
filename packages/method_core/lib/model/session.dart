@@ -6,6 +6,7 @@ import 'package:method_core/model/task_definition.dart';
 import '../abstract/define.dart';
 import '../abstract/identify.dart';
 import '../abstract/locate.dart';
+import '../abstract/maintain.dart';
 import '../util/uuid.dart';
 import 'exercise.dart';
 
@@ -13,7 +14,8 @@ part 'session.freezed.dart';
 part 'session.g.dart';
 
 @freezed
-class Session with _$Session, Identify, Locate, Document<Exercise, Entry> {
+class Session
+    with Identify, Locate, Maintain, Document<Exercise, Entry>, _$Session {
   const Session._();
 
   const factory Session({
@@ -22,6 +24,11 @@ class Session with _$Session, Identify, Locate, Document<Exercise, Entry> {
     required String hierarchyPath,
     required String id,
     @UuidConverter() UuidValue? uuid,
+    required final DateTime createdAt,
+    required final DateTime readAt,
+    required final DateTime updatedAt,
+    final DateTime? commitedAt,
+    final DateTime? deletedAt,
   }) = _Session;
 
   factory Session.create({
@@ -30,6 +37,7 @@ class Session with _$Session, Identify, Locate, Document<Exercise, Entry> {
     required final String hierarchyPath,
     required final String id,
     final String? uuid,
+    final DateTime? commitedAt,
   }) =>
       Session(
         template: template,
@@ -40,6 +48,10 @@ class Session with _$Session, Identify, Locate, Document<Exercise, Entry> {
         uuid: uuid != null && uuid.isNotEmpty
             ? UuidValue(uuid)
             : const Uuid().v4obj(),
+        createdAt: DateTime.now(),
+        readAt: DateTime.now(),
+        updatedAt: DateTime.now(),
+        commitedAt: commitedAt,
       );
 
   factory Session.fromJson(Map<String, dynamic> json) =>

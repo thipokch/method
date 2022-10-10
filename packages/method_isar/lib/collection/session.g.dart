@@ -22,23 +22,48 @@ const DbSessionSchema = CollectionSchema(
       name: r'collectionSlug',
       type: IsarType.string,
     ),
-    r'definitionsIds': PropertySchema(
+    r'commitedAt': PropertySchema(
       id: 1,
+      name: r'commitedAt',
+      type: IsarType.dateTime,
+    ),
+    r'createdAt': PropertySchema(
+      id: 2,
+      name: r'createdAt',
+      type: IsarType.dateTime,
+    ),
+    r'definitionsIds': PropertySchema(
+      id: 3,
       name: r'definitionsIds',
       type: IsarType.stringList,
     ),
+    r'deletedAt': PropertySchema(
+      id: 4,
+      name: r'deletedAt',
+      type: IsarType.dateTime,
+    ),
     r'hierarchyPath': PropertySchema(
-      id: 2,
+      id: 5,
       name: r'hierarchyPath',
       type: IsarType.string,
     ),
     r'id': PropertySchema(
-      id: 3,
+      id: 6,
       name: r'id',
       type: IsarType.string,
     ),
+    r'readAt': PropertySchema(
+      id: 7,
+      name: r'readAt',
+      type: IsarType.dateTime,
+    ),
+    r'updatedAt': PropertySchema(
+      id: 8,
+      name: r'updatedAt',
+      type: IsarType.dateTime,
+    ),
     r'uuid': PropertySchema(
-      id: 4,
+      id: 9,
       name: r'uuid',
       type: IsarType.byteList,
     )
@@ -125,10 +150,15 @@ void _dbSessionSerialize(
   Map<Type, List<int>> allOffsets,
 ) {
   writer.writeString(offsets[0], object.collectionSlug);
-  writer.writeStringList(offsets[1], object.definitionsIds);
-  writer.writeString(offsets[2], object.hierarchyPath);
-  writer.writeString(offsets[3], object.id);
-  writer.writeByteList(offsets[4], object.uuid);
+  writer.writeDateTime(offsets[1], object.commitedAt);
+  writer.writeDateTime(offsets[2], object.createdAt);
+  writer.writeStringList(offsets[3], object.definitionsIds);
+  writer.writeDateTime(offsets[4], object.deletedAt);
+  writer.writeString(offsets[5], object.hierarchyPath);
+  writer.writeString(offsets[6], object.id);
+  writer.writeDateTime(offsets[7], object.readAt);
+  writer.writeDateTime(offsets[8], object.updatedAt);
+  writer.writeByteList(offsets[9], object.uuid);
 }
 
 DbSession _dbSessionDeserialize(
@@ -138,12 +168,17 @@ DbSession _dbSessionDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = DbSession(
-    hierarchyPath: reader.readString(offsets[2]),
-    id: reader.readString(offsets[3]),
-    uuid: reader.readByteList(offsets[4]) ?? [],
+    commitedAt: reader.readDateTimeOrNull(offsets[1]),
+    createdAt: reader.readDateTime(offsets[2]),
+    deletedAt: reader.readDateTimeOrNull(offsets[4]),
+    hierarchyPath: reader.readString(offsets[5]),
+    id: reader.readString(offsets[6]),
+    readAt: reader.readDateTime(offsets[7]),
+    updatedAt: reader.readDateTime(offsets[8]),
+    uuid: reader.readByteList(offsets[9]) ?? [],
   );
   object.dbid = id;
-  object.definitionsIds = reader.readStringOrNullList(offsets[1]) ?? [];
+  object.definitionsIds = reader.readStringOrNullList(offsets[3]) ?? [];
   return object;
 }
 
@@ -157,12 +192,22 @@ P _dbSessionDeserializeProp<P>(
     case 0:
       return (reader.readString(offset)) as P;
     case 1:
-      return (reader.readStringOrNullList(offset) ?? []) as P;
+      return (reader.readDateTimeOrNull(offset)) as P;
     case 2:
-      return (reader.readString(offset)) as P;
+      return (reader.readDateTime(offset)) as P;
     case 3:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNullList(offset) ?? []) as P;
     case 4:
+      return (reader.readDateTimeOrNull(offset)) as P;
+    case 5:
+      return (reader.readString(offset)) as P;
+    case 6:
+      return (reader.readString(offset)) as P;
+    case 7:
+      return (reader.readDateTime(offset)) as P;
+    case 8:
+      return (reader.readDateTime(offset)) as P;
+    case 9:
       return (reader.readByteList(offset) ?? []) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -587,6 +632,131 @@ extension DbSessionQueryFilter
     });
   }
 
+  QueryBuilder<DbSession, DbSession, QAfterFilterCondition> commitedAtIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'commitedAt',
+      ));
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterFilterCondition>
+      commitedAtIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'commitedAt',
+      ));
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterFilterCondition> commitedAtEqualTo(
+      DateTime? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'commitedAt',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterFilterCondition>
+      commitedAtGreaterThan(
+    DateTime? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'commitedAt',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterFilterCondition> commitedAtLessThan(
+    DateTime? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'commitedAt',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterFilterCondition> commitedAtBetween(
+    DateTime? lower,
+    DateTime? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'commitedAt',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterFilterCondition> createdAtEqualTo(
+      DateTime value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'createdAt',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterFilterCondition>
+      createdAtGreaterThan(
+    DateTime value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'createdAt',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterFilterCondition> createdAtLessThan(
+    DateTime value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'createdAt',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterFilterCondition> createdAtBetween(
+    DateTime lower,
+    DateTime upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'createdAt',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
   QueryBuilder<DbSession, DbSession, QAfterFilterCondition> dbidIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -900,6 +1070,77 @@ extension DbSessionQueryFilter
     });
   }
 
+  QueryBuilder<DbSession, DbSession, QAfterFilterCondition> deletedAtIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'deletedAt',
+      ));
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterFilterCondition>
+      deletedAtIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'deletedAt',
+      ));
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterFilterCondition> deletedAtEqualTo(
+      DateTime? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'deletedAt',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterFilterCondition>
+      deletedAtGreaterThan(
+    DateTime? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'deletedAt',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterFilterCondition> deletedAtLessThan(
+    DateTime? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'deletedAt',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterFilterCondition> deletedAtBetween(
+    DateTime? lower,
+    DateTime? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'deletedAt',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
   QueryBuilder<DbSession, DbSession, QAfterFilterCondition>
       hierarchyPathEqualTo(
     String value, {
@@ -1166,6 +1407,113 @@ extension DbSessionQueryFilter
     });
   }
 
+  QueryBuilder<DbSession, DbSession, QAfterFilterCondition> readAtEqualTo(
+      DateTime value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'readAt',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterFilterCondition> readAtGreaterThan(
+    DateTime value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'readAt',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterFilterCondition> readAtLessThan(
+    DateTime value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'readAt',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterFilterCondition> readAtBetween(
+    DateTime lower,
+    DateTime upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'readAt',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterFilterCondition> updatedAtEqualTo(
+      DateTime value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'updatedAt',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterFilterCondition>
+      updatedAtGreaterThan(
+    DateTime value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'updatedAt',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterFilterCondition> updatedAtLessThan(
+    DateTime value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'updatedAt',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterFilterCondition> updatedAtBetween(
+    DateTime lower,
+    DateTime upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'updatedAt',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
   QueryBuilder<DbSession, DbSession, QAfterFilterCondition> uuidElementEqualTo(
       int value) {
     return QueryBuilder.apply(this, (query) {
@@ -1338,6 +1686,42 @@ extension DbSessionQuerySortBy on QueryBuilder<DbSession, DbSession, QSortBy> {
     });
   }
 
+  QueryBuilder<DbSession, DbSession, QAfterSortBy> sortByCommitedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'commitedAt', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterSortBy> sortByCommitedAtDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'commitedAt', Sort.desc);
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterSortBy> sortByCreatedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'createdAt', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterSortBy> sortByCreatedAtDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'createdAt', Sort.desc);
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterSortBy> sortByDeletedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'deletedAt', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterSortBy> sortByDeletedAtDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'deletedAt', Sort.desc);
+    });
+  }
+
   QueryBuilder<DbSession, DbSession, QAfterSortBy> sortByHierarchyPath() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'hierarchyPath', Sort.asc);
@@ -1361,6 +1745,30 @@ extension DbSessionQuerySortBy on QueryBuilder<DbSession, DbSession, QSortBy> {
       return query.addSortBy(r'id', Sort.desc);
     });
   }
+
+  QueryBuilder<DbSession, DbSession, QAfterSortBy> sortByReadAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'readAt', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterSortBy> sortByReadAtDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'readAt', Sort.desc);
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterSortBy> sortByUpdatedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'updatedAt', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterSortBy> sortByUpdatedAtDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'updatedAt', Sort.desc);
+    });
+  }
 }
 
 extension DbSessionQuerySortThenBy
@@ -1377,6 +1785,30 @@ extension DbSessionQuerySortThenBy
     });
   }
 
+  QueryBuilder<DbSession, DbSession, QAfterSortBy> thenByCommitedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'commitedAt', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterSortBy> thenByCommitedAtDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'commitedAt', Sort.desc);
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterSortBy> thenByCreatedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'createdAt', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterSortBy> thenByCreatedAtDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'createdAt', Sort.desc);
+    });
+  }
+
   QueryBuilder<DbSession, DbSession, QAfterSortBy> thenByDbid() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'dbid', Sort.asc);
@@ -1386,6 +1818,18 @@ extension DbSessionQuerySortThenBy
   QueryBuilder<DbSession, DbSession, QAfterSortBy> thenByDbidDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'dbid', Sort.desc);
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterSortBy> thenByDeletedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'deletedAt', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterSortBy> thenByDeletedAtDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'deletedAt', Sort.desc);
     });
   }
 
@@ -1412,6 +1856,30 @@ extension DbSessionQuerySortThenBy
       return query.addSortBy(r'id', Sort.desc);
     });
   }
+
+  QueryBuilder<DbSession, DbSession, QAfterSortBy> thenByReadAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'readAt', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterSortBy> thenByReadAtDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'readAt', Sort.desc);
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterSortBy> thenByUpdatedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'updatedAt', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QAfterSortBy> thenByUpdatedAtDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'updatedAt', Sort.desc);
+    });
+  }
 }
 
 extension DbSessionQueryWhereDistinct
@@ -1424,9 +1892,27 @@ extension DbSessionQueryWhereDistinct
     });
   }
 
+  QueryBuilder<DbSession, DbSession, QDistinct> distinctByCommitedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'commitedAt');
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QDistinct> distinctByCreatedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'createdAt');
+    });
+  }
+
   QueryBuilder<DbSession, DbSession, QDistinct> distinctByDefinitionsIds() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'definitionsIds');
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QDistinct> distinctByDeletedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'deletedAt');
     });
   }
 
@@ -1442,6 +1928,18 @@ extension DbSessionQueryWhereDistinct
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'id', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QDistinct> distinctByReadAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'readAt');
+    });
+  }
+
+  QueryBuilder<DbSession, DbSession, QDistinct> distinctByUpdatedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'updatedAt');
     });
   }
 
@@ -1466,10 +1964,28 @@ extension DbSessionQueryProperty
     });
   }
 
+  QueryBuilder<DbSession, DateTime?, QQueryOperations> commitedAtProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'commitedAt');
+    });
+  }
+
+  QueryBuilder<DbSession, DateTime, QQueryOperations> createdAtProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'createdAt');
+    });
+  }
+
   QueryBuilder<DbSession, List<String?>, QQueryOperations>
       definitionsIdsProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'definitionsIds');
+    });
+  }
+
+  QueryBuilder<DbSession, DateTime?, QQueryOperations> deletedAtProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'deletedAt');
     });
   }
 
@@ -1482,6 +1998,18 @@ extension DbSessionQueryProperty
   QueryBuilder<DbSession, String, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
+    });
+  }
+
+  QueryBuilder<DbSession, DateTime, QQueryOperations> readAtProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'readAt');
+    });
+  }
+
+  QueryBuilder<DbSession, DateTime, QQueryOperations> updatedAtProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'updatedAt');
     });
   }
 

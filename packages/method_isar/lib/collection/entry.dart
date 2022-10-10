@@ -12,9 +12,20 @@ import '../collection.dart';
 part 'entry.g.dart';
 
 @collection
-class DbEntry extends DaoObject with DaoTemplate<DbTask> {
+class DbEntry extends DaoObject with DaoDocument<DbTask> {
   @override
   final String collectionSlug = "entry";
+
+  @override
+  final DateTime createdAt;
+  @override
+  final DateTime readAt;
+  @override
+  final DateTime updatedAt;
+  @override
+  final DateTime? commitedAt;
+  @override
+  final DateTime? deletedAt;
 
   List<DbEntryDefinition?> definitions;
 
@@ -23,6 +34,11 @@ class DbEntry extends DaoObject with DaoTemplate<DbTask> {
     required super.hierarchyPath,
     required super.id,
     required super.uuid,
+    required this.createdAt,
+    required this.readAt,
+    required this.updatedAt,
+    this.commitedAt,
+    this.deletedAt,
   });
 }
 
@@ -37,9 +53,14 @@ class EntryMapper {
             .map((dom) =>
                 dom != null ? EntryDefinitionMapper.toDao(dom: dom) : null)
             .toList(),
-        hierarchyPath: dom.hierarchyPath,
         id: dom.id,
+        hierarchyPath: dom.hierarchyPath,
         uuid: dom.uuid?.toBytes() ?? const Uuid().v4obj().toBytes(),
+        createdAt: dom.createdAt,
+        readAt: dom.readAt,
+        updatedAt: dom.updatedAt,
+        commitedAt: dom.commitedAt,
+        deletedAt: dom.deletedAt,
       );
 
   static Entry toDom({
@@ -52,8 +73,13 @@ class EntryMapper {
                 dao != null ? EntryDefinitionMapper.toDom(dao: dao) : null)
             .toList(),
         hierarchyPath: dao.hierarchyPath,
-        uuid: UuidValue.fromList(dao.uuid),
         id: dao.id,
+        uuid: UuidValue.fromList(dao.uuid),
+        createdAt: dao.createdAt,
+        readAt: dao.readAt,
+        updatedAt: dao.updatedAt,
+        commitedAt: dao.commitedAt,
+        deletedAt: dao.deletedAt,
       );
 }
 

@@ -78,6 +78,8 @@ class EntryBloc extends Bloc<EntryEvent, EntryState> {
               ? entry.copyWith(
                   definitions: entry.definitions.toList()
                     ..setAll(index, [event.definition]),
+                  updatedAt: DateTime.now(),
+                  commitedAt: entry.commitedAt ?? DateTime.now(),
                 )
               : entry;
 
@@ -100,6 +102,8 @@ class EntryBloc extends Bloc<EntryEvent, EntryState> {
               ? entry.copyWith(
                   definitions: entry.definitions.toList()
                     ..add(event.definition),
+                  updatedAt: DateTime.now(),
+                  commitedAt: entry.commitedAt ?? DateTime.now(),
                 )
               : entry;
 

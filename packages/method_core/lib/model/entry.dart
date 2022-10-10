@@ -1,3 +1,4 @@
+import 'package:method_core/abstract/maintain.dart';
 import 'package:method_core/model/task.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -13,7 +14,8 @@ part 'entry.freezed.dart';
 part 'entry.g.dart';
 
 @freezed
-class Entry with _$Entry, Identify, Locate, Document<Task, EntryDefinition> {
+class Entry
+    with Identify, Locate, Maintain, Document<Task, EntryDefinition>, _$Entry {
   const Entry._();
 
   const factory Entry({
@@ -21,7 +23,12 @@ class Entry with _$Entry, Identify, Locate, Document<Task, EntryDefinition> {
     required final List<EntryDefinition?> definitions,
     required final String hierarchyPath,
     required final String id,
-    @UuidConverter() UuidValue? uuid,
+    @UuidConverter() final UuidValue? uuid,
+    required final DateTime createdAt,
+    required final DateTime readAt,
+    required final DateTime updatedAt,
+    final DateTime? commitedAt,
+    final DateTime? deletedAt,
   }) = _Entry;
 
   factory Entry.create({
@@ -30,6 +37,7 @@ class Entry with _$Entry, Identify, Locate, Document<Task, EntryDefinition> {
     required final String hierarchyPath,
     required final String id,
     final String? uuid,
+    final DateTime? commitedAt,
   }) =>
       Entry(
         template: template,
@@ -40,6 +48,10 @@ class Entry with _$Entry, Identify, Locate, Document<Task, EntryDefinition> {
         uuid: uuid != null && uuid.isNotEmpty
             ? UuidValue(uuid)
             : const Uuid().v4obj(),
+        createdAt: DateTime.now(),
+        readAt: DateTime.now(),
+        updatedAt: DateTime.now(),
+        commitedAt: commitedAt,
       );
 
   factory Entry.fromJson(Map<String, dynamic> json) => _$EntryFromJson(json);
@@ -59,38 +71,4 @@ class Entry with _$Entry, Identify, Locate, Document<Task, EntryDefinition> {
           : null)
       .whereType<TaskDefinition>()
       .toList();
-
-  // Map<String, EntryDefinition?> get mappedDefinitions =>
-  //     mapId(keys: template.definitions, values: definitions);
 }
-
-// @freezed
-// class Entry with _$Entry, Uniform {
-//   @Implements<Uniform>()
-//   @Implements<DefineDocument<EntryDefinition, Task>>()
-//   const factory Entry._({
-//     required final Task template,
-//     required final List<EntryDefinition> definitions,
-//     required final String collectionSlug,
-//     required final String hierarchyPath,
-//     required final String id,
-//     required final String uuid,
-//   }) = _Entry;
-
-//   factory Entry.create({
-//     required final Task template,
-//     required String collectionSlug,
-//     final List<EntryDefinition>? definitions,
-//     required final String hierarchyPath,
-//     required final String id,
-//     final String? uuid,
-//   }) =>
-//       Entry._(
-//         template: template,
-//         definitions: definitions ?? [],
-//         collectionSlug: collectionSlug,
-//         hierarchyPath: hierarchyPath,
-//         id: id,
-//         uuid: uuid ?? const Uuid().v4(),
-//       );
-// }

@@ -71,6 +71,8 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
               ? session.copyWith(
                   definitions: session.definitions.toList()
                     ..setAll(index, [event.entry]),
+                  updatedAt: DateTime.now(),
+                  commitedAt: session.commitedAt ?? DateTime.now(),
                 )
               : session;
 
