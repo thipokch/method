@@ -7,12 +7,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method_ui/nav/nav_context.dart';
 import 'package:method_ui/page/page.dart';
 import 'package:method/view/settings/appearance_page.dart';
-import 'package:method/view/settings/reset_page.dart';
+import 'package:method/view/settings/my_data_page.dart';
 
 import 'package:package_info_plus/package_info_plus.dart';
 
 import 'acknowlegements_page.dart';
-import 'developer_page.dart';
 
 class SettingsPage extends StatelessWidget {
   final Widget? leading;
@@ -50,12 +49,12 @@ class SettingsList extends StatelessWidget {
               (context) => AcknowlegementsPage(
                     trailing: NavigationContext.of(context)?.exit,
                   ),
-          "Developer":
-              // When ShellRoute becomes available
-              // (context) => DeveloperRoute().push(context),
-              (context) => DeveloperPage(
-                    trailing: NavigationContext.of(context)?.exit,
-                  ),
+          // "Developer":
+          //     // When ShellRoute becomes available
+          //     // (context) => DeveloperRoute().push(context),
+          //     (context) => DeveloperPage(
+          //           trailing: NavigationContext.of(context)?.exit,
+          //         ),
         };
 
         final Map<String, WidgetBuilder> general = {
@@ -68,10 +67,10 @@ class SettingsList extends StatelessWidget {
         };
 
         final Map<String, WidgetBuilder> security = {
-          "Erase Content":
+          "My Data":
               // When ShellRoute becomes available
               // (context) => AppearancePage().push(context),
-              (context) => ResetPage(
+              (context) => MyDataPage(
                     trailing: NavigationContext.of(context)?.exit,
                   ),
         };

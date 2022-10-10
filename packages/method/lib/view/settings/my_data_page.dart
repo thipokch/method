@@ -6,11 +6,11 @@ import 'package:method_ui/page/page.dart';
 
 import '../../content/content.dart';
 
-class ResetPage extends StatelessWidget {
+class MyDataPage extends StatelessWidget {
   final Widget? leading;
   final Widget? trailing;
 
-  const ResetPage({
+  const MyDataPage({
     super.key,
     this.leading,
     this.trailing,
@@ -18,7 +18,7 @@ class ResetPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MtAppPage(
-        name: "Reset",
+        name: "My Data",
         leading: leading,
         trailing: trailing,
         slivers: const [

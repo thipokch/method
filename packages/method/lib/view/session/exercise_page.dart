@@ -15,7 +15,6 @@ class ExercisePage extends StatelessWidget {
       );
 
   static Route route({
-    // required SessionBloc bloc,
     required Exercise exercise,
     Session? session,
     ThemeData? theme,
@@ -33,7 +32,6 @@ class ExercisePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
       BlocBuilder<SessionBloc, SessionState>(builder: (context, state) {
-        // final bloc = context.read<SessionBloc>();
         final exercise = state.exercise;
         final definitions = exercise.definitions;
 
@@ -49,7 +47,6 @@ class ExercisePage extends StatelessWidget {
                 onCtaPressed: () => Navigator.of(context).push(
                   SessionEditor.route(
                     exercise: exercise,
-                    // theme: themeData,
                   ),
                 ),
                 slivers: [
@@ -68,23 +65,7 @@ class ExercisePage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // SliverPadding(
-                  //   padding: const EdgeInsets.all(ElementScale.spaceM),
-                  //   sliver: SliverToBoxAdapter(
-                  //     child: Material(
-                  //       type: MaterialType.transparency,
-                  //       child: SessionList.createByExercise(
-                  //         // repo: repo,
-                  //         exercise: exercise,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
                 ],
-              ),
-              const Align(
-                alignment: Alignment.bottomCenter,
-                child: FloatScaffold(),
               ),
             ],
           ),

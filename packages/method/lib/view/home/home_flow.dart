@@ -12,13 +12,16 @@ class HomeFlow extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Material(
         child: HomePage(
-          trailing: IconButton(
-            icon: const Icon(ElementSymbol.settings),
-            iconSize: ElementScale.iconM,
-            onPressed: () {
-              ElementTouch.light();
-              const SettingsRoute().push(context);
-            },
+          trailing: AspectRatio(
+            aspectRatio: 1,
+            child: IconButton(
+              icon: const Icon(ElementSymbol.settings),
+              iconSize: ElementScale.iconM,
+              onPressed: () {
+                ElementTouch.light();
+                const SettingsRoute().push(context);
+              },
+            ),
           ),
         ),
       );

@@ -33,12 +33,6 @@ class _HomeView extends StatelessWidget {
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.all(ElementScale.spaceM),
         child: Column(children: [
-          // ...<Exercise>[
-          //   Content.exerciseNote,
-          //   Content.exerciseThought,
-          //   Content.exerciseAct,
-          //   Content.exerciseMood,
-          // ].map<Widget>((e) => SessionCard.create(exercise: e)).toList(),
           ExerciseListView.create(repo: context.read<Repository>()),
           SessionList.create(),
         ]),

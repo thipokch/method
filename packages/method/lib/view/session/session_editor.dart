@@ -108,17 +108,20 @@ class ExerciseSwiperNavigation extends SwiperPlugin {
     return FloatScaffold(
       leading: FloatContainer(
         padding: EdgeInsets.zero,
-        child: config.activeIndex == 0
-            ? IconButton(
-                icon: const Icon(ElementSymbol.dismiss),
-                color: colorScheme.primary,
-                onPressed: () => Navigator.of(context).pop(),
-              )
-            : IconButton(
-                icon: const Icon(ElementSymbol.chevronBack),
-                color: colorScheme.primary,
-                onPressed: () => config.controller.previous(),
-              ),
+        child: AspectRatio(
+          aspectRatio: 1,
+          child: config.activeIndex == 0
+              ? IconButton(
+                  icon: const Icon(ElementSymbol.dismiss),
+                  color: colorScheme.primary,
+                  onPressed: () => Navigator.of(context).pop(),
+                )
+              : IconButton(
+                  icon: const Icon(ElementSymbol.chevronBack),
+                  color: colorScheme.primary,
+                  onPressed: () => config.controller.previous(),
+                ),
+        ),
       ),
       middle: FloatContainer(
         child: DotSwiperPaginationBuilder(
@@ -131,17 +134,20 @@ class ExerciseSwiperNavigation extends SwiperPlugin {
       ),
       trailing: FloatContainer(
         padding: EdgeInsets.zero,
-        child: config.activeIndex == config.itemCount - 1
-            ? IconButton(
-                icon: const Icon(ElementSymbol.checkmark),
-                color: colorScheme.primary,
-                onPressed: () => Navigator.of(context).pop(),
-              )
-            : IconButton(
-                icon: const Icon(ElementSymbol.chevronForward),
-                color: colorScheme.primary,
-                onPressed: () => config.controller.next(),
-              ),
+        child: AspectRatio(
+          aspectRatio: 1,
+          child: config.activeIndex == config.itemCount - 1
+              ? IconButton(
+                  icon: const Icon(ElementSymbol.checkmark),
+                  color: colorScheme.primary,
+                  onPressed: () => Navigator.of(context).pop(),
+                )
+              : IconButton(
+                  icon: const Icon(ElementSymbol.chevronForward),
+                  color: colorScheme.primary,
+                  onPressed: () => config.controller.next(),
+                ),
+        ),
       ),
     );
   }

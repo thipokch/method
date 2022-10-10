@@ -32,10 +32,13 @@ class SettingsFlowState extends State<SettingsFlow> {
           child: Material(
             type: MaterialType.transparency,
             child: NavigationContext(
-              exit: IconButton(
-                onPressed: () => Navigator.of(context).pop(),
-                icon: const Icon(ElementSymbol.dismiss),
-                iconSize: ElementScale.iconM,
+              exit: AspectRatio(
+                aspectRatio: 1,
+                child: IconButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  icon: const Icon(ElementSymbol.dismiss),
+                  iconSize: ElementScale.iconM,
+                ),
               ),
               child: Navigator(
                 onGenerateRoute: (settings) => MaterialWithModalsPageRoute(

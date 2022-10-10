@@ -71,10 +71,13 @@ class _MtSliverAppBarState extends State<MtSliverAppBar>
       actions: widget.trailing != null ? [widget.trailing!] : null,
       leading: widget.leading ??
           (hasLeading
-              ? IconButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  icon: const Icon(ElementSymbol.chevronBack),
-                  iconSize: ElementScale.iconM,
+              ? AspectRatio(
+                  aspectRatio: 1.0,
+                  child: IconButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    icon: const Icon(ElementSymbol.chevronBack),
+                    iconSize: ElementScale.iconM,
+                  ),
                 )
               : Container()),
       automaticallyImplyLeading: true,
@@ -205,7 +208,7 @@ class _MediumScrollUnderFlexibleConfig with _ScrollUnderFlexibleConfig {
 
   @override
   TextStyle? get expandedTextStyle =>
-      _textTheme.headlineSmall?.apply(color: _colors.onSurface);
+      _textTheme.titleLarge?.apply(color: _colors.onSurface);
 
   @override
   EdgeInsetsGeometry? get collapsedTitlePadding =>
