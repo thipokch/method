@@ -25,18 +25,7 @@ class ExerciseListView extends StatelessWidget {
                         ExercisePage.route(exercise: e),
                       ),
                     ))
-                .toList()
-              ..add(TextButton(
-                onPressed: () => context
-                    .read<ExerciseListBloc>()
-                    .add(const ExerciseListEvent.load(boostrap: [
-                      Content.exerciseNote,
-                      Content.exerciseThought,
-                      Content.exerciseAct,
-                      Content.exerciseMood,
-                    ])),
-                child: const Text("Load Exercises"),
-              )),
+                .toList(),
           ),
         ),
       );

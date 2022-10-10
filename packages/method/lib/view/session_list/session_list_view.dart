@@ -78,9 +78,22 @@ class SessionList extends StatelessWidget {
                             ),
                             const PopupMenuDivider(),
                             PopupMenuItem(
-                              onTap: () => bloc.add(
-                                SessionListEvent.delete(session: session),
-                              ),
+                              onTap: () => FlutterPlatformAlert.showCustomAlert(
+                                windowTitle: "Delete ${session.template.name}?",
+                                text:
+                                    "Deleting ${session.template.name} will also delete its entries.",
+                                positiveButtonTitle: "Cancel",
+                                negativeButtonTitle: "Delete",
+                              ).then((selection) {
+                                if (selection == CustomButton.negativeButton) {
+                                  bloc.add(
+                                    SessionListEvent.delete(session: session),
+                                  );
+                                }
+                              }),
+                              // onTap: () => bloc.add(
+                              //   SessionListEvent.delete(session: session),
+                              // ),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:

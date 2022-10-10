@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/view/session/session_widget.dart';
 import 'package:method_repo/repository.dart';
 
-import '../../content/content.dart';
 import '../session/exercise_card.dart';
 
 part 'exercise_list_view.dart';

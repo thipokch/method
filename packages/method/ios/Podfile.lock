@@ -125,6 +125,8 @@ PODS:
   - Flutter (1.0.0)
   - flutter_native_splash (0.0.1):
     - Flutter
+  - flutter_platform_alert (0.0.1):
+    - Flutter
   - gaimon (0.0.1):
     - Flutter
   - GoogleAppMeasurement (9.4.0):
@@ -193,6 +195,7 @@ DEPENDENCIES:
   - firebase_remote_config (from `.symlinks/plugins/firebase_remote_config/ios`)
   - Flutter (from `Flutter`)
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
+  - flutter_platform_alert (from `.symlinks/plugins/flutter_platform_alert/ios`)
   - gaimon (from `.symlinks/plugins/gaimon/ios`)
   - isar_flutter_libs (from `.symlinks/plugins/isar_flutter_libs/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
@@ -238,6 +241,8 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_native_splash:
     :path: ".symlinks/plugins/flutter_native_splash/ios"
+  flutter_platform_alert:
+    :path: ".symlinks/plugins/flutter_platform_alert/ios"
   gaimon:
     :path: ".symlinks/plugins/gaimon/ios"
   isar_flutter_libs:
@@ -268,6 +273,7 @@ SPEC CHECKSUMS:
   FirebaseRemoteConfig: 6d9982bc64548a6e3c1b497b9fa53938ad135f2d
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_native_splash: 52501b97d1c0a5f898d687f1646226c1f93c56ef
+  flutter_platform_alert: 6a241c90f3cc350d0286deeefee9f52bee957019
   gaimon: 7688c586f38dcc4782e6fe26f648057d280a9d8b
   GoogleAppMeasurement: 5d69e04287fc2c10cc43724bfa4bf31fc12c3dff
   GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
