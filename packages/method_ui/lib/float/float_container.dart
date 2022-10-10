@@ -1,5 +1,5 @@
+import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
-import 'package:method_style/element_scale.dart';
 
 class FloatContainer extends StatelessWidget {
   const FloatContainer({
@@ -17,17 +17,12 @@ class FloatContainer extends StatelessWidget {
 
     return child != null
         ? Container(
-            padding: padding ??
-                const EdgeInsets.symmetric(
-                  vertical: ElementScale.spaceM,
-                  horizontal: ElementScale.spaceM * 1.2,
-                ),
-            decoration: BoxDecoration(
-              color: colorScheme.surface,
-              borderRadius: const BorderRadius.all(
-                Radius.circular(ElementScale.cornerExtraLarge),
+            decoration: ShapeDecoration(
+              shape: SmoothRectangleBorder(
+                borderRadius: SmoothBorderRadius(cornerRadius: 48),
               ),
-              boxShadow: [
+              color: colorScheme.surface,
+              shadows: [
                 BoxShadow(
                   color: colorScheme.outline.withOpacity(.16),
                   blurRadius: 10,

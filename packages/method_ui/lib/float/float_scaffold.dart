@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:method_ui/float/float_container.dart';
 
 class FloatScaffold extends StatelessWidget {
   final Widget? leading;
@@ -34,10 +35,12 @@ class FloatScaffold extends StatelessWidget {
       alignment: Alignment.center,
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxHeight: 48),
-        child: NavigationToolbar(
-          leading: leading,
-          middle: middle,
-          trailing: trailing,
+        child: FloatContainer(
+          child: NavigationToolbar(
+            leading: leading,
+            middle: middle,
+            trailing: trailing,
+          ),
         ),
       ),
     );
