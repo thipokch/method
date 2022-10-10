@@ -434,7 +434,7 @@ class Content {
       TaskDefinition.note(
         icon: "",
         name: "If that were true,\nwhat would it mean to you?",
-        description: "",
+        description: "Repeat as necessary.",
         hierarchyPath: "",
         id: "",
       ),
