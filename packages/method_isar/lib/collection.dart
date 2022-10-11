@@ -91,6 +91,15 @@ abstract class Collection<DOM, DAO extends Dao>
         [id],
       ).then((value) => value != null ? toDom(value) : null);
 
+  DOM? getSync(String id) {
+    final value = collection.getByIndexSync(
+      'id',
+      [id],
+    );
+
+    return value != null ? toDom(value) : null;
+  }
+
   Future<List<DOM>> getAll(List<String> ids) => collection
       .getAllByIndex(
         'id',

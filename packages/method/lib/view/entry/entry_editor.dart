@@ -12,10 +12,10 @@ import 'package:method_ui/page/page.dart';
 import '../definition/definition_label.dart';
 
 // part 'page/scaffold.dart';
-part 'page/linear.dart';
-part 'page/diverge.dart';
-part 'page/converge.dart';
-part 'page/feedback.dart';
+part 'editor/linear.dart';
+part 'editor/diverge.dart';
+part 'editor/converge.dart';
+part 'editor/feedback.dart';
 
 class EntryEditor extends StatelessWidget {
   const EntryEditor({

@@ -1,7 +1,7 @@
-part of '../entry_card.dart';
+part of '../entry_preview.dart';
 
-class EntryCardConverge extends StatelessWidget with EntryDefinitionConsumer {
-  const EntryCardConverge({
+class EntryPreviewDiverge extends StatelessWidget with EntryDefinitionConsumer {
+  const EntryPreviewDiverge({
     super.key,
     required this.bloc,
   });

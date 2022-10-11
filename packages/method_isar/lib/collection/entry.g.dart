@@ -119,7 +119,7 @@ const DbEntrySchema = CollectionSchema(
   getId: _dbEntryGetId,
   getLinks: _dbEntryGetLinks,
   attach: _dbEntryAttach,
-  version: '3.0.1',
+  version: '3.0.2',
 );
 
 int _dbEntryEstimateSize(

@@ -1,15 +1,17 @@
+import 'package:flutter/cupertino.dart';
 import 'package:method/view/entry/entry_editor.dart';
 import 'package:method_bloc/entry/entry_bloc.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:method_ui/card/card.dart';
 import 'package:method_ui/card/card_editing.dart';
 
-part 'card/linear.dart';
-part 'card/diverge.dart';
-part 'card/converge.dart';
+part 'preview/linear.dart';
+part 'preview/diverge.dart';
+part 'preview/converge.dart';
+part 'preview/feedback.dart';
 
-class EntryCard extends StatelessWidget {
-  const EntryCard({
+class EntryPreview extends StatelessWidget {
+  const EntryPreview({
     super.key,
     required this.listener,
   });
@@ -23,10 +25,10 @@ class EntryCard extends StatelessWidget {
           final bloc = context.read<EntryBloc>();
 
           return state.task.map(
-            linear: (_) => EntryCardLinear(bloc: bloc),
-            diverge: (_) => EntryCardDiverge(bloc: bloc),
-            converge: (_) => EntryCardConverge(bloc: bloc),
-            feedback: (_) => throw UnimplementedError(),
+            linear: (_) => EntryPreviewLinear(bloc: bloc),
+            diverge: (_) => EntryPreviewDiverge(bloc: bloc),
+            converge: (_) => EntryPreviewConverge(bloc: bloc),
+            feedback: (_) => EntryPreviewFeedback(bloc: bloc),
           );
         },
       );

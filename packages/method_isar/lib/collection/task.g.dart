@@ -102,7 +102,7 @@ const DbTaskSchema = CollectionSchema(
   getId: _dbTaskGetId,
   getLinks: _dbTaskGetLinks,
   attach: _dbTaskAttach,
-  version: '3.0.1',
+  version: '3.0.2',
 );
 
 int _dbTaskEstimateSize(

@@ -25,7 +25,7 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MtAppPage(
-        name: "Settings",
+        name: "You",
         leading: leading,
         trailing: trailing,
         slivers: const [
@@ -76,14 +76,7 @@ class SettingsList extends StatelessWidget {
         };
 
         final List<Widget> items = [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-            child: Text(
-              "GENERAL",
-              style: Theme.of(context).textTheme.caption,
-            ),
-          ),
-          ...general.entries.map((e) => ListTile(
+          ...security.entries.map((e) => ListTile(
                 title: Text(e.key),
                 trailing: const Icon(ElementSymbol.chevronForward),
                 onTap: () => show(context: context, builder: e.value),
@@ -91,11 +84,11 @@ class SettingsList extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 24, 16, 8),
             child: Text(
-              "SECURITY & PRIVACY",
+              "GENERAL",
               style: Theme.of(context).textTheme.caption,
             ),
           ),
-          ...security.entries.map((e) => ListTile(
+          ...general.entries.map((e) => ListTile(
                 title: Text(e.key),
                 trailing: const Icon(ElementSymbol.chevronForward),
                 onTap: () => show(context: context, builder: e.value),

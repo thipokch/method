@@ -1,10 +1,10 @@
+import 'package:method/route/routes.dart';
 import 'package:method_bloc/app/app_bloc.dart';
 import 'package:method_bloc/settings/settings_bloc.dart';
 import 'package:method_style/element_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method_ui/airbrush/airbrush.dart';
-import 'route/router.dart';
 
 class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
@@ -31,6 +31,7 @@ class _AppState extends State<App> {
           child: BlocBuilder<SettingsBloc, SettingsState>(
             builder: (context, state) => Airbrush(
               child: MaterialApp.router(
+                routerConfig: rootRouter,
                 title: 'method',
                 theme: ElementTheme.light,
                 darkTheme: ElementTheme.dark,
@@ -38,9 +39,6 @@ class _AppState extends State<App> {
                           loaded: (themeMode) => themeMode,
                         ) ??
                     ThemeMode.system,
-                routeInformationProvider: router.routeInformationProvider,
-                routeInformationParser: router.routeInformationParser,
-                routerDelegate: router.routerDelegate,
               ),
             ),
           ),

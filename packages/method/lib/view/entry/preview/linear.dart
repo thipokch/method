@@ -1,7 +1,7 @@
-part of '../entry_card.dart';
+part of '../entry_preview.dart';
 
-class EntryCardLinear extends StatelessWidget with EntryDefinitionConsumer {
-  const EntryCardLinear({
+class EntryPreviewLinear extends StatelessWidget with EntryDefinitionConsumer {
+  const EntryPreviewLinear({
     super.key,
     required this.bloc,
   });

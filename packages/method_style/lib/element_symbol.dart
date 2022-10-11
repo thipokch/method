@@ -78,8 +78,10 @@ class ElementSymbol {
   static const IconData personFilled = FluentIcons.person_24_filled;
   static const IconData search = FluentIcons.search_24_regular;
   static const IconData searchFilled = FluentIcons.search_24_filled;
-  static const IconData today = FluentIcons.weather_sunny_low_24_regular;
-  static const IconData todayFilled = FluentIcons.weather_sunny_low_24_filled;
+  static const IconData today = FluentIcons.weather_sunny_24_regular;
+  static const IconData todayFilled = FluentIcons.weather_sunny_24_filled;
+  static const IconData bookOpen = FluentIcons.book_open_24_regular;
+  static const IconData bookOpenFilled = FluentIcons.book_open_24_filled;
   static const IconData settings = FluentIcons.settings_24_regular;
   static const IconData settingsFilled = FluentIcons.settings_24_filled;
 

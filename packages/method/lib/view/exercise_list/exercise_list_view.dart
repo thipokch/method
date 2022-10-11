@@ -19,11 +19,11 @@ class ExerciseListView extends StatelessWidget {
           ),
           loaded: (exercises) => Column(
             children: exercises
+                .where((e) => e.id != "note")
                 .map<Widget>((e) => ExerciseCard(
                       exercise: e,
-                      onTap: () => Navigator.of(context).push(
-                        ExercisePage.route(exercise: e),
-                      ),
+                      onTap: () =>
+                          ExerciseDetailRoute(e.id, $extra: e).go(context),
                     ))
                 .toList(),
           ),

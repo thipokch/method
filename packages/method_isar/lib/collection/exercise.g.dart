@@ -106,7 +106,7 @@ const DbExerciseSchema = CollectionSchema(
   getId: _dbExerciseGetId,
   getLinks: _dbExerciseGetLinks,
   attach: _dbExerciseAttach,
-  version: '3.0.1',
+  version: '3.0.2',
 );
 
 int _dbExerciseEstimateSize(

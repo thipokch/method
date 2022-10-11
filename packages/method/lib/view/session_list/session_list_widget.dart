@@ -1,6 +1,7 @@
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_platform_alert/flutter_platform_alert.dart';
+import 'package:method/route/routes.dart';
 import 'package:method/view/session/session_card_preview.dart';
 import 'package:method/view/session/session_widget.dart';
 import 'package:method_bloc/session_list/session_list_bloc.dart';

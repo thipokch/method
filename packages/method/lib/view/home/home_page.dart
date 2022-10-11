@@ -1,40 +1,107 @@
-import 'package:method_style/element_scale.dart';
+import 'package:go_router/go_router.dart';
+import 'package:method/route/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/view/exercise_list/exercise_list_widget.dart';
 import 'package:method/view/session_list/session_list_widget.dart';
 import 'package:method_repo/repository.dart';
+import 'package:method_style/element_symbol.dart';
 import 'package:method_ui/page/page.dart';
 
+final homeDestinations = <GoRoute>[
+  $sessionRoute,
+  $exerciseRoute,
+  $settingsRoute,
+];
+
 class HomePage extends StatelessWidget {
-  final Widget? leading;
-  final Widget? trailing;
+  final Widget child;
 
   const HomePage({
     super.key,
-    this.leading,
-    this.trailing,
+    required this.child,
   });
+
+  static const destinations = <NavigationDestination>[
+    NavigationDestination(
+      icon: Icon(ElementSymbol.today),
+      selectedIcon: Icon(ElementSymbol.todayFilled),
+      label: 'Today',
+    ),
+    NavigationDestination(
+      icon: Icon(ElementSymbol.bookOpen),
+      selectedIcon: Icon(ElementSymbol.bookOpenFilled),
+      label: 'Create',
+    ),
+    NavigationDestination(
+      icon: Icon(ElementSymbol.person),
+      selectedIcon: Icon(ElementSymbol.personFilled),
+      label: 'You',
+    ),
+  ];
+
+  static int _calculateSelectedIndex(context) {
+    final String location = GoRouter.of(context).location;
+
+    for (final entry in homeDestinations.asMap().entries) {
+      if (location.startsWith(entry.value.path)) return entry.key;
+    }
+
+    return 0;
+  }
+
+  void _onItemTapped(index, context) =>
+      GoRouter.of(context).go(homeDestinations[index].path);
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        bottomNavigationBar: Theme(
+          data:
+              Theme.of(context).copyWith(splashFactory: NoSplash.splashFactory),
+          child: NavigationBar(
+            onDestinationSelected: (index) => _onItemTapped(index, context),
+            selectedIndex: _calculateSelectedIndex(context),
+            destinations: HomePage.destinations,
+            labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+            // backgroundColor: Colors.transparent,
+            // surfaceTintColor: Colors.transparent,
+            height: 72,
+          ),
+        ),
+        body: child,
+      );
+}
+
+class SessionsTab extends StatelessWidget {
+  const SessionsTab({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) => MtAppPage(
-        name: "method",
+        name: "Today",
         description: "",
-        leading: leading,
-        trailing: trailing,
         slivers: [
-          SliverToBoxAdapter(child: _HomeView()),
+          SliverToBoxAdapter(
+            child: SessionList.create(),
+          ),
         ],
       );
 }
 
-class _HomeView extends StatelessWidget {
+class ExercisesTab extends StatelessWidget {
+  const ExercisesTab({
+    Key? key,
+  }) : super(key: key);
+
   @override
-  Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.all(ElementScale.spaceM),
-        child: Column(children: [
-          ExerciseListView.create(repo: context.read<Repository>()),
-          SessionList.create(),
-        ]),
+  Widget build(BuildContext context) => MtAppPage(
+        name: "Journal",
+        description: "",
+        slivers: [
+          SliverToBoxAdapter(
+            child: ExerciseListView.create(repo: context.read<Repository>()),
+          ),
+        ],
       );
 }

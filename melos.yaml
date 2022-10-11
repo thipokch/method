@@ -12,7 +12,6 @@ command:
     # See: https://github.com/dart-lang/pub/issues/3404).
 
 scripts:
-
   #
   #   Melos Lifecycle
   #
@@ -54,7 +53,7 @@ scripts:
   setup:githook:
     description: Setup scripts to run on git hook events.
     run: chmod -R +x .githook/ && git config core.hooksPath .githook/
-      
+
   setup:secrets:
     description: |
       Clone secrets repo.
@@ -87,18 +86,28 @@ scripts:
       cp -v -r "$SECRETS_DIR/google/android/"* "$METHOD_DIR/android/app/src/"
       cp -v -r "$SECRETS_DIR/google/darwin/"* "$METHOD_DIR/ios/"
       cp -v -r "$SECRETS_DIR/google/web/"* "$METHOD_DIR/web/"
-      
+
       cp -v -r "$SECRETS_DIR/google/flutter/dev/"* "$METHOD_DIR"
       cp -v -r $SECRETS_DIR/google/flutter/*/lib/config/firebase.*.dart "$METHOD_DIR/lib/config/"
 
       flutter format $METHOD_DIR/lib/config/firebase.*.dart
+
+  setup:upgrade:
+    run: |
+      melos exec -c 1 -- \
+        flutter pub upgrade --major-versions
+
+  # setup:outdated:
+  #   run: |
+  #     melos exec -c 1 -- \
+  #       flutter pub outdated
 
   #
   #   Build
   #
 
   build:num:
-    description: | 
+    description: |
       Bump build number
       For local development, use .env to set variables
         BUILD_NUM - build number
@@ -125,7 +134,7 @@ scripts:
     run: |
       melos exec -c 1 --scope="method" -- \
         flutter pub run flutter_native_splash:create
-  
+
   #   iOS
 
   build:ios:
@@ -135,13 +144,13 @@ scripts:
         BUILD_ENV - build environment (dev, stg, prd)
     run: |
       echo "$SHELL"
-      
+
       [ ! -f .env ] || export $(grep -v '^#' .env | xargs) && \
         echo "Environment variables from .env exported..." && \
 
       echo "Copying Google service configurations for $BUILD_ENV environment..." && \
       cp -v -r "$MELOS_ROOT_PATH/.secrets/google/flutter/$BUILD_ENV/"* "$MELOS_ROOT_PATH/packages/method" && \
-      
+
       export MATCH_GIT_URL=$MELOS_ROOT_PATH/.secrets && \
       export MATCH_PASSWORD=$SECRETS_PASSWORD && \
 
@@ -163,10 +172,9 @@ scripts:
   #   android
 
   build:and:
-    description:
-      Build android for given environment.
+    description: Build android for given environment.
       For local development, use .env to set variables
-        BUILD_ENV - build environment (dev, stg, prd)
+      BUILD_ENV - build environment (dev, stg, prd)
     run: |
       echo "Copying Google service configurations for $BUILD_ENV environment..." && \
       cp -v -r "$MELOS_ROOT_PATH/.secrets/google/flutter/$BUILD_ENV/"* "$MELOS_ROOT_PATH/packages/method" && \
@@ -189,10 +197,9 @@ scripts:
   #   web
 
   build:web:
-    description:
-      Build web for given environment.
+    description: Build web for given environment.
       For local development, use .env to set variables
-        BUILD_ENV - build environment (dev, stg, prd)
+      BUILD_ENV - build environment (dev, stg, prd)
     run: flutter build web --verbose --release --target=packages/method/lib/main.$BUILD_ENV.dart
 
   build:web:dev:
@@ -228,7 +235,7 @@ scripts:
     select-package:
       dir-exists:
         - test_driver
-      scope: '*tests*'
+      scope: "*tests*"
     run: |
       melos exec -c 1 --fail-fast -- \
         "flutter drive --no-pub --target=./test_driver/driver_e2e.dart"
@@ -236,7 +243,6 @@ scripts:
   #
   #   Hygiene
   #
-
 
   hygiene:
     description: Run all targets generally expected for local quality check. For visibility, CI uses individual steps.
@@ -296,7 +302,7 @@ scripts:
 
       [ ! -f .env ] || export $(grep -v '^#' .env | xargs) && \
         echo "Environment variables from .env exported..." && \
-      
+
       export APP_STORE_CONNECT_API_KEY_KEY_ID=$ASC_KEY_ID
       export APP_STORE_CONNECT_API_KEY_ISSUER_ID=$ASC_ISSUER_ID
       export APP_STORE_CONNECT_API_KEY_KEY=$ASC_KEY_CONTENT
@@ -326,10 +332,10 @@ scripts:
       flutter pub run gh_pages:gh_pages build/web --message "chore($BUILD_ENV): deploy $BUILD_NUM to github pages"
 
   deploy:web:dev:
-    run: export BUILD_ENV=dev && melos deploy:web 
+    run: export BUILD_ENV=dev && melos deploy:web
 
   deploy:web:stg:
-    run: export BUILD_ENV=stg && melos deploy:web 
+    run: export BUILD_ENV=stg && melos deploy:web
 
   deploy:web:prd:
-    run: export BUILD_ENV=prd && melos deploy:web 
+    run: export BUILD_ENV=prd && melos deploy:web

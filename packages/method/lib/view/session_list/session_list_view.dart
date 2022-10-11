@@ -31,13 +31,7 @@ class SessionList extends StatelessWidget {
               children: sessions
                   .map((session) => SessionCardPreview(
                         session: session,
-                        onTap: () => Navigator.push(
-                          context,
-                          SessionEditor.route(
-                            exercise: session.template,
-                            session: session,
-                          ),
-                        ),
+                        onTap: () => SessionDetailRoute(session.id).go(context),
                         actions: PopupMenuButton(
                           icon: const Icon(ElementSymbol.moreVertical),
                           position: PopupMenuPosition.under,
@@ -53,8 +47,7 @@ class SessionList extends StatelessWidget {
                           itemBuilder: (BuildContext context) =>
                               <PopupMenuEntry>[
                             PopupMenuItem(
-                              onTap: () => Navigator.push(
-                                context,
+                              onTap: () => Navigator.of(context).push(
                                 SessionEditor.route(
                                   exercise: session.template,
                                   session: session,
