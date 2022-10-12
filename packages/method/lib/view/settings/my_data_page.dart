@@ -4,8 +4,6 @@ import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 import 'package:method_repo/repository.dart';
 import 'package:method_ui/page/page.dart';
 
-import '../../content/content.dart';
-
 class MyDataPage extends StatelessWidget {
   final Widget? leading;
   final Widget? trailing;
@@ -50,12 +48,9 @@ class _ResetView extends StatelessWidget {
               ).then((selection) {
                 if (selection == CustomButton.negativeButton) {
                   context.read<Repository>().reset();
-                  context.read<Repository>().exercises.putMany([
-                    Content.exerciseNote,
-                    Content.exerciseThought,
-                    Content.exerciseAct,
-                    Content.exerciseMood,
-                  ]);
+                  // context.read<AppBloc>()
+                  //   ..add(AppEvent.reset())
+                  //   ..add(AppEvent.load());
                 }
               }),
             ),

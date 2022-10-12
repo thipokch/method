@@ -19,23 +19,19 @@ mixin _$AppState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(
-            Widget masterFlow, Widget? modalFlow, Widget? slaveFlow)
-        loaded,
+    required TResult Function(ThemeMode themeMode) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Widget masterFlow, Widget? modalFlow, Widget? slaveFlow)?
-        loaded,
+    TResult Function(ThemeMode themeMode)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Widget masterFlow, Widget? modalFlow, Widget? slaveFlow)?
-        loaded,
+    TResult Function(ThemeMode themeMode)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -115,9 +111,7 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(
-            Widget masterFlow, Widget? modalFlow, Widget? slaveFlow)
-        loaded,
+    required TResult Function(ThemeMode themeMode) loaded,
   }) {
     return initial();
   }
@@ -126,8 +120,7 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Widget masterFlow, Widget? modalFlow, Widget? slaveFlow)?
-        loaded,
+    TResult Function(ThemeMode themeMode)? loaded,
   }) {
     return initial?.call();
   }
@@ -136,8 +129,7 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Widget masterFlow, Widget? modalFlow, Widget? slaveFlow)?
-        loaded,
+    TResult Function(ThemeMode themeMode)? loaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -187,7 +179,7 @@ abstract class _Initial extends AppState {
 abstract class _$$_LoadedCopyWith<$Res> {
   factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
       __$$_LoadedCopyWithImpl<$Res>;
-  $Res call({Widget masterFlow, Widget? modalFlow, Widget? slaveFlow});
+  $Res call({ThemeMode themeMode});
 }
 
 /// @nodoc
@@ -201,23 +193,13 @@ class __$$_LoadedCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? masterFlow = freezed,
-    Object? modalFlow = freezed,
-    Object? slaveFlow = freezed,
+    Object? themeMode = freezed,
   }) {
     return _then(_$_Loaded(
-      masterFlow: masterFlow == freezed
-          ? _value.masterFlow
-          : masterFlow // ignore: cast_nullable_to_non_nullable
-              as Widget,
-      modalFlow: modalFlow == freezed
-          ? _value.modalFlow
-          : modalFlow // ignore: cast_nullable_to_non_nullable
-              as Widget?,
-      slaveFlow: slaveFlow == freezed
-          ? _value.slaveFlow
-          : slaveFlow // ignore: cast_nullable_to_non_nullable
-              as Widget?,
+      themeMode: themeMode == freezed
+          ? _value.themeMode
+          : themeMode // ignore: cast_nullable_to_non_nullable
+              as ThemeMode,
     ));
   }
 }
@@ -225,19 +207,14 @@ class __$$_LoadedCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Loaded extends _Loaded {
-  _$_Loaded({required this.masterFlow, this.modalFlow, this.slaveFlow})
-      : super._();
+  _$_Loaded({required this.themeMode}) : super._();
 
   @override
-  final Widget masterFlow;
-  @override
-  final Widget? modalFlow;
-  @override
-  final Widget? slaveFlow;
+  final ThemeMode themeMode;
 
   @override
   String toString() {
-    return 'AppState.loaded(masterFlow: $masterFlow, modalFlow: $modalFlow, slaveFlow: $slaveFlow)';
+    return 'AppState.loaded(themeMode: $themeMode)';
   }
 
   @override
@@ -245,18 +222,12 @@ class _$_Loaded extends _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Loaded &&
-            const DeepCollectionEquality()
-                .equals(other.masterFlow, masterFlow) &&
-            const DeepCollectionEquality().equals(other.modalFlow, modalFlow) &&
-            const DeepCollectionEquality().equals(other.slaveFlow, slaveFlow));
+            const DeepCollectionEquality().equals(other.themeMode, themeMode));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(masterFlow),
-      const DeepCollectionEquality().hash(modalFlow),
-      const DeepCollectionEquality().hash(slaveFlow));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(themeMode));
 
   @JsonKey(ignore: true)
   @override
@@ -267,33 +238,29 @@ class _$_Loaded extends _Loaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(
-            Widget masterFlow, Widget? modalFlow, Widget? slaveFlow)
-        loaded,
+    required TResult Function(ThemeMode themeMode) loaded,
   }) {
-    return loaded(masterFlow, modalFlow, slaveFlow);
+    return loaded(themeMode);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Widget masterFlow, Widget? modalFlow, Widget? slaveFlow)?
-        loaded,
+    TResult Function(ThemeMode themeMode)? loaded,
   }) {
-    return loaded?.call(masterFlow, modalFlow, slaveFlow);
+    return loaded?.call(themeMode);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Widget masterFlow, Widget? modalFlow, Widget? slaveFlow)?
-        loaded,
+    TResult Function(ThemeMode themeMode)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(masterFlow, modalFlow, slaveFlow);
+      return loaded(themeMode);
     }
     return orElse();
   }
@@ -331,15 +298,10 @@ class _$_Loaded extends _Loaded {
 }
 
 abstract class _Loaded extends AppState {
-  factory _Loaded(
-      {required final Widget masterFlow,
-      final Widget? modalFlow,
-      final Widget? slaveFlow}) = _$_Loaded;
+  factory _Loaded({required final ThemeMode themeMode}) = _$_Loaded;
   _Loaded._() : super._();
 
-  Widget get masterFlow;
-  Widget? get modalFlow;
-  Widget? get slaveFlow;
+  ThemeMode get themeMode;
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -347,54 +309,49 @@ abstract class _Loaded extends AppState {
 
 /// @nodoc
 mixin _$AppEvent {
-  Widget get flow => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Widget flow) load,
-    required TResult Function(Widget flow) loadModal,
-    required TResult Function(Widget flow) loadSlave,
+    required TResult Function() reset,
+    required TResult Function() load,
+    required TResult Function(ThemeMode themeMode) themeModeUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Widget flow)? load,
-    TResult Function(Widget flow)? loadModal,
-    TResult Function(Widget flow)? loadSlave,
+    TResult Function()? reset,
+    TResult Function()? load,
+    TResult Function(ThemeMode themeMode)? themeModeUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Widget flow)? load,
-    TResult Function(Widget flow)? loadModal,
-    TResult Function(Widget flow)? loadSlave,
+    TResult Function()? reset,
+    TResult Function()? load,
+    TResult Function(ThemeMode themeMode)? themeModeUpdated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Reset value) reset,
     required TResult Function(_Load value) load,
-    required TResult Function(_LoadModal value) loadModal,
-    required TResult Function(_LoadSlave value) loadSlave,
+    required TResult Function(_ThemeModeUpdated value) themeModeUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
     TResult Function(_Load value)? load,
-    TResult Function(_LoadModal value)? loadModal,
-    TResult Function(_LoadSlave value)? loadSlave,
+    TResult Function(_ThemeModeUpdated value)? themeModeUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
     TResult Function(_Load value)? load,
-    TResult Function(_LoadModal value)? loadModal,
-    TResult Function(_LoadSlave value)? loadSlave,
+    TResult Function(_ThemeModeUpdated value)? themeModeUpdated,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $AppEventCopyWith<AppEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -402,7 +359,6 @@ mixin _$AppEvent {
 abstract class $AppEventCopyWith<$Res> {
   factory $AppEventCopyWith(AppEvent value, $Res Function(AppEvent) then) =
       _$AppEventCopyWithImpl<$Res>;
-  $Res call({Widget flow});
 }
 
 /// @nodoc
@@ -412,26 +368,120 @@ class _$AppEventCopyWithImpl<$Res> implements $AppEventCopyWith<$Res> {
   final AppEvent _value;
   // ignore: unused_field
   final $Res Function(AppEvent) _then;
-
-  @override
-  $Res call({
-    Object? flow = freezed,
-  }) {
-    return _then(_value.copyWith(
-      flow: flow == freezed
-          ? _value.flow
-          : flow // ignore: cast_nullable_to_non_nullable
-              as Widget,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class _$$_LoadCopyWith<$Res> implements $AppEventCopyWith<$Res> {
+abstract class _$$_ResetCopyWith<$Res> {
+  factory _$$_ResetCopyWith(_$_Reset value, $Res Function(_$_Reset) then) =
+      __$$_ResetCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_ResetCopyWithImpl<$Res> extends _$AppEventCopyWithImpl<$Res>
+    implements _$$_ResetCopyWith<$Res> {
+  __$$_ResetCopyWithImpl(_$_Reset _value, $Res Function(_$_Reset) _then)
+      : super(_value, (v) => _then(v as _$_Reset));
+
+  @override
+  _$_Reset get _value => super._value as _$_Reset;
+}
+
+/// @nodoc
+
+class _$_Reset implements _Reset {
+  const _$_Reset();
+
+  @override
+  String toString() {
+    return 'AppEvent.reset()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Reset);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() reset,
+    required TResult Function() load,
+    required TResult Function(ThemeMode themeMode) themeModeUpdated,
+  }) {
+    return reset();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? reset,
+    TResult Function()? load,
+    TResult Function(ThemeMode themeMode)? themeModeUpdated,
+  }) {
+    return reset?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? reset,
+    TResult Function()? load,
+    TResult Function(ThemeMode themeMode)? themeModeUpdated,
+    required TResult orElse(),
+  }) {
+    if (reset != null) {
+      return reset();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Reset value) reset,
+    required TResult Function(_Load value) load,
+    required TResult Function(_ThemeModeUpdated value) themeModeUpdated,
+  }) {
+    return reset(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
+    TResult Function(_Load value)? load,
+    TResult Function(_ThemeModeUpdated value)? themeModeUpdated,
+  }) {
+    return reset?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
+    TResult Function(_Load value)? load,
+    TResult Function(_ThemeModeUpdated value)? themeModeUpdated,
+    required TResult orElse(),
+  }) {
+    if (reset != null) {
+      return reset(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Reset implements AppEvent {
+  const factory _Reset() = _$_Reset;
+}
+
+/// @nodoc
+abstract class _$$_LoadCopyWith<$Res> {
   factory _$$_LoadCopyWith(_$_Load value, $Res Function(_$_Load) then) =
       __$$_LoadCopyWithImpl<$Res>;
-  @override
-  $Res call({Widget flow});
 }
 
 /// @nodoc
@@ -442,80 +492,57 @@ class __$$_LoadCopyWithImpl<$Res> extends _$AppEventCopyWithImpl<$Res>
 
   @override
   _$_Load get _value => super._value as _$_Load;
-
-  @override
-  $Res call({
-    Object? flow = freezed,
-  }) {
-    return _then(_$_Load(
-      flow: flow == freezed
-          ? _value.flow
-          : flow // ignore: cast_nullable_to_non_nullable
-              as Widget,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_Load implements _Load {
-  const _$_Load({required this.flow});
-
-  @override
-  final Widget flow;
+  const _$_Load();
 
   @override
   String toString() {
-    return 'AppEvent.load(flow: $flow)';
+    return 'AppEvent.load()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Load &&
-            const DeepCollectionEquality().equals(other.flow, flow));
+        (other.runtimeType == runtimeType && other is _$_Load);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(flow));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_LoadCopyWith<_$_Load> get copyWith =>
-      __$$_LoadCopyWithImpl<_$_Load>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Widget flow) load,
-    required TResult Function(Widget flow) loadModal,
-    required TResult Function(Widget flow) loadSlave,
+    required TResult Function() reset,
+    required TResult Function() load,
+    required TResult Function(ThemeMode themeMode) themeModeUpdated,
   }) {
-    return load(flow);
+    return load();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Widget flow)? load,
-    TResult Function(Widget flow)? loadModal,
-    TResult Function(Widget flow)? loadSlave,
+    TResult Function()? reset,
+    TResult Function()? load,
+    TResult Function(ThemeMode themeMode)? themeModeUpdated,
   }) {
-    return load?.call(flow);
+    return load?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Widget flow)? load,
-    TResult Function(Widget flow)? loadModal,
-    TResult Function(Widget flow)? loadSlave,
+    TResult Function()? reset,
+    TResult Function()? load,
+    TResult Function(ThemeMode themeMode)? themeModeUpdated,
     required TResult orElse(),
   }) {
     if (load != null) {
-      return load(flow);
+      return load();
     }
     return orElse();
   }
@@ -523,9 +550,9 @@ class _$_Load implements _Load {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Reset value) reset,
     required TResult Function(_Load value) load,
-    required TResult Function(_LoadModal value) loadModal,
-    required TResult Function(_LoadSlave value) loadSlave,
+    required TResult Function(_ThemeModeUpdated value) themeModeUpdated,
   }) {
     return load(this);
   }
@@ -533,9 +560,9 @@ class _$_Load implements _Load {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
     TResult Function(_Load value)? load,
-    TResult Function(_LoadModal value)? loadModal,
-    TResult Function(_LoadSlave value)? loadSlave,
+    TResult Function(_ThemeModeUpdated value)? themeModeUpdated,
   }) {
     return load?.call(this);
   }
@@ -543,9 +570,9 @@ class _$_Load implements _Load {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
     TResult Function(_Load value)? load,
-    TResult Function(_LoadModal value)? loadModal,
-    TResult Function(_LoadSlave value)? loadSlave,
+    TResult Function(_ThemeModeUpdated value)? themeModeUpdated,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -556,107 +583,101 @@ class _$_Load implements _Load {
 }
 
 abstract class _Load implements AppEvent {
-  const factory _Load({required final Widget flow}) = _$_Load;
-
-  @override
-  Widget get flow;
-  @override
-  @JsonKey(ignore: true)
-  _$$_LoadCopyWith<_$_Load> get copyWith => throw _privateConstructorUsedError;
+  const factory _Load() = _$_Load;
 }
 
 /// @nodoc
-abstract class _$$_LoadModalCopyWith<$Res> implements $AppEventCopyWith<$Res> {
-  factory _$$_LoadModalCopyWith(
-          _$_LoadModal value, $Res Function(_$_LoadModal) then) =
-      __$$_LoadModalCopyWithImpl<$Res>;
-  @override
-  $Res call({Widget flow});
+abstract class _$$_ThemeModeUpdatedCopyWith<$Res> {
+  factory _$$_ThemeModeUpdatedCopyWith(
+          _$_ThemeModeUpdated value, $Res Function(_$_ThemeModeUpdated) then) =
+      __$$_ThemeModeUpdatedCopyWithImpl<$Res>;
+  $Res call({ThemeMode themeMode});
 }
 
 /// @nodoc
-class __$$_LoadModalCopyWithImpl<$Res> extends _$AppEventCopyWithImpl<$Res>
-    implements _$$_LoadModalCopyWith<$Res> {
-  __$$_LoadModalCopyWithImpl(
-      _$_LoadModal _value, $Res Function(_$_LoadModal) _then)
-      : super(_value, (v) => _then(v as _$_LoadModal));
+class __$$_ThemeModeUpdatedCopyWithImpl<$Res>
+    extends _$AppEventCopyWithImpl<$Res>
+    implements _$$_ThemeModeUpdatedCopyWith<$Res> {
+  __$$_ThemeModeUpdatedCopyWithImpl(
+      _$_ThemeModeUpdated _value, $Res Function(_$_ThemeModeUpdated) _then)
+      : super(_value, (v) => _then(v as _$_ThemeModeUpdated));
 
   @override
-  _$_LoadModal get _value => super._value as _$_LoadModal;
+  _$_ThemeModeUpdated get _value => super._value as _$_ThemeModeUpdated;
 
   @override
   $Res call({
-    Object? flow = freezed,
+    Object? themeMode = freezed,
   }) {
-    return _then(_$_LoadModal(
-      flow: flow == freezed
-          ? _value.flow
-          : flow // ignore: cast_nullable_to_non_nullable
-              as Widget,
+    return _then(_$_ThemeModeUpdated(
+      themeMode: themeMode == freezed
+          ? _value.themeMode
+          : themeMode // ignore: cast_nullable_to_non_nullable
+              as ThemeMode,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_LoadModal implements _LoadModal {
-  const _$_LoadModal({required this.flow});
+class _$_ThemeModeUpdated implements _ThemeModeUpdated {
+  const _$_ThemeModeUpdated({required this.themeMode});
 
   @override
-  final Widget flow;
+  final ThemeMode themeMode;
 
   @override
   String toString() {
-    return 'AppEvent.loadModal(flow: $flow)';
+    return 'AppEvent.themeModeUpdated(themeMode: $themeMode)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LoadModal &&
-            const DeepCollectionEquality().equals(other.flow, flow));
+            other is _$_ThemeModeUpdated &&
+            const DeepCollectionEquality().equals(other.themeMode, themeMode));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(flow));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(themeMode));
 
   @JsonKey(ignore: true)
   @override
-  _$$_LoadModalCopyWith<_$_LoadModal> get copyWith =>
-      __$$_LoadModalCopyWithImpl<_$_LoadModal>(this, _$identity);
+  _$$_ThemeModeUpdatedCopyWith<_$_ThemeModeUpdated> get copyWith =>
+      __$$_ThemeModeUpdatedCopyWithImpl<_$_ThemeModeUpdated>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Widget flow) load,
-    required TResult Function(Widget flow) loadModal,
-    required TResult Function(Widget flow) loadSlave,
+    required TResult Function() reset,
+    required TResult Function() load,
+    required TResult Function(ThemeMode themeMode) themeModeUpdated,
   }) {
-    return loadModal(flow);
+    return themeModeUpdated(themeMode);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Widget flow)? load,
-    TResult Function(Widget flow)? loadModal,
-    TResult Function(Widget flow)? loadSlave,
+    TResult Function()? reset,
+    TResult Function()? load,
+    TResult Function(ThemeMode themeMode)? themeModeUpdated,
   }) {
-    return loadModal?.call(flow);
+    return themeModeUpdated?.call(themeMode);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Widget flow)? load,
-    TResult Function(Widget flow)? loadModal,
-    TResult Function(Widget flow)? loadSlave,
+    TResult Function()? reset,
+    TResult Function()? load,
+    TResult Function(ThemeMode themeMode)? themeModeUpdated,
     required TResult orElse(),
   }) {
-    if (loadModal != null) {
-      return loadModal(flow);
+    if (themeModeUpdated != null) {
+      return themeModeUpdated(themeMode);
     }
     return orElse();
   }
@@ -664,187 +685,44 @@ class _$_LoadModal implements _LoadModal {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Reset value) reset,
     required TResult Function(_Load value) load,
-    required TResult Function(_LoadModal value) loadModal,
-    required TResult Function(_LoadSlave value) loadSlave,
+    required TResult Function(_ThemeModeUpdated value) themeModeUpdated,
   }) {
-    return loadModal(this);
+    return themeModeUpdated(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
     TResult Function(_Load value)? load,
-    TResult Function(_LoadModal value)? loadModal,
-    TResult Function(_LoadSlave value)? loadSlave,
+    TResult Function(_ThemeModeUpdated value)? themeModeUpdated,
   }) {
-    return loadModal?.call(this);
+    return themeModeUpdated?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
     TResult Function(_Load value)? load,
-    TResult Function(_LoadModal value)? loadModal,
-    TResult Function(_LoadSlave value)? loadSlave,
+    TResult Function(_ThemeModeUpdated value)? themeModeUpdated,
     required TResult orElse(),
   }) {
-    if (loadModal != null) {
-      return loadModal(this);
+    if (themeModeUpdated != null) {
+      return themeModeUpdated(this);
     }
     return orElse();
   }
 }
 
-abstract class _LoadModal implements AppEvent {
-  const factory _LoadModal({required final Widget flow}) = _$_LoadModal;
+abstract class _ThemeModeUpdated implements AppEvent {
+  const factory _ThemeModeUpdated({required final ThemeMode themeMode}) =
+      _$_ThemeModeUpdated;
 
-  @override
-  Widget get flow;
-  @override
+  ThemeMode get themeMode;
   @JsonKey(ignore: true)
-  _$$_LoadModalCopyWith<_$_LoadModal> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_LoadSlaveCopyWith<$Res> implements $AppEventCopyWith<$Res> {
-  factory _$$_LoadSlaveCopyWith(
-          _$_LoadSlave value, $Res Function(_$_LoadSlave) then) =
-      __$$_LoadSlaveCopyWithImpl<$Res>;
-  @override
-  $Res call({Widget flow});
-}
-
-/// @nodoc
-class __$$_LoadSlaveCopyWithImpl<$Res> extends _$AppEventCopyWithImpl<$Res>
-    implements _$$_LoadSlaveCopyWith<$Res> {
-  __$$_LoadSlaveCopyWithImpl(
-      _$_LoadSlave _value, $Res Function(_$_LoadSlave) _then)
-      : super(_value, (v) => _then(v as _$_LoadSlave));
-
-  @override
-  _$_LoadSlave get _value => super._value as _$_LoadSlave;
-
-  @override
-  $Res call({
-    Object? flow = freezed,
-  }) {
-    return _then(_$_LoadSlave(
-      flow: flow == freezed
-          ? _value.flow
-          : flow // ignore: cast_nullable_to_non_nullable
-              as Widget,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_LoadSlave implements _LoadSlave {
-  const _$_LoadSlave({required this.flow});
-
-  @override
-  final Widget flow;
-
-  @override
-  String toString() {
-    return 'AppEvent.loadSlave(flow: $flow)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_LoadSlave &&
-            const DeepCollectionEquality().equals(other.flow, flow));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(flow));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_LoadSlaveCopyWith<_$_LoadSlave> get copyWith =>
-      __$$_LoadSlaveCopyWithImpl<_$_LoadSlave>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Widget flow) load,
-    required TResult Function(Widget flow) loadModal,
-    required TResult Function(Widget flow) loadSlave,
-  }) {
-    return loadSlave(flow);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Widget flow)? load,
-    TResult Function(Widget flow)? loadModal,
-    TResult Function(Widget flow)? loadSlave,
-  }) {
-    return loadSlave?.call(flow);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Widget flow)? load,
-    TResult Function(Widget flow)? loadModal,
-    TResult Function(Widget flow)? loadSlave,
-    required TResult orElse(),
-  }) {
-    if (loadSlave != null) {
-      return loadSlave(flow);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Load value) load,
-    required TResult Function(_LoadModal value) loadModal,
-    required TResult Function(_LoadSlave value) loadSlave,
-  }) {
-    return loadSlave(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Load value)? load,
-    TResult Function(_LoadModal value)? loadModal,
-    TResult Function(_LoadSlave value)? loadSlave,
-  }) {
-    return loadSlave?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Load value)? load,
-    TResult Function(_LoadModal value)? loadModal,
-    TResult Function(_LoadSlave value)? loadSlave,
-    required TResult orElse(),
-  }) {
-    if (loadSlave != null) {
-      return loadSlave(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _LoadSlave implements AppEvent {
-  const factory _LoadSlave({required final Widget flow}) = _$_LoadSlave;
-
-  @override
-  Widget get flow;
-  @override
-  @JsonKey(ignore: true)
-  _$$_LoadSlaveCopyWith<_$_LoadSlave> get copyWith =>
+  _$$_ThemeModeUpdatedCopyWith<_$_ThemeModeUpdated> get copyWith =>
       throw _privateConstructorUsedError;
 }

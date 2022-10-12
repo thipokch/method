@@ -7,8 +7,6 @@ class AppState with _$AppState {
   factory AppState.initial() = _Initial;
 
   factory AppState.loaded({
-    required Widget masterFlow,
-    Widget? modalFlow,
-    Widget? slaveFlow,
+    required ThemeMode themeMode,
   }) = _Loaded;
 }

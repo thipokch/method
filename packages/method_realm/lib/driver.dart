@@ -34,17 +34,17 @@ class RealmDriver extends SourceDriver<Realm> {
 
   void close() => instance.close();
 
-  Future<void> reset() async {
-    instance.close();
-
+  Future<RealmDriver> reset() async {
     try {
       instance.close();
 
-      final dbFile = File(Configuration.defaultStoragePath);
+      final dbFile = File(Configuration.defaultRealmPath);
       await dbFile.delete();
     } catch (e) {
       log('Failed to dispose realm: $e');
     }
+
+    return open();
   }
 }
 

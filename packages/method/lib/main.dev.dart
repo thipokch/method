@@ -1,4 +1,4 @@
-// ignore_for_file: unused_local_variable
+// ignore_for_file: unused_local_variable, unused_import
 
 import 'dart:async';
 
@@ -8,9 +8,10 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:firebase_app_installations/firebase_app_installations.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/app.dart';
+import 'package:method_bloc/app/app_bloc.dart';
 import 'package:method_repo/repository.dart';
+import 'package:provider/provider.dart';
 
 import 'config/firebase.dev.dart';
 
@@ -28,25 +29,30 @@ Future<void> main() async {
       FlutterError.onError =
           FirebaseCrashlytics.instance.recordFlutterFatalError;
 
-      final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
-      final FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.instance;
       final String fid = await FirebaseInstallations.instance.getId();
 
-      await remoteConfig.setConfigSettings(RemoteConfigSettings(
-        fetchTimeout: const Duration(minutes: 1),
-        minimumFetchInterval: const Duration(minutes: 5),
-      ));
-
-      final repo = await Repository.open();
-
-      runApp(MultiRepositoryProvider(
+      runApp(App.launch(
         providers: [
-          RepositoryProvider.value(value: repo),
-          RepositoryProvider.value(value: analytics),
-          // RepositoryProvider.value(value: remoteConfig),
-          // RepositoryProvider.value(value: fid),
+          Provider.value(
+            value: await Repository.open(),
+          ),
+
+          // FirebaseAnalytics
+
+          Provider.value(
+            value: FirebaseAnalytics.instance,
+          ),
+
+          // FirebaseRemoteConfig
+
+          ChangeNotifierProvider<FirebaseRemoteConfig>.value(
+            value: FirebaseRemoteConfig.instance
+              ..setConfigSettings(RemoteConfigSettings(
+                fetchTimeout: const Duration(minutes: 1),
+                minimumFetchInterval: const Duration(minutes: 5),
+              )),
+          ),
         ],
-        child: const App(),
       ));
     },
     (error, stack) =>

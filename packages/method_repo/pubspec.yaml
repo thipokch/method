@@ -8,6 +8,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  firebase_remote_config: ^2.0.14
+
   method_core:
   method_realm:
 

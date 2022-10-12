@@ -9,20 +9,26 @@ part 'app_bloc.freezed.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc() : super(_Initial()) {
+    on<_Reset>(_onReset);
     on<_Load>(_onLoad);
-    on<_LoadModal>(_onLoadModal);
+    on<_ThemeModeUpdated>(_onThemeModeUpdated);
   }
 
-  void _onLoad(_Load event, Emitter<AppState> emit) => state.whenOrNull(
-      // initial: () => emit(AppState.loaded(masterFlow: event.flow)),
+  void _onReset(_Reset event, Emitter<AppState> emit) =>
+      emit(AppState.initial());
+
+  void _onLoad(_Load event, Emitter<AppState> emit) => state.maybeMap(
+        initial: (_) => emit(AppState.loaded(
+          themeMode: ThemeMode.system,
+        )),
+        orElse: () => throw UnimplementedError(),
       );
 
-  void _onLoadModal(_LoadModal event, Emitter<AppState> emit) =>
-      state.whenOrNull(
-        loaded: (masterFlow, modalFlow, slaveFlow) => emit(AppState.loaded(
-          masterFlow: masterFlow,
-          modalFlow: event.flow,
-          slaveFlow: slaveFlow,
+  void _onThemeModeUpdated(_ThemeModeUpdated event, Emitter<AppState> emit) =>
+      state.maybeMap(
+        loaded: (_) => emit(AppState.loaded(
+          themeMode: event.themeMode,
         )),
+        orElse: () => throw UnimplementedError(),
       );
 }

@@ -1,4 +1,5 @@
-import 'package:method_bloc/settings/settings_bloc.dart';
+
+import 'package:method_bloc/app/app_bloc.dart';
 import 'package:method_style/element_scale.dart';
 import 'package:method_style/element_symbol.dart';
 import 'package:flutter/cupertino.dart';
@@ -41,7 +42,7 @@ class SettingsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-      BlocBuilder<SettingsBloc, SettingsState>(builder: (context, state) {
+      BlocBuilder<AppBloc, AppState>(builder: (context, state) {
         final Map<String, WidgetBuilder> about = {
           "Acknowledgements":
               // When ShellRoute becomes available

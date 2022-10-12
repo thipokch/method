@@ -2,15 +2,11 @@ part of 'app_bloc.dart';
 
 @freezed
 class AppEvent with _$AppEvent {
-  const factory AppEvent.load({
-    required Widget flow,
-  }) = _Load;
+  const factory AppEvent.reset() = _Reset;
 
-  const factory AppEvent.loadModal({
-    required Widget flow,
-  }) = _LoadModal;
+  const factory AppEvent.load() = _Load;
 
-  const factory AppEvent.loadSlave({
-    required Widget flow,
-  }) = _LoadSlave;
+  const factory AppEvent.themeModeUpdated({
+    required ThemeMode themeMode,
+  }) = _ThemeModeUpdated;
 }

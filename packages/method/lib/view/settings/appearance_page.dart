@@ -1,4 +1,4 @@
-import 'package:method_bloc/settings/settings_bloc.dart';
+import 'package:method_bloc/app/app_bloc.dart';
 import 'package:method_style/element_symbol.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,10 +33,12 @@ class _AppearanceList extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Material(
         type: MaterialType.transparency,
-        child: BlocBuilder<SettingsBloc, SettingsState>(
-          builder: (context, state) => state.when(
-            initial: () => const Text("initial"),
-            loaded: (themeMode) {
+        child: BlocBuilder<AppBloc, AppState>(
+          builder: (context, state) => state.map(
+            initial: (_) => const Text("initial"),
+            loaded: (_) {
+              final themeMode = _.themeMode;
+
               final Map<String, ThemeMode> themes = {
                 "Automatic": ThemeMode.system,
                 "Dark": ThemeMode.dark,
@@ -51,8 +53,8 @@ class _AppearanceList extends StatelessWidget {
                       visible: themeMode == e.value,
                       child: const Icon(ElementSymbol.checkmark),
                     ),
-                    onTap: () => context.read<SettingsBloc>().add(
-                          SettingsEvent.themeModeUpdated(
+                    onTap: () => context.read<AppBloc>().add(
+                          AppEvent.themeModeUpdated(
                             themeMode: e.value,
                           ),
                         ),
