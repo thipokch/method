@@ -1,0 +1,6 @@
+# melos_managed_dependency_overrides: method_core,method_repo
+dependency_overrides:
+  method_core:
+    path: ../method_core
+  method_repo:
+    path: ../method_repo

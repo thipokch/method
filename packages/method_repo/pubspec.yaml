@@ -9,7 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
   method_core:
-  method_isar:
+  method_realm:
 
 dev_dependencies:
   dart_code_metrics: ^4.17.0

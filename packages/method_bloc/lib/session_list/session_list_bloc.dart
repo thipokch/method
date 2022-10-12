@@ -25,7 +25,7 @@ class SessionListBloc extends Bloc<SessionListEvent, SessionListState> {
   }
 
   void _load(_Load event, Emitter<SessionListState> emit) {
-    subscription = repo.sessions.streamCollection().listen((event) {
+    subscription = repo.sessions.streamAll().listen((event) {
       add(_Update(sessions: event));
     });
   }
@@ -36,10 +36,13 @@ class SessionListBloc extends Bloc<SessionListEvent, SessionListState> {
   }
 
   void _loadByExercise(_LoadByExercise event, Emitter<SessionListState> emit) {
-    subscription =
-        repo.sessions.streamByExercise(event.exercise).listen((event) {
+    subscription = repo.sessions.streamAll().listen((event) {
       add(_Update(sessions: event));
     });
+    // subscription =
+    //     repo.sessions.streamByExercise(event.exercise).listen((event) {
+    //   add(_Update(sessions: event));
+    // });
   }
 
   void _update(_Update event, Emitter<SessionListState> emit) {
@@ -47,7 +50,7 @@ class SessionListBloc extends Bloc<SessionListEvent, SessionListState> {
   }
 
   void _delete(_Delete event, Emitter<SessionListState> emit) {
-    repo.sessions.delete(event.session);
+    repo.sessions.remove(event.session);
   }
 
   @override

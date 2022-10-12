@@ -37,7 +37,7 @@ Future<void> main() async {
         minimumFetchInterval: const Duration(minutes: 5),
       ));
 
-      final repo = await Repository.load();
+      final repo = await Repository.open();
 
       runApp(MultiRepositoryProvider(
         providers: [

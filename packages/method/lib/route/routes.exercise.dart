@@ -29,7 +29,11 @@ class ExerciseDetailRoute extends GoRouteData {
   const ExerciseDetailRoute(this.id, {this.$extra});
 
   @override
-  Widget build(BuildContext context) => ExercisePage.create(
-        exercise: context.read<Repository>().exercises.getSync(id)!,
+  Widget build(BuildContext context) => FutureBuilder<Exercise?>(
+        future: context.read<Repository>().exercises.get(id),
+        builder: (context, snapshot) =>
+            snapshot.hasData && snapshot.data != null
+                ? ExercisePage.create(exercise: snapshot.data!)
+                : const CupertinoActivityIndicator(),
       );
 }

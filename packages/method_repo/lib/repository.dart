@@ -1,21 +1,26 @@
-import 'package:method_isar/collection/entry.dart';
-import 'package:method_isar/collection/exercise.dart';
-import 'package:method_isar/collection/session.dart';
-import 'package:method_isar/collection/task.dart';
-import 'package:method_isar/source.dart';
+import 'package:method_realm/driver.dart';
+
+import 'collection/entry.dart';
+import 'collection/exercise.dart';
+import 'collection/session.dart';
+import 'collection/task.dart';
 
 class Repository {
-  final PersistenceDriver local;
+  final RealmDriver realm;
 
-  late final ExerciseRepository exercises = ExerciseRepository(local);
-  late final SessionRepository sessions = SessionRepository(local);
-  late final EntryRepository entries = EntryRepository(local);
-  late final TaskRepository tasks = TaskRepository(local);
+  late final ExerciseRepository exercises =
+      ExerciseRepository.from(realm: realm);
+  late final SessionRepository sessions = SessionRepository.from(realm: realm);
+  late final EntryRepository entries = EntryRepository.from(realm: realm);
+  late final TaskRepository tasks = TaskRepository.from(realm: realm);
 
-  Repository._(this.local);
+  Repository._(this.realm);
 
-  static Future<Repository> load() async =>
-      Repository._(await PersistenceDriver.load());
+  static Future<Repository> open() async {
+    return Repository._(RealmDriver.open());
+  }
 
-  Future<void> clear() => local.instance.writeTxn(() => local.instance.clear());
+  Future<void> reset() async {
+    realm.reset();
+  }
 }

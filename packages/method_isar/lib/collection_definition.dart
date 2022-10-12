@@ -44,32 +44,32 @@ abstract class DaoDefinitionCollection<
   DOM toDom(DAO dao) => parentToDom(dao: dao);
 
   @override
-  Future<int> put(DOM dom) async {
-    await childCollection.putAll(dom.definitions);
+  Future<void> put(DOM dom) async {
+    await childCollection.putMany(dom.definitions);
 
     return super.put(dom);
   }
 
   @override
-  Future<List<int>> putAll(List<DOM> doms) async {
+  Future<void> putMany(List<DOM> doms) async {
     await childCollection
-        .putAll(doms.expand((element) => element.definitions).toList());
+        .putMany(doms.expand((element) => element.definitions).toList());
 
-    return super.putAll(doms);
+    return super.putMany(doms);
   }
 
   @override
-  Future<bool> delete(DOM dom) async {
-    await childCollection.deleteAll(dom.definitions);
+  Future<void> remove(DOM dom) async {
+    await childCollection.removeMany(dom.definitions);
 
-    return super.delete(dom);
+    return super.remove(dom);
   }
 
   @override
-  Future<int> deleteAll(List<DOM> doms) async {
+  Future<void> removeMany(List<DOM> doms) async {
     await childCollection
-        .deleteAll(doms.expand((element) => element.definitions).toList());
+        .removeMany(doms.expand((element) => element.definitions).toList());
 
-    return super.deleteAll(doms);
+    return super.removeMany(doms);
   }
 }

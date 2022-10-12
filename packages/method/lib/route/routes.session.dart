@@ -28,12 +28,14 @@ class SessionDetailRoute extends GoRouteData {
   const SessionDetailRoute(this.id, {this.$extra});
 
   @override
-  Widget build(BuildContext context) {
-    final session = context.read<Repository>().sessions.getSync(id)!;
-
-    return SessionPage.create(
-      exercise: session.template,
-      session: session,
-    );
-  }
+  Widget build(BuildContext context) => FutureBuilder<Session?>(
+        future: context.read<Repository>().sessions.get(id),
+        builder: (context, snapshot) =>
+            snapshot.hasData && snapshot.data != null
+                ? SessionPage.create(
+                    exercise: snapshot.data!.template,
+                    session: snapshot.data!,
+                  )
+                : const CupertinoActivityIndicator(),
+      );
 }

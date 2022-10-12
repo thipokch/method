@@ -6,6 +6,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   dynamic_color
   flutter_platform_alert
   isar_flutter_libs
+  realm
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST

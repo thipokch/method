@@ -49,8 +49,8 @@ class _ResetView extends StatelessWidget {
                 negativeButtonTitle: "Erase",
               ).then((selection) {
                 if (selection == CustomButton.negativeButton) {
-                  context.read<Repository>().clear();
-                  context.read<Repository>().exercises.putAll([
+                  context.read<Repository>().reset();
+                  context.read<Repository>().exercises.putMany([
                     Content.exerciseNote,
                     Content.exerciseThought,
                     Content.exerciseAct,

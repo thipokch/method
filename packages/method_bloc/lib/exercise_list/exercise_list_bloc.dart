@@ -22,12 +22,12 @@ class ExerciseListBloc extends Bloc<ExerciseListEvent, ExerciseListState> {
   }
 
   void _load(_Load event, Emitter<ExerciseListState> emit) {
-    subscription = repo.exercises.streamCollection().listen((event) {
+    subscription = repo.exercises.streamAll().listen((event) {
       add(_Update(exercises: event));
     });
 
     if (event.boostrap != null && repo.exercises.count == 0) {
-      repo.exercises.putAll(event.boostrap!);
+      repo.exercises.putMany(event.boostrap!);
     }
   }
 

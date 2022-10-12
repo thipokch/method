@@ -1,12 +1,12 @@
+import 'package:method_repo/source/driver.dart';
 import 'package:isar/isar.dart' show Isar;
-import 'package:method_repo/driver.dart';
 
 import 'collection/entry.dart';
 import 'collection/exercise.dart';
 import 'collection/session.dart';
 import 'collection/task.dart';
 
-class PersistenceDriver extends Source<Isar> {
+class PersistenceDriver extends SourceDriver<Isar> {
   PersistenceDriver(super.instance);
 
   static Future<PersistenceDriver> load() async {

@@ -33,19 +33,20 @@ abstract class DaoDocumentCollection<
           }));
 
   @override
-  Future<List<int>> putAll(List<DOM> doms) => templateCollection
+  Future<void> putMany(List<DOM> doms) => templateCollection
       .getAllByIndex('id', [doms.map((e) => e.template).toList()])
       .then((tdaos) => toDaos(doms)
         ..asMap().entries.map((e) => e.value.template.value = tdaos[e.key]))
       .then((daos) => write(
             () async {
-              final putResult = await collection.putAllByIndex('id', daos);
+              // final putResult = await collection.putAllByIndex('id', daos);
+              await collection.putAllByIndex('id', daos);
 
               for (var e in daos) {
                 await e.template.save();
               }
 
-              return putResult;
+              // return putResult;
             },
           ));
 

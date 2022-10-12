@@ -1,11 +1,11 @@
-// ignore_for_file: invalid_use_of_protected_member
+// ignore_for_file: invalid_use_of_protected_member, unused_import
 
 import 'package:method_core/abstract/define.dart';
 import 'package:method_core/abstract/identify.dart';
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart' hide collection;
 import 'package:method_isar/source.dart';
-import 'package:method_repo/collection.dart';
+import 'package:method_repo/source/collection.dart';
 
 part 'collection_definition.dart';
 part 'collection_document.dart';
@@ -52,7 +52,7 @@ abstract class DaoEmbeded extends Dao {
 }
 
 abstract class Collection<DOM, DAO extends Dao>
-    extends RepositoryCollection<PersistenceDriver> {
+    extends SourceCollection<Isar, DOM> {
   const Collection(super.driver);
 
   IsarCollection<DAO> get collection => source.instance.collection<DAO>();
@@ -62,7 +62,9 @@ abstract class Collection<DOM, DAO extends Dao>
 
   // METADATA
 
+  @override
   bool get isEmpty => count > 0;
+  @override
   int get count => collection.countSync();
 
   // MAPPER
@@ -76,20 +78,25 @@ abstract class Collection<DOM, DAO extends Dao>
 
   // CONTAINS
 
-  // PUT
-
-  Future<int> put(DOM dom) =>
-      write(() => collection.putByIndex('id', toDao(dom)));
-
-  Future<List<int>> putAll(List<DOM> doms) =>
-      write(() => collection.putAllByIndex('id', toDaos(doms)));
-
   // GET
 
+  @override
+  Future<List<DOM>> getAll() =>
+      collection.where().findAll().then((daos) => toDoms(daos));
+
+  @override
   Future<DOM?> get(String id) => collection.getByIndex(
         'id',
         [id],
       ).then((value) => value != null ? toDom(value) : null);
+
+  @override
+  Future<List<DOM>> getMany(List<String> ids) => collection
+      .getAllByIndex(
+        'id',
+        ids.map((e) => [e]).toList(),
+      )
+      .then((dao) => toDoms(dao.whereType<DAO>().toList()));
 
   DOM? getSync(String id) {
     final value = collection.getByIndexSync(
@@ -99,13 +106,6 @@ abstract class Collection<DOM, DAO extends Dao>
 
     return value != null ? toDom(value) : null;
   }
-
-  Future<List<DOM>> getAll(List<String> ids) => collection
-      .getAllByIndex(
-        'id',
-        ids.map((e) => [e]).toList(),
-      )
-      .then((dao) => toDoms(dao.whereType<DAO>().toList()));
 
   List<DOM> getAllSync(List<String> ids) => collection
       .getAllByIndexSync(
@@ -118,31 +118,49 @@ abstract class Collection<DOM, DAO extends Dao>
 
   // STREAM
 
+  @override
   Stream<DOM> stream(String id) => collection
       .where()
       .anyOf([id], idEqualTo)
       .watch(fireImmediately: true)
       .map<DOM>((event) => toDom(event.first));
 
-  Stream<List<DOM>> streamCollection() => collection
+  @override
+  Stream<List<DOM>> streamAll() => collection
       .where()
       .watch(fireImmediately: true)
       .map<List<DOM>>((event) => event.map<DOM>((e) => toDom(e)).toList());
 
+  // PUT
+
+  @override
+  Future<void> put(DOM dom) =>
+      write(() => collection.putByIndex('id', toDao(dom)));
+
+  @override
+  Future<void> putMany(List<DOM> doms) =>
+      write(() => collection.putAllByIndex('id', toDaos(doms)));
+
   // REMOVE
 
-  Future<bool> delete(DOM dom) =>
+  @override
+  Future<void> removeAll() => write(() => collection.clear());
+
+  @override
+  Future<void> remove(DOM dom) =>
       write(() => collection.deleteByIndex('id', [toDao(dom).id]));
 
-  Future<int> deleteAll(List<DOM> doms) =>
+  @override
+  Future<void> removeMany(List<DOM> doms) =>
       write(() => collection.deleteAllByIndex(
             'id',
             toDaos(doms).map((e) => [e.id]).toList(),
           ));
 
-  // CLEAR
-
-  Future<void> clear() => write(() => collection.clear());
+  @override
+  Stream<List<DOM>> streamMany(List<String> ids) {
+    throw UnimplementedError();
+  }
 }
 
 typedef WhereRepeatModifier<OBJ, R, E> = QueryBuilder<OBJ, R, QAfterWhereClause>
