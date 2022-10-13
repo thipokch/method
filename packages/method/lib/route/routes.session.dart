@@ -1,17 +1,10 @@
 part of 'routes.dart';
 
-final _sessionsNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'settings');
-
-final _sessionsRoutes = ShellRoute(
-  navigatorKey: _sessionsNavigatorKey,
-  builder: (context, state, child) => child,
-  routes: [$sessionRoute],
-);
-
 @TypedGoRoute<SessionRoute>(
-  path: '/sessions',
+  path: '/session',
   routes: <TypedGoRoute<GoRouteData>>[
     TypedGoRoute<SessionDetailRoute>(path: 'detail/:id'),
+    TypedGoRoute<SessionEditRoute>(path: 'edit/:id'),
   ],
 )
 class SessionRoute extends GoRouteData {
@@ -38,4 +31,17 @@ class SessionDetailRoute extends GoRouteData {
                   )
                 : const CupertinoActivityIndicator(),
       );
+}
+
+class SessionEditRoute extends GoRouteData {
+  final String id;
+
+  SessionEditRoute(this.id);
+
+  @override
+  Widget build(BuildContext context) => SessionEditor.open(id: id);
+
+  // @override
+  // Page<void> buildPageWithState(BuildContext context, GoRouterState state) =>
+  //     Sheet(body: SessionEditor.open(id: id));
 }

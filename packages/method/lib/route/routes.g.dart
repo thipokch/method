@@ -10,7 +10,6 @@ List<GoRoute> get $appRoutes => [
       $exerciseRoute,
       $sessionRoute,
       $settingsRoute,
-      $editorRoute,
     ];
 
 GoRoute get $exerciseRoute => GoRouteData.$route(
@@ -53,12 +52,16 @@ extension $ExerciseDetailRouteExtension on ExerciseDetailRoute {
 }
 
 GoRoute get $sessionRoute => GoRouteData.$route(
-      path: '/sessions',
+      path: '/session',
       factory: $SessionRouteExtension._fromState,
       routes: [
         GoRouteData.$route(
           path: 'detail/:id',
           factory: $SessionDetailRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'edit/:id',
+          factory: $SessionEditRouteExtension._fromState,
         ),
       ],
     );
@@ -67,7 +70,7 @@ extension $SessionRouteExtension on SessionRoute {
   static SessionRoute _fromState(GoRouterState state) => const SessionRoute();
 
   String get location => GoRouteData.$location(
-        '/sessions',
+        '/session',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
@@ -83,7 +86,21 @@ extension $SessionDetailRouteExtension on SessionDetailRoute {
       );
 
   String get location => GoRouteData.$location(
-        '/sessions/detail/${Uri.encodeComponent(id)}',
+        '/session/detail/${Uri.encodeComponent(id)}',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $SessionEditRouteExtension on SessionEditRoute {
+  static SessionEditRoute _fromState(GoRouterState state) => SessionEditRoute(
+        state.params['id']!,
+      );
+
+  String get location => GoRouteData.$location(
+        '/session/edit/${Uri.encodeComponent(id)}',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
@@ -152,23 +169,6 @@ extension $DeveloperRouteExtension on DeveloperRoute {
 
   String get location => GoRouteData.$location(
         '/settings/developer',
-      );
-
-  void go(BuildContext context) => context.go(location, extra: this);
-
-  void push(BuildContext context) => context.push(location, extra: this);
-}
-
-GoRoute get $editorRoute => GoRouteData.$route(
-      path: '/editor',
-      factory: $EditorRouteExtension._fromState,
-    );
-
-extension $EditorRouteExtension on EditorRoute {
-  static EditorRoute _fromState(GoRouterState state) => const EditorRoute();
-
-  String get location => GoRouteData.$location(
-        '/editor',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);

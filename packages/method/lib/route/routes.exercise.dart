@@ -1,14 +1,5 @@
 part of 'routes.dart';
 
-final _exercisesNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: 'settings');
-
-final _exercisesRoutes = ShellRoute(
-  navigatorKey: _exercisesNavigatorKey,
-  builder: (context, state, child) => child,
-  routes: [$exerciseRoute],
-);
-
 @TypedGoRoute<ExerciseRoute>(
   path: '/exercise',
   routes: <TypedGoRoute<GoRouteData>>[

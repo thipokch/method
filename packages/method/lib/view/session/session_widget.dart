@@ -17,7 +17,6 @@ import 'package:method_ui/button/button_filled.dart';
 import 'package:method_ui/float/float_container.dart';
 import 'package:method_ui/page/art_page.dart';
 import 'package:method_ui/float/float_scaffold.dart';
-import 'package:method/view/session_list/session_list_widget.dart';
 import 'package:method_ui/page/page.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:method_repo/repository.dart';
@@ -28,7 +27,6 @@ import '../entry/entry_editor.dart';
 
 part 'exercise_page.dart';
 part 'session_page.dart';
-part 'session_editor.dart';
 
 class _Session extends StatelessWidget {
   final Widget child;

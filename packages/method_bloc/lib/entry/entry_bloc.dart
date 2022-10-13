@@ -1,9 +1,12 @@
+import 'package:flutter/widgets.dart';
 import 'package:method_core/model/entry.dart';
 import 'package:method_core/model/entry_definition.dart';
 import 'package:method_core/model/task.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method_repo/repository.dart';
+
+import '../util/component_provider.dart';
 
 part 'entry_event.dart';
 part 'entry_state.dart';
@@ -33,6 +36,22 @@ class EntryBloc extends Bloc<EntryEvent, EntryState> {
     on<_DeleteData>(_onDeleteData);
     on<_ClearData>(_onClearData);
   }
+
+  static Widget provide({
+    required Task task,
+    Entry? entry,
+    void Function(EntryBloc bloc)? onCreate,
+    required Widget child,
+  }) =>
+      ComponentProvider(
+        create: (_) => EntryBloc(
+          repo: _.read<Repository>(),
+          task: task,
+          entry: entry,
+        ),
+        onCreate: onCreate,
+        child: child,
+      );
 
   void _onLoadTask(_LoadTask event, Emitter<EntryState> emit) =>
       emit(EntryState.taskLoaded(task: event.task));

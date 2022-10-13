@@ -1,12 +1,11 @@
 import 'package:go_router/go_router.dart';
 import 'package:method/route/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:method/view/exercise_list/exercise_list_widget.dart';
-import 'package:method/view/session_list/session_list_widget.dart';
-import 'package:method_repo/repository.dart';
+import 'package:method/view/session_list/session_list_view.dart';
 import 'package:method_style/element_symbol.dart';
 import 'package:method_ui/page/page.dart';
+
+import '../exercise_list/exercise_list_view.dart';
 
 final homeDestinations = <GoRoute>[
   $sessionRoute,
@@ -83,7 +82,7 @@ class SessionsTab extends StatelessWidget {
         description: "",
         slivers: [
           SliverToBoxAdapter(
-            child: SessionList.create(),
+            child: SessionListView.create(),
           ),
         ],
       );
@@ -100,7 +99,11 @@ class ExercisesTab extends StatelessWidget {
         description: "",
         slivers: [
           SliverToBoxAdapter(
-            child: ExerciseListView.create(repo: context.read<Repository>()),
+            // child: ExerciseListBloc.provide(
+            //   repo: context.read<Repository>(),
+            //   child: const ExerciseListView(),
+            // ),
+            child: ExerciseListView.create(),
           ),
         ],
       );

@@ -15,6 +15,14 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<_UpdateServices>(_onUpdateServices);
   }
 
+  static BlocProvider provide({
+    required Widget child,
+  }) =>
+      BlocProvider(
+        create: (_) => AppBloc(),
+        child: child,
+      );
+
   void _onReset(_Reset event, Emitter<AppState> emit) =>
       emit(AppState.initial());
 
@@ -41,7 +49,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       state.maybeMap(
         loaded: (_) async {
           final current = {
-            for (final s in _.serviceProviders) s.runtimeType: s
+            for (final s in _.serviceProviders) s.runtimeType: s,
           };
 
           final futures = await Future.wait(

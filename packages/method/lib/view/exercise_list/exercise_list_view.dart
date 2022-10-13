@@ -1,12 +1,15 @@
-part of 'exercise_list_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:method_bloc/exercise_list/exercise_list_bloc.dart';
+
+import '../../route/routes.dart';
+import '../session/exercise_card.dart';
 
 class ExerciseListView extends StatelessWidget {
   const ExerciseListView({super.key});
 
-  static Widget create({required Repository repo}) => _ExerciseListWidget(
-        repo: repo,
-        child: const ExerciseListView(),
-      );
+  static Widget create() =>
+      ExerciseListBloc.provide(child: const ExerciseListView());
 
   @override
   Widget build(BuildContext context) =>

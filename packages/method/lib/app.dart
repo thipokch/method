@@ -14,6 +14,7 @@ class App extends StatelessWidget {
   static Widget launch({
     required List<Future<SingleChildWidget> Function()> serviceProviders,
   }) =>
+      // AppBloc.provide(child: const App._());
       BlocProvider(
         create: (_) => AppBloc()
           ..add(AppEvent.load(
@@ -39,7 +40,6 @@ class App extends StatelessWidget {
               child: Airbrush(
                 child: MaterialApp.router(
                   routerConfig: rootRouter,
-                  title: 'method',
                   theme: ElementTheme.light,
                   darkTheme: ElementTheme.dark,
                   themeMode: context.read<AppBloc>().state.maybeMap(

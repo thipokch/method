@@ -12,34 +12,23 @@ import 'package:method_core/model/exercise.dart';
 import 'package:method_core/model/session.dart';
 import 'package:method_repo/repository.dart';
 
+import '../view/session_editor/session_editor.dart';
+
 // See https://pub.dev/packages/go_router_builder
 part 'routes.g.dart';
+part 'routes.home.dart';
 part 'routes.exercise.dart';
 part 'routes.session.dart';
 part 'routes.settings.dart';
-part 'routes.editor.dart';
 
-final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
+final rootNavigator = GlobalKey<NavigatorState>(debugLabel: 'scene');
 
 final rootRouter = GoRouter(
-  navigatorKey: _rootNavigatorKey,
-  initialLocation: '/sessions',
+  // debugLogDiagnostics: true,
+  navigatorKey: rootNavigator,
+  initialLocation: const SessionRoute().location,
+  // initialLocation: '/sessions',
   routes: [
-    _masterRoute,
-    // _settingsRoutes,
-  ],
-);
-
-final _masterNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'master');
-
-final _masterRoute = ShellRoute(
-  navigatorKey: _masterNavigatorKey,
-  builder: (context, state, child) => HomePage(
-    child: child,
-  ),
-  routes: [
-    _sessionsRoutes,
-    _exercisesRoutes,
-    _settingsRoutes,
+    _homeRoutes,
   ],
 );

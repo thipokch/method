@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:flutter/widgets.dart';
+import 'package:method_bloc/util/component_provider.dart';
 import 'package:method_core/model/exercise.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,13 +15,24 @@ class ExerciseListBloc extends Bloc<ExerciseListEvent, ExerciseListState> {
   final Repository repo;
   StreamSubscription<List<Exercise>>? subscription;
 
-  ExerciseListBloc({
+  ExerciseListBloc._({
     required this.repo,
   }) : super(const _Initial()) {
     on<_Load>(_load);
     on<_Update>(_update);
     on<_Close>(_close);
   }
+
+  static Widget provide({
+    void Function(ExerciseListBloc bloc)? onCreate,
+    required Widget child,
+  }) =>
+      ComponentProvider(
+        create: (_) => ExerciseListBloc._(repo: _.read<Repository>())
+          ..add(const ExerciseListEvent.load()),
+        onCreate: onCreate,
+        child: child,
+      );
 
   void _load(_Load event, Emitter<ExerciseListState> emit) {
     subscription = repo.exercises.streamAll().listen((event) {

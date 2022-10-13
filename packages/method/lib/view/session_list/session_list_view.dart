@@ -1,22 +1,19 @@
-part of 'session_list_widget.dart';
+import 'package:figma_squircle/figma_squircle.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_platform_alert/flutter_platform_alert.dart';
+import 'package:method/route/routes.dart';
+import 'package:method/view/session/session_card_preview.dart';
+import 'package:method_bloc/session_list/session_list_bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:method_style/element_scale.dart';
+import 'package:method_style/element_symbol.dart';
 
-class SessionList extends StatelessWidget {
-  const SessionList({super.key});
+class SessionListView extends StatelessWidget {
+  const SessionListView({super.key});
 
-  static Widget create() => _ExerciseList.create(
-        // repo: repo,
-        child: const SessionList(),
-      );
-
-  static Widget createByExercise({
-    // required final Repository repo,
-    required final Exercise exercise,
-  }) =>
-      _ExerciseList.createByExercise(
-        // repo: repo,
-        exercise: exercise,
-        child: const SessionList(),
-      );
+  static Widget create() =>
+      SessionListBloc.provide(child: const SessionListView());
 
   @override
   Widget build(BuildContext context) =>
@@ -47,12 +44,15 @@ class SessionList extends StatelessWidget {
                           itemBuilder: (BuildContext context) =>
                               <PopupMenuEntry>[
                             PopupMenuItem(
-                              onTap: () => Navigator.of(context).push(
-                                SessionEditor.route(
-                                  exercise: session.template,
-                                  session: session,
-                                ),
-                              ),
+                              onTap: () =>
+                                  SessionEditRoute(session.id).go(context),
+                              // onTap: () => Navigator.of(context).push(
+                              //   SessionEditor.route(
+                              //     exercise: session.template,
+                              //     session: session,
+                              //   ),
+                              // ),
+                              // onTap: () => SessionEditor,
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:

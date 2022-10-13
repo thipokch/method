@@ -44,11 +44,13 @@ class ExercisePage extends StatelessWidget {
                 name: exercise.name,
                 description: exercise.description,
                 cta: "Start",
-                onCtaPressed: () => Navigator.of(context).push(
-                  SessionEditor.route(
-                    exercise: exercise,
-                  ),
-                ),
+                // ignore: no-empty-block
+                onCtaPressed: () {},
+                // onCtaPressed: () => Navigator.of(context).push(
+                //   SessionEditor.route(
+                //     exercise: exercise,
+                //   ),
+                // ),
                 slivers: [
                   SliverSafeArea(
                     top: false,

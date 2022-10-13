@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Editor extends StatelessWidget {
-  final Widget child;
-
-  const Editor({
-    super.key,
-    required this.child,
-  });
+class Scene extends StatelessWidget {
+  const Scene({super.key});
 
   @override
   Widget build(BuildContext context) {

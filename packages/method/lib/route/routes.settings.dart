@@ -1,15 +1,5 @@
 part of 'routes.dart';
 
-final _settingsNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'settings');
-
-final _settingsRoutes = ShellRoute(
-  navigatorKey: _settingsNavigatorKey,
-
-  builder: (context, state, child) => child,
-  // pageBuilder: (context, state, child) => Sheet(body: child),
-  routes: [$settingsRoute],
-);
-
 @TypedGoRoute<SettingsRoute>(
   path: '/settings',
   routes: <TypedGoRoute<GoRouteData>>[

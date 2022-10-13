@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method_repo/repository.dart';
 
 import '../entry/entry_bloc.dart';
+import '../util/component_provider.dart';
 
 part 'session_event.dart';
 part 'session_state.dart';
@@ -28,6 +29,22 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
     on<_UpdateData>(_onUpdateData);
     on<_DeleteData>(_onDeleteData);
   }
+
+  static Widget provide({
+    required Exercise exercise,
+    Session? session,
+    void Function(SessionBloc bloc)? onCreate,
+    required Widget child,
+  }) =>
+      ComponentProvider(
+        create: (_) => SessionBloc(
+          repo: _.read<Repository>(),
+          exercise: exercise,
+          session: session,
+        ),
+        onCreate: onCreate,
+        child: child,
+      );
 
   void handleEntryBlocState(BuildContext context, EntryState state) =>
       state.maybeWhen(
