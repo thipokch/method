@@ -19,19 +19,23 @@ mixin _$AppState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(ThemeMode themeMode) loaded,
+    required TResult Function(
+            ThemeMode themeMode, List<dynamic> serviceProviders)
+        loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(ThemeMode themeMode)? loaded,
+    TResult Function(ThemeMode themeMode, List<dynamic> serviceProviders)?
+        loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(ThemeMode themeMode)? loaded,
+    TResult Function(ThemeMode themeMode, List<dynamic> serviceProviders)?
+        loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -111,7 +115,9 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(ThemeMode themeMode) loaded,
+    required TResult Function(
+            ThemeMode themeMode, List<dynamic> serviceProviders)
+        loaded,
   }) {
     return initial();
   }
@@ -120,7 +126,8 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(ThemeMode themeMode)? loaded,
+    TResult Function(ThemeMode themeMode, List<dynamic> serviceProviders)?
+        loaded,
   }) {
     return initial?.call();
   }
@@ -129,7 +136,8 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(ThemeMode themeMode)? loaded,
+    TResult Function(ThemeMode themeMode, List<dynamic> serviceProviders)?
+        loaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -179,7 +187,7 @@ abstract class _Initial extends AppState {
 abstract class _$$_LoadedCopyWith<$Res> {
   factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
       __$$_LoadedCopyWithImpl<$Res>;
-  $Res call({ThemeMode themeMode});
+  $Res call({ThemeMode themeMode, List<dynamic> serviceProviders});
 }
 
 /// @nodoc
@@ -194,12 +202,17 @@ class __$$_LoadedCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? themeMode = freezed,
+    Object? serviceProviders = freezed,
   }) {
     return _then(_$_Loaded(
       themeMode: themeMode == freezed
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
               as ThemeMode,
+      serviceProviders: serviceProviders == freezed
+          ? _value._serviceProviders
+          : serviceProviders // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
     ));
   }
 }
@@ -207,14 +220,23 @@ class __$$_LoadedCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Loaded extends _Loaded {
-  _$_Loaded({required this.themeMode}) : super._();
+  _$_Loaded(
+      {required this.themeMode, required final List<dynamic> serviceProviders})
+      : _serviceProviders = serviceProviders,
+        super._();
 
   @override
   final ThemeMode themeMode;
+  final List<dynamic> _serviceProviders;
+  @override
+  List<dynamic> get serviceProviders {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_serviceProviders);
+  }
 
   @override
   String toString() {
-    return 'AppState.loaded(themeMode: $themeMode)';
+    return 'AppState.loaded(themeMode: $themeMode, serviceProviders: $serviceProviders)';
   }
 
   @override
@@ -222,12 +244,16 @@ class _$_Loaded extends _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Loaded &&
-            const DeepCollectionEquality().equals(other.themeMode, themeMode));
+            const DeepCollectionEquality().equals(other.themeMode, themeMode) &&
+            const DeepCollectionEquality()
+                .equals(other._serviceProviders, _serviceProviders));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(themeMode));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(themeMode),
+      const DeepCollectionEquality().hash(_serviceProviders));
 
   @JsonKey(ignore: true)
   @override
@@ -238,29 +264,33 @@ class _$_Loaded extends _Loaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(ThemeMode themeMode) loaded,
+    required TResult Function(
+            ThemeMode themeMode, List<dynamic> serviceProviders)
+        loaded,
   }) {
-    return loaded(themeMode);
+    return loaded(themeMode, serviceProviders);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(ThemeMode themeMode)? loaded,
+    TResult Function(ThemeMode themeMode, List<dynamic> serviceProviders)?
+        loaded,
   }) {
-    return loaded?.call(themeMode);
+    return loaded?.call(themeMode, serviceProviders);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(ThemeMode themeMode)? loaded,
+    TResult Function(ThemeMode themeMode, List<dynamic> serviceProviders)?
+        loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(themeMode);
+      return loaded(themeMode, serviceProviders);
     }
     return orElse();
   }
@@ -298,10 +328,13 @@ class _$_Loaded extends _Loaded {
 }
 
 abstract class _Loaded extends AppState {
-  factory _Loaded({required final ThemeMode themeMode}) = _$_Loaded;
+  factory _Loaded(
+      {required final ThemeMode themeMode,
+      required final List<dynamic> serviceProviders}) = _$_Loaded;
   _Loaded._() : super._();
 
   ThemeMode get themeMode;
+  List<dynamic> get serviceProviders;
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -312,22 +345,29 @@ mixin _$AppEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
-    required TResult Function() load,
-    required TResult Function(ThemeMode themeMode) themeModeUpdated,
+    required TResult Function(List<Future<dynamic> Function()> serviceProviders)
+        load,
+    required TResult Function(ThemeMode themeMode) updateThemeMode,
+    required TResult Function(List<Future<dynamic> Function()> serviceProviders)
+        updateServices,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function()? load,
-    TResult Function(ThemeMode themeMode)? themeModeUpdated,
+    TResult Function(List<Future<dynamic> Function()> serviceProviders)? load,
+    TResult Function(ThemeMode themeMode)? updateThemeMode,
+    TResult Function(List<Future<dynamic> Function()> serviceProviders)?
+        updateServices,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function()? load,
-    TResult Function(ThemeMode themeMode)? themeModeUpdated,
+    TResult Function(List<Future<dynamic> Function()> serviceProviders)? load,
+    TResult Function(ThemeMode themeMode)? updateThemeMode,
+    TResult Function(List<Future<dynamic> Function()> serviceProviders)?
+        updateServices,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -335,21 +375,24 @@ mixin _$AppEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Reset value) reset,
     required TResult Function(_Load value) load,
-    required TResult Function(_ThemeModeUpdated value) themeModeUpdated,
+    required TResult Function(_UpdateThemeMode value) updateThemeMode,
+    required TResult Function(_UpdateServices value) updateServices,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Reset value)? reset,
     TResult Function(_Load value)? load,
-    TResult Function(_ThemeModeUpdated value)? themeModeUpdated,
+    TResult Function(_UpdateThemeMode value)? updateThemeMode,
+    TResult Function(_UpdateServices value)? updateServices,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Reset value)? reset,
     TResult Function(_Load value)? load,
-    TResult Function(_ThemeModeUpdated value)? themeModeUpdated,
+    TResult Function(_UpdateThemeMode value)? updateThemeMode,
+    TResult Function(_UpdateServices value)? updateServices,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -409,8 +452,11 @@ class _$_Reset implements _Reset {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
-    required TResult Function() load,
-    required TResult Function(ThemeMode themeMode) themeModeUpdated,
+    required TResult Function(List<Future<dynamic> Function()> serviceProviders)
+        load,
+    required TResult Function(ThemeMode themeMode) updateThemeMode,
+    required TResult Function(List<Future<dynamic> Function()> serviceProviders)
+        updateServices,
   }) {
     return reset();
   }
@@ -419,8 +465,10 @@ class _$_Reset implements _Reset {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function()? load,
-    TResult Function(ThemeMode themeMode)? themeModeUpdated,
+    TResult Function(List<Future<dynamic> Function()> serviceProviders)? load,
+    TResult Function(ThemeMode themeMode)? updateThemeMode,
+    TResult Function(List<Future<dynamic> Function()> serviceProviders)?
+        updateServices,
   }) {
     return reset?.call();
   }
@@ -429,8 +477,10 @@ class _$_Reset implements _Reset {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function()? load,
-    TResult Function(ThemeMode themeMode)? themeModeUpdated,
+    TResult Function(List<Future<dynamic> Function()> serviceProviders)? load,
+    TResult Function(ThemeMode themeMode)? updateThemeMode,
+    TResult Function(List<Future<dynamic> Function()> serviceProviders)?
+        updateServices,
     required TResult orElse(),
   }) {
     if (reset != null) {
@@ -444,7 +494,8 @@ class _$_Reset implements _Reset {
   TResult map<TResult extends Object?>({
     required TResult Function(_Reset value) reset,
     required TResult Function(_Load value) load,
-    required TResult Function(_ThemeModeUpdated value) themeModeUpdated,
+    required TResult Function(_UpdateThemeMode value) updateThemeMode,
+    required TResult Function(_UpdateServices value) updateServices,
   }) {
     return reset(this);
   }
@@ -454,7 +505,8 @@ class _$_Reset implements _Reset {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Reset value)? reset,
     TResult Function(_Load value)? load,
-    TResult Function(_ThemeModeUpdated value)? themeModeUpdated,
+    TResult Function(_UpdateThemeMode value)? updateThemeMode,
+    TResult Function(_UpdateServices value)? updateServices,
   }) {
     return reset?.call(this);
   }
@@ -464,7 +516,8 @@ class _$_Reset implements _Reset {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Reset value)? reset,
     TResult Function(_Load value)? load,
-    TResult Function(_ThemeModeUpdated value)? themeModeUpdated,
+    TResult Function(_UpdateThemeMode value)? updateThemeMode,
+    TResult Function(_UpdateServices value)? updateServices,
     required TResult orElse(),
   }) {
     if (reset != null) {
@@ -482,6 +535,7 @@ abstract class _Reset implements AppEvent {
 abstract class _$$_LoadCopyWith<$Res> {
   factory _$$_LoadCopyWith(_$_Load value, $Res Function(_$_Load) then) =
       __$$_LoadCopyWithImpl<$Res>;
+  $Res call({List<Future<dynamic> Function()> serviceProviders});
 }
 
 /// @nodoc
@@ -492,57 +546,94 @@ class __$$_LoadCopyWithImpl<$Res> extends _$AppEventCopyWithImpl<$Res>
 
   @override
   _$_Load get _value => super._value as _$_Load;
+
+  @override
+  $Res call({
+    Object? serviceProviders = freezed,
+  }) {
+    return _then(_$_Load(
+      serviceProviders: serviceProviders == freezed
+          ? _value._serviceProviders
+          : serviceProviders // ignore: cast_nullable_to_non_nullable
+              as List<Future<dynamic> Function()>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_Load implements _Load {
-  const _$_Load();
+  const _$_Load(
+      {required final List<Future<dynamic> Function()> serviceProviders})
+      : _serviceProviders = serviceProviders;
+
+  final List<Future<dynamic> Function()> _serviceProviders;
+  @override
+  List<Future<dynamic> Function()> get serviceProviders {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_serviceProviders);
+  }
 
   @override
   String toString() {
-    return 'AppEvent.load()';
+    return 'AppEvent.load(serviceProviders: $serviceProviders)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Load);
+        (other.runtimeType == runtimeType &&
+            other is _$_Load &&
+            const DeepCollectionEquality()
+                .equals(other._serviceProviders, _serviceProviders));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_serviceProviders));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_LoadCopyWith<_$_Load> get copyWith =>
+      __$$_LoadCopyWithImpl<_$_Load>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
-    required TResult Function() load,
-    required TResult Function(ThemeMode themeMode) themeModeUpdated,
+    required TResult Function(List<Future<dynamic> Function()> serviceProviders)
+        load,
+    required TResult Function(ThemeMode themeMode) updateThemeMode,
+    required TResult Function(List<Future<dynamic> Function()> serviceProviders)
+        updateServices,
   }) {
-    return load();
+    return load(serviceProviders);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function()? load,
-    TResult Function(ThemeMode themeMode)? themeModeUpdated,
+    TResult Function(List<Future<dynamic> Function()> serviceProviders)? load,
+    TResult Function(ThemeMode themeMode)? updateThemeMode,
+    TResult Function(List<Future<dynamic> Function()> serviceProviders)?
+        updateServices,
   }) {
-    return load?.call();
+    return load?.call(serviceProviders);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function()? load,
-    TResult Function(ThemeMode themeMode)? themeModeUpdated,
+    TResult Function(List<Future<dynamic> Function()> serviceProviders)? load,
+    TResult Function(ThemeMode themeMode)? updateThemeMode,
+    TResult Function(List<Future<dynamic> Function()> serviceProviders)?
+        updateServices,
     required TResult orElse(),
   }) {
     if (load != null) {
-      return load();
+      return load(serviceProviders);
     }
     return orElse();
   }
@@ -552,7 +643,8 @@ class _$_Load implements _Load {
   TResult map<TResult extends Object?>({
     required TResult Function(_Reset value) reset,
     required TResult Function(_Load value) load,
-    required TResult Function(_ThemeModeUpdated value) themeModeUpdated,
+    required TResult Function(_UpdateThemeMode value) updateThemeMode,
+    required TResult Function(_UpdateServices value) updateServices,
   }) {
     return load(this);
   }
@@ -562,7 +654,8 @@ class _$_Load implements _Load {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Reset value)? reset,
     TResult Function(_Load value)? load,
-    TResult Function(_ThemeModeUpdated value)? themeModeUpdated,
+    TResult Function(_UpdateThemeMode value)? updateThemeMode,
+    TResult Function(_UpdateServices value)? updateServices,
   }) {
     return load?.call(this);
   }
@@ -572,7 +665,8 @@ class _$_Load implements _Load {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Reset value)? reset,
     TResult Function(_Load value)? load,
-    TResult Function(_ThemeModeUpdated value)? themeModeUpdated,
+    TResult Function(_UpdateThemeMode value)? updateThemeMode,
+    TResult Function(_UpdateServices value)? updateServices,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -583,33 +677,39 @@ class _$_Load implements _Load {
 }
 
 abstract class _Load implements AppEvent {
-  const factory _Load() = _$_Load;
+  const factory _Load(
+          {required final List<Future<dynamic> Function()> serviceProviders}) =
+      _$_Load;
+
+  List<Future<dynamic> Function()> get serviceProviders;
+  @JsonKey(ignore: true)
+  _$$_LoadCopyWith<_$_Load> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_ThemeModeUpdatedCopyWith<$Res> {
-  factory _$$_ThemeModeUpdatedCopyWith(
-          _$_ThemeModeUpdated value, $Res Function(_$_ThemeModeUpdated) then) =
-      __$$_ThemeModeUpdatedCopyWithImpl<$Res>;
+abstract class _$$_UpdateThemeModeCopyWith<$Res> {
+  factory _$$_UpdateThemeModeCopyWith(
+          _$_UpdateThemeMode value, $Res Function(_$_UpdateThemeMode) then) =
+      __$$_UpdateThemeModeCopyWithImpl<$Res>;
   $Res call({ThemeMode themeMode});
 }
 
 /// @nodoc
-class __$$_ThemeModeUpdatedCopyWithImpl<$Res>
+class __$$_UpdateThemeModeCopyWithImpl<$Res>
     extends _$AppEventCopyWithImpl<$Res>
-    implements _$$_ThemeModeUpdatedCopyWith<$Res> {
-  __$$_ThemeModeUpdatedCopyWithImpl(
-      _$_ThemeModeUpdated _value, $Res Function(_$_ThemeModeUpdated) _then)
-      : super(_value, (v) => _then(v as _$_ThemeModeUpdated));
+    implements _$$_UpdateThemeModeCopyWith<$Res> {
+  __$$_UpdateThemeModeCopyWithImpl(
+      _$_UpdateThemeMode _value, $Res Function(_$_UpdateThemeMode) _then)
+      : super(_value, (v) => _then(v as _$_UpdateThemeMode));
 
   @override
-  _$_ThemeModeUpdated get _value => super._value as _$_ThemeModeUpdated;
+  _$_UpdateThemeMode get _value => super._value as _$_UpdateThemeMode;
 
   @override
   $Res call({
     Object? themeMode = freezed,
   }) {
-    return _then(_$_ThemeModeUpdated(
+    return _then(_$_UpdateThemeMode(
       themeMode: themeMode == freezed
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
@@ -620,22 +720,22 @@ class __$$_ThemeModeUpdatedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ThemeModeUpdated implements _ThemeModeUpdated {
-  const _$_ThemeModeUpdated({required this.themeMode});
+class _$_UpdateThemeMode implements _UpdateThemeMode {
+  const _$_UpdateThemeMode({required this.themeMode});
 
   @override
   final ThemeMode themeMode;
 
   @override
   String toString() {
-    return 'AppEvent.themeModeUpdated(themeMode: $themeMode)';
+    return 'AppEvent.updateThemeMode(themeMode: $themeMode)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ThemeModeUpdated &&
+            other is _$_UpdateThemeMode &&
             const DeepCollectionEquality().equals(other.themeMode, themeMode));
   }
 
@@ -645,39 +745,46 @@ class _$_ThemeModeUpdated implements _ThemeModeUpdated {
 
   @JsonKey(ignore: true)
   @override
-  _$$_ThemeModeUpdatedCopyWith<_$_ThemeModeUpdated> get copyWith =>
-      __$$_ThemeModeUpdatedCopyWithImpl<_$_ThemeModeUpdated>(this, _$identity);
+  _$$_UpdateThemeModeCopyWith<_$_UpdateThemeMode> get copyWith =>
+      __$$_UpdateThemeModeCopyWithImpl<_$_UpdateThemeMode>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() reset,
-    required TResult Function() load,
-    required TResult Function(ThemeMode themeMode) themeModeUpdated,
+    required TResult Function(List<Future<dynamic> Function()> serviceProviders)
+        load,
+    required TResult Function(ThemeMode themeMode) updateThemeMode,
+    required TResult Function(List<Future<dynamic> Function()> serviceProviders)
+        updateServices,
   }) {
-    return themeModeUpdated(themeMode);
+    return updateThemeMode(themeMode);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function()? load,
-    TResult Function(ThemeMode themeMode)? themeModeUpdated,
+    TResult Function(List<Future<dynamic> Function()> serviceProviders)? load,
+    TResult Function(ThemeMode themeMode)? updateThemeMode,
+    TResult Function(List<Future<dynamic> Function()> serviceProviders)?
+        updateServices,
   }) {
-    return themeModeUpdated?.call(themeMode);
+    return updateThemeMode?.call(themeMode);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? reset,
-    TResult Function()? load,
-    TResult Function(ThemeMode themeMode)? themeModeUpdated,
+    TResult Function(List<Future<dynamic> Function()> serviceProviders)? load,
+    TResult Function(ThemeMode themeMode)? updateThemeMode,
+    TResult Function(List<Future<dynamic> Function()> serviceProviders)?
+        updateServices,
     required TResult orElse(),
   }) {
-    if (themeModeUpdated != null) {
-      return themeModeUpdated(themeMode);
+    if (updateThemeMode != null) {
+      return updateThemeMode(themeMode);
     }
     return orElse();
   }
@@ -687,9 +794,10 @@ class _$_ThemeModeUpdated implements _ThemeModeUpdated {
   TResult map<TResult extends Object?>({
     required TResult Function(_Reset value) reset,
     required TResult Function(_Load value) load,
-    required TResult Function(_ThemeModeUpdated value) themeModeUpdated,
+    required TResult Function(_UpdateThemeMode value) updateThemeMode,
+    required TResult Function(_UpdateServices value) updateServices,
   }) {
-    return themeModeUpdated(this);
+    return updateThemeMode(this);
   }
 
   @override
@@ -697,9 +805,10 @@ class _$_ThemeModeUpdated implements _ThemeModeUpdated {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Reset value)? reset,
     TResult Function(_Load value)? load,
-    TResult Function(_ThemeModeUpdated value)? themeModeUpdated,
+    TResult Function(_UpdateThemeMode value)? updateThemeMode,
+    TResult Function(_UpdateServices value)? updateServices,
   }) {
-    return themeModeUpdated?.call(this);
+    return updateThemeMode?.call(this);
   }
 
   @override
@@ -707,22 +816,181 @@ class _$_ThemeModeUpdated implements _ThemeModeUpdated {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Reset value)? reset,
     TResult Function(_Load value)? load,
-    TResult Function(_ThemeModeUpdated value)? themeModeUpdated,
+    TResult Function(_UpdateThemeMode value)? updateThemeMode,
+    TResult Function(_UpdateServices value)? updateServices,
     required TResult orElse(),
   }) {
-    if (themeModeUpdated != null) {
-      return themeModeUpdated(this);
+    if (updateThemeMode != null) {
+      return updateThemeMode(this);
     }
     return orElse();
   }
 }
 
-abstract class _ThemeModeUpdated implements AppEvent {
-  const factory _ThemeModeUpdated({required final ThemeMode themeMode}) =
-      _$_ThemeModeUpdated;
+abstract class _UpdateThemeMode implements AppEvent {
+  const factory _UpdateThemeMode({required final ThemeMode themeMode}) =
+      _$_UpdateThemeMode;
 
   ThemeMode get themeMode;
   @JsonKey(ignore: true)
-  _$$_ThemeModeUpdatedCopyWith<_$_ThemeModeUpdated> get copyWith =>
+  _$$_UpdateThemeModeCopyWith<_$_UpdateThemeMode> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_UpdateServicesCopyWith<$Res> {
+  factory _$$_UpdateServicesCopyWith(
+          _$_UpdateServices value, $Res Function(_$_UpdateServices) then) =
+      __$$_UpdateServicesCopyWithImpl<$Res>;
+  $Res call({List<Future<dynamic> Function()> serviceProviders});
+}
+
+/// @nodoc
+class __$$_UpdateServicesCopyWithImpl<$Res> extends _$AppEventCopyWithImpl<$Res>
+    implements _$$_UpdateServicesCopyWith<$Res> {
+  __$$_UpdateServicesCopyWithImpl(
+      _$_UpdateServices _value, $Res Function(_$_UpdateServices) _then)
+      : super(_value, (v) => _then(v as _$_UpdateServices));
+
+  @override
+  _$_UpdateServices get _value => super._value as _$_UpdateServices;
+
+  @override
+  $Res call({
+    Object? serviceProviders = freezed,
+  }) {
+    return _then(_$_UpdateServices(
+      serviceProviders: serviceProviders == freezed
+          ? _value._serviceProviders
+          : serviceProviders // ignore: cast_nullable_to_non_nullable
+              as List<Future<dynamic> Function()>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_UpdateServices implements _UpdateServices {
+  const _$_UpdateServices(
+      {required final List<Future<dynamic> Function()> serviceProviders})
+      : _serviceProviders = serviceProviders;
+
+  final List<Future<dynamic> Function()> _serviceProviders;
+  @override
+  List<Future<dynamic> Function()> get serviceProviders {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_serviceProviders);
+  }
+
+  @override
+  String toString() {
+    return 'AppEvent.updateServices(serviceProviders: $serviceProviders)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateServices &&
+            const DeepCollectionEquality()
+                .equals(other._serviceProviders, _serviceProviders));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_serviceProviders));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_UpdateServicesCopyWith<_$_UpdateServices> get copyWith =>
+      __$$_UpdateServicesCopyWithImpl<_$_UpdateServices>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() reset,
+    required TResult Function(List<Future<dynamic> Function()> serviceProviders)
+        load,
+    required TResult Function(ThemeMode themeMode) updateThemeMode,
+    required TResult Function(List<Future<dynamic> Function()> serviceProviders)
+        updateServices,
+  }) {
+    return updateServices(serviceProviders);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? reset,
+    TResult Function(List<Future<dynamic> Function()> serviceProviders)? load,
+    TResult Function(ThemeMode themeMode)? updateThemeMode,
+    TResult Function(List<Future<dynamic> Function()> serviceProviders)?
+        updateServices,
+  }) {
+    return updateServices?.call(serviceProviders);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? reset,
+    TResult Function(List<Future<dynamic> Function()> serviceProviders)? load,
+    TResult Function(ThemeMode themeMode)? updateThemeMode,
+    TResult Function(List<Future<dynamic> Function()> serviceProviders)?
+        updateServices,
+    required TResult orElse(),
+  }) {
+    if (updateServices != null) {
+      return updateServices(serviceProviders);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Reset value) reset,
+    required TResult Function(_Load value) load,
+    required TResult Function(_UpdateThemeMode value) updateThemeMode,
+    required TResult Function(_UpdateServices value) updateServices,
+  }) {
+    return updateServices(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
+    TResult Function(_Load value)? load,
+    TResult Function(_UpdateThemeMode value)? updateThemeMode,
+    TResult Function(_UpdateServices value)? updateServices,
+  }) {
+    return updateServices?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
+    TResult Function(_Load value)? load,
+    TResult Function(_UpdateThemeMode value)? updateThemeMode,
+    TResult Function(_UpdateServices value)? updateServices,
+    required TResult orElse(),
+  }) {
+    if (updateServices != null) {
+      return updateServices(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateServices implements AppEvent {
+  const factory _UpdateServices(
+          {required final List<Future<dynamic> Function()> serviceProviders}) =
+      _$_UpdateServices;
+
+  List<Future<dynamic> Function()> get serviceProviders;
+  @JsonKey(ignore: true)
+  _$$_UpdateServicesCopyWith<_$_UpdateServices> get copyWith =>
       throw _privateConstructorUsedError;
 }

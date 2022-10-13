@@ -8,5 +8,6 @@ class AppState with _$AppState {
 
   factory AppState.loaded({
     required ThemeMode themeMode,
+    required List<dynamic> serviceProviders,
   }) = _Loaded;
 }

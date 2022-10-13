@@ -9,24 +9,26 @@ import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
 class App extends StatelessWidget {
-  final List<SingleChildWidget> providers;
-
-  const App._(this.providers);
+  const App._();
 
   static Widget launch({
-    required List<SingleChildWidget> providers,
+    required List<Future<SingleChildWidget> Function()> serviceProviders,
   }) =>
-      Provider(
-        create: (_) => AppBloc()..add(const AppEvent.load()),
-        child: App._(providers),
+      BlocProvider(
+        create: (_) => AppBloc()
+          ..add(AppEvent.load(
+            serviceProviders: serviceProviders,
+          )),
+        child: const App._(),
       );
 
   @override
-  Widget build(BuildContext context) => BlocBuilder<AppBloc, AppState>(
-        builder: (context, state) => MultiProvider(
-          providers: [...providers],
-          child: state.maybeMap(
-            loaded: (value) => GestureDetector(
+  Widget build(context) => BlocBuilder<AppBloc, AppState>(
+        builder: (context, state) => state.maybeMap(
+          loaded: (_) => MultiProvider(
+            providers:
+                _.serviceProviders.whereType<SingleChildWidget>().toList(),
+            child: GestureDetector(
               onTap: () {
                 FocusScopeNode currentFocus = FocusScope.of(context);
                 if (!currentFocus.hasPrimaryFocus &&
@@ -47,8 +49,8 @@ class App extends StatelessWidget {
                 ),
               ),
             ),
-            orElse: () => const CupertinoActivityIndicator(),
           ),
+          orElse: () => const CupertinoActivityIndicator(),
         ),
       );
 }

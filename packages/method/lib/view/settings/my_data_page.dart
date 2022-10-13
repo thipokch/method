@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_alert/flutter_platform_alert.dart';
+import 'package:method/route/routes.dart';
+import 'package:method_bloc/app/app_bloc.dart';
 import 'package:method_repo/repository.dart';
 import 'package:method_ui/page/page.dart';
 
@@ -47,10 +49,20 @@ class _ResetView extends StatelessWidget {
                 negativeButtonTitle: "Erase",
               ).then((selection) {
                 if (selection == CustomButton.negativeButton) {
-                  context.read<Repository>().reset();
-                  // context.read<AppBloc>()
-                  //   ..add(AppEvent.reset())
-                  //   ..add(AppEvent.load());
+                  final repo = context.read<Repository>();
+                  final bloc = context.read<AppBloc>();
+
+                  bloc.state.maybeMap(
+                    loaded: (_) =>
+                        bloc.add(AppEvent.updateServices(serviceProviders: [
+                      () async => RepositoryProvider.value(
+                            value: await repo.reset(),
+                          ),
+                    ])),
+                    orElse: () => throw UnimplementedError(),
+                  );
+
+                  const ExerciseRoute().go(context);
                 }
               }),
             ),

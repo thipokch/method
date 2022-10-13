@@ -1,4 +1,3 @@
-
 import 'package:method_bloc/app/app_bloc.dart';
 import 'package:method_style/element_scale.dart';
 import 'package:method_style/element_symbol.dart';

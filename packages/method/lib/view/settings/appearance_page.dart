@@ -54,7 +54,7 @@ class _AppearanceList extends StatelessWidget {
                       child: const Icon(ElementSymbol.checkmark),
                     ),
                     onTap: () => context.read<AppBloc>().add(
-                          AppEvent.themeModeUpdated(
+                          AppEvent.updateThemeMode(
                             themeMode: e.value,
                           ),
                         ),

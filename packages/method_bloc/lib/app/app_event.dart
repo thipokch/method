@@ -4,9 +4,15 @@ part of 'app_bloc.dart';
 class AppEvent with _$AppEvent {
   const factory AppEvent.reset() = _Reset;
 
-  const factory AppEvent.load() = _Load;
+  const factory AppEvent.load({
+    required List<Future<dynamic> Function()> serviceProviders,
+  }) = _Load;
 
-  const factory AppEvent.themeModeUpdated({
+  const factory AppEvent.updateThemeMode({
     required ThemeMode themeMode,
-  }) = _ThemeModeUpdated;
+  }) = _UpdateThemeMode;
+
+  const factory AppEvent.updateServices({
+    required List<Future<dynamic> Function()> serviceProviders,
+  }) = _UpdateServices;
 }
