@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:method/route/routes.dart';
+import 'package:method/util/license/service.dart';
 import 'package:method_bloc/app/app_bloc.dart';
 import 'package:method_style/element_theme.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,8 @@ class App extends StatelessWidget {
         builder: (context, state) => state.maybeMap(
           loaded: (_) => MultiProvider(
             providers:
-                _.serviceProviders.whereType<SingleChildWidget>().toList(),
+                _.serviceProviders.whereType<SingleChildWidget>().toList()
+                  ..add(RepositoryProvider(create: (_) => LicenseService())),
             child: GestureDetector(
               onTap: () {
                 FocusScopeNode currentFocus = FocusScope.of(context);

@@ -2,33 +2,9 @@ import 'package:method_bloc/app/app_bloc.dart';
 import 'package:method_style/element_symbol.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:method_ui/page/page.dart';
 
-class AppearancePage extends StatelessWidget {
-  final Widget? leading;
-  final Widget? trailing;
-
-  const AppearancePage({
-    super.key,
-    this.leading,
-    this.trailing,
-  });
-
-  @override
-  Widget build(BuildContext context) => MtAppPage(
-        name: "Appearance",
-        leading: leading,
-        trailing: trailing,
-        slivers: const [
-          SliverToBoxAdapter(
-            child: _AppearanceList(),
-          ),
-        ],
-      );
-}
-
-class _AppearanceList extends StatelessWidget {
-  const _AppearanceList({Key? key}) : super(key: key);
+class AppearanceView extends StatelessWidget {
+  const AppearanceView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Material(

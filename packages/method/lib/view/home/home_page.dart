@@ -1,16 +1,16 @@
 import 'package:go_router/go_router.dart';
 import 'package:method/route/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:method/view/session_list/session_list_view.dart';
+import 'package:method/components/session_list/view.dart';
 import 'package:method_style/element_symbol.dart';
 import 'package:method_ui/page/page.dart';
 
-import '../exercise_list/exercise_list_view.dart';
+import '../../components/exercise_list/view.dart';
 
 final homeDestinations = <GoRoute>[
   $sessionRoute,
-  $exerciseRoute,
-  $settingsRoute,
+  $exerciseFlow,
+  $settingsFlow,
 ];
 
 class HomePage extends StatelessWidget {
@@ -41,7 +41,6 @@ class HomePage extends StatelessWidget {
 
   static int _calculateSelectedIndex(context) {
     final String location = GoRouter.of(context).location;
-
     for (final entry in homeDestinations.asMap().entries) {
       if (location.startsWith(entry.value.path)) return entry.key;
     }

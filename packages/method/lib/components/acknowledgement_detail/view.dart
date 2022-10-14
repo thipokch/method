@@ -1,52 +1,28 @@
-part of 'acknowlegements_page.dart';
+import 'dart:developer' show Timeline, Flow;
 
-class AcknowlegementsDetail extends StatelessWidget {
-  final Widget? leading;
-  final Widget? trailing;
+import 'package:method_style/element_scale.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart' hide Flow;
+import 'package:flutter/scheduler.dart';
+import 'package:provider/provider.dart';
 
-  final String packageName;
-  final List<LicenseEntry> licenseEntries;
+import '../../util/license/service.dart';
 
-  const AcknowlegementsDetail({
+class AcknowledgementsDetailView extends StatefulWidget {
+  const AcknowledgementsDetailView({
     super.key,
     required this.packageName,
-    required this.licenseEntries,
-    this.leading,
-    this.trailing,
   });
 
-  @override
-  Widget build(BuildContext context) => MtAppPage(
-        name: packageName,
-        description: "",
-        leading: leading,
-        trailing: trailing,
-        slivers: [
-          SliverToBoxAdapter(
-            child: _PackageLicensePage(
-              packageName: packageName,
-              licenseEntries: licenseEntries,
-            ),
-          ),
-        ],
-      );
-}
-
-class _PackageLicensePage extends StatefulWidget {
-  const _PackageLicensePage({
-    Key? key,
-    required this.packageName,
-    required this.licenseEntries,
-  }) : super(key: key);
-
   final String packageName;
-  final List<LicenseEntry> licenseEntries;
 
   @override
-  _PackageLicensePageState createState() => _PackageLicensePageState();
+  State<AcknowledgementsDetailView> createState() =>
+      _AcknowledgementsDetailViewState();
 }
 
-class _PackageLicensePageState extends State<_PackageLicensePage> {
+class _AcknowledgementsDetailViewState
+    extends State<AcknowledgementsDetailView> {
   @override
   void initState() {
     super.initState();
@@ -67,7 +43,14 @@ class _PackageLicensePageState extends State<_PackageLicensePage> {
 
       return true;
     }());
-    for (final LicenseEntry license in widget.licenseEntries) {
+
+    final licenses = await context.read<LicenseService>().licenses;
+    final List<int> bindings =
+        licenses.packageLicenseBindings[widget.packageName] ?? [];
+    final List<LicenseEntry> licenseEntries =
+        bindings.map((int i) => licenses.licenses[i]).toList(growable: false);
+
+    for (final LicenseEntry license in licenseEntries) {
       if (!mounted) {
         return;
       }

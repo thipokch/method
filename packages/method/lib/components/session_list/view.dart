@@ -9,6 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method_style/element_scale.dart';
 import 'package:method_style/element_symbol.dart';
 
+import '../session_edit/route.dart';
+
 class SessionListView extends StatelessWidget {
   const SessionListView({super.key});
 
@@ -28,7 +30,8 @@ class SessionListView extends StatelessWidget {
               children: sessions
                   .map((session) => SessionCardPreview(
                         session: session,
-                        onTap: () => SessionDetailRoute(session.id).go(context),
+                        onTap: () =>
+                            SessionDetailRoute(session.id).push(context),
                         actions: PopupMenuButton(
                           icon: const Icon(ElementSymbol.moreVertical),
                           position: PopupMenuPosition.under,
@@ -45,14 +48,7 @@ class SessionListView extends StatelessWidget {
                               <PopupMenuEntry>[
                             PopupMenuItem(
                               onTap: () =>
-                                  SessionEditRoute(session.id).go(context),
-                              // onTap: () => Navigator.of(context).push(
-                              //   SessionEditor.route(
-                              //     exercise: session.template,
-                              //     session: session,
-                              //   ),
-                              // ),
-                              // onTap: () => SessionEditor,
+                                  SessionEditRoute(session.id).push(context),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:

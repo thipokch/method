@@ -10,31 +10,53 @@ const double _kPreviousPageVisibleOffset = 10;
 const BoxShadow _kDefaultBoxShadow =
     BoxShadow(blurRadius: 10, color: Colors.black12, spreadRadius: 5);
 
-class RootSheet extends Page {
-  final WidgetBuilder builder;
-  final RouteSettings? settings;
+class RootSheetPage<T> extends Page<T> {
+  const RootSheetPage({
+    required this.child,
+    this.maintainState = true,
+    this.fullscreenDialog = false,
+    super.key,
+    super.name,
+    super.arguments,
+    super.restorationId,
+  });
+
+  final Widget child;
   final bool maintainState;
   final bool fullscreenDialog;
 
-  const RootSheet({
-    required this.builder,
-    this.settings,
-    this.maintainState = true,
-    this.fullscreenDialog = false,
-  });
-
   @override
-  MaterialWithModalsPageRoute createRoute(BuildContext context) =>
-      MaterialWithModalsPageRoute(
-        builder: builder,
-        settings: this,
-        maintainState: maintainState,
-        fullscreenDialog: fullscreenDialog,
-      );
+  Route<T> createRoute(BuildContext context) =>
+      _PageBasedMaterialWithModalsPageRoute<T>(page: this);
 }
 
-class Sheet extends Page {
-  final Widget body;
+class _PageBasedMaterialWithModalsPageRoute<T>
+    extends MaterialWithModalsPageRoute<T> {
+  _PageBasedMaterialWithModalsPageRoute({
+    required RootSheetPage<T> page,
+  }) : super(settings: page, builder: (_) => page.child) {
+    assert(opaque);
+  }
+
+  RootSheetPage<T> get _page => settings as RootSheetPage<T>;
+
+  @override
+  Widget buildContent(BuildContext context) {
+    return _page.child;
+  }
+
+  @override
+  bool get maintainState => _page.maintainState;
+
+  @override
+  bool get fullscreenDialog => _page.fullscreenDialog;
+
+  @override
+  String get debugLabel => '${super.debugLabel}(${_page.name})';
+}
+
+class Sheet<T> extends Page<T> {
+  final Widget child;
   final SmoothRadius? topRadius;
   final Color? transitionBackgroundColor;
   final SystemUiOverlayStyle? overlayStyle;
@@ -56,8 +78,8 @@ class Sheet extends Page {
   final RouteSettings? settings;
   final BoxShadow? shadow;
 
-  Sheet({
-    required this.body,
+  const Sheet({
+    required this.child,
     this.topRadius,
     this.transitionBackgroundColor = Colors.black,
     this.overlayStyle,
@@ -78,17 +100,20 @@ class Sheet extends Page {
     this.duration,
     this.settings,
     this.shadow,
-  }) : super(key: ValueKey(body));
+    super.key,
+    super.name,
+    super.arguments,
+    super.restorationId,
+  });
 
   @override
-  CupertinoModalBottomSheetRoute createRoute(BuildContext context) =>
-      CupertinoModalBottomSheetRoute(
+  Route<T> createRoute(BuildContext context) => CupertinoModalBottomSheetRoute(
         settings: this,
-        builder: (context) => Material(child: body),
+        builder: (context) => Material(child: child),
         containerBuilder: (context, animation, child) => _SheetContainer(
           topRadius: topRadius ?? ElementReact.screenCornerRadius(context),
           backgroundColor: backgroundColor,
-          child: body,
+          child: child,
         ),
         secondAnimationController: secondAnimation,
         expanded: expand,

@@ -22,10 +22,10 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:method_repo/repository.dart';
 import 'package:timeago_flutter/timeago_flutter.dart';
 
+import '../../route/routes.dart';
 import '../entry/entry_widget.dart';
 import '../entry/entry_editor.dart';
 
-part 'exercise_page.dart';
 part 'session_page.dart';
 
 class _Session extends StatelessWidget {

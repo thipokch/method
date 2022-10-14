@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:method/route/routes.dart';
 import 'package:method_bloc/exercise_list/exercise_list_bloc.dart';
 
-import '../../route/routes.dart';
-import '../session/exercise_card.dart';
+import '../../view/session/exercise_card.dart';
+import '../exercise_detail/route.dart';
 
 class ExerciseListView extends StatelessWidget {
   const ExerciseListView({super.key});
@@ -25,8 +26,7 @@ class ExerciseListView extends StatelessWidget {
                 .where((e) => e.id != "note")
                 .map<Widget>((e) => ExerciseCard(
                       exercise: e,
-                      onTap: () =>
-                          ExerciseDetailRoute(e.id, $extra: e).go(context),
+                      onTap: () => ExerciseDetailRoute(e.id).push(context),
                     ))
                 .toList(),
           ),

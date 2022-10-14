@@ -1,36 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_alert/flutter_platform_alert.dart';
-import 'package:method/route/routes.dart';
 import 'package:method_bloc/app/app_bloc.dart';
 import 'package:method_repo/repository.dart';
-import 'package:method_ui/page/page.dart';
 
-class MyDataPage extends StatelessWidget {
-  final Widget? leading;
-  final Widget? trailing;
+import '../../route/routes.dart';
 
-  const MyDataPage({
-    super.key,
-    this.leading,
-    this.trailing,
-  });
-
-  @override
-  Widget build(BuildContext context) => MtAppPage(
-        name: "My Data",
-        leading: leading,
-        trailing: trailing,
-        slivers: const [
-          SliverToBoxAdapter(
-            child: _ResetView(),
-          ),
-        ],
-      );
-}
-
-class _ResetView extends StatelessWidget {
-  const _ResetView({Key? key}) : super(key: key);
+class PrivacyView extends StatelessWidget {
+  const PrivacyView({super.key});
 
   @override
   Widget build(BuildContext context) => Material(
@@ -62,7 +39,7 @@ class _ResetView extends StatelessWidget {
                     orElse: () => throw UnimplementedError(),
                   );
 
-                  const ExerciseRoute().go(context);
+                  const ExerciseFlow().go(context);
                 }
               }),
             ),

@@ -7,128 +7,39 @@ part of 'routes.dart';
 // **************************************************************************
 
 List<GoRoute> get $appRoutes => [
-      $exerciseRoute,
+      $settingsFlow,
+      $exerciseFlow,
+      $sessionFlow,
       $sessionRoute,
-      $settingsRoute,
     ];
 
-GoRoute get $exerciseRoute => GoRouteData.$route(
-      path: '/exercise',
-      factory: $ExerciseRouteExtension._fromState,
-      routes: [
-        GoRouteData.$route(
-          path: 'detail/:id',
-          factory: $ExerciseDetailRouteExtension._fromState,
-        ),
-      ],
-    );
-
-extension $ExerciseRouteExtension on ExerciseRoute {
-  static ExerciseRoute _fromState(GoRouterState state) => const ExerciseRoute();
-
-  String get location => GoRouteData.$location(
-        '/exercise',
-      );
-
-  void go(BuildContext context) => context.go(location, extra: this);
-
-  void push(BuildContext context) => context.push(location, extra: this);
-}
-
-extension $ExerciseDetailRouteExtension on ExerciseDetailRoute {
-  static ExerciseDetailRoute _fromState(GoRouterState state) =>
-      ExerciseDetailRoute(
-        state.params['id']!,
-        $extra: state.extra as Exercise?,
-      );
-
-  String get location => GoRouteData.$location(
-        '/exercise/detail/${Uri.encodeComponent(id)}',
-      );
-
-  void go(BuildContext context) => context.go(location, extra: this);
-
-  void push(BuildContext context) => context.push(location, extra: this);
-}
-
-GoRoute get $sessionRoute => GoRouteData.$route(
-      path: '/session',
-      factory: $SessionRouteExtension._fromState,
-      routes: [
-        GoRouteData.$route(
-          path: 'detail/:id',
-          factory: $SessionDetailRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'edit/:id',
-          factory: $SessionEditRouteExtension._fromState,
-        ),
-      ],
-    );
-
-extension $SessionRouteExtension on SessionRoute {
-  static SessionRoute _fromState(GoRouterState state) => const SessionRoute();
-
-  String get location => GoRouteData.$location(
-        '/session',
-      );
-
-  void go(BuildContext context) => context.go(location, extra: this);
-
-  void push(BuildContext context) => context.push(location, extra: this);
-}
-
-extension $SessionDetailRouteExtension on SessionDetailRoute {
-  static SessionDetailRoute _fromState(GoRouterState state) =>
-      SessionDetailRoute(
-        state.params['id']!,
-        $extra: state.extra as Session?,
-      );
-
-  String get location => GoRouteData.$location(
-        '/session/detail/${Uri.encodeComponent(id)}',
-      );
-
-  void go(BuildContext context) => context.go(location, extra: this);
-
-  void push(BuildContext context) => context.push(location, extra: this);
-}
-
-extension $SessionEditRouteExtension on SessionEditRoute {
-  static SessionEditRoute _fromState(GoRouterState state) => SessionEditRoute(
-        state.params['id']!,
-      );
-
-  String get location => GoRouteData.$location(
-        '/session/edit/${Uri.encodeComponent(id)}',
-      );
-
-  void go(BuildContext context) => context.go(location, extra: this);
-
-  void push(BuildContext context) => context.push(location, extra: this);
-}
-
-GoRoute get $settingsRoute => GoRouteData.$route(
+GoRoute get $settingsFlow => GoRouteData.$route(
       path: '/settings',
-      factory: $SettingsRouteExtension._fromState,
+      factory: $SettingsFlowExtension._fromState,
       routes: [
         GoRouteData.$route(
-          path: 'acknowledgements',
-          factory: $AcknowledgementRouteExtension._fromState,
+          path: 'privacy',
+          factory: $PrivacyRouteExtension._fromState,
         ),
         GoRouteData.$route(
           path: 'appearance',
           factory: $AppearanceRouteExtension._fromState,
         ),
         GoRouteData.$route(
-          path: 'developer',
-          factory: $DeveloperRouteExtension._fromState,
+          path: 'acknowledgement',
+          factory: $AcknowledgementListRouteExtension._fromState,
+          routes: [
+            GoRouteData.$route(
+              path: ':id',
+              factory: $AcknowledgementDetailRouteExtension._fromState,
+            ),
+          ],
         ),
       ],
     );
 
-extension $SettingsRouteExtension on SettingsRoute {
-  static SettingsRoute _fromState(GoRouterState state) => const SettingsRoute();
+extension $SettingsFlowExtension on SettingsFlow {
+  static SettingsFlow _fromState(GoRouterState state) => const SettingsFlow();
 
   String get location => GoRouteData.$location(
         '/settings',
@@ -139,12 +50,11 @@ extension $SettingsRouteExtension on SettingsRoute {
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
-extension $AcknowledgementRouteExtension on AcknowledgementRoute {
-  static AcknowledgementRoute _fromState(GoRouterState state) =>
-      AcknowledgementRoute();
+extension $PrivacyRouteExtension on PrivacyRoute {
+  static PrivacyRoute _fromState(GoRouterState state) => PrivacyRoute();
 
   String get location => GoRouteData.$location(
-        '/settings/acknowledgements',
+        '/settings/privacy',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
@@ -164,11 +74,149 @@ extension $AppearanceRouteExtension on AppearanceRoute {
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
-extension $DeveloperRouteExtension on DeveloperRoute {
-  static DeveloperRoute _fromState(GoRouterState state) => DeveloperRoute();
+extension $AcknowledgementListRouteExtension on AcknowledgementListRoute {
+  static AcknowledgementListRoute _fromState(GoRouterState state) =>
+      AcknowledgementListRoute();
 
   String get location => GoRouteData.$location(
-        '/settings/developer',
+        '/settings/acknowledgement',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $AcknowledgementDetailRouteExtension on AcknowledgementDetailRoute {
+  static AcknowledgementDetailRoute _fromState(GoRouterState state) =>
+      AcknowledgementDetailRoute(
+        id: state.params['id']!,
+      );
+
+  String get location => GoRouteData.$location(
+        '/settings/acknowledgement/${Uri.encodeComponent(id)}',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+GoRoute get $exerciseFlow => GoRouteData.$route(
+      path: '/exercise',
+      factory: $ExerciseFlowExtension._fromState,
+      routes: [
+        GoRouteData.$route(
+          path: ':id',
+          factory: $ExerciseDetailRouteExtension._fromState,
+        ),
+      ],
+    );
+
+extension $ExerciseFlowExtension on ExerciseFlow {
+  static ExerciseFlow _fromState(GoRouterState state) => const ExerciseFlow();
+
+  String get location => GoRouteData.$location(
+        '/exercise',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $ExerciseDetailRouteExtension on ExerciseDetailRoute {
+  static ExerciseDetailRoute _fromState(GoRouterState state) =>
+      ExerciseDetailRoute(
+        state.params['id']!,
+      );
+
+  String get location => GoRouteData.$location(
+        '/exercise/${Uri.encodeComponent(id)}',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+GoRoute get $sessionFlow => GoRouteData.$route(
+      path: '/session',
+      factory: $SessionFlowExtension._fromState,
+      routes: [
+        GoRouteData.$route(
+          path: ':id/detail',
+          factory: $SessionDetailRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: ':id/edit',
+          factory: $SessionEditRouteExtension._fromState,
+        ),
+      ],
+    );
+
+extension $SessionFlowExtension on SessionFlow {
+  static SessionFlow _fromState(GoRouterState state) => const SessionFlow();
+
+  String get location => GoRouteData.$location(
+        '/session',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $SessionDetailRouteExtension on SessionDetailRoute {
+  static SessionDetailRoute _fromState(GoRouterState state) =>
+      SessionDetailRoute(
+        state.params['id']!,
+        $extra: state.extra as Session?,
+      );
+
+  String get location => GoRouteData.$location(
+        '/session/${Uri.encodeComponent(id)}/detail',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $SessionEditRouteExtension on SessionEditRoute {
+  static SessionEditRoute _fromState(GoRouterState state) => SessionEditRoute(
+        state.params['id']!,
+      );
+
+  String get location => GoRouteData.$location(
+        '/session/${Uri.encodeComponent(id)}/edit',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+GoRoute get $sessionRoute => GoRouteData.$route(
+      path: '/session',
+      factory: $SessionRouteExtension._fromState,
+      routes: [
+        GoRouteData.$route(
+          path: ':id/detail',
+          factory: $SessionDetailRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: ':id/edit',
+          factory: $SessionEditRouteExtension._fromState,
+        ),
+      ],
+    );
+
+extension $SessionRouteExtension on SessionRoute {
+  static SessionRoute _fromState(GoRouterState state) => const SessionRoute();
+
+  String get location => GoRouteData.$location(
+        '/session',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);

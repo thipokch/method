@@ -12,10 +12,8 @@ import 'package:method_style/element_scale.dart';
 import 'package:method_style/element_symbol.dart';
 import 'package:method_ui/float/float_scaffold.dart';
 
-part 'pagination.dart';
-
-class SessionEditor extends StatelessWidget {
-  const SessionEditor({
+class SessionEditView extends StatelessWidget {
+  const SessionEditView({
     super.key,
   });
 
@@ -27,7 +25,7 @@ class SessionEditor extends StatelessWidget {
         exercise: exercise,
         onCreate: (bloc) =>
             bloc.add(SessionEvent.loadSession(session: session)),
-        child: const SessionEditor(),
+        child: const SessionEditView(),
       );
 
   static Widget open({
@@ -71,29 +69,49 @@ class SessionEditor extends StatelessWidget {
       );
 }
 
-//   @override
-// void initState() {
-//   super.initState();
-//   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-// }
+class _SessionEditorPagination extends SwiperPlugin {
+  @override
+  Widget build(BuildContext context, SwiperPluginConfig config) {
+    final colorScheme = Theme.of(context).colorScheme;
 
-// @override
-// void dispose() {
-//   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-//   super.dispose();
-// }
-
-// static Route route({
-//   required Exercise exercise,
-//   Session? session,
-//   // ThemeData? theme,
-// }) =>
-//     ModalBottomSheetRoute(
-//       expanded: true,
-//       builder: (context) => _Session(
-//         exercise: exercise,
-//         session: session,
-//         // theme: theme,
-//         child: const SessionEditor(),
-//       ),
-//     );
+    return FloatScaffold(
+      leading: AspectRatio(
+        aspectRatio: 1,
+        child: config.activeIndex == 0
+            ? IconButton(
+                icon: const Icon(ElementSymbol.dismiss),
+                color: colorScheme.primary,
+                // ignore: no-empty-block
+                onPressed: () {},
+                // onPressed: () => focusNavigator.currentState?.pop(),
+              )
+            : IconButton(
+                icon: const Icon(ElementSymbol.chevronBack),
+                color: colorScheme.primary,
+                onPressed: () => config.controller.previous(),
+              ),
+      ),
+      middle: DotSwiperPaginationBuilder(
+        activeColor: colorScheme.primary,
+        color: colorScheme.surfaceVariant,
+        size: ElementScale.size03 + .0,
+        space: ElementScale.size03 + .0,
+        activeSize: ElementScale.size03 + .0,
+      ).build(context, config),
+      trailing: AspectRatio(
+        aspectRatio: 1,
+        child: config.activeIndex == config.itemCount - 1
+            ? IconButton(
+                icon: const Icon(ElementSymbol.checkmark),
+                color: colorScheme.primary,
+                onPressed: () => Navigator.of(context).pop(),
+              )
+            : IconButton(
+                icon: const Icon(ElementSymbol.chevronForward),
+                color: colorScheme.primary,
+                onPressed: () => config.controller.next(),
+              ),
+      ),
+    );
+  }
+}
