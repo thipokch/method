@@ -6,8 +6,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method_repo/repository.dart';
 
-import '../util/component_provider.dart';
-
 part 'entry_event.dart';
 part 'entry_state.dart';
 part 'entry_bloc.freezed.dart';
@@ -15,19 +13,13 @@ part 'entry_bloc.freezed.dart';
 class EntryBloc extends Bloc<EntryEvent, EntryState> {
   final Repository repo;
 
-  EntryBloc({
+  EntryBloc._({
     required this.repo,
     required Task task,
     Entry? entry,
-  }) : super(_EntryLoaded(
-          task: task,
-          entry: entry ??
-              Entry.create(
-                template: task,
-                hierarchyPath: "${task.hierarchyPath}/${task.id}",
-                id: DateTime.now().millisecondsSinceEpoch.toString(),
-              ),
-        )) {
+  }) : super(entry == null
+            ? _TaskLoaded(task: task)
+            : _EntryLoaded(task: task, entry: entry)) {
     on<_LoadTask>(_onLoadTask);
     on<_CloseTask>(_onCloseTask);
     on<_LoadEntry>(_onLoadEntry);
@@ -37,20 +29,28 @@ class EntryBloc extends Bloc<EntryEvent, EntryState> {
     on<_ClearData>(_onClearData);
   }
 
-  static Widget provide({
+  static provide({
     required Task task,
     Entry? entry,
-    void Function(EntryBloc bloc)? onCreate,
+    BlocWidgetListener<EntryState>? listener,
     required Widget child,
   }) =>
-      ComponentProvider(
-        create: (_) => EntryBloc(
-          repo: _.read<Repository>(),
+      BlocProvider(
+        create: (_) => EntryBloc._(
+          repo: _.read(),
           task: task,
           entry: entry,
         ),
-        onCreate: onCreate,
-        child: child,
+        child: listener != null
+            ? BlocListener<EntryBloc, EntryState>(listener: listener)
+            : child,
+      );
+
+  static builder({
+    required BlocWidgetBuilder<EntryState> builder,
+  }) =>
+      BlocBuilder<EntryBloc, EntryState>(
+        builder: builder,
       );
 
   void _onLoadTask(_LoadTask event, Emitter<EntryState> emit) =>

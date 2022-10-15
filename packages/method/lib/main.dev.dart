@@ -1,5 +1,3 @@
-// ignore_for_file: unused_local_variable, unused_import
-
 import 'dart:async';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -9,12 +7,13 @@ import 'package:firebase_app_installations/firebase_app_installations.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:method/app.dart';
-import 'package:method_bloc/app/app_bloc.dart';
 import 'package:method_repo/repository.dart';
 import 'package:provider/provider.dart';
 
 import 'config/firebase.dev.dart';
+import 'route/routes.dart';
 
 Future<void> main() async {
   runZonedGuarded<Future<void>>(
@@ -30,10 +29,24 @@ Future<void> main() async {
       FlutterError.onError =
           FirebaseCrashlytics.instance.recordFlutterFatalError;
 
+      // ignore: unused_local_variable
       final String fid = await FirebaseInstallations.instance.getId();
 
       runApp(
-        App.launch(
+        App(
+          routerConfig: GoRouter(
+            observers: [
+              FirebaseAnalyticsObserver(
+                analytics: FirebaseAnalytics.instance,
+              ),
+            ],
+            debugLogDiagnostics: true,
+            navigatorKey: rootNavigator,
+            initialLocation: const SessionFlow().location,
+            routes: [
+              sceneRoute,
+            ],
+          ),
           serviceProviders: [
             () async => RepositoryProvider.value(
                   value: await Repository.open(),
@@ -47,6 +60,7 @@ Future<void> main() async {
                       fetchTimeout: const Duration(minutes: 1),
                       minimumFetchInterval: const Duration(minutes: 5),
                     )),
+                  updateShouldNotify: (previous, current) => false,
                 ),
           ],
         ),

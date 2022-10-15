@@ -54,6 +54,15 @@ class Entry
         commitedAt: commitedAt,
       );
 
+  factory Entry.from({
+    required final Task template,
+  }) =>
+      Entry.create(
+        template: template,
+        hierarchyPath: "${template.hierarchyPath}/${template.id}",
+        id: DateTime.now().millisecondsSinceEpoch.toString(),
+      );
+
   factory Entry.fromJson(Map<String, dynamic> json) => _$EntryFromJson(json);
 
   @override

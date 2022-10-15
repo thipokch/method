@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
-const double _kPreviousPageVisibleOffset = 10;
+// const double _kPreviousPageVisibleOffset = 10;
 
 const BoxShadow _kDefaultBoxShadow =
     BoxShadow(blurRadius: 10, color: Colors.black12, spreadRadius: 5);
@@ -158,30 +158,28 @@ class _SheetContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final topSafeAreaPadding = MediaQuery.of(context).padding.top;
-    final topPadding = _kPreviousPageVisibleOffset + topSafeAreaPadding;
+    // final topSafeAreaPadding = MediaQuery.of(context).padding.top;
+    // final topPadding = _kPreviousPageVisibleOffset + topSafeAreaPadding;
 
     final effectiveShadow = shadow ?? _kDefaultBoxShadow;
     final effectiveBackgroundColor =
         backgroundColor ?? CupertinoTheme.of(context).scaffoldBackgroundColor;
 
-    return Padding(
-      padding: EdgeInsets.only(top: topPadding),
-      child: ClipSmoothRect(
-        // borderRadius: BorderRadius.vertical(top: topRadius),
-        radius: SmoothBorderRadius.vertical(top: topRadius),
-        child: Container(
-          decoration: BoxDecoration(
-            color: effectiveBackgroundColor,
-            boxShadow: [effectiveShadow],
-          ),
-          width: double.infinity,
-          child: MediaQuery.removePadding(
-            context: context,
-            removeTop: true, // Remove top Safe Area
-            child: child,
-          ),
+    return ClipSmoothRect(
+      radius: SmoothBorderRadius.vertical(top: topRadius),
+      child: Container(
+        // padding: EdgeInsets.only(top: topSafeAreaPadding),
+        decoration: BoxDecoration(
+          color: effectiveBackgroundColor,
+          boxShadow: [effectiveShadow],
         ),
+        width: double.infinity,
+        child: child,
+        // child: MediaQuery.removePadding(
+        //   context: context,
+        //   removeTop: true, // Remove top Safe Area
+        //   child: child,
+        // ),
       ),
     );
   }

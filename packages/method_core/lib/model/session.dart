@@ -54,6 +54,15 @@ class Session
         commitedAt: commitedAt,
       );
 
+  factory Session.from({
+    required final Exercise template,
+  }) =>
+      Session.create(
+        template: template,
+        hierarchyPath: "${template.hierarchyPath}/${template.id}",
+        id: DateTime.now().millisecondsSinceEpoch.toString(),
+      );
+
   factory Session.fromJson(Map<String, dynamic> json) =>
       _$SessionFromJson(json);
 

@@ -10,7 +10,6 @@ List<GoRoute> get $appRoutes => [
       $settingsFlow,
       $exerciseFlow,
       $sessionFlow,
-      $sessionRoute,
     ];
 
 GoRoute get $settingsFlow => GoRouteData.$route(
@@ -171,7 +170,6 @@ extension $SessionDetailRouteExtension on SessionDetailRoute {
   static SessionDetailRoute _fromState(GoRouterState state) =>
       SessionDetailRoute(
         state.params['id']!,
-        $extra: state.extra as Session?,
       );
 
   String get location => GoRouteData.$location(
@@ -190,33 +188,6 @@ extension $SessionEditRouteExtension on SessionEditRoute {
 
   String get location => GoRouteData.$location(
         '/session/${Uri.encodeComponent(id)}/edit',
-      );
-
-  void go(BuildContext context) => context.go(location, extra: this);
-
-  void push(BuildContext context) => context.push(location, extra: this);
-}
-
-GoRoute get $sessionRoute => GoRouteData.$route(
-      path: '/session',
-      factory: $SessionRouteExtension._fromState,
-      routes: [
-        GoRouteData.$route(
-          path: ':id/detail',
-          factory: $SessionDetailRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: ':id/edit',
-          factory: $SessionEditRouteExtension._fromState,
-        ),
-      ],
-    );
-
-extension $SessionRouteExtension on SessionRoute {
-  static SessionRoute _fromState(GoRouterState state) => const SessionRoute();
-
-  String get location => GoRouteData.$location(
-        '/session',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);

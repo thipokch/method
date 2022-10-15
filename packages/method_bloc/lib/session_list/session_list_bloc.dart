@@ -7,8 +7,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method_repo/repository.dart';
 
-import '../util/component_provider.dart';
-
 part 'session_list_event.dart';
 part 'session_list_state.dart';
 part 'session_list_bloc.freezed.dart';
@@ -27,15 +25,21 @@ class SessionListBloc extends Bloc<SessionListEvent, SessionListState> {
     on<_Close>(_close);
   }
 
-  static Widget provide({
-    void Function(SessionListBloc bloc)? onCreate,
+  static provider({
     required Widget child,
   }) =>
-      ComponentProvider(
-        create: (_) => SessionListBloc._(repo: _.read<Repository>())
-          ..add(const SessionListEvent.load()),
-        onCreate: onCreate,
+      BlocProvider(
+        create: (_) => SessionListBloc._(
+          repo: _.read(),
+        ),
         child: child,
+      );
+
+  static builder({
+    required BlocWidgetBuilder<SessionListState> builder,
+  }) =>
+      BlocBuilder<SessionListBloc, SessionListState>(
+        builder: builder,
       );
 
   void _load(_Load event, Emitter<SessionListState> emit) {

@@ -4,6 +4,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../abstract/identify.dart';
 import '../abstract/locate.dart';
 
+export '../util/list.dart';
+
 part 'entry_definition.freezed.dart';
 part 'entry_definition.g.dart';
 

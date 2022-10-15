@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
-import 'package:method_bloc/util/component_provider.dart';
 import 'package:method_core/model/exercise.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,15 +22,21 @@ class ExerciseListBloc extends Bloc<ExerciseListEvent, ExerciseListState> {
     on<_Close>(_close);
   }
 
-  static Widget provide({
-    void Function(ExerciseListBloc bloc)? onCreate,
+  static provide({
     required Widget child,
   }) =>
-      ComponentProvider(
-        create: (_) => ExerciseListBloc._(repo: _.read<Repository>())
-          ..add(const ExerciseListEvent.load()),
-        onCreate: onCreate,
+      BlocProvider(
+        create: (_) => ExerciseListBloc._(
+          repo: _.read(),
+        ),
         child: child,
+      );
+
+  static builder({
+    required BlocWidgetBuilder<ExerciseListState> builder,
+  }) =>
+      BlocBuilder<ExerciseListBloc, ExerciseListState>(
+        builder: builder,
       );
 
   void _load(_Load event, Emitter<ExerciseListState> emit) {

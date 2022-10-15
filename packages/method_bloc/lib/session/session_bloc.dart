@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method_repo/repository.dart';
 
 import '../entry/entry_bloc.dart';
-import '../util/component_provider.dart';
 
 part 'session_event.dart';
 part 'session_state.dart';
@@ -16,7 +15,7 @@ part 'session_bloc.freezed.dart';
 class SessionBloc extends Bloc<SessionEvent, SessionState> {
   final Repository repo;
 
-  SessionBloc({
+  SessionBloc._({
     required this.repo,
     required Exercise exercise,
     Session? session,
@@ -30,21 +29,27 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
     on<_DeleteData>(_onDeleteData);
   }
 
-  static Widget provide({
+  static provider({
     required Exercise exercise,
     Session? session,
-    void Function(SessionBloc bloc)? onCreate,
+    BlocWidgetListener<SessionState>? listener,
     required Widget child,
   }) =>
-      ComponentProvider(
-        create: (_) => SessionBloc(
-          repo: _.read<Repository>(),
+      BlocProvider(
+        create: (_) => SessionBloc._(
+          repo: _.read(),
           exercise: exercise,
           session: session,
         ),
-        onCreate: onCreate,
-        child: child,
+        child: listener != null
+            ? BlocListener<SessionBloc, SessionState>(listener: listener)
+            : child,
       );
+
+  static builder({
+    required BlocWidgetBuilder<SessionState> builder,
+  }) =>
+      BlocBuilder<SessionBloc, SessionState>(builder: builder);
 
   void handleEntryBlocState(BuildContext context, EntryState state) =>
       state.maybeWhen(

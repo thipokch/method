@@ -8,19 +8,28 @@ part 'app_event.dart';
 part 'app_bloc.freezed.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
-  AppBloc() : super(_Initial()) {
+  AppBloc._() : super(_Initial()) {
     on<_Reset>(_onReset);
     on<_Load>(_onLoad);
     on<_UpdateThemeMode>(_onUpdateThemeMode);
     on<_UpdateServices>(_onUpdateServices);
   }
 
-  static BlocProvider provide({
+  static provide({
+    required List<Future<dynamic> Function()> serviceProviders,
     required Widget child,
   }) =>
       BlocProvider(
-        create: (_) => AppBloc(),
+        create: (_) =>
+            AppBloc._()..add(AppEvent.load(serviceProviders: serviceProviders)),
         child: child,
+      );
+
+  static builder({
+    required BlocWidgetBuilder<AppState> builder,
+  }) =>
+      BlocBuilder<AppBloc, AppState>(
+        builder: builder,
       );
 
   void _onReset(_Reset event, Emitter<AppState> emit) =>
