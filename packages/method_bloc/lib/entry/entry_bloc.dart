@@ -40,9 +40,12 @@ class EntryBloc extends Bloc<EntryEvent, EntryState> {
           repo: _.read(),
           task: task,
           entry: entry,
-        ),
+        )..add(const EntryEvent.loadEntry()),
         child: listener != null
-            ? BlocListener<EntryBloc, EntryState>(listener: listener)
+            ? BlocListener<EntryBloc, EntryState>(
+                listener: listener,
+                child: child,
+              )
             : child,
       );
 

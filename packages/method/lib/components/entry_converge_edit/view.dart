@@ -30,7 +30,7 @@ class EntryConvergeEditView extends StatelessWidget
                 final taskDef = taskDefinitions[index];
                 final entryDef = entryDefinitions?.elementAtOrNull(index);
 
-                return DefinitionLabel(
+                return DefinitionLabelView(
                   bloc: bloc,
                   taskDefinition: taskDef,
                   entryDefinition: entryDef,

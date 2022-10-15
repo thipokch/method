@@ -22,13 +22,13 @@ class ExerciseListBloc extends Bloc<ExerciseListEvent, ExerciseListState> {
     on<_Close>(_close);
   }
 
-  static provide({
+  static provider({
     required Widget child,
   }) =>
       BlocProvider(
         create: (_) => ExerciseListBloc._(
           repo: _.read(),
-        ),
+        )..add(const ExerciseListEvent.load()),
         child: child,
       );
 

@@ -5,7 +5,7 @@ import 'package:method_style/element_scale.dart';
 import 'package:method_ui/page/page.dart';
 import 'package:provider/provider.dart';
 
-import '../definition_card/view.dart';
+import '../definition_label/view.dart';
 import '../entry_edit/view.dart';
 
 class EntryFeedbackEditView extends StatelessWidget
@@ -29,11 +29,11 @@ class EntryFeedbackEditView extends StatelessWidget
             final taskDef = taskDefinitions[index];
             final entryDef = entryDefinitions?.elementAtOrNull(index);
 
-            return DefinitionCardView(
+            return DefinitionLabelView(
               bloc: bloc,
               taskDefinition: taskDef,
               entryDefinition: entryDef,
-              onTap: () {
+              onPressed: () {
                 bloc.add(const EntryEvent.clearData());
                 if (entryDef == null) {
                   bloc.add(EntryEvent.updateData(

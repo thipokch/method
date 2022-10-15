@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/components/exercise_detail/view.dart';
+import 'package:method/components/exercise_detail/widget.dart';
 import 'package:method_core/model/exercise.dart';
 import 'package:method_style/element_scale.dart';
 import 'package:method_ui/page/art_page.dart';
@@ -19,10 +21,10 @@ class ExerciseDetailPage extends StatelessWidget {
       name: exercise.name,
       description: exercise.description,
       cta: "Start",
-      // ignore: no-empty-block
-      onCtaPressed: () {},
-      // onCtaPressed: () =>
-      //     newSession(repo: context.read(), exerciseId: exercise.id),
+      onCtaPressed: () => ExerciseDetail.newSession(
+        repo: context.read(),
+        exerciseId: exercise.id,
+      ),
       slivers: [
         SliverSafeArea(
           top: false,

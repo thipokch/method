@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:method_core/model/exercise.dart';
 
+import '../task_tile/view.dart';
+
 class ExerciseDetailSliver extends StatelessWidget {
   final Exercise exercise;
 
@@ -15,8 +17,7 @@ class ExerciseDetailSliver extends StatelessWidget {
           childCount: exercise.definitions.length - 1,
           (context, index) => Material(
             type: MaterialType.transparency,
-            // child: TaskTile.create(task: exercise.definitions[index]),
-            child: Text(exercise.definitions[index].name),
+            child: TaskTile(task: exercise.definitions[index]),
           ),
         ),
       );

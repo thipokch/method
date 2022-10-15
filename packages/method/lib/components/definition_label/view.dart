@@ -8,7 +8,7 @@ import 'package:method_ui/emoji/emoji.dart';
 import '../definition_edit/util.dart';
 import '../entry_edit/view.dart';
 
-class DefinitionLabel extends StatelessWidget
+class DefinitionLabelView extends StatelessWidget
     with EntryDefinitionConsumer, DefinitionEdit {
   @override
   final EntryBloc bloc;
@@ -21,7 +21,7 @@ class DefinitionLabel extends StatelessWidget
 
   final VoidCallback? onPressed;
 
-  const DefinitionLabel({
+  const DefinitionLabelView({
     super.key,
     required this.taskDefinition,
     required this.entryDefinition,

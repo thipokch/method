@@ -31,7 +31,7 @@ class SessionListBloc extends Bloc<SessionListEvent, SessionListState> {
       BlocProvider(
         create: (_) => SessionListBloc._(
           repo: _.read(),
-        ),
+        )..add(const SessionListEvent.load()),
         child: child,
       );
 

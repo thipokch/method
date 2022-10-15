@@ -13,7 +13,7 @@ class SessionListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MtAppPage(
-        name: "Journal",
+        name: "Today",
         description: "",
         slivers: [
           SliverToBoxAdapter(

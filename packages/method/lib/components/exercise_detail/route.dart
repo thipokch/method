@@ -18,26 +18,3 @@ class ExerciseDetailRoute extends GoRouteData {
         // onDone:  SessionEditor(),
       );
 }
-
-// static newSession({
-//   required Repository repo,
-//   required String exerciseId,
-// }) {
-//   final sessionId = DateTime.now().millisecondsSinceEpoch.toString();
-
-//   repo.exercises
-//       .get(exerciseId)
-//       .then(
-//         (exercise) async => await repo.sessions.put(
-//           Session.create(
-//             template: exercise!,
-//             hierarchyPath: "${exercise.hierarchyPath}/${exercise.id}",
-//             id: sessionId,
-//           ),
-//         ),
-//       )
-//       .then((_) =>
-//           SessionEditRoute(sessionId).push(sceneNavigator.currentContext!));
-
-//   // return sessionId;
-// }
