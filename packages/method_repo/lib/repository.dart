@@ -1,7 +1,4 @@
-// ignore_for_file: unused_import
-
-import 'package:flutter/foundation.dart';
-import 'package:method_realm/driver.dart';
+import 'package:method_isar/driver.dart';
 
 import 'collection/entry.dart';
 import 'collection/exercise.dart';
@@ -9,22 +6,21 @@ import 'collection/session.dart';
 import 'collection/task.dart';
 
 class Repository {
-  final RealmDriver _realm;
+  final IsarDriver _isar;
 
   late final ExerciseRepository exercises =
-      ExerciseRepository.from(realm: _realm);
-  late final SessionRepository sessions = SessionRepository.from(realm: _realm);
-  late final EntryRepository entries = EntryRepository.from(realm: _realm);
-  late final TaskRepository tasks = TaskRepository.from(realm: _realm);
+      ExerciseRepository.from(isar: _isar);
+  late final SessionRepository sessions = SessionRepository.from(isar: _isar);
+  late final EntryRepository entries = EntryRepository.from(isar: _isar);
+  late final TaskRepository tasks = TaskRepository.from(isar: _isar);
 
-  Repository._(this._realm);
+  Repository._(this._isar);
 
-  static Future<Repository> open() async {
-    return Repository._(RealmDriver.open());
-  }
+  static Future<Repository> open() async =>
+      Repository._(await IsarDriver.open());
 
   Future<Repository> reset() async {
-    await _realm.reset();
+    await _isar.reset();
 
     return open();
   }

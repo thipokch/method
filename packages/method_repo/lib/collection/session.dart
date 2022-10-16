@@ -1,15 +1,15 @@
 import 'package:method_core/model/session.dart';
-import 'package:method_realm/collection/collection.dart';
-import 'package:method_realm/driver.dart';
+import 'package:method_isar/driver.dart';
+import 'package:method_isar/session/collection.dart';
 
-class SessionRepository with RealmRepository<Session, SessionCollection> {
+class SessionRepository with IsarRepository<Session, DbSessionCollection> {
   @override
-  final SessionCollection realmCollection;
+  final DbSessionCollection isarCollection;
 
-  const SessionRepository._(this.realmCollection);
+  const SessionRepository._(this.isarCollection);
 
   factory SessionRepository.from({
-    required RealmDriver realm,
+    required IsarDriver isar,
   }) =>
-      SessionRepository._(SessionCollection(realm));
+      SessionRepository._(DbSessionCollection(isar));
 }

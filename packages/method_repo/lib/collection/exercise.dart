@@ -1,15 +1,15 @@
 import 'package:method_core/model/exercise.dart';
-import 'package:method_realm/collection/collection.dart';
-import 'package:method_realm/driver.dart';
+import 'package:method_isar/driver.dart';
+import 'package:method_isar/exercise/collection.dart';
 
-class ExerciseRepository with RealmRepository<Exercise, ExerciseCollection> {
+class ExerciseRepository with IsarRepository<Exercise, DbExerciseCollection> {
   @override
-  final ExerciseCollection realmCollection;
+  final DbExerciseCollection isarCollection;
 
-  const ExerciseRepository._(this.realmCollection);
+  const ExerciseRepository._(this.isarCollection);
 
   factory ExerciseRepository.from({
-    required RealmDriver realm,
+    required IsarDriver isar,
   }) =>
-      ExerciseRepository._(ExerciseCollection(realm));
+      ExerciseRepository._(DbExerciseCollection(isar));
 }

@@ -1,6 +1,6 @@
 part of 'collection.dart';
 
-class ExerciseCollection extends RealmCollection<DbExercise, Exercise> {
+class ExerciseCollection extends RealmCollection<Exercise, DbExercise> {
   const ExerciseCollection(super.source);
 
   @override

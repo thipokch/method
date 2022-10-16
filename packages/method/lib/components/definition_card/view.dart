@@ -1,10 +1,7 @@
-// ignore_for_file: unused_import
-
 import 'package:method_bloc/entry/entry_bloc.dart';
 import 'package:method_core/model/entry_definition.dart';
 import 'package:method_core/model/task_definition.dart';
 import 'package:flutter/material.dart';
-import 'package:method_ui/card/card.dart';
 import 'package:method_ui/card/card_editing.dart';
 
 import '../definition_edit/util.dart';

@@ -1,6 +1,6 @@
 part of 'collection.dart';
 
-class SessionCollection extends RealmCollection<DbSession, Session> {
+class SessionCollection extends RealmCollection<Session, DbSession> {
   const SessionCollection(super.source);
 
   @override

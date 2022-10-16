@@ -1,6 +1,6 @@
 part of 'collection.dart';
 
-class EntryCollection extends RealmCollection<DbEntry, Entry> {
+class EntryCollection extends RealmCollection<Entry, DbEntry> {
   const EntryCollection(super.source);
 
   @override
@@ -17,8 +17,8 @@ class _EntryMapper {
     required Entry dom,
   }) =>
       DbEntry(
-        dom.id,
         dom.hierarchyPath,
+        dom.id,
         dom.uuid?.toRealm() ?? Uuid.v4(),
         dom.createdAt,
         dom.readAt,

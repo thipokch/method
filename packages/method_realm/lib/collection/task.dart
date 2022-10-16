@@ -1,6 +1,6 @@
 part of 'collection.dart';
 
-class TaskCollection extends RealmCollection<DbTask, Task> {
+class TaskCollection extends RealmCollection<Task, DbTask> {
   const TaskCollection(super.source);
 
   @override

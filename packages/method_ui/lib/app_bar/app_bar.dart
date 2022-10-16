@@ -1,9 +1,8 @@
-// ignore_for_file: unused_import, unused_field, unused_element
+// ignore_for_file: unused_field, unused_element
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:method_style/element_motion.dart';
 import 'package:method_style/element_scale.dart';
 import 'package:method_style/element_symbol.dart';
 

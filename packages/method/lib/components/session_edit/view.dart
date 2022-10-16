@@ -11,6 +11,7 @@ import '../entry_edit/view.dart';
 
 class SessionEditView extends StatelessWidget {
   final Session session;
+
   const SessionEditView({
     super.key,
     required this.session,

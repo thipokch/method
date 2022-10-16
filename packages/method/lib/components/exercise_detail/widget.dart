@@ -27,7 +27,7 @@ class ExerciseDetail {
           ),
         )
         .then((_) =>
-            SessionEditRoute(sessionId).push(sceneNavigator.currentContext!));
+            SessionEditRoute(sessionId).push(rootNavigator.currentContext!));
 
     // return sessionId;
   }

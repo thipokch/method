@@ -12,7 +12,8 @@ dependencies:
   firebase_remote_config: ^2.0.14
 
   method_core:
-  method_realm:
+  method_isar:
+  # method_realm:
 
 dev_dependencies:
   dart_code_metrics: ^4.17.0

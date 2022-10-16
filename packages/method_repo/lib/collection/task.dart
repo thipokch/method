@@ -1,15 +1,15 @@
 import 'package:method_core/model/task.dart';
-import 'package:method_realm/collection/collection.dart';
-import 'package:method_realm/driver.dart';
+import 'package:method_isar/driver.dart';
+import 'package:method_isar/task/collection.dart';
 
-class TaskRepository with RealmRepository<Task, TaskCollection> {
+class TaskRepository with IsarRepository<Task, DbTaskCollection> {
   @override
-  final TaskCollection realmCollection;
+  final DbTaskCollection isarCollection;
 
-  const TaskRepository._(this.realmCollection);
+  const TaskRepository._(this.isarCollection);
 
   factory TaskRepository.from({
-    required RealmDriver realm,
+    required IsarDriver isar,
   }) =>
-      TaskRepository._(TaskCollection(realm));
+      TaskRepository._(DbTaskCollection(isar));
 }

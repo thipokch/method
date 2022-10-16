@@ -15,12 +15,14 @@ import '../schema/schema.dart';
 import '../util/uuid.dart';
 import '../util/json.dart';
 
+export 'package:realm/realm.dart' show Uuid;
+
 part 'entry.dart';
 part 'exercise.dart';
 part 'session.dart';
 part 'task.dart';
 
-abstract class RealmCollection<DAO extends RealmObject, DOM>
+abstract class RealmCollection<DOM, DAO extends RealmObject>
     extends SourceCollection<Realm, DOM> {
   const RealmCollection(super.source);
 

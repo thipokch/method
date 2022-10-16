@@ -28,9 +28,13 @@ class RealmDriver extends SourceDriver<Realm> {
     ),
   );
 
-  static RealmDriver open() => RealmDriver(
-        Realm(config),
-      );
+  static RealmDriver open() {
+    log(Configuration.defaultRealmPath);
+
+    return RealmDriver(
+      Realm(config),
+    );
+  }
 
   void close() => instance.close();
 
@@ -49,7 +53,7 @@ class RealmDriver extends SourceDriver<Realm> {
 }
 
 mixin RealmRepository<DOM,
-    COLLECTION extends RealmCollection<RealmObject, DOM>> {
+    COLLECTION extends RealmCollection<DOM, RealmObject>> {
   COLLECTION get realmCollection;
 
   int get count => realmCollection.count;

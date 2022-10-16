@@ -1,15 +1,15 @@
 import 'package:method_core/model/entry.dart';
-import 'package:method_realm/collection/collection.dart';
-import 'package:method_realm/driver.dart';
+import 'package:method_isar/driver.dart';
+import 'package:method_isar/entry/collection.dart';
 
-class EntryRepository with RealmRepository<Entry, EntryCollection> {
+class EntryRepository with IsarRepository<Entry, DbEntryCollection> {
   @override
-  final EntryCollection realmCollection;
+  final DbEntryCollection isarCollection;
 
-  const EntryRepository._(this.realmCollection);
+  const EntryRepository._(this.isarCollection);
 
   factory EntryRepository.from({
-    required RealmDriver realm,
+    required IsarDriver isar,
   }) =>
-      EntryRepository._(EntryCollection(realm));
+      EntryRepository._(DbEntryCollection(isar));
 }

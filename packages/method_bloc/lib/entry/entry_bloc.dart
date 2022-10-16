@@ -39,7 +39,7 @@ class EntryBloc extends Bloc<EntryEvent, EntryState> {
         create: (_) => EntryBloc._(
           repo: _.read(),
           task: task,
-          entry: entry,
+          // entry: entry,
         )..add(const EntryEvent.loadEntry()),
         child: listener != null
             ? BlocListener<EntryBloc, EntryState>(
@@ -79,12 +79,7 @@ class EntryBloc extends Bloc<EntryEvent, EntryState> {
         taskLoaded: (task) => emit(
           EntryState.entryLoaded(
             task: task,
-            entry: event.entry ??
-                Entry.create(
-                  template: task,
-                  hierarchyPath: "${task.hierarchyPath}/${task.id}",
-                  id: DateTime.now().millisecondsSinceEpoch.toString(),
-                ),
+            entry: event.entry ?? Entry.from(template: task),
           ),
         ),
         orElse: () => throw UnimplementedError(),

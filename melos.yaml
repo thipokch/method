@@ -47,7 +47,7 @@ scripts:
 
   setup:analysis:
     run: |
-      melos exec -c 6 --ignore="method" -- \
+      melos exec -c 6 --scope="method_*"  -- \
         cp ../method/analysis_options.yaml ./analysis_options.yaml
 
   setup:githook:
@@ -276,7 +276,7 @@ scripts:
       Run `flutter analyze` in all packages.
        - Note: you can also rely on your IDEs Dart Analysis / Issues window.
     run: |
-      melos exec -c 1 -- \
+      melos exec -c 1 --scope="metho*" -- \
         flutter analyze . --fatal-infos
 
   hygiene:format:
