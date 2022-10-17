@@ -15,7 +15,7 @@ class _Page extends StatelessWidget with EntryEditVariant {
   Widget build(BuildContext context) {
     final labels = definitions
         .map<Widget>(
-          (_) => DefinitionLabel.view(
+          (_) => DefinitionLabelEdit.view(
             taskDefinition: _.task,
             entryDefinition: _.entry,
             onTap: () => onLabelTap(_),

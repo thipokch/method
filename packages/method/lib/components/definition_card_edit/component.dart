@@ -7,10 +7,10 @@ import '../entry_edit/component.dart';
 
 part 'view.dart';
 
-class DefinitionCard {
-  DefinitionCard._();
+class DefinitionCardEdit {
+  DefinitionCardEdit._();
 
-  static view({
+  static expand({
     required TaskDefinition taskDefinition,
     EntryDefinition? entryDefinition,
     VoidCallback? onTap,
@@ -21,6 +21,21 @@ class DefinitionCard {
         entryDefinition: entryDefinition,
         onTap: onTap,
         onChanged: onChanged,
+      );
+
+  static basic({
+    required TaskDefinition taskDefinition,
+    EntryDefinition? entryDefinition,
+    VoidCallback? onTap,
+    ValueChanged<String>? onChanged,
+  }) =>
+      _View(
+        taskDefinition: taskDefinition,
+        entryDefinition: entryDefinition,
+        onTap: onTap,
+        onChanged: onChanged,
+        isStatic: true,
+        showMeta: false,
       );
 }
 

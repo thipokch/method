@@ -41,6 +41,10 @@ final sceneRoute = ShellRoute(
 )
 class SettingsFlow extends SettingsRoute {
   const SettingsFlow();
+
+  @override
+  Page<void> buildPageWithState(BuildContext context, GoRouterState state) =>
+      NoTransitionPage(child: build(context));
 }
 
 @TypedGoRoute<ExerciseFlow>(
@@ -51,6 +55,10 @@ class SettingsFlow extends SettingsRoute {
 )
 class ExerciseFlow extends ExerciseListRoute {
   const ExerciseFlow();
+
+  @override
+  Page<void> buildPageWithState(BuildContext context, GoRouterState state) =>
+      NoTransitionPage(child: build(context));
 }
 
 @TypedGoRoute<SessionFlow>(
@@ -62,4 +70,7 @@ class ExerciseFlow extends ExerciseListRoute {
 )
 class SessionFlow extends SessionListRoute {
   const SessionFlow();
+  @override
+  Page<void> buildPageWithState(BuildContext context, GoRouterState state) =>
+      NoTransitionPage(child: build(context));
 }

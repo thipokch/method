@@ -15,8 +15,6 @@ import 'package:provider/provider.dart';
 import 'config/firebase.dev.dart';
 import 'route/routes.dart';
 
-/// The Navigator observer.
-
 Future<void> main() async {
   runZonedGuarded<Future<void>>(
     () async {

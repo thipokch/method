@@ -8,8 +8,8 @@ import '../entry_edit/component.dart';
 
 part 'view.dart';
 
-class DefinitionLabel {
-  const DefinitionLabel._();
+class DefinitionLabelEdit {
+  const DefinitionLabelEdit._();
 
   static view({
     required TaskDefinition taskDefinition,

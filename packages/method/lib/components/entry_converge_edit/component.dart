@@ -7,8 +7,8 @@ import 'package:method_style/element_scale.dart';
 import 'package:method_ui/page/page.dart';
 import 'package:provider/provider.dart';
 
-import '../definition_card/component.dart';
-import '../definition_label/component.dart';
+import '../definition_card_edit/component.dart';
+import '../definition_label_edit/component.dart';
 import '../entry_edit/component.dart';
 
 part 'view.dart';

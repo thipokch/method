@@ -17,8 +17,9 @@ class _Page extends StatelessWidget with EntryEditVariant {
   @override
   Widget build(BuildContext context) {
     late final labels = definitions
+        .sublist(1)
         .map<Widget>(
-          (_) => DefinitionLabel.view(
+          (_) => DefinitionLabelEdit.view(
             taskDefinition: _.task,
             entryDefinition: _.entry,
             onTap: () => onLabelTap(_),
@@ -32,18 +33,12 @@ class _Page extends StatelessWidget with EntryEditVariant {
       implyLeading: false,
       slivers: [
         SliverToBoxAdapter(
-          child: AspectRatio(
-            aspectRatio: 1,
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: DefinitionCard.view(
-                taskDefinition: note,
-                entryDefinition: entryAt(0),
-                onChanged: (value) => onNoteChange(definitionAt(0), value),
-                // showMeta: false,
-                // isStatic: true,
-              ),
-            ),
+          child: DefinitionCardEdit.basic(
+            taskDefinition: note,
+            entryDefinition: entryAt(0),
+            onChanged: (value) => onNoteChange(definitionAt(0), value),
+            // showMeta: false,
+            // isStatic: true,
           ),
         ),
         SliverSafeArea(

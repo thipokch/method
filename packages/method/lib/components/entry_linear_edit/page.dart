@@ -19,7 +19,7 @@ class _Page extends StatelessWidget with EntryEditVariant {
   Widget build(BuildContext context) {
     final notes = definitions
         .map<Widget>((_) => SliverToBoxAdapter(
-              child: DefinitionCard.view(
+              child: DefinitionCardEdit.expand(
                 taskDefinition: note,
                 entryDefinition: _.entry,
 

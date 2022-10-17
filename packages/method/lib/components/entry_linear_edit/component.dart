@@ -6,7 +6,7 @@ import 'package:method_core/model/task_definition.dart';
 import 'package:method_ui/page/page.dart';
 import 'package:provider/provider.dart';
 
-import '../definition_card/component.dart';
+import '../definition_card_edit/component.dart';
 import '../entry_edit/component.dart';
 
 part 'page.dart';

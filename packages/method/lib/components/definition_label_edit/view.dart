@@ -19,6 +19,7 @@ class _View extends StatelessWidget with DefinitionEdit {
   Widget build(BuildContext context) => Column(
         children: [
           _button(
+            onTap: onTap,
             icon: taskDefinition.icon,
             style: _buttonStyle(
               isSelected,
@@ -52,7 +53,7 @@ class _View extends StatelessWidget with DefinitionEdit {
   static _button({
     required String icon,
     required ButtonStyle style,
-    VoidCallback? onTap,
+    required VoidCallback? onTap,
   }) =>
       IconButton(
         iconSize: 36.0,

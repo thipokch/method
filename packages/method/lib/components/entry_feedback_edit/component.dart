@@ -6,7 +6,7 @@ import 'package:method_style/element_scale.dart';
 import 'package:method_ui/page/page.dart';
 import 'package:provider/provider.dart';
 
-import '../definition_label/component.dart';
+import '../definition_label_edit/component.dart';
 import '../entry_edit/component.dart';
 
 part 'page.dart';
@@ -20,19 +20,19 @@ class EntryFeedbackEdit {
       taskLoaded: (_) => const CupertinoActivityIndicator(),
       entryLoaded: (task, entry) => _Page(
         entry: entry,
-        onLabelTap: (_) => _.entry == null
-            ? context.read<EntryBloc>().add(EntryEvent.updateData(
-                  definition: EntryDefinition.label(
-                    hierarchyPath: _.task.hierarchyPath,
-                    id: _.task.id,
-                  ),
-                ))
-            : context.read<EntryBloc>().add(EntryEvent.deleteData(
-                  definition: EntryDefinition.label(
-                    hierarchyPath: _.task.hierarchyPath,
-                    id: _.task.id,
-                  ),
-                )),
+        onLabelTap: (_) {
+          final bloc = context.read<EntryBloc>();
+          bloc.add(const EntryEvent.clearData());
+
+          if (_.entry != null) {
+            bloc.add(EntryEvent.updateData(
+              definition: EntryDefinition.label(
+                hierarchyPath: _.task.hierarchyPath,
+                id: _.task.id,
+              ),
+            ));
+          }
+        },
       ),
     ),
   );

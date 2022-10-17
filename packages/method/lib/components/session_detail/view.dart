@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:method_core/model/entry.dart';
 import 'package:method_core/model/session.dart';
+import 'package:method_core/util/list.dart';
 
 class SessionDetailSliver extends StatelessWidget with _SessionDetailList {
   @override
@@ -35,12 +35,12 @@ class SessionDetailView extends StatelessWidget with _SessionDetailList {
 mixin _SessionDetailList {
   Session get session;
 
-  int get itemCount => session.definitions.whereType<Entry>().length;
+  int get itemCount => session.template.definitions.length;
 
   IndexedWidgetBuilder get itemBuilder => (context, index) {
-        final entry = session.definitions.elementAt(index)!;
+        final entry = session.definitions.elementAtOrNull(index);
 
-        return Text(entry.template.name);
+        return Text(entry?.template.name ?? "Null");
         // return EntryPreview.create(task: entry.template, entry: entry);
       };
 }

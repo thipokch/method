@@ -30,7 +30,7 @@ class _Page extends StatelessWidget with EntryEditVariant {
                   childCount: length,
                   (context, index) => Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4.0),
-                    child: DefinitionCard.view(
+                    child: DefinitionCardEdit.expand(
                       taskDefinition: taskAt(index),
                       entryDefinition: entryAt(index),
                       onTap: () => onNoteTap(definitionAt(index)),
