@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:method/components/session_detail/widget.dart';
+import 'package:method/components/session_detail/component.dart';
 
 import '../../util/future/future_provider.dart';
 
@@ -10,7 +10,7 @@ class SessionDetailRoute extends GoRouteData {
   const SessionDetailRoute(this.id);
 
   @override
-  Widget build(BuildContext context) => FutureProvider.session(
+  Widget build(BuildContext context) => FutureSwitcher.provideSession(
         id: id,
         onData: SessionDetail.page,
         onWait: const CupertinoActivityIndicator(),

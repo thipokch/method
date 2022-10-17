@@ -1,13 +1,13 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method_bloc/session/session_bloc.dart';
 import 'package:method_core/model/session.dart';
 import 'package:method_style/element_scale.dart';
 import 'package:method_style/element_symbol.dart';
 import 'package:method_ui/float/float_scaffold.dart';
+import 'package:provider/provider.dart';
 
-import '../entry_edit/view.dart';
+import '../entry_edit/component.dart';
 
 class SessionEditView extends StatelessWidget {
   final Session session;
@@ -30,7 +30,7 @@ class SessionEditView extends StatelessWidget {
           margin: const EdgeInsets.all(ElementScale.spaceNone),
           builder: _SessionEditorPagination(),
         ),
-        itemBuilder: (_, index) => EntryEditView.create(
+        itemBuilder: (_, index) => EntryEdit.create(
           listener: context.read<SessionBloc>().handleEntryBlocState,
           task: session.template.definitions[index],
           entry: index < session.definitions.length

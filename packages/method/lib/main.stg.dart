@@ -6,7 +6,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:method/app.dart';
 import 'package:method/route/routes.dart';
@@ -47,10 +46,10 @@ Future<void> main() async {
             ],
           ),
           serviceProviders: [
-            () async => RepositoryProvider.value(
+            () async => Provider.value(
                   value: await Repository.open(),
                 ),
-            () async => RepositoryProvider.value(
+            () async => Provider.value(
                   value: FirebaseAnalytics.instance,
                 ),
             () async => ListenableProvider.value(

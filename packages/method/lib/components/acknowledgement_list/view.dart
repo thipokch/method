@@ -1,50 +1,23 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:method/components/acknowledgement_detail/route.dart';
-import 'package:method/route/routes.dart';
-import 'package:method_style/element_symbol.dart';
-import 'package:flutter/material.dart' hide Flow;
+part of 'component.dart';
 
-import '../../util/license/service.dart';
+class _Sliver extends StatelessWidget {
+  final LicenseData license;
 
-class AcknowledgementsSliverList extends StatelessWidget {
-  const AcknowledgementsSliverList({super.key});
+  const _Sliver({
+    required this.license,
+  });
 
   @override
-  Widget build(BuildContext context) => FutureBuilder<LicenseData>(
-        future: context.read<LicenseService>().licenses,
-        builder: (_, snapshot) => Builder(
-          key: ValueKey(snapshot.connectionState),
-          builder: (context) {
-            switch (snapshot.connectionState) {
-              case ConnectionState.done:
-                return _acknowledgementsList(snapshot.data!);
-              case ConnectionState.none:
-              case ConnectionState.active:
-              case ConnectionState.waiting:
-                return _acknowledgementsListLoading();
-            }
-          },
-        ),
-      );
-
-  static Widget _acknowledgementsListLoading() => const SliverFillRemaining(
-        child: Center(child: CupertinoActivityIndicator()),
-      );
-
-  static Widget _acknowledgementsList(
-    final LicenseData data,
-  ) =>
-      SliverList(
+  Widget build(BuildContext context) => SliverList(
         delegate: SliverChildBuilderDelegate(
-          childCount: data.packages.length,
+          childCount: license.packages.length,
           (context, index) {
-            final packageName = data.packages.elementAt(index);
+            final packageName = license.packages.elementAt(index);
 
             return _AcknowledgementsListTile(
               packageName: packageName,
               numberLicenses:
-                  data.packageLicenseBindings[packageName]?.length ?? 0,
+                  license.packageLicenseBindings[packageName]?.length ?? 0,
               onTap: () =>
                   AcknowledgementDetailRoute(id: packageName).push(context),
             );

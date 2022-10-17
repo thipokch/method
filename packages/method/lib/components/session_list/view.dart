@@ -4,10 +4,10 @@ import 'package:method/components/session_card/view.dart';
 import 'package:method/route/routes.dart';
 import 'package:method_bloc/session_list/session_list_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method_core/model/session.dart';
 import 'package:method_style/element_scale.dart';
 import 'package:method_style/element_symbol.dart';
+import 'package:provider/provider.dart';
 
 import '../session_detail/route.dart';
 import '../session_edit/route.dart';

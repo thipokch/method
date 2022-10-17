@@ -6,6 +6,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method_repo/repository.dart';
 
+// export 'package:flutter_bloc/flutter_bloc.dart' show Bloc;
+
 part 'entry_event.dart';
 part 'entry_state.dart';
 part 'entry_bloc.freezed.dart';
@@ -29,7 +31,7 @@ class EntryBloc extends Bloc<EntryEvent, EntryState> {
     on<_ClearData>(_onClearData);
   }
 
-  static provide({
+  static provider({
     required Task task,
     Entry? entry,
     BlocWidgetListener<EntryState>? listener,

@@ -1,28 +1,17 @@
-import 'dart:developer' show Timeline, Flow;
+part of 'component.dart';
 
-import 'package:method_style/element_scale.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart' hide Flow;
-import 'package:flutter/scheduler.dart';
-import 'package:provider/provider.dart';
+class _View extends StatefulWidget {
+  final String packageName;
 
-import '../../util/license/service.dart';
-
-class AcknowledgementsDetailView extends StatefulWidget {
-  const AcknowledgementsDetailView({
-    super.key,
+  const _View({
     required this.packageName,
   });
 
-  final String packageName;
-
   @override
-  State<AcknowledgementsDetailView> createState() =>
-      _AcknowledgementsDetailViewState();
+  State<_View> createState() => _ViewState();
 }
 
-class _AcknowledgementsDetailViewState
-    extends State<AcknowledgementsDetailView> {
+class _ViewState extends State<_View> {
   @override
   void initState() {
     super.initState();

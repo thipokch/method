@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:method/components/session_list/widget.dart';
+import 'package:method/components/session_list/component.dart';
 import 'package:method_bloc/session_list/session_list_bloc.dart';
 
 class SessionListRoute extends GoRouteData {

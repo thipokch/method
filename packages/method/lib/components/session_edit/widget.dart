@@ -21,7 +21,7 @@ class SessionEdit {
   static Widget openSession({
     required String id,
   }) =>
-      FutureProvider.session(
+      FutureSwitcher.provideSession(
         id: id,
         onData: view,
         onWait: const CupertinoActivityIndicator(),
@@ -31,7 +31,7 @@ class SessionEdit {
   static Widget openExercise({
     required String id,
   }) =>
-      FutureProvider.exercise(
+      FutureSwitcher.provideExercise(
         id: id,
         onData: view,
         onWait: const CupertinoActivityIndicator(),

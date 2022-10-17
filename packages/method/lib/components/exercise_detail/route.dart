@@ -10,7 +10,7 @@ class ExerciseDetailRoute extends GoRouteData {
   const ExerciseDetailRoute(this.id);
 
   @override
-  Widget build(BuildContext context) => FutureProvider.exercise(
+  Widget build(BuildContext context) => FutureSwitcher.provideExercise(
         id: id,
         onData: ExerciseDetail.page,
         onError: (_) => const CupertinoActivityIndicator(),

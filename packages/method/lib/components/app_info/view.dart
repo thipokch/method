@@ -1,10 +1,15 @@
-import 'package:flutter/cupertino.dart';
-import 'package:method_style/element_scale.dart';
-import 'package:flutter/material.dart';
-import 'package:package_info_plus/package_info_plus.dart';
+part of 'component.dart';
 
-class AppInfoView extends StatelessWidget {
-  const AppInfoView({super.key});
+class _View extends StatelessWidget {
+  final String name;
+  final String version;
+  final String buildInfo;
+
+  const _View({
+    required this.name,
+    required this.version,
+    required this.buildInfo,
+  });
 
   // ignore: long-parameter-list
   _appInfoView({

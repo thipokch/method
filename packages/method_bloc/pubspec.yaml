@@ -14,9 +14,9 @@ dependencies:
   json_annotation: ^4.6.0
   
   method_core:
-  method_style:
-  method_isar:
   method_repo:
+  # method_style:
+  # method_isar:
 
 dev_dependencies:
   build_runner: ^2.2.0

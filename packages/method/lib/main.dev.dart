@@ -6,7 +6,6 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:firebase_app_installations/firebase_app_installations.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:method/app.dart';
 import 'package:method/components/home/route.dart';
@@ -53,10 +52,10 @@ Future<void> main() async {
             ],
           ),
           serviceProviders: [
-            () async => RepositoryProvider.value(
+            () async => Provider.value(
                   value: await Repository.open(),
                 ),
-            () async => RepositoryProvider.value(
+            () async => Provider.value(
                   value: FirebaseAnalytics.instance,
                 ),
             () async => ListenableProvider.value(

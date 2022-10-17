@@ -1,3 +1,4 @@
+import 'package:method_core/model/task_definition.dart';
 import 'package:method_core/util/uuid.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -25,6 +26,22 @@ class EntryDefinition with _$EntryDefinition, Identify, Locate {
     required String id,
     @UuidConverter() UuidValue? uuid,
   }) = _Note;
+
+  factory EntryDefinition.from({
+    required final TaskDefinition template,
+    String? data,
+  }) =>
+      template.map(
+        label: (_) => EntryDefinition.label(
+          hierarchyPath: _.hierarchyPath,
+          id: _.id,
+        ),
+        note: (_) => EntryDefinition.note(
+          data: data!,
+          hierarchyPath: _.hierarchyPath,
+          id: _.id,
+        ),
+      );
 
   @override
   String get collectionSlug => map(

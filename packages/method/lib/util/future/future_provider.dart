@@ -8,13 +8,13 @@ import 'package:method_core/model/task.dart';
 import 'package:method_repo/repository.dart';
 import 'package:provider/provider.dart';
 
-class FutureProvider<T extends Object> extends StatelessWidget {
+class FutureSwitcher<T extends Object> extends StatelessWidget {
   final Future<T?> Function(BuildContext _) futureBuilder;
   final Widget onWait;
   final Widget Function(T data) onData;
   final Widget Function(Object error) onError;
 
-  const FutureProvider({
+  const FutureSwitcher({
     super.key,
     required this.futureBuilder,
     required this.onWait,
@@ -33,16 +33,16 @@ class FutureProvider<T extends Object> extends StatelessWidget {
         },
       );
 
-  static entry({
+  static provideEntry({
     required String id,
     required Widget onData,
     required Widget onWait,
     required Widget Function(Object error) onError,
   }) =>
-      FutureProvider(
+      FutureSwitcher(
         futureBuilder: (_) => _.read<Repository>().entries.get(id),
         onWait: onWait,
-        onData: (Entry data) => EntryBloc.provide(
+        onData: (Entry data) => EntryBloc.provider(
           task: data.template,
           entry: data,
           child: onData,
@@ -50,16 +50,16 @@ class FutureProvider<T extends Object> extends StatelessWidget {
         onError: onError,
       );
 
-  static task({
+  static provideTask({
     required String id,
     required Widget onData,
     required Widget onWait,
     required Widget Function(Object error) onError,
   }) =>
-      FutureProvider(
+      FutureSwitcher(
         futureBuilder: (_) => _.read<Repository>().tasks.get(id),
         onWait: onWait,
-        onData: (Task data) => EntryBloc.provide(
+        onData: (Task data) => EntryBloc.provider(
           task: data,
           entry: Entry.from(template: data),
           child: onData,
@@ -67,13 +67,13 @@ class FutureProvider<T extends Object> extends StatelessWidget {
         onError: onError,
       );
 
-  static session({
+  static provideSession({
     required String id,
     required Widget onData,
     required Widget onWait,
     required Widget Function(Object error) onError,
   }) =>
-      FutureProvider(
+      FutureSwitcher(
         futureBuilder: (_) => _.read<Repository>().sessions.get(id),
         onWait: onWait,
         onData: (Session data) => SessionBloc.provider(
@@ -84,13 +84,13 @@ class FutureProvider<T extends Object> extends StatelessWidget {
         onError: onError,
       );
 
-  static exercise({
+  static provideExercise({
     required String id,
     required Widget onData,
     required Widget onWait,
     required Widget Function(Object error) onError,
   }) =>
-      FutureProvider(
+      FutureSwitcher(
         futureBuilder: (_) => _.read<Repository>().exercises.get(id),
         onWait: onWait,
         onData: (Exercise data) => SessionBloc.provider(
