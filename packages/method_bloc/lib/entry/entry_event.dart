@@ -12,6 +12,10 @@ class EntryEvent with _$EntryEvent {
     Entry? entry,
   }) = _LoadEntry;
 
+  const factory EntryEvent.updatedEntry({
+    required Entry entry,
+  }) = _UpdateEntry;
+
   const factory EntryEvent.addData({
     required EntryDefinition definition,
   }) = _AddData;

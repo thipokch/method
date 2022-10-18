@@ -16,8 +16,8 @@ class _Page extends StatelessWidget with EntryEditVariant {
 
   @override
   Widget build(BuildContext context) {
-    late final labels = definitions
-        .sublist(1)
+    late final labels = entry.mappedDefinition.entries
+        .skip(1)
         .map<Widget>(
           (_) => DefinitionLabelEdit.view(
             taskDefinition: _.task,

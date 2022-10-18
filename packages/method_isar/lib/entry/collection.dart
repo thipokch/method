@@ -8,15 +8,15 @@ import '../collection/collection.dart';
 import '../schema.dart';
 import 'mapper.dart';
 
-class DbEntryCollection
-    extends DaoDocumentCollection<Entry, DbEntry, Task, DbTask> {
+class DbEntryCollection extends Collection<Entry, DbEntry>
+    with DaoDocumentCollection<Entry, DbEntry, Task, DbTask> {
   const DbEntryCollection(super.driver);
 
   @override
-  DbEntry toDao(Entry dom) => DbEntryMapper.toDao(dom: dom);
+  DbEntry toDao(Entry dom) => DbEntryMapper.toDao(dom);
 
   @override
-  Entry toDom(DbEntry dao) => DbEntryMapper.toDom(dao: dao);
+  Entry toDom(DbEntry dao) => DbEntryMapper.toDom(dao);
 
   @override
   IsarCollection<DbTask> get templateCollection => source.instance.dbTasks;

@@ -12,12 +12,12 @@ mixin DaoDocument<DAO extends Dao> on Dao {
   DateTime? get deletedAt;
 }
 
-abstract class DaoDocumentCollection<
-    DOM extends Document<TDOM, Object>,
+mixin DaoDocumentCollection<
+    DOM extends DefineTemplate<TDOM>,
     DAO extends DaoDocument<TDAO>,
     TDOM extends Identify,
-    TDAO extends DaoObject> extends Collection<DOM, DAO> {
-  const DaoDocumentCollection(super.driver);
+    TDAO extends DaoObject> on Collection<DOM, DAO> {
+  // const DaoDocumentCollection(super.driver);
 
   IsarCollection<TDAO> get templateCollection;
 

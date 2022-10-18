@@ -26,7 +26,7 @@ abstract class BaseCollection<DOM> {
 
   Stream<List<DOM>> streamAll();
 
-  Stream<DOM> stream(String id);
+  Stream<DOM?> stream(String id);
   Stream<List<DOM>> streamMany(List<String> ids);
 
   // PUT

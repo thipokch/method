@@ -3,6 +3,7 @@ import 'package:method_bloc/entry/entry_bloc.dart';
 import 'package:method_core/model/entry.dart';
 import 'package:method_core/model/entry_definition.dart';
 import 'package:method_style/element_scale.dart';
+import 'package:method_style/element_touch.dart';
 import 'package:method_ui/page/page.dart';
 import 'package:provider/provider.dart';
 
@@ -24,14 +25,13 @@ class EntryFeedbackEdit {
           final bloc = context.read<EntryBloc>();
           bloc.add(const EntryEvent.clearData());
 
-          if (_.entry != null) {
+          if (_.entry == null) {
             bloc.add(EntryEvent.updateData(
-              definition: EntryDefinition.label(
-                hierarchyPath: _.task.hierarchyPath,
-                id: _.task.id,
-              ),
+              definition: EntryDefinition.from(template: _.task),
             ));
           }
+
+          ElementTouch.select();
         },
       ),
     ),

@@ -44,8 +44,9 @@ mixin EntryEditVariant on Widget {
   List<EntryDefinition?> get entryDefinitions => entry.definitions;
 
   int get length => taskDefinitions.length;
-  List<Definition> get definitions =>
-      List.generate(length, (_) => _).map((_) => definitionAt(_)).toList();
+  // List<Definition> get definitions => entry.mappedDefinition;
+  // List<Definition> get definitions =>
+  //     List.generate(length, (_) => _).map((_) => definitionAt(_)).toList();
 
   Definition definitionAt(int index) =>
       Definition(taskAt(index), entryAt(index));

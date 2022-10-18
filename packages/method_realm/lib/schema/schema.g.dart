@@ -17,7 +17,7 @@ class DbEntry extends _DbEntry with RealmEntity, RealmObject {
     DbTask? template,
     DateTime? commitedAt,
     DateTime? deletedAt,
-    Iterable<String?> definitions = const [],
+    Iterable<String> definitions = const [],
   }) {
     RealmObject.set(this, 'template', template);
     RealmObject.set(this, 'hierarchyPath', hierarchyPath);
@@ -28,8 +28,8 @@ class DbEntry extends _DbEntry with RealmEntity, RealmObject {
     RealmObject.set(this, 'updatedAt', updatedAt);
     RealmObject.set(this, 'commitedAt', commitedAt);
     RealmObject.set(this, 'deletedAt', deletedAt);
-    RealmObject.set<RealmList<String?>>(
-        this, 'definitions', RealmList<String?>(definitions));
+    RealmObject.set<RealmList<String>>(
+        this, 'definitions', RealmList<String>(definitions));
   }
 
   DbEntry._();
@@ -41,10 +41,10 @@ class DbEntry extends _DbEntry with RealmEntity, RealmObject {
       RealmObject.set(this, 'template', value);
 
   @override
-  RealmList<String?> get definitions =>
-      RealmObject.get<String?>(this, 'definitions') as RealmList<String?>;
+  RealmList<String> get definitions =>
+      RealmObject.get<String>(this, 'definitions') as RealmList<String>;
   @override
-  set definitions(covariant RealmList<String?> value) =>
+  set definitions(covariant RealmList<String> value) =>
       throw RealmUnsupportedSetError();
 
   @override
@@ -108,7 +108,7 @@ class DbEntry extends _DbEntry with RealmEntity, RealmObject {
       SchemaProperty('template', RealmPropertyType.object,
           optional: true, linkTarget: 'DbTask'),
       SchemaProperty('definitions', RealmPropertyType.string,
-          optional: true, collectionType: RealmCollectionType.list),
+          collectionType: RealmCollectionType.list),
       SchemaProperty('hierarchyPath', RealmPropertyType.string),
       SchemaProperty('id', RealmPropertyType.string),
       SchemaProperty('uuid', RealmPropertyType.uuid, primaryKey: true),

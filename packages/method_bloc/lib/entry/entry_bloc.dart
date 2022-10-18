@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
 import 'package:method_core/model/entry.dart';
 import 'package:method_core/model/entry_definition.dart';
@@ -14,18 +16,16 @@ part 'entry_bloc.freezed.dart';
 
 class EntryBloc extends Bloc<EntryEvent, EntryState> {
   final Repository repo;
+  StreamSubscription<Entry?>? subscription;
 
   EntryBloc._({
     required this.repo,
     required Task task,
-    Entry? entry,
-  }) : super(entry == null
-            ? _TaskLoaded(task: task)
-            : _EntryLoaded(task: task, entry: entry)) {
+  }) : super(_TaskLoaded(task: task)) {
     on<_LoadTask>(_onLoadTask);
     on<_CloseTask>(_onCloseTask);
     on<_LoadEntry>(_onLoadEntry);
-    on<_AddData>(_onAddData);
+    on<_UpdateEntry>(_onUpdateEntry);
     on<_UpdateData>(_onUpdateData);
     on<_DeleteData>(_onDeleteData);
     on<_ClearData>(_onClearData);
@@ -41,8 +41,7 @@ class EntryBloc extends Bloc<EntryEvent, EntryState> {
         create: (_) => EntryBloc._(
           repo: _.read(),
           task: task,
-          // entry: entry,
-        )..add(const EntryEvent.loadEntry()),
+        )..add(_LoadEntry(entry: entry)),
         child: listener != null
             ? BlocListener<EntryBloc, EntryState>(
                 listener: listener,
@@ -54,82 +53,38 @@ class EntryBloc extends Bloc<EntryEvent, EntryState> {
   static builder({
     required BlocWidgetBuilder<EntryState> builder,
   }) =>
-      BlocBuilder<EntryBloc, EntryState>(
-        builder: builder,
-      );
+      BlocBuilder<EntryBloc, EntryState>(builder: builder);
 
   void _onLoadTask(_LoadTask event, Emitter<EntryState> emit) =>
-      emit(EntryState.taskLoaded(task: event.task));
+      emit(_TaskLoaded(task: event.task));
 
   void _onCloseTask(_CloseTask event, Emitter<EntryState> emit) =>
       state.maybeWhen(
-        entryLoaded: (task, entry) => emit(
-          EntryState.taskLoaded(
-            task: task,
-          ),
-        ),
-        taskLoaded: (task) => emit(
-          EntryState.taskLoaded(
-            task: task,
-          ),
-        ),
         orElse: () => throw UnimplementedError(),
       );
 
-  void _onLoadEntry(_LoadEntry event, Emitter<EntryState> emit) =>
-      state.maybeWhen(
-        taskLoaded: (task) => emit(
-          EntryState.entryLoaded(
-            task: task,
-            entry: event.entry ?? Entry.from(template: task),
-          ),
-        ),
-        orElse: () => throw UnimplementedError(),
-      );
+  void _onLoadEntry(_LoadEntry event, Emitter<EntryState> emit) {
+    final entry = event.entry ?? Entry.from(template: state.task);
+
+    subscription ??= repo.entries.stream(entry.id).listen(
+          (event) => add(_UpdateEntry(entry: event ?? entry)),
+        );
+  }
+
+  void _onUpdateEntry(_UpdateEntry event, Emitter<EntryState> emit) =>
+      emit(_EntryLoaded(
+        task: state.task,
+        entry: event.entry,
+      ));
 
   void _onUpdateData(_UpdateData event, Emitter<EntryState> emit) =>
       state.maybeWhen(
         entryLoaded: (task, entry) {
-          final index =
-              task.definitions.indexWhere((e) => event.definition.id == e.id);
+          final updated = entry.copyWith(
+            definitions: entry.addDefinitions([event.definition]),
+          );
 
-          final updated = index >= 0
-              ? entry.copyWith(
-                  definitions: entry.definitions.toList()
-                    ..setAll(index, [event.definition]),
-                  updatedAt: DateTime.now(),
-                  commitedAt: entry.commitedAt ?? DateTime.now(),
-                )
-              : entry;
-
-          emit(EntryState.entryLoaded(
-            task: task,
-            entry: updated,
-          ));
-
-          return repo.entries.put(updated);
-        },
-        orElse: () => throw UnimplementedError(state.toString()),
-      );
-
-  void _onAddData(_AddData event, Emitter<EntryState> emit) => state.maybeWhen(
-        entryLoaded: (task, entry) {
-          final index =
-              task.definitions.indexWhere((e) => event.definition.id == e.id);
-
-          final updated = index >= 0
-              ? entry.copyWith(
-                  definitions: entry.definitions.toList()
-                    ..add(event.definition),
-                  updatedAt: DateTime.now(),
-                  commitedAt: entry.commitedAt ?? DateTime.now(),
-                )
-              : entry;
-
-          emit(EntryState.entryLoaded(
-            task: task,
-            entry: updated,
-          ));
+          emit(_EntryLoaded(task: task, entry: updated));
 
           return repo.entries.put(updated);
         },
@@ -138,42 +93,30 @@ class EntryBloc extends Bloc<EntryEvent, EntryState> {
 
   void _onDeleteData(_DeleteData event, Emitter<EntryState> emit) =>
       state.maybeWhen(
-        entryLoaded: (task, entry) {
-          final index =
-              task.definitions.indexWhere((e) => event.definition.id == e.id);
-
-          // doesn't use RemoveAt to maintain order
-          final updated = index >= 0
-              ? entry.copyWith(
-                  definitions: entry.definitions.toList()
-                    ..setAll(index, [null]),
-                )
-              : entry;
-
-          emit(EntryState.entryLoaded(
-            task: task,
-            entry: updated,
-          ));
-
-          return repo.entries.put(updated);
-        },
-        orElse: () => throw UnimplementedError(),
+        entryLoaded: (task, entry) => repo.entries.put(
+          entry.copyWith(
+            definitions: entry.removeDefinitions([event.definition]),
+          ),
+        ),
+        orElse: () => throw UnimplementedError(state.toString()),
       );
 
   void _onClearData(_ClearData event, Emitter<EntryState> emit) =>
       state.maybeWhen(
         entryLoaded: (task, entry) {
-          final updated = entry.copyWith(
-            definitions: List.filled(task.definitions.length, null),
-          );
+          final updated = entry.copyWith(definitions: []);
 
-          emit(EntryState.entryLoaded(
-            task: task,
-            entry: updated,
-          ));
+          emit(_EntryLoaded(task: task, entry: updated));
 
           return repo.entries.put(updated);
         },
         orElse: () => throw UnimplementedError(),
       );
+
+  @override
+  Future<void> close() {
+    subscription?.cancel();
+
+    return super.close();
+  }
 }

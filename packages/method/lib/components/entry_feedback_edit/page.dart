@@ -13,23 +13,12 @@ class _Page extends StatelessWidget with EntryEditVariant {
 
   @override
   Widget build(BuildContext context) {
-    final labels = definitions
+    final labels = entry.mappedDefinition.entries
         .map<Widget>(
           (_) => DefinitionLabelEdit.view(
             taskDefinition: _.task,
             entryDefinition: _.entry,
             onTap: () => onLabelTap(_),
-            // onPressed: () {
-            //   bloc.add(const EntryEvent.clearData());
-            //   if (entryDef == null) {
-            //     bloc.add(EntryEvent.updateData(
-            //       definition: EntryDefinition.label(
-            //         hierarchyPath: taskDef.hierarchyPath,
-            //         id: taskDef.id,
-            //       ),
-            //     ));
-            //   }
-            // },
           ),
         )
         .toList();

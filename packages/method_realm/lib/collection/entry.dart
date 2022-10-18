@@ -27,7 +27,7 @@ class _EntryMapper {
         commitedAt: dom.commitedAt,
         deletedAt: dom.deletedAt,
         definitions: [
-          for (var cdom in dom.definitions) cdom?.toJson().encode(),
+          for (var cdom in dom.definitions) cdom.toJson().encode(),
         ],
       );
 
@@ -38,7 +38,7 @@ class _EntryMapper {
         template: _TaskMapper.toDom(dao: dao.template!),
         definitions: [
           for (var cdao in dao.definitions)
-            cdao != null ? EntryDefinition.fromJson(jsonDecode(cdao)) : null,
+            EntryDefinition.fromJson(jsonDecode(cdao)),
         ],
         hierarchyPath: dao.hierarchyPath,
         id: dao.id,

@@ -41,7 +41,7 @@ class _SessionMapper {
 
     final mappedEntries = [
       for (var e in dao.template!.definitions) indexedEntries[e.id],
-    ];
+    ].whereType<Entry>().toList();
 
     return Session(
       template: ExerciseMapper.toDom(dao: dao.template!),

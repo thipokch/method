@@ -1,6 +1,7 @@
 import 'package:method_core/model/entry.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:method_core/model/task.dart';
 import 'package:method_core/model/task_definition.dart';
 
 import '../abstract/define.dart';
@@ -15,12 +16,19 @@ part 'session.g.dart';
 
 @freezed
 class Session
-    with Identify, Locate, Maintain, Document<Exercise, Entry>, _$Session {
+    with
+        Identify,
+        Locate,
+        Maintain,
+        DefineTemplate<Exercise>,
+        DefineDefinition<Entry>,
+        MappedDefinition<Exercise, Task, Entry>,
+        _$Session {
   const Session._();
 
   const factory Session({
     required final Exercise template,
-    required final List<Entry?> definitions,
+    required final List<Entry> definitions,
     required String hierarchyPath,
     required String id,
     @UuidConverter() UuidValue? uuid,
@@ -33,7 +41,7 @@ class Session
 
   factory Session.create({
     required final Exercise template,
-    final List<Entry?>? definitions,
+    final List<Entry>? definitions,
     required final String hierarchyPath,
     required final String id,
     final String? uuid,
@@ -41,8 +49,7 @@ class Session
   }) =>
       Session(
         template: template,
-        definitions:
-            definitions ?? List.filled(template.definitions.length, null),
+        definitions: definitions ?? const [],
         hierarchyPath: hierarchyPath,
         id: id,
         uuid: uuid != null && uuid.isNotEmpty
@@ -70,7 +77,7 @@ class Session
   String get collectionSlug => "session";
 
   List<TaskDefinition> get labels => definitions
-      .map((e) => e?.labels)
+      .map((e) => e.labels)
       .whereType<List<TaskDefinition>>()
       .expand((e) => e)
       .toList();

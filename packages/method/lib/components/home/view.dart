@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:method/route/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:method_style/element_symbol.dart';
+import 'package:method_style/element_touch.dart';
 
 final homeDestinations = <GoRoute>[
   $sessionFlow,
@@ -44,8 +45,10 @@ class HomePage extends StatelessWidget {
     return 0;
   }
 
-  void _onItemTapped(index, context) =>
-      GoRouter.of(context).go(homeDestinations[index].path);
+  void _onItemTapped(index, context) {
+    GoRouter.of(context).go(homeDestinations[index].path);
+    ElementTouch.select();
+  }
 
   @override
   Widget build(BuildContext context) => Scaffold(

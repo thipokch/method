@@ -12,6 +12,10 @@ class SessionEvent with _$SessionEvent {
     Session? session,
   }) = _LoadSession;
 
+  const factory SessionEvent.updateSession({
+    required Session session,
+  }) = _UpdateSession;
+
   const factory SessionEvent.updateData({
     required Entry entry,
   }) = _UpdateData;

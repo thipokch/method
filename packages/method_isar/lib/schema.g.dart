@@ -134,10 +134,8 @@ int _dbEntryEstimateSize(
     final offsets = allOffsets[DbEntryDefinition]!;
     for (var i = 0; i < object.definitions.length; i++) {
       final value = object.definitions[i];
-      if (value != null) {
-        bytesCount +=
-            DbEntryDefinitionSchema.estimateSize(value, offsets, allOffsets);
-      }
+      bytesCount +=
+          DbEntryDefinitionSchema.estimateSize(value, offsets, allOffsets);
     }
   }
   bytesCount += 3 + object.hierarchyPath.length * 3;
@@ -178,10 +176,11 @@ DbEntry _dbEntryDeserialize(
   final object = DbEntry(
     commitedAt: reader.readDateTimeOrNull(offsets[1]),
     createdAt: reader.readDateTime(offsets[2]),
-    definitions: reader.readObjectOrNullList<DbEntryDefinition>(
+    definitions: reader.readObjectList<DbEntryDefinition>(
           offsets[3],
           DbEntryDefinitionSchema.deserialize,
           allOffsets,
+          DbEntryDefinition(),
         ) ??
         const [],
     deletedAt: reader.readDateTimeOrNull(offsets[4]),
@@ -209,10 +208,11 @@ P _dbEntryDeserializeProp<P>(
     case 2:
       return (reader.readDateTime(offset)) as P;
     case 3:
-      return (reader.readObjectOrNullList<DbEntryDefinition>(
+      return (reader.readObjectList<DbEntryDefinition>(
             offset,
             DbEntryDefinitionSchema.deserialize,
             allOffsets,
+            DbEntryDefinition(),
           ) ??
           const []) as P;
     case 4:
@@ -829,24 +829,6 @@ extension DbEntryQueryFilter
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<DbEntry, DbEntry, QAfterFilterCondition>
-      definitionsElementIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.elementIsNull(
-        property: r'definitions',
-      ));
-    });
-  }
-
-  QueryBuilder<DbEntry, DbEntry, QAfterFilterCondition>
-      definitionsElementIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.elementIsNotNull(
-        property: r'definitions',
       ));
     });
   }
@@ -1836,7 +1818,7 @@ extension DbEntryQueryProperty
     });
   }
 
-  QueryBuilder<DbEntry, List<DbEntryDefinition?>, QQueryOperations>
+  QueryBuilder<DbEntry, List<DbEntryDefinition>, QQueryOperations>
       definitionsProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'definitions');
@@ -1994,9 +1976,7 @@ int _dbExerciseEstimateSize(
   {
     for (var i = 0; i < object.definitionsIds.length; i++) {
       final value = object.definitionsIds[i];
-      if (value != null) {
-        bytesCount += value.length * 3;
-      }
+      bytesCount += value.length * 3;
     }
   }
   bytesCount += 3 + object.description.length * 3;
@@ -2042,7 +2022,7 @@ DbExercise _dbExerciseDeserialize(
     uuid: reader.readByteList(offsets[8]) ?? [],
   );
   object.dbid = id;
-  object.definitionsIds = reader.readStringOrNullList(offsets[1]) ?? [];
+  object.definitionsIds = reader.readStringList(offsets[1]) ?? [];
   return object;
 }
 
@@ -2056,7 +2036,7 @@ P _dbExerciseDeserializeProp<P>(
     case 0:
       return (reader.readString(offset)) as P;
     case 1:
-      return (reader.readStringOrNullList(offset) ?? []) as P;
+      return (reader.readStringList(offset) ?? []) as P;
     case 2:
       return (reader.readString(offset)) as P;
     case 3:
@@ -2563,26 +2543,8 @@ extension DbExerciseQueryFilter
   }
 
   QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
-      definitionsIdsElementIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.elementIsNull(
-        property: r'definitionsIds',
-      ));
-    });
-  }
-
-  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
-      definitionsIdsElementIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.elementIsNotNull(
-        property: r'definitionsIds',
-      ));
-    });
-  }
-
-  QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
       definitionsIdsElementEqualTo(
-    String? value, {
+    String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -2596,7 +2558,7 @@ extension DbExerciseQueryFilter
 
   QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
       definitionsIdsElementGreaterThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -2612,7 +2574,7 @@ extension DbExerciseQueryFilter
 
   QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
       definitionsIdsElementLessThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -2628,8 +2590,8 @@ extension DbExerciseQueryFilter
 
   QueryBuilder<DbExercise, DbExercise, QAfterFilterCondition>
       definitionsIdsElementBetween(
-    String? lower,
-    String? upper, {
+    String lower,
+    String upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -4021,7 +3983,7 @@ extension DbExerciseQueryProperty
     });
   }
 
-  QueryBuilder<DbExercise, List<String?>, QQueryOperations>
+  QueryBuilder<DbExercise, List<String>, QQueryOperations>
       definitionsIdsProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'definitionsIds');
@@ -4197,9 +4159,7 @@ int _dbSessionEstimateSize(
   {
     for (var i = 0; i < object.definitionsIds.length; i++) {
       final value = object.definitionsIds[i];
-      if (value != null) {
-        bytesCount += value.length * 3;
-      }
+      bytesCount += value.length * 3;
     }
   }
   bytesCount += 3 + object.hierarchyPath.length * 3;
@@ -4243,7 +4203,7 @@ DbSession _dbSessionDeserialize(
     uuid: reader.readByteList(offsets[9]) ?? [],
   );
   object.dbid = id;
-  object.definitionsIds = reader.readStringOrNullList(offsets[3]) ?? [];
+  object.definitionsIds = reader.readStringList(offsets[3]) ?? [];
   return object;
 }
 
@@ -4261,7 +4221,7 @@ P _dbSessionDeserializeProp<P>(
     case 2:
       return (reader.readDateTime(offset)) as P;
     case 3:
-      return (reader.readStringOrNullList(offset) ?? []) as P;
+      return (reader.readStringList(offset) ?? []) as P;
     case 4:
       return (reader.readDateTimeOrNull(offset)) as P;
     case 5:
@@ -4892,26 +4852,8 @@ extension DbSessionQueryFilter
   }
 
   QueryBuilder<DbSession, DbSession, QAfterFilterCondition>
-      definitionsIdsElementIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.elementIsNull(
-        property: r'definitionsIds',
-      ));
-    });
-  }
-
-  QueryBuilder<DbSession, DbSession, QAfterFilterCondition>
-      definitionsIdsElementIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.elementIsNotNull(
-        property: r'definitionsIds',
-      ));
-    });
-  }
-
-  QueryBuilder<DbSession, DbSession, QAfterFilterCondition>
       definitionsIdsElementEqualTo(
-    String? value, {
+    String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -4925,7 +4867,7 @@ extension DbSessionQueryFilter
 
   QueryBuilder<DbSession, DbSession, QAfterFilterCondition>
       definitionsIdsElementGreaterThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -4941,7 +4883,7 @@ extension DbSessionQueryFilter
 
   QueryBuilder<DbSession, DbSession, QAfterFilterCondition>
       definitionsIdsElementLessThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -4957,8 +4899,8 @@ extension DbSessionQueryFilter
 
   QueryBuilder<DbSession, DbSession, QAfterFilterCondition>
       definitionsIdsElementBetween(
-    String? lower,
-    String? upper, {
+    String lower,
+    String upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -6041,7 +5983,7 @@ extension DbSessionQueryProperty
     });
   }
 
-  QueryBuilder<DbSession, List<String?>, QQueryOperations>
+  QueryBuilder<DbSession, List<String>, QQueryOperations>
       definitionsIdsProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'definitionsIds');

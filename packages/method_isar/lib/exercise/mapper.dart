@@ -32,9 +32,8 @@ class DbExerciseMapper {
         icon: dao.icon,
         name: dao.name,
         description: dao.description,
-        definitions: dao.definitions
-            .map((dao) => DbTaskMapper.toDom(dao: dao!))
-            .toList(),
+        definitions:
+            dao.definitions.map((dao) => DbTaskMapper.toDom(dao: dao)).toList(),
         hierarchyPath: dao.hierarchyPath,
         id: dao.id,
         uuid: UuidValue.fromList(dao.uuid),

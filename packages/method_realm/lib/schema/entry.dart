@@ -3,7 +3,7 @@ part of 'schema.dart';
 @RealmModel()
 class _DbEntry {
   late _DbTask? template;
-  late List<String?> definitions;
+  late List<String> definitions;
 
   @Ignored()
   final String collectionSlug = "entry";

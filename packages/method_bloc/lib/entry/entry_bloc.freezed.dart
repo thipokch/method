@@ -21,6 +21,7 @@ mixin _$EntryEvent {
     required TResult Function(Task task) loadTask,
     required TResult Function() closeTask,
     required TResult Function(Entry? entry) loadEntry,
+    required TResult Function(Entry entry) updatedEntry,
     required TResult Function(EntryDefinition definition) addData,
     required TResult Function(EntryDefinition definition) updateData,
     required TResult Function(EntryDefinition definition) deleteData,
@@ -32,6 +33,7 @@ mixin _$EntryEvent {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry? entry)? loadEntry,
+    TResult Function(Entry entry)? updatedEntry,
     TResult Function(EntryDefinition definition)? addData,
     TResult Function(EntryDefinition definition)? updateData,
     TResult Function(EntryDefinition definition)? deleteData,
@@ -43,6 +45,7 @@ mixin _$EntryEvent {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry? entry)? loadEntry,
+    TResult Function(Entry entry)? updatedEntry,
     TResult Function(EntryDefinition definition)? addData,
     TResult Function(EntryDefinition definition)? updateData,
     TResult Function(EntryDefinition definition)? deleteData,
@@ -55,6 +58,7 @@ mixin _$EntryEvent {
     required TResult Function(_LoadTask value) loadTask,
     required TResult Function(_CloseTask value) closeTask,
     required TResult Function(_LoadEntry value) loadEntry,
+    required TResult Function(_UpdateEntry value) updatedEntry,
     required TResult Function(_AddData value) addData,
     required TResult Function(_UpdateData value) updateData,
     required TResult Function(_DeleteData value) deleteData,
@@ -66,6 +70,7 @@ mixin _$EntryEvent {
     TResult Function(_LoadTask value)? loadTask,
     TResult Function(_CloseTask value)? closeTask,
     TResult Function(_LoadEntry value)? loadEntry,
+    TResult Function(_UpdateEntry value)? updatedEntry,
     TResult Function(_AddData value)? addData,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
@@ -77,6 +82,7 @@ mixin _$EntryEvent {
     TResult Function(_LoadTask value)? loadTask,
     TResult Function(_CloseTask value)? closeTask,
     TResult Function(_LoadEntry value)? loadEntry,
+    TResult Function(_UpdateEntry value)? updatedEntry,
     TResult Function(_AddData value)? addData,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
@@ -178,6 +184,7 @@ class _$_LoadTask implements _LoadTask {
     required TResult Function(Task task) loadTask,
     required TResult Function() closeTask,
     required TResult Function(Entry? entry) loadEntry,
+    required TResult Function(Entry entry) updatedEntry,
     required TResult Function(EntryDefinition definition) addData,
     required TResult Function(EntryDefinition definition) updateData,
     required TResult Function(EntryDefinition definition) deleteData,
@@ -192,6 +199,7 @@ class _$_LoadTask implements _LoadTask {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry? entry)? loadEntry,
+    TResult Function(Entry entry)? updatedEntry,
     TResult Function(EntryDefinition definition)? addData,
     TResult Function(EntryDefinition definition)? updateData,
     TResult Function(EntryDefinition definition)? deleteData,
@@ -206,6 +214,7 @@ class _$_LoadTask implements _LoadTask {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry? entry)? loadEntry,
+    TResult Function(Entry entry)? updatedEntry,
     TResult Function(EntryDefinition definition)? addData,
     TResult Function(EntryDefinition definition)? updateData,
     TResult Function(EntryDefinition definition)? deleteData,
@@ -224,6 +233,7 @@ class _$_LoadTask implements _LoadTask {
     required TResult Function(_LoadTask value) loadTask,
     required TResult Function(_CloseTask value) closeTask,
     required TResult Function(_LoadEntry value) loadEntry,
+    required TResult Function(_UpdateEntry value) updatedEntry,
     required TResult Function(_AddData value) addData,
     required TResult Function(_UpdateData value) updateData,
     required TResult Function(_DeleteData value) deleteData,
@@ -238,6 +248,7 @@ class _$_LoadTask implements _LoadTask {
     TResult Function(_LoadTask value)? loadTask,
     TResult Function(_CloseTask value)? closeTask,
     TResult Function(_LoadEntry value)? loadEntry,
+    TResult Function(_UpdateEntry value)? updatedEntry,
     TResult Function(_AddData value)? addData,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
@@ -252,6 +263,7 @@ class _$_LoadTask implements _LoadTask {
     TResult Function(_LoadTask value)? loadTask,
     TResult Function(_CloseTask value)? closeTask,
     TResult Function(_LoadEntry value)? loadEntry,
+    TResult Function(_UpdateEntry value)? updatedEntry,
     TResult Function(_AddData value)? addData,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
@@ -317,6 +329,7 @@ class _$_CloseTask implements _CloseTask {
     required TResult Function(Task task) loadTask,
     required TResult Function() closeTask,
     required TResult Function(Entry? entry) loadEntry,
+    required TResult Function(Entry entry) updatedEntry,
     required TResult Function(EntryDefinition definition) addData,
     required TResult Function(EntryDefinition definition) updateData,
     required TResult Function(EntryDefinition definition) deleteData,
@@ -331,6 +344,7 @@ class _$_CloseTask implements _CloseTask {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry? entry)? loadEntry,
+    TResult Function(Entry entry)? updatedEntry,
     TResult Function(EntryDefinition definition)? addData,
     TResult Function(EntryDefinition definition)? updateData,
     TResult Function(EntryDefinition definition)? deleteData,
@@ -345,6 +359,7 @@ class _$_CloseTask implements _CloseTask {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry? entry)? loadEntry,
+    TResult Function(Entry entry)? updatedEntry,
     TResult Function(EntryDefinition definition)? addData,
     TResult Function(EntryDefinition definition)? updateData,
     TResult Function(EntryDefinition definition)? deleteData,
@@ -363,6 +378,7 @@ class _$_CloseTask implements _CloseTask {
     required TResult Function(_LoadTask value) loadTask,
     required TResult Function(_CloseTask value) closeTask,
     required TResult Function(_LoadEntry value) loadEntry,
+    required TResult Function(_UpdateEntry value) updatedEntry,
     required TResult Function(_AddData value) addData,
     required TResult Function(_UpdateData value) updateData,
     required TResult Function(_DeleteData value) deleteData,
@@ -377,6 +393,7 @@ class _$_CloseTask implements _CloseTask {
     TResult Function(_LoadTask value)? loadTask,
     TResult Function(_CloseTask value)? closeTask,
     TResult Function(_LoadEntry value)? loadEntry,
+    TResult Function(_UpdateEntry value)? updatedEntry,
     TResult Function(_AddData value)? addData,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
@@ -391,6 +408,7 @@ class _$_CloseTask implements _CloseTask {
     TResult Function(_LoadTask value)? loadTask,
     TResult Function(_CloseTask value)? closeTask,
     TResult Function(_LoadEntry value)? loadEntry,
+    TResult Function(_UpdateEntry value)? updatedEntry,
     TResult Function(_AddData value)? addData,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
@@ -488,6 +506,7 @@ class _$_LoadEntry implements _LoadEntry {
     required TResult Function(Task task) loadTask,
     required TResult Function() closeTask,
     required TResult Function(Entry? entry) loadEntry,
+    required TResult Function(Entry entry) updatedEntry,
     required TResult Function(EntryDefinition definition) addData,
     required TResult Function(EntryDefinition definition) updateData,
     required TResult Function(EntryDefinition definition) deleteData,
@@ -502,6 +521,7 @@ class _$_LoadEntry implements _LoadEntry {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry? entry)? loadEntry,
+    TResult Function(Entry entry)? updatedEntry,
     TResult Function(EntryDefinition definition)? addData,
     TResult Function(EntryDefinition definition)? updateData,
     TResult Function(EntryDefinition definition)? deleteData,
@@ -516,6 +536,7 @@ class _$_LoadEntry implements _LoadEntry {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry? entry)? loadEntry,
+    TResult Function(Entry entry)? updatedEntry,
     TResult Function(EntryDefinition definition)? addData,
     TResult Function(EntryDefinition definition)? updateData,
     TResult Function(EntryDefinition definition)? deleteData,
@@ -534,6 +555,7 @@ class _$_LoadEntry implements _LoadEntry {
     required TResult Function(_LoadTask value) loadTask,
     required TResult Function(_CloseTask value) closeTask,
     required TResult Function(_LoadEntry value) loadEntry,
+    required TResult Function(_UpdateEntry value) updatedEntry,
     required TResult Function(_AddData value) addData,
     required TResult Function(_UpdateData value) updateData,
     required TResult Function(_DeleteData value) deleteData,
@@ -548,6 +570,7 @@ class _$_LoadEntry implements _LoadEntry {
     TResult Function(_LoadTask value)? loadTask,
     TResult Function(_CloseTask value)? closeTask,
     TResult Function(_LoadEntry value)? loadEntry,
+    TResult Function(_UpdateEntry value)? updatedEntry,
     TResult Function(_AddData value)? addData,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
@@ -562,6 +585,7 @@ class _$_LoadEntry implements _LoadEntry {
     TResult Function(_LoadTask value)? loadTask,
     TResult Function(_CloseTask value)? closeTask,
     TResult Function(_LoadEntry value)? loadEntry,
+    TResult Function(_UpdateEntry value)? updatedEntry,
     TResult Function(_AddData value)? addData,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
@@ -581,6 +605,184 @@ abstract class _LoadEntry implements EntryEvent {
   Entry? get entry;
   @JsonKey(ignore: true)
   _$$_LoadEntryCopyWith<_$_LoadEntry> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_UpdateEntryCopyWith<$Res> {
+  factory _$$_UpdateEntryCopyWith(
+          _$_UpdateEntry value, $Res Function(_$_UpdateEntry) then) =
+      __$$_UpdateEntryCopyWithImpl<$Res>;
+  $Res call({Entry entry});
+
+  $EntryCopyWith<$Res> get entry;
+}
+
+/// @nodoc
+class __$$_UpdateEntryCopyWithImpl<$Res> extends _$EntryEventCopyWithImpl<$Res>
+    implements _$$_UpdateEntryCopyWith<$Res> {
+  __$$_UpdateEntryCopyWithImpl(
+      _$_UpdateEntry _value, $Res Function(_$_UpdateEntry) _then)
+      : super(_value, (v) => _then(v as _$_UpdateEntry));
+
+  @override
+  _$_UpdateEntry get _value => super._value as _$_UpdateEntry;
+
+  @override
+  $Res call({
+    Object? entry = freezed,
+  }) {
+    return _then(_$_UpdateEntry(
+      entry: entry == freezed
+          ? _value.entry
+          : entry // ignore: cast_nullable_to_non_nullable
+              as Entry,
+    ));
+  }
+
+  @override
+  $EntryCopyWith<$Res> get entry {
+    return $EntryCopyWith<$Res>(_value.entry, (value) {
+      return _then(_value.copyWith(entry: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_UpdateEntry implements _UpdateEntry {
+  const _$_UpdateEntry({required this.entry});
+
+  @override
+  final Entry entry;
+
+  @override
+  String toString() {
+    return 'EntryEvent.updatedEntry(entry: $entry)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateEntry &&
+            const DeepCollectionEquality().equals(other.entry, entry));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(entry));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_UpdateEntryCopyWith<_$_UpdateEntry> get copyWith =>
+      __$$_UpdateEntryCopyWithImpl<_$_UpdateEntry>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Task task) loadTask,
+    required TResult Function() closeTask,
+    required TResult Function(Entry? entry) loadEntry,
+    required TResult Function(Entry entry) updatedEntry,
+    required TResult Function(EntryDefinition definition) addData,
+    required TResult Function(EntryDefinition definition) updateData,
+    required TResult Function(EntryDefinition definition) deleteData,
+    required TResult Function() clearData,
+  }) {
+    return updatedEntry(entry);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Task task)? loadTask,
+    TResult Function()? closeTask,
+    TResult Function(Entry? entry)? loadEntry,
+    TResult Function(Entry entry)? updatedEntry,
+    TResult Function(EntryDefinition definition)? addData,
+    TResult Function(EntryDefinition definition)? updateData,
+    TResult Function(EntryDefinition definition)? deleteData,
+    TResult Function()? clearData,
+  }) {
+    return updatedEntry?.call(entry);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Task task)? loadTask,
+    TResult Function()? closeTask,
+    TResult Function(Entry? entry)? loadEntry,
+    TResult Function(Entry entry)? updatedEntry,
+    TResult Function(EntryDefinition definition)? addData,
+    TResult Function(EntryDefinition definition)? updateData,
+    TResult Function(EntryDefinition definition)? deleteData,
+    TResult Function()? clearData,
+    required TResult orElse(),
+  }) {
+    if (updatedEntry != null) {
+      return updatedEntry(entry);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadTask value) loadTask,
+    required TResult Function(_CloseTask value) closeTask,
+    required TResult Function(_LoadEntry value) loadEntry,
+    required TResult Function(_UpdateEntry value) updatedEntry,
+    required TResult Function(_AddData value) addData,
+    required TResult Function(_UpdateData value) updateData,
+    required TResult Function(_DeleteData value) deleteData,
+    required TResult Function(_ClearData value) clearData,
+  }) {
+    return updatedEntry(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_LoadTask value)? loadTask,
+    TResult Function(_CloseTask value)? closeTask,
+    TResult Function(_LoadEntry value)? loadEntry,
+    TResult Function(_UpdateEntry value)? updatedEntry,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_UpdateData value)? updateData,
+    TResult Function(_DeleteData value)? deleteData,
+    TResult Function(_ClearData value)? clearData,
+  }) {
+    return updatedEntry?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadTask value)? loadTask,
+    TResult Function(_CloseTask value)? closeTask,
+    TResult Function(_LoadEntry value)? loadEntry,
+    TResult Function(_UpdateEntry value)? updatedEntry,
+    TResult Function(_AddData value)? addData,
+    TResult Function(_UpdateData value)? updateData,
+    TResult Function(_DeleteData value)? deleteData,
+    TResult Function(_ClearData value)? clearData,
+    required TResult orElse(),
+  }) {
+    if (updatedEntry != null) {
+      return updatedEntry(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateEntry implements EntryEvent {
+  const factory _UpdateEntry({required final Entry entry}) = _$_UpdateEntry;
+
+  Entry get entry;
+  @JsonKey(ignore: true)
+  _$$_UpdateEntryCopyWith<_$_UpdateEntry> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -660,6 +862,7 @@ class _$_AddData implements _AddData {
     required TResult Function(Task task) loadTask,
     required TResult Function() closeTask,
     required TResult Function(Entry? entry) loadEntry,
+    required TResult Function(Entry entry) updatedEntry,
     required TResult Function(EntryDefinition definition) addData,
     required TResult Function(EntryDefinition definition) updateData,
     required TResult Function(EntryDefinition definition) deleteData,
@@ -674,6 +877,7 @@ class _$_AddData implements _AddData {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry? entry)? loadEntry,
+    TResult Function(Entry entry)? updatedEntry,
     TResult Function(EntryDefinition definition)? addData,
     TResult Function(EntryDefinition definition)? updateData,
     TResult Function(EntryDefinition definition)? deleteData,
@@ -688,6 +892,7 @@ class _$_AddData implements _AddData {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry? entry)? loadEntry,
+    TResult Function(Entry entry)? updatedEntry,
     TResult Function(EntryDefinition definition)? addData,
     TResult Function(EntryDefinition definition)? updateData,
     TResult Function(EntryDefinition definition)? deleteData,
@@ -706,6 +911,7 @@ class _$_AddData implements _AddData {
     required TResult Function(_LoadTask value) loadTask,
     required TResult Function(_CloseTask value) closeTask,
     required TResult Function(_LoadEntry value) loadEntry,
+    required TResult Function(_UpdateEntry value) updatedEntry,
     required TResult Function(_AddData value) addData,
     required TResult Function(_UpdateData value) updateData,
     required TResult Function(_DeleteData value) deleteData,
@@ -720,6 +926,7 @@ class _$_AddData implements _AddData {
     TResult Function(_LoadTask value)? loadTask,
     TResult Function(_CloseTask value)? closeTask,
     TResult Function(_LoadEntry value)? loadEntry,
+    TResult Function(_UpdateEntry value)? updatedEntry,
     TResult Function(_AddData value)? addData,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
@@ -734,6 +941,7 @@ class _$_AddData implements _AddData {
     TResult Function(_LoadTask value)? loadTask,
     TResult Function(_CloseTask value)? closeTask,
     TResult Function(_LoadEntry value)? loadEntry,
+    TResult Function(_UpdateEntry value)? updatedEntry,
     TResult Function(_AddData value)? addData,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
@@ -834,6 +1042,7 @@ class _$_UpdateData implements _UpdateData {
     required TResult Function(Task task) loadTask,
     required TResult Function() closeTask,
     required TResult Function(Entry? entry) loadEntry,
+    required TResult Function(Entry entry) updatedEntry,
     required TResult Function(EntryDefinition definition) addData,
     required TResult Function(EntryDefinition definition) updateData,
     required TResult Function(EntryDefinition definition) deleteData,
@@ -848,6 +1057,7 @@ class _$_UpdateData implements _UpdateData {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry? entry)? loadEntry,
+    TResult Function(Entry entry)? updatedEntry,
     TResult Function(EntryDefinition definition)? addData,
     TResult Function(EntryDefinition definition)? updateData,
     TResult Function(EntryDefinition definition)? deleteData,
@@ -862,6 +1072,7 @@ class _$_UpdateData implements _UpdateData {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry? entry)? loadEntry,
+    TResult Function(Entry entry)? updatedEntry,
     TResult Function(EntryDefinition definition)? addData,
     TResult Function(EntryDefinition definition)? updateData,
     TResult Function(EntryDefinition definition)? deleteData,
@@ -880,6 +1091,7 @@ class _$_UpdateData implements _UpdateData {
     required TResult Function(_LoadTask value) loadTask,
     required TResult Function(_CloseTask value) closeTask,
     required TResult Function(_LoadEntry value) loadEntry,
+    required TResult Function(_UpdateEntry value) updatedEntry,
     required TResult Function(_AddData value) addData,
     required TResult Function(_UpdateData value) updateData,
     required TResult Function(_DeleteData value) deleteData,
@@ -894,6 +1106,7 @@ class _$_UpdateData implements _UpdateData {
     TResult Function(_LoadTask value)? loadTask,
     TResult Function(_CloseTask value)? closeTask,
     TResult Function(_LoadEntry value)? loadEntry,
+    TResult Function(_UpdateEntry value)? updatedEntry,
     TResult Function(_AddData value)? addData,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
@@ -908,6 +1121,7 @@ class _$_UpdateData implements _UpdateData {
     TResult Function(_LoadTask value)? loadTask,
     TResult Function(_CloseTask value)? closeTask,
     TResult Function(_LoadEntry value)? loadEntry,
+    TResult Function(_UpdateEntry value)? updatedEntry,
     TResult Function(_AddData value)? addData,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
@@ -1008,6 +1222,7 @@ class _$_DeleteData implements _DeleteData {
     required TResult Function(Task task) loadTask,
     required TResult Function() closeTask,
     required TResult Function(Entry? entry) loadEntry,
+    required TResult Function(Entry entry) updatedEntry,
     required TResult Function(EntryDefinition definition) addData,
     required TResult Function(EntryDefinition definition) updateData,
     required TResult Function(EntryDefinition definition) deleteData,
@@ -1022,6 +1237,7 @@ class _$_DeleteData implements _DeleteData {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry? entry)? loadEntry,
+    TResult Function(Entry entry)? updatedEntry,
     TResult Function(EntryDefinition definition)? addData,
     TResult Function(EntryDefinition definition)? updateData,
     TResult Function(EntryDefinition definition)? deleteData,
@@ -1036,6 +1252,7 @@ class _$_DeleteData implements _DeleteData {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry? entry)? loadEntry,
+    TResult Function(Entry entry)? updatedEntry,
     TResult Function(EntryDefinition definition)? addData,
     TResult Function(EntryDefinition definition)? updateData,
     TResult Function(EntryDefinition definition)? deleteData,
@@ -1054,6 +1271,7 @@ class _$_DeleteData implements _DeleteData {
     required TResult Function(_LoadTask value) loadTask,
     required TResult Function(_CloseTask value) closeTask,
     required TResult Function(_LoadEntry value) loadEntry,
+    required TResult Function(_UpdateEntry value) updatedEntry,
     required TResult Function(_AddData value) addData,
     required TResult Function(_UpdateData value) updateData,
     required TResult Function(_DeleteData value) deleteData,
@@ -1068,6 +1286,7 @@ class _$_DeleteData implements _DeleteData {
     TResult Function(_LoadTask value)? loadTask,
     TResult Function(_CloseTask value)? closeTask,
     TResult Function(_LoadEntry value)? loadEntry,
+    TResult Function(_UpdateEntry value)? updatedEntry,
     TResult Function(_AddData value)? addData,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
@@ -1082,6 +1301,7 @@ class _$_DeleteData implements _DeleteData {
     TResult Function(_LoadTask value)? loadTask,
     TResult Function(_CloseTask value)? closeTask,
     TResult Function(_LoadEntry value)? loadEntry,
+    TResult Function(_UpdateEntry value)? updatedEntry,
     TResult Function(_AddData value)? addData,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
@@ -1148,6 +1368,7 @@ class _$_ClearData implements _ClearData {
     required TResult Function(Task task) loadTask,
     required TResult Function() closeTask,
     required TResult Function(Entry? entry) loadEntry,
+    required TResult Function(Entry entry) updatedEntry,
     required TResult Function(EntryDefinition definition) addData,
     required TResult Function(EntryDefinition definition) updateData,
     required TResult Function(EntryDefinition definition) deleteData,
@@ -1162,6 +1383,7 @@ class _$_ClearData implements _ClearData {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry? entry)? loadEntry,
+    TResult Function(Entry entry)? updatedEntry,
     TResult Function(EntryDefinition definition)? addData,
     TResult Function(EntryDefinition definition)? updateData,
     TResult Function(EntryDefinition definition)? deleteData,
@@ -1176,6 +1398,7 @@ class _$_ClearData implements _ClearData {
     TResult Function(Task task)? loadTask,
     TResult Function()? closeTask,
     TResult Function(Entry? entry)? loadEntry,
+    TResult Function(Entry entry)? updatedEntry,
     TResult Function(EntryDefinition definition)? addData,
     TResult Function(EntryDefinition definition)? updateData,
     TResult Function(EntryDefinition definition)? deleteData,
@@ -1194,6 +1417,7 @@ class _$_ClearData implements _ClearData {
     required TResult Function(_LoadTask value) loadTask,
     required TResult Function(_CloseTask value) closeTask,
     required TResult Function(_LoadEntry value) loadEntry,
+    required TResult Function(_UpdateEntry value) updatedEntry,
     required TResult Function(_AddData value) addData,
     required TResult Function(_UpdateData value) updateData,
     required TResult Function(_DeleteData value) deleteData,
@@ -1208,6 +1432,7 @@ class _$_ClearData implements _ClearData {
     TResult Function(_LoadTask value)? loadTask,
     TResult Function(_CloseTask value)? closeTask,
     TResult Function(_LoadEntry value)? loadEntry,
+    TResult Function(_UpdateEntry value)? updatedEntry,
     TResult Function(_AddData value)? addData,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,
@@ -1222,6 +1447,7 @@ class _$_ClearData implements _ClearData {
     TResult Function(_LoadTask value)? loadTask,
     TResult Function(_CloseTask value)? closeTask,
     TResult Function(_LoadEntry value)? loadEntry,
+    TResult Function(_UpdateEntry value)? updatedEntry,
     TResult Function(_AddData value)? addData,
     TResult Function(_UpdateData value)? updateData,
     TResult Function(_DeleteData value)? deleteData,

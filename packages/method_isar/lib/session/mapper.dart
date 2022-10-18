@@ -12,9 +12,7 @@ class DbSessionMapper {
     required Session dom,
   }) =>
       DbSession(
-        definitions: dom.definitions
-            .map((dom) => dom != null ? DbEntryMapper.toDao(dom: dom) : null)
-            .toList(),
+        definitions: dom.definitions.map(DbEntryMapper.toDao).toList(),
         hierarchyPath: dom.hierarchyPath,
         id: dom.id,
         uuid: dom.uuid?.toBytes() ?? const Uuid().v4obj().toBytes(),
@@ -30,9 +28,7 @@ class DbSessionMapper {
   }) =>
       Session(
         template: DbExerciseMapper.toDom(dao: dao.template.value!),
-        definitions: dao.definitions
-            .map((dao) => dao != null ? DbEntryMapper.toDom(dao: dao) : null)
-            .toList(),
+        definitions: dao.definitions.map(DbEntryMapper.toDom).toList(),
         hierarchyPath: dao.hierarchyPath,
         id: dao.id,
         uuid: UuidValue.fromList(dao.uuid),

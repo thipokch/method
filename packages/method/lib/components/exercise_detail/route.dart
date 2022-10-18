@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:method/components/exercise_detail/widget.dart';
+import 'package:method/components/exercise_detail/component.dart';
 
 import '../../util/future/future_provider.dart';
 

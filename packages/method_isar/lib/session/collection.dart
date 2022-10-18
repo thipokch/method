@@ -1,12 +1,15 @@
 import 'package:isar/isar.dart' hide Collection, WhereRepeatModifier;
+import 'package:method_core/model/entry.dart';
 import 'package:method_core/model/exercise.dart';
 import 'package:method_core/model/session.dart';
+import 'package:method_isar/entry/collection.dart';
 import '../collection/collection.dart';
 import '../schema.dart';
 import 'mapper.dart';
 
 class DbSessionCollection
-    extends DaoDocumentCollection<Session, DbSession, Exercise, DbExercise> {
+    extends DaoDefinitionCollection<Session, DbSession, Entry, DbEntry>
+    with DaoDocumentCollection<Session, DbSession, Exercise, DbExercise> {
   const DbSessionCollection(super.driver);
 
   @override
@@ -31,4 +34,15 @@ class DbSessionCollection
 
   @override
   Session toDom(DbSession dao) => DbSessionMapper.toDom(dao: dao);
+
+  // DaoDefinitionCollection
+
+  @override
+  Collection<Entry, DbEntry> get childCollection => DbEntryCollection(source);
+
+  @override
+  final parentToDao = DbSessionMapper.toDao;
+
+  @override
+  final parentToDom = DbSessionMapper.toDom;
 }

@@ -13,7 +13,8 @@ part 'task.freezed.dart';
 part 'task.g.dart';
 
 @Freezed(unionKey: "collectionSlug", unionValueCase: FreezedUnionCase.snake)
-class Task with _$Task, Identify, Locate, Inform, Template<TaskDefinition> {
+class Task
+    with _$Task, Identify, Locate, Inform, DefineDefinition<TaskDefinition> {
   const Task._();
 
   const factory Task.linear({

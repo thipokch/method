@@ -10,14 +10,12 @@ import '../task/mapper.dart';
 class DbEntryMapper {
   const DbEntryMapper._();
 
-  static DbEntry toDao({
-    required Entry dom,
-  }) =>
+  static DbEntry toDao(
+    Entry dom,
+  ) =>
       DbEntry(
-        definitions: dom.definitions
-            .map((dom) =>
-                dom != null ? DbEntryDefinitionMapper.toDao(dom: dom) : null)
-            .toList(),
+        definitions:
+            dom.definitions.map(DbEntryDefinitionMapper.toDao).toList(),
         id: dom.id,
         hierarchyPath: dom.hierarchyPath,
         uuid: dom.uuid?.toBytes() ?? const Uuid().v4obj().toBytes(),
@@ -28,15 +26,13 @@ class DbEntryMapper {
         deletedAt: dom.deletedAt,
       );
 
-  static Entry toDom({
-    required DbEntry dao,
-  }) =>
+  static Entry toDom(
+    DbEntry dao,
+  ) =>
       Entry(
         template: DbTaskMapper.toDom(dao: dao.template.value!),
-        definitions: dao.definitions
-            .map((dao) =>
-                dao != null ? DbEntryDefinitionMapper.toDom(dao: dao) : null)
-            .toList(),
+        definitions:
+            dao.definitions.map(DbEntryDefinitionMapper.toDom).toList(),
         hierarchyPath: dao.hierarchyPath,
         id: dao.id,
         uuid: UuidValue.fromList(dao.uuid),
@@ -51,9 +47,9 @@ class DbEntryMapper {
 class DbEntryDefinitionMapper {
   const DbEntryDefinitionMapper._();
 
-  static DbEntryDefinition toDao({
-    required EntryDefinition dom,
-  }) =>
+  static DbEntryDefinition toDao(
+    EntryDefinition dom,
+  ) =>
       DbEntryDefinition(
         data: dom.whenOrNull(
               note: (data, hierarchyPath, id, uuid) => data,
@@ -64,9 +60,9 @@ class DbEntryDefinitionMapper {
         id: dom.id,
       );
 
-  static EntryDefinition toDom({
-    required DbEntryDefinition dao,
-  }) {
+  static EntryDefinition toDom(
+    DbEntryDefinition dao,
+  ) {
     switch (dao.collectionSlug) {
       case "label":
         return EntryDefinition.label(

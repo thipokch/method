@@ -24,7 +24,7 @@ class SessionCardView extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final entryIndex = session.definitions.indexWhere(
       (entry) =>
-          entry?.template.maybeMap(
+          entry.template.maybeMap(
             feedback: (_) => false,
             orElse: () => true,
           ) ??
@@ -33,9 +33,9 @@ class SessionCardView extends StatelessWidget {
 
     final defIndex = entryIndex < 0
         ? -1
-        : session.definitions[entryIndex]!.definitions.indexWhere(
+        : session.definitions[entryIndex].definitions.indexWhere(
             (def) =>
-                def?.maybeMap(
+                def.maybeMap(
                   note: (_) => true,
                   orElse: () => false,
                 ) ??
@@ -80,7 +80,7 @@ class SessionCardView extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      session.definitions[entryIndex]!.definitions[defIndex]!
+                      session.definitions[entryIndex].definitions[defIndex]
                           .maybeMap(
                         note: (value) => value.data,
                         orElse: () => throw UnimplementedError(),

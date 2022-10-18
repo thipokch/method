@@ -57,7 +57,7 @@ mixin IsarRepository<DOM, COLLECTION extends Collection<DOM, DaoObject>> {
 
   Stream<List<DOM>> streamAll() => isarCollection.streamAll();
 
-  Stream<DOM> stream(String id) => isarCollection.stream(id);
+  Stream<DOM?> stream(String id) => isarCollection.stream(id);
 
   Stream<List<DOM>> streamMany(List<String> ids) =>
       isarCollection.streamMany(ids);

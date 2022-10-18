@@ -4,6 +4,7 @@ import 'package:method_core/model/entry.dart';
 import 'package:method_core/model/entry_definition.dart';
 import 'package:method_core/model/task_definition.dart';
 import 'package:method_style/element_scale.dart';
+import 'package:method_style/element_touch.dart';
 import 'package:method_ui/page/page.dart';
 import 'package:provider/provider.dart';
 
@@ -30,19 +31,17 @@ class EntryConvergeEdit {
                     data: value,
                   ),
                 )),
-        onLabelTap: (_) => _.entry == null
-            ? context.read<EntryBloc>().add(EntryEvent.updateData(
-                  definition: EntryDefinition.label(
-                    hierarchyPath: _.task.hierarchyPath,
-                    id: _.task.id,
-                  ),
-                ))
-            : context.read<EntryBloc>().add(EntryEvent.deleteData(
-                  definition: EntryDefinition.label(
-                    hierarchyPath: _.task.hierarchyPath,
-                    id: _.task.id,
-                  ),
-                )),
+        onLabelTap: (_) {
+          _.entry == null
+              ? context.read<EntryBloc>().add(EntryEvent.updateData(
+                    definition: EntryDefinition.from(template: _.task),
+                  ))
+              : context.read<EntryBloc>().add(EntryEvent.deleteData(
+                    definition: EntryDefinition.from(template: _.task),
+                  ));
+
+          ElementTouch.select();
+        },
       ),
     ),
   );

@@ -2,29 +2,29 @@
 
 part of 'collection.dart';
 
-abstract class DaoDefinition<DOM, CDOM, CDAO extends DaoObject>
-    extends DaoObject {
+abstract class DaoDefinition<DOM, CDOM, CDAO extends Dao> extends DaoObject {
   @protected
-  List<String?> definitionsIds;
+  List<String> definitionsIds;
 
-  set definitions(List<CDAO?> defObjs) => defObjs.map((e) => e?.id).toList();
+  set definitions(List<CDAO> defObjs) => defObjs.map((e) => e.id).toList();
 
   @ignore
-  List<CDAO?> get definitions => Isar.getInstance()!
+  List<CDAO> get definitions => Isar.getInstance()!
       .collection<CDAO>()
       .getAllByIndexSync('id', definitionsIds.map((e) => [e]).toList())
+      .whereType<CDAO>()
       .toList();
 
   DaoDefinition({
-    required List<CDAO?> definitions,
+    required List<CDAO> definitions,
     required super.hierarchyPath,
     required super.id,
     required super.uuid,
-  }) : definitionsIds = definitions.map((e) => e?.id).toList();
+  }) : definitionsIds = definitions.map((e) => e.id).toList();
 }
 
 abstract class DaoDefinitionCollection<
-    DOM extends Template<CDOM>,
+    DOM extends DefineDefinition<CDOM>,
     DAO extends DaoDefinition<DOM, CDOM, CDAO>,
     CDOM,
     CDAO extends DaoObject> extends Collection<DOM, DAO> {

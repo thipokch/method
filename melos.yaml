@@ -128,6 +128,8 @@ scripts:
   build:runner:
     run: |
       melos exec --depends-on="build_runner" -- \
+        flutter pub run build_runner clean &&
+      melos exec --depends-on="build_runner" -- \
         flutter pub run build_runner build --delete-conflicting-outputs &&
       melos exec --depends-on="realm" -- \
         flutter pub run realm generate

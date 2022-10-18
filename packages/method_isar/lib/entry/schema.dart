@@ -5,6 +5,8 @@ class DbEntry extends DaoObject with DaoDocument<DbTask> {
   @override
   final String collectionSlug = "entry";
 
+  final List<DbEntryDefinition> definitions;
+
   @override
   final DateTime createdAt;
   @override
@@ -15,8 +17,6 @@ class DbEntry extends DaoObject with DaoDocument<DbTask> {
   final DateTime? commitedAt;
   @override
   final DateTime? deletedAt;
-
-  List<DbEntryDefinition?> definitions;
 
   DbEntry({
     this.definitions = const [],

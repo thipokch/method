@@ -42,11 +42,10 @@ class SessionListBloc extends Bloc<SessionListEvent, SessionListState> {
         builder: builder,
       );
 
-  void _load(_Load event, Emitter<SessionListState> emit) {
-    subscription = repo.sessions.streamAll().listen((event) {
-      add(_Update(sessions: event));
-    });
-  }
+  void _load(_Load event, Emitter<SessionListState> emit) =>
+      subscription ??= repo.sessions
+          .streamAll()
+          .listen((event) => add(_Update(sessions: event)));
 
   void _close(_Close event, Emitter<SessionListState> emit) {
     subscription?.cancel();

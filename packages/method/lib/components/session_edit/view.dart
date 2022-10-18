@@ -2,6 +2,7 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:method_bloc/session/session_bloc.dart';
 import 'package:method_core/model/session.dart';
+import 'package:method_core/util/list.dart';
 import 'package:method_style/element_scale.dart';
 import 'package:method_style/element_symbol.dart';
 import 'package:method_ui/float/float_scaffold.dart';
@@ -33,9 +34,7 @@ class SessionEditView extends StatelessWidget {
         itemBuilder: (_, index) => EntryEdit.create(
           listener: context.read<SessionBloc>().handleEntryBlocState,
           task: session.template.definitions[index],
-          entry: index < session.definitions.length
-              ? session.definitions[index]
-              : null,
+          entry: session.definitions.elementAtOrNull(index),
         ),
       );
 }

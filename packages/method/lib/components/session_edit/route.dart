@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:method/components/session_edit/widget.dart';
+import 'package:method/components/session_edit/component.dart';
 
 import '../../route/sheet.dart';
 
@@ -12,6 +12,6 @@ class SessionEditRoute extends GoRouteData {
   @override
   Page<void> buildPageWithState(context, state) => Sheet(
         child: SessionEdit.openSession(id: id),
-        duration: const Duration(milliseconds: 500),
+        duration: const Duration(milliseconds: 300),
       );
 }

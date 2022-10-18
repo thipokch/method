@@ -10,6 +10,8 @@ class DbExerciseCollection
     extends DaoDefinitionCollection<Exercise, DbExercise, Task, DbTask> {
   const DbExerciseCollection(super.driver);
 
+  // DaoDefinitionCollection
+
   @override
   final parentToDao = DbExerciseMapper.toDao;
 

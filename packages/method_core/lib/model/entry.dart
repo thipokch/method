@@ -15,12 +15,19 @@ part 'entry.g.dart';
 
 @freezed
 class Entry
-    with Identify, Locate, Maintain, Document<Task, EntryDefinition>, _$Entry {
+    with
+        Identify,
+        Locate,
+        Maintain,
+        DefineTemplate<Task>,
+        DefineDefinition<EntryDefinition>,
+        MappedDefinition<Task, TaskDefinition, EntryDefinition>,
+        _$Entry {
   const Entry._();
 
   const factory Entry({
     required final Task template,
-    required final List<EntryDefinition?> definitions,
+    required final List<EntryDefinition> definitions,
     required final String hierarchyPath,
     required final String id,
     @UuidConverter() final UuidValue? uuid,
@@ -33,7 +40,7 @@ class Entry
 
   factory Entry.create({
     required final Task template,
-    final List<EntryDefinition?>? definitions,
+    final List<EntryDefinition>? definitions,
     required final String hierarchyPath,
     required final String id,
     final String? uuid,
@@ -41,8 +48,7 @@ class Entry
   }) =>
       Entry(
         template: template,
-        definitions:
-            definitions ?? List.filled(template.definitions.length, null),
+        definitions: definitions ?? const [],
         hierarchyPath: hierarchyPath,
         id: id,
         uuid: uuid != null && uuid.isNotEmpty
@@ -71,13 +77,12 @@ class Entry
   List<TaskDefinition> get labels => definitions
       .asMap()
       .entries
-      .map((e) => (e.value != null &&
-              e.value!.maybeMap(
-                label: (_) => true,
-                orElse: () => false,
-              ))
-          ? template.definitions[e.key]
-          : null)
+      .map((e) => e.value.maybeMap(
+            label: (_) => true,
+            orElse: () => false,
+          )
+              ? template.definitions[e.key]
+              : null)
       .whereType<TaskDefinition>()
       .toList();
 }

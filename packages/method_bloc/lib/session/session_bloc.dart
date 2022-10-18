@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:method_core/model/entry.dart';
 import 'package:method_core/model/exercise.dart';
 import 'package:method_core/model/session.dart';
@@ -14,17 +16,16 @@ part 'session_bloc.freezed.dart';
 
 class SessionBloc extends Bloc<SessionEvent, SessionState> {
   final Repository repo;
+  StreamSubscription<Session?>? subscription;
 
   SessionBloc._({
     required this.repo,
     required Exercise exercise,
-    Session? session,
-  }) : super(session == null
-            ? _ExerciseLoaded(exercise: exercise)
-            : _SessionLoaded(exercise: exercise, session: session)) {
+  }) : super(_ExerciseLoaded(exercise: exercise)) {
     on<_LoadExercise>(_onLoadExercise);
     on<_CloseExercise>(_onCloseExercise);
     on<_LoadSession>(_onLoadSession);
+    on<_UpdateSession>(_onUpdateSession);
     on<_UpdateData>(_onUpdateData);
     on<_DeleteData>(_onDeleteData);
   }
@@ -39,8 +40,7 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
         create: (_) => SessionBloc._(
           repo: _.read(),
           exercise: exercise,
-          session: session,
-        ),
+        )..add(_LoadSession(session: session)),
         child: listener != null
             ? BlocListener<SessionBloc, SessionState>(listener: listener)
             : child,
@@ -53,13 +53,12 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
 
   void handleEntryBlocState(BuildContext context, EntryState state) =>
       state.maybeWhen(
-        entryLoaded: (task, entry) =>
-            add(SessionEvent.updateData(entry: entry)),
+        entryLoaded: (task, entry) => add(_UpdateData(entry: entry)),
         orElse: () => null,
       );
 
   void _onLoadExercise(_LoadExercise event, Emitter<SessionState> emit) {
-    emit(SessionState.exerciseLoaded(exercise: event.exercise));
+    emit(_ExerciseLoaded(exercise: event.exercise));
   }
 
   void _onCloseExercise(_CloseExercise event, Emitter<SessionState> emit) =>
@@ -67,67 +66,45 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
         orElse: () => throw UnimplementedError(),
       );
 
-  void _onLoadSession(_LoadSession event, Emitter<SessionState> emit) =>
-      state.maybeWhen(
-        exerciseLoaded: (exercise) => emit(
-          SessionState.sessionLoaded(
-            exercise: exercise,
-            session: event.session ??
-                Session.create(
-                  template: exercise,
-                  hierarchyPath: "${exercise.hierarchyPath}/${exercise.id}",
-                  id: DateTime.now().millisecondsSinceEpoch.toString(),
-                ),
-          ),
-        ),
-        orElse: () => null,
-      );
+  void _onLoadSession(_LoadSession event, Emitter<SessionState> emit) {
+    final session = event.session ?? Session.from(template: state.exercise);
 
-  void _onUpdateData(_UpdateData event, Emitter<SessionState> emit) =>
-      state.maybeWhen(
-        sessionLoaded: (exercise, session) {
-          final index = exercise.definitions
-              .indexWhere((e) => event.entry.template.id == e.id);
+    subscription ??= repo.sessions.stream(session.id).listen(
+      (event) {
+        add(_UpdateSession(session: event ?? session));
+      },
+    );
+  }
 
-          final updated = index >= 0
-              ? session.copyWith(
-                  definitions: session.definitions.toList()
-                    ..setAll(index, [event.entry]),
-                  updatedAt: DateTime.now(),
-                  commitedAt: session.commitedAt ?? DateTime.now(),
-                )
-              : session;
+  void _onUpdateSession(_UpdateSession event, Emitter<SessionState> emit) =>
+      emit(_SessionLoaded(
+        exercise: state.exercise,
+        session: event.session,
+      ));
 
-          emit(SessionState.sessionLoaded(
-            exercise: exercise,
-            session: updated,
-          ));
-
-          return repo.sessions.put(updated);
-        },
-        orElse: () => throw UnimplementedError(),
-      );
+  void _onUpdateData(_UpdateData event, Emitter<SessionState> emit) {
+    state.maybeWhen(
+      sessionLoaded: (exercise, session) => repo.sessions.put(session.copyWith(
+        definitions: session.addDefinitions([event.entry]),
+      )),
+      orElse: () => throw UnimplementedError(),
+    );
+  }
 
   void _onDeleteData(_DeleteData event, Emitter<SessionState> emit) =>
       state.maybeWhen(
-        sessionLoaded: (exercise, session) {
-          final index = exercise.definitions
-              .indexWhere((e) => event.entry.template.id == e.id);
-
-          final updated = index >= 0
-              ? session.copyWith(
-                  definitions: session.definitions.toList()
-                    ..setAll(index, [null]),
-                )
-              : session;
-
-          emit(SessionState.sessionLoaded(
-            exercise: exercise,
-            session: updated,
-          ));
-
-          return repo.sessions.put(updated);
-        },
-        orElse: () => throw UnimplementedError(),
+        sessionLoaded: (exercise, session) => repo.sessions.put(
+          session.copyWith(
+            definitions: session.addDefinitions([event.entry]),
+          ),
+        ),
+        orElse: () => throw UnimplementedError(state.toString()),
       );
+
+  @override
+  Future<void> close() {
+    subscription?.cancel();
+
+    return super.close();
+  }
 }
