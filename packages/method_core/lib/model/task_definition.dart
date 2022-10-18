@@ -2,13 +2,14 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../abstract/identify.dart';
 import '../abstract/inform.dart';
 import '../abstract/locate.dart';
+import '../abstract/uniform.dart';
 import '../util/uuid.dart';
 
 part 'task_definition.freezed.dart';
 part 'task_definition.g.dart';
 
 @freezed
-class TaskDefinition with _$TaskDefinition, Identify, Locate, Inform {
+class TaskDefinition with _$TaskDefinition, Identify, Locate, Uniform, Inform {
   const TaskDefinition._();
 
   const factory TaskDefinition.label({

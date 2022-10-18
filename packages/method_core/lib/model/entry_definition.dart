@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../abstract/identify.dart';
 import '../abstract/locate.dart';
+import '../abstract/uniform.dart';
 
 export '../util/list.dart';
 
@@ -11,7 +12,7 @@ part 'entry_definition.freezed.dart';
 part 'entry_definition.g.dart';
 
 @freezed
-class EntryDefinition with _$EntryDefinition, Identify, Locate {
+class EntryDefinition with _$EntryDefinition, Identify, Locate, Uniform {
   const EntryDefinition._();
 
   const factory EntryDefinition.label({

@@ -1,4 +1,4 @@
-import 'package:method_core/abstract/identify.dart';
+import 'package:method_core/abstract/uniform.dart';
 
 abstract class DefineTemplate<T> {
   T get template;
@@ -8,31 +8,34 @@ abstract class DefineDefinition<D> {
   List<D> get definitions;
 }
 
-mixin MappedDefinition<T extends DefineDefinition<CD>, CD extends Identify,
-    D extends Identify> on DefineDefinition<D>, DefineTemplate<T> {
-  Map<String, D> get mappedId => {for (final d in definitions) d.id: d};
+mixin MappedDefinition<T extends DefineDefinition<TD>, TD extends Uniform,
+    D extends Uniform> on DefineDefinition<D>, DefineTemplate<T> {
+  String templateKey(TD td) => "${td.hierarchyPath}/${td.id}";
+  String dataKey(D d) => d.hierarchyPath;
 
-  Map<CD, D?> get mappedDefinition => {
-        for (final t in template.definitions) t: mappedId[t.id],
+  Map<String, D> get mappedKey => {for (final d in definitions) dataKey(d): d};
+
+  Map<TD, D?> get mappedDefinition => {
+        for (final t in template.definitions) t: mappedKey[templateKey(t)],
       };
 
   List<D> addDefinitions(List<D> defs) {
-    final mId = {for (final d in definitions + defs) d.id: d};
+    final mId = {for (final d in definitions + defs) dataKey(d): d};
 
     return [
-      for (final t in template.definitions) mId[t.id],
+      for (final t in template.definitions) mId[templateKey(t)],
     ].whereType<D>().toList(growable: false);
   }
 
   List<D> removeDefinitions(List<D> defs) {
-    final dId = defs.map((e) => e.id).toSet();
+    final dId = defs.map(dataKey).toSet();
     final mId = {
       for (final d in definitions)
-        if (!dId.contains(d.id)) d.id: d,
+        if (!dId.contains(dataKey(d))) dataKey(d): d,
     };
 
     return [
-      for (final t in template.definitions) mId[t.id],
+      for (final t in template.definitions) mId[templateKey(t)],
     ].whereType<D>().toList(growable: false);
   }
 }

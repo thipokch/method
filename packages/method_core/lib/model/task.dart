@@ -7,6 +7,7 @@ import '../abstract/define.dart';
 import '../abstract/identify.dart';
 import '../abstract/inform.dart';
 import '../abstract/locate.dart';
+import '../abstract/uniform.dart';
 import '../util/uuid.dart';
 
 part 'task.freezed.dart';
@@ -14,7 +15,13 @@ part 'task.g.dart';
 
 @Freezed(unionKey: "collectionSlug", unionValueCase: FreezedUnionCase.snake)
 class Task
-    with _$Task, Identify, Locate, Inform, DefineDefinition<TaskDefinition> {
+    with
+        _$Task,
+        Identify,
+        Locate,
+        Uniform,
+        Inform,
+        DefineDefinition<TaskDefinition> {
   const Task._();
 
   const factory Task.linear({

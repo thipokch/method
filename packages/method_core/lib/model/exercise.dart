@@ -9,6 +9,7 @@ import '../abstract/define.dart';
 import '../abstract/identify.dart';
 import '../abstract/inform.dart';
 import '../abstract/locate.dart';
+import '../abstract/uniform.dart';
 import '../util/uuid.dart';
 
 part 'exercise.freezed.dart';
@@ -16,7 +17,14 @@ part 'exercise.g.dart';
 
 @freezed
 class Exercise
-    with _$Exercise, Identify, Locate, Inform, Present, DefineDefinition<Task> {
+    with
+        _$Exercise,
+        Identify,
+        Locate,
+        Uniform,
+        Inform,
+        Present,
+        DefineDefinition<Task> {
   const Exercise._();
 
   const factory Exercise({

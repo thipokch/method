@@ -7,6 +7,7 @@ import 'package:method_core/model/task_definition.dart';
 import '../abstract/define.dart';
 import '../abstract/identify.dart';
 import '../abstract/locate.dart';
+import '../abstract/uniform.dart';
 import '../util/uuid.dart';
 import 'entry_definition.dart';
 
@@ -19,6 +20,7 @@ class Entry
         Identify,
         Locate,
         Maintain,
+        Uniform,
         DefineTemplate<Task>,
         DefineDefinition<EntryDefinition>,
         MappedDefinition<Task, TaskDefinition, EntryDefinition>,
@@ -85,4 +87,10 @@ class Entry
               : null)
       .whereType<TaskDefinition>()
       .toList();
+
+  @override
+  String templateKey(TaskDefinition td) => td.id;
+
+  @override
+  String dataKey(EntryDefinition d) => d.id;
 }

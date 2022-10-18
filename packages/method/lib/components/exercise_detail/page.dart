@@ -27,7 +27,7 @@ class ExerciseDetailPage extends StatelessWidget {
           repo: context.read(),
           exerciseId: exercise.id,
         );
-        ElementTouch.success();
+        ElementTouch.rigid();
       },
       slivers: [
         SliverSafeArea(

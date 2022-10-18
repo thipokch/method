@@ -8,6 +8,7 @@ import '../abstract/define.dart';
 import '../abstract/identify.dart';
 import '../abstract/locate.dart';
 import '../abstract/maintain.dart';
+import '../abstract/uniform.dart';
 import '../util/uuid.dart';
 import 'exercise.dart';
 
@@ -20,6 +21,7 @@ class Session
         Identify,
         Locate,
         Maintain,
+        Uniform,
         DefineTemplate<Exercise>,
         DefineDefinition<Entry>,
         MappedDefinition<Exercise, Task, Entry>,
