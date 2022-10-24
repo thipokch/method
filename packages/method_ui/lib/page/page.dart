@@ -3,8 +3,8 @@ import 'package:method_ui/app_bar/app_bar.dart';
 import 'package:method_ui/scaffold/scaffold.dart';
 
 class MtAppPage extends StatelessWidget {
-  final String name;
-  final String? description;
+  final Widget name;
+  final Widget? description;
   final List<Widget> slivers;
   final bool implyLeading;
   final Widget? leading;
@@ -26,7 +26,7 @@ class MtAppPage extends StatelessWidget {
   Widget build(BuildContext context) => MtScaffold(
         slivers: [
           MtSliverAppBar(
-            name: name,
+            title: name,
             description: description,
             implyLeading: implyLeading,
             leading: leading,

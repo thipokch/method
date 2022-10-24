@@ -1,17 +1,14 @@
 import 'dart:async';
 
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_app_installations/firebase_app_installations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:method/app.dart';
-import 'package:method/route/routes.dart';
-import 'package:method_repo/repository.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'app/logic/app_bloc.dart';
+import 'app/route/app_route.dart';
+import 'app/view/app_view.dart';
 import 'config/firebase.stg.dart';
 
 Future<void> main() async {
@@ -28,38 +25,16 @@ Future<void> main() async {
       FlutterError.onError =
           FirebaseCrashlytics.instance.recordFlutterFatalError;
 
-      // ignore: unused_local_variable
-      final String fid = await FirebaseInstallations.instance.getId();
-
       runApp(
-        App(
-          routerConfig: GoRouter(
-            observers: [
-              FirebaseAnalyticsObserver(
-                analytics: FirebaseAnalytics.instance,
-              ),
-            ],
-            navigatorKey: rootNavigator,
-            initialLocation: const SessionFlow().location,
-            routes: [
-              sceneRoute,
-            ],
+        BlocProvider(
+          create: (_) => AppBloc(
+            routerConfig: AppRoute.defaultRouter,
+            remoteConfig: RemoteConfigSettings(
+              fetchTimeout: const Duration(minutes: 1),
+              minimumFetchInterval: const Duration(minutes: 5),
+            ),
           ),
-          serviceProviders: [
-            () async => Provider.value(
-                  value: await Repository.open(),
-                ),
-            () async => Provider.value(
-                  value: FirebaseAnalytics.instance,
-                ),
-            () async => ListenableProvider.value(
-                  value: FirebaseRemoteConfig.instance
-                    ..setConfigSettings(RemoteConfigSettings(
-                      fetchTimeout: const Duration(minutes: 1),
-                      minimumFetchInterval: const Duration(minutes: 5),
-                    )),
-                ),
-          ],
+          child: const AppView(),
         ),
       );
     },

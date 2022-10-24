@@ -8,8 +8,8 @@ import 'package:method_style/element_symbol.dart';
 
 class MtSliverAppBar extends StatefulWidget {
   final String? emoji;
-  final String name;
-  final String? description;
+  final Widget title;
+  final Widget? description;
   final bool implyLeading;
   final Widget? leading;
   final Widget? trailing;
@@ -19,7 +19,7 @@ class MtSliverAppBar extends StatefulWidget {
   const MtSliverAppBar({
     super.key,
     this.emoji,
-    required this.name,
+    required this.title,
     this.description,
     this.implyLeading = true,
     this.leading,
@@ -63,8 +63,7 @@ class _MtSliverAppBarState extends State<MtSliverAppBar>
     final hasLeading =
         widget.implyLeading && (ModalRoute.of(context)?.canPop ?? false);
 
-    final hasDescription =
-        widget.description != null && widget.description!.isNotEmpty;
+    final hasDescription = widget.description != null;
 
     return SliverAppBar.large(
       actions: widget.trailing != null ? [widget.trailing!] : null,
@@ -130,7 +129,7 @@ class _MtSliverAppBarState extends State<MtSliverAppBar>
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Text(widget.name),
+                            widget.title,
                           ],
                         ),
                       )
@@ -142,9 +141,9 @@ class _MtSliverAppBarState extends State<MtSliverAppBar>
                           alignment: widget.isCollapseCentered
                               ? Alignment.center
                               : AlignmentDirectional.centerStart,
-                          child: Text(
-                            widget.name,
+                          child: DefaultTextStyle(
                             style: config.collapsedTextStyle!,
+                            child: widget.title,
                           ),
                         ),
                       ),
@@ -159,18 +158,16 @@ class _MtSliverAppBarState extends State<MtSliverAppBar>
                   child: Container(
                     alignment: AlignmentDirectional.bottomStart,
                     padding: config.expandedTitlePadding,
-                    child: hasDescription
-                        ? Text(
-                            widget.description!,
-                            textAlign: TextAlign.start,
-                            style: textTheme.labelLarge!.copyWith(
+                    child: DefaultTextStyle(
+                      style: hasDescription
+                          ? textTheme.labelLarge!.copyWith(
                               color: colorScheme.onSurface.withOpacity(0.45),
-                            ),
-                          )
-                        : Text(
-                            widget.name,
-                            style: config.expandedTextStyle!,
-                          ),
+                            )
+                          : config.collapsedTextStyle!,
+                      textAlign: hasDescription ? TextAlign.start : null,
+                      child:
+                          hasDescription ? widget.description! : widget.title,
+                    ),
                   ),
                 ),
               ),
