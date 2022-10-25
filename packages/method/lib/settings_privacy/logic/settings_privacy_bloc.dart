@@ -1,11 +1,13 @@
 import 'dart:developer';
 
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:method/app/route/app_flow.dart';
+import 'package:method/util/bloc_navigator.dart';
+import 'package:method_repo/repository.dart';
 
-part 'settings_privacy_event.dart';
-part 'settings_privacy_state.dart';
-part 'settings_privacy_bloc.freezed.dart';
+typedef SettingsPrivacyState = void;
 
 typedef SettingsPrivacyBuilder
     = BlocBuilder<SettingsPrivacyBloc, SettingsPrivacyState>;
@@ -28,57 +30,36 @@ typedef SettingsPrivacyConsumer
  * 
  */
 
-class SettingsPrivacyBloc
-    extends Bloc<SettingsPrivacyEvent, SettingsPrivacyState> {
-  SettingsPrivacyBloc() : super(const _Initial()) {
-    on<_Create>(_onCreate);
-    on<_Start>(_onStart);
-    on<_Resume>(_onResume);
-    on<_Pause>(_onPause);
-    on<_Stop>(_onStop);
-    on<_Destroy>(_onDestroy);
-
-    add(const _Create());
-  }
-
-  void _onCreate(_Create event, Emitter<SettingsPrivacyState> emit) =>
-      emit(const _Created());
-
-  void _onStart(_Start event, Emitter<SettingsPrivacyState> emit) =>
-      emit(const _Started());
-
-  void _onResume(_Resume event, Emitter<SettingsPrivacyState> emit) =>
-      emit(const _Resumed());
-
-  void _onPause(_Pause event, Emitter<SettingsPrivacyState> emit) =>
-      emit(const _Started());
-
-  void _onStop(_Stop event, Emitter<SettingsPrivacyState> emit) =>
-      emit(const _Created());
-
-  void _onDestroy(_Destroy event, Emitter<SettingsPrivacyState> emit) =>
-      emit(const _Destroyed());
-
-  // BLOC EVENTS
+class SettingsPrivacyBloc extends Cubit<SettingsPrivacyState>
+    with BlocNavigator {
+  SettingsPrivacyBloc({
+    required this.navigator,
+    required this.repository,
+  }) : super(null);
 
   @override
-  void onEvent(event) {
-    // TODO: implement analytics here
-    log("$runtimeType - error : $event");
-    super.onEvent(event);
-  }
+  final GlobalKey<NavigatorState> navigator;
+
+  final Repository repository;
+
+  void eraseData() => FlutterPlatformAlert.showCustomAlert(
+        windowTitle: "Erase Your Data",
+        text:
+            "Erasing will restore this app to initial state. This action cannot be undone.",
+        positiveButtonTitle: "Not Now",
+        negativeButtonTitle: "Erase",
+      ).then((selection) {
+        if (selection == CustomButton.negativeButton) {
+          repository.reset().then((value) => const ExerciseFlow().go(context));
+        }
+      });
+
+  // BLOC EVENTS
 
   @override
   void onError(error, stackTrace) {
     // TODO: implement analytics here
     log("$runtimeType - error", error: error, stackTrace: stackTrace);
     super.onError(error, stackTrace);
-  }
-
-  @override
-  Future<void> close() {
-    add(const _Destroy());
-
-    return super.close();
   }
 }

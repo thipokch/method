@@ -19,17 +19,21 @@ class IsarDriver extends SourceDriver<Isar> {
       ],
     ));
 
-    DbExerciseCollection(driver).putMany([
-      Content.exerciseNote,
-      Content.exerciseThought,
-      Content.exerciseMood,
-      Content.exerciseAct,
-    ]);
+    bootstrap(driver);
 
     return driver;
   }
 
-  Future<void> reset() => instance.close(deleteFromDisk: true);
+  Future<void> reset() =>
+      instance.writeTxn(instance.clear).then((_) => bootstrap(this));
+
+  static Future<void> bootstrap(driver) =>
+      DbExerciseCollection(driver).putMany([
+        Content.exerciseNote,
+        Content.exerciseThought,
+        Content.exerciseMood,
+        Content.exerciseAct,
+      ]);
 }
 
 mixin IsarRepository<DOM, COLLECTION extends Collection<DOM, DaoObject>> {

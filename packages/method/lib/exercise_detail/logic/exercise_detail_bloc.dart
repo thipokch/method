@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:method_core/model/exercise.dart';
+import 'package:method_repo/repository.dart';
 
 part 'exercise_detail_event.dart';
 part 'exercise_detail_state.dart';
@@ -30,35 +32,41 @@ typedef ExerciseDetailConsumer
 
 class ExerciseDetailBloc
     extends Bloc<ExerciseDetailEvent, ExerciseDetailState> {
-  ExerciseDetailBloc() : super(const _Initial()) {
-    on<_Create>(_onCreate);
+  ExerciseDetailBloc({
+    required this.id,
+    required this.repository,
+  }) : super(const _Initial()) {
     on<_Start>(_onStart);
-    on<_Resume>(_onResume);
-    on<_Pause>(_onPause);
-    on<_Stop>(_onStop);
-    on<_Destroy>(_onDestroy);
-
-    add(const _Create());
+    add(const _Start());
   }
 
-  void _onCreate(_Create event, Emitter<ExerciseDetailState> emit) =>
-      emit(const _Created());
+  final String id;
+  final Repository repository;
 
   void _onStart(_Start event, Emitter<ExerciseDetailState> emit) =>
-      emit(const _Started());
+      emit.forEach(
+        repository.exercises.stream(id),
+        onData: _onData,
+        onError: _onError,
+      );
 
-  void _onResume(_Resume event, Emitter<ExerciseDetailState> emit) =>
-      emit(const _Resumed());
+  // STREAM EVENTS
 
-  void _onPause(_Pause event, Emitter<ExerciseDetailState> emit) =>
-      emit(const _Started());
+  ExerciseDetailState _onData(Exercise? exercise) {
+    log("$runtimeType - data");
 
-  void _onStop(_Stop event, Emitter<ExerciseDetailState> emit) =>
-      emit(const _Created());
+    return exercise != null
+        ? _Started(exercise: exercise)
+        : _onError("Given exercise ($id) returns null.", StackTrace.current);
+  }
 
-  void _onDestroy(_Destroy event, Emitter<ExerciseDetailState> emit) =>
-      emit(const _Destroyed());
+  _Errored _onError(Object error, StackTrace stackTrace) {
+    // TODO: implement analytics here
+    log("$runtimeType - error", error: error, stackTrace: stackTrace);
+    addError(error, stackTrace);
 
+    return _Errored(error: error, stackTrace: stackTrace);
+  }
   // BLOC EVENTS
 
   @override
@@ -73,12 +81,5 @@ class ExerciseDetailBloc
     // TODO: implement analytics here
     log("$runtimeType - error", error: error, stackTrace: stackTrace);
     super.onError(error, stackTrace);
-  }
-
-  @override
-  Future<void> close() {
-    add(const _Destroy());
-
-    return super.close();
   }
 }

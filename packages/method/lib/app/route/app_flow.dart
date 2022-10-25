@@ -47,8 +47,4 @@ class ExerciseFlow extends ExerciseListRoute {
 )
 class SettingsFlow extends SettingsListRoute {
   const SettingsFlow();
-
-  @override
-  Widget build(BuildContext context) =>
-      const Material(child: SettingsListPage());
 }

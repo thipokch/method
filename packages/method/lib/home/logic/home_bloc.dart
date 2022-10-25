@@ -13,7 +13,7 @@ typedef HomeListener = BlocListener<HomeBloc, HomeState>;
 typedef HomeSelector<T> = BlocSelector<HomeBloc, HomeState, T>;
 typedef HomeConsumer = BlocConsumer<HomeBloc, HomeState>;
 
-class HomeBloc extends Cubit<HomeState> with CubitNavigator {
+class HomeBloc extends Cubit<HomeState> with BlocNavigator {
   HomeBloc({
     required this.navigator,
   }) : super(0) {

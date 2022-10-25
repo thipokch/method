@@ -19,9 +19,5 @@ class Repository {
   static Future<Repository> open() async =>
       Repository._(await IsarDriver.open());
 
-  Future<Repository> reset() async {
-    await _isar.reset();
-
-    return open();
-  }
+  Future<void> reset() async => await _isar.reset();
 }
