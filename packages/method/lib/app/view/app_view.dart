@@ -12,7 +12,7 @@ class AppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) => AppBuilder(
         buildWhen: (previous, current) =>
-            current.router != previous.router &&
+            current.router != previous.router ||
             current.themeMode != previous.themeMode,
         builder: (context, state) => state.maybeMap(
           started: (_) => _AppStartedView(

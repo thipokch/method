@@ -12,6 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:method/app/app.dart';
 import 'package:method/services/open_source/service.dart';
+import 'package:method/settings_appearance/logic/settings_appearance_bloc.dart';
 import 'package:method_repo/repository.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
@@ -41,6 +42,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     this.services,
   }) : super(const _Initial()) {
     on<_Start>(_onStart);
+    on<_SetThemeMode>(_onSetThemeMode);
     add(const _Start());
   }
 
@@ -95,6 +97,12 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         // ),
       ];
 
+  void handleSettingsAppearance(
+    BuildContext context,
+    SettingsAppearanceState state,
+  ) =>
+      state.mapOrNull();
+
   // EVENT HANDLERS
 
   void _onStart(_Start event, Emitter<AppState> emit) => state.maybeMap(
@@ -110,12 +118,20 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         ),
       );
 
+  void _onSetThemeMode(_SetThemeMode event, Emitter<AppState> emit) =>
+      state.maybeMap(
+        started: (_) async => emit(_.copyWith(themeMode: event.themeMode)),
+        orElse: () => throw StateError(
+          "${event.runtimeType} is not allowed for ${state.runtimeType}.",
+        ),
+      );
+
   // BLOC EVENTS
 
   @override
   void onEvent(event) {
     // TODO: implement analytics here
-    log("$runtimeType - error : $event");
+    log("$runtimeType - event : $event");
     super.onEvent(event);
   }
 
