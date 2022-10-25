@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../settings_privacy.dart';
+import '../license_list.dart';
 
-class SettingsPrivacyRoute extends GoRouteData {
-  const SettingsPrivacyRoute();
+class LicenseListRoute extends GoRouteData {
+  const LicenseListRoute();
 
   @override
   Widget build(BuildContext context) => BlocProvider(
-        create: (context) => SettingsPrivacyBloc(
+        create: (context) => LicenseListBloc(
           navigator: context.read(),
-          repository: context.read(),
+          service: context.read(),
         ),
-        child: const SettingsPrivacyPage(),
+        child: const LicenseListPage(),
       );
 
   @override

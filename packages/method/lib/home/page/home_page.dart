@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocProvider(
         create: (context) => HomeBloc(
-          navigator: HomeRoute.navigator,
+          navigator: context.read(),
         ),
         child: HomeView(
           child: child,

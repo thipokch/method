@@ -1,6 +1,6 @@
-part of 'service.dart';
+import 'package:flutter/foundation.dart';
 
-class OpenSourceData {
+class LicenseData {
   final List<LicenseEntry> licenses = <LicenseEntry>[];
   final Map<String, List<int>> packageLicenseBindings = <String, List<int>>{};
   final List<String> packages = <String>[];

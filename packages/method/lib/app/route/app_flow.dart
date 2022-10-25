@@ -2,6 +2,8 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 import 'package:method/exercise_detail/route/exercise_detail_route.dart';
 import 'package:method/exercise_list/route/exercise_list_route.dart';
+import 'package:method/license_detail/route/route.dart';
+import 'package:method/license_list/license_list.dart';
 import 'package:method/session_detail/route/session_detail_route.dart';
 import 'package:method/session_list/route/session_list_route.dart';
 import 'package:method/settings_appearance/route/settings_appearance_route.dart';
@@ -36,12 +38,12 @@ class ExerciseFlow extends ExerciseListRoute {
   routes: <TypedGoRoute<GoRouteData>>[
     TypedGoRoute<SettingsPrivacyRoute>(path: 'privacy'),
     TypedGoRoute<SettingsAppearanceRoute>(path: 'appearance'),
-    // TypedGoRoute<AcknowledgementListRoute>(
-    //   path: 'acknowledgement',
-    //   routes: [
-    //     TypedGoRoute<AcknowledgementDetailRoute>(path: ':id'),
-    //   ],
-    // ),
+    TypedGoRoute<LicenseListRoute>(
+      path: 'license',
+      routes: [
+        TypedGoRoute<LicenseDetailRoute>(path: ':id'),
+      ],
+    ),
     // TypedGoRoute<DeveloperRoute>(path: 'developer'),
   ],
 )

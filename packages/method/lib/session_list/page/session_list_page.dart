@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:method/home/home.dart';
 import 'package:method_ui/page/page.dart';
 
 import '../session_list.dart';
@@ -11,7 +10,7 @@ class SessionListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocProvider(
         create: (context) => SessionListBloc(
-          navigator: HomeRoute.navigator,
+          navigator: context.read(),
           repository: context.read(),
           analytics: context.read(),
         )..add(const SessionListEvent.start()),

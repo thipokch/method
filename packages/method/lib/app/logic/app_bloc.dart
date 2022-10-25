@@ -11,7 +11,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:method/app/app.dart';
-import 'package:method/services/open_source/service.dart';
+import 'package:method/license/service/license_service.dart';
 import 'package:method/settings_appearance/logic/settings_appearance_bloc.dart';
 import 'package:method_repo/repository.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -56,8 +56,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   // DEFAULTS
 
   Future<List<SingleChildStatelessWidget>> defaultServices() async => [
-        Provider<OpenSourceService>(
-          create: (_) => OpenSourceService(),
+        Provider<LicenseService>(
+          create: (_) => LicenseService(),
         ),
         Provider<FirebaseAnalytics>(
           create: (_) => FirebaseAnalytics.instance,

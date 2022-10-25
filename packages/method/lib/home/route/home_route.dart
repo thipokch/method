@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:method/app/route/route.dart';
+import 'package:provider/provider.dart';
 
 import '../home.dart';
 
@@ -12,7 +13,10 @@ class HomeRoute {
   static final routes = ShellRoute(
     navigatorKey: navigator,
     // builder: (context, state, child) => HomePage(child: child),
-    builder: (context, state, child) => HomePage(child: child),
+    builder: (context, state, child) => Provider(
+      create: (_) => navigator,
+      child: HomePage(child: child),
+    ),
     observers: [
       AppRoute.defaultObserver,
     ],

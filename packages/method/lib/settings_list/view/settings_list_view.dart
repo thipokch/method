@@ -34,9 +34,9 @@ class _ListChildren {
           "Appearance": bloc.goAppearance,
         }.entries.map(_tile),
         _section("ABOUT"),
-        // ...{
-        //   "Acknowledgements": bloc?.goAcknowledgements,
-        // }.entries.map(_buildTile),
+        ...{
+          "License": bloc.goLicense,
+        }.entries.map(_tile),
         const AppInfoView(),
       ];
 }
