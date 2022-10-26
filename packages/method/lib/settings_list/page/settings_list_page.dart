@@ -9,7 +9,7 @@ class SettingsListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => const MtAppPage(
         name: Text("Settings list"),
-        description: Text(""),
+        // description: Text(""),
         slivers: [
           SettingsListSliver(),
         ],

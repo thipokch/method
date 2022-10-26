@@ -163,7 +163,7 @@ class _MtSliverAppBarState extends State<MtSliverAppBar>
                           ? textTheme.labelLarge!.copyWith(
                               color: colorScheme.onSurface.withOpacity(0.45),
                             )
-                          : config.collapsedTextStyle!,
+                          : config.expandedTextStyle!,
                       textAlign: hasDescription ? TextAlign.start : null,
                       child:
                           hasDescription ? widget.description! : widget.title,

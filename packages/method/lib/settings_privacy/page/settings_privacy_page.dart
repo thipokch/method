@@ -9,7 +9,7 @@ class SettingsPrivacyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => const MtAppPage(
         name: Text("Settings privacy"),
-        description: Text(""),
+        // description: Text(""),
         slivers: [
           SettingsPrivacySliver(),
         ],

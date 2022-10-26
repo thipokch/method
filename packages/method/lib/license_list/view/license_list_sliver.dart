@@ -11,6 +11,7 @@ class LicenseListSliver extends StatelessWidget {
               ? const SliverFillRemaining(child: CupertinoActivityIndicator())
               : SliverList(
                   delegate: SliverChildBuilderDelegate(
+                    childCount: state.packages.length,
                     (context, index) =>
                         _LicenseListTile.itemBuilder(context, index, state),
                   ),

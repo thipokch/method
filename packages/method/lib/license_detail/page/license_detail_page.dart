@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:method_style/element_scale.dart';
 import 'package:method_ui/page/page.dart';
 
 import '../license_detail.dart';
@@ -9,9 +10,12 @@ class LicenseDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => const MtAppPage(
         name: Text("License detail"),
-        description: Text(""),
+        // description: Text(""),
         slivers: [
-          LicenseDetailSliver(),
+          SliverPadding(
+            padding: EdgeInsets.all(ElementScale.spaceM),
+            sliver: LicenseDetailSliver(),
+          ),
         ],
       );
 }

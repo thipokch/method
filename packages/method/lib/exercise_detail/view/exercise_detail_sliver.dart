@@ -8,10 +8,10 @@ class ExerciseDetailSliver extends StatelessWidget {
         builder: (context, state) => state.maybeMap(
           started: (_) => SliverList(
             delegate: SliverChildBuilderDelegate(
-              childCount: _.exercise.definitions.length,
-              (context, index) => Text(
-                _.exercise.definitions.elementAtOrNull(index)?.name ?? "Null",
-              ),
+              childCount:
+                  _.exercise.definitions.length - 1, // Subtract Feedback
+              (context, index) =>
+                  _DetailTile(task: _.exercise.definitions[index]),
             ),
           ),
           orElse: () =>

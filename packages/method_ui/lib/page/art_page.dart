@@ -3,11 +3,11 @@ import 'package:method_ui/app_bar/art_bar.dart';
 import 'package:method_ui/scaffold/scaffold.dart';
 
 class MtArtPage extends StatelessWidget {
-  final String emoji;
-  final String name;
-  final String description;
-  final String cta;
-  final VoidCallback? onCtaPressed;
+  final Widget emoji;
+  final Widget name;
+  final Widget? description;
+  final Widget? action;
+  final Widget? background;
   final List<Widget> slivers;
   final Widget? leading;
   final Widget? trailing;
@@ -16,9 +16,9 @@ class MtArtPage extends StatelessWidget {
     super.key,
     required this.emoji,
     required this.name,
-    required this.description,
-    required this.cta,
-    required this.onCtaPressed,
+    this.description,
+    this.action,
+    this.background,
     required this.slivers,
     this.leading,
     this.trailing,
@@ -31,8 +31,8 @@ class MtArtPage extends StatelessWidget {
             emoji: emoji,
             name: name,
             description: description,
-            cta: cta,
-            onCtaPressed: onCtaPressed,
+            action: action,
+            background: background,
             leading: leading,
             trailing: trailing,
           ),

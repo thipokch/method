@@ -13,9 +13,13 @@ class HomeRoute {
   static final routes = ShellRoute(
     navigatorKey: navigator,
     // builder: (context, state, child) => HomePage(child: child),
-    builder: (context, state, child) => Provider(
-      create: (_) => navigator,
-      child: HomePage(child: child),
+    builder: (context, state, child) => MultiProvider(
+      // create: (_) => navigator,
+      providers: [
+        Provider(create: (_) => navigator),
+        Provider(create: (_) => HomeBloc(navigator: _.read())),
+      ],
+      child: HomeView(child: child),
     ),
     observers: [
       AppRoute.defaultObserver,

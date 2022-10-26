@@ -9,7 +9,7 @@ class SessionDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => const MtAppPage(
         name: Text("Session detail"),
-        description: Text(""),
+        // description: Text(""),
         slivers: [
           SessionDetailSliver(),
         ],

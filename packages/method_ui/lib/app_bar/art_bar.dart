@@ -5,17 +5,14 @@ import 'package:method_style/element_motion.dart';
 import 'package:method_style/element_scale.dart';
 import 'package:method_style/element_symbol.dart';
 import 'package:method_style/element_touch.dart';
-import 'package:method_ui/emoji/riso_emoji.dart';
-
-import '../airbrush/airbrush_painter.dart';
-import '../button/button_filled.dart';
 
 class MtSliverArtBar extends StatefulWidget {
-  final String emoji;
-  final String name;
-  final String description;
-  final String cta;
-  final VoidCallback? onCtaPressed;
+  final Widget emoji;
+  final Widget name;
+  final Widget? description;
+  final Widget? action;
+  final Widget? background;
+
   final Widget? leading;
   final Widget? trailing;
   final bool isImmersive;
@@ -25,8 +22,8 @@ class MtSliverArtBar extends StatefulWidget {
     required this.emoji,
     required this.name,
     required this.description,
-    required this.cta,
-    required this.onCtaPressed,
+    required this.action,
+    this.background,
     this.leading,
     this.trailing,
     this.isImmersive = false,
@@ -84,16 +81,17 @@ class _MtSliverArtBarState extends State<MtSliverArtBar>
       },
       flexibleSpace: FlexibleSpaceBar(
         expandedTitleScale: 1.0,
-        background: CustomPaint(
-          painter: AirbrushPainter(
-            context: context,
-            frame: 400,
-            colorLighter: colorScheme.tertiaryContainer,
-            colorLight: colorScheme.secondaryContainer,
-            colorDark: colorScheme.primaryContainer,
-            colorDarker: colorScheme.background,
-          ),
-        ),
+        background: widget.background,
+        // background: CustomPaint(
+        //   painter: AirbrushPainter(
+        //     context: context,
+        //     frame: 400,
+        //     colorLighter: colorScheme.tertiaryContainer,
+        //     colorLight: colorScheme.secondaryContainer,
+        //     colorDark: colorScheme.primaryContainer,
+        //     colorDarker: colorScheme.background,
+        //   ),
+        // ),
         title: Builder(
           builder: (context) {
             final FlexibleSpaceBarSettings settings =
@@ -124,11 +122,7 @@ class _MtSliverArtBarState extends State<MtSliverArtBar>
                       child: SizedBox(
                         height: 125 * (1.0 - t),
                         width: 125 * (1.0 - t),
-                        child: MtRisoEmoji(
-                          emoji: widget.emoji,
-                          height: 125 * (1.0 - t),
-                          width: 125 * (1.0 - t),
-                        ),
+                        child: widget.emoji,
                       ),
                     ),
                   ),
@@ -142,7 +136,7 @@ class _MtSliverArtBarState extends State<MtSliverArtBar>
                       color: colorScheme.onBackground,
                     ),
                   ).animate(animationController),
-                  child: Text(widget.name),
+                  child: widget.name,
                 ),
                 Opacity(
                   opacity: 1 - ElementMotion.easeOutExpo.transform(t),
@@ -156,24 +150,23 @@ class _MtSliverArtBarState extends State<MtSliverArtBar>
                         ),
                         child: Column(
                           children: [
-                            Text(
-                              widget.description,
-                              style: textTheme.labelMedium!.copyWith(
-                                color: colorScheme.onBackground,
+                            if (widget.description != null)
+                              DefaultTextStyle(
+                                style: textTheme.labelMedium!.copyWith(
+                                  color: colorScheme.onBackground,
+                                ),
+                                child: widget.description!,
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(
-                                ElementScale.spaceL,
-                              ),
-                              child: SizedBox(
-                                width: MediaQuery.of(context).size.width / 2,
-                                child: ButtonFilled(
-                                  onPressed: widget.onCtaPressed,
-                                  child: Text(widget.cta),
+                            if (widget.action != null)
+                              Padding(
+                                padding: const EdgeInsets.all(
+                                  ElementScale.spaceL,
+                                ),
+                                child: SizedBox(
+                                  width: MediaQuery.of(context).size.width / 2,
+                                  child: widget.action!,
                                 ),
                               ),
-                            ),
                           ],
                         ),
                       ),

@@ -14,3 +14,9 @@ class ExerciseDetailState with _$ExerciseDetailState {
     required final StackTrace? stackTrace,
   }) = _Errored;
 }
+
+extension Property on ExerciseDetailState {
+  Exercise? get exercise => mapOrNull(
+        started: (value) => value.exercise,
+      );
+}

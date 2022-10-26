@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
 import '../settings_appearance.dart';
@@ -11,5 +11,5 @@ class SettingsAppearanceRoute extends GoRouteData {
 
   @override
   Page<void> buildPageWithState(BuildContext context, GoRouterState state) =>
-      NoTransitionPage(child: build(context));
+      CupertinoPage(child: build(context));
 }
