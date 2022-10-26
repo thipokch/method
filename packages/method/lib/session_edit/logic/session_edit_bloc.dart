@@ -44,32 +44,34 @@ class SessionEditBloc extends Bloc<SessionEditEvent, SessionEditState> {
   void _onStartExercise(
     _StartExercise event,
     Emitter<SessionEditState> emit,
-  ) async =>
-      await repository.exercises.get(event.exerciseId).then((value) =>
-          value != null
-              ? emit(_ExerciseStarted(exercise: value))
-              : addError(ArgumentError(""), StackTrace.current));
+  ) async {
+    final exercise = await repository.exercises.get(event.exerciseId);
+
+    if (exercise == null) {
+      return addError(
+        ArgumentError(
+          "Given id ${event.exerciseId} not found in exercise collection.",
+        ),
+        StackTrace.current,
+      );
+    }
+
+    final newSession = Session.from(template: exercise);
+
+    emit(_Started(session: newSession));
+
+    // TODO: fix - onData will error with forEach.
+  }
 
   void _onStartSession(
     _StartSession event,
     Emitter<SessionEditState> emit,
-  ) async {
-    final newSession = event.sessionId == null
-        ? state.mapOrNull(
-            exerciseStarted: (value) => Session.from(template: value.exercise),
-          )
-        : null;
-
-    if (newSession != null) emit(_SessionStarted(session: newSession));
-
-    if (newSession != null || event.sessionId != null) {
+  ) async =>
       await emit.forEach(
-        repository.sessions.stream(event.sessionId ?? newSession!.id),
+        repository.sessions.stream(event.sessionId),
         onData: _onData,
         onError: _onError,
       );
-    }
-  }
 
   // STREAM EVENTS
 
@@ -77,7 +79,7 @@ class SessionEditBloc extends Bloc<SessionEditEvent, SessionEditState> {
     log("$runtimeType - data");
 
     return session != null
-        ? _SessionStarted(session: session)
+        ? _Started(session: session)
         : _Errored(error: StateError(""), stackTrace: StackTrace.current);
   }
 
@@ -91,19 +93,12 @@ class SessionEditBloc extends Bloc<SessionEditEvent, SessionEditState> {
 
   // BLOC EVENTS
 
-  @override
-  void onEvent(event) {
-    // TODO: implement analytics here
-    log("$runtimeType - error : $event");
-    super.onEvent(event);
-  }
-
-  @override
-  void onError(error, stackTrace) {
-    // TODO: implement analytics here
-    log("$runtimeType - error", error: error, stackTrace: stackTrace);
-    super.onError(error, stackTrace);
-  }
+  // @override
+  // void onEvent(event) {
+  //   // TODO: implement analytics here
+  //   log("$runtimeType - event : $event");
+  //   super.onEvent(event);
+  // }
 
   @override
   Future<void> close() {

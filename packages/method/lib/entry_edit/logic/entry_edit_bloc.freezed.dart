@@ -18,63 +18,45 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$EntryEditEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() create,
-    required TResult Function() start,
-    required TResult Function() resume,
-    required TResult Function() pause,
+    required TResult Function(String taskId) startTask,
+    required TResult Function(String entryId) startEntry,
     required TResult Function() stop,
-    required TResult Function() destroy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? create,
-    TResult Function()? start,
-    TResult Function()? resume,
-    TResult Function()? pause,
+    TResult Function(String taskId)? startTask,
+    TResult Function(String entryId)? startEntry,
     TResult Function()? stop,
-    TResult Function()? destroy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? create,
-    TResult Function()? start,
-    TResult Function()? resume,
-    TResult Function()? pause,
+    TResult Function(String taskId)? startTask,
+    TResult Function(String entryId)? startEntry,
     TResult Function()? stop,
-    TResult Function()? destroy,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Create value) create,
-    required TResult Function(_Start value) start,
-    required TResult Function(_Resume value) resume,
-    required TResult Function(_Pause value) pause,
+    required TResult Function(_StartTask value) startTask,
+    required TResult Function(_StartEntry value) startEntry,
     required TResult Function(_Stop value) stop,
-    required TResult Function(_Destroy value) destroy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Create value)? create,
-    TResult Function(_Start value)? start,
-    TResult Function(_Resume value)? resume,
-    TResult Function(_Pause value)? pause,
+    TResult Function(_StartTask value)? startTask,
+    TResult Function(_StartEntry value)? startEntry,
     TResult Function(_Stop value)? stop,
-    TResult Function(_Destroy value)? destroy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Create value)? create,
-    TResult Function(_Start value)? start,
-    TResult Function(_Resume value)? resume,
-    TResult Function(_Pause value)? pause,
+    TResult Function(_StartTask value)? startTask,
+    TResult Function(_StartEntry value)? startEntry,
     TResult Function(_Stop value)? stop,
-    TResult Function(_Destroy value)? destroy,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -98,79 +80,97 @@ class _$EntryEditEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$_CreateCopyWith<$Res> {
-  factory _$$_CreateCopyWith(_$_Create value, $Res Function(_$_Create) then) =
-      __$$_CreateCopyWithImpl<$Res>;
+abstract class _$$_StartTaskCopyWith<$Res> {
+  factory _$$_StartTaskCopyWith(
+          _$_StartTask value, $Res Function(_$_StartTask) then) =
+      __$$_StartTaskCopyWithImpl<$Res>;
+  $Res call({String taskId});
 }
 
 /// @nodoc
-class __$$_CreateCopyWithImpl<$Res> extends _$EntryEditEventCopyWithImpl<$Res>
-    implements _$$_CreateCopyWith<$Res> {
-  __$$_CreateCopyWithImpl(_$_Create _value, $Res Function(_$_Create) _then)
-      : super(_value, (v) => _then(v as _$_Create));
+class __$$_StartTaskCopyWithImpl<$Res>
+    extends _$EntryEditEventCopyWithImpl<$Res>
+    implements _$$_StartTaskCopyWith<$Res> {
+  __$$_StartTaskCopyWithImpl(
+      _$_StartTask _value, $Res Function(_$_StartTask) _then)
+      : super(_value, (v) => _then(v as _$_StartTask));
 
   @override
-  _$_Create get _value => super._value as _$_Create;
+  _$_StartTask get _value => super._value as _$_StartTask;
+
+  @override
+  $Res call({
+    Object? taskId = freezed,
+  }) {
+    return _then(_$_StartTask(
+      taskId: taskId == freezed
+          ? _value.taskId
+          : taskId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_Create extends _Create {
-  const _$_Create() : super._();
+class _$_StartTask extends _StartTask {
+  const _$_StartTask({required this.taskId}) : super._();
+
+  @override
+  final String taskId;
 
   @override
   String toString() {
-    return 'EntryEditEvent.create()';
+    return 'EntryEditEvent.startTask(taskId: $taskId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Create);
+        (other.runtimeType == runtimeType &&
+            other is _$_StartTask &&
+            const DeepCollectionEquality().equals(other.taskId, taskId));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(taskId));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_StartTaskCopyWith<_$_StartTask> get copyWith =>
+      __$$_StartTaskCopyWithImpl<_$_StartTask>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() create,
-    required TResult Function() start,
-    required TResult Function() resume,
-    required TResult Function() pause,
+    required TResult Function(String taskId) startTask,
+    required TResult Function(String entryId) startEntry,
     required TResult Function() stop,
-    required TResult Function() destroy,
   }) {
-    return create();
+    return startTask(taskId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? create,
-    TResult Function()? start,
-    TResult Function()? resume,
-    TResult Function()? pause,
+    TResult Function(String taskId)? startTask,
+    TResult Function(String entryId)? startEntry,
     TResult Function()? stop,
-    TResult Function()? destroy,
   }) {
-    return create?.call();
+    return startTask?.call(taskId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? create,
-    TResult Function()? start,
-    TResult Function()? resume,
-    TResult Function()? pause,
+    TResult Function(String taskId)? startTask,
+    TResult Function(String entryId)? startEntry,
     TResult Function()? stop,
-    TResult Function()? destroy,
     required TResult orElse(),
   }) {
-    if (create != null) {
-      return create();
+    if (startTask != null) {
+      return startTask(taskId);
     }
     return orElse();
   }
@@ -178,126 +178,140 @@ class _$_Create extends _Create {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Create value) create,
-    required TResult Function(_Start value) start,
-    required TResult Function(_Resume value) resume,
-    required TResult Function(_Pause value) pause,
+    required TResult Function(_StartTask value) startTask,
+    required TResult Function(_StartEntry value) startEntry,
     required TResult Function(_Stop value) stop,
-    required TResult Function(_Destroy value) destroy,
   }) {
-    return create(this);
+    return startTask(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Create value)? create,
-    TResult Function(_Start value)? start,
-    TResult Function(_Resume value)? resume,
-    TResult Function(_Pause value)? pause,
+    TResult Function(_StartTask value)? startTask,
+    TResult Function(_StartEntry value)? startEntry,
     TResult Function(_Stop value)? stop,
-    TResult Function(_Destroy value)? destroy,
   }) {
-    return create?.call(this);
+    return startTask?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Create value)? create,
-    TResult Function(_Start value)? start,
-    TResult Function(_Resume value)? resume,
-    TResult Function(_Pause value)? pause,
+    TResult Function(_StartTask value)? startTask,
+    TResult Function(_StartEntry value)? startEntry,
     TResult Function(_Stop value)? stop,
-    TResult Function(_Destroy value)? destroy,
     required TResult orElse(),
   }) {
-    if (create != null) {
-      return create(this);
+    if (startTask != null) {
+      return startTask(this);
     }
     return orElse();
   }
 }
 
-abstract class _Create extends EntryEditEvent {
-  const factory _Create() = _$_Create;
-  const _Create._() : super._();
+abstract class _StartTask extends EntryEditEvent {
+  const factory _StartTask({required final String taskId}) = _$_StartTask;
+  const _StartTask._() : super._();
+
+  String get taskId;
+  @JsonKey(ignore: true)
+  _$$_StartTaskCopyWith<_$_StartTask> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_StartCopyWith<$Res> {
-  factory _$$_StartCopyWith(_$_Start value, $Res Function(_$_Start) then) =
-      __$$_StartCopyWithImpl<$Res>;
+abstract class _$$_StartEntryCopyWith<$Res> {
+  factory _$$_StartEntryCopyWith(
+          _$_StartEntry value, $Res Function(_$_StartEntry) then) =
+      __$$_StartEntryCopyWithImpl<$Res>;
+  $Res call({String entryId});
 }
 
 /// @nodoc
-class __$$_StartCopyWithImpl<$Res> extends _$EntryEditEventCopyWithImpl<$Res>
-    implements _$$_StartCopyWith<$Res> {
-  __$$_StartCopyWithImpl(_$_Start _value, $Res Function(_$_Start) _then)
-      : super(_value, (v) => _then(v as _$_Start));
+class __$$_StartEntryCopyWithImpl<$Res>
+    extends _$EntryEditEventCopyWithImpl<$Res>
+    implements _$$_StartEntryCopyWith<$Res> {
+  __$$_StartEntryCopyWithImpl(
+      _$_StartEntry _value, $Res Function(_$_StartEntry) _then)
+      : super(_value, (v) => _then(v as _$_StartEntry));
 
   @override
-  _$_Start get _value => super._value as _$_Start;
+  _$_StartEntry get _value => super._value as _$_StartEntry;
+
+  @override
+  $Res call({
+    Object? entryId = freezed,
+  }) {
+    return _then(_$_StartEntry(
+      entryId: entryId == freezed
+          ? _value.entryId
+          : entryId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_Start extends _Start {
-  const _$_Start() : super._();
+class _$_StartEntry extends _StartEntry {
+  const _$_StartEntry({required this.entryId}) : super._();
+
+  @override
+  final String entryId;
 
   @override
   String toString() {
-    return 'EntryEditEvent.start()';
+    return 'EntryEditEvent.startEntry(entryId: $entryId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Start);
+        (other.runtimeType == runtimeType &&
+            other is _$_StartEntry &&
+            const DeepCollectionEquality().equals(other.entryId, entryId));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(entryId));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_StartEntryCopyWith<_$_StartEntry> get copyWith =>
+      __$$_StartEntryCopyWithImpl<_$_StartEntry>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() create,
-    required TResult Function() start,
-    required TResult Function() resume,
-    required TResult Function() pause,
+    required TResult Function(String taskId) startTask,
+    required TResult Function(String entryId) startEntry,
     required TResult Function() stop,
-    required TResult Function() destroy,
   }) {
-    return start();
+    return startEntry(entryId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? create,
-    TResult Function()? start,
-    TResult Function()? resume,
-    TResult Function()? pause,
+    TResult Function(String taskId)? startTask,
+    TResult Function(String entryId)? startEntry,
     TResult Function()? stop,
-    TResult Function()? destroy,
   }) {
-    return start?.call();
+    return startEntry?.call(entryId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? create,
-    TResult Function()? start,
-    TResult Function()? resume,
-    TResult Function()? pause,
+    TResult Function(String taskId)? startTask,
+    TResult Function(String entryId)? startEntry,
     TResult Function()? stop,
-    TResult Function()? destroy,
     required TResult orElse(),
   }) {
-    if (start != null) {
-      return start();
+    if (startEntry != null) {
+      return startEntry(entryId);
     }
     return orElse();
   }
@@ -305,304 +319,46 @@ class _$_Start extends _Start {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Create value) create,
-    required TResult Function(_Start value) start,
-    required TResult Function(_Resume value) resume,
-    required TResult Function(_Pause value) pause,
+    required TResult Function(_StartTask value) startTask,
+    required TResult Function(_StartEntry value) startEntry,
     required TResult Function(_Stop value) stop,
-    required TResult Function(_Destroy value) destroy,
   }) {
-    return start(this);
+    return startEntry(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Create value)? create,
-    TResult Function(_Start value)? start,
-    TResult Function(_Resume value)? resume,
-    TResult Function(_Pause value)? pause,
+    TResult Function(_StartTask value)? startTask,
+    TResult Function(_StartEntry value)? startEntry,
     TResult Function(_Stop value)? stop,
-    TResult Function(_Destroy value)? destroy,
   }) {
-    return start?.call(this);
+    return startEntry?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Create value)? create,
-    TResult Function(_Start value)? start,
-    TResult Function(_Resume value)? resume,
-    TResult Function(_Pause value)? pause,
+    TResult Function(_StartTask value)? startTask,
+    TResult Function(_StartEntry value)? startEntry,
     TResult Function(_Stop value)? stop,
-    TResult Function(_Destroy value)? destroy,
     required TResult orElse(),
   }) {
-    if (start != null) {
-      return start(this);
+    if (startEntry != null) {
+      return startEntry(this);
     }
     return orElse();
   }
 }
 
-abstract class _Start extends EntryEditEvent {
-  const factory _Start() = _$_Start;
-  const _Start._() : super._();
-}
+abstract class _StartEntry extends EntryEditEvent {
+  const factory _StartEntry({required final String entryId}) = _$_StartEntry;
+  const _StartEntry._() : super._();
 
-/// @nodoc
-abstract class _$$_ResumeCopyWith<$Res> {
-  factory _$$_ResumeCopyWith(_$_Resume value, $Res Function(_$_Resume) then) =
-      __$$_ResumeCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_ResumeCopyWithImpl<$Res> extends _$EntryEditEventCopyWithImpl<$Res>
-    implements _$$_ResumeCopyWith<$Res> {
-  __$$_ResumeCopyWithImpl(_$_Resume _value, $Res Function(_$_Resume) _then)
-      : super(_value, (v) => _then(v as _$_Resume));
-
-  @override
-  _$_Resume get _value => super._value as _$_Resume;
-}
-
-/// @nodoc
-
-class _$_Resume extends _Resume {
-  const _$_Resume() : super._();
-
-  @override
-  String toString() {
-    return 'EntryEditEvent.resume()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Resume);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() create,
-    required TResult Function() start,
-    required TResult Function() resume,
-    required TResult Function() pause,
-    required TResult Function() stop,
-    required TResult Function() destroy,
-  }) {
-    return resume();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? create,
-    TResult Function()? start,
-    TResult Function()? resume,
-    TResult Function()? pause,
-    TResult Function()? stop,
-    TResult Function()? destroy,
-  }) {
-    return resume?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? create,
-    TResult Function()? start,
-    TResult Function()? resume,
-    TResult Function()? pause,
-    TResult Function()? stop,
-    TResult Function()? destroy,
-    required TResult orElse(),
-  }) {
-    if (resume != null) {
-      return resume();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Create value) create,
-    required TResult Function(_Start value) start,
-    required TResult Function(_Resume value) resume,
-    required TResult Function(_Pause value) pause,
-    required TResult Function(_Stop value) stop,
-    required TResult Function(_Destroy value) destroy,
-  }) {
-    return resume(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Create value)? create,
-    TResult Function(_Start value)? start,
-    TResult Function(_Resume value)? resume,
-    TResult Function(_Pause value)? pause,
-    TResult Function(_Stop value)? stop,
-    TResult Function(_Destroy value)? destroy,
-  }) {
-    return resume?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Create value)? create,
-    TResult Function(_Start value)? start,
-    TResult Function(_Resume value)? resume,
-    TResult Function(_Pause value)? pause,
-    TResult Function(_Stop value)? stop,
-    TResult Function(_Destroy value)? destroy,
-    required TResult orElse(),
-  }) {
-    if (resume != null) {
-      return resume(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Resume extends EntryEditEvent {
-  const factory _Resume() = _$_Resume;
-  const _Resume._() : super._();
-}
-
-/// @nodoc
-abstract class _$$_PauseCopyWith<$Res> {
-  factory _$$_PauseCopyWith(_$_Pause value, $Res Function(_$_Pause) then) =
-      __$$_PauseCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_PauseCopyWithImpl<$Res> extends _$EntryEditEventCopyWithImpl<$Res>
-    implements _$$_PauseCopyWith<$Res> {
-  __$$_PauseCopyWithImpl(_$_Pause _value, $Res Function(_$_Pause) _then)
-      : super(_value, (v) => _then(v as _$_Pause));
-
-  @override
-  _$_Pause get _value => super._value as _$_Pause;
-}
-
-/// @nodoc
-
-class _$_Pause extends _Pause {
-  const _$_Pause() : super._();
-
-  @override
-  String toString() {
-    return 'EntryEditEvent.pause()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Pause);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() create,
-    required TResult Function() start,
-    required TResult Function() resume,
-    required TResult Function() pause,
-    required TResult Function() stop,
-    required TResult Function() destroy,
-  }) {
-    return pause();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? create,
-    TResult Function()? start,
-    TResult Function()? resume,
-    TResult Function()? pause,
-    TResult Function()? stop,
-    TResult Function()? destroy,
-  }) {
-    return pause?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? create,
-    TResult Function()? start,
-    TResult Function()? resume,
-    TResult Function()? pause,
-    TResult Function()? stop,
-    TResult Function()? destroy,
-    required TResult orElse(),
-  }) {
-    if (pause != null) {
-      return pause();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Create value) create,
-    required TResult Function(_Start value) start,
-    required TResult Function(_Resume value) resume,
-    required TResult Function(_Pause value) pause,
-    required TResult Function(_Stop value) stop,
-    required TResult Function(_Destroy value) destroy,
-  }) {
-    return pause(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Create value)? create,
-    TResult Function(_Start value)? start,
-    TResult Function(_Resume value)? resume,
-    TResult Function(_Pause value)? pause,
-    TResult Function(_Stop value)? stop,
-    TResult Function(_Destroy value)? destroy,
-  }) {
-    return pause?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Create value)? create,
-    TResult Function(_Start value)? start,
-    TResult Function(_Resume value)? resume,
-    TResult Function(_Pause value)? pause,
-    TResult Function(_Stop value)? stop,
-    TResult Function(_Destroy value)? destroy,
-    required TResult orElse(),
-  }) {
-    if (pause != null) {
-      return pause(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Pause extends EntryEditEvent {
-  const factory _Pause() = _$_Pause;
-  const _Pause._() : super._();
+  String get entryId;
+  @JsonKey(ignore: true)
+  _$$_StartEntryCopyWith<_$_StartEntry> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -643,12 +399,9 @@ class _$_Stop extends _Stop {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() create,
-    required TResult Function() start,
-    required TResult Function() resume,
-    required TResult Function() pause,
+    required TResult Function(String taskId) startTask,
+    required TResult Function(String entryId) startEntry,
     required TResult Function() stop,
-    required TResult Function() destroy,
   }) {
     return stop();
   }
@@ -656,12 +409,9 @@ class _$_Stop extends _Stop {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? create,
-    TResult Function()? start,
-    TResult Function()? resume,
-    TResult Function()? pause,
+    TResult Function(String taskId)? startTask,
+    TResult Function(String entryId)? startEntry,
     TResult Function()? stop,
-    TResult Function()? destroy,
   }) {
     return stop?.call();
   }
@@ -669,12 +419,9 @@ class _$_Stop extends _Stop {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? create,
-    TResult Function()? start,
-    TResult Function()? resume,
-    TResult Function()? pause,
+    TResult Function(String taskId)? startTask,
+    TResult Function(String entryId)? startEntry,
     TResult Function()? stop,
-    TResult Function()? destroy,
     required TResult orElse(),
   }) {
     if (stop != null) {
@@ -686,12 +433,9 @@ class _$_Stop extends _Stop {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Create value) create,
-    required TResult Function(_Start value) start,
-    required TResult Function(_Resume value) resume,
-    required TResult Function(_Pause value) pause,
+    required TResult Function(_StartTask value) startTask,
+    required TResult Function(_StartEntry value) startEntry,
     required TResult Function(_Stop value) stop,
-    required TResult Function(_Destroy value) destroy,
   }) {
     return stop(this);
   }
@@ -699,12 +443,9 @@ class _$_Stop extends _Stop {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Create value)? create,
-    TResult Function(_Start value)? start,
-    TResult Function(_Resume value)? resume,
-    TResult Function(_Pause value)? pause,
+    TResult Function(_StartTask value)? startTask,
+    TResult Function(_StartEntry value)? startEntry,
     TResult Function(_Stop value)? stop,
-    TResult Function(_Destroy value)? destroy,
   }) {
     return stop?.call(this);
   }
@@ -712,12 +453,9 @@ class _$_Stop extends _Stop {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Create value)? create,
-    TResult Function(_Start value)? start,
-    TResult Function(_Resume value)? resume,
-    TResult Function(_Pause value)? pause,
+    TResult Function(_StartTask value)? startTask,
+    TResult Function(_StartEntry value)? startEntry,
     TResult Function(_Stop value)? stop,
-    TResult Function(_Destroy value)? destroy,
     required TResult orElse(),
   }) {
     if (stop != null) {
@@ -733,162 +471,28 @@ abstract class _Stop extends EntryEditEvent {
 }
 
 /// @nodoc
-abstract class _$$_DestroyCopyWith<$Res> {
-  factory _$$_DestroyCopyWith(
-          _$_Destroy value, $Res Function(_$_Destroy) then) =
-      __$$_DestroyCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_DestroyCopyWithImpl<$Res> extends _$EntryEditEventCopyWithImpl<$Res>
-    implements _$$_DestroyCopyWith<$Res> {
-  __$$_DestroyCopyWithImpl(_$_Destroy _value, $Res Function(_$_Destroy) _then)
-      : super(_value, (v) => _then(v as _$_Destroy));
-
-  @override
-  _$_Destroy get _value => super._value as _$_Destroy;
-}
-
-/// @nodoc
-
-class _$_Destroy extends _Destroy {
-  const _$_Destroy() : super._();
-
-  @override
-  String toString() {
-    return 'EntryEditEvent.destroy()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Destroy);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() create,
-    required TResult Function() start,
-    required TResult Function() resume,
-    required TResult Function() pause,
-    required TResult Function() stop,
-    required TResult Function() destroy,
-  }) {
-    return destroy();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? create,
-    TResult Function()? start,
-    TResult Function()? resume,
-    TResult Function()? pause,
-    TResult Function()? stop,
-    TResult Function()? destroy,
-  }) {
-    return destroy?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? create,
-    TResult Function()? start,
-    TResult Function()? resume,
-    TResult Function()? pause,
-    TResult Function()? stop,
-    TResult Function()? destroy,
-    required TResult orElse(),
-  }) {
-    if (destroy != null) {
-      return destroy();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Create value) create,
-    required TResult Function(_Start value) start,
-    required TResult Function(_Resume value) resume,
-    required TResult Function(_Pause value) pause,
-    required TResult Function(_Stop value) stop,
-    required TResult Function(_Destroy value) destroy,
-  }) {
-    return destroy(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Create value)? create,
-    TResult Function(_Start value)? start,
-    TResult Function(_Resume value)? resume,
-    TResult Function(_Pause value)? pause,
-    TResult Function(_Stop value)? stop,
-    TResult Function(_Destroy value)? destroy,
-  }) {
-    return destroy?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Create value)? create,
-    TResult Function(_Start value)? start,
-    TResult Function(_Resume value)? resume,
-    TResult Function(_Pause value)? pause,
-    TResult Function(_Stop value)? stop,
-    TResult Function(_Destroy value)? destroy,
-    required TResult orElse(),
-  }) {
-    if (destroy != null) {
-      return destroy(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Destroy extends EntryEditEvent {
-  const factory _Destroy() = _$_Destroy;
-  const _Destroy._() : super._();
-}
-
-/// @nodoc
 mixin _$EntryEditState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() created,
-    required TResult Function() started,
+    required TResult Function(Entry entry) started,
     required TResult Function() resumed,
-    required TResult Function() destroyed,
     required TResult Function(Object error, StackTrace stackTrace) errored,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? created,
-    TResult Function()? started,
+    TResult Function(Entry entry)? started,
     TResult Function()? resumed,
-    TResult Function()? destroyed,
     TResult Function(Object error, StackTrace stackTrace)? errored,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? created,
-    TResult Function()? started,
+    TResult Function(Entry entry)? started,
     TResult Function()? resumed,
-    TResult Function()? destroyed,
     TResult Function(Object error, StackTrace stackTrace)? errored,
     required TResult orElse(),
   }) =>
@@ -896,30 +500,24 @@ mixin _$EntryEditState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Created value) created,
     required TResult Function(_Started value) started,
     required TResult Function(_Resumed value) resumed,
-    required TResult Function(_Destroyed value) destroyed,
     required TResult Function(_Errored value) errored,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Created value)? created,
     TResult Function(_Started value)? started,
     TResult Function(_Resumed value)? resumed,
-    TResult Function(_Destroyed value)? destroyed,
     TResult Function(_Errored value)? errored,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Created value)? created,
     TResult Function(_Started value)? started,
     TResult Function(_Resumed value)? resumed,
-    TResult Function(_Destroyed value)? destroyed,
     TResult Function(_Errored value)? errored,
     required TResult orElse(),
   }) =>
@@ -983,10 +581,8 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() created,
-    required TResult Function() started,
+    required TResult Function(Entry entry) started,
     required TResult Function() resumed,
-    required TResult Function() destroyed,
     required TResult Function(Object error, StackTrace stackTrace) errored,
   }) {
     return initial();
@@ -996,10 +592,8 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? created,
-    TResult Function()? started,
+    TResult Function(Entry entry)? started,
     TResult Function()? resumed,
-    TResult Function()? destroyed,
     TResult Function(Object error, StackTrace stackTrace)? errored,
   }) {
     return initial?.call();
@@ -1009,10 +603,8 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? created,
-    TResult Function()? started,
+    TResult Function(Entry entry)? started,
     TResult Function()? resumed,
-    TResult Function()? destroyed,
     TResult Function(Object error, StackTrace stackTrace)? errored,
     required TResult orElse(),
   }) {
@@ -1026,10 +618,8 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Created value) created,
     required TResult Function(_Started value) started,
     required TResult Function(_Resumed value) resumed,
-    required TResult Function(_Destroyed value) destroyed,
     required TResult Function(_Errored value) errored,
   }) {
     return initial(this);
@@ -1039,10 +629,8 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Created value)? created,
     TResult Function(_Started value)? started,
     TResult Function(_Resumed value)? resumed,
-    TResult Function(_Destroyed value)? destroyed,
     TResult Function(_Errored value)? errored,
   }) {
     return initial?.call(this);
@@ -1052,10 +640,8 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Created value)? created,
     TResult Function(_Started value)? started,
     TResult Function(_Resumed value)? resumed,
-    TResult Function(_Destroyed value)? destroyed,
     TResult Function(_Errored value)? errored,
     required TResult orElse(),
   }) {
@@ -1072,138 +658,13 @@ abstract class _Initial extends EntryEditState {
 }
 
 /// @nodoc
-abstract class _$$_CreatedCopyWith<$Res> {
-  factory _$$_CreatedCopyWith(
-          _$_Created value, $Res Function(_$_Created) then) =
-      __$$_CreatedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_CreatedCopyWithImpl<$Res> extends _$EntryEditStateCopyWithImpl<$Res>
-    implements _$$_CreatedCopyWith<$Res> {
-  __$$_CreatedCopyWithImpl(_$_Created _value, $Res Function(_$_Created) _then)
-      : super(_value, (v) => _then(v as _$_Created));
-
-  @override
-  _$_Created get _value => super._value as _$_Created;
-}
-
-/// @nodoc
-
-class _$_Created extends _Created {
-  const _$_Created() : super._();
-
-  @override
-  String toString() {
-    return 'EntryEditState.created()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Created);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() created,
-    required TResult Function() started,
-    required TResult Function() resumed,
-    required TResult Function() destroyed,
-    required TResult Function(Object error, StackTrace stackTrace) errored,
-  }) {
-    return created();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? created,
-    TResult Function()? started,
-    TResult Function()? resumed,
-    TResult Function()? destroyed,
-    TResult Function(Object error, StackTrace stackTrace)? errored,
-  }) {
-    return created?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? created,
-    TResult Function()? started,
-    TResult Function()? resumed,
-    TResult Function()? destroyed,
-    TResult Function(Object error, StackTrace stackTrace)? errored,
-    required TResult orElse(),
-  }) {
-    if (created != null) {
-      return created();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Created value) created,
-    required TResult Function(_Started value) started,
-    required TResult Function(_Resumed value) resumed,
-    required TResult Function(_Destroyed value) destroyed,
-    required TResult Function(_Errored value) errored,
-  }) {
-    return created(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Created value)? created,
-    TResult Function(_Started value)? started,
-    TResult Function(_Resumed value)? resumed,
-    TResult Function(_Destroyed value)? destroyed,
-    TResult Function(_Errored value)? errored,
-  }) {
-    return created?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Created value)? created,
-    TResult Function(_Started value)? started,
-    TResult Function(_Resumed value)? resumed,
-    TResult Function(_Destroyed value)? destroyed,
-    TResult Function(_Errored value)? errored,
-    required TResult orElse(),
-  }) {
-    if (created != null) {
-      return created(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Created extends EntryEditState {
-  const factory _Created() = _$_Created;
-  const _Created._() : super._();
-}
-
-/// @nodoc
 abstract class _$$_StartedCopyWith<$Res> {
   factory _$$_StartedCopyWith(
           _$_Started value, $Res Function(_$_Started) then) =
       __$$_StartedCopyWithImpl<$Res>;
+  $Res call({Entry entry});
+
+  $EntryCopyWith<$Res> get entry;
 }
 
 /// @nodoc
@@ -1214,66 +675,90 @@ class __$$_StartedCopyWithImpl<$Res> extends _$EntryEditStateCopyWithImpl<$Res>
 
   @override
   _$_Started get _value => super._value as _$_Started;
+
+  @override
+  $Res call({
+    Object? entry = freezed,
+  }) {
+    return _then(_$_Started(
+      entry: entry == freezed
+          ? _value.entry
+          : entry // ignore: cast_nullable_to_non_nullable
+              as Entry,
+    ));
+  }
+
+  @override
+  $EntryCopyWith<$Res> get entry {
+    return $EntryCopyWith<$Res>(_value.entry, (value) {
+      return _then(_value.copyWith(entry: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$_Started extends _Started {
-  const _$_Started() : super._();
+  const _$_Started({required this.entry}) : super._();
+
+  @override
+  final Entry entry;
 
   @override
   String toString() {
-    return 'EntryEditState.started()';
+    return 'EntryEditState.started(entry: $entry)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Started);
+        (other.runtimeType == runtimeType &&
+            other is _$_Started &&
+            const DeepCollectionEquality().equals(other.entry, entry));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(entry));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_StartedCopyWith<_$_Started> get copyWith =>
+      __$$_StartedCopyWithImpl<_$_Started>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() created,
-    required TResult Function() started,
+    required TResult Function(Entry entry) started,
     required TResult Function() resumed,
-    required TResult Function() destroyed,
     required TResult Function(Object error, StackTrace stackTrace) errored,
   }) {
-    return started();
+    return started(entry);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? created,
-    TResult Function()? started,
+    TResult Function(Entry entry)? started,
     TResult Function()? resumed,
-    TResult Function()? destroyed,
     TResult Function(Object error, StackTrace stackTrace)? errored,
   }) {
-    return started?.call();
+    return started?.call(entry);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? created,
-    TResult Function()? started,
+    TResult Function(Entry entry)? started,
     TResult Function()? resumed,
-    TResult Function()? destroyed,
     TResult Function(Object error, StackTrace stackTrace)? errored,
     required TResult orElse(),
   }) {
     if (started != null) {
-      return started();
+      return started(entry);
     }
     return orElse();
   }
@@ -1282,10 +767,8 @@ class _$_Started extends _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Created value) created,
     required TResult Function(_Started value) started,
     required TResult Function(_Resumed value) resumed,
-    required TResult Function(_Destroyed value) destroyed,
     required TResult Function(_Errored value) errored,
   }) {
     return started(this);
@@ -1295,10 +778,8 @@ class _$_Started extends _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Created value)? created,
     TResult Function(_Started value)? started,
     TResult Function(_Resumed value)? resumed,
-    TResult Function(_Destroyed value)? destroyed,
     TResult Function(_Errored value)? errored,
   }) {
     return started?.call(this);
@@ -1308,10 +789,8 @@ class _$_Started extends _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Created value)? created,
     TResult Function(_Started value)? started,
     TResult Function(_Resumed value)? resumed,
-    TResult Function(_Destroyed value)? destroyed,
     TResult Function(_Errored value)? errored,
     required TResult orElse(),
   }) {
@@ -1323,8 +802,13 @@ class _$_Started extends _Started {
 }
 
 abstract class _Started extends EntryEditState {
-  const factory _Started() = _$_Started;
+  const factory _Started({required final Entry entry}) = _$_Started;
   const _Started._() : super._();
+
+  Entry get entry;
+  @JsonKey(ignore: true)
+  _$$_StartedCopyWith<_$_Started> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1367,10 +851,8 @@ class _$_Resumed extends _Resumed {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() created,
-    required TResult Function() started,
+    required TResult Function(Entry entry) started,
     required TResult Function() resumed,
-    required TResult Function() destroyed,
     required TResult Function(Object error, StackTrace stackTrace) errored,
   }) {
     return resumed();
@@ -1380,10 +862,8 @@ class _$_Resumed extends _Resumed {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? created,
-    TResult Function()? started,
+    TResult Function(Entry entry)? started,
     TResult Function()? resumed,
-    TResult Function()? destroyed,
     TResult Function(Object error, StackTrace stackTrace)? errored,
   }) {
     return resumed?.call();
@@ -1393,10 +873,8 @@ class _$_Resumed extends _Resumed {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? created,
-    TResult Function()? started,
+    TResult Function(Entry entry)? started,
     TResult Function()? resumed,
-    TResult Function()? destroyed,
     TResult Function(Object error, StackTrace stackTrace)? errored,
     required TResult orElse(),
   }) {
@@ -1410,10 +888,8 @@ class _$_Resumed extends _Resumed {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Created value) created,
     required TResult Function(_Started value) started,
     required TResult Function(_Resumed value) resumed,
-    required TResult Function(_Destroyed value) destroyed,
     required TResult Function(_Errored value) errored,
   }) {
     return resumed(this);
@@ -1423,10 +899,8 @@ class _$_Resumed extends _Resumed {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Created value)? created,
     TResult Function(_Started value)? started,
     TResult Function(_Resumed value)? resumed,
-    TResult Function(_Destroyed value)? destroyed,
     TResult Function(_Errored value)? errored,
   }) {
     return resumed?.call(this);
@@ -1436,10 +910,8 @@ class _$_Resumed extends _Resumed {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Created value)? created,
     TResult Function(_Started value)? started,
     TResult Function(_Resumed value)? resumed,
-    TResult Function(_Destroyed value)? destroyed,
     TResult Function(_Errored value)? errored,
     required TResult orElse(),
   }) {
@@ -1453,136 +925,6 @@ class _$_Resumed extends _Resumed {
 abstract class _Resumed extends EntryEditState {
   const factory _Resumed() = _$_Resumed;
   const _Resumed._() : super._();
-}
-
-/// @nodoc
-abstract class _$$_DestroyedCopyWith<$Res> {
-  factory _$$_DestroyedCopyWith(
-          _$_Destroyed value, $Res Function(_$_Destroyed) then) =
-      __$$_DestroyedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_DestroyedCopyWithImpl<$Res>
-    extends _$EntryEditStateCopyWithImpl<$Res>
-    implements _$$_DestroyedCopyWith<$Res> {
-  __$$_DestroyedCopyWithImpl(
-      _$_Destroyed _value, $Res Function(_$_Destroyed) _then)
-      : super(_value, (v) => _then(v as _$_Destroyed));
-
-  @override
-  _$_Destroyed get _value => super._value as _$_Destroyed;
-}
-
-/// @nodoc
-
-class _$_Destroyed extends _Destroyed {
-  const _$_Destroyed() : super._();
-
-  @override
-  String toString() {
-    return 'EntryEditState.destroyed()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Destroyed);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() created,
-    required TResult Function() started,
-    required TResult Function() resumed,
-    required TResult Function() destroyed,
-    required TResult Function(Object error, StackTrace stackTrace) errored,
-  }) {
-    return destroyed();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? created,
-    TResult Function()? started,
-    TResult Function()? resumed,
-    TResult Function()? destroyed,
-    TResult Function(Object error, StackTrace stackTrace)? errored,
-  }) {
-    return destroyed?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? created,
-    TResult Function()? started,
-    TResult Function()? resumed,
-    TResult Function()? destroyed,
-    TResult Function(Object error, StackTrace stackTrace)? errored,
-    required TResult orElse(),
-  }) {
-    if (destroyed != null) {
-      return destroyed();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Created value) created,
-    required TResult Function(_Started value) started,
-    required TResult Function(_Resumed value) resumed,
-    required TResult Function(_Destroyed value) destroyed,
-    required TResult Function(_Errored value) errored,
-  }) {
-    return destroyed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Created value)? created,
-    TResult Function(_Started value)? started,
-    TResult Function(_Resumed value)? resumed,
-    TResult Function(_Destroyed value)? destroyed,
-    TResult Function(_Errored value)? errored,
-  }) {
-    return destroyed?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Created value)? created,
-    TResult Function(_Started value)? started,
-    TResult Function(_Resumed value)? resumed,
-    TResult Function(_Destroyed value)? destroyed,
-    TResult Function(_Errored value)? errored,
-    required TResult orElse(),
-  }) {
-    if (destroyed != null) {
-      return destroyed(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Destroyed extends EntryEditState {
-  const factory _Destroyed() = _$_Destroyed;
-  const _Destroyed._() : super._();
 }
 
 /// @nodoc
@@ -1660,10 +1002,8 @@ class _$_Errored extends _Errored {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() created,
-    required TResult Function() started,
+    required TResult Function(Entry entry) started,
     required TResult Function() resumed,
-    required TResult Function() destroyed,
     required TResult Function(Object error, StackTrace stackTrace) errored,
   }) {
     return errored(error, stackTrace);
@@ -1673,10 +1013,8 @@ class _$_Errored extends _Errored {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? created,
-    TResult Function()? started,
+    TResult Function(Entry entry)? started,
     TResult Function()? resumed,
-    TResult Function()? destroyed,
     TResult Function(Object error, StackTrace stackTrace)? errored,
   }) {
     return errored?.call(error, stackTrace);
@@ -1686,10 +1024,8 @@ class _$_Errored extends _Errored {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? created,
-    TResult Function()? started,
+    TResult Function(Entry entry)? started,
     TResult Function()? resumed,
-    TResult Function()? destroyed,
     TResult Function(Object error, StackTrace stackTrace)? errored,
     required TResult orElse(),
   }) {
@@ -1703,10 +1039,8 @@ class _$_Errored extends _Errored {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Created value) created,
     required TResult Function(_Started value) started,
     required TResult Function(_Resumed value) resumed,
-    required TResult Function(_Destroyed value) destroyed,
     required TResult Function(_Errored value) errored,
   }) {
     return errored(this);
@@ -1716,10 +1050,8 @@ class _$_Errored extends _Errored {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Created value)? created,
     TResult Function(_Started value)? started,
     TResult Function(_Resumed value)? resumed,
-    TResult Function(_Destroyed value)? destroyed,
     TResult Function(_Errored value)? errored,
   }) {
     return errored?.call(this);
@@ -1729,10 +1061,8 @@ class _$_Errored extends _Errored {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Created value)? created,
     TResult Function(_Started value)? started,
     TResult Function(_Resumed value)? resumed,
-    TResult Function(_Destroyed value)? destroyed,
     TResult Function(_Errored value)? errored,
     required TResult orElse(),
   }) {

@@ -8,7 +8,8 @@ class SessionEditEvent with _$SessionEditEvent {
     required final String exerciseId,
   }) = _StartExercise;
   const factory SessionEditEvent.startSession({
-    final String? sessionId,
+    required final String sessionId,
+    final int? initialIndex,
   }) = _StartSession;
   const factory SessionEditEvent.stop() = _Stop;
 }

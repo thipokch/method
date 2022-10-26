@@ -57,15 +57,29 @@ extension $SessionDetailRouteExtension on SessionDetailRoute {
 extension $SessionEditRouteExtension on SessionEditRoute {
   static SessionEditRoute _fromState(GoRouterState state) => SessionEditRoute(
         state.params['id']!,
+        initialIndex:
+            _$convertMapValue('initial-index', state.queryParams, int.parse),
       );
 
   String get location => GoRouteData.$location(
         '/session/${Uri.encodeComponent(id)}/edit',
+        queryParams: {
+          if (initialIndex != null) 'initial-index': initialIndex!.toString(),
+        },
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
 
   void push(BuildContext context) => context.push(location, extra: this);
+}
+
+T? _$convertMapValue<T>(
+  String key,
+  Map<String, String> map,
+  T Function(String) converter,
+) {
+  final value = map[key];
+  return value == null ? null : converter(value);
 }
 
 GoRoute get $exerciseFlow => GoRouteData.$route(

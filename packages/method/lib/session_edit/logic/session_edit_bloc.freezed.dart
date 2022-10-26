@@ -19,21 +19,21 @@ mixin _$SessionEditEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String exerciseId) startExercise,
-    required TResult Function(String? sessionId) startSession,
+    required TResult Function(String sessionId, int? initialIndex) startSession,
     required TResult Function() stop,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String exerciseId)? startExercise,
-    TResult Function(String? sessionId)? startSession,
+    TResult Function(String sessionId, int? initialIndex)? startSession,
     TResult Function()? stop,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String exerciseId)? startExercise,
-    TResult Function(String? sessionId)? startSession,
+    TResult Function(String sessionId, int? initialIndex)? startSession,
     TResult Function()? stop,
     required TResult orElse(),
   }) =>
@@ -146,7 +146,7 @@ class _$_StartExercise extends _StartExercise {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String exerciseId) startExercise,
-    required TResult Function(String? sessionId) startSession,
+    required TResult Function(String sessionId, int? initialIndex) startSession,
     required TResult Function() stop,
   }) {
     return startExercise(exerciseId);
@@ -156,7 +156,7 @@ class _$_StartExercise extends _StartExercise {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String exerciseId)? startExercise,
-    TResult Function(String? sessionId)? startSession,
+    TResult Function(String sessionId, int? initialIndex)? startSession,
     TResult Function()? stop,
   }) {
     return startExercise?.call(exerciseId);
@@ -166,7 +166,7 @@ class _$_StartExercise extends _StartExercise {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String exerciseId)? startExercise,
-    TResult Function(String? sessionId)? startSession,
+    TResult Function(String sessionId, int? initialIndex)? startSession,
     TResult Function()? stop,
     required TResult orElse(),
   }) {
@@ -227,7 +227,7 @@ abstract class _$$_StartSessionCopyWith<$Res> {
   factory _$$_StartSessionCopyWith(
           _$_StartSession value, $Res Function(_$_StartSession) then) =
       __$$_StartSessionCopyWithImpl<$Res>;
-  $Res call({String? sessionId});
+  $Res call({String sessionId, int? initialIndex});
 }
 
 /// @nodoc
@@ -244,12 +244,17 @@ class __$$_StartSessionCopyWithImpl<$Res>
   @override
   $Res call({
     Object? sessionId = freezed,
+    Object? initialIndex = freezed,
   }) {
     return _then(_$_StartSession(
       sessionId: sessionId == freezed
           ? _value.sessionId
           : sessionId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      initialIndex: initialIndex == freezed
+          ? _value.initialIndex
+          : initialIndex // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -257,14 +262,17 @@ class __$$_StartSessionCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_StartSession extends _StartSession {
-  const _$_StartSession({this.sessionId}) : super._();
+  const _$_StartSession({required this.sessionId, this.initialIndex})
+      : super._();
 
   @override
-  final String? sessionId;
+  final String sessionId;
+  @override
+  final int? initialIndex;
 
   @override
   String toString() {
-    return 'SessionEditEvent.startSession(sessionId: $sessionId)';
+    return 'SessionEditEvent.startSession(sessionId: $sessionId, initialIndex: $initialIndex)';
   }
 
   @override
@@ -272,12 +280,16 @@ class _$_StartSession extends _StartSession {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_StartSession &&
-            const DeepCollectionEquality().equals(other.sessionId, sessionId));
+            const DeepCollectionEquality().equals(other.sessionId, sessionId) &&
+            const DeepCollectionEquality()
+                .equals(other.initialIndex, initialIndex));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(sessionId));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(sessionId),
+      const DeepCollectionEquality().hash(initialIndex));
 
   @JsonKey(ignore: true)
   @override
@@ -288,32 +300,32 @@ class _$_StartSession extends _StartSession {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String exerciseId) startExercise,
-    required TResult Function(String? sessionId) startSession,
+    required TResult Function(String sessionId, int? initialIndex) startSession,
     required TResult Function() stop,
   }) {
-    return startSession(sessionId);
+    return startSession(sessionId, initialIndex);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String exerciseId)? startExercise,
-    TResult Function(String? sessionId)? startSession,
+    TResult Function(String sessionId, int? initialIndex)? startSession,
     TResult Function()? stop,
   }) {
-    return startSession?.call(sessionId);
+    return startSession?.call(sessionId, initialIndex);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String exerciseId)? startExercise,
-    TResult Function(String? sessionId)? startSession,
+    TResult Function(String sessionId, int? initialIndex)? startSession,
     TResult Function()? stop,
     required TResult orElse(),
   }) {
     if (startSession != null) {
-      return startSession(sessionId);
+      return startSession(sessionId, initialIndex);
     }
     return orElse();
   }
@@ -354,10 +366,13 @@ class _$_StartSession extends _StartSession {
 }
 
 abstract class _StartSession extends SessionEditEvent {
-  const factory _StartSession({final String? sessionId}) = _$_StartSession;
+  const factory _StartSession(
+      {required final String sessionId,
+      final int? initialIndex}) = _$_StartSession;
   const _StartSession._() : super._();
 
-  String? get sessionId;
+  String get sessionId;
+  int? get initialIndex;
   @JsonKey(ignore: true)
   _$$_StartSessionCopyWith<_$_StartSession> get copyWith =>
       throw _privateConstructorUsedError;
@@ -402,7 +417,7 @@ class _$_Stop extends _Stop {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String exerciseId) startExercise,
-    required TResult Function(String? sessionId) startSession,
+    required TResult Function(String sessionId, int? initialIndex) startSession,
     required TResult Function() stop,
   }) {
     return stop();
@@ -412,7 +427,7 @@ class _$_Stop extends _Stop {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String exerciseId)? startExercise,
-    TResult Function(String? sessionId)? startSession,
+    TResult Function(String sessionId, int? initialIndex)? startSession,
     TResult Function()? stop,
   }) {
     return stop?.call();
@@ -422,7 +437,7 @@ class _$_Stop extends _Stop {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String exerciseId)? startExercise,
-    TResult Function(String? sessionId)? startSession,
+    TResult Function(String sessionId, int? initialIndex)? startSession,
     TResult Function()? stop,
     required TResult orElse(),
   }) {
@@ -477,24 +492,21 @@ mixin _$SessionEditState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(Exercise exercise) exerciseStarted,
-    required TResult Function(Session session) sessionStarted,
+    required TResult Function(Session session) started,
     required TResult Function(Object error, StackTrace stackTrace) errored,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Exercise exercise)? exerciseStarted,
-    TResult Function(Session session)? sessionStarted,
+    TResult Function(Session session)? started,
     TResult Function(Object error, StackTrace stackTrace)? errored,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Exercise exercise)? exerciseStarted,
-    TResult Function(Session session)? sessionStarted,
+    TResult Function(Session session)? started,
     TResult Function(Object error, StackTrace stackTrace)? errored,
     required TResult orElse(),
   }) =>
@@ -502,24 +514,21 @@ mixin _$SessionEditState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_ExerciseStarted value) exerciseStarted,
-    required TResult Function(_SessionStarted value) sessionStarted,
+    required TResult Function(_Started value) started,
     required TResult Function(_Errored value) errored,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_ExerciseStarted value)? exerciseStarted,
-    TResult Function(_SessionStarted value)? sessionStarted,
+    TResult Function(_Started value)? started,
     TResult Function(_Errored value)? errored,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_ExerciseStarted value)? exerciseStarted,
-    TResult Function(_SessionStarted value)? sessionStarted,
+    TResult Function(_Started value)? started,
     TResult Function(_Errored value)? errored,
     required TResult orElse(),
   }) =>
@@ -584,8 +593,7 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(Exercise exercise) exerciseStarted,
-    required TResult Function(Session session) sessionStarted,
+    required TResult Function(Session session) started,
     required TResult Function(Object error, StackTrace stackTrace) errored,
   }) {
     return initial();
@@ -595,8 +603,7 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Exercise exercise)? exerciseStarted,
-    TResult Function(Session session)? sessionStarted,
+    TResult Function(Session session)? started,
     TResult Function(Object error, StackTrace stackTrace)? errored,
   }) {
     return initial?.call();
@@ -606,8 +613,7 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Exercise exercise)? exerciseStarted,
-    TResult Function(Session session)? sessionStarted,
+    TResult Function(Session session)? started,
     TResult Function(Object error, StackTrace stackTrace)? errored,
     required TResult orElse(),
   }) {
@@ -621,8 +627,7 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_ExerciseStarted value) exerciseStarted,
-    required TResult Function(_SessionStarted value) sessionStarted,
+    required TResult Function(_Started value) started,
     required TResult Function(_Errored value) errored,
   }) {
     return initial(this);
@@ -632,8 +637,7 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_ExerciseStarted value)? exerciseStarted,
-    TResult Function(_SessionStarted value)? sessionStarted,
+    TResult Function(_Started value)? started,
     TResult Function(_Errored value)? errored,
   }) {
     return initial?.call(this);
@@ -643,8 +647,7 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_ExerciseStarted value)? exerciseStarted,
-    TResult Function(_SessionStarted value)? sessionStarted,
+    TResult Function(_Started value)? started,
     TResult Function(_Errored value)? errored,
     required TResult orElse(),
   }) {
@@ -661,188 +664,30 @@ abstract class _Initial extends SessionEditState {
 }
 
 /// @nodoc
-abstract class _$$_ExerciseStartedCopyWith<$Res> {
-  factory _$$_ExerciseStartedCopyWith(
-          _$_ExerciseStarted value, $Res Function(_$_ExerciseStarted) then) =
-      __$$_ExerciseStartedCopyWithImpl<$Res>;
-  $Res call({Exercise exercise});
-
-  $ExerciseCopyWith<$Res> get exercise;
-}
-
-/// @nodoc
-class __$$_ExerciseStartedCopyWithImpl<$Res>
-    extends _$SessionEditStateCopyWithImpl<$Res>
-    implements _$$_ExerciseStartedCopyWith<$Res> {
-  __$$_ExerciseStartedCopyWithImpl(
-      _$_ExerciseStarted _value, $Res Function(_$_ExerciseStarted) _then)
-      : super(_value, (v) => _then(v as _$_ExerciseStarted));
-
-  @override
-  _$_ExerciseStarted get _value => super._value as _$_ExerciseStarted;
-
-  @override
-  $Res call({
-    Object? exercise = freezed,
-  }) {
-    return _then(_$_ExerciseStarted(
-      exercise: exercise == freezed
-          ? _value.exercise
-          : exercise // ignore: cast_nullable_to_non_nullable
-              as Exercise,
-    ));
-  }
-
-  @override
-  $ExerciseCopyWith<$Res> get exercise {
-    return $ExerciseCopyWith<$Res>(_value.exercise, (value) {
-      return _then(_value.copyWith(exercise: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$_ExerciseStarted extends _ExerciseStarted {
-  const _$_ExerciseStarted({required this.exercise}) : super._();
-
-  @override
-  final Exercise exercise;
-
-  @override
-  String toString() {
-    return 'SessionEditState.exerciseStarted(exercise: $exercise)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_ExerciseStarted &&
-            const DeepCollectionEquality().equals(other.exercise, exercise));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(exercise));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_ExerciseStartedCopyWith<_$_ExerciseStarted> get copyWith =>
-      __$$_ExerciseStartedCopyWithImpl<_$_ExerciseStarted>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(Exercise exercise) exerciseStarted,
-    required TResult Function(Session session) sessionStarted,
-    required TResult Function(Object error, StackTrace stackTrace) errored,
-  }) {
-    return exerciseStarted(exercise);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(Exercise exercise)? exerciseStarted,
-    TResult Function(Session session)? sessionStarted,
-    TResult Function(Object error, StackTrace stackTrace)? errored,
-  }) {
-    return exerciseStarted?.call(exercise);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(Exercise exercise)? exerciseStarted,
-    TResult Function(Session session)? sessionStarted,
-    TResult Function(Object error, StackTrace stackTrace)? errored,
-    required TResult orElse(),
-  }) {
-    if (exerciseStarted != null) {
-      return exerciseStarted(exercise);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_ExerciseStarted value) exerciseStarted,
-    required TResult Function(_SessionStarted value) sessionStarted,
-    required TResult Function(_Errored value) errored,
-  }) {
-    return exerciseStarted(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_ExerciseStarted value)? exerciseStarted,
-    TResult Function(_SessionStarted value)? sessionStarted,
-    TResult Function(_Errored value)? errored,
-  }) {
-    return exerciseStarted?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_ExerciseStarted value)? exerciseStarted,
-    TResult Function(_SessionStarted value)? sessionStarted,
-    TResult Function(_Errored value)? errored,
-    required TResult orElse(),
-  }) {
-    if (exerciseStarted != null) {
-      return exerciseStarted(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ExerciseStarted extends SessionEditState {
-  const factory _ExerciseStarted({required final Exercise exercise}) =
-      _$_ExerciseStarted;
-  const _ExerciseStarted._() : super._();
-
-  Exercise get exercise;
-  @JsonKey(ignore: true)
-  _$$_ExerciseStartedCopyWith<_$_ExerciseStarted> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_SessionStartedCopyWith<$Res> {
-  factory _$$_SessionStartedCopyWith(
-          _$_SessionStarted value, $Res Function(_$_SessionStarted) then) =
-      __$$_SessionStartedCopyWithImpl<$Res>;
+abstract class _$$_StartedCopyWith<$Res> {
+  factory _$$_StartedCopyWith(
+          _$_Started value, $Res Function(_$_Started) then) =
+      __$$_StartedCopyWithImpl<$Res>;
   $Res call({Session session});
 
   $SessionCopyWith<$Res> get session;
 }
 
 /// @nodoc
-class __$$_SessionStartedCopyWithImpl<$Res>
+class __$$_StartedCopyWithImpl<$Res>
     extends _$SessionEditStateCopyWithImpl<$Res>
-    implements _$$_SessionStartedCopyWith<$Res> {
-  __$$_SessionStartedCopyWithImpl(
-      _$_SessionStarted _value, $Res Function(_$_SessionStarted) _then)
-      : super(_value, (v) => _then(v as _$_SessionStarted));
+    implements _$$_StartedCopyWith<$Res> {
+  __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
+      : super(_value, (v) => _then(v as _$_Started));
 
   @override
-  _$_SessionStarted get _value => super._value as _$_SessionStarted;
+  _$_Started get _value => super._value as _$_Started;
 
   @override
   $Res call({
     Object? session = freezed,
   }) {
-    return _then(_$_SessionStarted(
+    return _then(_$_Started(
       session: session == freezed
           ? _value.session
           : session // ignore: cast_nullable_to_non_nullable
@@ -860,22 +705,22 @@ class __$$_SessionStartedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SessionStarted extends _SessionStarted {
-  const _$_SessionStarted({required this.session}) : super._();
+class _$_Started extends _Started {
+  const _$_Started({required this.session}) : super._();
 
   @override
   final Session session;
 
   @override
   String toString() {
-    return 'SessionEditState.sessionStarted(session: $session)';
+    return 'SessionEditState.started(session: $session)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SessionStarted &&
+            other is _$_Started &&
             const DeepCollectionEquality().equals(other.session, session));
   }
 
@@ -885,42 +730,39 @@ class _$_SessionStarted extends _SessionStarted {
 
   @JsonKey(ignore: true)
   @override
-  _$$_SessionStartedCopyWith<_$_SessionStarted> get copyWith =>
-      __$$_SessionStartedCopyWithImpl<_$_SessionStarted>(this, _$identity);
+  _$$_StartedCopyWith<_$_Started> get copyWith =>
+      __$$_StartedCopyWithImpl<_$_Started>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(Exercise exercise) exerciseStarted,
-    required TResult Function(Session session) sessionStarted,
+    required TResult Function(Session session) started,
     required TResult Function(Object error, StackTrace stackTrace) errored,
   }) {
-    return sessionStarted(session);
+    return started(session);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Exercise exercise)? exerciseStarted,
-    TResult Function(Session session)? sessionStarted,
+    TResult Function(Session session)? started,
     TResult Function(Object error, StackTrace stackTrace)? errored,
   }) {
-    return sessionStarted?.call(session);
+    return started?.call(session);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Exercise exercise)? exerciseStarted,
-    TResult Function(Session session)? sessionStarted,
+    TResult Function(Session session)? started,
     TResult Function(Object error, StackTrace stackTrace)? errored,
     required TResult orElse(),
   }) {
-    if (sessionStarted != null) {
-      return sessionStarted(session);
+    if (started != null) {
+      return started(session);
     }
     return orElse();
   }
@@ -929,48 +771,44 @@ class _$_SessionStarted extends _SessionStarted {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_ExerciseStarted value) exerciseStarted,
-    required TResult Function(_SessionStarted value) sessionStarted,
+    required TResult Function(_Started value) started,
     required TResult Function(_Errored value) errored,
   }) {
-    return sessionStarted(this);
+    return started(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_ExerciseStarted value)? exerciseStarted,
-    TResult Function(_SessionStarted value)? sessionStarted,
+    TResult Function(_Started value)? started,
     TResult Function(_Errored value)? errored,
   }) {
-    return sessionStarted?.call(this);
+    return started?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_ExerciseStarted value)? exerciseStarted,
-    TResult Function(_SessionStarted value)? sessionStarted,
+    TResult Function(_Started value)? started,
     TResult Function(_Errored value)? errored,
     required TResult orElse(),
   }) {
-    if (sessionStarted != null) {
-      return sessionStarted(this);
+    if (started != null) {
+      return started(this);
     }
     return orElse();
   }
 }
 
-abstract class _SessionStarted extends SessionEditState {
-  const factory _SessionStarted({required final Session session}) =
-      _$_SessionStarted;
-  const _SessionStarted._() : super._();
+abstract class _Started extends SessionEditState {
+  const factory _Started({required final Session session}) = _$_Started;
+  const _Started._() : super._();
 
   Session get session;
   @JsonKey(ignore: true)
-  _$$_SessionStartedCopyWith<_$_SessionStarted> get copyWith =>
+  _$$_StartedCopyWith<_$_Started> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1050,8 +888,7 @@ class _$_Errored extends _Errored {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(Exercise exercise) exerciseStarted,
-    required TResult Function(Session session) sessionStarted,
+    required TResult Function(Session session) started,
     required TResult Function(Object error, StackTrace stackTrace) errored,
   }) {
     return errored(error, stackTrace);
@@ -1061,8 +898,7 @@ class _$_Errored extends _Errored {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Exercise exercise)? exerciseStarted,
-    TResult Function(Session session)? sessionStarted,
+    TResult Function(Session session)? started,
     TResult Function(Object error, StackTrace stackTrace)? errored,
   }) {
     return errored?.call(error, stackTrace);
@@ -1072,8 +908,7 @@ class _$_Errored extends _Errored {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Exercise exercise)? exerciseStarted,
-    TResult Function(Session session)? sessionStarted,
+    TResult Function(Session session)? started,
     TResult Function(Object error, StackTrace stackTrace)? errored,
     required TResult orElse(),
   }) {
@@ -1087,8 +922,7 @@ class _$_Errored extends _Errored {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_ExerciseStarted value) exerciseStarted,
-    required TResult Function(_SessionStarted value) sessionStarted,
+    required TResult Function(_Started value) started,
     required TResult Function(_Errored value) errored,
   }) {
     return errored(this);
@@ -1098,8 +932,7 @@ class _$_Errored extends _Errored {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_ExerciseStarted value)? exerciseStarted,
-    TResult Function(_SessionStarted value)? sessionStarted,
+    TResult Function(_Started value)? started,
     TResult Function(_Errored value)? errored,
   }) {
     return errored?.call(this);
@@ -1109,8 +942,7 @@ class _$_Errored extends _Errored {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_ExerciseStarted value)? exerciseStarted,
-    TResult Function(_SessionStarted value)? sessionStarted,
+    TResult Function(_Started value)? started,
     TResult Function(_Errored value)? errored,
     required TResult orElse(),
   }) {

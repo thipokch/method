@@ -1,7 +1,11 @@
 import 'dart:developer';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:method_core/model/entry.dart';
+import 'package:method_core/model/task.dart';
+import 'package:method_repo/repository.dart';
 
 part 'entry_edit_event.dart';
 part 'entry_edit_state.dart';
@@ -25,44 +29,66 @@ typedef EntryEditConsumer = BlocConsumer<EntryEditBloc, EntryEditState>;
  */
 
 class EntryEditBloc extends Bloc<EntryEditEvent, EntryEditState> {
-  EntryEditBloc() : super(const _Initial()) {
-    on<_Create>(_onCreate);
-    on<_Start>(_onStart);
-    on<_Resume>(_onResume);
-    on<_Pause>(_onPause);
-    on<_Stop>(_onStop);
-    on<_Destroy>(_onDestroy);
-
-    add(const _Create());
+  EntryEditBloc({
+    required this.repository,
+    this.analytics,
+  }) : super(const _Initial()) {
+    on<_StartTask>(_onStartTask);
+    on<_StartEntry>(_onStartEntry);
   }
 
-  void _onCreate(_Create event, Emitter<EntryEditState> emit) =>
-      emit(const _Created());
+  final Repository repository;
+  final FirebaseAnalytics? analytics;
 
-  void _onStart(_Start event, Emitter<EntryEditState> emit) =>
-      emit(const _Started());
+  void _onStartTask(
+    _StartTask event,
+    Emitter<EntryEditState> emit,
+  ) async {
+    final task = await repository.tasks.get(event.taskId);
 
-  void _onResume(_Resume event, Emitter<EntryEditState> emit) =>
-      emit(const _Resumed());
+    if (task == null) {
+      return addError(
+        ArgumentError(
+          "Given id ${event.taskId} not found in exercise collection.",
+        ),
+        StackTrace.current,
+      );
+    }
 
-  void _onPause(_Pause event, Emitter<EntryEditState> emit) =>
-      emit(const _Started());
+    final newEntry = Entry.from(template: task);
 
-  void _onStop(_Stop event, Emitter<EntryEditState> emit) =>
-      emit(const _Created());
+    emit(_Started(entry: newEntry));
 
-  void _onDestroy(_Destroy event, Emitter<EntryEditState> emit) =>
-      emit(const _Destroyed());
+    // TODO: fix - onData will error with forEach.
+  }
 
-  // STREAM EVENTS
+  void _onStartEntry(
+    _StartEntry event,
+    Emitter<EntryEditState> emit,
+  ) async =>
+      await emit.forEach(
+        repository.entries.stream(event.entryId),
+        onData: _onData,
+        onError: _onError,
+      );
 
-  // _Errored _onError(Object error, StackTrace stackTrace) {
-  //   // TODO: implement analytics here
-  //   log("$runtimeType - error", error: error, stackTrace: stackTrace);
-  //   onError(error, stackTrace);
+// STREAM EVENTS
 
-  //   return _Errored(error: error, stackTrace: stackTrace);
-  // }
+  EntryEditState _onData(Entry? entry) {
+    log("$runtimeType - data");
+
+    return entry != null
+        ? _Started(entry: entry)
+        : _Errored(error: StateError(""), stackTrace: StackTrace.current);
+  }
+
+  _Errored _onError(Object error, StackTrace stackTrace) {
+    // TODO: implement analytics here
+    log("$runtimeType - error", error: error, stackTrace: stackTrace);
+    onError(error, stackTrace);
+
+    return _Errored(error: error, stackTrace: stackTrace);
+  }
 
   // BLOC EVENTS
 
@@ -82,8 +108,6 @@ class EntryEditBloc extends Bloc<EntryEditEvent, EntryEditState> {
 
   @override
   Future<void> close() {
-    add(const _Destroy());
-
     return super.close();
   }
 }

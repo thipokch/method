@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:method/app/route/route.dart';
+import 'package:method/session_edit/route/route.dart';
 import 'package:method_ui/button/button_filled.dart';
 import 'package:method_ui/emoji/emoji.dart';
 import 'package:method_ui/page/art_page.dart';
@@ -22,9 +24,17 @@ class ExerciseDetailPage extends StatelessWidget {
           selector: (state) => state.exercise?.description ?? "",
           builder: (context, state) => Text(state),
         ),
-        action: const ButtonFilled(
-          // onPressed: Session,
-          child: Text("Start"),
+        // action: const ButtonFilled(
+        //   // onPressed: Session,
+        //   child: Text("Start"),
+        // ),
+        action: ExerciseDetailSelector<String?>(
+          selector: (state) => state.exercise?.id,
+          builder: (context, id) => ButtonFilled(
+            onPressed:
+                id != null ? () => ExerciseStartRoute(id).push(context) : null,
+            child: const Text("Start"),
+          ),
         ),
         // description: Text(""),
         slivers: const [
