@@ -20,6 +20,10 @@ GoRoute get $sessionFlow => GoRouteData.$route(
           path: ':id/detail',
           factory: $SessionDetailRouteExtension._fromState,
         ),
+        GoRouteData.$route(
+          path: ':id/edit',
+          factory: $SessionEditRouteExtension._fromState,
+        ),
       ],
     );
 
@@ -50,6 +54,20 @@ extension $SessionDetailRouteExtension on SessionDetailRoute {
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
+extension $SessionEditRouteExtension on SessionEditRoute {
+  static SessionEditRoute _fromState(GoRouterState state) => SessionEditRoute(
+        state.params['id']!,
+      );
+
+  String get location => GoRouteData.$location(
+        '/session/${Uri.encodeComponent(id)}/edit',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
 GoRoute get $exerciseFlow => GoRouteData.$route(
       path: '/exercise',
       factory: $ExerciseFlowExtension._fromState,
@@ -57,6 +75,10 @@ GoRoute get $exerciseFlow => GoRouteData.$route(
         GoRouteData.$route(
           path: ':id',
           factory: $ExerciseDetailRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: ':id/start',
+          factory: $ExerciseStartRouteExtension._fromState,
         ),
       ],
     );
@@ -81,6 +103,21 @@ extension $ExerciseDetailRouteExtension on ExerciseDetailRoute {
 
   String get location => GoRouteData.$location(
         '/exercise/${Uri.encodeComponent(id)}',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $ExerciseStartRouteExtension on ExerciseStartRoute {
+  static ExerciseStartRoute _fromState(GoRouterState state) =>
+      ExerciseStartRoute(
+        state.params['id']!,
+      );
+
+  String get location => GoRouteData.$location(
+        '/exercise/${Uri.encodeComponent(id)}/start',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);

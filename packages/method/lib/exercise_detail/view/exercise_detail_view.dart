@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:method/exercise_detail/logic/logic.dart';
 import 'package:method_core/model/task.dart';
-import 'package:method_core/util/list.dart';
 import 'package:method_ui/emoji/emoji.dart';
 
 // import '../exercise_detail.dart';
