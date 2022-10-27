@@ -1,1 +1,1 @@
-export 'entry_edit_page.dart';
+export 'entry_edit_page_base.dart';

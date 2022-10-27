@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/entry_edit/logic/entry_edit_bloc.dart';
-import 'package:method/entry_edit/page/page.dart';
+import 'package:method/entry_edit/view/entry_edit_view.dart';
 import 'package:method/session_edit/logic/logic.dart';
 import 'package:method_style/element_scale.dart';
 import 'package:method_style/element_symbol.dart';
@@ -46,7 +46,7 @@ class _Swiper extends StatelessWidget {
                 ..add(EntryEditEvent.startTask(
                   taskId: _.session.template.definitions[index].id,
                 )),
-              child: const EntryEditPage(),
+              child: const EntryEditView(),
             ),
           ),
           orElse: () => const CupertinoActivityIndicator(),

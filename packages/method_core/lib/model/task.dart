@@ -32,7 +32,7 @@ class Task
     required String hierarchyPath,
     required String id,
     @UuidConverter() UuidValue? uuid,
-  }) = _Linear;
+  }) = TaskLinear;
 
   const factory Task.diverge({
     required final String icon,
@@ -42,7 +42,7 @@ class Task
     required String hierarchyPath,
     required String id,
     @UuidConverter() UuidValue? uuid,
-  }) = _Diverge;
+  }) = TaskDiverge;
 
   const factory Task.converge({
     required final String icon,
@@ -52,7 +52,7 @@ class Task
     required String hierarchyPath,
     required String id,
     @UuidConverter() UuidValue? uuid,
-  }) = _Converge;
+  }) = TaskConverge;
 
   const factory Task.feedback({
     required final String icon,
@@ -62,7 +62,7 @@ class Task
     required String hierarchyPath,
     required String id,
     @UuidConverter() UuidValue? uuid,
-  }) = _Feedback;
+  }) = TaskFeedback;
 
   factory Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);
 

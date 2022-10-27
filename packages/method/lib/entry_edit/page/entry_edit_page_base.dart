@@ -3,8 +3,13 @@ import 'package:method_ui/page/page.dart';
 
 import '../entry_edit.dart';
 
-class EntryEditPage extends StatelessWidget {
-  const EntryEditPage({super.key});
+class EntryEditPageBase extends StatelessWidget {
+  const EntryEditPageBase({
+    super.key,
+    required this.slivers,
+  });
+
+  final List<Widget> slivers;
 
   @override
   Widget build(BuildContext context) => MtAppPage(
@@ -16,9 +21,7 @@ class EntryEditPage extends StatelessWidget {
           selector: (state) => state.task?.description ?? "",
           builder: (context, state) => Text(state),
         ),
-        slivers: const [
-          // EntryEditSliver(),
-        ],
+        slivers: slivers,
         leading: const SizedBox(),
       );
 }

@@ -17,13 +17,13 @@ final _privateConstructorUsedError = UnsupportedError(
 Task _$TaskFromJson(Map<String, dynamic> json) {
   switch (json['collectionSlug']) {
     case 'linear':
-      return _Linear.fromJson(json);
+      return TaskLinear.fromJson(json);
     case 'diverge':
-      return _Diverge.fromJson(json);
+      return TaskDiverge.fromJson(json);
     case 'converge':
-      return _Converge.fromJson(json);
+      return TaskConverge.fromJson(json);
     case 'feedback':
-      return _Feedback.fromJson(json);
+      return TaskFeedback.fromJson(json);
 
     default:
       throw CheckedFromJsonException(json, 'collectionSlug', 'Task',
@@ -164,26 +164,26 @@ mixin _$Task {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Linear value) linear,
-    required TResult Function(_Diverge value) diverge,
-    required TResult Function(_Converge value) converge,
-    required TResult Function(_Feedback value) feedback,
+    required TResult Function(TaskLinear value) linear,
+    required TResult Function(TaskDiverge value) diverge,
+    required TResult Function(TaskConverge value) converge,
+    required TResult Function(TaskFeedback value) feedback,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Linear value)? linear,
-    TResult Function(_Diverge value)? diverge,
-    TResult Function(_Converge value)? converge,
-    TResult Function(_Feedback value)? feedback,
+    TResult Function(TaskLinear value)? linear,
+    TResult Function(TaskDiverge value)? diverge,
+    TResult Function(TaskConverge value)? converge,
+    TResult Function(TaskFeedback value)? feedback,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Linear value)? linear,
-    TResult Function(_Diverge value)? diverge,
-    TResult Function(_Converge value)? converge,
-    TResult Function(_Feedback value)? feedback,
+    TResult Function(TaskLinear value)? linear,
+    TResult Function(TaskDiverge value)? diverge,
+    TResult Function(TaskConverge value)? converge,
+    TResult Function(TaskFeedback value)? feedback,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -258,9 +258,10 @@ class _$TaskCopyWithImpl<$Res> implements $TaskCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_LinearCopyWith<$Res> implements $TaskCopyWith<$Res> {
-  factory _$$_LinearCopyWith(_$_Linear value, $Res Function(_$_Linear) then) =
-      __$$_LinearCopyWithImpl<$Res>;
+abstract class _$$TaskLinearCopyWith<$Res> implements $TaskCopyWith<$Res> {
+  factory _$$TaskLinearCopyWith(
+          _$TaskLinear value, $Res Function(_$TaskLinear) then) =
+      __$$TaskLinearCopyWithImpl<$Res>;
   @override
   $Res call(
       {String icon,
@@ -273,13 +274,14 @@ abstract class _$$_LinearCopyWith<$Res> implements $TaskCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_LinearCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
-    implements _$$_LinearCopyWith<$Res> {
-  __$$_LinearCopyWithImpl(_$_Linear _value, $Res Function(_$_Linear) _then)
-      : super(_value, (v) => _then(v as _$_Linear));
+class __$$TaskLinearCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
+    implements _$$TaskLinearCopyWith<$Res> {
+  __$$TaskLinearCopyWithImpl(
+      _$TaskLinear _value, $Res Function(_$TaskLinear) _then)
+      : super(_value, (v) => _then(v as _$TaskLinear));
 
   @override
-  _$_Linear get _value => super._value as _$_Linear;
+  _$TaskLinear get _value => super._value as _$TaskLinear;
 
   @override
   $Res call({
@@ -291,7 +293,7 @@ class __$$_LinearCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
     Object? id = freezed,
     Object? uuid = freezed,
   }) {
-    return _then(_$_Linear(
+    return _then(_$TaskLinear(
       icon: icon == freezed
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
@@ -326,8 +328,8 @@ class __$$_LinearCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Linear extends _Linear {
-  const _$_Linear(
+class _$TaskLinear extends TaskLinear {
+  const _$TaskLinear(
       {required this.icon,
       required this.name,
       required this.description,
@@ -340,8 +342,8 @@ class _$_Linear extends _Linear {
         $type = $type ?? 'linear',
         super._();
 
-  factory _$_Linear.fromJson(Map<String, dynamic> json) =>
-      _$$_LinearFromJson(json);
+  factory _$TaskLinear.fromJson(Map<String, dynamic> json) =>
+      _$$TaskLinearFromJson(json);
 
   @override
   final String icon;
@@ -376,7 +378,7 @@ class _$_Linear extends _Linear {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Linear &&
+            other is _$TaskLinear &&
             const DeepCollectionEquality().equals(other.icon, icon) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
@@ -403,8 +405,8 @@ class _$_Linear extends _Linear {
 
   @JsonKey(ignore: true)
   @override
-  _$$_LinearCopyWith<_$_Linear> get copyWith =>
-      __$$_LinearCopyWithImpl<_$_Linear>(this, _$identity);
+  _$$TaskLinearCopyWith<_$TaskLinear> get copyWith =>
+      __$$TaskLinearCopyWithImpl<_$TaskLinear>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -545,10 +547,10 @@ class _$_Linear extends _Linear {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Linear value) linear,
-    required TResult Function(_Diverge value) diverge,
-    required TResult Function(_Converge value) converge,
-    required TResult Function(_Feedback value) feedback,
+    required TResult Function(TaskLinear value) linear,
+    required TResult Function(TaskDiverge value) diverge,
+    required TResult Function(TaskConverge value) converge,
+    required TResult Function(TaskFeedback value) feedback,
   }) {
     return linear(this);
   }
@@ -556,10 +558,10 @@ class _$_Linear extends _Linear {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Linear value)? linear,
-    TResult Function(_Diverge value)? diverge,
-    TResult Function(_Converge value)? converge,
-    TResult Function(_Feedback value)? feedback,
+    TResult Function(TaskLinear value)? linear,
+    TResult Function(TaskDiverge value)? diverge,
+    TResult Function(TaskConverge value)? converge,
+    TResult Function(TaskFeedback value)? feedback,
   }) {
     return linear?.call(this);
   }
@@ -567,10 +569,10 @@ class _$_Linear extends _Linear {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Linear value)? linear,
-    TResult Function(_Diverge value)? diverge,
-    TResult Function(_Converge value)? converge,
-    TResult Function(_Feedback value)? feedback,
+    TResult Function(TaskLinear value)? linear,
+    TResult Function(TaskDiverge value)? diverge,
+    TResult Function(TaskConverge value)? converge,
+    TResult Function(TaskFeedback value)? feedback,
     required TResult orElse(),
   }) {
     if (linear != null) {
@@ -581,24 +583,25 @@ class _$_Linear extends _Linear {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LinearToJson(
+    return _$$TaskLinearToJson(
       this,
     );
   }
 }
 
-abstract class _Linear extends Task {
-  const factory _Linear(
+abstract class TaskLinear extends Task {
+  const factory TaskLinear(
       {required final String icon,
       required final String name,
       required final String description,
       required final List<TaskDefinition> definitions,
       required final String hierarchyPath,
       required final String id,
-      @UuidConverter() final UuidValue? uuid}) = _$_Linear;
-  const _Linear._() : super._();
+      @UuidConverter() final UuidValue? uuid}) = _$TaskLinear;
+  const TaskLinear._() : super._();
 
-  factory _Linear.fromJson(Map<String, dynamic> json) = _$_Linear.fromJson;
+  factory TaskLinear.fromJson(Map<String, dynamic> json) =
+      _$TaskLinear.fromJson;
 
   @override
   String get icon;
@@ -617,15 +620,15 @@ abstract class _Linear extends Task {
   UuidValue? get uuid;
   @override
   @JsonKey(ignore: true)
-  _$$_LinearCopyWith<_$_Linear> get copyWith =>
+  _$$TaskLinearCopyWith<_$TaskLinear> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_DivergeCopyWith<$Res> implements $TaskCopyWith<$Res> {
-  factory _$$_DivergeCopyWith(
-          _$_Diverge value, $Res Function(_$_Diverge) then) =
-      __$$_DivergeCopyWithImpl<$Res>;
+abstract class _$$TaskDivergeCopyWith<$Res> implements $TaskCopyWith<$Res> {
+  factory _$$TaskDivergeCopyWith(
+          _$TaskDiverge value, $Res Function(_$TaskDiverge) then) =
+      __$$TaskDivergeCopyWithImpl<$Res>;
   @override
   $Res call(
       {String icon,
@@ -638,13 +641,14 @@ abstract class _$$_DivergeCopyWith<$Res> implements $TaskCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_DivergeCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
-    implements _$$_DivergeCopyWith<$Res> {
-  __$$_DivergeCopyWithImpl(_$_Diverge _value, $Res Function(_$_Diverge) _then)
-      : super(_value, (v) => _then(v as _$_Diverge));
+class __$$TaskDivergeCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
+    implements _$$TaskDivergeCopyWith<$Res> {
+  __$$TaskDivergeCopyWithImpl(
+      _$TaskDiverge _value, $Res Function(_$TaskDiverge) _then)
+      : super(_value, (v) => _then(v as _$TaskDiverge));
 
   @override
-  _$_Diverge get _value => super._value as _$_Diverge;
+  _$TaskDiverge get _value => super._value as _$TaskDiverge;
 
   @override
   $Res call({
@@ -656,7 +660,7 @@ class __$$_DivergeCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
     Object? id = freezed,
     Object? uuid = freezed,
   }) {
-    return _then(_$_Diverge(
+    return _then(_$TaskDiverge(
       icon: icon == freezed
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
@@ -691,8 +695,8 @@ class __$$_DivergeCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Diverge extends _Diverge {
-  const _$_Diverge(
+class _$TaskDiverge extends TaskDiverge {
+  const _$TaskDiverge(
       {required this.icon,
       required this.name,
       required this.description,
@@ -705,8 +709,8 @@ class _$_Diverge extends _Diverge {
         $type = $type ?? 'diverge',
         super._();
 
-  factory _$_Diverge.fromJson(Map<String, dynamic> json) =>
-      _$$_DivergeFromJson(json);
+  factory _$TaskDiverge.fromJson(Map<String, dynamic> json) =>
+      _$$TaskDivergeFromJson(json);
 
   @override
   final String icon;
@@ -741,7 +745,7 @@ class _$_Diverge extends _Diverge {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Diverge &&
+            other is _$TaskDiverge &&
             const DeepCollectionEquality().equals(other.icon, icon) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
@@ -768,8 +772,8 @@ class _$_Diverge extends _Diverge {
 
   @JsonKey(ignore: true)
   @override
-  _$$_DivergeCopyWith<_$_Diverge> get copyWith =>
-      __$$_DivergeCopyWithImpl<_$_Diverge>(this, _$identity);
+  _$$TaskDivergeCopyWith<_$TaskDiverge> get copyWith =>
+      __$$TaskDivergeCopyWithImpl<_$TaskDiverge>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -910,10 +914,10 @@ class _$_Diverge extends _Diverge {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Linear value) linear,
-    required TResult Function(_Diverge value) diverge,
-    required TResult Function(_Converge value) converge,
-    required TResult Function(_Feedback value) feedback,
+    required TResult Function(TaskLinear value) linear,
+    required TResult Function(TaskDiverge value) diverge,
+    required TResult Function(TaskConverge value) converge,
+    required TResult Function(TaskFeedback value) feedback,
   }) {
     return diverge(this);
   }
@@ -921,10 +925,10 @@ class _$_Diverge extends _Diverge {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Linear value)? linear,
-    TResult Function(_Diverge value)? diverge,
-    TResult Function(_Converge value)? converge,
-    TResult Function(_Feedback value)? feedback,
+    TResult Function(TaskLinear value)? linear,
+    TResult Function(TaskDiverge value)? diverge,
+    TResult Function(TaskConverge value)? converge,
+    TResult Function(TaskFeedback value)? feedback,
   }) {
     return diverge?.call(this);
   }
@@ -932,10 +936,10 @@ class _$_Diverge extends _Diverge {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Linear value)? linear,
-    TResult Function(_Diverge value)? diverge,
-    TResult Function(_Converge value)? converge,
-    TResult Function(_Feedback value)? feedback,
+    TResult Function(TaskLinear value)? linear,
+    TResult Function(TaskDiverge value)? diverge,
+    TResult Function(TaskConverge value)? converge,
+    TResult Function(TaskFeedback value)? feedback,
     required TResult orElse(),
   }) {
     if (diverge != null) {
@@ -946,24 +950,25 @@ class _$_Diverge extends _Diverge {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DivergeToJson(
+    return _$$TaskDivergeToJson(
       this,
     );
   }
 }
 
-abstract class _Diverge extends Task {
-  const factory _Diverge(
+abstract class TaskDiverge extends Task {
+  const factory TaskDiverge(
       {required final String icon,
       required final String name,
       required final String description,
       required final List<TaskDefinition> definitions,
       required final String hierarchyPath,
       required final String id,
-      @UuidConverter() final UuidValue? uuid}) = _$_Diverge;
-  const _Diverge._() : super._();
+      @UuidConverter() final UuidValue? uuid}) = _$TaskDiverge;
+  const TaskDiverge._() : super._();
 
-  factory _Diverge.fromJson(Map<String, dynamic> json) = _$_Diverge.fromJson;
+  factory TaskDiverge.fromJson(Map<String, dynamic> json) =
+      _$TaskDiverge.fromJson;
 
   @override
   String get icon;
@@ -982,15 +987,15 @@ abstract class _Diverge extends Task {
   UuidValue? get uuid;
   @override
   @JsonKey(ignore: true)
-  _$$_DivergeCopyWith<_$_Diverge> get copyWith =>
+  _$$TaskDivergeCopyWith<_$TaskDiverge> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_ConvergeCopyWith<$Res> implements $TaskCopyWith<$Res> {
-  factory _$$_ConvergeCopyWith(
-          _$_Converge value, $Res Function(_$_Converge) then) =
-      __$$_ConvergeCopyWithImpl<$Res>;
+abstract class _$$TaskConvergeCopyWith<$Res> implements $TaskCopyWith<$Res> {
+  factory _$$TaskConvergeCopyWith(
+          _$TaskConverge value, $Res Function(_$TaskConverge) then) =
+      __$$TaskConvergeCopyWithImpl<$Res>;
   @override
   $Res call(
       {String icon,
@@ -1003,14 +1008,14 @@ abstract class _$$_ConvergeCopyWith<$Res> implements $TaskCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ConvergeCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
-    implements _$$_ConvergeCopyWith<$Res> {
-  __$$_ConvergeCopyWithImpl(
-      _$_Converge _value, $Res Function(_$_Converge) _then)
-      : super(_value, (v) => _then(v as _$_Converge));
+class __$$TaskConvergeCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
+    implements _$$TaskConvergeCopyWith<$Res> {
+  __$$TaskConvergeCopyWithImpl(
+      _$TaskConverge _value, $Res Function(_$TaskConverge) _then)
+      : super(_value, (v) => _then(v as _$TaskConverge));
 
   @override
-  _$_Converge get _value => super._value as _$_Converge;
+  _$TaskConverge get _value => super._value as _$TaskConverge;
 
   @override
   $Res call({
@@ -1022,7 +1027,7 @@ class __$$_ConvergeCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
     Object? id = freezed,
     Object? uuid = freezed,
   }) {
-    return _then(_$_Converge(
+    return _then(_$TaskConverge(
       icon: icon == freezed
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
@@ -1057,8 +1062,8 @@ class __$$_ConvergeCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Converge extends _Converge {
-  const _$_Converge(
+class _$TaskConverge extends TaskConverge {
+  const _$TaskConverge(
       {required this.icon,
       required this.name,
       required this.description,
@@ -1071,8 +1076,8 @@ class _$_Converge extends _Converge {
         $type = $type ?? 'converge',
         super._();
 
-  factory _$_Converge.fromJson(Map<String, dynamic> json) =>
-      _$$_ConvergeFromJson(json);
+  factory _$TaskConverge.fromJson(Map<String, dynamic> json) =>
+      _$$TaskConvergeFromJson(json);
 
   @override
   final String icon;
@@ -1107,7 +1112,7 @@ class _$_Converge extends _Converge {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Converge &&
+            other is _$TaskConverge &&
             const DeepCollectionEquality().equals(other.icon, icon) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
@@ -1134,8 +1139,8 @@ class _$_Converge extends _Converge {
 
   @JsonKey(ignore: true)
   @override
-  _$$_ConvergeCopyWith<_$_Converge> get copyWith =>
-      __$$_ConvergeCopyWithImpl<_$_Converge>(this, _$identity);
+  _$$TaskConvergeCopyWith<_$TaskConverge> get copyWith =>
+      __$$TaskConvergeCopyWithImpl<_$TaskConverge>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1276,10 +1281,10 @@ class _$_Converge extends _Converge {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Linear value) linear,
-    required TResult Function(_Diverge value) diverge,
-    required TResult Function(_Converge value) converge,
-    required TResult Function(_Feedback value) feedback,
+    required TResult Function(TaskLinear value) linear,
+    required TResult Function(TaskDiverge value) diverge,
+    required TResult Function(TaskConverge value) converge,
+    required TResult Function(TaskFeedback value) feedback,
   }) {
     return converge(this);
   }
@@ -1287,10 +1292,10 @@ class _$_Converge extends _Converge {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Linear value)? linear,
-    TResult Function(_Diverge value)? diverge,
-    TResult Function(_Converge value)? converge,
-    TResult Function(_Feedback value)? feedback,
+    TResult Function(TaskLinear value)? linear,
+    TResult Function(TaskDiverge value)? diverge,
+    TResult Function(TaskConverge value)? converge,
+    TResult Function(TaskFeedback value)? feedback,
   }) {
     return converge?.call(this);
   }
@@ -1298,10 +1303,10 @@ class _$_Converge extends _Converge {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Linear value)? linear,
-    TResult Function(_Diverge value)? diverge,
-    TResult Function(_Converge value)? converge,
-    TResult Function(_Feedback value)? feedback,
+    TResult Function(TaskLinear value)? linear,
+    TResult Function(TaskDiverge value)? diverge,
+    TResult Function(TaskConverge value)? converge,
+    TResult Function(TaskFeedback value)? feedback,
     required TResult orElse(),
   }) {
     if (converge != null) {
@@ -1312,24 +1317,25 @@ class _$_Converge extends _Converge {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ConvergeToJson(
+    return _$$TaskConvergeToJson(
       this,
     );
   }
 }
 
-abstract class _Converge extends Task {
-  const factory _Converge(
+abstract class TaskConverge extends Task {
+  const factory TaskConverge(
       {required final String icon,
       required final String name,
       required final String description,
       required final List<TaskDefinition> definitions,
       required final String hierarchyPath,
       required final String id,
-      @UuidConverter() final UuidValue? uuid}) = _$_Converge;
-  const _Converge._() : super._();
+      @UuidConverter() final UuidValue? uuid}) = _$TaskConverge;
+  const TaskConverge._() : super._();
 
-  factory _Converge.fromJson(Map<String, dynamic> json) = _$_Converge.fromJson;
+  factory TaskConverge.fromJson(Map<String, dynamic> json) =
+      _$TaskConverge.fromJson;
 
   @override
   String get icon;
@@ -1348,15 +1354,15 @@ abstract class _Converge extends Task {
   UuidValue? get uuid;
   @override
   @JsonKey(ignore: true)
-  _$$_ConvergeCopyWith<_$_Converge> get copyWith =>
+  _$$TaskConvergeCopyWith<_$TaskConverge> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_FeedbackCopyWith<$Res> implements $TaskCopyWith<$Res> {
-  factory _$$_FeedbackCopyWith(
-          _$_Feedback value, $Res Function(_$_Feedback) then) =
-      __$$_FeedbackCopyWithImpl<$Res>;
+abstract class _$$TaskFeedbackCopyWith<$Res> implements $TaskCopyWith<$Res> {
+  factory _$$TaskFeedbackCopyWith(
+          _$TaskFeedback value, $Res Function(_$TaskFeedback) then) =
+      __$$TaskFeedbackCopyWithImpl<$Res>;
   @override
   $Res call(
       {String icon,
@@ -1369,14 +1375,14 @@ abstract class _$$_FeedbackCopyWith<$Res> implements $TaskCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_FeedbackCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
-    implements _$$_FeedbackCopyWith<$Res> {
-  __$$_FeedbackCopyWithImpl(
-      _$_Feedback _value, $Res Function(_$_Feedback) _then)
-      : super(_value, (v) => _then(v as _$_Feedback));
+class __$$TaskFeedbackCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
+    implements _$$TaskFeedbackCopyWith<$Res> {
+  __$$TaskFeedbackCopyWithImpl(
+      _$TaskFeedback _value, $Res Function(_$TaskFeedback) _then)
+      : super(_value, (v) => _then(v as _$TaskFeedback));
 
   @override
-  _$_Feedback get _value => super._value as _$_Feedback;
+  _$TaskFeedback get _value => super._value as _$TaskFeedback;
 
   @override
   $Res call({
@@ -1388,7 +1394,7 @@ class __$$_FeedbackCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
     Object? id = freezed,
     Object? uuid = freezed,
   }) {
-    return _then(_$_Feedback(
+    return _then(_$TaskFeedback(
       icon: icon == freezed
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
@@ -1423,8 +1429,8 @@ class __$$_FeedbackCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Feedback extends _Feedback {
-  const _$_Feedback(
+class _$TaskFeedback extends TaskFeedback {
+  const _$TaskFeedback(
       {required this.icon,
       required this.name,
       required this.description,
@@ -1437,8 +1443,8 @@ class _$_Feedback extends _Feedback {
         $type = $type ?? 'feedback',
         super._();
 
-  factory _$_Feedback.fromJson(Map<String, dynamic> json) =>
-      _$$_FeedbackFromJson(json);
+  factory _$TaskFeedback.fromJson(Map<String, dynamic> json) =>
+      _$$TaskFeedbackFromJson(json);
 
   @override
   final String icon;
@@ -1473,7 +1479,7 @@ class _$_Feedback extends _Feedback {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Feedback &&
+            other is _$TaskFeedback &&
             const DeepCollectionEquality().equals(other.icon, icon) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
@@ -1500,8 +1506,8 @@ class _$_Feedback extends _Feedback {
 
   @JsonKey(ignore: true)
   @override
-  _$$_FeedbackCopyWith<_$_Feedback> get copyWith =>
-      __$$_FeedbackCopyWithImpl<_$_Feedback>(this, _$identity);
+  _$$TaskFeedbackCopyWith<_$TaskFeedback> get copyWith =>
+      __$$TaskFeedbackCopyWithImpl<_$TaskFeedback>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1642,10 +1648,10 @@ class _$_Feedback extends _Feedback {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Linear value) linear,
-    required TResult Function(_Diverge value) diverge,
-    required TResult Function(_Converge value) converge,
-    required TResult Function(_Feedback value) feedback,
+    required TResult Function(TaskLinear value) linear,
+    required TResult Function(TaskDiverge value) diverge,
+    required TResult Function(TaskConverge value) converge,
+    required TResult Function(TaskFeedback value) feedback,
   }) {
     return feedback(this);
   }
@@ -1653,10 +1659,10 @@ class _$_Feedback extends _Feedback {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Linear value)? linear,
-    TResult Function(_Diverge value)? diverge,
-    TResult Function(_Converge value)? converge,
-    TResult Function(_Feedback value)? feedback,
+    TResult Function(TaskLinear value)? linear,
+    TResult Function(TaskDiverge value)? diverge,
+    TResult Function(TaskConverge value)? converge,
+    TResult Function(TaskFeedback value)? feedback,
   }) {
     return feedback?.call(this);
   }
@@ -1664,10 +1670,10 @@ class _$_Feedback extends _Feedback {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Linear value)? linear,
-    TResult Function(_Diverge value)? diverge,
-    TResult Function(_Converge value)? converge,
-    TResult Function(_Feedback value)? feedback,
+    TResult Function(TaskLinear value)? linear,
+    TResult Function(TaskDiverge value)? diverge,
+    TResult Function(TaskConverge value)? converge,
+    TResult Function(TaskFeedback value)? feedback,
     required TResult orElse(),
   }) {
     if (feedback != null) {
@@ -1678,24 +1684,25 @@ class _$_Feedback extends _Feedback {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_FeedbackToJson(
+    return _$$TaskFeedbackToJson(
       this,
     );
   }
 }
 
-abstract class _Feedback extends Task {
-  const factory _Feedback(
+abstract class TaskFeedback extends Task {
+  const factory TaskFeedback(
       {required final String icon,
       required final String name,
       required final String description,
       required final List<TaskDefinition> definitions,
       required final String hierarchyPath,
       required final String id,
-      @UuidConverter() final UuidValue? uuid}) = _$_Feedback;
-  const _Feedback._() : super._();
+      @UuidConverter() final UuidValue? uuid}) = _$TaskFeedback;
+  const TaskFeedback._() : super._();
 
-  factory _Feedback.fromJson(Map<String, dynamic> json) = _$_Feedback.fromJson;
+  factory TaskFeedback.fromJson(Map<String, dynamic> json) =
+      _$TaskFeedback.fromJson;
 
   @override
   String get icon;
@@ -1714,6 +1721,6 @@ abstract class _Feedback extends Task {
   UuidValue? get uuid;
   @override
   @JsonKey(ignore: true)
-  _$$_FeedbackCopyWith<_$_Feedback> get copyWith =>
+  _$$TaskFeedbackCopyWith<_$TaskFeedback> get copyWith =>
       throw _privateConstructorUsedError;
 }

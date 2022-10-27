@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../entry_edit.dart';
+import '../entry_edit_converge.dart';
 
-class EntryEditRoute extends GoRouteData {
-  const EntryEditRoute();
+class EntryEditConvergeRoute extends GoRouteData {
+  const EntryEditConvergeRoute();
 
   @override
-  Widget build(BuildContext context) => const EntryEditView();
+  Widget build(BuildContext context) => const EntryEditConvergePage();
 
   @override
   Page<void> buildPageWithState(BuildContext context, GoRouterState state) =>

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../entry_edit.dart';
+import '../definition_edit_label.dart';
 
-class EntryEditRoute extends GoRouteData {
-  const EntryEditRoute();
+class DefinitionEditLabelRoute extends GoRouteData {
+  const DefinitionEditLabelRoute();
 
   @override
-  Widget build(BuildContext context) => const EntryEditView();
+  Widget build(BuildContext context) => const DefinitionEditLabelPage();
 
   @override
   Page<void> buildPageWithState(BuildContext context, GoRouterState state) =>

@@ -6,7 +6,7 @@ part of 'task.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Linear _$$_LinearFromJson(Map<String, dynamic> json) => _$_Linear(
+_$TaskLinear _$$TaskLinearFromJson(Map<String, dynamic> json) => _$TaskLinear(
       icon: json['icon'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
@@ -20,7 +20,8 @@ _$_Linear _$$_LinearFromJson(Map<String, dynamic> json) => _$_Linear(
       $type: json['collectionSlug'] as String?,
     );
 
-Map<String, dynamic> _$$_LinearToJson(_$_Linear instance) => <String, dynamic>{
+Map<String, dynamic> _$$TaskLinearToJson(_$TaskLinear instance) =>
+    <String, dynamic>{
       'icon': instance.icon,
       'name': instance.name,
       'description': instance.description,
@@ -44,7 +45,8 @@ Json? _$JsonConverterToJson<Json, Value>(
 ) =>
     value == null ? null : toJson(value);
 
-_$_Diverge _$$_DivergeFromJson(Map<String, dynamic> json) => _$_Diverge(
+_$TaskDiverge _$$TaskDivergeFromJson(Map<String, dynamic> json) =>
+    _$TaskDiverge(
       icon: json['icon'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
@@ -58,7 +60,7 @@ _$_Diverge _$$_DivergeFromJson(Map<String, dynamic> json) => _$_Diverge(
       $type: json['collectionSlug'] as String?,
     );
 
-Map<String, dynamic> _$$_DivergeToJson(_$_Diverge instance) =>
+Map<String, dynamic> _$$TaskDivergeToJson(_$TaskDiverge instance) =>
     <String, dynamic>{
       'icon': instance.icon,
       'name': instance.name,
@@ -71,7 +73,8 @@ Map<String, dynamic> _$$_DivergeToJson(_$_Diverge instance) =>
       'collectionSlug': instance.$type,
     };
 
-_$_Converge _$$_ConvergeFromJson(Map<String, dynamic> json) => _$_Converge(
+_$TaskConverge _$$TaskConvergeFromJson(Map<String, dynamic> json) =>
+    _$TaskConverge(
       icon: json['icon'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
@@ -85,7 +88,7 @@ _$_Converge _$$_ConvergeFromJson(Map<String, dynamic> json) => _$_Converge(
       $type: json['collectionSlug'] as String?,
     );
 
-Map<String, dynamic> _$$_ConvergeToJson(_$_Converge instance) =>
+Map<String, dynamic> _$$TaskConvergeToJson(_$TaskConverge instance) =>
     <String, dynamic>{
       'icon': instance.icon,
       'name': instance.name,
@@ -98,7 +101,8 @@ Map<String, dynamic> _$$_ConvergeToJson(_$_Converge instance) =>
       'collectionSlug': instance.$type,
     };
 
-_$_Feedback _$$_FeedbackFromJson(Map<String, dynamic> json) => _$_Feedback(
+_$TaskFeedback _$$TaskFeedbackFromJson(Map<String, dynamic> json) =>
+    _$TaskFeedback(
       icon: json['icon'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
@@ -112,7 +116,7 @@ _$_Feedback _$$_FeedbackFromJson(Map<String, dynamic> json) => _$_Feedback(
       $type: json['collectionSlug'] as String?,
     );
 
-Map<String, dynamic> _$$_FeedbackToJson(_$_Feedback instance) =>
+Map<String, dynamic> _$$TaskFeedbackToJson(_$TaskFeedback instance) =>
     <String, dynamic>{
       'icon': instance.icon,
       'name': instance.name,
