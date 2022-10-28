@@ -16,18 +16,18 @@ class TaskDefinition with _$TaskDefinition, Identify, Locate, Uniform, Inform {
     required final String icon,
     required final String name,
     required final String description,
-    required String hierarchyPath,
-    required String id,
-    @UuidConverter() UuidValue? uuid,
+    required final String hierarchyPath,
+    required final String id,
+    @UuidConverter() final UuidValue? uuid,
   }) = _Label;
 
   const factory TaskDefinition.note({
     required final String icon,
     required final String name,
     required final String description,
-    required String hierarchyPath,
-    required String id,
-    @UuidConverter() UuidValue? uuid,
+    required final String hierarchyPath,
+    required final String id,
+    @UuidConverter() final UuidValue? uuid,
   }) = _Note;
 
   factory TaskDefinition.fromJson(Map<String, dynamic> json) =>
@@ -38,4 +38,7 @@ class TaskDefinition with _$TaskDefinition, Identify, Locate, Uniform, Inform {
         label: (_) => "label",
         note: (_) => "note",
       );
+
+  @override
+  String toString() => "$runtimeType ($id)";
 }

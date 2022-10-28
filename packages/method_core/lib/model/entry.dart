@@ -1,4 +1,5 @@
 import 'package:method_core/abstract/maintain.dart';
+import 'package:method_core/model/definition.dart';
 import 'package:method_core/model/task.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -23,7 +24,7 @@ class Entry
         Uniform,
         DefineTemplate<Task>,
         DefineDefinition<EntryDefinition>,
-        MappedDefinition<Task, TaskDefinition, EntryDefinition>,
+        DefinitionBuilder<Task, TaskDefinition, EntryDefinition>,
         _$Entry {
   const Entry._();
 
@@ -89,7 +90,7 @@ class Entry
       .toList();
 
   @override
-  String templateKey(TaskDefinition td) => td.id;
+  String instructionKey(TaskDefinition td) => td.id;
 
   @override
   String dataKey(EntryDefinition d) => d.id;

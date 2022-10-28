@@ -30,6 +30,7 @@ dependencies:
   flutter_bloc: ^8.1.1
   bloc_concurrency: ^0.2.0
   freezed_annotation: ^2.1.0
+  built_collection: ^5.1.1
   # go_router: ^5.0.5
   # realm: ^0.5.0+beta
   # uuid: ^3.0.6

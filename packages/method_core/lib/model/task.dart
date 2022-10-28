@@ -29,9 +29,9 @@ class Task
     required final String name,
     required final String description,
     required final List<TaskDefinition> definitions,
-    required String hierarchyPath,
-    required String id,
-    @UuidConverter() UuidValue? uuid,
+    required final String hierarchyPath,
+    required final String id,
+    @UuidConverter() final UuidValue? uuid,
   }) = TaskLinear;
 
   const factory Task.diverge({
@@ -39,9 +39,9 @@ class Task
     required final String name,
     required final String description,
     required final List<TaskDefinition> definitions,
-    required String hierarchyPath,
-    required String id,
-    @UuidConverter() UuidValue? uuid,
+    required final String hierarchyPath,
+    required final String id,
+    @UuidConverter() final UuidValue? uuid,
   }) = TaskDiverge;
 
   const factory Task.converge({
@@ -49,9 +49,9 @@ class Task
     required final String name,
     required final String description,
     required final List<TaskDefinition> definitions,
-    required String hierarchyPath,
-    required String id,
-    @UuidConverter() UuidValue? uuid,
+    required final String hierarchyPath,
+    required final String id,
+    @UuidConverter() final UuidValue? uuid,
   }) = TaskConverge;
 
   const factory Task.feedback({
@@ -59,9 +59,9 @@ class Task
     required final String name,
     required final String description,
     required final List<TaskDefinition> definitions,
-    required String hierarchyPath,
-    required String id,
-    @UuidConverter() UuidValue? uuid,
+    required final String hierarchyPath,
+    required final String id,
+    @UuidConverter() final UuidValue? uuid,
   }) = TaskFeedback;
 
   factory Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);

@@ -7,6 +7,11 @@ abstract class EntryEditStateBase {
   Task? get task => null;
 }
 
+// extension EntryDefinition on EntryEditStateBase {
+//   DefinitionMap? get mappedDefinition => entry?.builtDefinition;
+//   DefinitionList? get definitions => mappedDefinition?.entries.toBuiltList();
+// }
+
 mixin EntryEditBase_Initial on EntryEditStateBase {}
 
 mixin EntryEditBase_Started on EntryEditStateBase {

@@ -32,10 +32,10 @@ class Exercise
     required final String name,
     required final String description,
     required final List<Task> definitions,
-    required String hierarchyPath,
-    required String id,
-    @UuidConverter() UuidValue? uuid,
-    required Presentation presentation,
+    required final String hierarchyPath,
+    required final String id,
+    @UuidConverter() final UuidValue? uuid,
+    required final Presentation presentation,
   }) = _Exercise;
 
   factory Exercise.create({
@@ -46,7 +46,7 @@ class Exercise
     required final String hierarchyPath,
     final String? id,
     final String? uuid,
-    Presentation? presentation,
+    final Presentation? presentation,
   }) =>
       Exercise(
         icon: icon,

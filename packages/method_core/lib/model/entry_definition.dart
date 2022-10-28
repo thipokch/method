@@ -16,21 +16,21 @@ class EntryDefinition with _$EntryDefinition, Identify, Locate, Uniform {
   const EntryDefinition._();
 
   const factory EntryDefinition.label({
-    required String hierarchyPath,
-    required String id,
-    @UuidConverter() UuidValue? uuid,
+    required final String hierarchyPath,
+    required final String id,
+    @UuidConverter() final UuidValue? uuid,
   }) = _Label;
 
   const factory EntryDefinition.note({
-    required String data,
-    required String hierarchyPath,
-    required String id,
-    @UuidConverter() UuidValue? uuid,
+    required final String data,
+    required final String hierarchyPath,
+    required final String id,
+    @UuidConverter() final UuidValue? uuid,
   }) = _Note;
 
   factory EntryDefinition.from({
     required final TaskDefinition template,
-    String? data,
+    final String? data,
   }) =>
       template.map(
         label: (_) => EntryDefinition.label(
@@ -52,4 +52,7 @@ class EntryDefinition with _$EntryDefinition, Identify, Locate, Uniform {
 
   factory EntryDefinition.fromJson(Map<String, dynamic> json) =>
       _$EntryDefinitionFromJson(json);
+
+  @override
+  String toString() => "$runtimeType ($id)";
 }

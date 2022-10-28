@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/definition_edit_label/view/view.dart';
 import 'package:method/entry_edit/page/page.dart';
 import 'package:method_core/model/definition.dart';
-import 'package:method_core/model/entry_definition.dart';
 import 'package:method_style/element_scale.dart';
 
 import '../entry_edit_converge.dart';
@@ -50,8 +49,7 @@ class _LabelGrid extends StatelessWidget {
                 delegate: SliverChildBuilderDelegate(
                   (context, index) => DefinitionEditLabelView(
                     taskDefinition: labels[index].key,
-                    entryDefinition: labels[index].value ??
-                        EntryDefinition.from(template: labels[index].key),
+                    entryDefinition: labels[index].value.orNull,
                     onTap: () => context
                         .read<EntryEditConvergeBloc>()
                         .add(EntryEditConvergeEvent.selectLabel(index: index)),

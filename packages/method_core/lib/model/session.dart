@@ -1,3 +1,4 @@
+import 'package:method_core/model/definition.dart';
 import 'package:method_core/model/entry.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -24,16 +25,16 @@ class Session
         Uniform,
         DefineTemplate<Exercise>,
         DefineDefinition<Entry>,
-        MappedDefinition<Exercise, Task, Entry>,
+        DefinitionBuilder<Exercise, Task, Entry>,
         _$Session {
   const Session._();
 
   const factory Session({
     required final Exercise template,
     required final List<Entry> definitions,
-    required String hierarchyPath,
-    required String id,
-    @UuidConverter() UuidValue? uuid,
+    required final String hierarchyPath,
+    required final String id,
+    @UuidConverter() final UuidValue? uuid,
     required final DateTime createdAt,
     required final DateTime readAt,
     required final DateTime updatedAt,

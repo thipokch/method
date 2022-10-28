@@ -1,10 +1,9 @@
-import 'dart:developer';
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/entry_edit/base/entry_edit_bloc_base.dart';
 import 'package:method_core/model/definition.dart';
 import 'package:method_core/model/entry.dart';
+import 'package:method_core/model/entry_definition.dart';
 import 'package:method_core/model/task.dart';
 
 part 'entry_edit_converge_event.dart';
@@ -49,7 +48,31 @@ class EntryEditConvergeBloc
     _SelectLabel event,
     Emitter<EntryEditConvergeState> emit,
   ) =>
-      log(event.toString());
+      state.maybeWhen(
+        started: (entry) =>
+            entry.definitions.elementAtOrNull(event.index + 1) == null
+                ? emit(_Started(
+                    entry: entry.copyWith(
+                      definitions: entry
+                          .mutateFor(
+                            entry.template.definitions[event.index + 1],
+                            EntryDefinition.from(
+                              template:
+                                  entry.template.definitions[event.index + 1],
+                            ),
+                          )
+                          .asEntryDefinitionList(),
+                    ),
+                  ))
+                : emit(_Started(
+                    entry: entry.copyWith(
+                      definitions: entry
+                          .removeAt(event.index + 1)
+                          .asEntryDefinitionList(),
+                    ),
+                  )),
+        orElse: () => throw StateError("Invalid state to SelectLabel"),
+      );
 
   @override
   EntryEditConvergeState onStreamData(Entry? entry) =>
