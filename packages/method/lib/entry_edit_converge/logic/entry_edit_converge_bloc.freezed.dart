@@ -125,7 +125,7 @@ class __$$_StartTaskCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_StartTask extends _StartTask {
+class _$_StartTask extends _StartTask with EntryEditBase_StartTask {
   const _$_StartTask({required this.taskId}) : super._();
 
   @override
@@ -234,7 +234,8 @@ class _$_StartTask extends _StartTask {
   }
 }
 
-abstract class _StartTask extends EntryEditConvergeEvent {
+abstract class _StartTask extends EntryEditConvergeEvent
+    implements EntryEditBase_StartTask {
   const factory _StartTask({required final String taskId}) = _$_StartTask;
   const _StartTask._() : super._();
 
@@ -278,7 +279,7 @@ class __$$_StartEntryCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_StartEntry extends _StartEntry {
+class _$_StartEntry extends _StartEntry with EntryEditBase_StartEntry {
   const _$_StartEntry({required this.entryId}) : super._();
 
   @override
@@ -387,7 +388,8 @@ class _$_StartEntry extends _StartEntry {
   }
 }
 
-abstract class _StartEntry extends EntryEditConvergeEvent {
+abstract class _StartEntry extends EntryEditConvergeEvent
+    implements EntryEditBase_StartEntry {
   const factory _StartEntry({required final String entryId}) = _$_StartEntry;
   const _StartEntry._() : super._();
 
@@ -910,7 +912,7 @@ class __$$_InitialCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Initial extends _Initial {
+class _$_Initial extends _Initial with EntryEditBase_Initial {
   const _$_Initial() : super._();
 
   @override
@@ -996,7 +998,8 @@ class _$_Initial extends _Initial {
   }
 }
 
-abstract class _Initial extends EntryEditConvergeState {
+abstract class _Initial extends EntryEditConvergeState
+    implements EntryEditBase_Initial {
   const factory _Initial() = _$_Initial;
   const _Initial._() : super._();
 }
@@ -1043,7 +1046,7 @@ class __$$_StartedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Started extends _Started {
+class _$_Started extends _Started with EntryEditBase_Started {
   const _$_Started({required this.entry}) : super._();
 
   @override
@@ -1140,7 +1143,8 @@ class _$_Started extends _Started {
   }
 }
 
-abstract class _Started extends EntryEditConvergeState {
+abstract class _Started extends EntryEditConvergeState
+    implements EntryEditBase_Started {
   const factory _Started({required final Entry entry}) = _$_Started;
   const _Started._() : super._();
 
@@ -1188,7 +1192,7 @@ class __$$_ErroredCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Errored extends _Errored {
+class _$_Errored extends _Errored with EntryEditBase_Errored {
   const _$_Errored({required this.error, required this.stackTrace}) : super._();
 
   @override
@@ -1291,7 +1295,8 @@ class _$_Errored extends _Errored {
   }
 }
 
-abstract class _Errored extends EntryEditConvergeState {
+abstract class _Errored extends EntryEditConvergeState
+    implements EntryEditBase_Errored {
   const factory _Errored(
       {required final Object error,
       required final StackTrace stackTrace}) = _$_Errored;

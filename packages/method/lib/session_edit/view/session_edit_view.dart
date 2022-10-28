@@ -1,10 +1,10 @@
 import 'package:card_swiper/card_swiper.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/entry_edit/logic/entry_edit_bloc.dart';
 import 'package:method/entry_edit/view/entry_edit_view.dart';
 import 'package:method/session_edit/logic/logic.dart';
+import 'package:method_core/model/task.dart';
 import 'package:method_style/element_scale.dart';
 import 'package:method_style/element_symbol.dart';
 import 'package:method_ui/float/float_scaffold.dart';
@@ -22,38 +22,32 @@ class _Swiper extends StatelessWidget {
   const _Swiper();
 
   @override
-  Widget build(BuildContext context) => SessionEditBuilder(
-        builder: (context, state) => state.maybeMap(
-          started: (_) => Swiper(
-            loop: false,
-            indicatorLayout: PageIndicatorLayout.WARM,
-            itemCount: _.session.template.definitions.length,
-            physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics(),
-            ),
-            pagination: const SwiperPagination(
-              alignment: Alignment.bottomCenter,
-              margin: EdgeInsets.all(ElementScale.spaceNone),
-              builder: _Pagination(),
-            ),
-            // itemBuilder: (_, index) => EntryEdit.create(
-            //   listener: context.read<SessionBloc>().handleEntryBlocState,
-            //   task: session.template.definitions[index],
-            //   entry: session.definitions.elementAtOrNull(index),
-            // ),
-            itemBuilder: (context, index) => BlocProvider(
-              create: (context) => EntryEditBloc(repository: context.read())
-                ..add(EntryEditEvent.startTask(
-                  taskId: _.session.template.definitions[index].id,
-                )),
-              child: const EntryEditView(),
-            ),
+  Widget build(BuildContext context) => SessionEditSelector<List<Task>>(
+        selector: (state) => state.session?.template.definitions ?? const [],
+        builder: (context, state) => Swiper(
+          loop: false,
+          indicatorLayout: PageIndicatorLayout.WARM,
+          itemCount: state.length,
+          physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics(),
           ),
-          orElse: () => const CupertinoActivityIndicator(),
+          // pagination: const SwiperPagination(
+          //   alignment: Alignment.bottomCenter,
+          //   margin: EdgeInsets.all(ElementScale.spaceNone),
+          //   builder: _Pagination(),
+          // ),
+          itemBuilder: (_, index) => BlocProvider(
+            create: (context) => EntryEditBloc(
+              repository: context.read(),
+              taskId: state[index].id,
+            ),
+            child: const EntryEditView(),
+          ),
         ),
       );
 }
 
+// ignore: unused_element
 class _Pagination extends SwiperPlugin {
   const _Pagination();
 

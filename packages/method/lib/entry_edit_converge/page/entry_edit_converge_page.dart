@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/definition_edit_label/view/view.dart';
-import 'package:method/entry_edit/logic/entry_edit_bloc.dart';
 import 'package:method/entry_edit/page/page.dart';
 import 'package:method_core/model/definition.dart';
 import 'package:method_core/model/entry_definition.dart';
@@ -38,21 +38,25 @@ class _LabelGrid extends StatelessWidget {
   const _LabelGrid();
 
   @override
-  Widget build(BuildContext context) => EntryEditSelector<DefinitionList?>(
+  Widget build(BuildContext context) =>
+      EntryEditConvergeSelector<DefinitionList?>(
         selector: (state) => state.labels,
-        builder: (context, state) => state == null
-            ? const CupertinoActivityIndicator()
+        builder: (context, labels) => labels == null
+            ? const SliverFillRemaining(child: CupertinoActivityIndicator())
             : SliverGrid(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
                 ),
                 delegate: SliverChildBuilderDelegate(
                   (context, index) => DefinitionEditLabelView(
-                    taskDefinition: state[index].key,
-                    entryDefinition: state[index].value ??
-                        EntryDefinition.from(template: state[index].key),
+                    taskDefinition: labels[index].key,
+                    entryDefinition: labels[index].value ??
+                        EntryDefinition.from(template: labels[index].key),
+                    onTap: () => context
+                        .read<EntryEditConvergeBloc>()
+                        .add(EntryEditConvergeEvent.selectLabel(index: index)),
                   ),
-                  childCount: state.length,
+                  childCount: labels.length,
                 ),
               ),
       );
