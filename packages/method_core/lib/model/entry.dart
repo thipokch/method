@@ -90,8 +90,11 @@ class Entry
       .toList();
 
   @override
-  String instructionKey(TaskDefinition td) => td.id;
+  String commandIdMapper(TaskDefinition cd) => cd.id;
 
   @override
-  String dataKey(EntryDefinition d) => d.id;
+  String dataIdMapper(EntryDefinition d) => d.id;
+
+  @override
+  String toString() => "Entry($uniformString, task: $template)";
 }

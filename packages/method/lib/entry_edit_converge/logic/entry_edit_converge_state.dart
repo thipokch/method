@@ -32,6 +32,7 @@ class EntryEditConvergeState
 }
 
 extension Converge on EntryEditConvergeState {
-  DefinitionPair? get note => entry?.builtDefinition.entries.first;
-  DefinitionList? get labels => entry?.builtDefinition.entries.skip(1).toList();
+  EntryDefinitionPair? get note => entry?.builtDefinition.map.entries.first;
+  EntryDefinitionList? get labels =>
+      entry?.builtDefinition.map.entries.skip(1).toBuiltList();
 }

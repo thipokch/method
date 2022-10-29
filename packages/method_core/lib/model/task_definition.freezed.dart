@@ -250,11 +250,6 @@ class _$_Label extends _Label {
   final String $type;
 
   @override
-  String toString() {
-    return 'TaskDefinition.label(icon: $icon, name: $name, description: $description, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
-  }
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -491,11 +486,6 @@ class _$_Note extends _Note {
 
   @JsonKey(name: 'runtimeType')
   final String $type;
-
-  @override
-  String toString() {
-    return 'TaskDefinition.note(icon: $icon, name: $name, description: $description, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
-  }
 
   @override
   bool operator ==(dynamic other) {

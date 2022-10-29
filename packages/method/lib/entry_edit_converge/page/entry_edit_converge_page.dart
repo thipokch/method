@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/definition_edit_label/view/view.dart';
 import 'package:method/entry_edit/page/page.dart';
-import 'package:method_core/model/definition.dart';
+import 'package:method_core/model/entry_definition.dart';
 import 'package:method_style/element_scale.dart';
 
 import '../entry_edit_converge.dart';
@@ -38,7 +38,7 @@ class _LabelGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-      EntryEditConvergeSelector<DefinitionList?>(
+      EntryEditConvergeSelector<EntryDefinitionList?>(
         selector: (state) => state.labels,
         builder: (context, labels) => labels == null
             ? const SliverFillRemaining(child: CupertinoActivityIndicator())

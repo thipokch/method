@@ -370,11 +370,6 @@ class _$TaskLinear extends TaskLinear {
   final String $type;
 
   @override
-  String toString() {
-    return 'Task.linear(icon: $icon, name: $name, description: $description, definitions: $definitions, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
-  }
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -735,11 +730,6 @@ class _$TaskDiverge extends TaskDiverge {
 
   @JsonKey(name: 'collectionSlug')
   final String $type;
-
-  @override
-  String toString() {
-    return 'Task.diverge(icon: $icon, name: $name, description: $description, definitions: $definitions, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
-  }
 
   @override
   bool operator ==(dynamic other) {
@@ -1104,11 +1094,6 @@ class _$TaskConverge extends TaskConverge {
   final String $type;
 
   @override
-  String toString() {
-    return 'Task.converge(icon: $icon, name: $name, description: $description, definitions: $definitions, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
-  }
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -1469,11 +1454,6 @@ class _$TaskFeedback extends TaskFeedback {
 
   @JsonKey(name: 'collectionSlug')
   final String $type;
-
-  @override
-  String toString() {
-    return 'Task.feedback(icon: $icon, name: $name, description: $description, definitions: $definitions, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid)';
-  }
 
   @override
   bool operator ==(dynamic other) {

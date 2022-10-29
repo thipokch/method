@@ -1,7 +1,7 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/entry_edit/base/entry_edit_bloc_base.dart';
-import 'package:method_core/model/definition.dart';
 import 'package:method_core/model/entry.dart';
 import 'package:method_core/model/entry_definition.dart';
 import 'package:method_core/model/task.dart';
@@ -53,8 +53,8 @@ class EntryEditConvergeBloc
             entry.definitions.elementAtOrNull(event.index + 1) == null
                 ? emit(_Started(
                     entry: entry.copyWith(
-                      definitions: entry
-                          .mutateFor(
+                      definitions: entry.builtDefinition
+                          .mutateDataFor(
                             entry.template.definitions[event.index + 1],
                             EntryDefinition.from(
                               template:
@@ -66,8 +66,8 @@ class EntryEditConvergeBloc
                   ))
                 : emit(_Started(
                     entry: entry.copyWith(
-                      definitions: entry
-                          .removeAt(event.index + 1)
+                      definitions: entry.builtDefinition
+                          .clearDataAt(event.index + 1)
                           .asEntryDefinitionList(),
                     ),
                   )),

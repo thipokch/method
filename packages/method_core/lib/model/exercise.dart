@@ -77,4 +77,7 @@ class Exercise
 
   @override
   String get collectionSlug => "exercise";
+
+  @override
+  String toString() => "Exercise($uniformString)";
 }

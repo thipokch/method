@@ -145,4 +145,12 @@ class Task
 
   @override
   List<TaskDefinition> get definitions;
+
+  @override
+  String toString() => map(
+        linear: (_) => "Task.linear(${_.uniformString})",
+        diverge: (_) => "Task.diverge(${_.uniformString})",
+        converge: (_) => "Task.converge(${_.uniformString})",
+        feedback: (_) => "Task.feedback(${_.uniformString})",
+      );
 }

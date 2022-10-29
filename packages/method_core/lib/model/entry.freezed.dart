@@ -265,11 +265,6 @@ class _$_Entry extends _Entry {
   final DateTime? deletedAt;
 
   @override
-  String toString() {
-    return 'Entry(template: $template, definitions: $definitions, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid, createdAt: $createdAt, readAt: $readAt, updatedAt: $updatedAt, commitedAt: $commitedAt, deletedAt: $deletedAt)';
-  }
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&

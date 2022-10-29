@@ -40,5 +40,8 @@ class TaskDefinition with _$TaskDefinition, Identify, Locate, Uniform, Inform {
       );
 
   @override
-  String toString() => "$runtimeType ($id)";
+  String toString() => map(
+        label: (_) => "TaskDefinition.label(${_.uniformString})",
+        note: (_) => "TaskDefinition.note(${_.uniformString})",
+      );
 }

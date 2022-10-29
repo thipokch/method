@@ -1,6 +1,9 @@
+import 'package:built_collection/built_collection.dart';
+import 'package:method_core/model/definition.dart';
 import 'package:method_core/model/task_definition.dart';
 import 'package:method_core/util/uuid.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:quiver/core.dart';
 
 import '../abstract/identify.dart';
 import '../abstract/locate.dart';
@@ -38,7 +41,8 @@ class EntryDefinition with _$EntryDefinition, Identify, Locate, Uniform {
           id: _.id,
         ),
         note: (_) => EntryDefinition.note(
-          data: data!,
+          data: data ?? "",
+          // data: data!,
           hierarchyPath: _.hierarchyPath,
           id: _.id,
         ),
@@ -54,5 +58,19 @@ class EntryDefinition with _$EntryDefinition, Identify, Locate, Uniform {
       _$EntryDefinitionFromJson(json);
 
   @override
-  String toString() => "$runtimeType ($id)";
+  String toString() => map(
+        label: (_) => "EntryDefinition.label(${_.uniformString})",
+        note: (_) => "EntryDefinition.note(${_.uniformString})",
+      );
+}
+
+typedef EntryDefinitionPair
+    = MapEntry<TaskDefinition, Optional<EntryDefinition>>;
+typedef EntryDefinitionList
+    = BuiltList<MapEntry<TaskDefinition, Optional<EntryDefinition>>>;
+typedef BuildEntryDefinition = BuiltDefinition<TaskDefinition, EntryDefinition>;
+
+extension D on BuildEntryDefinition {
+  List<EntryDefinition> asEntryDefinitionList() =>
+      map.values.expand((_) => _).toList();
 }

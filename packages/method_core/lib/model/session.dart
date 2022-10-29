@@ -85,6 +85,9 @@ class Session
       .expand((e) => e)
       .toList();
 
+  @override
+  String toString() => "Session($uniformString, exercise: $template)";
+
   // Map<String, Entry?> get mappedDefinitions =>
   //     mapId(keys: template.definitions, values: definitions);
 }

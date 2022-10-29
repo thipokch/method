@@ -236,11 +236,6 @@ class _$_Exercise extends _Exercise {
   final Presentation presentation;
 
   @override
-  String toString() {
-    return 'Exercise(icon: $icon, name: $name, description: $description, definitions: $definitions, hierarchyPath: $hierarchyPath, id: $id, uuid: $uuid, presentation: $presentation)';
-  }
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
