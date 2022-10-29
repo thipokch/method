@@ -1,25 +1,27 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/definition_edit_label/view/view.dart';
-import 'package:method/entry_edit_converge/logic/entry_edit_converge_bloc.dart';
+import 'package:method/entry_edit_feedback/logic/entry_edit_feedback_bloc.dart';
 import 'package:method_core/model/entry_definition.dart';
 
-part 'entry_edit_converge_sliver.dart';
+part 'entry_edit_feedback_sliver.dart';
 
-class EntryEditConvergeView extends StatelessWidget {
-  const EntryEditConvergeView({super.key});
+class EntryEditFeedbackView extends StatelessWidget {
+  const EntryEditFeedbackView({super.key});
 
   @override
   Widget build(BuildContext context) => throw UnimplementedError();
 }
 
-class EntryEditConvergeLabelView extends StatelessWidget {
-  const EntryEditConvergeLabelView({super.key});
+class EntryEditFeedbackLabelView extends StatelessWidget {
+  const EntryEditFeedbackLabelView({super.key});
 
   @override
   Widget build(BuildContext context) =>
-      EntryEditConvergeSelector<EntryDefinitionList?>(
-        selector: (state) => state.labels,
+      EntryEditFeedbackSelector<EntryDefinitionList?>(
+        selector: (state) =>
+            state.entry?.builtDefinition.map.entries.toBuiltList(),
         builder: (context, labels) => labels == null
             ? const SliverFillRemaining(child: CupertinoActivityIndicator())
             : SliverGrid(
@@ -32,8 +34,8 @@ class EntryEditConvergeLabelView extends StatelessWidget {
                     taskDefinition: labels[index].key,
                     entryDefinition: labels[index].value.orNull,
                     onTap: () => context
-                        .read<EntryEditConvergeBloc>()
-                        .add(EntryEditConvergeEvent.selectLabel(index: index)),
+                        .read<EntryEditFeedbackBloc>()
+                        .add(EntryEditFeedbackEvent.selectRating(index: index)),
                   ),
                   childCount: labels.length,
                 ),

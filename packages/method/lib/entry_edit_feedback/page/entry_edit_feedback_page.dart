@@ -1,11 +1,10 @@
-import 'package:flutter/cupertino.dart';
-import 'package:method/entry_edit/page/page.dart';
+import 'package:flutter/material.dart';
+import 'package:method/entry_edit/page/entry_edit_page_base.dart';
+import 'package:method/entry_edit_feedback/view/view.dart';
 import 'package:method_style/element_scale.dart';
 
-import '../entry_edit_converge.dart';
-
-class EntryEditConvergePage extends StatelessWidget {
-  const EntryEditConvergePage({super.key});
+class EntryEditFeedbackPage extends StatelessWidget {
+  const EntryEditFeedbackPage({super.key});
 
   @override
   Widget build(BuildContext context) => const EntryEditPageBase(
@@ -24,7 +23,7 @@ class EntryEditConvergePage extends StatelessWidget {
             top: false,
             sliver: SliverPadding(
               padding: EdgeInsets.all(ElementScale.spaceM),
-              sliver: EntryEditConvergeLabelView(),
+              sliver: EntryEditFeedbackLabelView(),
             ),
           ),
         ],

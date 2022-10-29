@@ -46,12 +46,14 @@ class BuiltDefinition<C extends Uniform, D extends Uniform> {
 
   int indexOfData(D d) => data.indexOf(Optional.fromNullable(d));
 
-  BuiltDefinition<C, D> mutateDataFor(C command, D? data) => BuiltDefinition._(
-        map.rebuild((m) => m..[command] = Optional.fromNullable(data)),
-      );
+  BuiltDefinition<C, D> mutateDataFor(C command, D? data) =>
+      rebuild((m) => m..[command] = Optional.fromNullable(data));
 
   BuiltDefinition<C, D> mutateDataAt(int index, D? data) =>
       mutateDataFor(commands[index], data);
+
+  BuiltDefinition<C, D> clearAllData() =>
+      rebuild((m) => m..updateAllValues((p0, p1) => const Optional.absent()));
 
   BuiltDefinition<C, D> clearDataFor(C command) => mutateDataFor(command, null);
 
