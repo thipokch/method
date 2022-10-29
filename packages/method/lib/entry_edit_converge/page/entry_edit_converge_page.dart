@@ -22,6 +22,7 @@ class EntryEditConvergePage extends StatelessWidget {
           //     // isStatic: true,
           //   ),
           // ),
+
           SliverSafeArea(
             top: false,
             sliver: SliverPadding(
@@ -48,6 +49,7 @@ class _LabelGrid extends StatelessWidget {
                 ),
                 delegate: SliverChildBuilderDelegate(
                   (context, index) => DefinitionEditLabelView(
+                    key: ValueKey(labels[index].key.id),
                     taskDefinition: labels[index].key,
                     entryDefinition: labels[index].value.orNull,
                     onTap: () => context

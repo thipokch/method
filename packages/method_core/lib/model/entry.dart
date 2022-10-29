@@ -96,5 +96,6 @@ class Entry
   String dataIdMapper(EntryDefinition d) => d.id;
 
   @override
-  String toString() => "Entry($uniformString, task: $template)";
+  String toString() =>
+      "Entry($uniformString, task: $template, definitions: $definitions)";
 }

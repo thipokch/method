@@ -51,7 +51,7 @@ class BuiltDefinition<C extends Uniform, D extends Uniform> {
       );
 
   BuiltDefinition<C, D> mutateDataAt(int index, D? data) =>
-      mutateDataFor(commands.elementAt(index), data);
+      mutateDataFor(commands[index], data);
 
   BuiltDefinition<C, D> clearDataFor(C command) => mutateDataFor(command, null);
 
@@ -61,4 +61,6 @@ class BuiltDefinition<C extends Uniform, D extends Uniform> {
     MapBuilder<C, Optional<D>> Function(MapBuilder<C, Optional<D>>) updates,
   ) =>
       BuiltDefinition._(map.rebuild(updates));
+
+  // D? operator [](Object? key) => map[key]?.orNull;
 }

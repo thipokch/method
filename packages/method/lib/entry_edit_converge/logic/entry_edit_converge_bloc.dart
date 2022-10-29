@@ -44,33 +44,35 @@ class EntryEditConvergeBloc
 
   // BLOC EVENTS
 
+  // TODO: Testing for mutating definitions
+
   void _onSelectLabel(
     _SelectLabel event,
     Emitter<EntryEditConvergeState> emit,
   ) =>
       state.maybeWhen(
-        started: (entry) =>
-            entry.definitions.elementAtOrNull(event.index + 1) == null
-                ? emit(_Started(
-                    entry: entry.copyWith(
-                      definitions: entry.builtDefinition
-                          .mutateDataFor(
-                            entry.template.definitions[event.index + 1],
-                            EntryDefinition.from(
-                              template:
-                                  entry.template.definitions[event.index + 1],
-                            ),
-                          )
-                          .asEntryDefinitionList(),
-                    ),
-                  ))
-                : emit(_Started(
-                    entry: entry.copyWith(
-                      definitions: entry.builtDefinition
-                          .clearDataAt(event.index + 1)
-                          .asEntryDefinitionList(),
-                    ),
-                  )),
+        started: (entry) {
+          final builtDefinition = entry.builtDefinition;
+          final taskDefinition = builtDefinition.commands[event.index + 1];
+          final entryDefinition = builtDefinition.data[event.index + 1].orNull;
+
+          final updated = entryDefinition == null
+              ? entry.copyWith(
+                  definitions: builtDefinition
+                      .mutateDataFor(
+                        taskDefinition,
+                        EntryDefinition.from(template: taskDefinition),
+                      )
+                      .asEntryDefinitionList(),
+                )
+              : entry.copyWith(
+                  definitions: builtDefinition
+                      .clearDataFor(taskDefinition)
+                      .asEntryDefinitionList(),
+                );
+
+          return emit(_Started(entry: updated));
+        },
         orElse: () => throw StateError("Invalid state to SelectLabel"),
       );
 

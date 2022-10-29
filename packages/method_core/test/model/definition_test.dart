@@ -256,21 +256,23 @@ void main() {
       );
     });
 
-    test('Mutate & Clear add at random index.', () {
+    test('Mutate & Clear', () {
       final commands = initial.commands;
-      final a = EntryDefinition.from(template: commands.elementAt(2));
-      final b = EntryDefinition.from(template: commands.elementAt(3));
-      final c = EntryDefinition.from(template: commands.elementAt(4));
+      final a = EntryDefinition.from(template: commands.elementAt(1));
+      final b = EntryDefinition.from(template: commands.elementAt(2));
+      final c = EntryDefinition.from(template: commands.elementAt(3));
       final mutated = initial
-          .mutateDataAt(2, a)
-          .mutateDataAt(3, b)
-          .clearDataAt(3)
-          .mutateDataAt(4, c);
+          .mutateDataAt(1, a)
+          .mutateDataAt(2, b)
+          .mutateDataAt(3, c)
+          .clearDataAt(1)
+          .clearDataAt(2)
+          .clearDataAt(3);
 
       final expected =
-          List<EntryDefinition?>.filled(initial.commands.length, null)
-            ..[2] = a
-            ..[4] = c;
+          List<EntryDefinition?>.filled(initial.commands.length, null);
+      // ..[2] = a
+      // ..[4] = c;
 
       expect(
         listEquals(mutated.map.values.map((d) => d.orNull).toList(), expected),

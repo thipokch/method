@@ -24,7 +24,7 @@ void main() {
       sessionStream = StreamController<List<Session>>(
         onListen: () => sessionStream.add([mockSessions.first]),
       );
-      registerFallbackValue(mockSessions[0]);
+      registerFallbackValue(mockSessions.first);
 
       when(() => repository.sessions).thenReturn(sessionRepo);
 
