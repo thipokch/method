@@ -1,55 +1,36 @@
-import 'package:method_style/element_symbol.dart';
 import 'package:method_style/element_scale.dart';
 import 'package:method_style/element_motion.dart';
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
-import 'package:method_ui/card/card_tile.dart';
+import 'package:method_ui/util/conditional_parent_widget.dart';
 
 import '../text/text_area.dart';
 
 class MtEditingCard extends StatelessWidget {
-  final String? title;
-  final String? description;
-  final String? emoji;
+  final Widget? header;
+  final Widget? footer;
   final bool? autofocus;
+  final TextEditingController? controller;
   final ValueChanged<String>? onChanged;
   final GestureTapCallback? onTap;
-  final TextEditingController? controller;
-  final bool showMeta;
-  final bool isStatic;
+  final bool isExpandable;
   final bool isSelected;
 
   const MtEditingCard({
-    Key? key,
-    this.title,
-    this.description,
-    this.emoji,
-    this.showMeta = true,
+    super.key,
+    this.header,
+    this.footer,
     this.isSelected = false,
-    this.isStatic = false,
+    this.isExpandable = false,
     this.autofocus,
     this.onChanged,
     this.onTap,
     this.controller,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
-    final tile = CardTile(
-      emoji: emoji,
-      title: title,
-      description: description,
-      trailing: isStatic
-          ? null
-          : AnimatedCrossFade(
-              firstChild: const Icon(ElementSymbol.dismiss),
-              secondChild: const Icon(ElementSymbol.add),
-              crossFadeState: isSelected
-                  ? CrossFadeState.showFirst
-                  : CrossFadeState.showSecond,
-              duration: ElementMotion.moderate,
-            ),
-    );
+    print("MtEditingCard");
 
     return Card(
       elevation: 1,
@@ -63,12 +44,7 @@ class MtEditingCard extends StatelessWidget {
         ),
       ),
       child: InkWell(
-        onTap: (() {
-          onTap?.call();
-          // setState(() {
-          //   isExpanded = !isExpanded;
-          // });
-        }),
+        onTap: onTap,
         child: Padding(
           padding: const EdgeInsets.symmetric(
             vertical: 12.0,
@@ -78,23 +54,24 @@ class MtEditingCard extends StatelessWidget {
             alignment: Alignment.topCenter,
             duration: ElementMotion.moderate,
             curve: ElementMotion.linear,
-            child: isSelected || isStatic
-                ? AspectRatio(
-                    aspectRatio: 1,
-                    child: Column(
-                      children: [
-                        if (showMeta) tile,
-                        if (isSelected || isStatic)
-                          TextArea(
-                            controller: controller,
-                            onTap: onTap,
-                            autofocus: autofocus,
-                            onChanged: onChanged,
-                          ),
-                      ],
+            child: ConditionalParentWidget(
+              condition: isSelected || !isExpandable,
+              conditionalBuilder: (child) =>
+                  AspectRatio(aspectRatio: 1, child: child),
+              child: Column(
+                children: [
+                  if (header != null) header!,
+                  if (isSelected || !isExpandable)
+                    TextArea(
+                      controller: controller,
+                      onTap: onTap,
+                      autofocus: autofocus,
+                      onChanged: onChanged,
                     ),
-                  )
-                : tile,
+                  if (footer != null) footer!,
+                ],
+              ),
+            ),
           ),
         ),
       ),

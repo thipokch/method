@@ -23,7 +23,7 @@ class EntryEditFeedbackPage extends StatelessWidget {
             top: false,
             sliver: SliverPadding(
               padding: EdgeInsets.all(ElementScale.spaceM),
-              sliver: EntryEditFeedbackLabelView(),
+              sliver: EntryEditFeedbackLabelSliver(),
             ),
           ),
         ],

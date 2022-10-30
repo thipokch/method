@@ -11,6 +11,7 @@ class DefinitionEditLabelView extends StatelessWidget {
     super.key,
     required this.taskDefinition,
     required this.entryDefinition,
+    required this.isSelected,
     this.onTap,
   });
 
@@ -18,6 +19,7 @@ class DefinitionEditLabelView extends StatelessWidget {
 
   final EntryDefinition? entryDefinition;
 
+  final bool isSelected;
   final VoidCallback? onTap;
 
   @override
@@ -27,7 +29,7 @@ class DefinitionEditLabelView extends StatelessWidget {
             onTap: onTap,
             icon: taskDefinition.icon,
             style: _buttonStyle(
-              entryDefinition != null,
+              isSelected,
               Theme.of(context).colorScheme,
             ),
           ),

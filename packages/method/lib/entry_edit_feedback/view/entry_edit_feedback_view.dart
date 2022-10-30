@@ -13,32 +13,3 @@ class EntryEditFeedbackView extends StatelessWidget {
   @override
   Widget build(BuildContext context) => throw UnimplementedError();
 }
-
-class EntryEditFeedbackLabelView extends StatelessWidget {
-  const EntryEditFeedbackLabelView({super.key});
-
-  @override
-  Widget build(BuildContext context) =>
-      EntryEditFeedbackSelector<EntryDefinitionList?>(
-        selector: (state) =>
-            state.entry?.builtDefinition.map.entries.toBuiltList(),
-        builder: (context, labels) => labels == null
-            ? const SliverFillRemaining(child: CupertinoActivityIndicator())
-            : SliverGrid(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                ),
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) => DefinitionEditLabelView(
-                    key: ValueKey(labels[index].key.id),
-                    taskDefinition: labels[index].key,
-                    entryDefinition: labels[index].value.orNull,
-                    onTap: () => context
-                        .read<EntryEditFeedbackBloc>()
-                        .add(EntryEditFeedbackEvent.selectRating(index: index)),
-                  ),
-                  childCount: labels.length,
-                ),
-              ),
-      );
-}

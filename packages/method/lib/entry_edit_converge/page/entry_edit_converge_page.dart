@@ -24,7 +24,14 @@ class EntryEditConvergePage extends StatelessWidget {
             top: false,
             sliver: SliverPadding(
               padding: EdgeInsets.all(ElementScale.spaceM),
-              sliver: EntryEditConvergeLabelView(),
+              sliver: EntryEditConvergeCardSliver(),
+            ),
+          ),
+          SliverSafeArea(
+            top: false,
+            sliver: SliverPadding(
+              padding: EdgeInsets.all(ElementScale.spaceM),
+              sliver: EntryEditConvergeLabelSliver(),
             ),
           ),
         ],
