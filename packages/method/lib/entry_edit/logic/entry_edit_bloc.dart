@@ -13,18 +13,6 @@ typedef EntryEditListener = BlocListener<EntryEditBloc, EntryEditState>;
 typedef EntryEditSelector<T> = BlocSelector<EntryEditBloc, EntryEditState, T>;
 typedef EntryEditConsumer = BlocConsumer<EntryEditBloc, EntryEditState>;
 
-// /*
-//  *
-//  *     [INITIAL] ──┐
-//  *                 ↓
-//  *         ┌── [CREATED] ──┐
-//  *         ↓       ↑       ↓
-//  *    [DESTROYED]  └── [STARTED] ──┐
-//  *                         ↑       ↓
-//  *                         └── [RESUMED]
-//  *
-//  */
-
 class EntryEditBloc extends EntryEditBlocBase<EntryEditEvent, EntryEditState> {
   EntryEditBloc({
     required super.repository,

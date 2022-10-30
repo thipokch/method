@@ -8,8 +8,16 @@ class EntryEditConvergePage extends StatelessWidget {
   const EntryEditConvergePage({super.key});
 
   @override
-  Widget build(BuildContext context) => const EntryEditPageBase(
-        slivers: [
+  Widget build(BuildContext context) => EntryEditPageBase(
+        name: EntryEditConvergeSelector<String>(
+          selector: (state) => state.note?.key.name ?? "",
+          builder: (context, state) => Text(state),
+        ),
+        description: EntryEditConvergeSelector<String>(
+          selector: (state) => state.note?.key.description ?? "",
+          builder: (context, state) => Text(state),
+        ),
+        slivers: const [
           // SliverToBoxAdapter(
           //   child: DefinitionCardEdit.basic(
           //     taskDefinition: note,
