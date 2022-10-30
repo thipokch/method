@@ -32,30 +32,26 @@ class DefinitionEditCardView extends StatelessWidget {
   final ValueChanged<String>? onChanged;
 
   @override
-  Widget build(BuildContext context) {
-    print("DefinitionEditCardView");
-
-    return MtEditingCard(
-      controller: controller,
-      header: isStatic
-          ? null
-          : CardTile(
-              emoji: taskDefinition.icon,
-              title: taskDefinition.name,
-              description: taskDefinition.description,
-              trailing: AnimatedCrossFade(
-                firstChild: const Icon(ElementSymbol.dismiss),
-                secondChild: const Icon(ElementSymbol.add),
-                crossFadeState: isSelected
-                    ? CrossFadeState.showFirst
-                    : CrossFadeState.showSecond,
-                duration: ElementMotion.moderate,
+  Widget build(BuildContext context) => MtEditingCard(
+        controller: controller,
+        header: isStatic
+            ? null
+            : CardTile(
+                emoji: taskDefinition.icon,
+                title: taskDefinition.name,
+                description: taskDefinition.description,
+                trailing: AnimatedCrossFade(
+                  firstChild: const Icon(ElementSymbol.dismiss),
+                  secondChild: const Icon(ElementSymbol.add),
+                  crossFadeState: isSelected
+                      ? CrossFadeState.showFirst
+                      : CrossFadeState.showSecond,
+                  duration: ElementMotion.moderate,
+                ),
               ),
-            ),
-      isExpandable: !isStatic,
-      isSelected: isSelected,
-      onTap: onTap,
-      onChanged: onChanged,
-    );
-  }
+        isExpandable: !isStatic,
+        isSelected: isSelected,
+        onTap: onTap,
+        onChanged: onChanged,
+      );
 }

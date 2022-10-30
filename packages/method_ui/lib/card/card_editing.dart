@@ -29,52 +29,48 @@ class MtEditingCard extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    print("MtEditingCard");
-
-    return Card(
-      elevation: 1,
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      shape: const SmoothRectangleBorder(
-        borderRadius: SmoothBorderRadius.all(
-          SmoothRadius(
-            cornerRadius: ElementScale.cornerLarge,
-            cornerSmoothing: ElementScale.cornerSmoothFactor,
+  Widget build(BuildContext context) => Card(
+        elevation: 1,
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        shape: const SmoothRectangleBorder(
+          borderRadius: SmoothBorderRadius.all(
+            SmoothRadius(
+              cornerRadius: ElementScale.cornerLarge,
+              cornerSmoothing: ElementScale.cornerSmoothFactor,
+            ),
           ),
         ),
-      ),
-      child: InkWell(
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 12.0,
-            horizontal: 8.0,
-          ),
-          child: AnimatedSize(
-            alignment: Alignment.topCenter,
-            duration: ElementMotion.moderate,
-            curve: ElementMotion.linear,
-            child: ConditionalParentWidget(
-              condition: isSelected || !isExpandable,
-              conditionalBuilder: (child) =>
-                  AspectRatio(aspectRatio: 1, child: child),
-              child: Column(
-                children: [
-                  if (header != null) header!,
-                  if (isSelected || !isExpandable)
-                    TextArea(
-                      controller: controller,
-                      onTap: onTap,
-                      autofocus: autofocus,
-                      onChanged: onChanged,
-                    ),
-                  if (footer != null) footer!,
-                ],
+        child: InkWell(
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 12.0,
+              horizontal: 8.0,
+            ),
+            child: AnimatedSize(
+              alignment: Alignment.topCenter,
+              duration: ElementMotion.moderate,
+              curve: ElementMotion.linear,
+              child: ConditionalParentWidget(
+                condition: isSelected || !isExpandable,
+                conditionalBuilder: (child) =>
+                    AspectRatio(aspectRatio: 1, child: child),
+                child: Column(
+                  children: [
+                    if (header != null) header!,
+                    if (isSelected || !isExpandable)
+                      TextArea(
+                        controller: controller,
+                        onTap: onTap,
+                        autofocus: autofocus,
+                        onChanged: onChanged,
+                      ),
+                    if (footer != null) footer!,
+                  ],
+                ),
               ),
             ),
           ),
         ),
-      ),
-    );
-  }
+      );
 }

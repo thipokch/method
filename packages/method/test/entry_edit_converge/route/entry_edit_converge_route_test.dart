@@ -10,7 +10,8 @@ void main() {
         await tester.pumpWidget(
           Builder(
             builder: (context) => MaterialApp(
-                home: const EntryEditConvergeRoute().build(context)),
+              home: const EntryEditConvergeRoute().build(context),
+            ),
           ),
         );
         expect(find.byType(EntryEditConvergePage), findsOneWidget);

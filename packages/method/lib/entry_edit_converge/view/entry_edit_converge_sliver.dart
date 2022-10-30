@@ -32,6 +32,7 @@ class EntryEditConvergeLabelSliver extends StatelessWidget {
                     isSelected: labels[index].value.isPresent,
                   ),
                   childCount: labels.length,
+                  semanticIndexOffset: 3,
                 ),
               ),
       );
