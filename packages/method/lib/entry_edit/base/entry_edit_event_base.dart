@@ -4,10 +4,6 @@ abstract class EntryEditEventBase {
   const EntryEditEventBase();
 }
 
-mixin EntryEditBase_StartTask on EntryEditEventBase {
-  String get taskId;
-}
-
-mixin EntryEditBase_StartEntry on EntryEditEventBase {
-  String get entryId;
+mixin EntryEditBase_Start on EntryEditEventBase {
+  BuildEntryDefinition get definitions;
 }

@@ -1,9 +1,11 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:method_core/model/definition.dart';
 import 'package:method_core/model/entry.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:method_core/model/task.dart';
 import 'package:method_core/model/task_definition.dart';
+import 'package:quiver/core.dart';
 
 import '../abstract/define.dart';
 import '../abstract/identify.dart';
@@ -90,4 +92,10 @@ class Session
 
   // Map<String, Entry?> get mappedDefinitions =>
   //     mapId(keys: template.definitions, values: definitions);
+}
+
+typedef SessionDefinitionList = BuiltList<MapEntry<Task, Optional<Entry>>>;
+
+extension AsEntryDefinitionList on BuiltDefinition<Task, Entry> {
+  List<Entry> asEntryList() => map.values.expand((_) => _).toList();
 }

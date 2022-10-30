@@ -5,41 +5,82 @@ import 'package:method/entry_edit_converge/logic/entry_edit_converge_bloc.dart';
 import 'package:method/entry_edit_converge/page/page.dart';
 import 'package:method/entry_edit_diverge/entry_edit_diverge.dart';
 import 'package:method/entry_edit_feedback/entry_edit_feedback.dart';
-import 'package:method_core/model/task.dart';
+import 'package:method_core/model/entry.dart';
+import 'package:method_core/model/entry_definition.dart';
 
 part 'entry_edit_sliver.dart';
 
 // TODO: Rename to Selector
 class EntryEditView extends StatelessWidget {
-  const EntryEditView({
-    super.key,
-  });
+  const EntryEditView({super.key});
 
   @override
-  Widget build(BuildContext context) => EntryEditSelector<Task?>(
-        selector: (state) => state.task,
+  Widget build(BuildContext context) => EntryEditSelector<Entry?>(
+        selector: (state) => state.entry,
         builder: (context, state) => state != null
-            ? state.map(
+            ? state.template.map(
                 linear: (_) => const Text("linear"),
+
+                //
+
                 diverge: (_) => BlocProvider(
-                  create: (_) => EntryEditDivergeBloc(
-                    repository: context.read(),
-                  )..add(EntryEditDivergeEvent.startTask(taskId: state.id)),
-                  child: const EntryEditDivergePage(),
+                  create: (_) => EntryEditDivergeBloc()
+                    ..add(EntryEditDivergeEvent.start(
+                      definitions: state.builtDefinition,
+                    )),
+                  child: EntryEditDivergeListener(
+                    listener: (context, state) => state.mapOrNull(
+                      started: (value) => context.updateEntryDefinition(
+                        definitions: value.definitions,
+                      ),
+                    ),
+                    child: const EntryEditDivergePage(),
+                  ),
                 ),
+
+                //
+
                 converge: (_) => BlocProvider(
-                  create: (_) => EntryEditConvergeBloc(
-                    repository: context.read(),
-                  )..add(EntryEditConvergeEvent.startTask(taskId: state.id)),
-                  child: const EntryEditConvergePage(),
+                  create: (_) => EntryEditConvergeBloc()
+                    ..add(EntryEditConvergeEvent.start(
+                      definitions: state.builtDefinition,
+                    )),
+                  child: EntryEditConvergeListener(
+                    listener: (context, state) => state.mapOrNull(
+                      started: (value) => context.updateEntryDefinition(
+                        definitions: value.definitions,
+                      ),
+                    ),
+                    child: const EntryEditConvergePage(),
+                  ),
                 ),
+
+                //
+
                 feedback: (_) => BlocProvider(
-                  create: (_) => EntryEditFeedbackBloc(
-                    repository: context.read(),
-                  )..add(EntryEditFeedbackEvent.startTask(taskId: state.id)),
-                  child: const EntryEditFeedbackPage(),
+                  create: (_) => EntryEditFeedbackBloc()
+                    ..add(EntryEditFeedbackEvent.start(
+                      definitions: state.builtDefinition,
+                    )),
+                  child: EntryEditFeedbackListener(
+                    listener: (context, state) => state.mapOrNull(
+                      started: (value) => context.updateEntryDefinition(
+                        definitions: value.definitions,
+                      ),
+                    ),
+                    child: const EntryEditFeedbackPage(),
+                  ),
                 ),
               )
             : const CupertinoActivityIndicator(),
+      );
+}
+
+extension _UpdateEntryDefinition on BuildContext {
+  updateEntryDefinition({required BuildEntryDefinition definitions}) =>
+      read<EntryEditBloc>().add(
+        EntryEditEvent.updateDefinition(
+          definitions: definitions,
+        ),
       );
 }

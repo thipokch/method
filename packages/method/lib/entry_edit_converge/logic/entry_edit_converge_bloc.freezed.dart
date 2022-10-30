@@ -18,8 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$EntryEditConvergeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String taskId) startTask,
-    required TResult Function(String entryId) startEntry,
+    required TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)
+        start,
     required TResult Function() stop,
     required TResult Function(int index) selectLabel,
     required TResult Function(String text) updateNote,
@@ -27,8 +28,9 @@ mixin _$EntryEditConvergeEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String taskId)? startTask,
-    TResult Function(String entryId)? startEntry,
+    TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+        start,
     TResult Function()? stop,
     TResult Function(int index)? selectLabel,
     TResult Function(String text)? updateNote,
@@ -36,8 +38,9 @@ mixin _$EntryEditConvergeEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String taskId)? startTask,
-    TResult Function(String entryId)? startEntry,
+    TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+        start,
     TResult Function()? stop,
     TResult Function(int index)? selectLabel,
     TResult Function(String text)? updateNote,
@@ -46,8 +49,7 @@ mixin _$EntryEditConvergeEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_StartTask value) startTask,
-    required TResult Function(_StartEntry value) startEntry,
+    required TResult Function(_Start value) start,
     required TResult Function(_Stop value) stop,
     required TResult Function(_SelectLabel value) selectLabel,
     required TResult Function(_UpdateNote value) updateNote,
@@ -55,8 +57,7 @@ mixin _$EntryEditConvergeEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_StartTask value)? startTask,
-    TResult Function(_StartEntry value)? startEntry,
+    TResult Function(_Start value)? start,
     TResult Function(_Stop value)? stop,
     TResult Function(_SelectLabel value)? selectLabel,
     TResult Function(_UpdateNote value)? updateNote,
@@ -64,8 +65,7 @@ mixin _$EntryEditConvergeEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_StartTask value)? startTask,
-    TResult Function(_StartEntry value)? startEntry,
+    TResult Function(_Start value)? start,
     TResult Function(_Stop value)? stop,
     TResult Function(_SelectLabel value)? selectLabel,
     TResult Function(_UpdateNote value)? updateNote,
@@ -92,103 +92,105 @@ class _$EntryEditConvergeEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$_StartTaskCopyWith<$Res> {
-  factory _$$_StartTaskCopyWith(
-          _$_StartTask value, $Res Function(_$_StartTask) then) =
-      __$$_StartTaskCopyWithImpl<$Res>;
-  $Res call({String taskId});
+abstract class _$$_StartCopyWith<$Res> {
+  factory _$$_StartCopyWith(_$_Start value, $Res Function(_$_Start) then) =
+      __$$_StartCopyWithImpl<$Res>;
+  $Res call({BuiltDefinition<TaskDefinition, EntryDefinition> definitions});
 }
 
 /// @nodoc
-class __$$_StartTaskCopyWithImpl<$Res>
+class __$$_StartCopyWithImpl<$Res>
     extends _$EntryEditConvergeEventCopyWithImpl<$Res>
-    implements _$$_StartTaskCopyWith<$Res> {
-  __$$_StartTaskCopyWithImpl(
-      _$_StartTask _value, $Res Function(_$_StartTask) _then)
-      : super(_value, (v) => _then(v as _$_StartTask));
+    implements _$$_StartCopyWith<$Res> {
+  __$$_StartCopyWithImpl(_$_Start _value, $Res Function(_$_Start) _then)
+      : super(_value, (v) => _then(v as _$_Start));
 
   @override
-  _$_StartTask get _value => super._value as _$_StartTask;
+  _$_Start get _value => super._value as _$_Start;
 
   @override
   $Res call({
-    Object? taskId = freezed,
+    Object? definitions = freezed,
   }) {
-    return _then(_$_StartTask(
-      taskId: taskId == freezed
-          ? _value.taskId
-          : taskId // ignore: cast_nullable_to_non_nullable
-              as String,
+    return _then(_$_Start(
+      definitions: definitions == freezed
+          ? _value.definitions
+          : definitions // ignore: cast_nullable_to_non_nullable
+              as BuiltDefinition<TaskDefinition, EntryDefinition>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_StartTask extends _StartTask with EntryEditBase_StartTask {
-  const _$_StartTask({required this.taskId}) : super._();
+class _$_Start extends _Start with EntryEditBase_Start {
+  const _$_Start({required this.definitions}) : super._();
 
   @override
-  final String taskId;
+  final BuiltDefinition<TaskDefinition, EntryDefinition> definitions;
 
   @override
   String toString() {
-    return 'EntryEditConvergeEvent.startTask(taskId: $taskId)';
+    return 'EntryEditConvergeEvent.start(definitions: $definitions)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_StartTask &&
-            const DeepCollectionEquality().equals(other.taskId, taskId));
+            other is _$_Start &&
+            const DeepCollectionEquality()
+                .equals(other.definitions, definitions));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(taskId));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(definitions));
 
   @JsonKey(ignore: true)
   @override
-  _$$_StartTaskCopyWith<_$_StartTask> get copyWith =>
-      __$$_StartTaskCopyWithImpl<_$_StartTask>(this, _$identity);
+  _$$_StartCopyWith<_$_Start> get copyWith =>
+      __$$_StartCopyWithImpl<_$_Start>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String taskId) startTask,
-    required TResult Function(String entryId) startEntry,
+    required TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)
+        start,
     required TResult Function() stop,
     required TResult Function(int index) selectLabel,
     required TResult Function(String text) updateNote,
   }) {
-    return startTask(taskId);
+    return start(definitions);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String taskId)? startTask,
-    TResult Function(String entryId)? startEntry,
+    TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+        start,
     TResult Function()? stop,
     TResult Function(int index)? selectLabel,
     TResult Function(String text)? updateNote,
   }) {
-    return startTask?.call(taskId);
+    return start?.call(definitions);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String taskId)? startTask,
-    TResult Function(String entryId)? startEntry,
+    TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+        start,
     TResult Function()? stop,
     TResult Function(int index)? selectLabel,
     TResult Function(String text)? updateNote,
     required TResult orElse(),
   }) {
-    if (startTask != null) {
-      return startTask(taskId);
+    if (start != null) {
+      return start(definitions);
     }
     return orElse();
   }
@@ -196,206 +198,51 @@ class _$_StartTask extends _StartTask with EntryEditBase_StartTask {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_StartTask value) startTask,
-    required TResult Function(_StartEntry value) startEntry,
+    required TResult Function(_Start value) start,
     required TResult Function(_Stop value) stop,
     required TResult Function(_SelectLabel value) selectLabel,
     required TResult Function(_UpdateNote value) updateNote,
   }) {
-    return startTask(this);
+    return start(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_StartTask value)? startTask,
-    TResult Function(_StartEntry value)? startEntry,
+    TResult Function(_Start value)? start,
     TResult Function(_Stop value)? stop,
     TResult Function(_SelectLabel value)? selectLabel,
     TResult Function(_UpdateNote value)? updateNote,
   }) {
-    return startTask?.call(this);
+    return start?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_StartTask value)? startTask,
-    TResult Function(_StartEntry value)? startEntry,
+    TResult Function(_Start value)? start,
     TResult Function(_Stop value)? stop,
     TResult Function(_SelectLabel value)? selectLabel,
     TResult Function(_UpdateNote value)? updateNote,
     required TResult orElse(),
   }) {
-    if (startTask != null) {
-      return startTask(this);
+    if (start != null) {
+      return start(this);
     }
     return orElse();
   }
 }
 
-abstract class _StartTask extends EntryEditConvergeEvent
-    implements EntryEditBase_StartTask {
-  const factory _StartTask({required final String taskId}) = _$_StartTask;
-  const _StartTask._() : super._();
+abstract class _Start extends EntryEditConvergeEvent
+    implements EntryEditBase_Start {
+  const factory _Start(
+      {required final BuiltDefinition<TaskDefinition, EntryDefinition>
+          definitions}) = _$_Start;
+  const _Start._() : super._();
 
-  String get taskId;
+  BuiltDefinition<TaskDefinition, EntryDefinition> get definitions;
   @JsonKey(ignore: true)
-  _$$_StartTaskCopyWith<_$_StartTask> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_StartEntryCopyWith<$Res> {
-  factory _$$_StartEntryCopyWith(
-          _$_StartEntry value, $Res Function(_$_StartEntry) then) =
-      __$$_StartEntryCopyWithImpl<$Res>;
-  $Res call({String entryId});
-}
-
-/// @nodoc
-class __$$_StartEntryCopyWithImpl<$Res>
-    extends _$EntryEditConvergeEventCopyWithImpl<$Res>
-    implements _$$_StartEntryCopyWith<$Res> {
-  __$$_StartEntryCopyWithImpl(
-      _$_StartEntry _value, $Res Function(_$_StartEntry) _then)
-      : super(_value, (v) => _then(v as _$_StartEntry));
-
-  @override
-  _$_StartEntry get _value => super._value as _$_StartEntry;
-
-  @override
-  $Res call({
-    Object? entryId = freezed,
-  }) {
-    return _then(_$_StartEntry(
-      entryId: entryId == freezed
-          ? _value.entryId
-          : entryId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_StartEntry extends _StartEntry with EntryEditBase_StartEntry {
-  const _$_StartEntry({required this.entryId}) : super._();
-
-  @override
-  final String entryId;
-
-  @override
-  String toString() {
-    return 'EntryEditConvergeEvent.startEntry(entryId: $entryId)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_StartEntry &&
-            const DeepCollectionEquality().equals(other.entryId, entryId));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(entryId));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_StartEntryCopyWith<_$_StartEntry> get copyWith =>
-      __$$_StartEntryCopyWithImpl<_$_StartEntry>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String taskId) startTask,
-    required TResult Function(String entryId) startEntry,
-    required TResult Function() stop,
-    required TResult Function(int index) selectLabel,
-    required TResult Function(String text) updateNote,
-  }) {
-    return startEntry(entryId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String taskId)? startTask,
-    TResult Function(String entryId)? startEntry,
-    TResult Function()? stop,
-    TResult Function(int index)? selectLabel,
-    TResult Function(String text)? updateNote,
-  }) {
-    return startEntry?.call(entryId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String taskId)? startTask,
-    TResult Function(String entryId)? startEntry,
-    TResult Function()? stop,
-    TResult Function(int index)? selectLabel,
-    TResult Function(String text)? updateNote,
-    required TResult orElse(),
-  }) {
-    if (startEntry != null) {
-      return startEntry(entryId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_StartTask value) startTask,
-    required TResult Function(_StartEntry value) startEntry,
-    required TResult Function(_Stop value) stop,
-    required TResult Function(_SelectLabel value) selectLabel,
-    required TResult Function(_UpdateNote value) updateNote,
-  }) {
-    return startEntry(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_StartTask value)? startTask,
-    TResult Function(_StartEntry value)? startEntry,
-    TResult Function(_Stop value)? stop,
-    TResult Function(_SelectLabel value)? selectLabel,
-    TResult Function(_UpdateNote value)? updateNote,
-  }) {
-    return startEntry?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_StartTask value)? startTask,
-    TResult Function(_StartEntry value)? startEntry,
-    TResult Function(_Stop value)? stop,
-    TResult Function(_SelectLabel value)? selectLabel,
-    TResult Function(_UpdateNote value)? updateNote,
-    required TResult orElse(),
-  }) {
-    if (startEntry != null) {
-      return startEntry(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _StartEntry extends EntryEditConvergeEvent
-    implements EntryEditBase_StartEntry {
-  const factory _StartEntry({required final String entryId}) = _$_StartEntry;
-  const _StartEntry._() : super._();
-
-  String get entryId;
-  @JsonKey(ignore: true)
-  _$$_StartEntryCopyWith<_$_StartEntry> get copyWith =>
+  _$$_StartCopyWith<_$_Start> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -438,8 +285,9 @@ class _$_Stop extends _Stop {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String taskId) startTask,
-    required TResult Function(String entryId) startEntry,
+    required TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)
+        start,
     required TResult Function() stop,
     required TResult Function(int index) selectLabel,
     required TResult Function(String text) updateNote,
@@ -450,8 +298,9 @@ class _$_Stop extends _Stop {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String taskId)? startTask,
-    TResult Function(String entryId)? startEntry,
+    TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+        start,
     TResult Function()? stop,
     TResult Function(int index)? selectLabel,
     TResult Function(String text)? updateNote,
@@ -462,8 +311,9 @@ class _$_Stop extends _Stop {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String taskId)? startTask,
-    TResult Function(String entryId)? startEntry,
+    TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+        start,
     TResult Function()? stop,
     TResult Function(int index)? selectLabel,
     TResult Function(String text)? updateNote,
@@ -478,8 +328,7 @@ class _$_Stop extends _Stop {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_StartTask value) startTask,
-    required TResult Function(_StartEntry value) startEntry,
+    required TResult Function(_Start value) start,
     required TResult Function(_Stop value) stop,
     required TResult Function(_SelectLabel value) selectLabel,
     required TResult Function(_UpdateNote value) updateNote,
@@ -490,8 +339,7 @@ class _$_Stop extends _Stop {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_StartTask value)? startTask,
-    TResult Function(_StartEntry value)? startEntry,
+    TResult Function(_Start value)? start,
     TResult Function(_Stop value)? stop,
     TResult Function(_SelectLabel value)? selectLabel,
     TResult Function(_UpdateNote value)? updateNote,
@@ -502,8 +350,7 @@ class _$_Stop extends _Stop {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_StartTask value)? startTask,
-    TResult Function(_StartEntry value)? startEntry,
+    TResult Function(_Start value)? start,
     TResult Function(_Stop value)? stop,
     TResult Function(_SelectLabel value)? selectLabel,
     TResult Function(_UpdateNote value)? updateNote,
@@ -586,8 +433,9 @@ class _$_SelectLabel extends _SelectLabel {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String taskId) startTask,
-    required TResult Function(String entryId) startEntry,
+    required TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)
+        start,
     required TResult Function() stop,
     required TResult Function(int index) selectLabel,
     required TResult Function(String text) updateNote,
@@ -598,8 +446,9 @@ class _$_SelectLabel extends _SelectLabel {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String taskId)? startTask,
-    TResult Function(String entryId)? startEntry,
+    TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+        start,
     TResult Function()? stop,
     TResult Function(int index)? selectLabel,
     TResult Function(String text)? updateNote,
@@ -610,8 +459,9 @@ class _$_SelectLabel extends _SelectLabel {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String taskId)? startTask,
-    TResult Function(String entryId)? startEntry,
+    TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+        start,
     TResult Function()? stop,
     TResult Function(int index)? selectLabel,
     TResult Function(String text)? updateNote,
@@ -626,8 +476,7 @@ class _$_SelectLabel extends _SelectLabel {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_StartTask value) startTask,
-    required TResult Function(_StartEntry value) startEntry,
+    required TResult Function(_Start value) start,
     required TResult Function(_Stop value) stop,
     required TResult Function(_SelectLabel value) selectLabel,
     required TResult Function(_UpdateNote value) updateNote,
@@ -638,8 +487,7 @@ class _$_SelectLabel extends _SelectLabel {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_StartTask value)? startTask,
-    TResult Function(_StartEntry value)? startEntry,
+    TResult Function(_Start value)? start,
     TResult Function(_Stop value)? stop,
     TResult Function(_SelectLabel value)? selectLabel,
     TResult Function(_UpdateNote value)? updateNote,
@@ -650,8 +498,7 @@ class _$_SelectLabel extends _SelectLabel {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_StartTask value)? startTask,
-    TResult Function(_StartEntry value)? startEntry,
+    TResult Function(_Start value)? start,
     TResult Function(_Stop value)? stop,
     TResult Function(_SelectLabel value)? selectLabel,
     TResult Function(_UpdateNote value)? updateNote,
@@ -739,8 +586,9 @@ class _$_UpdateNote extends _UpdateNote {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String taskId) startTask,
-    required TResult Function(String entryId) startEntry,
+    required TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)
+        start,
     required TResult Function() stop,
     required TResult Function(int index) selectLabel,
     required TResult Function(String text) updateNote,
@@ -751,8 +599,9 @@ class _$_UpdateNote extends _UpdateNote {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String taskId)? startTask,
-    TResult Function(String entryId)? startEntry,
+    TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+        start,
     TResult Function()? stop,
     TResult Function(int index)? selectLabel,
     TResult Function(String text)? updateNote,
@@ -763,8 +612,9 @@ class _$_UpdateNote extends _UpdateNote {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String taskId)? startTask,
-    TResult Function(String entryId)? startEntry,
+    TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+        start,
     TResult Function()? stop,
     TResult Function(int index)? selectLabel,
     TResult Function(String text)? updateNote,
@@ -779,8 +629,7 @@ class _$_UpdateNote extends _UpdateNote {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_StartTask value) startTask,
-    required TResult Function(_StartEntry value) startEntry,
+    required TResult Function(_Start value) start,
     required TResult Function(_Stop value) stop,
     required TResult Function(_SelectLabel value) selectLabel,
     required TResult Function(_UpdateNote value) updateNote,
@@ -791,8 +640,7 @@ class _$_UpdateNote extends _UpdateNote {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_StartTask value)? startTask,
-    TResult Function(_StartEntry value)? startEntry,
+    TResult Function(_Start value)? start,
     TResult Function(_Stop value)? stop,
     TResult Function(_SelectLabel value)? selectLabel,
     TResult Function(_UpdateNote value)? updateNote,
@@ -803,8 +651,7 @@ class _$_UpdateNote extends _UpdateNote {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_StartTask value)? startTask,
-    TResult Function(_StartEntry value)? startEntry,
+    TResult Function(_Start value)? start,
     TResult Function(_Stop value)? stop,
     TResult Function(_SelectLabel value)? selectLabel,
     TResult Function(_UpdateNote value)? updateNote,
@@ -832,21 +679,27 @@ mixin _$EntryEditConvergeState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(Entry entry) started,
+    required TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)
+        started,
     required TResult Function(Object error, StackTrace stackTrace) errored,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Entry entry)? started,
+    TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+        started,
     TResult Function(Object error, StackTrace stackTrace)? errored,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Entry entry)? started,
+    TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+        started,
     TResult Function(Object error, StackTrace stackTrace)? errored,
     required TResult orElse(),
   }) =>
@@ -933,7 +786,9 @@ class _$_Initial extends _Initial with EntryEditBase_Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(Entry entry) started,
+    required TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)
+        started,
     required TResult Function(Object error, StackTrace stackTrace) errored,
   }) {
     return initial();
@@ -943,7 +798,9 @@ class _$_Initial extends _Initial with EntryEditBase_Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Entry entry)? started,
+    TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+        started,
     TResult Function(Object error, StackTrace stackTrace)? errored,
   }) {
     return initial?.call();
@@ -953,7 +810,9 @@ class _$_Initial extends _Initial with EntryEditBase_Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Entry entry)? started,
+    TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+        started,
     TResult Function(Object error, StackTrace stackTrace)? errored,
     required TResult orElse(),
   }) {
@@ -1009,9 +868,7 @@ abstract class _$$_StartedCopyWith<$Res> {
   factory _$$_StartedCopyWith(
           _$_Started value, $Res Function(_$_Started) then) =
       __$$_StartedCopyWithImpl<$Res>;
-  $Res call({Entry entry});
-
-  $EntryCopyWith<$Res> get entry;
+  $Res call({BuiltDefinition<TaskDefinition, EntryDefinition> definitions});
 }
 
 /// @nodoc
@@ -1026,35 +883,28 @@ class __$$_StartedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? entry = freezed,
+    Object? definitions = freezed,
   }) {
     return _then(_$_Started(
-      entry: entry == freezed
-          ? _value.entry
-          : entry // ignore: cast_nullable_to_non_nullable
-              as Entry,
+      definitions: definitions == freezed
+          ? _value.definitions
+          : definitions // ignore: cast_nullable_to_non_nullable
+              as BuiltDefinition<TaskDefinition, EntryDefinition>,
     ));
-  }
-
-  @override
-  $EntryCopyWith<$Res> get entry {
-    return $EntryCopyWith<$Res>(_value.entry, (value) {
-      return _then(_value.copyWith(entry: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$_Started extends _Started with EntryEditBase_Started {
-  const _$_Started({required this.entry}) : super._();
+  const _$_Started({required this.definitions}) : super._();
 
   @override
-  final Entry entry;
+  final BuiltDefinition<TaskDefinition, EntryDefinition> definitions;
 
   @override
   String toString() {
-    return 'EntryEditConvergeState.started(entry: $entry)';
+    return 'EntryEditConvergeState.started(definitions: $definitions)';
   }
 
   @override
@@ -1062,12 +912,13 @@ class _$_Started extends _Started with EntryEditBase_Started {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Started &&
-            const DeepCollectionEquality().equals(other.entry, entry));
+            const DeepCollectionEquality()
+                .equals(other.definitions, definitions));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(entry));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(definitions));
 
   @JsonKey(ignore: true)
   @override
@@ -1078,32 +929,38 @@ class _$_Started extends _Started with EntryEditBase_Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(Entry entry) started,
+    required TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)
+        started,
     required TResult Function(Object error, StackTrace stackTrace) errored,
   }) {
-    return started(entry);
+    return started(definitions);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Entry entry)? started,
+    TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+        started,
     TResult Function(Object error, StackTrace stackTrace)? errored,
   }) {
-    return started?.call(entry);
+    return started?.call(definitions);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Entry entry)? started,
+    TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+        started,
     TResult Function(Object error, StackTrace stackTrace)? errored,
     required TResult orElse(),
   }) {
     if (started != null) {
-      return started(entry);
+      return started(definitions);
     }
     return orElse();
   }
@@ -1145,10 +1002,12 @@ class _$_Started extends _Started with EntryEditBase_Started {
 
 abstract class _Started extends EntryEditConvergeState
     implements EntryEditBase_Started {
-  const factory _Started({required final Entry entry}) = _$_Started;
+  const factory _Started(
+      {required final BuiltDefinition<TaskDefinition, EntryDefinition>
+          definitions}) = _$_Started;
   const _Started._() : super._();
 
-  Entry get entry;
+  BuiltDefinition<TaskDefinition, EntryDefinition> get definitions;
   @JsonKey(ignore: true)
   _$$_StartedCopyWith<_$_Started> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1230,7 +1089,9 @@ class _$_Errored extends _Errored with EntryEditBase_Errored {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(Entry entry) started,
+    required TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)
+        started,
     required TResult Function(Object error, StackTrace stackTrace) errored,
   }) {
     return errored(error, stackTrace);
@@ -1240,7 +1101,9 @@ class _$_Errored extends _Errored with EntryEditBase_Errored {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Entry entry)? started,
+    TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+        started,
     TResult Function(Object error, StackTrace stackTrace)? errored,
   }) {
     return errored?.call(error, stackTrace);
@@ -1250,7 +1113,9 @@ class _$_Errored extends _Errored with EntryEditBase_Errored {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Entry entry)? started,
+    TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+        started,
     TResult Function(Object error, StackTrace stackTrace)? errored,
     required TResult orElse(),
   }) {

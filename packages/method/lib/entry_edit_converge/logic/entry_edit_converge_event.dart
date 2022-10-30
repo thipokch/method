@@ -6,15 +6,10 @@ class EntryEditConvergeEvent
     implements EntryEditEventBase {
   const EntryEditConvergeEvent._();
 
-  @With<EntryEditBase_StartTask>()
-  const factory EntryEditConvergeEvent.startTask({
-    required final String taskId,
-  }) = _StartTask;
-
-  @With<EntryEditBase_StartEntry>()
-  const factory EntryEditConvergeEvent.startEntry({
-    required final String entryId,
-  }) = _StartEntry;
+  @With<EntryEditBase_Start>()
+  const factory EntryEditConvergeEvent.start({
+    required final BuildEntryDefinition definitions,
+  }) = _Start;
 
   const factory EntryEditConvergeEvent.stop() = _Stop;
 

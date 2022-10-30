@@ -11,5 +11,10 @@ class SessionEditEvent with _$SessionEditEvent {
     required final String sessionId,
     final int? initialIndex,
   }) = _StartSession;
+
+  const factory SessionEditEvent.updateEntry({
+    required final Entry entry,
+  }) = _UpdateEntry;
+
   const factory SessionEditEvent.stop() = _Stop;
 }

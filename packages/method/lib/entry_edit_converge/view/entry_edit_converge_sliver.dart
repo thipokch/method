@@ -14,7 +14,7 @@ class EntryEditConvergeLabelSliver extends StatelessWidget {
   Widget build(BuildContext context) =>
       EntryEditConvergeSelector<EntryDefinitionList?>(
         selector: (state) =>
-            state.entry?.builtDefinition.map.entries.skip(1).toBuiltList(),
+            state.definitions?.map.entries.skip(1).toBuiltList(),
         builder: (context, labels) => labels == null
             ? const SliverFillRemaining(child: CupertinoActivityIndicator())
             : SliverGrid(
@@ -44,7 +44,7 @@ class EntryEditConvergeCardSliver extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
       EntryEditConvergeSelector<EntryDefinitionPair?>(
-        selector: (state) => state.entry?.builtDefinition.map.entries.first,
+        selector: (state) => state.definitions?.map.entries.first,
         builder: (context, pair) => pair == null
             ? const SliverFillRemaining(child: CupertinoActivityIndicator())
             : SliverToBoxAdapter(

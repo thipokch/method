@@ -59,9 +59,11 @@ mixin IsarRepository<DOM, COLLECTION extends Collection<DOM, DaoObject>> {
 
   Future<void> removeMany(List<DOM> doms) => isarCollection.removeMany(doms);
 
-  Stream<List<DOM>> streamAll() => isarCollection.streamAll();
+  Stream<List<DOM>> streamAll({bool fireImmediately = true}) =>
+      isarCollection.streamAll(fireImmediately: fireImmediately);
 
-  Stream<DOM?> stream(String id) => isarCollection.stream(id);
+  Stream<DOM?> stream(String id, {bool fireImmediately = true}) =>
+      isarCollection.stream(id, fireImmediately: fireImmediately);
 
   Stream<List<DOM>> streamMany(List<String> ids) =>
       isarCollection.streamMany(ids);

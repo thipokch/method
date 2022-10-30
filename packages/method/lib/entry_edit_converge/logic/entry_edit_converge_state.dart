@@ -11,7 +11,7 @@ class EntryEditConvergeState
 
   @With<EntryEditBase_Started>()
   const factory EntryEditConvergeState.started({
-    required final Entry entry,
+    required final BuildEntryDefinition definitions,
   }) = _Started;
 
   @With<EntryEditBase_Errored>()
@@ -21,19 +21,14 @@ class EntryEditConvergeState
   }) = _Errored;
 
   @override
-  Entry? get entry => mapOrNull(
-        started: (_) => _.entry,
-      );
-
-  @override
-  Task? get task => mapOrNull(
-        started: (_) => _.entry.template,
+  BuildEntryDefinition? get definitions => mapOrNull(
+        started: (_) => _.definitions,
       );
 }
 
 extension Converge on EntryEditConvergeState {
-  EntryDefinitionPair? get note => entry?.builtDefinition.map.entries.first;
+  EntryDefinitionPair? get note => definitions?.map.entries.first;
 
   EntryDefinitionList? get labels =>
-      entry?.builtDefinition.map.entries.skip(1).toBuiltList();
+      definitions?.map.entries.skip(1).toBuiltList();
 }

@@ -13,8 +13,7 @@ class EntryEditFeedbackLabelSliver extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
       EntryEditFeedbackSelector<EntryDefinitionList?>(
-        selector: (state) =>
-            state.entry?.builtDefinition.map.entries.toBuiltList(),
+        selector: (state) => state.definitions?.map.entries.toBuiltList(),
         builder: (context, labels) => labels == null
             ? const SliverFillRemaining(child: CupertinoActivityIndicator())
             : SliverGrid(

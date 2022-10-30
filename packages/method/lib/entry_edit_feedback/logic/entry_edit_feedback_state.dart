@@ -11,7 +11,7 @@ class EntryEditFeedbackState
 
   @With<EntryEditBase_Started>()
   const factory EntryEditFeedbackState.started({
-    required final Entry entry,
+    required final BuildEntryDefinition definitions,
   }) = _Started;
 
   @With<EntryEditBase_Errored>()
@@ -21,12 +21,7 @@ class EntryEditFeedbackState
   }) = _Errored;
 
   @override
-  Entry? get entry => mapOrNull(
-        started: (_) => _.entry,
-      );
-
-  @override
-  Task? get task => mapOrNull(
-        started: (_) => _.entry.template,
+  BuildEntryDefinition? get definitions => mapOrNull(
+        started: (_) => _.definitions,
       );
 }

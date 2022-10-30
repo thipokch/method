@@ -118,16 +118,16 @@ abstract class Collection<DOM, DAO extends Dao>
   // STREAM
 
   @override
-  Stream<DOM?> stream(String id) => collection
+  Stream<DOM?> stream(String id, {bool fireImmediately = true}) => collection
       .where()
       .anyOf([id], idEqualTo)
-      .watch(fireImmediately: true)
+      .watch(fireImmediately: fireImmediately)
       .map<DOM?>((event) => event.isNotEmpty ? toDom(event.first) : null);
 
   @override
-  Stream<List<DOM>> streamAll() => collection
+  Stream<List<DOM>> streamAll({bool fireImmediately = true}) => collection
       .where()
-      .watch(fireImmediately: true)
+      .watch(fireImmediately: fireImmediately)
       .map<List<DOM>>((event) => event.map<DOM>((e) => toDom(e)).toList());
 
   // PUT

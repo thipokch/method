@@ -6,15 +6,10 @@ class EntryEditFeedbackEvent
     implements EntryEditEventBase {
   const EntryEditFeedbackEvent._();
 
-  @With<EntryEditBase_StartTask>()
-  const factory EntryEditFeedbackEvent.startTask({
-    required final String taskId,
-  }) = _StartTask;
-
-  @With<EntryEditBase_StartEntry>()
-  const factory EntryEditFeedbackEvent.startEntry({
-    required final String entryId,
-  }) = _StartEntry;
+  @With<EntryEditBase_Start>()
+  const factory EntryEditFeedbackEvent.start({
+    required final BuildEntryDefinition definitions,
+  }) = _Start;
 
   const factory EntryEditFeedbackEvent.stop() = _Stop;
 

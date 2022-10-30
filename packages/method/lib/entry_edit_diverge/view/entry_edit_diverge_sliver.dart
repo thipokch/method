@@ -13,8 +13,7 @@ class EntryEditDivergeCardSliver extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
       EntryEditDivergeSelector<EntryDefinitionList?>(
-        selector: (state) =>
-            state.entry?.builtDefinition.map.entries.toBuiltList(),
+        selector: (state) => state.definitions?.map.entries.toBuiltList(),
         builder: (context, state) => state == null
             ? const SliverFillRemaining(child: CupertinoActivityIndicator())
             : SliverList(

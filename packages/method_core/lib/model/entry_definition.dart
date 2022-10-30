@@ -70,7 +70,7 @@ typedef EntryDefinitionList
     = BuiltList<MapEntry<TaskDefinition, Optional<EntryDefinition>>>;
 typedef BuildEntryDefinition = BuiltDefinition<TaskDefinition, EntryDefinition>;
 
-extension D on BuildEntryDefinition {
+extension AsEntryDefinitionList on BuildEntryDefinition {
   List<EntryDefinition> asEntryDefinitionList() =>
       map.values.expand((_) => _).toList();
 }

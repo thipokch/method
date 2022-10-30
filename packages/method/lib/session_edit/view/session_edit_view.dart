@@ -1,10 +1,12 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:card_swiper/card_swiper.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/entry_edit/logic/entry_edit_bloc.dart';
 import 'package:method/entry_edit/view/entry_edit_view.dart';
 import 'package:method/session_edit/logic/logic.dart';
-import 'package:method_core/model/task.dart';
+import 'package:method_core/model/session.dart';
 import 'package:method_style/element_scale.dart';
 import 'package:method_style/element_symbol.dart';
 import 'package:method_ui/float/float_scaffold.dart';
@@ -22,28 +24,47 @@ class _Swiper extends StatelessWidget {
   const _Swiper();
 
   @override
-  Widget build(BuildContext context) => SessionEditSelector<List<Task>>(
-        selector: (state) => state.session?.template.definitions ?? const [],
-        builder: (context, state) => Swiper(
-          loop: false,
-          indicatorLayout: PageIndicatorLayout.WARM,
-          itemCount: state.length,
-          physics: const BouncingScrollPhysics(
-            parent: AlwaysScrollableScrollPhysics(),
-          ),
-          // pagination: const SwiperPagination(
-          //   alignment: Alignment.bottomCenter,
-          //   margin: EdgeInsets.all(ElementScale.spaceNone),
-          //   builder: _Pagination(),
-          // ),
-          itemBuilder: (_, index) => BlocProvider(
-            create: (context) => EntryEditBloc(
-              repository: context.read(),
-              taskId: state[index].id,
-            ),
-            child: const EntryEditView(),
-          ),
-        ),
+  Widget build(BuildContext context) =>
+      SessionEditSelector<SessionDefinitionList?>(
+        selector: (state) =>
+            state.session?.builtDefinition.map.entries.toBuiltList(),
+        builder: (context, state) => state == null
+            ? const CupertinoActivityIndicator()
+            : Swiper(
+                loop: false,
+                indicatorLayout: PageIndicatorLayout.WARM,
+                itemCount: state.length,
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
+                // pagination: const SwiperPagination(
+                //   alignment: Alignment.bottomCenter,
+                //   margin: EdgeInsets.all(ElementScale.spaceNone),
+                //   builder: _Pagination(),
+                // ),
+                itemBuilder: (_, index) => BlocProvider(
+                  create: (context) => EntryEditBloc(
+                    repository: context.read(),
+                  )..add(state[index].value.isPresent
+                      ? EntryEditEvent.startEntry(
+                          entryId: state[index].value.value.id,
+                        )
+                      : EntryEditEvent.startTask(
+                          taskId: state[index].key.id,
+                        )),
+                  child: EntryEditListener(
+                    listenWhen: (previous, current) =>
+                        previous.entry?.builtDefinition !=
+                        current.entry?.builtDefinition,
+                    listener: (context, state) => state.mapOrNull(
+                      started: (value) => context.read<SessionEditBloc>().add(
+                            SessionEditEvent.updateEntry(entry: value.entry),
+                          ),
+                    ),
+                    child: const EntryEditView(),
+                  ),
+                ),
+              ),
       );
 }
 

@@ -6,15 +6,10 @@ class EntryEditDivergeEvent
     implements EntryEditEventBase {
   const EntryEditDivergeEvent._();
 
-  @With<EntryEditBase_StartTask>()
-  const factory EntryEditDivergeEvent.startTask({
-    required final String taskId,
-  }) = _StartTask;
-
-  @With<EntryEditBase_StartEntry>()
-  const factory EntryEditDivergeEvent.startEntry({
-    required final String entryId,
-  }) = _StartEntry;
+  @With<EntryEditBase_Start>()
+  const factory EntryEditDivergeEvent.start({
+    required final BuildEntryDefinition definitions,
+  }) = _Start;
 
   const factory EntryEditDivergeEvent.stop() = _Stop;
 

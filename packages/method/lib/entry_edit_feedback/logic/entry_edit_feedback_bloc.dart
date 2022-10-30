@@ -1,9 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/entry_edit/base/entry_edit_bloc_base.dart';
-import 'package:method_core/model/entry.dart';
+import 'package:method_core/model/definition.dart';
 import 'package:method_core/model/entry_definition.dart';
-import 'package:method_core/model/task.dart';
+import 'package:method_core/model/task_definition.dart';
 
 part 'entry_edit_feedback_event.dart';
 part 'entry_edit_feedback_state.dart';
@@ -18,28 +18,17 @@ typedef EntryEditFeedbackSelector<T>
 typedef EntryEditFeedbackConsumer
     = BlocConsumer<EntryEditFeedbackBloc, EntryEditFeedbackState>;
 
-/*
- *
- *     [INITIAL] ──┐
- *                 ↓
- *         ┌── [CREATED] ──┐
- *         ↓       ↑       ↓
- *    [DESTROYED]  └── [STARTED] ──┐
- *                         ↑       ↓
- *                         └── [RESUMED]
- * 
- */
-
 class EntryEditFeedbackBloc
     extends EntryEditBlocBase<EntryEditFeedbackEvent, EntryEditFeedbackState> {
   EntryEditFeedbackBloc({
-    required super.repository,
     super.analytics,
   }) : super(const _Initial()) {
-    on<_StartTask>(onStartTask);
-    on<_StartEntry>(onStartEntry);
+    on<_Start>(_onStart);
     on<_SelectRating>(_onSelectRating);
   }
+
+  _onStart(_Start event, Emitter<EntryEditFeedbackState> emit) =>
+      emit(_Started(definitions: event.definitions));
 
   // BLOC EVENTS
 
@@ -48,37 +37,21 @@ class EntryEditFeedbackBloc
     Emitter<EntryEditFeedbackState> emit,
   ) =>
       state.maybeWhen(
-        started: (entry) {
-          final builtDefinition = entry.builtDefinition;
-          final taskDefinition = builtDefinition.commands[event.index];
-          final entryDefinition = builtDefinition.data[event.index].orNull;
+        started: (definitions) {
+          final taskDefinition = definitions.commands[event.index];
+          final entryDefinition = definitions.data[event.index].orNull;
 
           final updated = entryDefinition == null
-              ? entry.copyWith(
-                  definitions: builtDefinition
-                      .clearAllData() // TODO: Add test for this toggle behavior
-                      .mutateDataFor(
-                        taskDefinition,
-                        EntryDefinition.from(template: taskDefinition),
-                      )
-                      .asEntryDefinitionList(),
-                )
-              : entry.copyWith(
-                  definitions: builtDefinition
-                      .clearDataFor(taskDefinition)
-                      .asEntryDefinitionList(),
-                );
+              ? definitions
+                  .clearAllData() // TODO: Add test for this toggle behavior
+                  .mutateDataFor(
+                    taskDefinition,
+                    EntryDefinition.from(template: taskDefinition),
+                  )
+              : definitions.clearDataFor(taskDefinition);
 
-          return emit(_Started(entry: updated));
+          return emit(_Started(definitions: updated));
         },
         orElse: () => throw StateError("Invalid state to SelectLabel"),
       );
-
-  @override
-  EntryEditFeedbackState onStreamData(Entry? entry) =>
-      entry != null ? _Started(entry: entry) : const _Initial();
-
-  @override
-  EntryEditFeedbackState onStreamError(Object error, StackTrace stackTrace) =>
-      _Errored(error: error, stackTrace: stackTrace);
 }

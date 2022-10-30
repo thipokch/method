@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:method_core/model/entry.dart';
 import 'package:method_core/model/exercise.dart';
 import 'package:method_core/model/session.dart';
 import 'package:method_repo/repository.dart';
@@ -36,6 +37,7 @@ class SessionEditBloc extends Bloc<SessionEditEvent, SessionEditState> {
   }) : super(const _Initial()) {
     on<_StartExercise>(_onStartExercise);
     on<_StartSession>(_onStartSession);
+    on<_UpdateEntry>(_onUpdateEntry);
   }
 
   final Repository repository;
@@ -71,6 +73,25 @@ class SessionEditBloc extends Bloc<SessionEditEvent, SessionEditState> {
         repository.sessions.stream(event.sessionId),
         onData: _onData,
         onError: _onError,
+      );
+
+  void _onUpdateEntry(
+    _UpdateEntry event,
+    Emitter<SessionEditState> emit,
+  ) =>
+      state.maybeMap(
+        started: (_) {
+          final builtDefinition = _.session.builtDefinition;
+
+          final updated = _.session.copyWith(
+            definitions: builtDefinition
+                .mutateDataFor(event.entry.template, event.entry)
+                .asEntryList(),
+          );
+
+          return repository.sessions.put(updated);
+        },
+        orElse: () => throw UnimplementedError(),
       );
 
   // STREAM EVENTS

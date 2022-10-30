@@ -17,7 +17,7 @@ class SessionEditRoute extends GoRouteData {
             sessionId: id,
             initialIndex: initialIndex,
           )),
-        child: const SessionEditPage(),
+        child: const SessionEditView(),
       );
 
   @override

@@ -20,18 +20,27 @@ mixin _$EntryEditEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String taskId) startTask,
     required TResult Function(String entryId) startEntry,
+    required TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)
+        updateDefinition,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String taskId)? startTask,
     TResult Function(String entryId)? startEntry,
+    TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+        updateDefinition,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String taskId)? startTask,
     TResult Function(String entryId)? startEntry,
+    TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+        updateDefinition,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +48,21 @@ mixin _$EntryEditEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_StartTask value) startTask,
     required TResult Function(_StartEntry value) startEntry,
+    required TResult Function(_UpdateDefinition value) updateDefinition,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_StartTask value)? startTask,
     TResult Function(_StartEntry value)? startEntry,
+    TResult Function(_UpdateDefinition value)? updateDefinition,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_StartTask value)? startTask,
     TResult Function(_StartEntry value)? startEntry,
+    TResult Function(_UpdateDefinition value)? updateDefinition,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -107,7 +119,7 @@ class __$$_StartTaskCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_StartTask extends _StartTask with EntryEditBase_StartTask {
+class _$_StartTask extends _StartTask {
   const _$_StartTask({required this.taskId}) : super._();
 
   @override
@@ -140,6 +152,9 @@ class _$_StartTask extends _StartTask with EntryEditBase_StartTask {
   TResult when<TResult extends Object?>({
     required TResult Function(String taskId) startTask,
     required TResult Function(String entryId) startEntry,
+    required TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)
+        updateDefinition,
   }) {
     return startTask(taskId);
   }
@@ -149,6 +164,9 @@ class _$_StartTask extends _StartTask with EntryEditBase_StartTask {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String taskId)? startTask,
     TResult Function(String entryId)? startEntry,
+    TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+        updateDefinition,
   }) {
     return startTask?.call(taskId);
   }
@@ -158,6 +176,9 @@ class _$_StartTask extends _StartTask with EntryEditBase_StartTask {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String taskId)? startTask,
     TResult Function(String entryId)? startEntry,
+    TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+        updateDefinition,
     required TResult orElse(),
   }) {
     if (startTask != null) {
@@ -171,6 +192,7 @@ class _$_StartTask extends _StartTask with EntryEditBase_StartTask {
   TResult map<TResult extends Object?>({
     required TResult Function(_StartTask value) startTask,
     required TResult Function(_StartEntry value) startEntry,
+    required TResult Function(_UpdateDefinition value) updateDefinition,
   }) {
     return startTask(this);
   }
@@ -180,6 +202,7 @@ class _$_StartTask extends _StartTask with EntryEditBase_StartTask {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_StartTask value)? startTask,
     TResult Function(_StartEntry value)? startEntry,
+    TResult Function(_UpdateDefinition value)? updateDefinition,
   }) {
     return startTask?.call(this);
   }
@@ -189,6 +212,7 @@ class _$_StartTask extends _StartTask with EntryEditBase_StartTask {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_StartTask value)? startTask,
     TResult Function(_StartEntry value)? startEntry,
+    TResult Function(_UpdateDefinition value)? updateDefinition,
     required TResult orElse(),
   }) {
     if (startTask != null) {
@@ -198,8 +222,7 @@ class _$_StartTask extends _StartTask with EntryEditBase_StartTask {
   }
 }
 
-abstract class _StartTask extends EntryEditEvent
-    implements EntryEditBase_StartTask {
+abstract class _StartTask extends EntryEditEvent {
   const factory _StartTask({required final String taskId}) = _$_StartTask;
   const _StartTask._() : super._();
 
@@ -243,7 +266,7 @@ class __$$_StartEntryCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_StartEntry extends _StartEntry with EntryEditBase_StartEntry {
+class _$_StartEntry extends _StartEntry {
   const _$_StartEntry({required this.entryId}) : super._();
 
   @override
@@ -276,6 +299,9 @@ class _$_StartEntry extends _StartEntry with EntryEditBase_StartEntry {
   TResult when<TResult extends Object?>({
     required TResult Function(String taskId) startTask,
     required TResult Function(String entryId) startEntry,
+    required TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)
+        updateDefinition,
   }) {
     return startEntry(entryId);
   }
@@ -285,6 +311,9 @@ class _$_StartEntry extends _StartEntry with EntryEditBase_StartEntry {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String taskId)? startTask,
     TResult Function(String entryId)? startEntry,
+    TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+        updateDefinition,
   }) {
     return startEntry?.call(entryId);
   }
@@ -294,6 +323,9 @@ class _$_StartEntry extends _StartEntry with EntryEditBase_StartEntry {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String taskId)? startTask,
     TResult Function(String entryId)? startEntry,
+    TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+        updateDefinition,
     required TResult orElse(),
   }) {
     if (startEntry != null) {
@@ -307,6 +339,7 @@ class _$_StartEntry extends _StartEntry with EntryEditBase_StartEntry {
   TResult map<TResult extends Object?>({
     required TResult Function(_StartTask value) startTask,
     required TResult Function(_StartEntry value) startEntry,
+    required TResult Function(_UpdateDefinition value) updateDefinition,
   }) {
     return startEntry(this);
   }
@@ -316,6 +349,7 @@ class _$_StartEntry extends _StartEntry with EntryEditBase_StartEntry {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_StartTask value)? startTask,
     TResult Function(_StartEntry value)? startEntry,
+    TResult Function(_UpdateDefinition value)? updateDefinition,
   }) {
     return startEntry?.call(this);
   }
@@ -325,6 +359,7 @@ class _$_StartEntry extends _StartEntry with EntryEditBase_StartEntry {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_StartTask value)? startTask,
     TResult Function(_StartEntry value)? startEntry,
+    TResult Function(_UpdateDefinition value)? updateDefinition,
     required TResult orElse(),
   }) {
     if (startEntry != null) {
@@ -334,14 +369,163 @@ class _$_StartEntry extends _StartEntry with EntryEditBase_StartEntry {
   }
 }
 
-abstract class _StartEntry extends EntryEditEvent
-    implements EntryEditBase_StartEntry {
+abstract class _StartEntry extends EntryEditEvent {
   const factory _StartEntry({required final String entryId}) = _$_StartEntry;
   const _StartEntry._() : super._();
 
   String get entryId;
   @JsonKey(ignore: true)
   _$$_StartEntryCopyWith<_$_StartEntry> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_UpdateDefinitionCopyWith<$Res> {
+  factory _$$_UpdateDefinitionCopyWith(
+          _$_UpdateDefinition value, $Res Function(_$_UpdateDefinition) then) =
+      __$$_UpdateDefinitionCopyWithImpl<$Res>;
+  $Res call({BuiltDefinition<TaskDefinition, EntryDefinition> definitions});
+}
+
+/// @nodoc
+class __$$_UpdateDefinitionCopyWithImpl<$Res>
+    extends _$EntryEditEventCopyWithImpl<$Res>
+    implements _$$_UpdateDefinitionCopyWith<$Res> {
+  __$$_UpdateDefinitionCopyWithImpl(
+      _$_UpdateDefinition _value, $Res Function(_$_UpdateDefinition) _then)
+      : super(_value, (v) => _then(v as _$_UpdateDefinition));
+
+  @override
+  _$_UpdateDefinition get _value => super._value as _$_UpdateDefinition;
+
+  @override
+  $Res call({
+    Object? definitions = freezed,
+  }) {
+    return _then(_$_UpdateDefinition(
+      definitions: definitions == freezed
+          ? _value.definitions
+          : definitions // ignore: cast_nullable_to_non_nullable
+              as BuiltDefinition<TaskDefinition, EntryDefinition>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_UpdateDefinition extends _UpdateDefinition {
+  const _$_UpdateDefinition({required this.definitions}) : super._();
+
+  @override
+  final BuiltDefinition<TaskDefinition, EntryDefinition> definitions;
+
+  @override
+  String toString() {
+    return 'EntryEditEvent.updateDefinition(definitions: $definitions)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateDefinition &&
+            const DeepCollectionEquality()
+                .equals(other.definitions, definitions));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(definitions));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_UpdateDefinitionCopyWith<_$_UpdateDefinition> get copyWith =>
+      __$$_UpdateDefinitionCopyWithImpl<_$_UpdateDefinition>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String taskId) startTask,
+    required TResult Function(String entryId) startEntry,
+    required TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)
+        updateDefinition,
+  }) {
+    return updateDefinition(definitions);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String taskId)? startTask,
+    TResult Function(String entryId)? startEntry,
+    TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+        updateDefinition,
+  }) {
+    return updateDefinition?.call(definitions);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String taskId)? startTask,
+    TResult Function(String entryId)? startEntry,
+    TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+        updateDefinition,
+    required TResult orElse(),
+  }) {
+    if (updateDefinition != null) {
+      return updateDefinition(definitions);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_StartTask value) startTask,
+    required TResult Function(_StartEntry value) startEntry,
+    required TResult Function(_UpdateDefinition value) updateDefinition,
+  }) {
+    return updateDefinition(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_StartTask value)? startTask,
+    TResult Function(_StartEntry value)? startEntry,
+    TResult Function(_UpdateDefinition value)? updateDefinition,
+  }) {
+    return updateDefinition?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_StartTask value)? startTask,
+    TResult Function(_StartEntry value)? startEntry,
+    TResult Function(_UpdateDefinition value)? updateDefinition,
+    required TResult orElse(),
+  }) {
+    if (updateDefinition != null) {
+      return updateDefinition(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateDefinition extends EntryEditEvent {
+  const factory _UpdateDefinition(
+      {required final BuiltDefinition<TaskDefinition, EntryDefinition>
+          definitions}) = _$_UpdateDefinition;
+  const _UpdateDefinition._() : super._();
+
+  BuiltDefinition<TaskDefinition, EntryDefinition> get definitions;
+  @JsonKey(ignore: true)
+  _$$_UpdateDefinitionCopyWith<_$_UpdateDefinition> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -429,7 +613,7 @@ class __$$_InitialCopyWithImpl<$Res> extends _$EntryEditStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Initial extends _Initial with EntryEditBase_Initial {
+class _$_Initial extends _Initial {
   const _$_Initial() : super._();
 
   @override
@@ -515,8 +699,7 @@ class _$_Initial extends _Initial with EntryEditBase_Initial {
   }
 }
 
-abstract class _Initial extends EntryEditState
-    implements EntryEditBase_Initial {
+abstract class _Initial extends EntryEditState {
   const factory _Initial() = _$_Initial;
   const _Initial._() : super._();
 }
@@ -562,7 +745,7 @@ class __$$_StartedCopyWithImpl<$Res> extends _$EntryEditStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Started extends _Started with EntryEditBase_Started {
+class _$_Started extends _Started {
   const _$_Started({required this.entry}) : super._();
 
   @override
@@ -659,8 +842,7 @@ class _$_Started extends _Started with EntryEditBase_Started {
   }
 }
 
-abstract class _Started extends EntryEditState
-    implements EntryEditBase_Started {
+abstract class _Started extends EntryEditState {
   const factory _Started({required final Entry entry}) = _$_Started;
   const _Started._() : super._();
 
@@ -707,7 +889,7 @@ class __$$_ErroredCopyWithImpl<$Res> extends _$EntryEditStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Errored extends _Errored with EntryEditBase_Errored {
+class _$_Errored extends _Errored {
   const _$_Errored({required this.error, required this.stackTrace}) : super._();
 
   @override
@@ -810,8 +992,7 @@ class _$_Errored extends _Errored with EntryEditBase_Errored {
   }
 }
 
-abstract class _Errored extends EntryEditState
-    implements EntryEditBase_Errored {
+abstract class _Errored extends EntryEditState {
   const factory _Errored(
       {required final Object error,
       required final StackTrace stackTrace}) = _$_Errored;
