@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:method/app/route/app_flow.dart';
+import 'package:method/flow/flow.dart';
 import 'package:method/license/license.dart';
 import 'package:method/license_detail/route/route.dart';
 import 'package:method/util/bloc_navigator.dart';

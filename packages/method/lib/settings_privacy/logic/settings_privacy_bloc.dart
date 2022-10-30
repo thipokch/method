@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:method/app/route/app_flow.dart';
+import 'package:method/flow/flow.dart';
 import 'package:method/util/bloc_navigator.dart';
 import 'package:method_repo/repository.dart';
 

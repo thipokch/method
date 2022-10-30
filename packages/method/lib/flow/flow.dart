@@ -12,7 +12,7 @@ import 'package:method/settings_appearance/route/settings_appearance_route.dart'
 import 'package:method/settings_list/settings_list.dart';
 import 'package:method/settings_privacy/route/settings_privacy_route.dart';
 
-part 'app_flow.g.dart';
+part 'flow.g.dart';
 
 @TypedGoRoute<SessionFlow>(
   path: '/session',
