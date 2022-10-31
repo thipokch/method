@@ -54,6 +54,9 @@ class EntryEditConvergeCardSliver extends StatelessWidget {
                   entryDefinition: pair.value.orNull,
                   isSelected: pair.value.isPresent,
                   isStatic: true,
+                  onChanged: (value) => context
+                      .read<EntryEditConvergeBloc>()
+                      .add(EntryEditConvergeEvent.updateNote(text: value)),
                 ),
               ),
       );

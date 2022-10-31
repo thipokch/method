@@ -25,6 +25,7 @@ class EntryEditDivergeBloc
   }) : super(const _Initial()) {
     on<_Start>(_onStart);
     on<_SelectNote>(_onSelectNote);
+    on<_UpdateNote>(_onUpdateNote);
   }
   _onStart(_Start event, Emitter<EntryEditDivergeState> emit) =>
       emit(_Started(definitions: event.definitions));
@@ -40,15 +41,32 @@ class EntryEditDivergeBloc
           final taskDefinition = definitions.commands[event.index];
           final entryDefinition = definitions.data[event.index].orNull;
 
-          final updated = entryDefinition == null
-              ? definitions.mutateDataFor(
-                  taskDefinition,
-                  EntryDefinition.from(template: taskDefinition),
-                )
-              : definitions.clearDataFor(taskDefinition);
+          if (entryDefinition != null) return;
+
+          final updated = definitions.mutateDataFor(
+            taskDefinition,
+            EntryDefinition.from(template: taskDefinition),
+          );
 
           return emit(_Started(definitions: updated));
         },
         orElse: () => throw StateError("Invalid state to SelectLabel"),
+      );
+
+  void _onUpdateNote(
+    _UpdateNote event,
+    Emitter<EntryEditDivergeState> emit,
+  ) =>
+      state.maybeWhen(
+        started: (definitions) => emit(_Started(
+          definitions: definitions.mutateDataFor(
+            definitions.commands[event.index],
+            EntryDefinition.from(
+              template: definitions.commands[event.index],
+              data: event.text,
+            ),
+          ),
+        )),
+        orElse: () => throw StateError("Invalid state to UpdateNote"),
       );
 }

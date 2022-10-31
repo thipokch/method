@@ -30,6 +30,17 @@ class TextArea extends StatelessWidget {
         maxLines: null,
         // maxLength: 280,
         onTap: onTap,
+        decoration: const InputDecoration(
+          hintText: 'Start Writing...',
+          border: InputBorder.none,
+          // contentPadding: EdgeInsets.only(
+          //   top: 16.0,
+          //   left: 16.0,
+          //   right: 16.0,
+          //   bottom: 16.0,
+          // ),
+        ),
+
         // buildCounter: (
         //   _, {
         //   required currentLength,
@@ -45,16 +56,6 @@ class TextArea extends StatelessWidget {
         //     style: textTheme.labelMedium,
         //   ),
         // ),
-        decoration: const InputDecoration(
-          hintText: 'Start Writing...',
-          border: InputBorder.none,
-          // contentPadding: EdgeInsets.only(
-          //   top: 16.0,
-          //   left: 16.0,
-          //   right: 16.0,
-          //   bottom: 16.0,
-          // ),
-        ),
       ),
     );
   }

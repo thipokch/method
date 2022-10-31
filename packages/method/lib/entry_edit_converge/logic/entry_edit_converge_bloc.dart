@@ -26,6 +26,7 @@ class EntryEditConvergeBloc
   }) : super(const _Initial()) {
     on<_Start>(_onStart);
     on<_SelectLabel>(_onSelectLabel);
+    on<_UpdateNote>(_onUpdateNote);
   }
 
   _onStart(_Start event, Emitter<EntryEditConvergeState> emit) =>
@@ -52,5 +53,22 @@ class EntryEditConvergeBloc
           return emit(_Started(definitions: updated));
         },
         orElse: () => throw StateError("Invalid state to SelectLabel"),
+      );
+
+  void _onUpdateNote(
+    _UpdateNote event,
+    Emitter<EntryEditConvergeState> emit,
+  ) =>
+      state.maybeWhen(
+        started: (definitions) => emit(_Started(
+          definitions: definitions.mutateDataFor(
+            definitions.commands[0],
+            EntryDefinition.from(
+              template: definitions.commands[0],
+              data: event.text,
+            ),
+          ),
+        )),
+        orElse: () => throw StateError("Invalid state to UpdateNote"),
       );
 }

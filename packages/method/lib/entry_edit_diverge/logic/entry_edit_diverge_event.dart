@@ -18,6 +18,7 @@ class EntryEditDivergeEvent
   }) = _SelectNote;
 
   const factory EntryEditDivergeEvent.updateNote({
+    required final int index,
     required final String text,
   }) = _UpdateNote;
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../preview_helper.dart';
-import 'card_editing.dart';
 
 class CardPreview extends StatelessWidget {
   const CardPreview({super.key});
@@ -12,28 +11,28 @@ class CardPreview extends StatelessWidget {
     const Widget _divider = Preview.rowDivider;
 
     return Column(
-      children: [
-        const _MaterialCardPreview(),
+      children: const [
+        _MaterialCardPreview(),
         _divider,
-        MtEditingCard(
-          // title: "Collapse",
-          // description: "Tap to collapse...",
-          // emoji: "👅",
-          isSelected: false,
-          isExpandable: false,
-          // ignore: no-empty-block
-          onTap: () {},
-        ),
-        _divider,
-        MtEditingCard(
-          // title: "Expanded",
-          // description: "Tap to start writing...",
-          // emoji: "👌",
-          isSelected: true,
-          isExpandable: true,
-          // ignore: no-empty-block
-          onTap: () {},
-        ),
+        // MtEditingCard(
+        //   // title: "Collapse",
+        //   // description: "Tap to collapse...",
+        //   // emoji: "👅",
+        //   isSelected: false,
+        //   isExpandable: false,
+        //   // ignore: no-empty-block
+        //   onTap: () {},
+        // ),
+        // _divider,
+        // MtEditingCard(
+        //   // title: "Expanded",
+        //   // description: "Tap to start writing...",
+        //   // emoji: "👌",
+        //   isSelected: true,
+        //   isExpandable: true,
+        //   // ignore: no-empty-block
+        //   onTap: () {},
+        // ),
       ],
     );
   }

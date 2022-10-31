@@ -23,7 +23,7 @@ mixin _$EntryEditDivergeEvent {
         start,
     required TResult Function() stop,
     required TResult Function(int index) selectNote,
-    required TResult Function(String text) updateNote,
+    required TResult Function(int index, String text) updateNote,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -33,7 +33,7 @@ mixin _$EntryEditDivergeEvent {
         start,
     TResult Function()? stop,
     TResult Function(int index)? selectNote,
-    TResult Function(String text)? updateNote,
+    TResult Function(int index, String text)? updateNote,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,7 +43,7 @@ mixin _$EntryEditDivergeEvent {
         start,
     TResult Function()? stop,
     TResult Function(int index)? selectNote,
-    TResult Function(String text)? updateNote,
+    TResult Function(int index, String text)? updateNote,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -160,7 +160,7 @@ class _$_Start extends _Start with EntryEditBase_Start {
         start,
     required TResult Function() stop,
     required TResult Function(int index) selectNote,
-    required TResult Function(String text) updateNote,
+    required TResult Function(int index, String text) updateNote,
   }) {
     return start(definitions);
   }
@@ -173,7 +173,7 @@ class _$_Start extends _Start with EntryEditBase_Start {
         start,
     TResult Function()? stop,
     TResult Function(int index)? selectNote,
-    TResult Function(String text)? updateNote,
+    TResult Function(int index, String text)? updateNote,
   }) {
     return start?.call(definitions);
   }
@@ -186,7 +186,7 @@ class _$_Start extends _Start with EntryEditBase_Start {
         start,
     TResult Function()? stop,
     TResult Function(int index)? selectNote,
-    TResult Function(String text)? updateNote,
+    TResult Function(int index, String text)? updateNote,
     required TResult orElse(),
   }) {
     if (start != null) {
@@ -290,7 +290,7 @@ class _$_Stop extends _Stop {
         start,
     required TResult Function() stop,
     required TResult Function(int index) selectNote,
-    required TResult Function(String text) updateNote,
+    required TResult Function(int index, String text) updateNote,
   }) {
     return stop();
   }
@@ -303,7 +303,7 @@ class _$_Stop extends _Stop {
         start,
     TResult Function()? stop,
     TResult Function(int index)? selectNote,
-    TResult Function(String text)? updateNote,
+    TResult Function(int index, String text)? updateNote,
   }) {
     return stop?.call();
   }
@@ -316,7 +316,7 @@ class _$_Stop extends _Stop {
         start,
     TResult Function()? stop,
     TResult Function(int index)? selectNote,
-    TResult Function(String text)? updateNote,
+    TResult Function(int index, String text)? updateNote,
     required TResult orElse(),
   }) {
     if (stop != null) {
@@ -438,7 +438,7 @@ class _$_SelectNote extends _SelectNote {
         start,
     required TResult Function() stop,
     required TResult Function(int index) selectNote,
-    required TResult Function(String text) updateNote,
+    required TResult Function(int index, String text) updateNote,
   }) {
     return selectNote(index);
   }
@@ -451,7 +451,7 @@ class _$_SelectNote extends _SelectNote {
         start,
     TResult Function()? stop,
     TResult Function(int index)? selectNote,
-    TResult Function(String text)? updateNote,
+    TResult Function(int index, String text)? updateNote,
   }) {
     return selectNote?.call(index);
   }
@@ -464,7 +464,7 @@ class _$_SelectNote extends _SelectNote {
         start,
     TResult Function()? stop,
     TResult Function(int index)? selectNote,
-    TResult Function(String text)? updateNote,
+    TResult Function(int index, String text)? updateNote,
     required TResult orElse(),
   }) {
     if (selectNote != null) {
@@ -526,7 +526,7 @@ abstract class _$$_UpdateNoteCopyWith<$Res> {
   factory _$$_UpdateNoteCopyWith(
           _$_UpdateNote value, $Res Function(_$_UpdateNote) then) =
       __$$_UpdateNoteCopyWithImpl<$Res>;
-  $Res call({String text});
+  $Res call({int index, String text});
 }
 
 /// @nodoc
@@ -542,9 +542,14 @@ class __$$_UpdateNoteCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? index = freezed,
     Object? text = freezed,
   }) {
     return _then(_$_UpdateNote(
+      index: index == freezed
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
       text: text == freezed
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -556,14 +561,16 @@ class __$$_UpdateNoteCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_UpdateNote extends _UpdateNote {
-  const _$_UpdateNote({required this.text}) : super._();
+  const _$_UpdateNote({required this.index, required this.text}) : super._();
 
+  @override
+  final int index;
   @override
   final String text;
 
   @override
   String toString() {
-    return 'EntryEditDivergeEvent.updateNote(text: $text)';
+    return 'EntryEditDivergeEvent.updateNote(index: $index, text: $text)';
   }
 
   @override
@@ -571,12 +578,15 @@ class _$_UpdateNote extends _UpdateNote {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UpdateNote &&
+            const DeepCollectionEquality().equals(other.index, index) &&
             const DeepCollectionEquality().equals(other.text, text));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(text));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(index),
+      const DeepCollectionEquality().hash(text));
 
   @JsonKey(ignore: true)
   @override
@@ -591,9 +601,9 @@ class _$_UpdateNote extends _UpdateNote {
         start,
     required TResult Function() stop,
     required TResult Function(int index) selectNote,
-    required TResult Function(String text) updateNote,
+    required TResult Function(int index, String text) updateNote,
   }) {
-    return updateNote(text);
+    return updateNote(index, text);
   }
 
   @override
@@ -604,9 +614,9 @@ class _$_UpdateNote extends _UpdateNote {
         start,
     TResult Function()? stop,
     TResult Function(int index)? selectNote,
-    TResult Function(String text)? updateNote,
+    TResult Function(int index, String text)? updateNote,
   }) {
-    return updateNote?.call(text);
+    return updateNote?.call(index, text);
   }
 
   @override
@@ -617,11 +627,11 @@ class _$_UpdateNote extends _UpdateNote {
         start,
     TResult Function()? stop,
     TResult Function(int index)? selectNote,
-    TResult Function(String text)? updateNote,
+    TResult Function(int index, String text)? updateNote,
     required TResult orElse(),
   }) {
     if (updateNote != null) {
-      return updateNote(text);
+      return updateNote(index, text);
     }
     return orElse();
   }
@@ -665,9 +675,11 @@ class _$_UpdateNote extends _UpdateNote {
 }
 
 abstract class _UpdateNote extends EntryEditDivergeEvent {
-  const factory _UpdateNote({required final String text}) = _$_UpdateNote;
+  const factory _UpdateNote(
+      {required final int index, required final String text}) = _$_UpdateNote;
   const _UpdateNote._() : super._();
 
+  int get index;
   String get text;
   @JsonKey(ignore: true)
   _$$_UpdateNoteCopyWith<_$_UpdateNote> get copyWith =>
