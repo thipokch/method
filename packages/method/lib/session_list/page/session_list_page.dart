@@ -15,7 +15,7 @@ class SessionListPage extends StatelessWidget {
           analytics: context.read(),
         )..add(const SessionListEvent.start()),
         child: const MtAppPage(
-          name: Text("Session list"),
+          name: Text("Today"),
           // description: Text(""),
           slivers: [
             SessionListSliver(),

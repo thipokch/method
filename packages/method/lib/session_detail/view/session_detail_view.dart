@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:method/session_detail/session_detail.dart';
+import 'package:method_core/model/definition.dart';
+import 'package:method_core/model/entry.dart';
+import 'package:method_core/model/task.dart';
 import 'package:method_core/util/list.dart';
-
-// import '../session_detail.dart';
 
 part 'session_detail_sliver.dart';
 

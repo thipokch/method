@@ -65,4 +65,6 @@ class BuiltDefinition<C extends Uniform, D extends Uniform> {
       BuiltDefinition._(map.rebuild(updates));
 
   // D? operator [](Object? key) => map[key]?.orNull;
+
+  MapEntry<C, Optional<D>> elementAt(int index) => map.entries.elementAt(index);
 }

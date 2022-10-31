@@ -14,3 +14,16 @@ class SessionDetailState with _$SessionDetailState {
     required final StackTrace? stackTrace,
   }) = _Errored;
 }
+
+extension Definition on SessionDetailState {
+  BuiltDefinition<Task, Entry>? get definitions => whenOrNull(
+        started: (session) => session.builtDefinition,
+      );
+
+  Exercise? get exercise => whenOrNull(
+        started: (session) => session.template,
+      );
+  Session? get session => whenOrNull(
+        started: (session) => session,
+      );
+}

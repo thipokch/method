@@ -28,9 +28,12 @@ class EntryEditDivergeCardSliver extends StatelessWidget {
                     onChanged: (value) => context
                         .read<EntryEditDivergeBloc>()
                         .add(EntryEditDivergeEvent.updateNote(
-                            index: index, text: value)),
+                          index: index,
+                          text: value,
+                        )),
                     isSelected: state[index].value.isPresent,
                     isStatic: false,
+                    autoFocus: false,
                   ),
                   childCount: state.length,
                   semanticIndexOffset: 3,

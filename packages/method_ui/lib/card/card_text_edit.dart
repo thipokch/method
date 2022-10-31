@@ -6,9 +6,11 @@ class CardTextEdit extends StatefulWidget {
     required this.initialText,
     required this.onChanged,
     required this.onTap,
+    this.autoFocus,
   });
 
   final String? initialText;
+  final bool? autoFocus;
   final ValueChanged<String>? onChanged;
   final VoidCallback? onTap;
 
@@ -23,7 +25,7 @@ class CardTextEditState extends State<CardTextEdit> {
   @override
   Widget build(BuildContext context) => TextField(
         controller: controller,
-        autofocus: true,
+        autofocus: widget.autoFocus ?? true,
         onChanged: widget.onChanged,
         textAlign: TextAlign.center,
         textAlignVertical: TextAlignVertical.center,

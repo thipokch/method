@@ -19,6 +19,7 @@ class DefinitionEditCardView extends StatelessWidget {
     required this.isStatic,
     this.onTap,
     this.onChanged,
+    this.autoFocus,
   });
 
   final TaskDefinition taskDefinition;
@@ -26,6 +27,7 @@ class DefinitionEditCardView extends StatelessWidget {
   final EntryDefinition? entryDefinition;
 
   final TextEditingController? controller;
+  final bool? autoFocus;
   final bool isSelected;
   final bool isStatic;
 
@@ -48,6 +50,7 @@ class DefinitionEditCardView extends StatelessWidget {
           initialText: entryDefinition?.mapOrNull(
             note: (value) => value.data,
           ),
+          autoFocus: autoFocus,
           onChanged: onChanged,
           onTap: onTap,
         ),

@@ -2,7 +2,11 @@ import 'dart:developer';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:method_core/model/definition.dart';
+import 'package:method_core/model/entry.dart';
+import 'package:method_core/model/exercise.dart';
 import 'package:method_core/model/session.dart';
+import 'package:method_core/model/task.dart';
 import 'package:method_repo/repository.dart';
 
 part 'session_detail_event.dart';

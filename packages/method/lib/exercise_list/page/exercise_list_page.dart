@@ -14,7 +14,7 @@ class ExerciseListPage extends StatelessWidget {
           navigator: context.read(),
         )..add(const ExerciseListEvent.start()),
         child: const MtAppPage(
-          name: Text("Exercise list"),
+          name: Text("Library"),
           // description: Text(""),
           slivers: [
             ExerciseListSliver(),
