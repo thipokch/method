@@ -25,7 +25,7 @@ mixin DefinitionBuilder<C extends DefineDefinition<CD>, CD extends Uniform,
 }
 
 abstract class Definition<C extends Uniform, D extends Uniform> {
-  static String defaulDataIdMapper(Uniform d) => d.hierarchyPath;
+  static String defaultDataIdMapper(Uniform d) => d.hierarchyPath;
   static String defaultCommandIdMapper(Uniform c) =>
       "${c.hierarchyPath}/${c.id}";
 
@@ -45,7 +45,7 @@ class BuiltDefinition<C extends Uniform, D extends Uniform>
     final String Function(C c) commandIdMapper =
         Definition.defaultCommandIdMapper,
     required final Iterable<D> data,
-    final String Function(D d) dataIdMapper = Definition.defaulDataIdMapper,
+    final String Function(D d) dataIdMapper = Definition.defaultDataIdMapper,
   }) {
     final dataIdMap = {for (final d in data) dataIdMapper(d): d}.build();
 
@@ -103,13 +103,14 @@ class BuiltMultiDefinition<C extends Uniform, D extends Uniform>
     final String Function(C c) commandIdMapper =
         Definition.defaultCommandIdMapper,
     required final Iterable<D> data,
-    final String Function(D d) dataIdMapper = Definition.defaulDataIdMapper,
+    final String Function(D d) dataIdMapper = Definition.defaultDataIdMapper,
   }) {
-    final dataIdMap = {for (final d in data) dataIdMapper(d): d}.build();
+    // TODO: Add support for multiple commands
+
+    final dataList = data.map((e) => Optional<D>.fromNullable(e)).toList();
 
     return BuiltMultiDefinition._(BuiltListMultimap({
-      for (final c in commands)
-        c: Optional.fromNullable(dataIdMap[commandIdMapper(c)]),
+      commands.first: dataList,
     }));
   }
 
