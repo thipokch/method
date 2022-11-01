@@ -4,6 +4,7 @@ abstract class EntryEditEventBase {
   const EntryEditEventBase();
 }
 
-mixin EntryEditBase_Start on EntryEditEventBase {
-  BuildEntryDefinition get definitions;
+mixin EntryEditBase_Start<D extends Definition<TaskDefinition, EntryDefinition>>
+    on EntryEditEventBase {
+  D get definitions;
 }

@@ -1,6 +1,8 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:method_core/model/definition.dart';
 import 'package:method_core/model/entry_definition.dart';
+import 'package:method_core/model/task_definition.dart';
 
 part 'entry_edit_event_base.dart';
 part 'entry_edit_state_base.dart';

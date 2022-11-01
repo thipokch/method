@@ -9,7 +9,7 @@ class EntryEditConvergeState
   @With<EntryEditBase_Initial>()
   const factory EntryEditConvergeState.initial() = _Initial;
 
-  @With<EntryEditBase_Started>()
+  @With<EntryEditBase_Started<BuildEntryDefinition>>()
   const factory EntryEditConvergeState.started({
     required final BuildEntryDefinition definitions,
   }) = _Started;

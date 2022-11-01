@@ -14,16 +14,38 @@ mixin DefinitionBuilder<C extends DefineDefinition<CD>, CD extends Uniform,
         data: definitions,
         dataIdMapper: dataIdMapper,
       );
+
+  BuiltMultiDefinition<CD, D> get builtMultiDefinition =>
+      BuiltMultiDefinition.buildFrom(
+        commands: template.definitions,
+        commandIdMapper: commandIdMapper,
+        data: definitions,
+        dataIdMapper: dataIdMapper,
+      );
 }
 
-class BuiltDefinition<C extends Uniform, D extends Uniform> {
+abstract class Definition<C extends Uniform, D extends Uniform> {
+  static String defaulDataIdMapper(Uniform d) => d.hierarchyPath;
+  static String defaultCommandIdMapper(Uniform c) =>
+      "${c.hierarchyPath}/${c.id}";
+
+  BuiltList<C> get commands;
+  BuiltList<Optional<D>> get data;
+  List<D> get expandedData => data.expand((_) => _).toList();
+
+  bool get isCompleted;
+}
+
+class BuiltDefinition<C extends Uniform, D extends Uniform>
+    with Definition<C, D> {
   const BuiltDefinition._(this.map);
 
   factory BuiltDefinition.buildFrom({
     required final Iterable<C> commands,
-    final String Function(C c) commandIdMapper = defaultCommandIdMapper,
+    final String Function(C c) commandIdMapper =
+        Definition.defaultCommandIdMapper,
     required final Iterable<D> data,
-    final String Function(D d) dataIdMapper = defaulDataIdMapper,
+    final String Function(D d) dataIdMapper = Definition.defaulDataIdMapper,
   }) {
     final dataIdMap = {for (final d in data) dataIdMapper(d): d}.build();
 
@@ -35,16 +57,28 @@ class BuiltDefinition<C extends Uniform, D extends Uniform> {
 
   final BuiltMap<C, Optional<D>> map;
 
-  static String defaulDataIdMapper(Uniform d) => d.hierarchyPath;
-  static String defaultCommandIdMapper(Uniform c) =>
-      "${c.hierarchyPath}/${c.id}";
-
+  @override
   BuiltList<C> get commands => map.keys.toBuiltList();
+
+  @override
   BuiltList<Optional<D>> get data => map.values.toBuiltList();
 
+  @override
   bool get isCompleted => data.expand((_) => _).length == map.length;
 
-  int indexOfData(D d) => data.indexOf(Optional.fromNullable(d));
+  BuiltList<MapEntry<C, Optional<D>>> get entries => map.entries.toBuiltList();
+  MapEntry<C, Optional<D>> elementAt(int index) => entries.elementAt(index);
+
+  // int indexOfData(D d) => data.indexOf(Optional.fromNullable(d));
+  // D? operator [](Object? key) => map[key]?.orNull;
+}
+
+extension Modify<C extends Uniform, D extends Uniform>
+    on BuiltDefinition<C, D> {
+  BuiltDefinition<C, D> rebuild(
+    MapBuilder<C, Optional<D>> Function(MapBuilder<C, Optional<D>>) updates,
+  ) =>
+      BuiltDefinition._(map.rebuild(updates));
 
   BuiltDefinition<C, D> mutateDataFor(C command, D? data) =>
       rebuild((m) => m..[command] = Optional.fromNullable(data));
@@ -58,13 +92,58 @@ class BuiltDefinition<C extends Uniform, D extends Uniform> {
   BuiltDefinition<C, D> clearDataFor(C command) => mutateDataFor(command, null);
 
   BuiltDefinition<C, D> clearDataAt(int index) => mutateDataAt(index, null);
+}
 
-  BuiltDefinition<C, D> rebuild(
-    MapBuilder<C, Optional<D>> Function(MapBuilder<C, Optional<D>>) updates,
+class BuiltMultiDefinition<C extends Uniform, D extends Uniform>
+    with Definition<C, D> {
+  const BuiltMultiDefinition._(this.map);
+
+  factory BuiltMultiDefinition.buildFrom({
+    required final Iterable<C> commands,
+    final String Function(C c) commandIdMapper =
+        Definition.defaultCommandIdMapper,
+    required final Iterable<D> data,
+    final String Function(D d) dataIdMapper = Definition.defaulDataIdMapper,
+  }) {
+    final dataIdMap = {for (final d in data) dataIdMapper(d): d}.build();
+
+    return BuiltMultiDefinition._(BuiltListMultimap({
+      for (final c in commands)
+        c: Optional.fromNullable(dataIdMap[commandIdMapper(c)]),
+    }));
+  }
+
+  final BuiltListMultimap<C, Optional<D>> map;
+
+  @override
+  BuiltList<C> get commands => map.keys.toBuiltList();
+
+  @override
+  BuiltList<Optional<D>> get data => map.values.toBuiltList();
+
+  @override
+  // TODO: implement isCompleted
+  bool get isCompleted => throw UnimplementedError();
+}
+
+extension MultiModify<C extends Uniform, D extends Uniform>
+    on BuiltMultiDefinition<C, D> {
+  BuiltMultiDefinition<C, D> rebuild(
+    ListMultimapBuilder<C, Optional<D>> Function(
+      ListMultimapBuilder<C, Optional<D>>,
+    )
+        updates,
   ) =>
-      BuiltDefinition._(map.rebuild(updates));
+      BuiltMultiDefinition._(map.rebuild(updates));
 
-  // D? operator [](Object? key) => map[key]?.orNull;
+  BuiltMultiDefinition<C, D> insertDataFor(C command, D? data) =>
+      rebuild((m) => m..add(command, Optional.fromNullable(data)));
 
-  MapEntry<C, Optional<D>> elementAt(int index) => map.entries.elementAt(index);
+  BuiltMultiDefinition<C, D> mutateDataAt(
+    C command,
+    D? data,
+    int index,
+  ) =>
+      rebuild((m) => m
+        ..[command].replaceRange(index, index, [Optional.fromNullable(data)]));
 }

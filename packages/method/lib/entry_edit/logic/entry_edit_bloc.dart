@@ -36,8 +36,9 @@ class EntryEditBloc extends Bloc<EntryEditEvent, EntryEditState> {
     Emitter<EntryEditState> emit,
   ) =>
       state.mapOrNull(
-        started: (value) => repository.entries.put(value.entry
-            .copyWith(definitions: event.definitions.asEntryDefinitionList())),
+        started: (value) => repository.entries.put(
+          value.entry.copyWith(definitions: event.definitions.expandedData),
+        ),
       );
 
   void _onStartTask(

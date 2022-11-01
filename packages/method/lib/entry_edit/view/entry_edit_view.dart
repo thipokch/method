@@ -5,8 +5,12 @@ import 'package:method/entry_edit_converge/logic/entry_edit_converge_bloc.dart';
 import 'package:method/entry_edit_converge/page/page.dart';
 import 'package:method/entry_edit_diverge/entry_edit_diverge.dart';
 import 'package:method/entry_edit_feedback/entry_edit_feedback.dart';
+import 'package:method/entry_edit_linear/logic/entry_edit_linear_bloc.dart';
+import 'package:method/entry_edit_linear/page/page.dart';
+import 'package:method_core/model/definition.dart';
 import 'package:method_core/model/entry.dart';
 import 'package:method_core/model/entry_definition.dart';
+import 'package:method_core/model/task_definition.dart';
 
 part 'entry_edit_sliver.dart';
 
@@ -19,7 +23,22 @@ class EntryEditView extends StatelessWidget {
         selector: (state) => state.entry,
         builder: (context, state) => state != null
             ? state.template.map(
-                linear: (_) => const Text("linear"),
+                //
+
+                linear: (_) => BlocProvider(
+                  create: (_) => EntryEditLinearBloc()
+                    ..add(EntryEditLinearEvent.start(
+                      definitions: state.builtMultiDefinition,
+                    )),
+                  child: EntryEditLinearListener(
+                    listener: (context, state) => state.mapOrNull(
+                      started: (value) => context.updateEntryDefinition(
+                        definitions: value.definitions,
+                      ),
+                    ),
+                    child: const EntryEditLinearPage(),
+                  ),
+                ),
 
                 //
 
@@ -77,7 +96,9 @@ class EntryEditView extends StatelessWidget {
 }
 
 extension _UpdateEntryDefinition on BuildContext {
-  updateEntryDefinition({required BuildEntryDefinition definitions}) =>
+  updateEntryDefinition({
+    required Definition<TaskDefinition, EntryDefinition> definitions,
+  }) =>
       read<EntryEditBloc>().add(
         EntryEditEvent.updateDefinition(
           definitions: definitions,

@@ -6,7 +6,7 @@ class EntryEditFeedbackEvent
     implements EntryEditEventBase {
   const EntryEditFeedbackEvent._();
 
-  @With<EntryEditBase_Start>()
+  @With<EntryEditBase_Start<BuildEntryDefinition>>()
   const factory EntryEditFeedbackEvent.start({
     required final BuildEntryDefinition definitions,
   }) = _Start;

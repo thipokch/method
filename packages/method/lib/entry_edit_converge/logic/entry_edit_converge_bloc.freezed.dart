@@ -123,7 +123,8 @@ class __$$_StartCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Start extends _Start with EntryEditBase_Start {
+class _$_Start extends _Start
+    with EntryEditBase_Start<BuiltDefinition<TaskDefinition, EntryDefinition>> {
   const _$_Start({required this.definitions}) : super._();
 
   @override
@@ -234,7 +235,8 @@ class _$_Start extends _Start with EntryEditBase_Start {
 }
 
 abstract class _Start extends EntryEditConvergeEvent
-    implements EntryEditBase_Start {
+    implements
+        EntryEditBase_Start<BuiltDefinition<TaskDefinition, EntryDefinition>> {
   const factory _Start(
       {required final BuiltDefinition<TaskDefinition, EntryDefinition>
           definitions}) = _$_Start;
@@ -896,7 +898,10 @@ class __$$_StartedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Started extends _Started with EntryEditBase_Started {
+class _$_Started extends _Started
+    with
+        EntryEditBase_Started<
+            BuiltDefinition<TaskDefinition, EntryDefinition>> {
   const _$_Started({required this.definitions}) : super._();
 
   @override
@@ -1001,7 +1006,9 @@ class _$_Started extends _Started with EntryEditBase_Started {
 }
 
 abstract class _Started extends EntryEditConvergeState
-    implements EntryEditBase_Started {
+    implements
+        EntryEditBase_Started<
+            BuiltDefinition<TaskDefinition, EntryDefinition>> {
   const factory _Started(
       {required final BuiltDefinition<TaskDefinition, EntryDefinition>
           definitions}) = _$_Started;

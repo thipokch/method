@@ -21,7 +21,7 @@ mixin _$EntryEditEvent {
     required TResult Function(String taskId) startTask,
     required TResult Function(String entryId) startEntry,
     required TResult Function(
-            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)
+            Definition<TaskDefinition, EntryDefinition> definitions)
         updateDefinition,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,8 +29,7 @@ mixin _$EntryEditEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String taskId)? startTask,
     TResult Function(String entryId)? startEntry,
-    TResult Function(
-            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+    TResult Function(Definition<TaskDefinition, EntryDefinition> definitions)?
         updateDefinition,
   }) =>
       throw _privateConstructorUsedError;
@@ -38,8 +37,7 @@ mixin _$EntryEditEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String taskId)? startTask,
     TResult Function(String entryId)? startEntry,
-    TResult Function(
-            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+    TResult Function(Definition<TaskDefinition, EntryDefinition> definitions)?
         updateDefinition,
     required TResult orElse(),
   }) =>
@@ -153,7 +151,7 @@ class _$_StartTask extends _StartTask {
     required TResult Function(String taskId) startTask,
     required TResult Function(String entryId) startEntry,
     required TResult Function(
-            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)
+            Definition<TaskDefinition, EntryDefinition> definitions)
         updateDefinition,
   }) {
     return startTask(taskId);
@@ -164,8 +162,7 @@ class _$_StartTask extends _StartTask {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String taskId)? startTask,
     TResult Function(String entryId)? startEntry,
-    TResult Function(
-            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+    TResult Function(Definition<TaskDefinition, EntryDefinition> definitions)?
         updateDefinition,
   }) {
     return startTask?.call(taskId);
@@ -176,8 +173,7 @@ class _$_StartTask extends _StartTask {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String taskId)? startTask,
     TResult Function(String entryId)? startEntry,
-    TResult Function(
-            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+    TResult Function(Definition<TaskDefinition, EntryDefinition> definitions)?
         updateDefinition,
     required TResult orElse(),
   }) {
@@ -300,7 +296,7 @@ class _$_StartEntry extends _StartEntry {
     required TResult Function(String taskId) startTask,
     required TResult Function(String entryId) startEntry,
     required TResult Function(
-            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)
+            Definition<TaskDefinition, EntryDefinition> definitions)
         updateDefinition,
   }) {
     return startEntry(entryId);
@@ -311,8 +307,7 @@ class _$_StartEntry extends _StartEntry {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String taskId)? startTask,
     TResult Function(String entryId)? startEntry,
-    TResult Function(
-            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+    TResult Function(Definition<TaskDefinition, EntryDefinition> definitions)?
         updateDefinition,
   }) {
     return startEntry?.call(entryId);
@@ -323,8 +318,7 @@ class _$_StartEntry extends _StartEntry {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String taskId)? startTask,
     TResult Function(String entryId)? startEntry,
-    TResult Function(
-            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+    TResult Function(Definition<TaskDefinition, EntryDefinition> definitions)?
         updateDefinition,
     required TResult orElse(),
   }) {
@@ -384,7 +378,7 @@ abstract class _$$_UpdateDefinitionCopyWith<$Res> {
   factory _$$_UpdateDefinitionCopyWith(
           _$_UpdateDefinition value, $Res Function(_$_UpdateDefinition) then) =
       __$$_UpdateDefinitionCopyWithImpl<$Res>;
-  $Res call({BuiltDefinition<TaskDefinition, EntryDefinition> definitions});
+  $Res call({Definition<TaskDefinition, EntryDefinition> definitions});
 }
 
 /// @nodoc
@@ -406,7 +400,7 @@ class __$$_UpdateDefinitionCopyWithImpl<$Res>
       definitions: definitions == freezed
           ? _value.definitions
           : definitions // ignore: cast_nullable_to_non_nullable
-              as BuiltDefinition<TaskDefinition, EntryDefinition>,
+              as Definition<TaskDefinition, EntryDefinition>,
     ));
   }
 }
@@ -417,7 +411,7 @@ class _$_UpdateDefinition extends _UpdateDefinition {
   const _$_UpdateDefinition({required this.definitions}) : super._();
 
   @override
-  final BuiltDefinition<TaskDefinition, EntryDefinition> definitions;
+  final Definition<TaskDefinition, EntryDefinition> definitions;
 
   @override
   String toString() {
@@ -448,7 +442,7 @@ class _$_UpdateDefinition extends _UpdateDefinition {
     required TResult Function(String taskId) startTask,
     required TResult Function(String entryId) startEntry,
     required TResult Function(
-            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)
+            Definition<TaskDefinition, EntryDefinition> definitions)
         updateDefinition,
   }) {
     return updateDefinition(definitions);
@@ -459,8 +453,7 @@ class _$_UpdateDefinition extends _UpdateDefinition {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String taskId)? startTask,
     TResult Function(String entryId)? startEntry,
-    TResult Function(
-            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+    TResult Function(Definition<TaskDefinition, EntryDefinition> definitions)?
         updateDefinition,
   }) {
     return updateDefinition?.call(definitions);
@@ -471,8 +464,7 @@ class _$_UpdateDefinition extends _UpdateDefinition {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String taskId)? startTask,
     TResult Function(String entryId)? startEntry,
-    TResult Function(
-            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+    TResult Function(Definition<TaskDefinition, EntryDefinition> definitions)?
         updateDefinition,
     required TResult orElse(),
   }) {
@@ -519,11 +511,11 @@ class _$_UpdateDefinition extends _UpdateDefinition {
 
 abstract class _UpdateDefinition extends EntryEditEvent {
   const factory _UpdateDefinition(
-      {required final BuiltDefinition<TaskDefinition, EntryDefinition>
+      {required final Definition<TaskDefinition, EntryDefinition>
           definitions}) = _$_UpdateDefinition;
   const _UpdateDefinition._() : super._();
 
-  BuiltDefinition<TaskDefinition, EntryDefinition> get definitions;
+  Definition<TaskDefinition, EntryDefinition> get definitions;
   @JsonKey(ignore: true)
   _$$_UpdateDefinitionCopyWith<_$_UpdateDefinition> get copyWith =>
       throw _privateConstructorUsedError;

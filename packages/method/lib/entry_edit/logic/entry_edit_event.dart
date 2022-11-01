@@ -13,6 +13,6 @@ class EntryEditEvent with _$EntryEditEvent {
   }) = _StartEntry;
 
   const factory EntryEditEvent.updateDefinition({
-    required final BuildEntryDefinition definitions,
+    required final Definition<TaskDefinition, EntryDefinition> definitions,
   }) = _UpdateDefinition;
 }

@@ -6,7 +6,7 @@ class EntryEditConvergeEvent
     implements EntryEditEventBase {
   const EntryEditConvergeEvent._();
 
-  @With<EntryEditBase_Start>()
+  @With<EntryEditBase_Start<BuildEntryDefinition>>()
   const factory EntryEditConvergeEvent.start({
     required final BuildEntryDefinition definitions,
   }) = _Start;

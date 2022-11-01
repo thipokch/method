@@ -6,7 +6,7 @@ class EntryEditDivergeEvent
     implements EntryEditEventBase {
   const EntryEditDivergeEvent._();
 
-  @With<EntryEditBase_Start>()
+  @With<EntryEditBase_Start<BuildEntryDefinition>>()
   const factory EntryEditDivergeEvent.start({
     required final BuildEntryDefinition definitions,
   }) = _Start;

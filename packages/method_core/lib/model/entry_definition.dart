@@ -69,6 +69,8 @@ typedef EntryDefinitionPair
 typedef EntryDefinitionList
     = BuiltList<MapEntry<TaskDefinition, Optional<EntryDefinition>>>;
 typedef BuildEntryDefinition = BuiltDefinition<TaskDefinition, EntryDefinition>;
+typedef BuildMultiEntryDefinition
+    = BuiltMultiDefinition<TaskDefinition, EntryDefinition>;
 
 extension AsEntryDefinitionList on BuildEntryDefinition {
   List<EntryDefinition> asEntryDefinitionList() =>

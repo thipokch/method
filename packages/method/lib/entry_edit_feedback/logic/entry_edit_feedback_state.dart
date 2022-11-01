@@ -9,7 +9,7 @@ class EntryEditFeedbackState
   @With<EntryEditBase_Initial>()
   const factory EntryEditFeedbackState.initial() = _Initial;
 
-  @With<EntryEditBase_Started>()
+  @With<EntryEditBase_Started<BuildEntryDefinition>>()
   const factory EntryEditFeedbackState.started({
     required final BuildEntryDefinition definitions,
   }) = _Started;

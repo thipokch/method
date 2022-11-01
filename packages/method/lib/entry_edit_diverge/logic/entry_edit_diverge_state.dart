@@ -9,7 +9,7 @@ class EntryEditDivergeState
   @With<EntryEditBase_Initial>()
   const factory EntryEditDivergeState.initial() = _Initial;
 
-  @With<EntryEditBase_Started>()
+  @With<EntryEditBase_Started<BuildEntryDefinition>>()
   const factory EntryEditDivergeState.started({
     required final BuildEntryDefinition definitions,
   }) = _Started;
