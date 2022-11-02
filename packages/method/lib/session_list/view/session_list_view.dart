@@ -1,15 +1,18 @@
+import 'package:avatar_stack/avatar_stack.dart';
+import 'package:avatar_stack/positions.dart';
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_alert/flutter_platform_alert.dart';
+import 'package:intl/intl.dart';
 import 'package:method/app/route/route.dart';
 import 'package:method/session_edit/route/session_edit_route.dart';
 import 'package:method_core/model/session.dart';
 import 'package:method_style/element_scale.dart';
 import 'package:method_style/element_symbol.dart';
+import 'package:method_ui/card/card.dart';
 import 'package:method_ui/emoji/emoji.dart';
-import 'package:timeago_flutter/timeago_flutter.dart';
 
 import '../logic/session_list_bloc.dart';
 
@@ -40,7 +43,7 @@ class _Started extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: sessions
-          .map<Widget>((session) => _Card(
+          .map<Widget>((session) => _Item(
                 key: ValueKey(session.id),
                 session: session,
                 onTap: () => context
@@ -117,12 +120,12 @@ class _Started extends StatelessWidget {
   }
 }
 
-class _Card extends StatelessWidget {
+class _Item extends StatelessWidget {
   final Session session;
   final GestureTapCallback? onTap;
   final Widget? actions;
 
-  const _Card({
+  const _Item({
     super.key,
     required this.session,
     this.actions,
@@ -132,99 +135,161 @@ class _Card extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // final colorScheme = Theme.of(context).colorScheme;
-    final textTheme = Theme.of(context).textTheme;
-    final entryIndex = session.definitions.indexWhere(
-      (entry) =>
-          entry.template.maybeMap(
-            feedback: (_) => false,
-            orElse: () => true,
-          ) ??
-          false,
-    );
+    // final textTheme = Theme.of(context).textTheme;
+    // final entryIndex = session.definitions.indexWhere(
+    //   (entry) =>
+    //       entry.template.maybeMap(
+    //         feedback: (_) => false,
+    //         orElse: () => true,
+    //       ) ??
+    //       false,
+    // );
 
-    final defIndex = entryIndex < 0
-        ? -1
-        : session.definitions[entryIndex].definitions.indexWhere(
-            (def) =>
-                def.maybeMap(
-                  note: (_) => true,
-                  orElse: () => false,
-                ) ??
-                false,
-          );
+    // final defIndex = entryIndex < 0
+    //     ? -1
+    //     : session.definitions[entryIndex].definitions.indexWhere(
+    //         (def) =>
+    //             def.maybeMap(
+    //               note: (_) => true,
+    //               orElse: () => false,
+    //             ) ??
+    //             false,
+    //       );
+
+    final labels = session.labels;
+    final notes = session.notes;
 
     return GestureDetector(
       onTap: onTap,
-      child: Card(
-        elevation: 1,
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        shape: const SmoothRectangleBorder(
-          borderRadius: SmoothBorderRadius.all(
-            SmoothRadius(
-              cornerRadius: ElementScale.cornerLarge,
-              cornerSmoothing: ElementScale.cornerSmoothFactor,
-            ),
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 12.0,
-            horizontal: 8.0,
-          ),
-          child: Column(
-            children: [
-              ListTile(
-                leading: MtEmoji(emoji: session.template.icon),
-                title: Text(session.template.name),
-                subtitle: Timeago(
-                  builder: (_, value) => Text(value),
-                  date: session.createdAt,
-                ),
-                // subtitle: Text(format(session.commitedAt!)),
-                trailing: actions,
-              ),
-              if (entryIndex >= 0 && defIndex >= 0)
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 128.0,
-                    horizontal: 8.0,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            ListTile(
+              // leading: MtEmoji(emoji: session.template.icon),
+              leading: Column(
+                children: [
+                  Text(
+                    DateFormat('EEE').format(session.createdAt).toUpperCase(),
+                    style: Theme.of(context).textTheme.labelSmall,
                   ),
-                  child: Center(
-                    child: Text(
-                      session.definitions[entryIndex].definitions[defIndex]
-                          .maybeMap(
-                        note: (value) => value.data,
-                        orElse: () => throw UnimplementedError(),
+                  Text(
+                    session.createdAt.day.toString(),
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                ],
+              ),
+              // leading: CircleAvatar(
+              //   backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+              //   child: SizedBox(
+              //     width: 28,
+              //     height: 28,
+              //     child: MtEmoji(emoji: session.template.icon),
+              //   ),
+              // ),
+              title: Text(session.template.name),
+              // subtitle: Timeago(
+              //   builder: (_, value) => Text(value),
+              //   date: session.createdAt,
+              // ),
+              // subtitle: Text(format(session.commitedAt!)),
+              trailing: actions,
+            ),
+
+            if (notes.isNotEmpty) MtCard(body: Text(notes.first.data)),
+
+            if (labels.isNotEmpty)
+              SizedBox(
+                height: 32,
+                child: WidgetStack(
+                  positions: RestrictedAmountPositions(
+                    minCoverage: .3,
+                    infoIndent: 2,
+                    align: StackAlign.center,
+                  ),
+                  stackedWidgets: labels
+                      .map(
+                        (def) => BorderedCircleAvatar(
+                          border: BorderSide(
+                            color: Theme.of(context).colorScheme.background,
+                            width: ElementScale.strokeL,
+                          ),
+                          backgroundColor:
+                              Theme.of(context).colorScheme.surfaceVariant,
+                          child: SizedBox(
+                            width: 16,
+                            height: 16,
+                            child: MtEmoji(emoji: def.icon),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                  buildInfoWidget: (surplus) => BorderedCircleAvatar(
+                    border: BorderSide(
+                      color: Theme.of(context).colorScheme.background,
+                      width: ElementScale.strokeL,
+                    ),
+                    backgroundColor:
+                        Theme.of(context).colorScheme.primaryContainer,
+                    child: SizedBox(
+                      width: 18,
+                      height: 18,
+                      child: Center(
+                        child: Text(
+                          '+$surplus',
+                          style:
+                              Theme.of(context).textTheme.labelSmall?.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onPrimaryContainer,
+                                  ),
+                        ),
                       ),
-                      style: textTheme.titleMedium,
                     ),
                   ),
                 ),
-              // if (entryIndex >= 0)
-              //   Wrap(
-              //     spacing: 10,
-              //     alignment: WrapAlignment.start,
-              //     children: session.labels
-              //         .map<Widget>((e) => Chip(
-              //               label: Text(e.name),
-              //               labelStyle: textTheme.labelMedium,
-              //               avatar: MtEmoji(emoji: e.icon),
-              //               padding: const EdgeInsets.fromLTRB(10, 6, 5, 6),
-              //               backgroundColor: colorScheme.surface,
-              //               shape: const SmoothRectangleBorder(
-              //                 borderRadius: SmoothBorderRadius.all(
-              //                   SmoothRadius(
-              //                     cornerRadius: ElementScale.cornerLarge,
-              //                     cornerSmoothing:
-              //                         ElementScale.cornerSmoothFactor,
-              //                   ),
-              //                 ),
-              //               ),
-              //             ))
-              //         .toList(),
-              //   ),
-            ],
-          ),
+              ),
+            // if (entryIndex >= 0 && defIndex >= 0)
+            //   Padding(
+            //     padding: const EdgeInsets.symmetric(
+            //       vertical: 128.0,
+            //       horizontal: 8.0,
+            //     ),
+            //     child: Center(
+            //       child: Text(
+            //         session.definitions[entryIndex].definitions[defIndex]
+            //             .maybeMap(
+            //           note: (value) => value.data,
+            //           orElse: () => throw UnimplementedError(),
+            //         ),
+            //         style: textTheme.titleMedium,
+            //       ),
+            //     ),
+            //   ),
+            // if (entryIndex >= 0)
+            //   Wrap(
+            //     spacing: 10,
+            //     alignment: WrapAlignment.start,
+            //     children: session.labels
+            //         .map<Widget>((e) => Chip(
+            //               label: Text(e.name),
+            //               labelStyle: textTheme.labelMedium,
+            //               avatar: MtEmoji(emoji: e.icon),
+            //               padding: const EdgeInsets.fromLTRB(10, 6, 5, 6),
+            //               backgroundColor: colorScheme.surface,
+            //               shape: const SmoothRectangleBorder(
+            //                 borderRadius: SmoothBorderRadius.all(
+            //                   SmoothRadius(
+            //                     cornerRadius: ElementScale.cornerLarge,
+            //                     cornerSmoothing:
+            //                         ElementScale.cornerSmoothFactor,
+            //                   ),
+            //                 ),
+            //               ),
+            //             ))
+            //         .toList(),
+            //   ),
+          ],
         ),
       ),
     );

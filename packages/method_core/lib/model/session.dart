@@ -3,7 +3,9 @@ import 'package:method_core/model/definition.dart';
 import 'package:method_core/model/entry.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:method_core/model/entry_definition.dart';
 import 'package:method_core/model/task.dart';
+import 'package:method_core/model/task_definition.dart';
 import 'package:quiver/core.dart';
 
 import '../abstract/define.dart';
@@ -97,4 +99,22 @@ typedef SessionDefinitionList = BuiltList<MapEntry<Task, Optional<Entry>>>;
 
 extension AsEntryDefinitionList on BuiltDefinition<Task, Entry> {
   List<Entry> asEntryList() => map.values.expand((_) => _).toList();
+}
+
+extension DefinitionExtension on Session {
+  BuiltList<TaskDefinitionLabel> get labels => builtDefinition
+      .rebuild((_) => _..removeWhere((command, data) => data.isNotPresent))
+      .data
+      .map((p0) => p0.value.labels)
+      .expand((_) => _)
+      .toBuiltList();
+  // .whereType<TaskDefinitionLabel>();
+
+  BuiltList<EntryDefinitionNote> get notes => builtDefinition
+      .rebuild((_) => _..removeWhere((command, data) => data.isNotPresent))
+      .data
+      .map((p0) => p0.value.notes)
+      .expand((_) => _)
+      .toBuiltList();
+  //     definitions.whereType<EntryDefinitionNote>().toBuiltList();
 }
