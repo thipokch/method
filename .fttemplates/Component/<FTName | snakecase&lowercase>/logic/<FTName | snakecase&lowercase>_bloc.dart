@@ -69,7 +69,7 @@ class <FTName | pascalcase>Bloc extends Bloc<<FTName | pascalcase>Event, <FTName
   @override
   void onEvent(event) {
     // TODO: implement analytics here
-    log("$runtimeType - error : $event");
+    log("$runtimeType - event : $event");
     super.onEvent(event);
   }
 

@@ -34,12 +34,14 @@ class EntryEditBloc extends Bloc<EntryEditEvent, EntryEditState> {
   void _onUpdateDefinition(
     _UpdateDefinition event,
     Emitter<EntryEditState> emit,
-  ) =>
-      state.mapOrNull(
-        started: (value) => repository.entries.put(
-          value.entry.copyWith(definitions: event.definitions.expandedData),
-        ),
-      );
+  ) {
+    print("_onUpdateDefinition");
+    state.mapOrNull(
+      started: (value) => repository.entries.put(
+        value.entry.copyWith(definitions: event.definitions.expandedData),
+      ),
+    );
+  }
 
   void _onStartTask(
     _StartTask event,

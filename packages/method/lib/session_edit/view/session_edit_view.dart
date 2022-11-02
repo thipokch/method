@@ -54,8 +54,9 @@ class _Swiper extends StatelessWidget {
                         )),
                   child: EntryEditListener(
                     listenWhen: (previous, current) =>
+                        previous.entry != null && // Skip initial state
                         previous.entry?.builtDefinition !=
-                        current.entry?.builtDefinition,
+                            current.entry?.builtDefinition,
                     listener: (context, state) => state.mapOrNull(
                       started: (value) => context.read<SessionEditBloc>().add(
                             SessionEditEvent.updateEntry(entry: value.entry),

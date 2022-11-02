@@ -31,6 +31,8 @@ class EntryEditView extends StatelessWidget {
                       definitions: state.builtMultiDefinition,
                     )),
                   child: EntryEditLinearListener(
+                    listenWhen: (previous, current) =>
+                        previous.definitions != null, // Skip initial state
                     listener: (context, state) => state.mapOrNull(
                       started: (value) => context.updateEntryDefinition(
                         definitions: value.definitions,
@@ -48,6 +50,8 @@ class EntryEditView extends StatelessWidget {
                       definitions: state.builtDefinition,
                     )),
                   child: EntryEditDivergeListener(
+                    listenWhen: (previous, current) =>
+                        previous.definitions != null, // Skip initial state
                     listener: (context, state) => state.mapOrNull(
                       started: (value) => context.updateEntryDefinition(
                         definitions: value.definitions,
@@ -65,6 +69,8 @@ class EntryEditView extends StatelessWidget {
                       definitions: state.builtDefinition,
                     )),
                   child: EntryEditConvergeListener(
+                    listenWhen: (previous, current) =>
+                        previous.definitions != null, // Skip initial state
                     listener: (context, state) => state.mapOrNull(
                       started: (value) => context.updateEntryDefinition(
                         definitions: value.definitions,
@@ -82,6 +88,8 @@ class EntryEditView extends StatelessWidget {
                       definitions: state.builtDefinition,
                     )),
                   child: EntryEditFeedbackListener(
+                    listenWhen: (previous, current) =>
+                        previous.definitions != null, // Skip initial state
                     listener: (context, state) => state.mapOrNull(
                       started: (value) => context.updateEntryDefinition(
                         definitions: value.definitions,
