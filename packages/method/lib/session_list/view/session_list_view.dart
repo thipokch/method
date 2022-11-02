@@ -131,7 +131,7 @@ class _Card extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    // final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
     final entryIndex = session.definitions.indexWhere(
       (entry) =>
@@ -200,29 +200,29 @@ class _Card extends StatelessWidget {
                     ),
                   ),
                 ),
-              if (entryIndex >= 0)
-                Wrap(
-                  spacing: 10,
-                  alignment: WrapAlignment.start,
-                  children: session.labels
-                      .map<Widget>((e) => Chip(
-                            label: Text(e.name),
-                            labelStyle: textTheme.labelMedium,
-                            avatar: MtEmoji(emoji: e.icon),
-                            padding: const EdgeInsets.fromLTRB(10, 6, 5, 6),
-                            backgroundColor: colorScheme.surface,
-                            shape: const SmoothRectangleBorder(
-                              borderRadius: SmoothBorderRadius.all(
-                                SmoothRadius(
-                                  cornerRadius: ElementScale.cornerLarge,
-                                  cornerSmoothing:
-                                      ElementScale.cornerSmoothFactor,
-                                ),
-                              ),
-                            ),
-                          ))
-                      .toList(),
-                ),
+              // if (entryIndex >= 0)
+              //   Wrap(
+              //     spacing: 10,
+              //     alignment: WrapAlignment.start,
+              //     children: session.labels
+              //         .map<Widget>((e) => Chip(
+              //               label: Text(e.name),
+              //               labelStyle: textTheme.labelMedium,
+              //               avatar: MtEmoji(emoji: e.icon),
+              //               padding: const EdgeInsets.fromLTRB(10, 6, 5, 6),
+              //               backgroundColor: colorScheme.surface,
+              //               shape: const SmoothRectangleBorder(
+              //                 borderRadius: SmoothBorderRadius.all(
+              //                   SmoothRadius(
+              //                     cornerRadius: ElementScale.cornerLarge,
+              //                     cornerSmoothing:
+              //                         ElementScale.cornerSmoothFactor,
+              //                   ),
+              //                 ),
+              //               ),
+              //             ))
+              //         .toList(),
+              //   ),
             ],
           ),
         ),

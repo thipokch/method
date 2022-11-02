@@ -4,7 +4,6 @@ import 'package:method_core/model/entry.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:method_core/model/task.dart';
-import 'package:method_core/model/task_definition.dart';
 import 'package:quiver/core.dart';
 
 import '../abstract/define.dart';
@@ -81,11 +80,11 @@ class Session
   @override
   String get collectionSlug => "session";
 
-  List<TaskDefinition> get labels => definitions
-      .map((e) => e.labels)
-      .whereType<List<TaskDefinition>>()
-      .expand((e) => e)
-      .toList();
+  // List<TaskDefinition> get labels => definitions
+  //     .map((e) => e.labels)
+  //     .whereType<List<TaskDefinition>>()
+  //     .expand((e) => e)
+  //     .toList();
 
   @override
   String toString() => "Session($uniformString, exercise: $template)";

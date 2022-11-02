@@ -31,7 +31,7 @@ abstract class Definition<C extends Uniform, D extends Uniform> {
 
   BuiltList<C> get commands;
   BuiltList<Optional<D>> get data;
-  List<D> get expandedData => data.expand((_) => _).toList();
+  BuiltList<D> get expandedData => data.expand((_) => _).toBuiltList();
 
   bool get isCompleted;
 }

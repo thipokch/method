@@ -52,7 +52,8 @@ class MtCard extends StatelessWidget {
                 child: Column(
                   children: [
                     if (header != null) header!,
-                    if (isSelected || !isExpandable) Expanded(child: body),
+                    if (isSelected || !isExpandable)
+                      Expanded(child: Center(child: body)),
                     if (footer != null) footer!,
                   ],
                 ),

@@ -17,9 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 TaskDefinition _$TaskDefinitionFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType']) {
     case 'label':
-      return _Label.fromJson(json);
+      return TaskDefinitionLabel.fromJson(json);
     case 'note':
-      return _Note.fromJson(json);
+      return TaskDefinitionNote.fromJson(json);
 
     default:
       throw CheckedFromJsonException(json, 'runtimeType', 'TaskDefinition',
@@ -69,20 +69,20 @@ mixin _$TaskDefinition {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Label value) label,
-    required TResult Function(_Note value) note,
+    required TResult Function(TaskDefinitionLabel value) label,
+    required TResult Function(TaskDefinitionNote value) note,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Label value)? label,
-    TResult Function(_Note value)? note,
+    TResult Function(TaskDefinitionLabel value)? label,
+    TResult Function(TaskDefinitionNote value)? note,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Label value)? label,
-    TResult Function(_Note value)? note,
+    TResult Function(TaskDefinitionLabel value)? label,
+    TResult Function(TaskDefinitionNote value)? note,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -154,10 +154,11 @@ class _$TaskDefinitionCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$_LabelCopyWith<$Res>
+abstract class _$$TaskDefinitionLabelCopyWith<$Res>
     implements $TaskDefinitionCopyWith<$Res> {
-  factory _$$_LabelCopyWith(_$_Label value, $Res Function(_$_Label) then) =
-      __$$_LabelCopyWithImpl<$Res>;
+  factory _$$TaskDefinitionLabelCopyWith(_$TaskDefinitionLabel value,
+          $Res Function(_$TaskDefinitionLabel) then) =
+      __$$TaskDefinitionLabelCopyWithImpl<$Res>;
   @override
   $Res call(
       {String icon,
@@ -169,13 +170,15 @@ abstract class _$$_LabelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_LabelCopyWithImpl<$Res> extends _$TaskDefinitionCopyWithImpl<$Res>
-    implements _$$_LabelCopyWith<$Res> {
-  __$$_LabelCopyWithImpl(_$_Label _value, $Res Function(_$_Label) _then)
-      : super(_value, (v) => _then(v as _$_Label));
+class __$$TaskDefinitionLabelCopyWithImpl<$Res>
+    extends _$TaskDefinitionCopyWithImpl<$Res>
+    implements _$$TaskDefinitionLabelCopyWith<$Res> {
+  __$$TaskDefinitionLabelCopyWithImpl(
+      _$TaskDefinitionLabel _value, $Res Function(_$TaskDefinitionLabel) _then)
+      : super(_value, (v) => _then(v as _$TaskDefinitionLabel));
 
   @override
-  _$_Label get _value => super._value as _$_Label;
+  _$TaskDefinitionLabel get _value => super._value as _$TaskDefinitionLabel;
 
   @override
   $Res call({
@@ -186,7 +189,7 @@ class __$$_LabelCopyWithImpl<$Res> extends _$TaskDefinitionCopyWithImpl<$Res>
     Object? id = freezed,
     Object? uuid = freezed,
   }) {
-    return _then(_$_Label(
+    return _then(_$TaskDefinitionLabel(
       icon: icon == freezed
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
@@ -217,8 +220,8 @@ class __$$_LabelCopyWithImpl<$Res> extends _$TaskDefinitionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Label extends _Label {
-  const _$_Label(
+class _$TaskDefinitionLabel extends TaskDefinitionLabel {
+  const _$TaskDefinitionLabel(
       {required this.icon,
       required this.name,
       required this.description,
@@ -229,8 +232,8 @@ class _$_Label extends _Label {
       : $type = $type ?? 'label',
         super._();
 
-  factory _$_Label.fromJson(Map<String, dynamic> json) =>
-      _$$_LabelFromJson(json);
+  factory _$TaskDefinitionLabel.fromJson(Map<String, dynamic> json) =>
+      _$$TaskDefinitionLabelFromJson(json);
 
   @override
   final String icon;
@@ -253,7 +256,7 @@ class _$_Label extends _Label {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Label &&
+            other is _$TaskDefinitionLabel &&
             const DeepCollectionEquality().equals(other.icon, icon) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
@@ -277,8 +280,9 @@ class _$_Label extends _Label {
 
   @JsonKey(ignore: true)
   @override
-  _$$_LabelCopyWith<_$_Label> get copyWith =>
-      __$$_LabelCopyWithImpl<_$_Label>(this, _$identity);
+  _$$TaskDefinitionLabelCopyWith<_$TaskDefinitionLabel> get copyWith =>
+      __$$TaskDefinitionLabelCopyWithImpl<_$TaskDefinitionLabel>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -326,8 +330,8 @@ class _$_Label extends _Label {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Label value) label,
-    required TResult Function(_Note value) note,
+    required TResult Function(TaskDefinitionLabel value) label,
+    required TResult Function(TaskDefinitionNote value) note,
   }) {
     return label(this);
   }
@@ -335,8 +339,8 @@ class _$_Label extends _Label {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Label value)? label,
-    TResult Function(_Note value)? note,
+    TResult Function(TaskDefinitionLabel value)? label,
+    TResult Function(TaskDefinitionNote value)? note,
   }) {
     return label?.call(this);
   }
@@ -344,8 +348,8 @@ class _$_Label extends _Label {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Label value)? label,
-    TResult Function(_Note value)? note,
+    TResult Function(TaskDefinitionLabel value)? label,
+    TResult Function(TaskDefinitionNote value)? note,
     required TResult orElse(),
   }) {
     if (label != null) {
@@ -356,23 +360,24 @@ class _$_Label extends _Label {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LabelToJson(
+    return _$$TaskDefinitionLabelToJson(
       this,
     );
   }
 }
 
-abstract class _Label extends TaskDefinition {
-  const factory _Label(
+abstract class TaskDefinitionLabel extends TaskDefinition {
+  const factory TaskDefinitionLabel(
       {required final String icon,
       required final String name,
       required final String description,
       required final String hierarchyPath,
       required final String id,
-      @UuidConverter() final UuidValue? uuid}) = _$_Label;
-  const _Label._() : super._();
+      @UuidConverter() final UuidValue? uuid}) = _$TaskDefinitionLabel;
+  const TaskDefinitionLabel._() : super._();
 
-  factory _Label.fromJson(Map<String, dynamic> json) = _$_Label.fromJson;
+  factory TaskDefinitionLabel.fromJson(Map<String, dynamic> json) =
+      _$TaskDefinitionLabel.fromJson;
 
   @override
   String get icon;
@@ -389,14 +394,16 @@ abstract class _Label extends TaskDefinition {
   UuidValue? get uuid;
   @override
   @JsonKey(ignore: true)
-  _$$_LabelCopyWith<_$_Label> get copyWith =>
+  _$$TaskDefinitionLabelCopyWith<_$TaskDefinitionLabel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_NoteCopyWith<$Res> implements $TaskDefinitionCopyWith<$Res> {
-  factory _$$_NoteCopyWith(_$_Note value, $Res Function(_$_Note) then) =
-      __$$_NoteCopyWithImpl<$Res>;
+abstract class _$$TaskDefinitionNoteCopyWith<$Res>
+    implements $TaskDefinitionCopyWith<$Res> {
+  factory _$$TaskDefinitionNoteCopyWith(_$TaskDefinitionNote value,
+          $Res Function(_$TaskDefinitionNote) then) =
+      __$$TaskDefinitionNoteCopyWithImpl<$Res>;
   @override
   $Res call(
       {String icon,
@@ -408,13 +415,15 @@ abstract class _$$_NoteCopyWith<$Res> implements $TaskDefinitionCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_NoteCopyWithImpl<$Res> extends _$TaskDefinitionCopyWithImpl<$Res>
-    implements _$$_NoteCopyWith<$Res> {
-  __$$_NoteCopyWithImpl(_$_Note _value, $Res Function(_$_Note) _then)
-      : super(_value, (v) => _then(v as _$_Note));
+class __$$TaskDefinitionNoteCopyWithImpl<$Res>
+    extends _$TaskDefinitionCopyWithImpl<$Res>
+    implements _$$TaskDefinitionNoteCopyWith<$Res> {
+  __$$TaskDefinitionNoteCopyWithImpl(
+      _$TaskDefinitionNote _value, $Res Function(_$TaskDefinitionNote) _then)
+      : super(_value, (v) => _then(v as _$TaskDefinitionNote));
 
   @override
-  _$_Note get _value => super._value as _$_Note;
+  _$TaskDefinitionNote get _value => super._value as _$TaskDefinitionNote;
 
   @override
   $Res call({
@@ -425,7 +434,7 @@ class __$$_NoteCopyWithImpl<$Res> extends _$TaskDefinitionCopyWithImpl<$Res>
     Object? id = freezed,
     Object? uuid = freezed,
   }) {
-    return _then(_$_Note(
+    return _then(_$TaskDefinitionNote(
       icon: icon == freezed
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
@@ -456,8 +465,8 @@ class __$$_NoteCopyWithImpl<$Res> extends _$TaskDefinitionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Note extends _Note {
-  const _$_Note(
+class _$TaskDefinitionNote extends TaskDefinitionNote {
+  const _$TaskDefinitionNote(
       {required this.icon,
       required this.name,
       required this.description,
@@ -468,7 +477,8 @@ class _$_Note extends _Note {
       : $type = $type ?? 'note',
         super._();
 
-  factory _$_Note.fromJson(Map<String, dynamic> json) => _$$_NoteFromJson(json);
+  factory _$TaskDefinitionNote.fromJson(Map<String, dynamic> json) =>
+      _$$TaskDefinitionNoteFromJson(json);
 
   @override
   final String icon;
@@ -491,7 +501,7 @@ class _$_Note extends _Note {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Note &&
+            other is _$TaskDefinitionNote &&
             const DeepCollectionEquality().equals(other.icon, icon) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
@@ -515,8 +525,9 @@ class _$_Note extends _Note {
 
   @JsonKey(ignore: true)
   @override
-  _$$_NoteCopyWith<_$_Note> get copyWith =>
-      __$$_NoteCopyWithImpl<_$_Note>(this, _$identity);
+  _$$TaskDefinitionNoteCopyWith<_$TaskDefinitionNote> get copyWith =>
+      __$$TaskDefinitionNoteCopyWithImpl<_$TaskDefinitionNote>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -564,8 +575,8 @@ class _$_Note extends _Note {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Label value) label,
-    required TResult Function(_Note value) note,
+    required TResult Function(TaskDefinitionLabel value) label,
+    required TResult Function(TaskDefinitionNote value) note,
   }) {
     return note(this);
   }
@@ -573,8 +584,8 @@ class _$_Note extends _Note {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Label value)? label,
-    TResult Function(_Note value)? note,
+    TResult Function(TaskDefinitionLabel value)? label,
+    TResult Function(TaskDefinitionNote value)? note,
   }) {
     return note?.call(this);
   }
@@ -582,8 +593,8 @@ class _$_Note extends _Note {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Label value)? label,
-    TResult Function(_Note value)? note,
+    TResult Function(TaskDefinitionLabel value)? label,
+    TResult Function(TaskDefinitionNote value)? note,
     required TResult orElse(),
   }) {
     if (note != null) {
@@ -594,23 +605,24 @@ class _$_Note extends _Note {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_NoteToJson(
+    return _$$TaskDefinitionNoteToJson(
       this,
     );
   }
 }
 
-abstract class _Note extends TaskDefinition {
-  const factory _Note(
+abstract class TaskDefinitionNote extends TaskDefinition {
+  const factory TaskDefinitionNote(
       {required final String icon,
       required final String name,
       required final String description,
       required final String hierarchyPath,
       required final String id,
-      @UuidConverter() final UuidValue? uuid}) = _$_Note;
-  const _Note._() : super._();
+      @UuidConverter() final UuidValue? uuid}) = _$TaskDefinitionNote;
+  const TaskDefinitionNote._() : super._();
 
-  factory _Note.fromJson(Map<String, dynamic> json) = _$_Note.fromJson;
+  factory TaskDefinitionNote.fromJson(Map<String, dynamic> json) =
+      _$TaskDefinitionNote.fromJson;
 
   @override
   String get icon;
@@ -627,5 +639,6 @@ abstract class _Note extends TaskDefinition {
   UuidValue? get uuid;
   @override
   @JsonKey(ignore: true)
-  _$$_NoteCopyWith<_$_Note> get copyWith => throw _privateConstructorUsedError;
+  _$$TaskDefinitionNoteCopyWith<_$TaskDefinitionNote> get copyWith =>
+      throw _privateConstructorUsedError;
 }

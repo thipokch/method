@@ -6,7 +6,9 @@ part of 'task_definition.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Label _$$_LabelFromJson(Map<String, dynamic> json) => _$_Label(
+_$TaskDefinitionLabel _$$TaskDefinitionLabelFromJson(
+        Map<String, dynamic> json) =>
+    _$TaskDefinitionLabel(
       icon: json['icon'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
@@ -17,7 +19,9 @@ _$_Label _$$_LabelFromJson(Map<String, dynamic> json) => _$_Label(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$_LabelToJson(_$_Label instance) => <String, dynamic>{
+Map<String, dynamic> _$$TaskDefinitionLabelToJson(
+        _$TaskDefinitionLabel instance) =>
+    <String, dynamic>{
       'icon': instance.icon,
       'name': instance.name,
       'description': instance.description,
@@ -40,7 +44,8 @@ Json? _$JsonConverterToJson<Json, Value>(
 ) =>
     value == null ? null : toJson(value);
 
-_$_Note _$$_NoteFromJson(Map<String, dynamic> json) => _$_Note(
+_$TaskDefinitionNote _$$TaskDefinitionNoteFromJson(Map<String, dynamic> json) =>
+    _$TaskDefinitionNote(
       icon: json['icon'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
@@ -51,7 +56,9 @@ _$_Note _$$_NoteFromJson(Map<String, dynamic> json) => _$_Note(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$_NoteToJson(_$_Note instance) => <String, dynamic>{
+Map<String, dynamic> _$$TaskDefinitionNoteToJson(
+        _$TaskDefinitionNote instance) =>
+    <String, dynamic>{
       'icon': instance.icon,
       'name': instance.name,
       'description': instance.description,

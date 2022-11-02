@@ -17,9 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 EntryDefinition _$EntryDefinitionFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType']) {
     case 'label':
-      return _Label.fromJson(json);
+      return EntryDefinitionLabel.fromJson(json);
     case 'note':
-      return _Note.fromJson(json);
+      return EntryDefinitionNote.fromJson(json);
 
     default:
       throw CheckedFromJsonException(json, 'runtimeType', 'EntryDefinition',
@@ -66,20 +66,20 @@ mixin _$EntryDefinition {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Label value) label,
-    required TResult Function(_Note value) note,
+    required TResult Function(EntryDefinitionLabel value) label,
+    required TResult Function(EntryDefinitionNote value) note,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Label value)? label,
-    TResult Function(_Note value)? note,
+    TResult Function(EntryDefinitionLabel value)? label,
+    TResult Function(EntryDefinitionNote value)? note,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Label value)? label,
-    TResult Function(_Note value)? note,
+    TResult Function(EntryDefinitionLabel value)? label,
+    TResult Function(EntryDefinitionNote value)? note,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -131,23 +131,26 @@ class _$EntryDefinitionCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$_LabelCopyWith<$Res>
+abstract class _$$EntryDefinitionLabelCopyWith<$Res>
     implements $EntryDefinitionCopyWith<$Res> {
-  factory _$$_LabelCopyWith(_$_Label value, $Res Function(_$_Label) then) =
-      __$$_LabelCopyWithImpl<$Res>;
+  factory _$$EntryDefinitionLabelCopyWith(_$EntryDefinitionLabel value,
+          $Res Function(_$EntryDefinitionLabel) then) =
+      __$$EntryDefinitionLabelCopyWithImpl<$Res>;
   @override
   $Res call(
       {String hierarchyPath, String id, @UuidConverter() UuidValue? uuid});
 }
 
 /// @nodoc
-class __$$_LabelCopyWithImpl<$Res> extends _$EntryDefinitionCopyWithImpl<$Res>
-    implements _$$_LabelCopyWith<$Res> {
-  __$$_LabelCopyWithImpl(_$_Label _value, $Res Function(_$_Label) _then)
-      : super(_value, (v) => _then(v as _$_Label));
+class __$$EntryDefinitionLabelCopyWithImpl<$Res>
+    extends _$EntryDefinitionCopyWithImpl<$Res>
+    implements _$$EntryDefinitionLabelCopyWith<$Res> {
+  __$$EntryDefinitionLabelCopyWithImpl(_$EntryDefinitionLabel _value,
+      $Res Function(_$EntryDefinitionLabel) _then)
+      : super(_value, (v) => _then(v as _$EntryDefinitionLabel));
 
   @override
-  _$_Label get _value => super._value as _$_Label;
+  _$EntryDefinitionLabel get _value => super._value as _$EntryDefinitionLabel;
 
   @override
   $Res call({
@@ -155,7 +158,7 @@ class __$$_LabelCopyWithImpl<$Res> extends _$EntryDefinitionCopyWithImpl<$Res>
     Object? id = freezed,
     Object? uuid = freezed,
   }) {
-    return _then(_$_Label(
+    return _then(_$EntryDefinitionLabel(
       hierarchyPath: hierarchyPath == freezed
           ? _value.hierarchyPath
           : hierarchyPath // ignore: cast_nullable_to_non_nullable
@@ -174,8 +177,8 @@ class __$$_LabelCopyWithImpl<$Res> extends _$EntryDefinitionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Label extends _Label {
-  const _$_Label(
+class _$EntryDefinitionLabel extends EntryDefinitionLabel {
+  const _$EntryDefinitionLabel(
       {required this.hierarchyPath,
       required this.id,
       @UuidConverter() this.uuid,
@@ -183,8 +186,8 @@ class _$_Label extends _Label {
       : $type = $type ?? 'label',
         super._();
 
-  factory _$_Label.fromJson(Map<String, dynamic> json) =>
-      _$$_LabelFromJson(json);
+  factory _$EntryDefinitionLabel.fromJson(Map<String, dynamic> json) =>
+      _$$EntryDefinitionLabelFromJson(json);
 
   @override
   final String hierarchyPath;
@@ -201,7 +204,7 @@ class _$_Label extends _Label {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Label &&
+            other is _$EntryDefinitionLabel &&
             const DeepCollectionEquality()
                 .equals(other.hierarchyPath, hierarchyPath) &&
             const DeepCollectionEquality().equals(other.id, id) &&
@@ -218,8 +221,9 @@ class _$_Label extends _Label {
 
   @JsonKey(ignore: true)
   @override
-  _$$_LabelCopyWith<_$_Label> get copyWith =>
-      __$$_LabelCopyWithImpl<_$_Label>(this, _$identity);
+  _$$EntryDefinitionLabelCopyWith<_$EntryDefinitionLabel> get copyWith =>
+      __$$EntryDefinitionLabelCopyWithImpl<_$EntryDefinitionLabel>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -267,8 +271,8 @@ class _$_Label extends _Label {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Label value) label,
-    required TResult Function(_Note value) note,
+    required TResult Function(EntryDefinitionLabel value) label,
+    required TResult Function(EntryDefinitionNote value) note,
   }) {
     return label(this);
   }
@@ -276,8 +280,8 @@ class _$_Label extends _Label {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Label value)? label,
-    TResult Function(_Note value)? note,
+    TResult Function(EntryDefinitionLabel value)? label,
+    TResult Function(EntryDefinitionNote value)? note,
   }) {
     return label?.call(this);
   }
@@ -285,8 +289,8 @@ class _$_Label extends _Label {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Label value)? label,
-    TResult Function(_Note value)? note,
+    TResult Function(EntryDefinitionLabel value)? label,
+    TResult Function(EntryDefinitionNote value)? note,
     required TResult orElse(),
   }) {
     if (label != null) {
@@ -297,20 +301,21 @@ class _$_Label extends _Label {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LabelToJson(
+    return _$$EntryDefinitionLabelToJson(
       this,
     );
   }
 }
 
-abstract class _Label extends EntryDefinition {
-  const factory _Label(
+abstract class EntryDefinitionLabel extends EntryDefinition {
+  const factory EntryDefinitionLabel(
       {required final String hierarchyPath,
       required final String id,
-      @UuidConverter() final UuidValue? uuid}) = _$_Label;
-  const _Label._() : super._();
+      @UuidConverter() final UuidValue? uuid}) = _$EntryDefinitionLabel;
+  const EntryDefinitionLabel._() : super._();
 
-  factory _Label.fromJson(Map<String, dynamic> json) = _$_Label.fromJson;
+  factory EntryDefinitionLabel.fromJson(Map<String, dynamic> json) =
+      _$EntryDefinitionLabel.fromJson;
 
   @override
   String get hierarchyPath;
@@ -321,15 +326,16 @@ abstract class _Label extends EntryDefinition {
   UuidValue? get uuid;
   @override
   @JsonKey(ignore: true)
-  _$$_LabelCopyWith<_$_Label> get copyWith =>
+  _$$EntryDefinitionLabelCopyWith<_$EntryDefinitionLabel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_NoteCopyWith<$Res>
+abstract class _$$EntryDefinitionNoteCopyWith<$Res>
     implements $EntryDefinitionCopyWith<$Res> {
-  factory _$$_NoteCopyWith(_$_Note value, $Res Function(_$_Note) then) =
-      __$$_NoteCopyWithImpl<$Res>;
+  factory _$$EntryDefinitionNoteCopyWith(_$EntryDefinitionNote value,
+          $Res Function(_$EntryDefinitionNote) then) =
+      __$$EntryDefinitionNoteCopyWithImpl<$Res>;
   @override
   $Res call(
       {String data,
@@ -339,13 +345,15 @@ abstract class _$$_NoteCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_NoteCopyWithImpl<$Res> extends _$EntryDefinitionCopyWithImpl<$Res>
-    implements _$$_NoteCopyWith<$Res> {
-  __$$_NoteCopyWithImpl(_$_Note _value, $Res Function(_$_Note) _then)
-      : super(_value, (v) => _then(v as _$_Note));
+class __$$EntryDefinitionNoteCopyWithImpl<$Res>
+    extends _$EntryDefinitionCopyWithImpl<$Res>
+    implements _$$EntryDefinitionNoteCopyWith<$Res> {
+  __$$EntryDefinitionNoteCopyWithImpl(
+      _$EntryDefinitionNote _value, $Res Function(_$EntryDefinitionNote) _then)
+      : super(_value, (v) => _then(v as _$EntryDefinitionNote));
 
   @override
-  _$_Note get _value => super._value as _$_Note;
+  _$EntryDefinitionNote get _value => super._value as _$EntryDefinitionNote;
 
   @override
   $Res call({
@@ -354,7 +362,7 @@ class __$$_NoteCopyWithImpl<$Res> extends _$EntryDefinitionCopyWithImpl<$Res>
     Object? id = freezed,
     Object? uuid = freezed,
   }) {
-    return _then(_$_Note(
+    return _then(_$EntryDefinitionNote(
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -377,8 +385,8 @@ class __$$_NoteCopyWithImpl<$Res> extends _$EntryDefinitionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Note extends _Note {
-  const _$_Note(
+class _$EntryDefinitionNote extends EntryDefinitionNote {
+  const _$EntryDefinitionNote(
       {required this.data,
       required this.hierarchyPath,
       required this.id,
@@ -387,7 +395,8 @@ class _$_Note extends _Note {
       : $type = $type ?? 'note',
         super._();
 
-  factory _$_Note.fromJson(Map<String, dynamic> json) => _$$_NoteFromJson(json);
+  factory _$EntryDefinitionNote.fromJson(Map<String, dynamic> json) =>
+      _$$EntryDefinitionNoteFromJson(json);
 
   @override
   final String data;
@@ -406,7 +415,7 @@ class _$_Note extends _Note {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Note &&
+            other is _$EntryDefinitionNote &&
             const DeepCollectionEquality().equals(other.data, data) &&
             const DeepCollectionEquality()
                 .equals(other.hierarchyPath, hierarchyPath) &&
@@ -425,8 +434,9 @@ class _$_Note extends _Note {
 
   @JsonKey(ignore: true)
   @override
-  _$$_NoteCopyWith<_$_Note> get copyWith =>
-      __$$_NoteCopyWithImpl<_$_Note>(this, _$identity);
+  _$$EntryDefinitionNoteCopyWith<_$EntryDefinitionNote> get copyWith =>
+      __$$EntryDefinitionNoteCopyWithImpl<_$EntryDefinitionNote>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -474,8 +484,8 @@ class _$_Note extends _Note {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Label value) label,
-    required TResult Function(_Note value) note,
+    required TResult Function(EntryDefinitionLabel value) label,
+    required TResult Function(EntryDefinitionNote value) note,
   }) {
     return note(this);
   }
@@ -483,8 +493,8 @@ class _$_Note extends _Note {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Label value)? label,
-    TResult Function(_Note value)? note,
+    TResult Function(EntryDefinitionLabel value)? label,
+    TResult Function(EntryDefinitionNote value)? note,
   }) {
     return note?.call(this);
   }
@@ -492,8 +502,8 @@ class _$_Note extends _Note {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Label value)? label,
-    TResult Function(_Note value)? note,
+    TResult Function(EntryDefinitionLabel value)? label,
+    TResult Function(EntryDefinitionNote value)? note,
     required TResult orElse(),
   }) {
     if (note != null) {
@@ -504,21 +514,22 @@ class _$_Note extends _Note {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_NoteToJson(
+    return _$$EntryDefinitionNoteToJson(
       this,
     );
   }
 }
 
-abstract class _Note extends EntryDefinition {
-  const factory _Note(
+abstract class EntryDefinitionNote extends EntryDefinition {
+  const factory EntryDefinitionNote(
       {required final String data,
       required final String hierarchyPath,
       required final String id,
-      @UuidConverter() final UuidValue? uuid}) = _$_Note;
-  const _Note._() : super._();
+      @UuidConverter() final UuidValue? uuid}) = _$EntryDefinitionNote;
+  const EntryDefinitionNote._() : super._();
 
-  factory _Note.fromJson(Map<String, dynamic> json) = _$_Note.fromJson;
+  factory EntryDefinitionNote.fromJson(Map<String, dynamic> json) =
+      _$EntryDefinitionNote.fromJson;
 
   String get data;
   @override
@@ -530,5 +541,6 @@ abstract class _Note extends EntryDefinition {
   UuidValue? get uuid;
   @override
   @JsonKey(ignore: true)
-  _$$_NoteCopyWith<_$_Note> get copyWith => throw _privateConstructorUsedError;
+  _$$EntryDefinitionNoteCopyWith<_$EntryDefinitionNote> get copyWith =>
+      throw _privateConstructorUsedError;
 }

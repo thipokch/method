@@ -19,7 +19,7 @@ class TaskDefinition with _$TaskDefinition, Identify, Locate, Uniform, Inform {
     required final String hierarchyPath,
     required final String id,
     @UuidConverter() final UuidValue? uuid,
-  }) = _Label;
+  }) = TaskDefinitionLabel;
 
   const factory TaskDefinition.note({
     required final String icon,
@@ -28,7 +28,7 @@ class TaskDefinition with _$TaskDefinition, Identify, Locate, Uniform, Inform {
     required final String hierarchyPath,
     required final String id,
     @UuidConverter() final UuidValue? uuid,
-  }) = _Note;
+  }) = TaskDefinitionNote;
 
   factory TaskDefinition.fromJson(Map<String, dynamic> json) =>
       _$TaskDefinitionFromJson(json);

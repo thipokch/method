@@ -11,15 +11,24 @@ class SessionDetailSliver extends StatelessWidget {
             ? const SliverFillRemaining(child: CupertinoActivityIndicator())
             : SliverList(
                 delegate: SliverChildBuilderDelegate(
-                  childCount: state.map.length,
+                  childCount: state.map.length - 1, // Skip Feedback
                   (context, index) {
-                    final task = state.elementAt(index).key;
-                    // final entry = state.elementAt(index).value.orNull;
+                    final entry = state.elementAt(index).value.orNull;
 
-                    return ListTile(
-                      title: Text(task.name),
-                      subtitle: Text(task.description),
-                    );
+                    return entry != null
+                        ? BlocProvider(
+                            create: (_) => EntryDetailBloc(
+                              id: entry.id,
+                              repository: context.read(),
+                            )..add(const EntryDetailEvent.start()),
+                            child: const EntryDetailSliver(),
+                          )
+                        : const SizedBox();
+
+                    // return ListTile(
+                    //   title: Text(task.description),
+                    //   // subtitle: Text(task.name),
+                    // );
                   },
                 ),
               ),

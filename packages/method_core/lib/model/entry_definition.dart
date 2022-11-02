@@ -22,14 +22,14 @@ class EntryDefinition with _$EntryDefinition, Identify, Locate, Uniform {
     required final String hierarchyPath,
     required final String id,
     @UuidConverter() final UuidValue? uuid,
-  }) = _Label;
+  }) = EntryDefinitionLabel;
 
   const factory EntryDefinition.note({
     required final String data,
     required final String hierarchyPath,
     required final String id,
     @UuidConverter() final UuidValue? uuid,
-  }) = _Note;
+  }) = EntryDefinitionNote;
 
   factory EntryDefinition.from({
     required final TaskDefinition template,

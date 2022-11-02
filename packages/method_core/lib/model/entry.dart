@@ -1,3 +1,4 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:method_core/abstract/maintain.dart';
 import 'package:method_core/model/definition.dart';
 import 'package:method_core/model/task.dart';
@@ -77,18 +78,6 @@ class Entry
   @override
   final String collectionSlug = "exercise";
 
-  List<TaskDefinition> get labels => definitions
-      .asMap()
-      .entries
-      .map((e) => e.value.maybeMap(
-            label: (_) => true,
-            orElse: () => false,
-          )
-              ? template.definitions[e.key]
-              : null)
-      .whereType<TaskDefinition>()
-      .toList();
-
   @override
   String commandIdMapper(TaskDefinition cd) => cd.id;
 
@@ -98,4 +87,15 @@ class Entry
   @override
   String toString() =>
       "Entry($uniformString, task: $template, definitions: $definitions)";
+}
+
+extension DefinitionExtension on Entry {
+  BuiltList<TaskDefinitionLabel> get labels => builtDefinition
+      .rebuild((_) => _..removeWhere((command, data) => data.isNotPresent))
+      .commands
+      .whereType<TaskDefinitionLabel>()
+      .toBuiltList();
+
+  BuiltList<EntryDefinitionNote> get notes =>
+      definitions.whereType<EntryDefinitionNote>().toBuiltList();
 }
