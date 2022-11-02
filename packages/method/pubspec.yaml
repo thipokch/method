@@ -34,6 +34,7 @@ dependencies:
   avatar_stack: ^1.1.2
   intl: ^0.17.0
   grouped_list: ^5.1.2
+  collection: any
   # go_router: ^5.0.5
   # realm: ^0.5.0+beta
   # uuid: ^3.0.6

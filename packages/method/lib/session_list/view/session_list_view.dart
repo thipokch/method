@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_alert/flutter_platform_alert.dart';
+import 'package:grouped_list/sliver_grouped_list.dart';
 import 'package:intl/intl.dart';
 import 'package:method/app/route/route.dart';
 import 'package:method/session_edit/route/session_edit_route.dart';
@@ -161,136 +162,129 @@ class _Item extends StatelessWidget {
 
     return GestureDetector(
       onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            ListTile(
-              // leading: MtEmoji(emoji: session.template.icon),
-              leading: Column(
-                children: [
-                  Text(
-                    DateFormat('EEE').format(session.createdAt).toUpperCase(),
-                    style: Theme.of(context).textTheme.labelSmall,
-                  ),
-                  Text(
-                    session.createdAt.day.toString(),
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                ],
-              ),
-              // leading: CircleAvatar(
-              //   backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-              //   child: SizedBox(
-              //     width: 28,
-              //     height: 28,
-              //     child: MtEmoji(emoji: session.template.icon),
-              //   ),
-              // ),
-              title: Text(session.template.name),
-              // subtitle: Timeago(
-              //   builder: (_, value) => Text(value),
-              //   date: session.createdAt,
-              // ),
-              // subtitle: Text(format(session.commitedAt!)),
-              trailing: actions,
-            ),
+      child: Wrap(
+        children: [
+          if (notes.isNotEmpty) MtCard(body: Text(notes.first.data)),
 
-            if (notes.isNotEmpty) MtCard(body: Text(notes.first.data)),
-
-            if (labels.isNotEmpty)
-              SizedBox(
-                height: 32,
-                child: WidgetStack(
-                  positions: RestrictedAmountPositions(
-                    minCoverage: .3,
-                    infoIndent: 2,
-                    align: StackAlign.center,
-                  ),
-                  stackedWidgets: labels
-                      .map(
-                        (def) => BorderedCircleAvatar(
-                          border: BorderSide(
-                            color: Theme.of(context).colorScheme.background,
-                            width: ElementScale.strokeL,
-                          ),
-                          backgroundColor:
-                              Theme.of(context).colorScheme.surfaceVariant,
-                          child: SizedBox(
-                            width: 16,
-                            height: 16,
-                            child: MtEmoji(emoji: def.icon),
-                          ),
+          ListTile(
+            title: labels.isNotEmpty
+                ? SizedBox(
+                    height: 32,
+                    child: WidgetStack(
+                      positions: RestrictedAmountPositions(
+                        minCoverage: .3,
+                        infoIndent: 2,
+                        align: StackAlign.left,
+                      ),
+                      stackedWidgets: labels
+                          .map(
+                            (def) => BorderedCircleAvatar(
+                              border: BorderSide(
+                                color: Theme.of(context).colorScheme.background,
+                                width: ElementScale.strokeL,
+                              ),
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.surfaceVariant,
+                              child: SizedBox(
+                                width: 16,
+                                height: 16,
+                                child: MtEmoji(emoji: def.icon),
+                              ),
+                            ),
+                          )
+                          .toList(),
+                      buildInfoWidget: (surplus) => BorderedCircleAvatar(
+                        border: BorderSide(
+                          color: Theme.of(context).colorScheme.background,
+                          width: ElementScale.strokeL,
                         ),
-                      )
-                      .toList(),
-                  buildInfoWidget: (surplus) => BorderedCircleAvatar(
-                    border: BorderSide(
-                      color: Theme.of(context).colorScheme.background,
-                      width: ElementScale.strokeL,
-                    ),
-                    backgroundColor:
-                        Theme.of(context).colorScheme.primaryContainer,
-                    child: SizedBox(
-                      width: 18,
-                      height: 18,
-                      child: Center(
-                        child: Text(
-                          '+$surplus',
-                          style:
-                              Theme.of(context).textTheme.labelSmall?.copyWith(
+                        backgroundColor:
+                            Theme.of(context).colorScheme.primaryContainer,
+                        child: SizedBox(
+                          width: 18,
+                          height: 18,
+                          child: Center(
+                            child: Text(
+                              '+$surplus',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelSmall
+                                  ?.copyWith(
                                     color: Theme.of(context)
                                         .colorScheme
                                         .onPrimaryContainer,
                                   ),
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ),
-              ),
-            // if (entryIndex >= 0 && defIndex >= 0)
-            //   Padding(
-            //     padding: const EdgeInsets.symmetric(
-            //       vertical: 128.0,
-            //       horizontal: 8.0,
-            //     ),
-            //     child: Center(
-            //       child: Text(
-            //         session.definitions[entryIndex].definitions[defIndex]
-            //             .maybeMap(
-            //           note: (value) => value.data,
-            //           orElse: () => throw UnimplementedError(),
-            //         ),
-            //         style: textTheme.titleMedium,
-            //       ),
-            //     ),
+                  )
+                : null,
+            // leading: CircleAvatar(
+            //   backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+            //   child: SizedBox(
+            //     width: 28,
+            //     height: 28,
+            //     child: MtEmoji(emoji: session.template.icon),
             //   ),
-            // if (entryIndex >= 0)
-            //   Wrap(
-            //     spacing: 10,
-            //     alignment: WrapAlignment.start,
-            //     children: session.labels
-            //         .map<Widget>((e) => Chip(
-            //               label: Text(e.name),
-            //               labelStyle: textTheme.labelMedium,
-            //               avatar: MtEmoji(emoji: e.icon),
-            //               padding: const EdgeInsets.fromLTRB(10, 6, 5, 6),
-            //               backgroundColor: colorScheme.surface,
-            //               shape: const SmoothRectangleBorder(
-            //                 borderRadius: SmoothBorderRadius.all(
-            //                   SmoothRadius(
-            //                     cornerRadius: ElementScale.cornerLarge,
-            //                     cornerSmoothing:
-            //                         ElementScale.cornerSmoothFactor,
-            //                   ),
-            //                 ),
-            //               ),
-            //             ))
-            //         .toList(),
-            //   ),
-          ],
-        ),
+            // ),
+            // title:
+            // Text(DateFormat.jm().format(session.createdAt).toLowerCase()),
+            // subtitle: Timeago(
+            //   builder: (_, value) => Text(value),
+            //   date: session.createdAt,
+            // ),
+            // subtitle: Text(format(session.commitedAt!)),
+            trailing: actions,
+            // trailing:
+            //     Text(DateFormat.jm().format(session.createdAt).toLowerCase()),
+          ),
+
+          // if (labels.isNotEmpty)
+
+          // if (entryIndex >= 0 && defIndex >= 0)
+          //   Padding(
+          //     padding: const EdgeInsets.symmetric(
+          //       vertical: 128.0,
+          //       horizontal: 8.0,
+          //     ),
+          //     child: Center(
+          //       child: Text(
+          //         session.definitions[entryIndex].definitions[defIndex]
+          //             .maybeMap(
+          //           note: (value) => value.data,
+          //           orElse: () => throw UnimplementedError(),
+          //         ),
+          //         style: textTheme.titleMedium,
+          //       ),
+          //     ),
+          //   ),
+          // if (entryIndex >= 0)
+          //   Wrap(
+          //     spacing: 10,
+          //     alignment: WrapAlignment.start,
+          //     children: session.labels
+          //         .map<Widget>((e) => Chip(
+          //               label: Text(e.name),
+          //               labelStyle: textTheme.labelMedium,
+          //               avatar: MtEmoji(emoji: e.icon),
+          //               padding: const EdgeInsets.fromLTRB(10, 6, 5, 6),
+          //               backgroundColor: colorScheme.surface,
+          //               shape: const SmoothRectangleBorder(
+          //                 borderRadius: SmoothBorderRadius.all(
+          //                   SmoothRadius(
+          //                     cornerRadius: ElementScale.cornerLarge,
+          //                     cornerSmoothing:
+          //                         ElementScale.cornerSmoothFactor,
+          //                   ),
+          //                 ),
+          //               ),
+          //             ))
+          //         .toList(),
+          //   ),
+          const Divider(),
+        ],
       ),
     );
   }
