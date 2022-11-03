@@ -37,11 +37,11 @@ class _Swiper extends StatelessWidget {
                 physics: const BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics(),
                 ),
-                // pagination: const SwiperPagination(
-                //   alignment: Alignment.bottomCenter,
-                //   margin: EdgeInsets.all(ElementScale.spaceNone),
-                //   builder: _Pagination(),
-                // ),
+                pagination: const SwiperPagination(
+                  alignment: Alignment.bottomCenter,
+                  margin: EdgeInsets.all(ElementScale.spaceNone),
+                  builder: _Pagination(),
+                ),
 
                 // itemBuilder: (context, index) => Text(index.toString()),
                 itemBuilder: (_, index) => BlocProvider(
@@ -73,7 +73,6 @@ class _Swiper extends StatelessWidget {
       );
 }
 
-// ignore: unused_element
 class _Pagination extends SwiperPlugin {
   const _Pagination();
 

@@ -139,7 +139,6 @@ class _Item extends StatelessWidget {
 
     return CupertinoContextMenu(
       actions: actions,
-      // previewBuilder: (context, animation, child) => Text("data"),
       child: GestureDetector(
         onTap: onTap,
         child: SingleChildScrollView(
