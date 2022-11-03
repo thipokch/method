@@ -815,7 +815,7 @@ packages:
     source: hosted
     version: "0.3.0"
   modal_bottom_sheet:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: modal_bottom_sheet
       url: "https://pub.dartlang.org"
@@ -1003,13 +1003,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.0"
-  sheet:
-    dependency: "direct main"
-    description:
-      name: sheet
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.4+1"
   shelf:
     dependency: transitive
     description:

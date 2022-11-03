@@ -10,6 +10,7 @@ import 'package:method_core/model/session.dart';
 import 'package:method_style/element_scale.dart';
 import 'package:method_style/element_symbol.dart';
 import 'package:method_ui/float/float_scaffold.dart';
+import 'package:method_ui/page/page.dart';
 
 part 'session_edit_sliver.dart';
 
@@ -42,6 +43,8 @@ class _Swiper extends StatelessWidget {
                 //   margin: EdgeInsets.all(ElementScale.spaceNone),
                 //   builder: _Pagination(),
                 // ),
+
+                // itemBuilder: (context, index) => Text(index.toString()),
                 itemBuilder: (_, index) => BlocProvider(
                   create: (context) => EntryEditBloc(
                     repository: context.read(),
@@ -62,6 +65,8 @@ class _Swiper extends StatelessWidget {
                             SessionEditEvent.updateEntry(entry: value.entry),
                           ),
                     ),
+                    // child:
+                    //     const MtAppPage(name: Text("data"), slivers: const []),
                     child: const EntryEditView(),
                   ),
                 ),

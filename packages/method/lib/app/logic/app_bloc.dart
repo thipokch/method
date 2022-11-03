@@ -90,6 +90,9 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         Provider<Repository>.value(
           value: await Repository.open(),
         ),
+        Provider<GlobalKey<NavigatorState>>.value(
+          value: AppRoute.defaultNavigator,
+        ),
         // FutureProvider<Repository?>(
         //   create: (_) => Repository.open(),
         //   initialData: null,
