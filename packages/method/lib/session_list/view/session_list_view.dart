@@ -50,7 +50,6 @@ class _Started extends StatelessWidget {
                 onTap: () => context
                     .read<SessionListBloc>()
                     .add(SessionListEvent.selectSession(session: session)),
-                // onTap: () => SessionDetailRoute(session.id).push(context),
                 actions: PopupMenuButton(
                   icon: const Icon(ElementSymbol.moreVertical),
                   position: PopupMenuPosition.under,
@@ -64,7 +63,6 @@ class _Started extends StatelessWidget {
                   ),
                   itemBuilder: (BuildContext context) => <PopupMenuEntry>[
                     PopupMenuItem(
-                      // onTap: () {},
                       onTap: () => SessionEditRoute(session.id).push(context),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
@@ -135,154 +133,108 @@ class _Item extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final colorScheme = Theme.of(context).colorScheme;
-    // final textTheme = Theme.of(context).textTheme;
-    // final entryIndex = session.definitions.indexWhere(
-    //   (entry) =>
-    //       entry.template.maybeMap(
-    //         feedback: (_) => false,
-    //         orElse: () => true,
-    //       ) ??
-    //       false,
-    // );
-
-    // final defIndex = entryIndex < 0
-    //     ? -1
-    //     : session.definitions[entryIndex].definitions.indexWhere(
-    //         (def) =>
-    //             def.maybeMap(
-    //               note: (_) => true,
-    //               orElse: () => false,
-    //             ) ??
-    //             false,
-    //       );
-
     final labels = session.labels;
     final notes = session.notes;
 
     return GestureDetector(
       onTap: onTap,
-      child: Wrap(
+      child: Column(
         children: [
-          if (notes.isNotEmpty) MtCard(body: Text(notes.first.data)),
-
-          ListTile(
-            title: labels.isNotEmpty
-                ? SizedBox(
-                    height: 32,
-                    child: WidgetStack(
-                      positions: RestrictedAmountPositions(
-                        minCoverage: .3,
-                        infoIndent: 2,
-                        align: StackAlign.left,
+          notes.isNotEmpty
+              ? MtCard(
+                  isExpandable: true,
+                  body: const SizedBox.shrink(),
+                  header: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Text(
+                          notes.first.data,
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
                       ),
-                      stackedWidgets: labels
-                          .map(
-                            (def) => BorderedCircleAvatar(
+                    ],
+                  ),
+                  // footer:
+                )
+              : const SizedBox.shrink(),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 12.0,
+              vertical: 6.0,
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: SizedBox(
+                    height: 28,
+                    child: labels.isNotEmpty
+                        ? WidgetStack(
+                            positions: RestrictedAmountPositions(
+                              minCoverage: .3,
+                              infoIndent: 2,
+                              align: StackAlign.left,
+                            ),
+                            stackedWidgets: labels
+                                .map(
+                                  (def) => BorderedCircleAvatar(
+                                    border: BorderSide(
+                                      color:
+                                          Theme.of(context).colorScheme.surface,
+                                      width: ElementScale.strokeL,
+                                    ),
+                                    backgroundColor: Theme.of(context)
+                                        .colorScheme
+                                        .surfaceVariant,
+                                    child: SizedBox(
+                                      width: 16,
+                                      height: 16,
+                                      child: MtEmoji(emoji: def.icon),
+                                    ),
+                                  ),
+                                )
+                                .toList(),
+                            buildInfoWidget: (surplus) => BorderedCircleAvatar(
                               border: BorderSide(
                                 color: Theme.of(context).colorScheme.background,
                                 width: ElementScale.strokeL,
                               ),
                               backgroundColor:
-                                  Theme.of(context).colorScheme.surfaceVariant,
+                                  Theme.of(context).colorScheme.primary,
                               child: SizedBox(
                                 width: 16,
                                 height: 16,
-                                child: MtEmoji(emoji: def.icon),
+                                child: Center(
+                                  child: Text(
+                                    '+$surplus',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelSmall
+                                        ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onPrimary,
+                                        ),
+                                  ),
+                                ),
                               ),
                             ),
                           )
-                          .toList(),
-                      buildInfoWidget: (surplus) => BorderedCircleAvatar(
-                        border: BorderSide(
-                          color: Theme.of(context).colorScheme.background,
-                          width: ElementScale.strokeL,
+                        : null,
+                  ),
+                ),
+                Expanded(
+                  child: Text(
+                    "${DateFormat.j().format(session.createdAt)} · ${session.template.name.toUpperCase()}",
+                    style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                          color: Theme.of(context).colorScheme.outline,
                         ),
-                        backgroundColor:
-                            Theme.of(context).colorScheme.primaryContainer,
-                        child: SizedBox(
-                          width: 18,
-                          height: 18,
-                          child: Center(
-                            child: Text(
-                              '+$surplus',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelSmall
-                                  ?.copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onPrimaryContainer,
-                                  ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
-                : null,
-            // leading: CircleAvatar(
-            //   backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-            //   child: SizedBox(
-            //     width: 28,
-            //     height: 28,
-            //     child: MtEmoji(emoji: session.template.icon),
-            //   ),
-            // ),
-            // title:
-            // Text(DateFormat.jm().format(session.createdAt).toLowerCase()),
-            // subtitle: Timeago(
-            //   builder: (_, value) => Text(value),
-            //   date: session.createdAt,
-            // ),
-            // subtitle: Text(format(session.commitedAt!)),
-            trailing: actions,
-            // trailing:
-            //     Text(DateFormat.jm().format(session.createdAt).toLowerCase()),
+                    textAlign: TextAlign.right,
+                  ),
+                ),
+              ],
+            ),
           ),
-
-          // if (labels.isNotEmpty)
-
-          // if (entryIndex >= 0 && defIndex >= 0)
-          //   Padding(
-          //     padding: const EdgeInsets.symmetric(
-          //       vertical: 128.0,
-          //       horizontal: 8.0,
-          //     ),
-          //     child: Center(
-          //       child: Text(
-          //         session.definitions[entryIndex].definitions[defIndex]
-          //             .maybeMap(
-          //           note: (value) => value.data,
-          //           orElse: () => throw UnimplementedError(),
-          //         ),
-          //         style: textTheme.titleMedium,
-          //       ),
-          //     ),
-          //   ),
-          // if (entryIndex >= 0)
-          //   Wrap(
-          //     spacing: 10,
-          //     alignment: WrapAlignment.start,
-          //     children: session.labels
-          //         .map<Widget>((e) => Chip(
-          //               label: Text(e.name),
-          //               labelStyle: textTheme.labelMedium,
-          //               avatar: MtEmoji(emoji: e.icon),
-          //               padding: const EdgeInsets.fromLTRB(10, 6, 5, 6),
-          //               backgroundColor: colorScheme.surface,
-          //               shape: const SmoothRectangleBorder(
-          //                 borderRadius: SmoothBorderRadius.all(
-          //                   SmoothRadius(
-          //                     cornerRadius: ElementScale.cornerLarge,
-          //                     cornerSmoothing:
-          //                         ElementScale.cornerSmoothFactor,
-          //                   ),
-          //                 ),
-          //               ),
-          //             ))
-          //         .toList(),
-          //   ),
           const Divider(),
         ],
       ),

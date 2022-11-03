@@ -9,6 +9,7 @@ class SessionListSliver extends StatelessWidget {
           orElse: () =>
               const SliverFillRemaining(child: CupertinoActivityIndicator()),
           started: (sessions) => SliverGroupedListView<Session, DateTime>(
+            order: GroupedListOrder.ASC,
             elements: sessions,
             groupBy: (element) => DateTime(
               element.createdAt.year,
@@ -65,6 +66,7 @@ class SessionListSliver extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(right: 16.0),
                       child: _Item(
+                        key: ValueKey(element.id),
                         session: element,
                         onTap: () => context.read<SessionListBloc>().add(
                               SessionListEvent.selectSession(session: element),
