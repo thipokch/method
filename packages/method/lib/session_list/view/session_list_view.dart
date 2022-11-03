@@ -11,7 +11,6 @@ import 'package:method/session_edit/route/session_edit_route.dart';
 import 'package:method_core/model/session.dart';
 import 'package:method_style/element_scale.dart';
 import 'package:method_style/element_symbol.dart';
-import 'package:method_ui/card/card.dart';
 import 'package:method_ui/emoji/emoji.dart';
 
 import '../logic/session_list_bloc.dart';
@@ -146,21 +145,26 @@ class _Item extends StatelessWidget {
           child: Column(
             children: [
               notes.isNotEmpty
-                  ? MtCard(
-                      isExpandable: true,
-                      body: const SizedBox.shrink(),
-                      header: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Text(
-                              notes.first.data,
-                              style: textTheme.bodyLarge,
+                  ? Row(
+                      children: [
+                        Expanded(
+                          child: Card(
+                            // isExpandable: true,
+                            // isSelected: true,
+                            // body: const SizedBox.shrink(),
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Text(
+                                notes.first.data,
+                                style: textTheme.bodyLarge,
+                                // softWrap: true,
+                                // maxLines: 10,
+                              ),
                             ),
+                            // footer:
                           ),
-                        ],
-                      ),
-                      // footer:
+                        ),
+                      ],
                     )
                   : const SizedBox.shrink(),
               Padding(
