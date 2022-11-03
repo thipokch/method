@@ -10,7 +10,6 @@ import 'package:method_core/model/session.dart';
 import 'package:method_style/element_scale.dart';
 import 'package:method_style/element_symbol.dart';
 import 'package:method_ui/float/float_scaffold.dart';
-import 'package:method_ui/page/page.dart';
 
 part 'session_edit_sliver.dart';
 

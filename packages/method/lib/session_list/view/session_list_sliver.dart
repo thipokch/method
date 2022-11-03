@@ -71,45 +71,20 @@ class SessionListSliver extends StatelessWidget {
                         onTap: () => context.read<SessionListBloc>().add(
                               SessionListEvent.selectSession(session: element),
                             ),
-                        actions: PopupMenuButton(
-                          icon: const Icon(ElementSymbol.moreVertical),
-                          position: PopupMenuPosition.under,
-                          shape: const SmoothRectangleBorder(
-                            borderRadius: SmoothBorderRadius.all(
-                              SmoothRadius(
-                                cornerRadius: ElementScale.cornerLarge,
-                                cornerSmoothing:
-                                    ElementScale.cornerSmoothFactor,
-                              ),
-                            ),
+                        actions: [
+                          CupertinoContextMenuAction(
+                            onPressed: () {
+                              SessionEditRoute(element.id).go(context);
+                              // Navigator.of(context, rootNavigator: true).pop();
+                            },
+                            // isDefaultAction: true,
+                            trailingIcon: ElementSymbol.editFilled,
+                            child: const Text('Edit'),
                           ),
-                          itemBuilder: (BuildContext context) =>
-                              <PopupMenuEntry>[
-                            PopupMenuItem(
-                              // onTap: () {},
-                              onTap: () =>
-                                  SessionEditRoute(element.id).push(context),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Padding(
-                                    padding: EdgeInsets.only(right: 8.0),
-                                    child: Text('Edit'),
-                                  ),
-                                  Icon(
-                                    ElementSymbol.editFilled,
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onBackground,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const PopupMenuDivider(),
-                            PopupMenuItem(
-                              onTap: () => FlutterPlatformAlert.showCustomAlert(
+                          CupertinoContextMenuAction(
+                            onPressed: () {
+                              Navigator.of(context, rootNavigator: true).pop();
+                              FlutterPlatformAlert.showCustomAlert(
                                 windowTitle: "Delete ${element.template.name}?",
                                 text:
                                     "Deleting ${element.template.name} will also delete its entries.",
@@ -123,25 +98,84 @@ class SessionListSliver extends StatelessWidget {
                                         ),
                                       );
                                 }
-                              }),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Padding(
-                                    padding: EdgeInsets.only(right: 8.0),
-                                    child: Text('Delete'),
-                                  ),
-                                  Icon(
-                                    ElementSymbol.deleteFilled,
-                                    color: Theme.of(context).colorScheme.error,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
+                              });
+                            },
+                            isDestructiveAction: true,
+                            trailingIcon: ElementSymbol.deleteFilled,
+                            child: const Text('Delete'),
+                          ),
+                        ],
+                        // actions: PopupMenuButton(
+                        //   icon: const Icon(ElementSymbol.moreVertical),
+                        //   position: PopupMenuPosition.under,
+                        //   shape: const SmoothRectangleBorder(
+                        //     borderRadius: SmoothBorderRadius.all(
+                        //       SmoothRadius(
+                        //         cornerRadius: ElementScale.cornerLarge,
+                        //         cornerSmoothing:
+                        //             ElementScale.cornerSmoothFactor,
+                        //       ),
+                        //     ),
+                        //   ),
+                        //   itemBuilder: (BuildContext context) =>
+                        //       <PopupMenuEntry>[
+                        //     PopupMenuItem(
+                        //       // onTap: () {},
+                        //       onTap: () =>
+                        //           SessionEditRoute(element.id).push(context),
+                        //       child: Row(
+                        //         mainAxisSize: MainAxisSize.max,
+                        //         mainAxisAlignment:
+                        //             MainAxisAlignment.spaceBetween,
+                        //         children: [
+                        //           const Padding(
+                        //             padding: EdgeInsets.only(right: 8.0),
+                        //             child: Text('Edit'),
+                        //           ),
+                        //           Icon(
+                        //             ElementSymbol.editFilled,
+                        //             color: Theme.of(context)
+                        //                 .colorScheme
+                        //                 .onBackground,
+                        //           ),
+                        //         ],
+                        //       ),
+                        //     ),
+                        //     const PopupMenuDivider(),
+                        //     PopupMenuItem(
+                        //       onTap: () => FlutterPlatformAlert.showCustomAlert(
+                        //         windowTitle: "Delete ${element.template.name}?",
+                        //         text:
+                        //             "Deleting ${element.template.name} will also delete its entries.",
+                        //         positiveButtonTitle: "Cancel",
+                        //         negativeButtonTitle: "Delete",
+                        //       ).then((selection) {
+                        //         if (selection == CustomButton.negativeButton) {
+                        //           context.read<SessionListBloc>().add(
+                        //                 SessionListEvent.deleteSession(
+                        //                   session: element,
+                        //                 ),
+                        //               );
+                        //         }
+                        //       }),
+                        //       child: Row(
+                        //         mainAxisSize: MainAxisSize.max,
+                        //         mainAxisAlignment:
+                        //             MainAxisAlignment.spaceBetween,
+                        //         children: [
+                        //           const Padding(
+                        //             padding: EdgeInsets.only(right: 8.0),
+                        //             child: Text('Delete'),
+                        //           ),
+                        //           Icon(
+                        //             ElementSymbol.deleteFilled,
+                        //             color: Theme.of(context).colorScheme.error,
+                        //           ),
+                        //         ],
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                       ),
                     ),
                   ),
