@@ -1,4 +1,4 @@
-enum TwemojiFormat {
+enum MtEmojiFormat {
   /// SVG form assets
   svg,
 

@@ -14,6 +14,7 @@ import 'package:method/app/app.dart';
 import 'package:method/license/service/license_service.dart';
 import 'package:method/settings_appearance/logic/settings_appearance_bloc.dart';
 import 'package:method_repo/repository.dart';
+import 'package:method_ui/riso/riso_shader.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
@@ -87,11 +88,14 @@ class AppBloc extends Bloc<AppEvent, AppState> {
           create: (_) => PackageInfo.fromPlatform(),
           initialData: null,
         ),
+        Provider<GlobalKey<NavigatorState>>.value(
+          value: AppRoute.defaultNavigator,
+        ),
         Provider<Repository>.value(
           value: await Repository.open(),
         ),
-        Provider<GlobalKey<NavigatorState>>.value(
-          value: AppRoute.defaultNavigator,
+        Provider<RisoShader>.value(
+          value: await RisoShader.load(),
         ),
         // FutureProvider<Repository?>(
         //   create: (_) => Repository.open(),

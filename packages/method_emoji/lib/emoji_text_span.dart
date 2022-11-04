@@ -13,18 +13,18 @@ class MtEmojiTextSpan extends TextSpan {
     required String text,
     List<TextSpan>? children,
     double emojiFontMultiplier = 1,
-    this.twemojiFormat = TwemojiFormat.svg,
+    this.twemojiFormat = MtEmojiFormat.svg,
   }) : super(
           style: style,
           children: _parse(style, text, twemojiFormat, emojiFontMultiplier)
             ..addAll(children ?? []),
         );
 
-  final TwemojiFormat twemojiFormat;
+  final MtEmojiFormat twemojiFormat;
   static List<InlineSpan> _parse(
     TextStyle? style,
     String text,
-    TwemojiFormat twemojiFormat,
+    MtEmojiFormat twemojiFormat,
     double emojiFontMultiplier,
   ) {
     final spans = <InlineSpan>[];

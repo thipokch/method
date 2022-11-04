@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/app/route/route.dart';
 import 'package:method/session_edit/route/route.dart';
 import 'package:method_ui/button/button_filled.dart';
-import 'package:method_ui/emoji/emoji.dart';
+import 'package:method_ui/emoji/riso_emoji.dart';
 import 'package:method_ui/page/art_page.dart';
 
 import '../exercise_detail.dart';
@@ -12,9 +13,11 @@ class ExerciseDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MtArtPage(
-        emoji: ExerciseDetailSelector<String>(
-          selector: (state) => state.exercise?.icon ?? "",
-          builder: (context, state) => MtEmoji(emoji: state),
+        emoji: ExerciseDetailSelector<String?>(
+          selector: (state) => state.exercise?.icon,
+          builder: (context, state) => state == null
+              ? const CupertinoActivityIndicator()
+              : MtRisoEmoji(shaders: context.read(), emoji: state),
         ),
         name: ExerciseDetailSelector<String>(
           selector: (state) => state.exercise?.name ?? "",

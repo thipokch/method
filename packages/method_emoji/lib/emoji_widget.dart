@@ -7,15 +7,15 @@ import 'utils.dart';
 
 /// returns an image of an emoji
 ///
-/// The format of the emoji image it can be [TwemojiFormat.webp]
-/// 72*72 png or [TwemojiFormat.svg] svg by default.
+/// The format of the emoji image it can be [MtEmojiFormat.webp]
+/// 72*72 png or [MtEmojiFormat.svg] svg by default.
 class MtEmoji extends StatelessWidget {
   const MtEmoji({
     Key? key,
     required this.emoji,
     this.height,
     this.width,
-    this.twemojiFormat = TwemojiFormat.webp,
+    this.twemojiFormat = MtEmojiFormat.webp,
     this.fit,
   }) : super(key: key);
 
@@ -33,24 +33,17 @@ class MtEmoji extends StatelessWidget {
   /// [paintImage].
   final BoxFit? fit;
 
-  /// The format of the emoji image it can be [TwemojiFormat.webp]
-  /// 72*72 png or [TwemojiFormat.svg] svg by default.
+  /// The format of the emoji image it can be [MtEmojiFormat.webp]
+  /// 72*72 png or [MtEmojiFormat.svg] svg by default.
   ///
   /// Note: svg does'nt works on Flutter html web renderer
-  final TwemojiFormat twemojiFormat;
+  final MtEmojiFormat twemojiFormat;
   @override
   Widget build(BuildContext context) {
-    var cleanEmoji = '';
-    emoji.splitMapJoin(
-      regex,
-      onMatch: (m) => cleanEmoji = m.input.substring(m.start, m.end),
-    );
-    final unicode = emojiToUnicode(cleanEmoji);
-    if (unicode == '') {
-      return const SizedBox.shrink();
-    }
+    if (unicode == '') return const SizedBox.shrink();
+
     switch (twemojiFormat) {
-      case TwemojiFormat.webp:
+      case MtEmojiFormat.webp:
         return Image.asset(
           'assets/webp/$unicode.webp',
           fit: fit,
@@ -58,7 +51,7 @@ class MtEmoji extends StatelessWidget {
           width: height,
           package: 'method_emoji',
         );
-      case TwemojiFormat.svg:
+      case MtEmojiFormat.svg:
         return SvgPicture.asset(
           'assets/svg/$unicode.svg',
           height: height,
@@ -66,7 +59,7 @@ class MtEmoji extends StatelessWidget {
           fit: fit ?? BoxFit.contain,
           package: 'method_emoji',
         );
-      case TwemojiFormat.networkSvg:
+      case MtEmojiFormat.networkSvg:
         return SvgPicture.network(
           'https://abs.twimg.com/emoji/v2/svg/$unicode.svg',
           height: height,
@@ -74,5 +67,15 @@ class MtEmoji extends StatelessWidget {
           fit: fit ?? BoxFit.contain,
         );
     }
+  }
+
+  String get unicode {
+    var cleanEmoji = '';
+    emoji.splitMapJoin(
+      regex,
+      onMatch: (m) => cleanEmoji = m.input.substring(m.start, m.end),
+    );
+
+    return emojiToUnicode(cleanEmoji);
   }
 }

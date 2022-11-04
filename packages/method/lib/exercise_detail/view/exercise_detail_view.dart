@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/exercise_detail/logic/logic.dart';
 import 'package:method_core/model/task.dart';
-import 'package:method_ui/emoji/emoji.dart';
+import 'package:method_ui/emoji/riso_emoji.dart';
 
 // import '../exercise_detail.dart';
 
@@ -33,7 +34,8 @@ class _DetailTile extends StatelessWidget {
   Widget build(BuildContext context) => ListTile(
         title: Text(task.name),
         subtitle: Text(task.description),
-        leading: MtEmoji(
+        leading: MtRisoEmoji(
+          shaders: context.read(),
           emoji: task.icon,
           width: 48,
           height: 48,

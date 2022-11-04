@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
-
-import '../airbrush/airbrush_gradient_image.dart';
-import '../airbrush/airbrush_painter.dart';
+import 'package:method_ui/emoji/emoji.dart';
+import 'package:method_ui/riso/riso_painter.dart';
+import 'package:method_ui/riso/riso_shader.dart';
+import 'package:method_ui/util/image_shader.dart';
 
 class MtRisoEmoji extends StatelessWidget {
+  final RisoShader shaders;
   final String emoji;
   final double? height;
   final double? width;
 
   const MtRisoEmoji({
     super.key,
+    required this.shaders,
     required this.emoji,
     this.height,
     this.width,
@@ -17,7 +20,7 @@ class MtRisoEmoji extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => FutureBuilder<ImageShader>(
-        future: loadEmojiShader(emoji),
+        future: MtEmoji(emoji: emoji).shader(),
         builder: (context, snapshot) {
           final themeData = Theme.of(context);
           final colorScheme = themeData.colorScheme;
@@ -28,8 +31,9 @@ class MtRisoEmoji extends StatelessWidget {
             width: width ?? 32,
             child: snapshot.hasData
                 ? CustomPaint(
-                    painter: AirbrushPainter(
-                      context: context,
+                    painter: RisoPainter(
+                      shaders: shaders,
+                      // context: context,
                       frame: 190,
                       colorLighter: isLight
                           ? colorScheme.primaryContainer
@@ -51,4 +55,9 @@ class MtRisoEmoji extends StatelessWidget {
           );
         },
       );
+}
+
+extension Shader on MtEmoji {
+  Future<ImageShader> shader() =>
+      loadImageShader("packages/method_emoji/assets/webp/$unicode.webp");
 }

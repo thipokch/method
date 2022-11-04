@@ -11,7 +11,7 @@ class MtEmojiText extends StatelessWidget {
     this.style,
     this.maxLines,
     this.emojiFontMultiplier = 1.0,
-    this.twemojiFormat = TwemojiFormat.svg,
+    this.twemojiFormat = MtEmojiFormat.svg,
   }) : super(key: key);
 
   /// The Text
@@ -26,9 +26,9 @@ class MtEmojiText extends StatelessWidget {
   /// Maximal lines to be rendered
   final int? maxLines;
 
-  /// The format of the emoji image it can be [TwemojiFormat.webp]
-  /// 72*72 png or [TwemojiFormat.svg] svg by default.
-  final TwemojiFormat twemojiFormat;
+  /// The format of the emoji image it can be [MtEmojiFormat.webp]
+  /// 72*72 png or [MtEmojiFormat.svg] svg by default.
+  final MtEmojiFormat twemojiFormat;
   @override
   Widget build(BuildContext context) => RichText(
         text: MtEmojiTextSpan(

@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/exercise_list/exercise_list.dart';
 import 'package:method_core/model/exercise.dart';
 import 'package:method_style/element_scale.dart';
-import 'package:method_ui/emoji/emoji.dart';
+import 'package:method_ui/emoji/riso_emoji.dart';
 
 part 'exercise_list_sliver.dart';
 
@@ -106,7 +106,8 @@ class _Card extends StatelessWidget {
                     width: 100,
                     child: Padding(
                       padding: const EdgeInsets.only(top: 20),
-                      child: MtEmoji(
+                      child: MtRisoEmoji(
+                        shaders: context.read(),
                         emoji: exercise.icon,
                         height: 100,
                         width: 100,

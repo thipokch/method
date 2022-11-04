@@ -1,34 +1,32 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:method_ui/riso/riso_shader.dart';
 
-import 'airbrush.dart';
+class RisoPainter extends CustomPainter {
+  const RisoPainter({
+    required this.shaders,
+    required this.frame,
+    required this.height,
+    required this.width,
+    this.colorLighter,
+    this.colorLight,
+    this.colorDark,
+    this.colorDarker,
+    this.imageShader,
+  });
 
-class AirbrushPainter extends CustomPainter {
-  final BuildContext context;
+  final RisoShader shaders;
   final double frame;
   final Color? colorLighter;
   final Color? colorLight;
   final Color? colorDark;
   final Color? colorDarker;
-  ImageShader? imageShader;
+  final ImageShader? imageShader;
   final double? height;
   final double? width;
 
-  AirbrushPainter({
-    required this.context,
-    required this.frame,
-    required this.colorLighter,
-    required this.colorLight,
-    required this.colorDark,
-    required this.colorDarker,
-    this.imageShader,
-    this.height,
-    this.width,
-  });
-
   @override
   void paint(Canvas canvas, Size size) {
-    final AirbrushFP fp = Airbrush.of(context)!;
     final isGradient = colorLighter != null &&
         colorLight != null &&
         colorDark != null &&
@@ -53,18 +51,13 @@ class AirbrushPainter extends CustomPainter {
     ]);
 
     final shader = imageShader == null
-        ? fp.gradientCanvasFp.shader(
+        ? shaders.risoCanvasFp.shader(
             floatUniforms: floatUniforms,
           )
-        : isGradient
-            ? fp.gradientEffectFP.shader(
-                floatUniforms: floatUniforms,
-                samplerUniforms: [imageShader!],
-              )
-            : fp.effectFP.shader(
-                floatUniforms: floatUniforms,
-                samplerUniforms: [imageShader!],
-              );
+        : shaders.risoImageFp.shader(
+            floatUniforms: floatUniforms,
+            samplerUniforms: [imageShader!],
+          );
 
     canvas.drawRect(
       Rect.fromLTWH(0, 0, size.width, size.height),
@@ -73,5 +66,5 @@ class AirbrushPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(AirbrushPainter oldDelegate) => false;
+  bool shouldRepaint(RisoPainter oldDelegate) => false;
 }
