@@ -25,97 +25,10 @@ class SessionListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) => SessionListBuilder(
         builder: (context, state) => state.maybeMap(
-          // started: (_) => _Started(sessions: _.sessions),
           orElse: () => const CupertinoActivityIndicator(),
         ),
       );
 }
-
-// class _Started extends StatelessWidget {
-//   const _Started({
-//     required this.sessions,
-//   });
-
-//   final List<Session> sessions;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       children: sessions
-//           .map<Widget>((session) => _Item(
-//                 key: ValueKey(session.id),
-//                 session: session,
-//                 onTap: () => context
-//                     .read<SessionListBloc>()
-//                     .add(SessionListEvent.selectSession(session: session)),
-//                 actions: PopupMenuButton(
-//                   icon: const Icon(ElementSymbol.moreVertical),
-//                   position: PopupMenuPosition.under,
-//                   shape: const SmoothRectangleBorder(
-//                     borderRadius: SmoothBorderRadius.all(
-//                       SmoothRadius(
-//                         cornerRadius: ElementScale.cornerLarge,
-//                         cornerSmoothing: ElementScale.cornerSmoothFactor,
-//                       ),
-//                     ),
-//                   ),
-//                   itemBuilder: (BuildContext context) => <PopupMenuEntry>[
-//                     PopupMenuItem(
-//                       onTap: () => SessionEditRoute(session.id).push(context),
-//                       child: Row(
-//                         mainAxisSize: MainAxisSize.max,
-//                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                         children: [
-//                           const Padding(
-//                             padding: EdgeInsets.only(right: 8.0),
-//                             child: Text('Edit'),
-//                           ),
-//                           Icon(
-//                             ElementSymbol.editFilled,
-//                             color: colorScheme.onBackground,
-//                           ),
-//                         ],
-//                       ),
-//                     ),
-//                     const PopupMenuDivider(),
-//                     PopupMenuItem(
-//                       onTap: () => FlutterPlatformAlert.showCustomAlert(
-//                         windowTitle: "Delete ${session.template.name}?",
-//                         text:
-//                             "Deleting ${session.template.name} will also delete its entries.",
-//                         positiveButtonTitle: "Cancel",
-//                         negativeButtonTitle: "Delete",
-//                       ).then((selection) {
-//                         if (selection == CustomButton.negativeButton) {
-//                           context.read<SessionListBloc>().add(
-//                                 SessionListEvent.deleteSession(
-//                                   session: session,
-//                                 ),
-//                               );
-//                         }
-//                       }),
-//                       child: Row(
-//                         mainAxisSize: MainAxisSize.max,
-//                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                         children: [
-//                           const Padding(
-//                             padding: EdgeInsets.only(right: 8.0),
-//                             child: Text('Delete'),
-//                           ),
-//                           Icon(
-//                             ElementSymbol.deleteFilled,
-//                             color: colorScheme.error,
-//                           ),
-//                         ],
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//               ))
-//           .toList(),
-//     );
-//   }
-// }
 
 class _Item extends StatelessWidget {
   final Session session;
@@ -144,29 +57,6 @@ class _Item extends StatelessWidget {
           // clipBehavior: Clip.antiAlias,
           child: Column(
             children: [
-              notes.isNotEmpty
-                  ? Row(
-                      children: [
-                        Expanded(
-                          child: Card(
-                            // isExpandable: true,
-                            // isSelected: true,
-                            // body: const SizedBox.shrink(),
-                            child: Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Text(
-                                notes.first.data,
-                                style: textTheme.bodyLarge,
-                                // softWrap: true,
-                                // maxLines: 10,
-                              ),
-                            ),
-                            // footer:
-                          ),
-                        ),
-                      ],
-                    )
-                  : const SizedBox.shrink(),
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 12.0,
@@ -175,14 +65,23 @@ class _Item extends StatelessWidget {
                 child: Row(
                   children: [
                     Expanded(
+                      child: Text(
+                        "${DateFormat.j().format(session.createdAt)} · ${session.template.name.toUpperCase()}",
+                        style: textTheme.labelMedium!.copyWith(
+                          color: colorScheme.outline,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                    Expanded(
                       child: SizedBox(
-                        height: 28,
+                        height: 24,
                         child: labels.isNotEmpty
                             ? WidgetStack(
                                 positions: RestrictedAmountPositions(
                                   minCoverage: .3,
                                   infoIndent: 2,
-                                  align: StackAlign.left,
+                                  align: StackAlign.right,
                                 ),
                                 stackedWidgets: labels
                                     .map(
@@ -197,8 +96,8 @@ class _Item extends StatelessWidget {
                                             .colorScheme
                                             .surfaceVariant,
                                         child: SizedBox(
-                                          width: 16,
-                                          height: 16,
+                                          width: 12,
+                                          height: 12,
                                           child: MtEmoji(emoji: def.icon),
                                         ),
                                       ),
@@ -218,6 +117,7 @@ class _Item extends StatelessWidget {
                                       child: Text(
                                         '+$surplus',
                                         style: textTheme.labelSmall?.copyWith(
+                                          fontSize: 9,
                                           color: colorScheme.onPrimary,
                                         ),
                                       ),
@@ -228,18 +128,32 @@ class _Item extends StatelessWidget {
                             : null,
                       ),
                     ),
-                    Expanded(
-                      child: Text(
-                        "${DateFormat.j().format(session.createdAt)} · ${session.template.name.toUpperCase()}",
-                        style: textTheme.labelSmall!.copyWith(
-                          color: colorScheme.outline,
-                        ),
-                        textAlign: TextAlign.right,
-                      ),
-                    ),
                   ],
                 ),
               ),
+              notes.isNotEmpty
+                  ? Row(
+                      children: [
+                        Expanded(
+                          child: Card(
+                            // isExpandable: true,
+                            // isSelected: true,
+                            // body: const SizedBox.shrink(),
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Text(
+                                notes.first.data,
+                                style: textTheme.bodyMedium,
+                                // softWrap: true,
+                                // maxLines: 10,
+                              ),
+                            ),
+                            // footer:
+                          ),
+                        ),
+                      ],
+                    )
+                  : const SizedBox.shrink(),
               const Divider(),
             ],
           ),

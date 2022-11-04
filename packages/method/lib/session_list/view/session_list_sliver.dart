@@ -39,7 +39,7 @@ class SessionListSliver extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(12.0),
                     width: 64,
                     child: hasMarker
                         ? Column(
@@ -48,13 +48,13 @@ class SessionListSliver extends StatelessWidget {
                                 DateFormat.E()
                                     .format(element.createdAt)
                                     .toUpperCase(),
-                                style: Theme.of(context).textTheme.titleSmall,
+                                style: Theme.of(context).textTheme.labelMedium,
                               ),
                               Text(
                                 DateFormat.d()
                                     .format(element.createdAt)
                                     .toUpperCase(),
-                                style: Theme.of(context).textTheme.titleLarge,
+                                style: Theme.of(context).textTheme.titleMedium,
                               ),
                             ],
                           )
