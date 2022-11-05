@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/entry_edit/logic/entry_edit_bloc.dart';
 import 'package:method/entry_edit/view/entry_edit_view.dart';
 import 'package:method/session_edit/logic/logic.dart';
+import 'package:method_core/abstract/present.dart';
 import 'package:method_core/model/session.dart';
 import 'package:method_style/element_scale.dart';
 import 'package:method_style/element_symbol.dart';
@@ -24,52 +25,64 @@ class _Swiper extends StatelessWidget {
   const _Swiper();
 
   @override
-  Widget build(BuildContext context) =>
-      SessionEditSelector<SessionDefinitionList?>(
-        selector: (state) =>
-            state.session?.builtDefinition.map.entries.toBuiltList(),
-        builder: (context, state) => state == null
-            ? const CupertinoActivityIndicator()
-            : Swiper(
-                loop: false,
-                indicatorLayout: PageIndicatorLayout.WARM,
-                itemCount: state.length,
-                physics: const BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics(),
-                ),
-                pagination: const SwiperPagination(
-                  alignment: Alignment.bottomCenter,
-                  margin: EdgeInsets.all(ElementScale.spaceNone),
-                  builder: _Pagination(),
-                ),
-
-                // itemBuilder: (context, index) => Text(index.toString()),
-                itemBuilder: (_, index) => BlocProvider(
-                  create: (context) => EntryEditBloc(
-                    repository: context.read(),
-                  )..add(state[index].value.isPresent
-                      ? EntryEditEvent.startEntry(
-                          entryId: state[index].value.value.id,
-                        )
-                      : EntryEditEvent.startTask(
-                          taskId: state[index].key.id,
-                        )),
-                  child: EntryEditListener(
-                    listenWhen: (previous, current) =>
-                        previous.entry != null && // Skip initial state
-                        previous.entry?.builtDefinition !=
-                            current.entry?.builtDefinition,
-                    listener: (context, state) => state.mapOrNull(
-                      started: (value) => context.read<SessionEditBloc>().add(
-                            SessionEditEvent.updateEntry(entry: value.entry),
-                          ),
-                    ),
-                    // child:
-                    //     const MtAppPage(name: Text("data"), slivers: const []),
-                    child: const EntryEditView(),
-                  ),
-                ),
+  Widget build(BuildContext context) => SessionEditSelector<Presentation?>(
+        selector: (state) => state.exercise?.presentation,
+        builder: (context, state) => Theme(
+          data: Theme.of(context).copyWith(
+              // colorScheme: state
+              //     ?.colorScheme(Theme.of(context).brightness)
+              //     .harmonizeWith(Theme.of(context).colorScheme.primary),
               ),
+          child: SessionEditSelector<SessionDefinitionList?>(
+            selector: (state) =>
+                state.session?.builtDefinition.map.entries.toBuiltList(),
+            builder: (context, state) => state == null
+                ? const CupertinoActivityIndicator()
+                : Swiper(
+                    loop: false,
+                    indicatorLayout: PageIndicatorLayout.WARM,
+                    itemCount: state.length,
+                    physics: const BouncingScrollPhysics(
+                      parent: AlwaysScrollableScrollPhysics(),
+                    ),
+                    pagination: const SwiperPagination(
+                      alignment: Alignment.bottomCenter,
+                      margin: EdgeInsets.all(ElementScale.spaceNone),
+                      builder: _Pagination(),
+                    ),
+
+                    // itemBuilder: (context, index) => Text(index.toString()),
+                    itemBuilder: (_, index) => BlocProvider(
+                      create: (context) => EntryEditBloc(
+                        repository: context.read(),
+                      )..add(state[index].value.isPresent
+                          ? EntryEditEvent.startEntry(
+                              entryId: state[index].value.value.id,
+                            )
+                          : EntryEditEvent.startTask(
+                              taskId: state[index].key.id,
+                            )),
+                      child: EntryEditListener(
+                        listenWhen: (previous, current) =>
+                            previous.entry != null && // Skip initial state
+                            previous.entry?.builtDefinition !=
+                                current.entry?.builtDefinition,
+                        listener: (context, state) => state.mapOrNull(
+                          started: (value) =>
+                              context.read<SessionEditBloc>().add(
+                                    SessionEditEvent.updateEntry(
+                                      entry: value.entry,
+                                    ),
+                                  ),
+                        ),
+                        // child:
+                        //     const MtAppPage(name: Text("data"), slivers: const []),
+                        child: const EntryEditView(),
+                      ),
+                    ),
+                  ),
+          ),
+        ),
       );
 }
 

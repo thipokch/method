@@ -16,7 +16,7 @@ layout(location=6)uniform sampler2D image;
 // METHODS
 
 float random1f(vec2 st){
-    return fract(sin(dot(st.xy,vec2(222.9878,178.233)))*93758.5453123);
+    return fract(sin(dot(st.xy,vec2(22.9878,178.233)))*93758.5453123);
 }
 
 mat2 rot(float a)
@@ -75,11 +75,10 @@ void main(){
     
     // draw the gradient
     vec3 layer1=mix(colorA,colorB,S(-.3,.2,(tuv*rot(radians(-5.))).x));
-    // vec3 layer2=mix(colorC,colorD,S(-.3,.2,(tuv*rot(radians(-5.))).x));
-    vec3 layer2=colorD;
     
     // a. image composition
     
+    vec3 layer2=colorD;
     // add noise to layers
     layer1=mix(colorC,layer1,random1f(uv)>.125?1.:0.);
     layer2=mix(colorA,layer2,random1f(uv)>.125?1.:0.);
@@ -91,6 +90,7 @@ void main(){
     
     // b. gradient composition
     
+    // vec3 layer2=colorC;
     // comp=mix(layer1,layer2,S(.5,-.3,tuv.y));
     // // noise alpha
     // float mixAlph=(random1f(uv)>.4?1.:0.);

@@ -35,7 +35,7 @@ class _ListChildren {
         }.entries.map(_tile),
         _section("ABOUT"),
         ...{
-          "Open Source": bloc.goLicense,
+          "Acknowledgments": bloc.goLicense,
         }.entries.map(_tile),
         const AppInfoView(),
       ];

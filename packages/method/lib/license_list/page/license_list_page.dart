@@ -8,7 +8,7 @@ class LicenseListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const MtAppPage(
-        name: Text("Open Source"),
+        name: Text("Acknowledgments"),
         // description: Text(""),
         slivers: [
           LicenseListSliver(),

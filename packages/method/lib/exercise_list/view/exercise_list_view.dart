@@ -6,6 +6,7 @@ import 'package:method/exercise_list/exercise_list.dart';
 import 'package:method_core/model/exercise.dart';
 import 'package:method_style/element_scale.dart';
 import 'package:method_ui/emoji/riso_emoji.dart';
+import 'package:method_ui/riso/riso_canvas.dart';
 
 part 'exercise_list_sliver.dart';
 
@@ -67,7 +68,11 @@ class _Card extends StatelessWidget {
       tag: exercise.name,
       child: Theme(
         // Hero defaults to Materialapp's Theme
-        data: themeData,
+        data: Theme.of(context).copyWith(
+            // colorScheme: exercise.presentation
+            //     .colorScheme(Theme.of(context).brightness)
+            //     .harmonizeWith(Theme.of(context).colorScheme.primary),
+            ),
         child: Card(
           elevation: 0,
           clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -86,6 +91,21 @@ class _Card extends StatelessWidget {
               child: Stack(
                 alignment: Alignment.bottomRight,
                 children: [
+                  SizedBox.expand(
+                    child: Builder(builder: (context) {
+                      return RisoCanvas(
+                        shaders: context.read(),
+                        frame: 7,
+                        colorDark:
+                            Theme.of(context).colorScheme.primaryContainer,
+                        colorDarker: Theme.of(context).colorScheme.background,
+                        colorLight:
+                            Theme.of(context).colorScheme.primaryContainer,
+                        colorLighter:
+                            Theme.of(context).colorScheme.secondaryContainer,
+                      );
+                    }),
+                  ),
                   // SizedBox.expand(
                   //   child: CustomPaint(
                   //     painter: AirbrushPainter(
