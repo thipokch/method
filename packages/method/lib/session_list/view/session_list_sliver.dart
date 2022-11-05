@@ -10,31 +10,35 @@ class SessionListSliver extends StatelessWidget {
               const SliverFillRemaining(child: CupertinoActivityIndicator()),
           started: (sessions) => SliverGroupedListView<Session, DateTime>(
             order: GroupedListOrder.DESC,
-            itemComparator: (element1, element2) =>
-                -element1.createdAt.compareTo(element2.createdAt),
+            // itemComparator: (element1, element2) =>
+            //     -element1.createdAt.compareTo(element2.createdAt),
             elements: sessions,
             groupBy: (element) => DateTime(
               element.createdAt.year,
               element.createdAt.month,
             ),
             groupSeparatorBuilder: (value) => Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 84,
+              padding: const EdgeInsets.only(
+                top: 24,
+                bottom: 12,
+                left: 72,
               ),
               child: DateUtils.isSameMonth(DateTime.now(), value)
                   ? null
                   : Text(
                       DateFormat.MMMM().format(value),
-                      style: Theme.of(context).textTheme.labelLarge,
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
             ),
             indexedItemBuilder: (context, element, index) {
-              final previousDate = (index > 0)
-                  ? DateUtils.dateOnly(sessions[index - 1].createdAt)
-                  : null;
+              final previousIndex = sessions.length - index;
+
+              final previousDate =
+                  (previousIndex >= 0 && previousIndex < sessions.length)
+                      ? DateUtils.dateOnly(sessions[previousIndex].createdAt)
+                      : null;
 
               final currentDate = DateUtils.dateOnly(element.createdAt);
-
               final hasMarker = previousDate != currentDate;
 
               return Row(
@@ -50,8 +54,12 @@ class SessionListSliver extends StatelessWidget {
                                 DateFormat.E()
                                     .format(element.createdAt)
                                     .toUpperCase(),
-                                style: Theme.of(context).textTheme.labelMedium,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelMedium
+                                    ?.copyWith(letterSpacing: 0.75),
                               ),
+                              const SizedBox(height: 4),
                               Text(
                                 DateFormat.d()
                                     .format(element.createdAt)

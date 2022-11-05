@@ -154,7 +154,7 @@ class _Item extends StatelessWidget {
                       ],
                     )
                   : const SizedBox.shrink(),
-              const Divider(),
+              // const Divider(),
             ],
           ),
         ),
