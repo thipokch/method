@@ -19,5 +19,4 @@ class ExerciseStartRoute extends GoRouteData {
   @override
   Page<void> buildPageWithState(BuildContext context, GoRouterState state) =>
       MtSheet(child: build(context));
-  // CupertinoPage(child: build(context));
 }

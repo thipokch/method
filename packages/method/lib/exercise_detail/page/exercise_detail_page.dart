@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/app/route/route.dart';
 import 'package:method/session_edit/route/route.dart';
 import 'package:method_core/abstract/present.dart';
+import 'package:method_style/element_color.dart';
 import 'package:method_ui/button/button_filled.dart';
 import 'package:method_ui/emoji/riso_emoji.dart';
 import 'package:method_ui/page/art_page.dart';
@@ -19,10 +20,10 @@ class ExerciseDetailPage extends StatelessWidget {
         selector: (state) => state.exercise?.presentation,
         builder: (context, state) => Theme(
           data: Theme.of(context).copyWith(
-              // colorScheme: state
-              //     ?.colorScheme(Theme.of(context).brightness)
-              //     .harmonizeWith(Theme.of(context).colorScheme.primary),
-              ),
+            colorScheme: state
+                ?.colorScheme(Theme.of(context).brightness)
+                .harmonizeWith(Theme.of(context).colorScheme.primary),
+          ),
           child: MtArtPage(
             emoji: ExerciseDetailSelector<String?>(
               selector: (state) => state.exercise?.icon,

@@ -8,6 +8,7 @@ import 'package:method/entry_edit/view/entry_edit_view.dart';
 import 'package:method/session_edit/logic/logic.dart';
 import 'package:method_core/abstract/present.dart';
 import 'package:method_core/model/session.dart';
+import 'package:method_style/element_color.dart';
 import 'package:method_style/element_scale.dart';
 import 'package:method_style/element_symbol.dart';
 import 'package:method_ui/float/float_scaffold.dart';
@@ -29,10 +30,10 @@ class _Swiper extends StatelessWidget {
         selector: (state) => state.exercise?.presentation,
         builder: (context, state) => Theme(
           data: Theme.of(context).copyWith(
-              // colorScheme: state
-              //     ?.colorScheme(Theme.of(context).brightness)
-              //     .harmonizeWith(Theme.of(context).colorScheme.primary),
-              ),
+            colorScheme: state
+                ?.colorScheme(Theme.of(context).brightness)
+                .harmonizeWith(Theme.of(context).colorScheme.primary),
+          ),
           child: SessionEditSelector<SessionDefinitionList?>(
             selector: (state) =>
                 state.session?.builtDefinition.map.entries.toBuiltList(),

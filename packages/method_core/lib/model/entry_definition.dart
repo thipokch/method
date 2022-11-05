@@ -46,6 +46,7 @@ class EntryDefinition with _$EntryDefinition, Identify, Locate, Uniform {
           hierarchyPath: _.hierarchyPath,
           id: _.id,
         ),
+        part: (_) => throw ArgumentError(),
       );
 
   @override

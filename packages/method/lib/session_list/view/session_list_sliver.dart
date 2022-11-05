@@ -9,7 +9,9 @@ class SessionListSliver extends StatelessWidget {
           orElse: () =>
               const SliverFillRemaining(child: CupertinoActivityIndicator()),
           started: (sessions) => SliverGroupedListView<Session, DateTime>(
-            order: GroupedListOrder.ASC,
+            order: GroupedListOrder.DESC,
+            itemComparator: (element1, element2) =>
+                -element1.createdAt.compareTo(element2.createdAt),
             elements: sessions,
             groupBy: (element) => DateTime(
               element.createdAt.year,

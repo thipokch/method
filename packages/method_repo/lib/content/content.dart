@@ -286,6 +286,14 @@ class Content {
     definitions: <TaskDefinition>[
       // OPTION - JUMPING TO CONCLUSION
 
+      TaskDefinition.part(
+        icon: "",
+        name: "Jumping to Conclusion",
+        description: "",
+        hierarchyPath: "distortion/jumping-to-conclusion",
+        id: "jumping-to-conclusion",
+      ),
+
       TaskDefinition.note(
         icon: "🧠",
         name: "Mind reading",
@@ -324,6 +332,14 @@ class Content {
 
       // OPTION - TOXIC POSITIVITY
 
+      TaskDefinition.part(
+        icon: "",
+        name: "Toxic Positivity",
+        description: "",
+        hierarchyPath: "distortion/toxic-positivity",
+        id: "toxic-positivity",
+      ),
+
       TaskDefinition.note(
         icon: "👟",
         name: "Avoiding emotions",
@@ -355,6 +371,14 @@ class Content {
 
       // OPTION - ASSUMING THE WORST
 
+      TaskDefinition.part(
+        icon: "",
+        name: "Assuming the worst",
+        description: "",
+        hierarchyPath: "distortion/assuming-the-worst",
+        id: "assuming-the-worst",
+      ),
+
       TaskDefinition.note(
         icon: "☄️",
         name: "Catastophizing",
@@ -385,6 +409,14 @@ class Content {
       ),
 
       // OPTION - FINGER POINTING
+
+      TaskDefinition.part(
+        icon: "",
+        name: "Finger Pointing",
+        description: "",
+        hierarchyPath: "distortion/finger-pointing",
+        id: "finger-pointing",
+      ),
 
       TaskDefinition.note(
         icon: "👉",
@@ -785,11 +817,21 @@ class Content {
     name: "Set Intentions",
     description: "What can you do?",
     definitions: <TaskDefinition>[
+      // MOTIVATION
+
+      TaskDefinition.part(
+        icon: "",
+        name: "Finding Motivation",
+        description: "",
+        hierarchyPath: "intentions/motivation",
+        id: "motivation",
+      ),
+
       TaskDefinition.note(
         icon: "🗿",
         name: "Keep still",
         description: "Sometimes doing nothing is doing something.",
-        hierarchyPath: "intentions/",
+        hierarchyPath: "intentions/motivation",
         id: "do-nothing",
       ),
       TaskDefinition.note(
@@ -830,6 +872,14 @@ class Content {
 
       // NOTE - SOCIAL
 
+      TaskDefinition.part(
+        icon: "",
+        name: "Reach out",
+        description: "",
+        hierarchyPath: "intentions/social",
+        id: "social",
+      ),
+
       TaskDefinition.note(
         icon: "🙋",
         name: "Asking for help",
@@ -853,6 +903,14 @@ class Content {
       ),
 
       // NOTE - RETHINK
+
+      TaskDefinition.part(
+        icon: "",
+        name: "Rethink",
+        description: "",
+        hierarchyPath: "intentions/rethink",
+        id: "rethink",
+      ),
 
       TaskDefinition.note(
         icon: "🧪",
@@ -884,6 +942,14 @@ class Content {
       ),
 
       // NOTE - SIMPLIFY
+
+      TaskDefinition.part(
+        icon: "",
+        name: "Simplify",
+        description: "",
+        hierarchyPath: "intentions/simplify",
+        id: "simplify",
+      ),
 
       TaskDefinition.note(
         icon: "🪥",

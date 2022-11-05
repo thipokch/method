@@ -17,7 +17,10 @@ class ExerciseListPage extends StatelessWidget {
           name: Text("Library"),
           // description: Text(""),
           slivers: [
-            ExerciseListSliver(),
+            SliverPadding(
+              padding: EdgeInsets.all(16.0),
+              sliver: ExerciseListSliver(),
+            ),
           ],
         ),
       );

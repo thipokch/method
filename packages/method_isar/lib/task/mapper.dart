@@ -116,7 +116,7 @@ class DbTaskDefinitionMapper {
         );
 
       default:
-        return TaskDefinition.note(
+        return TaskDefinition.part(
           icon: dao.icon,
           name: dao.name,
           description: dao.description,

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/exercise_list/exercise_list.dart';
 import 'package:method_core/model/exercise.dart';
+import 'package:method_style/element_color.dart';
 import 'package:method_style/element_scale.dart';
 import 'package:method_ui/emoji/riso_emoji.dart';
 import 'package:method_ui/riso/riso_canvas.dart';
@@ -69,10 +70,10 @@ class _Card extends StatelessWidget {
       child: Theme(
         // Hero defaults to Materialapp's Theme
         data: Theme.of(context).copyWith(
-            // colorScheme: exercise.presentation
-            //     .colorScheme(Theme.of(context).brightness)
-            //     .harmonizeWith(Theme.of(context).colorScheme.primary),
-            ),
+          colorScheme: exercise.presentation
+              .colorScheme(Theme.of(context).brightness)
+              .harmonizeWith(Theme.of(context).colorScheme.primary),
+        ),
         child: Card(
           elevation: 0,
           clipBehavior: Clip.antiAliasWithSaveLayer,

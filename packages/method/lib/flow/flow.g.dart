@@ -17,7 +17,7 @@ GoRoute get $sessionFlow => GoRouteData.$route(
       factory: $SessionFlowExtension._fromState,
       routes: [
         GoRouteData.$route(
-          path: ':id/detail',
+          path: ':id',
           factory: $SessionDetailRouteExtension._fromState,
         ),
         GoRouteData.$route(
@@ -46,7 +46,7 @@ extension $SessionDetailRouteExtension on SessionDetailRoute {
       );
 
   String get location => GoRouteData.$location(
-        '/session/${Uri.encodeComponent(id)}/detail',
+        '/session/${Uri.encodeComponent(id)}',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);

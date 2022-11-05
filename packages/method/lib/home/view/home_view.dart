@@ -43,12 +43,12 @@ class _ListItems {
     NavigationDestination(
       icon: Icon(ElementSymbol.today),
       selectedIcon: Icon(ElementSymbol.todayFilled),
-      label: 'Today',
+      label: 'Timeline',
     ),
     NavigationDestination(
       icon: Icon(ElementSymbol.bookOpen),
       selectedIcon: Icon(ElementSymbol.bookOpenFilled),
-      label: 'Create',
+      label: 'Library',
     ),
     NavigationDestination(
       icon: Icon(ElementSymbol.person),

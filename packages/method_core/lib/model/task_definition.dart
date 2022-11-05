@@ -30,6 +30,15 @@ class TaskDefinition with _$TaskDefinition, Identify, Locate, Uniform, Inform {
     @UuidConverter() final UuidValue? uuid,
   }) = TaskDefinitionNote;
 
+  const factory TaskDefinition.part({
+    required final String icon,
+    required final String name,
+    required final String description,
+    required final String hierarchyPath,
+    required final String id,
+    @UuidConverter() final UuidValue? uuid,
+  }) = TaskDefinitionPart;
+
   factory TaskDefinition.fromJson(Map<String, dynamic> json) =>
       _$TaskDefinitionFromJson(json);
 
@@ -37,11 +46,13 @@ class TaskDefinition with _$TaskDefinition, Identify, Locate, Uniform, Inform {
   String get collectionSlug => map(
         label: (_) => "label",
         note: (_) => "note",
+        part: (_) => "part",
       );
 
   @override
   String toString() => map(
         label: (_) => "TaskDefinition.label(${_.uniformString})",
         note: (_) => "TaskDefinition.note(${_.uniformString})",
+        part: (_) => "TaskDefinition.part(${_.uniformString})",
       );
 }

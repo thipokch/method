@@ -17,7 +17,7 @@ part 'flow.g.dart';
 @TypedGoRoute<SessionFlow>(
   path: '/session',
   routes: <TypedGoRoute<GoRouteData>>[
-    TypedGoRoute<SessionDetailRoute>(path: ':id/detail'),
+    TypedGoRoute<SessionDetailRoute>(path: ':id'),
     TypedGoRoute<SessionEditRoute>(path: ':id/edit'),
   ],
 )
