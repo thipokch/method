@@ -99,10 +99,10 @@ class Content {
     definitions: <TaskDefinition>[
       TaskDefinition.note(
         icon: "",
-        name: "---",
-        description: "---",
-        hierarchyPath: "---",
-        id: "---",
+        name: "",
+        description: "",
+        hierarchyPath: "note",
+        id: "note",
       ),
     ],
     hierarchyPath: "",

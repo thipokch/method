@@ -35,7 +35,7 @@ class _Started extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: exercises
-          .where((e) => e.id != "note")
+          // .where((e) => e.id != "note")
           .map<Widget>((e) => _Card(
                 key: ValueKey(e.id),
                 exercise: e,
