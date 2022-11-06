@@ -6,6 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/app/app.dart';
 import 'package:method/exercise_detail/route/exercise_detail_route.dart';
+import 'package:method/session_edit/route/exercise_start_route.dart';
 import 'package:method_core/model/exercise.dart';
 import 'package:method_repo/repository.dart';
 
@@ -54,7 +55,11 @@ class ExerciseListBloc extends Bloc<ExerciseListEvent, ExerciseListState> {
     _SelectExercise event,
     Emitter<ExerciseListState> emit,
   ) =>
-      ExerciseDetailRoute(event.exercise.id).push(navigator.currentContext!);
+      event.exercise.id != "note"
+          ? ExerciseDetailRoute(event.exercise.id)
+              .push(navigator.currentContext!)
+          : ExerciseStartRoute(event.exercise.id)
+              .push(navigator.currentContext!);
 
   // STREAM EVENTS
 

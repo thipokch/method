@@ -1,13 +1,10 @@
 import 'package:built_collection/built_collection.dart';
-import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:method_core/model/entry.dart';
 import 'package:method_core/model/entry_definition.dart';
 import 'package:method_core/model/task.dart';
 import 'package:method_core/model/task_definition.dart';
-import 'package:method_style/element_scale.dart';
-import 'package:method_ui/card/card.dart';
 import 'package:method_ui/emoji/emoji.dart';
 
 import '../entry_detail.dart';

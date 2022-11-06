@@ -60,103 +60,100 @@ class _Card extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    final themeData = Theme.of(context);
-    final colorScheme = themeData.colorScheme;
-    final textTheme = themeData.textTheme;
-
-    return Hero(
-      tag: exercise.name,
-      child: Theme(
-        // Hero defaults to Materialapp's Theme
-        data: Theme.of(context).copyWith(
-          colorScheme: exercise.presentation
-              .colorScheme(Theme.of(context).brightness)
-              .harmonizeWith(Theme.of(context).colorScheme.primary),
-        ),
-        child: Card(
-          elevation: 0,
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          shape: const SmoothRectangleBorder(
-            borderRadius: SmoothBorderRadius.all(
-              SmoothRadius(
-                cornerRadius: ElementScale.cornerLarge,
-                cornerSmoothing: ElementScale.cornerSmoothFactor,
-              ),
-            ),
+  Widget build(BuildContext context) => Hero(
+        tag: exercise.name,
+        child: Theme(
+          // Hero defaults to Materialapp's Theme
+          data: Theme.of(context).copyWith(
+            colorScheme: exercise.presentation
+                .colorScheme(Theme.of(context).brightness)
+                .harmonizeWith(Theme.of(context).colorScheme.primary),
           ),
-          child: ConstrainedBox(
-            constraints: const BoxConstraints.expand(height: 100),
-            child: InkWell(
-              onTap: onTap,
-              child: Stack(
-                alignment: Alignment.bottomRight,
-                children: [
-                  SizedBox.expand(
-                    child: Builder(builder: (context) {
-                      return RisoCanvas(
-                        shaders: context.read(),
-                        frame: 7,
-                        colorDark:
-                            Theme.of(context).colorScheme.primaryContainer,
-                        colorDarker: Theme.of(context).colorScheme.background,
-                        colorLight:
-                            Theme.of(context).colorScheme.primaryContainer,
-                        colorLighter:
-                            Theme.of(context).colorScheme.secondaryContainer,
-                      );
-                    }),
+          child: Builder(builder: (context) {
+            final themeData = Theme.of(context);
+            final colorScheme = themeData.colorScheme;
+            final textTheme = themeData.textTheme;
+
+            return Card(
+              elevation: 0,
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              shape: const SmoothRectangleBorder(
+                borderRadius: SmoothBorderRadius.all(
+                  SmoothRadius(
+                    cornerRadius: ElementScale.cornerLarge,
+                    cornerSmoothing: ElementScale.cornerSmoothFactor,
                   ),
-                  // SizedBox.expand(
-                  //   child: CustomPaint(
-                  //     painter: AirbrushPainter(
-                  //       context: context,
-                  //       // frame: 825,
-                  //       frame: 7,
-                  //       // frame: 2048.0 * 2,
-                  //       colorLighter: colorScheme.secondaryContainer,
-                  //       colorLight: colorScheme.primaryContainer,
-                  //       colorDark: colorScheme.primaryContainer,
-                  //       colorDarker: colorScheme.background,
-                  //       // colorDarker: colorScheme.surfaceVariant,
-                  //     ),
-                  //   ),
-                  // ),
-                  SizedBox(
-                    height: 100,
-                    width: 100,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: MtRisoEmoji(
-                        shaders: context.read(),
-                        emoji: exercise.icon,
+                ),
+              ),
+              child: ConstrainedBox(
+                constraints: const BoxConstraints.expand(height: 100),
+                child: InkWell(
+                  onTap: onTap,
+                  child: Stack(
+                    alignment: Alignment.bottomRight,
+                    children: [
+                      SizedBox.expand(
+                        child: Builder(
+                          builder: (context) => RisoCanvas(
+                            shaders: context.read(),
+                            frame: 7,
+                            colorDark: colorScheme.primaryContainer,
+                            colorDarker: colorScheme.background,
+                            colorLight: colorScheme.primaryContainer,
+                            colorLighter: colorScheme.secondaryContainer,
+                          ),
+                        ),
+                      ),
+                      // SizedBox.expand(
+                      //   child: CustomPaint(
+                      //     painter: AirbrushPainter(
+                      //       context: context,
+                      //       // frame: 825,
+                      //       frame: 7,
+                      //       // frame: 2048.0 * 2,
+                      //       colorLighter: colorScheme.secondaryContainer,
+                      //       colorLight: colorScheme.primaryContainer,
+                      //       colorDark: colorScheme.primaryContainer,
+                      //       colorDarker: colorScheme.background,
+                      //       // colorDarker: colorScheme.surfaceVariant,
+                      //     ),
+                      //   ),
+                      // ),
+                      SizedBox(
                         height: 100,
                         width: 100,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 20),
+                          child: MtRisoEmoji(
+                            shaders: context.read(),
+                            emoji: exercise.icon,
+                            height: 100,
+                            width: 100,
+                          ),
+                        ),
                       ),
-                    ),
+                      ListTile(
+                        title: Text(
+                          exercise.name,
+                          style: textTheme.titleMedium!.copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: colorScheme.onPrimaryContainer,
+                          ),
+                        ),
+                        subtitle: Text(
+                          exercise.description,
+                          style: textTheme.labelMedium!.copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: colorScheme.onPrimaryContainer,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                  ListTile(
-                    title: Text(
-                      exercise.name,
-                      style: textTheme.titleMedium!.copyWith(
-                        fontWeight: FontWeight.w600,
-                        color: colorScheme.onPrimaryContainer,
-                      ),
-                    ),
-                    subtitle: Text(
-                      exercise.description,
-                      style: textTheme.labelMedium!.copyWith(
-                        fontWeight: FontWeight.w600,
-                        color: colorScheme.onPrimaryContainer,
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
-          ),
+            );
+          }),
         ),
-      ),
-    );
-  }
+      );
 }

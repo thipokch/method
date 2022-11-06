@@ -21,7 +21,7 @@ class SessionListSliver extends StatelessWidget {
               padding: const EdgeInsets.only(
                 top: 24,
                 bottom: 12,
-                left: 72,
+                left: 16,
               ),
               child: DateUtils.isSameMonth(DateTime.now(), value)
                   ? null

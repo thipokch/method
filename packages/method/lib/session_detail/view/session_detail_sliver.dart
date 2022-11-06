@@ -15,13 +15,45 @@ class SessionDetailSliver extends StatelessWidget {
                   (context, index) {
                     final entry = state.elementAt(index).value.orNull;
 
+                    // return Row(
+                    //   children: [
+                    //     entry != null
+                    //         ? Column(
+                    //             children: [
+                    //               BlocProvider(
+                    //                 create: (_) => EntryDetailBloc(
+                    //                   id: entry.id,
+                    //                   repository: context.read(),
+                    //                 )..add(const EntryDetailEvent.start()),
+                    //                 child: const Expanded(
+                    //                     child: EntryDetailSliver()),
+                    //               ),
+                    //             ],
+                    //           )
+                    //         : const SizedBox(),
+                    //   ],
+                    // );
+
+                    // return ;
+
                     return entry != null
                         ? BlocProvider(
                             create: (_) => EntryDetailBloc(
                               id: entry.id,
                               repository: context.read(),
                             )..add(const EntryDetailEvent.start()),
-                            child: const EntryDetailSliver(),
+                            child: Row(
+                              children: const [
+                                SizedBox(),
+                                Expanded(child: EntryDetailSliver()),
+                                // Column(),
+                                // Expanded(
+                                //   child: ListTile(
+                                //     title: Text("I'm soooo sad"),
+                                //   ),
+                                // ),
+                              ],
+                            ),
                           )
                         : const SizedBox();
 
