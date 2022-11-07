@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:method_ui/page/page.dart';
 
-import '../settings_privacy.dart';
+import '../terms.dart';
 
-class SettingsPrivacyPage extends StatelessWidget {
-  const SettingsPrivacyPage({super.key});
+class TermsPage extends StatelessWidget {
+  const TermsPage({super.key});
 
   @override
   Widget build(BuildContext context) => const MtAppPage(
-        name: Text("Data & Privacy"),
+        name: Text("Terms of Service"),
         // description: Text(""),
         slivers: [
-          SettingsPrivacySliver(),
+          TermsSliver(),
         ],
       );
 }

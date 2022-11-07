@@ -3,12 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/util/list.dart';
 import 'package:method_style/element_scale.dart';
 
-import '../settings_privacy.dart';
+import '../settings_data.dart';
 
-part 'settings_privacy_sliver.dart';
+part 'settings_data_sliver.dart';
 
-class SettingsPrivacyView extends StatelessWidget {
-  const SettingsPrivacyView({super.key});
+class SettingsDataView extends StatelessWidget {
+  const SettingsDataView({super.key});
 
   @override
   Widget build(BuildContext context) => Padding(
@@ -25,7 +25,7 @@ class _ListChildren {
   static const _tile = ListChildrenBuilder.tile;
   // static const _section = ListChildrenBuilder.section;
 
-  static List<Widget> children({required SettingsPrivacyBloc bloc}) => [
+  static List<Widget> children({required SettingsDataBloc bloc}) => [
         ...{
           "Erase All Content and Settings": bloc.eraseData,
         }.entries.map(_tile),

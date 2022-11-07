@@ -2,18 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../settings_privacy.dart';
+import '../settings_data.dart';
 
-class SettingsPrivacyRoute extends GoRouteData {
-  const SettingsPrivacyRoute();
+class SettingsDataRoute extends GoRouteData {
+  const SettingsDataRoute();
 
   @override
   Widget build(BuildContext context) => BlocProvider(
-        create: (context) => SettingsPrivacyBloc(
+        create: (context) => SettingsDataBloc(
           navigator: context.read(),
           repository: context.read(),
         ),
-        child: const SettingsPrivacyPage(),
+        child: const SettingsDataPage(),
       );
 
   @override

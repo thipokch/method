@@ -5,7 +5,7 @@ class ListChildrenBuilder {
   const ListChildrenBuilder._();
 
   static Widget section(text) => Padding(
-        padding: const EdgeInsets.fromLTRB(16, 24, 16, 8),
+        padding: const EdgeInsets.fromLTRB(16, 36, 16, 12),
         child: Text(text),
       );
 

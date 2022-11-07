@@ -144,12 +144,20 @@ GoRoute get $settingsFlow => GoRouteData.$route(
       factory: $SettingsFlowExtension._fromState,
       routes: [
         GoRouteData.$route(
-          path: 'privacy',
-          factory: $SettingsPrivacyRouteExtension._fromState,
+          path: 'data',
+          factory: $SettingsDataRouteExtension._fromState,
         ),
         GoRouteData.$route(
           path: 'appearance',
           factory: $SettingsAppearanceRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'privacy',
+          factory: $PrivacyRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'terms',
+          factory: $TermsRouteExtension._fromState,
         ),
         GoRouteData.$route(
           path: 'license',
@@ -176,12 +184,12 @@ extension $SettingsFlowExtension on SettingsFlow {
   void push(BuildContext context) => context.push(location, extra: this);
 }
 
-extension $SettingsPrivacyRouteExtension on SettingsPrivacyRoute {
-  static SettingsPrivacyRoute _fromState(GoRouterState state) =>
-      const SettingsPrivacyRoute();
+extension $SettingsDataRouteExtension on SettingsDataRoute {
+  static SettingsDataRoute _fromState(GoRouterState state) =>
+      const SettingsDataRoute();
 
   String get location => GoRouteData.$location(
-        '/settings/privacy',
+        '/settings/data',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
@@ -195,6 +203,30 @@ extension $SettingsAppearanceRouteExtension on SettingsAppearanceRoute {
 
   String get location => GoRouteData.$location(
         '/settings/appearance',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $PrivacyRouteExtension on PrivacyRoute {
+  static PrivacyRoute _fromState(GoRouterState state) => const PrivacyRoute();
+
+  String get location => GoRouteData.$location(
+        '/settings/privacy',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
+}
+
+extension $TermsRouteExtension on TermsRoute {
+  static TermsRoute _fromState(GoRouterState state) => const TermsRoute();
+
+  String get location => GoRouteData.$location(
+        '/settings/terms',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);

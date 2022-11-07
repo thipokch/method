@@ -7,16 +7,15 @@ import 'package:method/flow/flow.dart';
 import 'package:method/util/bloc_navigator.dart';
 import 'package:method_repo/repository.dart';
 
-typedef SettingsPrivacyState = void;
+typedef SettingsDataState = void;
 
-typedef SettingsPrivacyBuilder
-    = BlocBuilder<SettingsPrivacyBloc, SettingsPrivacyState>;
-typedef SettingsPrivacyListener
-    = BlocListener<SettingsPrivacyBloc, SettingsPrivacyState>;
-typedef SettingsPrivacySelector<T>
-    = BlocSelector<SettingsPrivacyBloc, SettingsPrivacyState, T>;
-typedef SettingsPrivacyConsumer
-    = BlocConsumer<SettingsPrivacyBloc, SettingsPrivacyState>;
+typedef SettingsDataBuilder = BlocBuilder<SettingsDataBloc, SettingsDataState>;
+typedef SettingsDataListener
+    = BlocListener<SettingsDataBloc, SettingsDataState>;
+typedef SettingsDataSelector<T>
+    = BlocSelector<SettingsDataBloc, SettingsDataState, T>;
+typedef SettingsDataConsumer
+    = BlocConsumer<SettingsDataBloc, SettingsDataState>;
 
 /*
  *
@@ -30,9 +29,8 @@ typedef SettingsPrivacyConsumer
  * 
  */
 
-class SettingsPrivacyBloc extends Cubit<SettingsPrivacyState>
-    with BlocNavigator {
-  SettingsPrivacyBloc({
+class SettingsDataBloc extends Cubit<SettingsDataState> with BlocNavigator {
+  SettingsDataBloc({
     required this.navigator,
     required this.repository,
   }) : super(null);

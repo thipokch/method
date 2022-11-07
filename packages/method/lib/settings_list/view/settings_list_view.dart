@@ -12,7 +12,7 @@ class SettingsListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.symmetric(vertical: ElementScale.spaceM),
+        padding: const EdgeInsets.only(top: ElementScale.spaceM),
         child: ListView(
           children: _ListChildren.children(bloc: context.read()),
         ),
@@ -27,7 +27,7 @@ class _ListChildren {
 
   static List<Widget> children({required SettingsListBloc bloc}) => [
         ...{
-          "Data & Privacy": bloc.goPrivacy,
+          "Data & Privacy": bloc.goData,
         }.entries.map(_tile),
         _section("GENERAL"),
         ...{
@@ -35,6 +35,8 @@ class _ListChildren {
         }.entries.map(_tile),
         _section("ABOUT"),
         ...{
+          "Privacy Policy": bloc.goPrivacy,
+          "Terms of Service": bloc.goTerms,
           "Acknowledgments": bloc.goLicense,
         }.entries.map(_tile),
         const AppInfoView(),
