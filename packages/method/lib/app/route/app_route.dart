@@ -21,7 +21,7 @@ class AppRoute {
     nameExtractor: defaultNameExtractor,
   );
 
-  static final String defaultLocation = const SessionFlow().location;
+  static final String defaultLocation = const ExerciseFlow().location;
 
   static final List<RouteBase> defaultRoutes = [HomeRoute.routes];
 

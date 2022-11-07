@@ -82,17 +82,8 @@ class Session
   @override
   String get collectionSlug => "session";
 
-  // List<TaskDefinition> get labels => definitions
-  //     .map((e) => e.labels)
-  //     .whereType<List<TaskDefinition>>()
-  //     .expand((e) => e)
-  //     .toList();
-
   @override
   String toString() => "Session($uniformString, exercise: $template)";
-
-  // Map<String, Entry?> get mappedDefinitions =>
-  //     mapId(keys: template.definitions, values: definitions);
 }
 
 typedef SessionDefinitionList = BuiltList<MapEntry<Task, Optional<Entry>>>;

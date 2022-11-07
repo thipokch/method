@@ -22,6 +22,9 @@ mixin DefinitionBuilder<C extends DefineDefinition<CD>, CD extends Uniform,
         data: definitions,
         dataIdMapper: dataIdMapper,
       );
+
+  bool get isCompleted =>
+      builtDefinition.entries.every((p0) => p0.value.isPresent);
 }
 
 abstract class Definition<C extends Uniform, D extends Uniform> {

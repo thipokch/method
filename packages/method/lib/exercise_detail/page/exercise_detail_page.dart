@@ -64,7 +64,10 @@ class ExerciseDetailPage extends StatelessWidget {
             ),
             // description: Text(""),
             slivers: const [
-              ExerciseDetailSliver(),
+              SliverPadding(
+                padding: EdgeInsets.all(16.0),
+                sliver: ExerciseDetailSliver(),
+              ),
             ],
           ),
         ),
