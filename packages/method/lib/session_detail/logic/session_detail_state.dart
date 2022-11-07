@@ -15,7 +15,7 @@ class SessionDetailState with _$SessionDetailState {
   }) = _Errored;
 }
 
-extension Definition on SessionDetailState {
+extension StateDefinition on SessionDetailState {
   BuiltDefinition<Task, Entry>? get definitions => whenOrNull(
         started: (session) => session.builtDefinition,
       );

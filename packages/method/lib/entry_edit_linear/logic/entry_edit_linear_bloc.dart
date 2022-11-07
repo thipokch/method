@@ -55,7 +55,10 @@ class EntryEditLinearBloc
 
           final updated = definitions.insertDataFor(
             taskDefinition,
-            EntryDefinition.from(template: taskDefinition),
+            EntryDefinition.from(
+              template: taskDefinition,
+              data: event.text,
+            ),
           );
 
           return emit(_Started(definitions: updated));
@@ -68,16 +71,18 @@ class EntryEditLinearBloc
     Emitter<EntryEditLinearState> emit,
   ) =>
       state.maybeWhen(
-        started: (definitions) => emit(_Started(
-          definitions: definitions.mutateDataAt(
+        started: (definitions) {
+          final updated = definitions.mutateDataAt(
             definitions.commands[0],
             EntryDefinition.from(
-              template: definitions.commands[event.index],
+              template: definitions.commands[0],
               data: event.text,
             ),
             event.index,
-          ),
-        )),
+          );
+
+          return emit(_Started(definitions: updated));
+        },
         orElse: () => throw StateError("Invalid state to UpdateNote"),
       );
 }

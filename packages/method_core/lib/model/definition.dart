@@ -145,6 +145,5 @@ extension MultiModify<C extends Uniform, D extends Uniform>
     D? data,
     int index,
   ) =>
-      rebuild((m) => m
-        ..[command].replaceRange(index, index, [Optional.fromNullable(data)]));
+      rebuild((m) => m..[command][index] = Optional.fromNullable(data));
 }

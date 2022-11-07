@@ -11,7 +11,7 @@ class SessionDetailSliver extends StatelessWidget {
             ? const SliverFillRemaining(child: CupertinoActivityIndicator())
             : SliverList(
                 delegate: SliverChildBuilderDelegate(
-                  childCount: state.map.length - 1, // Skip Feedback
+                  childCount: state.map.length, // Skip Feedback
                   (context, index) {
                     final entry = state.elementAt(index).value.orNull;
 

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method_core/model/definition.dart';
@@ -15,4 +17,11 @@ abstract class EntryEditBlocBase<E extends EntryEditEventBase,
   });
 
   final FirebaseAnalytics? analytics;
+
+  @override
+  void onTransition(Transition<E, S> transition) {
+    log("$runtimeType - transition: ${transition.event} -> ${transition.nextState}");
+    // TODO: implement onTransition
+    super.onTransition(transition);
+  }
 }

@@ -9,6 +9,14 @@ class EntryEditDivergePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const EntryEditPageBase(
+        // name: EntryEditDivergeSelector<String>(
+        //   selector: (state) => state.note?.key.name ?? "",
+        //   builder: (context, state) => Text(state),
+        // ),
+        // description: EntryEditDivergeSelector<String>(
+        //   selector: (state) => state.note?.key.description ?? "",
+        //   builder: (context, state) => Text(state),
+        // ),
         slivers: [
           SliverSafeArea(
             top: false,
