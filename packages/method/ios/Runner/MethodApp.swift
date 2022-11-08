@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-@main
+// AppDelegate is now @main
 struct MethodApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     

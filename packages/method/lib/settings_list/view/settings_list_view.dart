@@ -27,17 +27,23 @@ class _ListChildren {
 
   static List<Widget> children({required SettingsListBloc bloc}) => [
         ...{
-          "Data & Privacy": bloc.goData,
+          "Data & Privacy": () =>
+              bloc.add(const SettingsListEvent.selectData()),
         }.entries.map(_tile),
         _section("GENERAL"),
         ...{
-          "Appearance": bloc.goAppearance,
+          "Appearance": () =>
+              bloc.add(const SettingsListEvent.selectAppearance()),
         }.entries.map(_tile),
         _section("ABOUT"),
         ...{
-          "Privacy Policy": bloc.goPrivacy,
-          "Terms of Service": bloc.goTerms,
-          "Acknowledgments": bloc.goLicense,
+          "Feedback": () => bloc.add(const SettingsListEvent.selectFeedback()),
+          "Privacy Policy": () =>
+              bloc.add(const SettingsListEvent.selectPrivacy()),
+          "Terms of Service": () =>
+              bloc.add(const SettingsListEvent.selectTerms()),
+          "Acknowledgments": () =>
+              bloc.add(const SettingsListEvent.selectLicense()),
         }.entries.map(_tile),
         const AppInfoView(),
       ];

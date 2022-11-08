@@ -11,7 +11,7 @@ class PrivacyPage extends StatelessWidget {
   Widget build(BuildContext context) => BlocProvider(
         create: (context) => PrivacyBloc(),
         child: const MtAppPage(
-          name: Text("Privacy"),
+          name: Text("Privacy Policy"),
           slivers: [
             PrivacySliver(),
           ],

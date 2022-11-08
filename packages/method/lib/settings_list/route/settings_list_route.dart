@@ -9,7 +9,10 @@ class SettingsListRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context) => Provider(
-        create: (context) => SettingsListBloc(navigator: context.read()),
+        create: (context) => SettingsListBloc(
+          navigator: context.read(),
+          browser: context.read(),
+        ),
         child: const SettingsListPage(),
       );
 
