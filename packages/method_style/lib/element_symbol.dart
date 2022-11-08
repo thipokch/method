@@ -28,6 +28,10 @@ class ElementSymbol {
   static const IconData textEffectsFilled = FluentIcons.text_effects_24_filled;
   static const IconData style = FluentIcons.style_guide_24_regular;
   static const IconData styleFilled = FluentIcons.style_guide_24_filled;
+  static const IconData home = FluentIcons.home_24_regular;
+  static const IconData homeFilled = FluentIcons.home_24_filled;
+  static const IconData list = FluentIcons.list_24_regular;
+  static const IconData listFilled = FluentIcons.list_24_filled;
   static const IconData sunMin = FluentIcons.brightness_low_24_regular;
   static const IconData sunMax = FluentIcons.brightness_high_24_regular;
 

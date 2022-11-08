@@ -1,10 +1,7 @@
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 import 'package:method/app/route/route.dart';
 import 'package:method/session_edit/route/session_edit_route.dart';
-import 'package:method/session_list/logic/session_list_bloc.dart';
 import 'package:method_core/model/session.dart';
 import 'package:method_style/element_scale.dart';
 import 'package:method_style/element_symbol.dart';
@@ -69,37 +66,38 @@ class SessionDetailPage extends StatelessWidget {
                         ),
                       ),
                       const PopupMenuDivider(),
-                      PopupMenuItem(
-                        onTap: () => FlutterPlatformAlert.showCustomAlert(
-                          windowTitle: "Delete ${session.template.name}?",
-                          text:
-                              "Deleting ${session.template.name} will also delete its entries.",
-                          positiveButtonTitle: "Cancel",
-                          negativeButtonTitle: "Delete",
-                        ).then((selection) {
-                          if (selection == CustomButton.negativeButton) {
-                            context.read<SessionListBloc>().add(
-                                  SessionListEvent.deleteSession(
-                                    session: session,
-                                  ),
-                                );
-                          }
-                        }),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.only(right: 8.0),
-                              child: Text('Delete'),
-                            ),
-                            Icon(
-                              ElementSymbol.deleteFilled,
-                              color: Theme.of(context).colorScheme.error,
-                            ),
-                          ],
-                        ),
-                      ),
+                      // PopupMenuItem(
+                      //   onTap: () => FlutterPlatformAlert.showCustomAlert(
+                      //     windowTitle: "Delete ${session.template.name}?",
+                      //     text:
+                      //         "Deleting ${session.template.name} will also delete its entries.",
+                      //     positiveButtonTitle: "Cancel",
+                      //     negativeButtonTitle: "Delete",
+                      //   ).then((selection) {
+                      //     if (selection == CustomButton.negativeButton) {
+                      //       context.read<SessionListBloc>().add(
+                      //             SessionListEvent.deleteSession(
+                      //               session: session,
+                      //             ),
+                      //           );
+
+                      //     }
+                      //   }),
+                      //   child: Row(
+                      //     mainAxisSize: MainAxisSize.max,
+                      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //     children: [
+                      //       const Padding(
+                      //         padding: EdgeInsets.only(right: 8.0),
+                      //         child: Text('Delete'),
+                      //       ),
+                      //       Icon(
+                      //         ElementSymbol.deleteFilled,
+                      //         color: Theme.of(context).colorScheme.error,
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),

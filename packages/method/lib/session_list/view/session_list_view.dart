@@ -58,29 +58,28 @@ class _Item extends StatelessWidget {
         // clipBehavior: Clip.antiAlias,
         child: Column(
           children: [
-            notes.isNotEmpty
-                ? Row(
-                    children: [
-                      Expanded(
-                        child: Card(
-                          // isExpandable: true,
-                          // isSelected: true,
-                          // body: const SizedBox.shrink(),
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Text(
-                              notes.first.data,
-                              style: textTheme.bodyMedium,
-                              // softWrap: true,
-                              // maxLines: 10,
-                            ),
+            ...notes.map((p0) => Row(
+                  children: [
+                    Expanded(
+                      child: Card(
+                        // isExpandable: true,
+                        // isSelected: true,
+                        // body: const SizedBox.shrink(),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Text(
+                            p0.data,
+                            style: textTheme.bodyMedium,
+                            // softWrap: true,
+                            // maxLines: 10,
                           ),
-                          // footer:
                         ),
+                        // footer:
                       ),
-                    ],
-                  )
-                : const Divider(),
+                    ),
+                  ],
+                )),
+            if (notes.isEmpty) const Divider(),
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 12.0,

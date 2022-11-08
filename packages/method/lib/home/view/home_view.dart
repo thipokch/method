@@ -28,7 +28,7 @@ class HomeView extends StatelessWidget {
               labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
               // backgroundColor: Colors.transparent,
               // surfaceTintColor: Colors.transparent,
-              height: 72,
+              height: 64,
             ),
           ),
         ),
@@ -41,13 +41,13 @@ class _ListItems {
 
   static const destinations = <NavigationDestination>[
     NavigationDestination(
-      icon: Icon(ElementSymbol.today),
-      selectedIcon: Icon(ElementSymbol.todayFilled),
+      icon: Icon(ElementSymbol.list),
+      selectedIcon: Icon(ElementSymbol.listFilled),
       label: 'Timeline',
     ),
     NavigationDestination(
-      icon: Icon(ElementSymbol.bookOpen),
-      selectedIcon: Icon(ElementSymbol.bookOpenFilled),
+      icon: Icon(ElementSymbol.add),
+      selectedIcon: Icon(ElementSymbol.addFilled),
       label: 'Library',
     ),
     NavigationDestination(
