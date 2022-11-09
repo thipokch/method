@@ -63,7 +63,11 @@ class SessionEditBloc extends Bloc<SessionEditEvent, SessionEditState> {
 
     emit(_Started(session: newSession));
 
-    // TODO: fix - onData will error with forEach.
+    await emit.forEach(
+      repository.sessions.stream(newSession.id, fireImmediately: false),
+      onData: _onData,
+      onError: _onError,
+    );
   }
 
   void _onStartSession(
@@ -100,9 +104,7 @@ class SessionEditBloc extends Bloc<SessionEditEvent, SessionEditState> {
   SessionEditState _onData(Session? session) {
     log("$runtimeType - data");
 
-    return session != null
-        ? _Started(session: session)
-        : _Errored(error: StateError(""), stackTrace: StackTrace.current);
+    return session != null ? _Started(session: session) : state;
   }
 
   _Errored _onError(Object error, StackTrace stackTrace) {

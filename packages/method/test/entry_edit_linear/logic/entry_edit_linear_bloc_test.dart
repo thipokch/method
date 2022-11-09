@@ -5,7 +5,8 @@ import 'package:method_core/model/entry.dart';
 import 'package:method_core/model/entry_definition.dart';
 import 'package:method_repo/content/content.dart';
 
-import '../../util/entry_edit_matcher.dart';
+import '../../util/core_matcher.dart';
+import '../../util/state_matcher.dart';
 
 void main() {
   group('EntryEditLinearBloc', () {
@@ -29,11 +30,13 @@ void main() {
         ..add(const EntryEditLinearEvent.addNote(text: "I am repeating...")),
       expect: () => [
         EntryEditLinearState.started(definitions: def),
-        HasEntryDefinitions(pairwiseCompare<String, EntryDefinitionNote>(
-          ["I am repeating..."],
-          (data, note) => data == note.data,
-          "EntryDefinitionNote that contains matching data.",
-        )),
+        EntryEditStateWithDefinitions(
+          HasExpandedData(pairwiseCompare<String, EntryDefinitionNote>(
+            ["I am repeating..."],
+            (data, note) => data == note.data,
+            "EntryDefinitionNote that contains matching data.",
+          )),
+        ),
       ],
     );
     blocTest<EntryEditLinearBloc, EntryEditLinearState>(
@@ -48,16 +51,20 @@ void main() {
         )),
       expect: () => [
         EntryEditLinearState.started(definitions: def),
-        HasEntryDefinitions(pairwiseCompare<String, EntryDefinitionNote>(
-          ["I am repeating..."],
-          (data, note) => data == note.data,
-          "EntryDefinitionNote that contains matching data.",
-        )),
-        HasEntryDefinitions(pairwiseCompare<String, EntryDefinitionNote>(
-          ["I am repeating twice..."],
-          (data, note) => data == note.data,
-          "EntryDefinitionNote that contains matching data.",
-        )),
+        EntryEditStateWithDefinitions(
+          HasExpandedData(pairwiseCompare<String, EntryDefinitionNote>(
+            ["I am repeating..."],
+            (data, note) => data == note.data,
+            "EntryDefinitionNote that contains matching data.",
+          )),
+        ),
+        EntryEditStateWithDefinitions(
+          HasExpandedData(pairwiseCompare<String, EntryDefinitionNote>(
+            ["I am repeating twice..."],
+            (data, note) => data == note.data,
+            "EntryDefinitionNote that contains matching data.",
+          )),
+        ),
       ],
     );
   });
