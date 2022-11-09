@@ -21,7 +21,7 @@ class FloatScaffold extends StatelessWidget {
       constraints: BoxConstraints(
         maxHeight: MediaQuery.of(context).padding.bottom * 4.5,
       ),
-      decoration: BoxDecoration(
+      decoration: TranslucentDecoration(
         gradient: LinearGradient(
           colors: [
             colorScheme.background.withOpacity(0),
@@ -45,4 +45,21 @@ class FloatScaffold extends StatelessWidget {
       ),
     );
   }
+}
+
+class TranslucentDecoration extends BoxDecoration {
+  const TranslucentDecoration({
+    super.color,
+    super.image,
+    super.border,
+    super.borderRadius,
+    super.boxShadow,
+    super.gradient,
+    super.backgroundBlendMode,
+    super.shape = BoxShape.rectangle,
+  });
+
+  @override
+  bool hitTest(Size size, Offset position, {TextDirection? textDirection}) =>
+      false;
 }
