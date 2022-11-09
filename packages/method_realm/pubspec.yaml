@@ -1,0 +1,22 @@
+name: method_realm
+description: Persistence for method.
+
+environment:
+  sdk: ">=2.17.6 <3.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  path_provider: ^2.0.11
+  realm: ^0.5.0+beta
+
+  method_core:
+  method_repo:
+
+dev_dependencies:
+  dart_code_metrics: ^4.17.0
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter

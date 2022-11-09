@@ -1,0 +1,26 @@
+name: method_ui
+description: UI method_blocs for method.
+
+environment:
+  sdk: ">=2.17.6 <3.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # modal_bottom_sheet: ^2.1.0
+  linked_scroll_controller: ^0.2.0
+  figma_squircle: ^0.5.3
+
+  method_style:
+  method_emoji:
+
+dev_dependencies:
+  dart_code_metrics: ^4.17.0
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
