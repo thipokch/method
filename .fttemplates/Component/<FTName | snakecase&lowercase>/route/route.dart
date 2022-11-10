@@ -1,0 +1,1 @@
+export '<FTName | snakecase&lowercase>_route.dart';
