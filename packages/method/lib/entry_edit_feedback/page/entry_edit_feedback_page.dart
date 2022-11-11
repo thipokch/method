@@ -21,19 +21,19 @@ class EntryEditFeedbackPage extends StatelessWidget {
           //   ),
           // ),
 
-          SliverSafeArea(
-            top: false,
-            sliver: SliverPadding(
-              padding: EdgeInsets.all(ElementScale.spaceM),
-              sliver: EntryEditFeedbackLabelSliver(),
-            ),
+          SliverPadding(
+            padding: EdgeInsets.symmetric(horizontal: ElementScale.spaceM),
+            sliver: EntryEditFeedbackLabelSliver(),
           ),
-          SliverSafeArea(
-            top: false,
-            sliver: SliverPadding(
-              padding: EdgeInsets.all(ElementScale.spaceM),
-              sliver: EntryEditFeedbackTopicSliver(),
-            ),
+
+          SliverPadding(
+            padding: EdgeInsets.symmetric(horizontal: ElementScale.spaceM),
+            sliver: EntryEditFeedbackTopicSliver(),
+          ),
+
+          SliverPadding(
+            padding: EdgeInsets.symmetric(horizontal: ElementScale.spaceM),
+            sliver: EntryEditFeedbackNoteSliver(),
           ),
         ],
       );

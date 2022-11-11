@@ -14,12 +14,12 @@ class EntryEditFeedbackEvent
   const factory EntryEditFeedbackEvent.stop() = _Stop;
 
   const factory EntryEditFeedbackEvent.selectRating({
-    required final int index,
+    required final TaskDefinition command,
   }) = _SelectRating;
 
-  // const factory EntryEditFeedbackEvent.selectTopic({
-  //   required final int index,
-  // }) = _SelectTopic;
+  const factory EntryEditFeedbackEvent.selectTopic({
+    required final TaskDefinition command,
+  }) = _SelectTopic;
 
   const factory EntryEditFeedbackEvent.updateNote({
     required final String text,

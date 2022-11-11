@@ -25,6 +25,7 @@ class EntryEditFeedbackBloc
   }) : super(const _Initial()) {
     on<_Start>(_onStart);
     on<_SelectRating>(_onSelectRating);
+    on<_SelectTopic>(_onSelectTopic);
   }
 
   _onStart(_Start event, Emitter<EntryEditFeedbackState> emit) =>
@@ -38,17 +39,42 @@ class EntryEditFeedbackBloc
   ) =>
       state.maybeWhen(
         started: (definitions) {
-          final taskDefinition = definitions.commands[event.index];
-          final entryDefinition = definitions.data[event.index].orNull;
+          final taskDefinition = event.command;
+          final entryDefinition = definitions.map[event.command];
 
-          final updated = entryDefinition == null
-              ? definitions
-                  .clearAllData() // TODO: Add test for this toggle behavior
-                  .mutateDataFor(
-                    taskDefinition,
-                    EntryDefinition.from(template: taskDefinition),
-                  )
-              : definitions.clearDataFor(taskDefinition);
+          final updated =
+              entryDefinition == null || entryDefinition.isNotPresent
+                  ? definitions
+                      .clearDataAt(0)
+                      .clearDataAt(1)
+                      .clearDataAt(2)
+                      .mutateDataFor(
+                        taskDefinition,
+                        EntryDefinition.from(template: taskDefinition),
+                      )
+                  : definitions.clearDataFor(taskDefinition);
+
+          return emit(_Started(definitions: updated));
+        },
+        orElse: () => throw StateError("Invalid state to SelectLabel"),
+      );
+
+  void _onSelectTopic(
+    _SelectTopic event,
+    Emitter<EntryEditFeedbackState> emit,
+  ) =>
+      state.maybeWhen(
+        started: (definitions) {
+          final taskDefinition = event.command;
+          final entryDefinition = definitions.map[event.command];
+
+          final updated =
+              entryDefinition == null || entryDefinition.isNotPresent
+                  ? definitions.mutateDataFor(
+                      taskDefinition,
+                      EntryDefinition.from(template: taskDefinition),
+                    )
+                  : definitions.clearDataFor(taskDefinition);
 
           return emit(_Started(definitions: updated));
         },

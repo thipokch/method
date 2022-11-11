@@ -3,7 +3,12 @@ import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
 
 class TextBox extends StatelessWidget {
-  const TextBox({Key? key}) : super(key: key);
+  const TextBox({
+    super.key,
+    this.hintText,
+  });
+
+  final String? hintText;
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +40,8 @@ class TextBox extends StatelessWidget {
           controller: TextEditingController(),
           style: textTheme.bodyLarge,
           maxLines: 5,
-          decoration: const InputDecoration(
-            hintText: 'Start Writing...',
+          decoration: InputDecoration(
+            hintText: hintText ?? 'Start Writing...',
             border: InputBorder.none,
           ),
         ),

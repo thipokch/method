@@ -67,13 +67,20 @@ class BuiltDefinition<C extends Uniform, D extends Uniform>
   BuiltList<Optional<D>> get data => map.values.toBuiltList();
 
   @override
-  bool get isCompleted => data.expand((_) => _).length == map.length;
+  bool get isCompleted => length == map.length;
+
+  int get length => data.expand((_) => _).length;
+
+  bool get isNotEmpty => data.expand((_) => _).isNotEmpty;
 
   BuiltList<MapEntry<C, Optional<D>>> get entries => map.entries.toBuiltList();
   MapEntry<C, Optional<D>> elementAt(int index) => entries.elementAt(index);
 
   // int indexOfData(D d) => data.indexOf(Optional.fromNullable(d));
   // D? operator [](Object? key) => map[key]?.orNull;
+
+  @override
+  String toString() => map.toString();
 }
 
 extension Modify<C extends Uniform, D extends Uniform>
@@ -88,6 +95,10 @@ extension Modify<C extends Uniform, D extends Uniform>
 
   BuiltDefinition<C, D> mutateDataAt(int index, D? data) =>
       mutateDataFor(commands[index], data);
+
+  BuiltDefinition<C, D> mutateDataForAll(Map<C, D> other) => rebuild((m) => m
+    ..addAll(other
+        .map((key, value) => MapEntry(key, Optional.fromNullable(value)))));
 
   BuiltDefinition<C, D> clearAllData() =>
       rebuild((m) => m..updateAllValues((p0, p1) => const Optional.absent()));

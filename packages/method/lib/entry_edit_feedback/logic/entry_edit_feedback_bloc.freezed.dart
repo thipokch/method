@@ -22,7 +22,8 @@ mixin _$EntryEditFeedbackEvent {
             BuiltDefinition<TaskDefinition, EntryDefinition> definitions)
         start,
     required TResult Function() stop,
-    required TResult Function(int index) selectRating,
+    required TResult Function(TaskDefinition command) selectRating,
+    required TResult Function(TaskDefinition command) selectTopic,
     required TResult Function(String text) updateNote,
   }) =>
       throw _privateConstructorUsedError;
@@ -32,7 +33,8 @@ mixin _$EntryEditFeedbackEvent {
             BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
         start,
     TResult Function()? stop,
-    TResult Function(int index)? selectRating,
+    TResult Function(TaskDefinition command)? selectRating,
+    TResult Function(TaskDefinition command)? selectTopic,
     TResult Function(String text)? updateNote,
   }) =>
       throw _privateConstructorUsedError;
@@ -42,7 +44,8 @@ mixin _$EntryEditFeedbackEvent {
             BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
         start,
     TResult Function()? stop,
-    TResult Function(int index)? selectRating,
+    TResult Function(TaskDefinition command)? selectRating,
+    TResult Function(TaskDefinition command)? selectTopic,
     TResult Function(String text)? updateNote,
     required TResult orElse(),
   }) =>
@@ -52,6 +55,7 @@ mixin _$EntryEditFeedbackEvent {
     required TResult Function(_Start value) start,
     required TResult Function(_Stop value) stop,
     required TResult Function(_SelectRating value) selectRating,
+    required TResult Function(_SelectTopic value) selectTopic,
     required TResult Function(_UpdateNote value) updateNote,
   }) =>
       throw _privateConstructorUsedError;
@@ -60,6 +64,7 @@ mixin _$EntryEditFeedbackEvent {
     TResult Function(_Start value)? start,
     TResult Function(_Stop value)? stop,
     TResult Function(_SelectRating value)? selectRating,
+    TResult Function(_SelectTopic value)? selectTopic,
     TResult Function(_UpdateNote value)? updateNote,
   }) =>
       throw _privateConstructorUsedError;
@@ -68,6 +73,7 @@ mixin _$EntryEditFeedbackEvent {
     TResult Function(_Start value)? start,
     TResult Function(_Stop value)? stop,
     TResult Function(_SelectRating value)? selectRating,
+    TResult Function(_SelectTopic value)? selectTopic,
     TResult Function(_UpdateNote value)? updateNote,
     required TResult orElse(),
   }) =>
@@ -160,7 +166,8 @@ class _$_Start extends _Start
             BuiltDefinition<TaskDefinition, EntryDefinition> definitions)
         start,
     required TResult Function() stop,
-    required TResult Function(int index) selectRating,
+    required TResult Function(TaskDefinition command) selectRating,
+    required TResult Function(TaskDefinition command) selectTopic,
     required TResult Function(String text) updateNote,
   }) {
     return start(definitions);
@@ -173,7 +180,8 @@ class _$_Start extends _Start
             BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
         start,
     TResult Function()? stop,
-    TResult Function(int index)? selectRating,
+    TResult Function(TaskDefinition command)? selectRating,
+    TResult Function(TaskDefinition command)? selectTopic,
     TResult Function(String text)? updateNote,
   }) {
     return start?.call(definitions);
@@ -186,7 +194,8 @@ class _$_Start extends _Start
             BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
         start,
     TResult Function()? stop,
-    TResult Function(int index)? selectRating,
+    TResult Function(TaskDefinition command)? selectRating,
+    TResult Function(TaskDefinition command)? selectTopic,
     TResult Function(String text)? updateNote,
     required TResult orElse(),
   }) {
@@ -202,6 +211,7 @@ class _$_Start extends _Start
     required TResult Function(_Start value) start,
     required TResult Function(_Stop value) stop,
     required TResult Function(_SelectRating value) selectRating,
+    required TResult Function(_SelectTopic value) selectTopic,
     required TResult Function(_UpdateNote value) updateNote,
   }) {
     return start(this);
@@ -213,6 +223,7 @@ class _$_Start extends _Start
     TResult Function(_Start value)? start,
     TResult Function(_Stop value)? stop,
     TResult Function(_SelectRating value)? selectRating,
+    TResult Function(_SelectTopic value)? selectTopic,
     TResult Function(_UpdateNote value)? updateNote,
   }) {
     return start?.call(this);
@@ -224,6 +235,7 @@ class _$_Start extends _Start
     TResult Function(_Start value)? start,
     TResult Function(_Stop value)? stop,
     TResult Function(_SelectRating value)? selectRating,
+    TResult Function(_SelectTopic value)? selectTopic,
     TResult Function(_UpdateNote value)? updateNote,
     required TResult orElse(),
   }) {
@@ -291,7 +303,8 @@ class _$_Stop extends _Stop {
             BuiltDefinition<TaskDefinition, EntryDefinition> definitions)
         start,
     required TResult Function() stop,
-    required TResult Function(int index) selectRating,
+    required TResult Function(TaskDefinition command) selectRating,
+    required TResult Function(TaskDefinition command) selectTopic,
     required TResult Function(String text) updateNote,
   }) {
     return stop();
@@ -304,7 +317,8 @@ class _$_Stop extends _Stop {
             BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
         start,
     TResult Function()? stop,
-    TResult Function(int index)? selectRating,
+    TResult Function(TaskDefinition command)? selectRating,
+    TResult Function(TaskDefinition command)? selectTopic,
     TResult Function(String text)? updateNote,
   }) {
     return stop?.call();
@@ -317,7 +331,8 @@ class _$_Stop extends _Stop {
             BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
         start,
     TResult Function()? stop,
-    TResult Function(int index)? selectRating,
+    TResult Function(TaskDefinition command)? selectRating,
+    TResult Function(TaskDefinition command)? selectTopic,
     TResult Function(String text)? updateNote,
     required TResult orElse(),
   }) {
@@ -333,6 +348,7 @@ class _$_Stop extends _Stop {
     required TResult Function(_Start value) start,
     required TResult Function(_Stop value) stop,
     required TResult Function(_SelectRating value) selectRating,
+    required TResult Function(_SelectTopic value) selectTopic,
     required TResult Function(_UpdateNote value) updateNote,
   }) {
     return stop(this);
@@ -344,6 +360,7 @@ class _$_Stop extends _Stop {
     TResult Function(_Start value)? start,
     TResult Function(_Stop value)? stop,
     TResult Function(_SelectRating value)? selectRating,
+    TResult Function(_SelectTopic value)? selectTopic,
     TResult Function(_UpdateNote value)? updateNote,
   }) {
     return stop?.call(this);
@@ -355,6 +372,7 @@ class _$_Stop extends _Stop {
     TResult Function(_Start value)? start,
     TResult Function(_Stop value)? stop,
     TResult Function(_SelectRating value)? selectRating,
+    TResult Function(_SelectTopic value)? selectTopic,
     TResult Function(_UpdateNote value)? updateNote,
     required TResult orElse(),
   }) {
@@ -375,7 +393,9 @@ abstract class _$$_SelectRatingCopyWith<$Res> {
   factory _$$_SelectRatingCopyWith(
           _$_SelectRating value, $Res Function(_$_SelectRating) then) =
       __$$_SelectRatingCopyWithImpl<$Res>;
-  $Res call({int index});
+  $Res call({TaskDefinition command});
+
+  $TaskDefinitionCopyWith<$Res> get command;
 }
 
 /// @nodoc
@@ -391,28 +411,35 @@ class __$$_SelectRatingCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? index = freezed,
+    Object? command = freezed,
   }) {
     return _then(_$_SelectRating(
-      index: index == freezed
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as int,
+      command: command == freezed
+          ? _value.command
+          : command // ignore: cast_nullable_to_non_nullable
+              as TaskDefinition,
     ));
+  }
+
+  @override
+  $TaskDefinitionCopyWith<$Res> get command {
+    return $TaskDefinitionCopyWith<$Res>(_value.command, (value) {
+      return _then(_value.copyWith(command: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$_SelectRating extends _SelectRating {
-  const _$_SelectRating({required this.index}) : super._();
+  const _$_SelectRating({required this.command}) : super._();
 
   @override
-  final int index;
+  final TaskDefinition command;
 
   @override
   String toString() {
-    return 'EntryEditFeedbackEvent.selectRating(index: $index)';
+    return 'EntryEditFeedbackEvent.selectRating(command: $command)';
   }
 
   @override
@@ -420,12 +447,12 @@ class _$_SelectRating extends _SelectRating {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SelectRating &&
-            const DeepCollectionEquality().equals(other.index, index));
+            const DeepCollectionEquality().equals(other.command, command));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(index));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(command));
 
   @JsonKey(ignore: true)
   @override
@@ -439,10 +466,11 @@ class _$_SelectRating extends _SelectRating {
             BuiltDefinition<TaskDefinition, EntryDefinition> definitions)
         start,
     required TResult Function() stop,
-    required TResult Function(int index) selectRating,
+    required TResult Function(TaskDefinition command) selectRating,
+    required TResult Function(TaskDefinition command) selectTopic,
     required TResult Function(String text) updateNote,
   }) {
-    return selectRating(index);
+    return selectRating(command);
   }
 
   @override
@@ -452,10 +480,11 @@ class _$_SelectRating extends _SelectRating {
             BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
         start,
     TResult Function()? stop,
-    TResult Function(int index)? selectRating,
+    TResult Function(TaskDefinition command)? selectRating,
+    TResult Function(TaskDefinition command)? selectTopic,
     TResult Function(String text)? updateNote,
   }) {
-    return selectRating?.call(index);
+    return selectRating?.call(command);
   }
 
   @override
@@ -465,12 +494,13 @@ class _$_SelectRating extends _SelectRating {
             BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
         start,
     TResult Function()? stop,
-    TResult Function(int index)? selectRating,
+    TResult Function(TaskDefinition command)? selectRating,
+    TResult Function(TaskDefinition command)? selectTopic,
     TResult Function(String text)? updateNote,
     required TResult orElse(),
   }) {
     if (selectRating != null) {
-      return selectRating(index);
+      return selectRating(command);
     }
     return orElse();
   }
@@ -481,6 +511,7 @@ class _$_SelectRating extends _SelectRating {
     required TResult Function(_Start value) start,
     required TResult Function(_Stop value) stop,
     required TResult Function(_SelectRating value) selectRating,
+    required TResult Function(_SelectTopic value) selectTopic,
     required TResult Function(_UpdateNote value) updateNote,
   }) {
     return selectRating(this);
@@ -492,6 +523,7 @@ class _$_SelectRating extends _SelectRating {
     TResult Function(_Start value)? start,
     TResult Function(_Stop value)? stop,
     TResult Function(_SelectRating value)? selectRating,
+    TResult Function(_SelectTopic value)? selectTopic,
     TResult Function(_UpdateNote value)? updateNote,
   }) {
     return selectRating?.call(this);
@@ -503,6 +535,7 @@ class _$_SelectRating extends _SelectRating {
     TResult Function(_Start value)? start,
     TResult Function(_Stop value)? stop,
     TResult Function(_SelectRating value)? selectRating,
+    TResult Function(_SelectTopic value)? selectTopic,
     TResult Function(_UpdateNote value)? updateNote,
     required TResult orElse(),
   }) {
@@ -514,12 +547,182 @@ class _$_SelectRating extends _SelectRating {
 }
 
 abstract class _SelectRating extends EntryEditFeedbackEvent {
-  const factory _SelectRating({required final int index}) = _$_SelectRating;
+  const factory _SelectRating({required final TaskDefinition command}) =
+      _$_SelectRating;
   const _SelectRating._() : super._();
 
-  int get index;
+  TaskDefinition get command;
   @JsonKey(ignore: true)
   _$$_SelectRatingCopyWith<_$_SelectRating> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_SelectTopicCopyWith<$Res> {
+  factory _$$_SelectTopicCopyWith(
+          _$_SelectTopic value, $Res Function(_$_SelectTopic) then) =
+      __$$_SelectTopicCopyWithImpl<$Res>;
+  $Res call({TaskDefinition command});
+
+  $TaskDefinitionCopyWith<$Res> get command;
+}
+
+/// @nodoc
+class __$$_SelectTopicCopyWithImpl<$Res>
+    extends _$EntryEditFeedbackEventCopyWithImpl<$Res>
+    implements _$$_SelectTopicCopyWith<$Res> {
+  __$$_SelectTopicCopyWithImpl(
+      _$_SelectTopic _value, $Res Function(_$_SelectTopic) _then)
+      : super(_value, (v) => _then(v as _$_SelectTopic));
+
+  @override
+  _$_SelectTopic get _value => super._value as _$_SelectTopic;
+
+  @override
+  $Res call({
+    Object? command = freezed,
+  }) {
+    return _then(_$_SelectTopic(
+      command: command == freezed
+          ? _value.command
+          : command // ignore: cast_nullable_to_non_nullable
+              as TaskDefinition,
+    ));
+  }
+
+  @override
+  $TaskDefinitionCopyWith<$Res> get command {
+    return $TaskDefinitionCopyWith<$Res>(_value.command, (value) {
+      return _then(_value.copyWith(command: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_SelectTopic extends _SelectTopic {
+  const _$_SelectTopic({required this.command}) : super._();
+
+  @override
+  final TaskDefinition command;
+
+  @override
+  String toString() {
+    return 'EntryEditFeedbackEvent.selectTopic(command: $command)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SelectTopic &&
+            const DeepCollectionEquality().equals(other.command, command));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(command));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_SelectTopicCopyWith<_$_SelectTopic> get copyWith =>
+      __$$_SelectTopicCopyWithImpl<_$_SelectTopic>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)
+        start,
+    required TResult Function() stop,
+    required TResult Function(TaskDefinition command) selectRating,
+    required TResult Function(TaskDefinition command) selectTopic,
+    required TResult Function(String text) updateNote,
+  }) {
+    return selectTopic(command);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+        start,
+    TResult Function()? stop,
+    TResult Function(TaskDefinition command)? selectRating,
+    TResult Function(TaskDefinition command)? selectTopic,
+    TResult Function(String text)? updateNote,
+  }) {
+    return selectTopic?.call(command);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
+        start,
+    TResult Function()? stop,
+    TResult Function(TaskDefinition command)? selectRating,
+    TResult Function(TaskDefinition command)? selectTopic,
+    TResult Function(String text)? updateNote,
+    required TResult orElse(),
+  }) {
+    if (selectTopic != null) {
+      return selectTopic(command);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Start value) start,
+    required TResult Function(_Stop value) stop,
+    required TResult Function(_SelectRating value) selectRating,
+    required TResult Function(_SelectTopic value) selectTopic,
+    required TResult Function(_UpdateNote value) updateNote,
+  }) {
+    return selectTopic(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Start value)? start,
+    TResult Function(_Stop value)? stop,
+    TResult Function(_SelectRating value)? selectRating,
+    TResult Function(_SelectTopic value)? selectTopic,
+    TResult Function(_UpdateNote value)? updateNote,
+  }) {
+    return selectTopic?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Start value)? start,
+    TResult Function(_Stop value)? stop,
+    TResult Function(_SelectRating value)? selectRating,
+    TResult Function(_SelectTopic value)? selectTopic,
+    TResult Function(_UpdateNote value)? updateNote,
+    required TResult orElse(),
+  }) {
+    if (selectTopic != null) {
+      return selectTopic(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectTopic extends EntryEditFeedbackEvent {
+  const factory _SelectTopic({required final TaskDefinition command}) =
+      _$_SelectTopic;
+  const _SelectTopic._() : super._();
+
+  TaskDefinition get command;
+  @JsonKey(ignore: true)
+  _$$_SelectTopicCopyWith<_$_SelectTopic> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -592,7 +795,8 @@ class _$_UpdateNote extends _UpdateNote {
             BuiltDefinition<TaskDefinition, EntryDefinition> definitions)
         start,
     required TResult Function() stop,
-    required TResult Function(int index) selectRating,
+    required TResult Function(TaskDefinition command) selectRating,
+    required TResult Function(TaskDefinition command) selectTopic,
     required TResult Function(String text) updateNote,
   }) {
     return updateNote(text);
@@ -605,7 +809,8 @@ class _$_UpdateNote extends _UpdateNote {
             BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
         start,
     TResult Function()? stop,
-    TResult Function(int index)? selectRating,
+    TResult Function(TaskDefinition command)? selectRating,
+    TResult Function(TaskDefinition command)? selectTopic,
     TResult Function(String text)? updateNote,
   }) {
     return updateNote?.call(text);
@@ -618,7 +823,8 @@ class _$_UpdateNote extends _UpdateNote {
             BuiltDefinition<TaskDefinition, EntryDefinition> definitions)?
         start,
     TResult Function()? stop,
-    TResult Function(int index)? selectRating,
+    TResult Function(TaskDefinition command)? selectRating,
+    TResult Function(TaskDefinition command)? selectTopic,
     TResult Function(String text)? updateNote,
     required TResult orElse(),
   }) {
@@ -634,6 +840,7 @@ class _$_UpdateNote extends _UpdateNote {
     required TResult Function(_Start value) start,
     required TResult Function(_Stop value) stop,
     required TResult Function(_SelectRating value) selectRating,
+    required TResult Function(_SelectTopic value) selectTopic,
     required TResult Function(_UpdateNote value) updateNote,
   }) {
     return updateNote(this);
@@ -645,6 +852,7 @@ class _$_UpdateNote extends _UpdateNote {
     TResult Function(_Start value)? start,
     TResult Function(_Stop value)? stop,
     TResult Function(_SelectRating value)? selectRating,
+    TResult Function(_SelectTopic value)? selectTopic,
     TResult Function(_UpdateNote value)? updateNote,
   }) {
     return updateNote?.call(this);
@@ -656,6 +864,7 @@ class _$_UpdateNote extends _UpdateNote {
     TResult Function(_Start value)? start,
     TResult Function(_Stop value)? stop,
     TResult Function(_SelectRating value)? selectRating,
+    TResult Function(_SelectTopic value)? selectTopic,
     TResult Function(_UpdateNote value)? updateNote,
     required TResult orElse(),
   }) {
