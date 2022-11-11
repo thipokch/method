@@ -82,10 +82,63 @@ class Content {
       ),
       TaskDefinition.label(
         icon: "👎",
-        name: "Bad",
+        name: "Poor",
         description: "",
         hierarchyPath: "feedback/rating",
-        id: "bad",
+        id: "poor",
+      ),
+
+      //
+
+      TaskDefinition.part(
+        icon: "",
+        name: "",
+        description: "",
+        hierarchyPath: "feedback/topic",
+        id: "topic",
+      ),
+
+      TaskDefinition.label(
+        icon: "",
+        name: "Clarity",
+        description: "",
+        hierarchyPath: "feedback/topic",
+        id: "clarity",
+      ),
+      TaskDefinition.label(
+        icon: "",
+        name: "Quality",
+        description: "",
+        hierarchyPath: "feedback/topic",
+        id: "quality",
+      ),
+      TaskDefinition.label(
+        icon: "",
+        name: "Presentation",
+        description: "",
+        hierarchyPath: "feedback/topic",
+        id: "presentation",
+      ),
+      TaskDefinition.label(
+        icon: "",
+        name: "Effectiveness",
+        description: "",
+        hierarchyPath: "feedback/topic",
+        id: "effectiveness",
+      ),
+      TaskDefinition.label(
+        icon: "",
+        name: "Usefulness",
+        description: "",
+        hierarchyPath: "feedback/topic",
+        id: "usefulness",
+      ),
+      TaskDefinition.label(
+        icon: "",
+        name: "Organization",
+        description: "",
+        hierarchyPath: "feedback/topic",
+        id: "organization",
       ),
     ],
     hierarchyPath: "feedback",
@@ -653,7 +706,7 @@ class Content {
         icon: "",
         name: "What's your body telling you?",
         description:
-            "Do I want to avoid or approach this? How does it relate to out universal needs?",
+            "Do I want to avoid or approach this? How does it relate to our universal needs?",
         hierarchyPath: "",
         id: "",
       ),

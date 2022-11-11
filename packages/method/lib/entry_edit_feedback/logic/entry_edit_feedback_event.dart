@@ -17,6 +17,10 @@ class EntryEditFeedbackEvent
     required final int index,
   }) = _SelectRating;
 
+  // const factory EntryEditFeedbackEvent.selectTopic({
+  //   required final int index,
+  // }) = _SelectTopic;
+
   const factory EntryEditFeedbackEvent.updateNote({
     required final String text,
   }) = _UpdateNote;

@@ -8,6 +8,8 @@ class EntryEditFeedbackPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const EntryEditPageBase(
+        name: Text("How was the session?"),
+        description: Text("Was it helpful?"),
         slivers: [
           // SliverToBoxAdapter(
           //   child: DefinitionCardEdit.basic(
@@ -24,6 +26,13 @@ class EntryEditFeedbackPage extends StatelessWidget {
             sliver: SliverPadding(
               padding: EdgeInsets.all(ElementScale.spaceM),
               sliver: EntryEditFeedbackLabelSliver(),
+            ),
+          ),
+          SliverSafeArea(
+            top: false,
+            sliver: SliverPadding(
+              padding: EdgeInsets.all(ElementScale.spaceM),
+              sliver: EntryEditFeedbackTopicSliver(),
             ),
           ),
         ],

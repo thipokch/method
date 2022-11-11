@@ -13,7 +13,8 @@ class EntryEditFeedbackLabelSliver extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
       EntryEditFeedbackSelector<EntryDefinitionList?>(
-        selector: (state) => state.definitions?.map.entries.toBuiltList(),
+        selector: (state) =>
+            state.definitions?.map.entries.toBuiltList().sublist(0, 3),
         builder: (context, labels) => labels == null
             ? const SliverFillRemaining(child: CupertinoActivityIndicator())
             : SliverGrid(
@@ -33,5 +34,39 @@ class EntryEditFeedbackLabelSliver extends StatelessWidget {
                   childCount: labels.length,
                 ),
               ),
+      );
+}
+
+class EntryEditFeedbackTopicSliver extends StatelessWidget {
+  const EntryEditFeedbackTopicSliver({super.key});
+
+  @override
+  Widget build(BuildContext context) => SliverToBoxAdapter(
+        child: Column(
+          children: [
+            EntryEditFeedbackSelector<String>(
+              selector: (state) => state.definitions?.commands[3].name ?? "",
+              builder: (context, state) => Text(state),
+            ),
+            EntryEditFeedbackSelector<EntryDefinitionList?>(
+              selector: (state) =>
+                  state.definitions?.map.entries.toBuiltList().sublist(4),
+              builder: (context, labels) => Wrap(
+                alignment: WrapAlignment.center,
+                spacing: 6.0,
+                children: labels
+                        ?.map<Widget>(
+                          (_) => ChoiceChip(
+                            label: Text(_.key.name),
+                            selected: _.value.isPresent,
+                            onSelected: (value) {},
+                          ),
+                        )
+                        .toList() ??
+                    const [],
+              ),
+            ),
+          ],
+        ),
       );
 }

@@ -48,6 +48,7 @@ class _AppStartedView extends StatelessWidget {
         child: MultiProvider(
           providers: providers,
           child: MaterialApp.router(
+            debugShowCheckedModeBanner: false,
             routerConfig: routerConfig,
             themeMode: themeMode,
             theme: ElementTheme.light,
