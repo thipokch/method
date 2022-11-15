@@ -66,6 +66,16 @@ class Content {
     name: "Feedback",
     description: "How was the session?",
     definitions: [
+      //
+
+      TaskDefinition.part(
+        icon: "",
+        name: "",
+        description: "",
+        hierarchyPath: "feedback/rating",
+        id: "rating",
+      ),
+
       TaskDefinition.label(
         icon: "👍",
         name: "Good",
