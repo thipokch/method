@@ -1,43 +1,44 @@
+import 'package:flutter/widgets.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:method_kit/method_kit.dart';
+import 'package:method_kit/src/result/question_result.dart';
+import 'package:method_kit/src/task/identifier/task_identifier.dart';
+import 'package:method_kit/src/task/predefined_task/completion_task.dart';
+import 'package:method_kit/src/task/predefined_task/instruction_task.dart';
+import 'package:method_kit/src/task/predefined_task/question_task.dart';
+import 'package:method_kit/src/task/task_not_defined_exception.dart';
 
-/// Abstract definition of survey task
-///
-/// If you want to create a custom task:
-///  * Inherit from Task
-///  * If you want to use JSON override [fromJson] and add your type
 abstract class Task {
-  late final TaskIdentifier id;
-  @JsonKey(defaultValue: [])
-  final List<Step> steps;
-  final Step? initalStep;
+  final TaskIdentifier taskIdentifier;
+  @JsonKey(defaultValue: false)
+  final bool isOptional;
+  @JsonKey(defaultValue: 'Next')
+  final String? buttonText;
+  final bool canGoBack;
+  final bool showProgress;
+  final bool showAppBar;
 
-  Task({
-    TaskIdentifier? id,
-    this.steps = const [],
-    this.initalStep,
-  }) {
-    this.id = id ?? TaskIdentifier(id: Identifier.uuid());
-  }
+  const Task({
+    required this.taskIdentifier,
+    this.isOptional = false,
+    this.buttonText = 'Next',
+    this.canGoBack = true,
+    this.showProgress = true,
+    this.showAppBar = true,
+  });
 
-  /// Creates a task from a Map. The task needs to have a type definition of
-  /// either 'ordered' - [OrderedTask] or 'navigable' - [NavigableTask].
-  /// If not it will throw a [TaskNotDefinedException].
+  Widget createView({required QuestionResult? questionResult});
+
   factory Task.fromJson(Map<String, dynamic> json) {
     final type = json['type'];
-    if (type == 'ordered') {
-      return OrderedTask.fromJson(json);
-    } else if (type == 'navigable') {
-      return NavigableTask.fromJson(json);
+    if (type == 'intro') {
+      return InstructionTask.fromJson(json);
+    } else if (type == 'question') {
+      return QuestionTask.fromJson(json);
+    } else if (type == 'completion') {
+      return CompletionTask.fromJson(json);
     }
     throw const TaskNotDefinedException();
   }
 
   Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(other) => other is Task && other.id == id;
-
-  @override
-  int get hashCode => id.hashCode ^ steps.hashCode;
 }

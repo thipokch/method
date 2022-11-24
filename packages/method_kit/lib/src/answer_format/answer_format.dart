@@ -11,7 +11,7 @@ import 'package:method_kit/src/answer_format/scale_answer_format.dart';
 import 'package:method_kit/src/answer_format/single_choice_answer_format.dart';
 import 'package:method_kit/src/answer_format/text_answer_format.dart';
 import 'package:method_kit/src/answer_format/time_answer_format.dart';
-import 'package:method_kit/src/steps/predefined_steps/answer_format_not_defined_exception.dart';
+import 'package:method_kit/src/task/predefined_task/answer_format_not_defined_exception.dart';
 
 abstract class AnswerFormat {
   const AnswerFormat();

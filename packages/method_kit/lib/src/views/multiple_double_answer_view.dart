@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:method_kit/src/answer_format/multi_double.dart';
 import 'package:method_kit/src/answer_format/multiple_double_answer_format.dart';
 import 'package:method_kit/src/result/question/multiple_double_question_result.dart';
-import 'package:method_kit/src/steps/predefined_steps/question_step.dart';
-import 'package:method_kit/src/views/widget/step_view.dart';
+import 'package:method_kit/src/task/predefined_task/question_task.dart';
+import 'package:method_kit/src/views/widget/task_view.dart';
 
 class MultipleDoubleAnswerView extends StatefulWidget {
-  final QuestionStep questionStep;
+  final QuestionTask questionTask;
   final MultipleDoubleQuestionResult? result;
 
   const MultipleDoubleAnswerView({
     Key? key,
-    required this.questionStep,
+    required this.questionTask,
     required this.result,
   }) : super(key: key);
 
@@ -32,7 +32,7 @@ class _MultipleDoubleAnswerViewState extends State<MultipleDoubleAnswerView> {
   void initState() {
     super.initState();
     _multipleDoubleAnswer =
-        widget.questionStep.answerFormat as MultipleDoubleAnswerFormat;
+        widget.questionTask.answerFormat as MultipleDoubleAnswerFormat;
     _controller = _multipleDoubleAnswer.hints.map((e) {
       return TextEditingController();
     }).toList();
@@ -70,23 +70,23 @@ class _MultipleDoubleAnswerViewState extends State<MultipleDoubleAnswerView> {
 
   @override
   Widget build(BuildContext context) {
-    return StepView(
-      step: widget.questionStep,
+    return TaskView(
+      task: widget.questionTask,
       resultFunction: () => MultipleDoubleQuestionResult(
-        id: widget.questionStep.stepIdentifier,
+        id: widget.questionTask.taskIdentifier,
         startDate: _startDate,
         endDate: DateTime.now(),
         valueIdentifier: _controller.map((e) => e.text).join(', '),
         result: _insertedValues,
       ),
-      isValid: _isValid || widget.questionStep.isOptional,
-      title: widget.questionStep.title.isNotEmpty
+      isValid: _isValid || widget.questionTask.isOptional,
+      title: widget.questionTask.title.isNotEmpty
           ? Text(
-              widget.questionStep.title,
+              widget.questionTask.title,
               style: Theme.of(context).textTheme.headline2,
               textAlign: TextAlign.center,
             )
-          : widget.questionStep.content,
+          : widget.questionTask.content,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 14.0),
         child: Column(
@@ -94,7 +94,7 @@ class _MultipleDoubleAnswerViewState extends State<MultipleDoubleAnswerView> {
             Padding(
               padding: const EdgeInsets.only(bottom: 32.0),
               child: Text(
-                widget.questionStep.text,
+                widget.questionTask.text,
                 style: Theme.of(context).textTheme.bodyText2,
                 textAlign: TextAlign.center,
               ),

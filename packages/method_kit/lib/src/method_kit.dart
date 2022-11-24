@@ -2,33 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:method_kit/src/configuration/app_bar_configuration.dart';
-import 'package:method_kit/src/controller/survey_controller.dart';
-import 'package:method_kit/src/navigator/navigable_task_navigator.dart';
-import 'package:method_kit/src/navigator/ordered_task_navigator.dart';
-import 'package:method_kit/src/navigator/task_navigator.dart';
-import 'package:method_kit/src/presenter/survey_presenter.dart';
-import 'package:method_kit/src/presenter/survey_state.dart';
-import 'package:method_kit/src/result/survey/survey_result.dart';
-import 'package:method_kit/src/task/navigable_task.dart';
-import 'package:method_kit/src/task/ordered_task.dart';
-import 'package:method_kit/src/task/task.dart';
-import 'package:method_kit/src/views/widget/survey_app_bar.dart';
-import 'package:method_kit/src/widget/survey_progress_configuration.dart';
+import 'package:method_kit/src/controller/exercise_controller.dart';
+import 'package:method_kit/src/navigator/navigable_exercise_navigator.dart';
+import 'package:method_kit/src/navigator/ordered_exercise_navigator.dart';
+import 'package:method_kit/src/navigator/exercise_navigator.dart';
+import 'package:method_kit/src/presenter/exercise_presenter.dart';
+import 'package:method_kit/src/presenter/exercise_state.dart';
+import 'package:method_kit/src/result/exercise/exercise_result.dart';
+import 'package:method_kit/src/exercise/navigable_exercise.dart';
+import 'package:method_kit/src/exercise/ordered_exercise.dart';
+import 'package:method_kit/src/exercise/exercise.dart';
+import 'package:method_kit/src/views/widget/exercise_app_bar.dart';
+import 'package:method_kit/src/widget/exercise_progress_configuration.dart';
 import 'package:collection/collection.dart' show IterableExtension;
 
 class MethodKit extends StatefulWidget {
-  /// [Task] for the configuraton of the survey
-  final Task task;
+  /// [Exercise] for the configuraton of the exercise
+  final Exercise exercise;
 
   /// [ThemeData] to override the Theme of the subtree
   final ThemeData? themeData;
 
   /// Function which is called after the results are collected
-  final Function(SurveyResult) onResult;
+  final Function(ExerciseResult) onResult;
 
-  /// [SurveyController] to override the navigation methods
-  /// onNextStep, onBackStep, onCloseSurvey
-  final SurveyController? surveyController;
+  /// [ExerciseController] to override the navigation methods
+  /// onNextTask, onBackTask, onCloseExercise
+  final ExerciseController? exerciseController;
 
   /// The appbar that is shown at the top
   final Widget Function(AppBarConfiguration appBarConfiguration)? appBar;
@@ -37,18 +37,19 @@ class MethodKit extends StatefulWidget {
   final bool? showProgress;
 
   // Changes the styling of the progressbar in the appbar
-  final SurveyProgressConfiguration? surveyProgressbarConfiguration;
+  final ExerciseProgressConfiguration? exerciseProgressbarConfiguration;
 
   final Map<String, String>? localizations;
 
-  const MethodKit({super.key, 
-    required this.task,
+  const MethodKit({
+    super.key,
+    required this.exercise,
     required this.onResult,
     this.themeData,
-    this.surveyController,
+    this.exerciseController,
     this.appBar,
     this.showProgress,
-    this.surveyProgressbarConfiguration,
+    this.exerciseProgressbarConfiguration,
     this.localizations,
   });
 
@@ -58,22 +59,22 @@ class MethodKit extends StatefulWidget {
 }
 
 class _MethodKitState extends State<MethodKit> {
-  late TaskNavigator _taskNavigator;
+  late ExerciseNavigator _exerciseNavigator;
 
   @override
   void initState() {
     super.initState();
-    _taskNavigator = _createTaskNavigator();
+    _exerciseNavigator = _createExerciseNavigator();
   }
 
-  TaskNavigator _createTaskNavigator() {
-    switch (widget.task.runtimeType) {
-      case OrderedTask:
-        return OrderedTaskNavigator(widget.task);
-      case NavigableTask:
-        return NavigableTaskNavigator(widget.task);
+  ExerciseNavigator _createExerciseNavigator() {
+    switch (widget.exercise.runtimeType) {
+      case OrderedExercise:
+        return OrderedExerciseNavigator(widget.exercise);
+      case NavigableExercise:
+        return NavigableExerciseNavigator(widget.exercise);
       default:
-        return OrderedTaskNavigator(widget.task);
+        return OrderedExerciseNavigator(widget.exercise);
     }
   }
 
@@ -88,26 +89,26 @@ class _MethodKitState extends State<MethodKit> {
       data: widget.themeData ?? Theme.of(context),
       child: MultiProvider(
         providers: [
-          Provider<TaskNavigator>.value(value: _taskNavigator),
-          Provider<SurveyController>.value(
-            value: widget.surveyController ?? SurveyController(),
+          Provider<ExerciseNavigator>.value(value: _exerciseNavigator),
+          Provider<ExerciseController>.value(
+            value: widget.exerciseController ?? ExerciseController(),
           ),
           Provider<bool>.value(value: widget.showProgress ?? true),
-          Provider<SurveyProgressConfiguration>.value(
-            value: widget.surveyProgressbarConfiguration ??
-                SurveyProgressConfiguration(),
+          Provider<ExerciseProgressConfiguration>.value(
+            value: widget.exerciseProgressbarConfiguration ??
+                ExerciseProgressConfiguration(),
           ),
           Provider<Map<String, String>?>.value(
             value: widget.localizations,
           ),
         ],
         child: BlocProvider(
-          create: (BuildContext context) => SurveyPresenter(
-            taskNavigator: _taskNavigator,
+          create: (BuildContext context) => ExercisePresenter(
+            exerciseNavigator: _exerciseNavigator,
             onResult: widget.onResult,
           ),
-          child: SurveyPage(
-            length: widget.task.steps.length,
+          child: ExercisePage(
+            length: widget.exercise.tasks.length,
             onResult: widget.onResult,
             appBar: widget.appBar,
           ),
@@ -117,12 +118,13 @@ class _MethodKitState extends State<MethodKit> {
   }
 }
 
-class SurveyPage extends StatefulWidget {
+class ExercisePage extends StatefulWidget {
   final int length;
   final Widget Function(AppBarConfiguration appBarConfiguration)? appBar;
-  final Function(SurveyResult) onResult;
+  final Function(ExerciseResult) onResult;
 
-  const SurveyPage({super.key, 
+  const ExercisePage({
+    super.key,
     required this.length,
     required this.onResult,
     this.appBar,
@@ -130,10 +132,10 @@ class SurveyPage extends StatefulWidget {
 
   @override
   // ignore: library_private_types_in_public_api
-  _SurveyPageState createState() => _SurveyPageState();
+  _ExercisePageState createState() => _ExercisePageState();
 }
 
-class _SurveyPageState extends State<SurveyPage>
+class _ExercisePageState extends State<ExercisePage>
     with SingleTickerProviderStateMixin {
   late final TabController tabController;
 
@@ -152,21 +154,21 @@ class _SurveyPageState extends State<SurveyPage>
   @override
   // ignore: long-method
   Widget build(BuildContext context) {
-    return BlocConsumer<SurveyPresenter, SurveyState>(
+    return BlocConsumer<ExercisePresenter, ExerciseState>(
       listenWhen: (previous, current) => previous != current,
       listener: (context, state) async {
-        if (state is SurveyResultState) {
+        if (state is ExerciseResultState) {
           widget.onResult.call(state.result);
         }
-        if (state is PresentingSurveyState) {
-          tabController.animateTo(state.currentStepIndex);
+        if (state is PresentingExerciseState) {
+          tabController.animateTo(state.currentTaskIndex);
         }
       },
-      builder: (BuildContext context, SurveyState state) {
-        if (state is PresentingSurveyState) {
+      builder: (BuildContext context, ExerciseState state) {
+        if (state is PresentingExerciseState) {
           return Scaffold(
             backgroundColor: Colors.transparent,
-            appBar: state.currentStep.showAppBar
+            appBar: state.currentTask.showAppBar
                 ? PreferredSize(
                     preferredSize: const Size(
                       double.infinity,
@@ -174,7 +176,7 @@ class _SurveyPageState extends State<SurveyPage>
                     ),
                     child: widget.appBar != null
                         ? widget.appBar!.call(state.appBarConfiguration)
-                        : SurveyAppBar(
+                        : ExerciseAppBar(
                             appBarConfiguration: state.appBarConfiguration,
                           ),
                   )
@@ -182,15 +184,15 @@ class _SurveyPageState extends State<SurveyPage>
             body: TabBarView(
               physics: const NeverScrollableScrollPhysics(),
               controller: tabController,
-              children: state.steps
+              children: state.tasks
                   .map(
                     (e) => Container(
                       key: ValueKey<String>(
-                        e.stepIdentifier.id,
+                        e.taskIdentifier.id,
                       ),
                       child: e.createView(
                         questionResult: state.questionResults.firstWhereOrNull(
-                          (element) => element.id == e.stepIdentifier,
+                          (element) => element.id == e.taskIdentifier,
                         ),
                       ),
                     ),
@@ -198,7 +200,7 @@ class _SurveyPageState extends State<SurveyPage>
                   .toList(),
             ),
           );
-        } else if (state is SurveyResultState && state.currentStep != null) {
+        } else if (state is ExerciseResultState && state.currentTask != null) {
           return const Center(
             child: CircularProgressIndicator(),
           );

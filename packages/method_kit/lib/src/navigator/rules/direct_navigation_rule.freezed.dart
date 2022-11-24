@@ -20,7 +20,7 @@ DirectNavigationRule _$DirectNavigationRuleFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DirectNavigationRule {
-  StepIdentifier get destinationStepIdentifier =>
+  TaskIdentifier get destinationTaskIdentifier =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,9 +34,9 @@ abstract class $DirectNavigationRuleCopyWith<$Res> {
   factory $DirectNavigationRuleCopyWith(DirectNavigationRule value,
           $Res Function(DirectNavigationRule) then) =
       _$DirectNavigationRuleCopyWithImpl<$Res>;
-  $Res call({StepIdentifier destinationStepIdentifier});
+  $Res call({TaskIdentifier destinationTaskIdentifier});
 
-  $StepIdentifierCopyWith<$Res> get destinationStepIdentifier;
+  $TaskIdentifierCopyWith<$Res> get destinationTaskIdentifier;
 }
 
 /// @nodoc
@@ -50,21 +50,21 @@ class _$DirectNavigationRuleCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? destinationStepIdentifier = freezed,
+    Object? destinationTaskIdentifier = freezed,
   }) {
     return _then(_value.copyWith(
-      destinationStepIdentifier: destinationStepIdentifier == freezed
-          ? _value.destinationStepIdentifier
-          : destinationStepIdentifier // ignore: cast_nullable_to_non_nullable
-              as StepIdentifier,
+      destinationTaskIdentifier: destinationTaskIdentifier == freezed
+          ? _value.destinationTaskIdentifier
+          : destinationTaskIdentifier // ignore: cast_nullable_to_non_nullable
+              as TaskIdentifier,
     ));
   }
 
   @override
-  $StepIdentifierCopyWith<$Res> get destinationStepIdentifier {
-    return $StepIdentifierCopyWith<$Res>(_value.destinationStepIdentifier,
+  $TaskIdentifierCopyWith<$Res> get destinationTaskIdentifier {
+    return $TaskIdentifierCopyWith<$Res>(_value.destinationTaskIdentifier,
         (value) {
-      return _then(_value.copyWith(destinationStepIdentifier: value));
+      return _then(_value.copyWith(destinationTaskIdentifier: value));
     });
   }
 }
@@ -76,10 +76,10 @@ abstract class _$$_DirectNavigationRuleCopyWith<$Res>
           $Res Function(_$_DirectNavigationRule) then) =
       __$$_DirectNavigationRuleCopyWithImpl<$Res>;
   @override
-  $Res call({StepIdentifier destinationStepIdentifier});
+  $Res call({TaskIdentifier destinationTaskIdentifier});
 
   @override
-  $StepIdentifierCopyWith<$Res> get destinationStepIdentifier;
+  $TaskIdentifierCopyWith<$Res> get destinationTaskIdentifier;
 }
 
 /// @nodoc
@@ -95,13 +95,13 @@ class __$$_DirectNavigationRuleCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? destinationStepIdentifier = freezed,
+    Object? destinationTaskIdentifier = freezed,
   }) {
     return _then(_$_DirectNavigationRule(
-      destinationStepIdentifier == freezed
-          ? _value.destinationStepIdentifier
-          : destinationStepIdentifier // ignore: cast_nullable_to_non_nullable
-              as StepIdentifier,
+      destinationTaskIdentifier == freezed
+          ? _value.destinationTaskIdentifier
+          : destinationTaskIdentifier // ignore: cast_nullable_to_non_nullable
+              as TaskIdentifier,
     ));
   }
 }
@@ -109,17 +109,17 @@ class __$$_DirectNavigationRuleCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_DirectNavigationRule extends _DirectNavigationRule {
-  _$_DirectNavigationRule(this.destinationStepIdentifier) : super._();
+  _$_DirectNavigationRule(this.destinationTaskIdentifier) : super._();
 
   factory _$_DirectNavigationRule.fromJson(Map<String, dynamic> json) =>
       _$$_DirectNavigationRuleFromJson(json);
 
   @override
-  final StepIdentifier destinationStepIdentifier;
+  final TaskIdentifier destinationTaskIdentifier;
 
   @override
   String toString() {
-    return 'DirectNavigationRule(destinationStepIdentifier: $destinationStepIdentifier)';
+    return 'DirectNavigationRule(destinationTaskIdentifier: $destinationTaskIdentifier)';
   }
 
   @override
@@ -128,13 +128,13 @@ class _$_DirectNavigationRule extends _DirectNavigationRule {
         (other.runtimeType == runtimeType &&
             other is _$_DirectNavigationRule &&
             const DeepCollectionEquality().equals(
-                other.destinationStepIdentifier, destinationStepIdentifier));
+                other.destinationTaskIdentifier, destinationTaskIdentifier));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(destinationStepIdentifier));
+      const DeepCollectionEquality().hash(destinationTaskIdentifier));
 
   @JsonKey(ignore: true)
   @override
@@ -152,14 +152,14 @@ class _$_DirectNavigationRule extends _DirectNavigationRule {
 
 abstract class _DirectNavigationRule extends DirectNavigationRule {
   factory _DirectNavigationRule(
-      final StepIdentifier destinationStepIdentifier) = _$_DirectNavigationRule;
+      final TaskIdentifier destinationTaskIdentifier) = _$_DirectNavigationRule;
   _DirectNavigationRule._() : super._();
 
   factory _DirectNavigationRule.fromJson(Map<String, dynamic> json) =
       _$_DirectNavigationRule.fromJson;
 
   @override
-  StepIdentifier get destinationStepIdentifier;
+  TaskIdentifier get destinationTaskIdentifier;
   @override
   @JsonKey(ignore: true)
   _$$_DirectNavigationRuleCopyWith<_$_DirectNavigationRule> get copyWith =>

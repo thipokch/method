@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:method_kit/src/navigator/rules/navigation_rule.dart';
-import 'package:method_kit/src/steps/identifier/step_identifier.dart';
+import 'package:method_kit/src/task/identifier/task_identifier.dart';
 
 part 'direct_navigation_rule.freezed.dart';
 part 'direct_navigation_rule.g.dart';
@@ -11,7 +11,7 @@ class DirectNavigationRule
     implements NavigationRule {
   const DirectNavigationRule._();
 
-  factory DirectNavigationRule(final StepIdentifier destinationStepIdentifier) =
+  factory DirectNavigationRule(final TaskIdentifier destinationTaskIdentifier) =
       _DirectNavigationRule;
 
   factory DirectNavigationRule.fromJson(Map<String, dynamic> json) =>

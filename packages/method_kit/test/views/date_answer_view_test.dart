@@ -7,14 +7,14 @@ import 'package:provider/provider.dart';
 
 void main() {
   DateAnswerView validDateAnswerView() => DateAnswerView(
-        questionStep: QuestionStep(
+        questionTask: QuestionTask(
           answerFormat: DateAnswerFormat(
             minDate: DateTime.now().subtract(const Duration(days: 365 * 70)),
             maxDate: DateTime.now().subtract(const Duration(days: 365 * 15)),
             defaultDate:
                 DateTime.now().subtract(const Duration(days: 365 * 20)),
           ),
-          stepIdentifier: StepIdentifier(id: Identifier.uuid()),
+          taskIdentifier: TaskIdentifier(id: Identifier.uuid()),
         ),
         result: null,
       );
@@ -27,12 +27,12 @@ void main() {
         CupertinoApp(
           home: MultiProvider(
             providers: [
-              Provider<SurveyController>.value(
-                value: SurveyController(),
+              Provider<ExerciseController>.value(
+                value: ExerciseController(),
               ),
               Provider<bool>.value(value: false),
-              Provider<SurveyProgressConfiguration>.value(
-                value: SurveyProgressConfiguration(),
+              Provider<ExerciseProgressConfiguration>.value(
+                value: ExerciseProgressConfiguration(),
               ),
             ],
             child: validDateAnswerView(),
@@ -54,12 +54,12 @@ void main() {
           home: Scaffold(
             body: MultiProvider(
               providers: [
-                Provider<SurveyController>.value(
-                  value: SurveyController(),
+                Provider<ExerciseController>.value(
+                  value: ExerciseController(),
                 ),
                 Provider<bool>.value(value: false),
-                Provider<SurveyProgressConfiguration>.value(
-                  value: SurveyProgressConfiguration(),
+                Provider<ExerciseProgressConfiguration>.value(
+                  value: ExerciseProgressConfiguration(),
                 ),
               ],
               child: validDateAnswerView(),
@@ -82,19 +82,19 @@ void main() {
           home: Scaffold(
             body: MultiProvider(
               providers: [
-                Provider<SurveyController>.value(
-                  value: SurveyController(),
+                Provider<ExerciseController>.value(
+                  value: ExerciseController(),
                 ),
                 Provider<bool>.value(value: false),
-                Provider<SurveyProgressConfiguration>.value(
-                  value: SurveyProgressConfiguration(),
+                Provider<ExerciseProgressConfiguration>.value(
+                  value: ExerciseProgressConfiguration(),
                 ),
               ],
               child: DateAnswerView(
-                questionStep: QuestionStep(
+                questionTask: QuestionTask(
                   title: 'Your Birthday?',
                   answerFormat: DateAnswerFormat(),
-                  stepIdentifier: StepIdentifier(id: Identifier.uuid()),
+                  taskIdentifier: TaskIdentifier(id: Identifier.uuid()),
                 ),
                 result: null,
               ),

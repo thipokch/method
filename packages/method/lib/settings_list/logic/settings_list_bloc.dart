@@ -66,7 +66,7 @@ class SettingsListBloc extends Bloc<SettingsListEvent, SettingsListState>
     Emitter<SettingsListState> emit,
   ) async =>
       await browser.open(
-        url: WebUri("https://thipok.ch/feedback"),
+        url: WebUri("https://coda.io/form/feedback_dRLvnxEIkIs"),
         settings: ChromeSafariBrowserSettings(
           shareState: CustomTabsShareState.SHARE_STATE_OFF,
           barCollapsingEnabled: true,

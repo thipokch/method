@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:method_kit/src/answer_format/image_answer_format.dart';
 import 'package:method_kit/src/result/question/image_question_result.dart';
-import 'package:method_kit/src/steps/predefined_steps/question_step.dart';
-import 'package:method_kit/src/views/widget/step_view.dart';
+import 'package:method_kit/src/task/predefined_task/question_task.dart';
+import 'package:method_kit/src/views/widget/task_view.dart';
 
 class ImageAnswerView extends StatefulWidget {
-  final QuestionStep questionStep;
+  final QuestionTask questionTask;
   final ImageQuestionResult? result;
 
   const ImageAnswerView({
     Key? key,
-    required this.questionStep,
+    required this.questionTask,
     required this.result,
   }) : super(key: key);
 
@@ -29,7 +29,7 @@ class _ImageAnswerViewState extends State<ImageAnswerView> {
   @override
   void initState() {
     super.initState();
-    _imageAnswerFormat = widget.questionStep.answerFormat as ImageAnswerFormat;
+    _imageAnswerFormat = widget.questionTask.answerFormat as ImageAnswerFormat;
     _startDate = DateTime.now();
   }
 
@@ -41,23 +41,23 @@ class _ImageAnswerViewState extends State<ImageAnswerView> {
   @override
   // ignore: long-method
   Widget build(BuildContext context) {
-    return StepView(
-      step: widget.questionStep,
+    return TaskView(
+      task: widget.questionTask,
       resultFunction: () => ImageQuestionResult(
-        id: widget.questionStep.stepIdentifier,
+        id: widget.questionTask.taskIdentifier,
         startDate: _startDate,
         endDate: DateTime.now(),
         valueIdentifier: filePath,
         result: filePath,
       ),
-      isValid: _isValid || widget.questionStep.isOptional,
-      title: widget.questionStep.title.isNotEmpty
+      isValid: _isValid || widget.questionTask.isOptional,
+      title: widget.questionTask.title.isNotEmpty
           ? Text(
-              widget.questionStep.title,
+              widget.questionTask.title,
               style: Theme.of(context).textTheme.headline2,
               textAlign: TextAlign.center,
             )
-          : widget.questionStep.content,
+          : widget.questionTask.content,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 32.0),
         child: SizedBox(

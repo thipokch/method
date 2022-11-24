@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:method_kit/src/answer_format/boolean_answer_format.dart';
 import 'package:method_kit/src/views/widget/selection_list_tile.dart';
 import 'package:method_kit/src/result/question/boolean_question_result.dart';
-import 'package:method_kit/src/steps/predefined_steps/question_step.dart';
-import 'package:method_kit/src/views/widget/step_view.dart';
+import 'package:method_kit/src/task/predefined_task/question_task.dart';
+import 'package:method_kit/src/views/widget/task_view.dart';
 
 class BooleanAnswerView extends StatefulWidget {
-  final QuestionStep questionStep;
+  final QuestionTask questionTask;
   final BooleanQuestionResult? result;
 
   const BooleanAnswerView({
     Key? key,
-    required this.questionStep,
+    required this.questionTask,
     required this.result,
   }) : super(key: key);
 
@@ -28,7 +28,7 @@ class _BooleanAnswerViewState extends State<BooleanAnswerView> {
   @override
   void initState() {
     super.initState();
-    _answerFormat = widget.questionStep.answerFormat as BooleanAnswerFormat;
+    _answerFormat = widget.questionTask.answerFormat as BooleanAnswerFormat;
     _result = widget.result?.result ?? _answerFormat.result;
     _startDate = DateTime.now();
   }
@@ -36,10 +36,10 @@ class _BooleanAnswerViewState extends State<BooleanAnswerView> {
   @override
   // ignore: long-method
   Widget build(BuildContext context) {
-    return StepView(
-      step: widget.questionStep,
+    return TaskView(
+      task: widget.questionTask,
       resultFunction: () => BooleanQuestionResult(
-        id: widget.questionStep.stepIdentifier,
+        id: widget.questionTask.taskIdentifier,
         startDate: _startDate,
         endDate: DateTime.now(),
         valueIdentifier: _result == BooleanResult.POSITIVE
@@ -49,20 +49,20 @@ class _BooleanAnswerViewState extends State<BooleanAnswerView> {
                 : '',
         result: _result,
       ),
-      title: widget.questionStep.title.isNotEmpty
+      title: widget.questionTask.title.isNotEmpty
           ? Text(
-              widget.questionStep.title,
+              widget.questionTask.title,
               style: Theme.of(context).textTheme.headline2,
               textAlign: TextAlign.center,
             )
-          : widget.questionStep.content,
-      isValid: widget.questionStep.isOptional || _result != null,
+          : widget.questionTask.content,
+      isValid: widget.questionTask.isOptional || _result != null,
       child: Column(
         children: [
           Padding(
             padding: const EdgeInsets.only(bottom: 32.0),
             child: Text(
-              widget.questionStep.text,
+              widget.questionTask.text,
               style: Theme.of(context).textTheme.bodyText2,
               textAlign: TextAlign.center,
             ),
@@ -75,7 +75,9 @@ class _BooleanAnswerViewState extends State<BooleanAnswerView> {
               SelectionListTile(
                 text: _answerFormat.positiveAnswer,
                 onTap: () {
-                  _result = _result == BooleanResult.POSITIVE ? null : BooleanResult.POSITIVE;
+                  _result = _result == BooleanResult.POSITIVE
+                      ? null
+                      : BooleanResult.POSITIVE;
                   // ignore: no-empty-block
                   setState(() {});
                 },
@@ -84,7 +86,9 @@ class _BooleanAnswerViewState extends State<BooleanAnswerView> {
               SelectionListTile(
                 text: _answerFormat.negativeAnswer,
                 onTap: () {
-                  _result = _result == BooleanResult.NEGATIVE ? null : BooleanResult.NEGATIVE;
+                  _result = _result == BooleanResult.NEGATIVE
+                      ? null
+                      : BooleanResult.NEGATIVE;
                   // ignore: no-empty-block
                   setState(() {});
                 },

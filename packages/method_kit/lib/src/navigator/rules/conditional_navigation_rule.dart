@@ -1,19 +1,21 @@
 import 'package:method_kit/src/navigator/rules/navigation_rule.dart';
-import 'package:method_kit/src/steps/identifier/step_identifier.dart';
+import 'package:method_kit/src/task/identifier/task_identifier.dart';
 
 class ConditionalNavigationRule implements NavigationRule {
-  final StepIdentifier? Function(String?) resultToStepIdentifierMapper;
+  final TaskIdentifier? Function(String?) resultToTaskIdentifierMapper;
 
-  ConditionalNavigationRule({required this.resultToStepIdentifierMapper});
+  const ConditionalNavigationRule({
+    required this.resultToTaskIdentifierMapper,
+  });
 
   factory ConditionalNavigationRule.fromJson(Map<String, dynamic> json) {
     final inputValues = json['values'] as Map<String, dynamic>;
 
     return ConditionalNavigationRule(
-      resultToStepIdentifierMapper: (input) {
+      resultToTaskIdentifierMapper: (input) {
         for (final MapEntry entry in inputValues.entries) {
           if (entry.key == input) {
-            return StepIdentifier(id: entry.value);
+            return TaskIdentifier(id: entry.value);
           }
         }
 

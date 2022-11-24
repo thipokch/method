@@ -1,4 +1,4 @@
-import 'package:method_kit/src/steps/identifier/identifier.dart';
+import 'package:method_kit/src/identifier/identifier.dart';
 
 abstract class Result {
   final Identifier? id;

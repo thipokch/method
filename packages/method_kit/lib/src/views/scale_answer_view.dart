@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:method_kit/src/answer_format/scale_answer_format.dart';
 import 'package:method_kit/src/result/question/scale_question_result.dart';
-import 'package:method_kit/src/steps/predefined_steps/question_step.dart';
-import 'package:method_kit/src/views/widget/step_view.dart';
+import 'package:method_kit/src/task/predefined_task/question_task.dart';
+import 'package:method_kit/src/views/widget/task_view.dart';
 
 class ScaleAnswerView extends StatefulWidget {
-  final QuestionStep questionStep;
+  final QuestionTask questionTask;
   final ScaleQuestionResult? result;
 
   const ScaleAnswerView({
     Key? key,
-    required this.questionStep,
+    required this.questionTask,
     required this.result,
   }) : super(key: key);
 
@@ -27,36 +27,36 @@ class _ScaleAnswerViewState extends State<ScaleAnswerView> {
   @override
   void initState() {
     super.initState();
-    _scaleAnswerFormat = widget.questionStep.answerFormat as ScaleAnswerFormat;
+    _scaleAnswerFormat = widget.questionTask.answerFormat as ScaleAnswerFormat;
     _sliderValue = widget.result?.result ?? _scaleAnswerFormat.defaultValue;
     _startDate = DateTime.now();
   }
 
   @override
   Widget build(BuildContext context) {
-    return StepView(
-      step: widget.questionStep,
+    return TaskView(
+      task: widget.questionTask,
       resultFunction: () => ScaleQuestionResult(
-        id: widget.questionStep.stepIdentifier,
+        id: widget.questionTask.taskIdentifier,
         startDate: _startDate,
         endDate: DateTime.now(),
         valueIdentifier: _sliderValue.toString(),
         result: _sliderValue,
       ),
-      title: widget.questionStep.title.isNotEmpty
+      title: widget.questionTask.title.isNotEmpty
           ? Text(
-              widget.questionStep.title,
+              widget.questionTask.title,
               style: Theme.of(context).textTheme.headline2,
               textAlign: TextAlign.center,
             )
-          : widget.questionStep.content,
+          : widget.questionTask.content,
       child: Column(
         children: [
           Padding(
             padding:
                 const EdgeInsets.only(bottom: 32.0, left: 14.0, right: 14.0),
             child: Text(
-              widget.questionStep.text,
+              widget.questionTask.text,
               style: Theme.of(context).textTheme.bodyText2,
               textAlign: TextAlign.center,
             ),

@@ -4,6 +4,5 @@ class SessionEditSliver extends StatelessWidget {
   const SessionEditSliver({super.key});
 
   @override
-  Widget build(BuildContext context) =>
-      const SliverToBoxAdapter(child: _Swiper());
+  Widget build(BuildContext context) => const _Editor();
 }

@@ -1,27 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:method_kit/src/result/step/completion_step_result.dart';
-import 'package:method_kit/src/steps/predefined_steps/completion_step.dart';
-import 'package:method_kit/src/views/widget/step_view.dart';
+import 'package:method_kit/src/result/task/completion_task_result.dart';
+import 'package:method_kit/src/task/predefined_task/completion_task.dart';
+import 'package:method_kit/src/views/widget/task_view.dart';
 
 class CompletionView extends StatelessWidget {
-  final CompletionStep completionStep;
+  final CompletionTask completionTask;
   final DateTime _startDate = DateTime.now();
   final String assetPath;
 
-  CompletionView({super.key, required this.completionStep, this.assetPath = ""});
+  CompletionView({
+    super.key,
+    required this.completionTask,
+    this.assetPath = "",
+  });
 
   @override
   Widget build(BuildContext context) {
-    return StepView(
-      step: completionStep,
-      resultFunction: () => CompletionStepResult(
-        completionStep.stepIdentifier,
+    return TaskView(
+      task: completionTask,
+      resultFunction: () => CompletionTaskResult(
+        completionTask.taskIdentifier,
         _startDate,
         DateTime.now(),
       ),
       title: Text(
-        completionStep.title,
+        completionTask.title,
         style: Theme.of(context).textTheme.headline2,
       ),
       child: Padding(
@@ -29,7 +33,7 @@ class CompletionView extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              completionStep.text,
+              completionTask.text,
               style: Theme.of(context).textTheme.bodyText2,
               textAlign: TextAlign.center,
             ),

@@ -4,19 +4,19 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:method_kit/src/answer_format/date_answer_format.dart';
 import 'package:method_kit/src/result/question/date_question_result.dart';
-import 'package:method_kit/src/steps/predefined_steps/question_step.dart';
-import 'package:method_kit/src/views/widget/step_view.dart';
+import 'package:method_kit/src/task/predefined_task/question_task.dart';
+import 'package:method_kit/src/views/widget/task_view.dart';
 
 class DateAnswerView extends StatefulWidget {
-  /// [QuestionStep] which includes the [DateAnswerFormat]
-  final QuestionStep questionStep;
+  /// [QuestionTask] which includes the [DateAnswerFormat]
+  final QuestionTask questionTask;
 
   /// [DateQuestionResult] which boxes the result
   final DateQuestionResult? result;
 
   const DateAnswerView({
     Key? key,
-    required this.questionStep,
+    required this.questionTask,
     required this.result,
   }) : super(key: key);
 
@@ -34,7 +34,7 @@ class _DateAnswerViewState extends State<DateAnswerView> {
   @override
   void initState() {
     super.initState();
-    _dateAnswerFormat = widget.questionStep.answerFormat as DateAnswerFormat;
+    _dateAnswerFormat = widget.questionTask.answerFormat as DateAnswerFormat;
     _result = widget.result?.result ??
         _dateAnswerFormat.defaultDate ??
         DateTime.now();
@@ -46,29 +46,29 @@ class _DateAnswerViewState extends State<DateAnswerView> {
 
   @override
   Widget build(BuildContext context) {
-    return StepView(
-      step: widget.questionStep,
+    return TaskView(
+      task: widget.questionTask,
       resultFunction: () => DateQuestionResult(
-        id: widget.questionStep.stepIdentifier,
+        id: widget.questionTask.taskIdentifier,
         startDate: _startDate,
         endDate: DateTime.now(),
         valueIdentifier: _result?.toIso8601String() ?? 'none',
         result: _result,
       ),
-      isValid: widget.questionStep.isOptional || _result != null,
-      title: widget.questionStep.title.isNotEmpty
+      isValid: widget.questionTask.isOptional || _result != null,
+      title: widget.questionTask.title.isNotEmpty
           ? Text(
-              widget.questionStep.title,
+              widget.questionTask.title,
               style: Theme.of(context).textTheme.headline2,
               textAlign: TextAlign.center,
             )
-          : widget.questionStep.content,
+          : widget.questionTask.content,
       child: Column(
         children: [
           Padding(
             padding: const EdgeInsets.only(bottom: 32.0),
             child: Text(
-              widget.questionStep.text,
+              widget.questionTask.text,
               style: Theme.of(context).textTheme.bodyText2,
               textAlign: TextAlign.center,
             ),

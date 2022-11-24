@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:method_kit/src/result/step/instruction_step_result.dart';
-import 'package:method_kit/src/steps/predefined_steps/instruction_step.dart';
-import 'package:method_kit/src/views/widget/step_view.dart';
+import 'package:method_kit/src/result/task/instruction_task_result.dart';
+import 'package:method_kit/src/task/predefined_task/instruction_task.dart';
+import 'package:method_kit/src/views/widget/task_view.dart';
 
 class InstructionView extends StatelessWidget {
-  final InstructionStep instructionStep;
+  final InstructionTask instructionTask;
   final DateTime _startDate = DateTime.now();
 
-  InstructionView({super.key, required this.instructionStep});
+  InstructionView({super.key, required this.instructionTask});
 
   @override
   Widget build(BuildContext context) {
-    return StepView(
-      step: instructionStep,
+    return TaskView(
+      task: instructionTask,
       title: Text(
-        instructionStep.title,
+        instructionTask.title,
         style: Theme.of(context).textTheme.headline2,
         textAlign: TextAlign.center,
       ),
-      resultFunction: () => InstructionStepResult(
-        instructionStep.stepIdentifier,
+      resultFunction: () => InstructionTaskResult(
+        instructionTask.taskIdentifier,
         _startDate,
         DateTime.now(),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 14.0),
         child: Text(
-          instructionStep.text,
+          instructionTask.text,
           style: Theme.of(context).textTheme.bodyText2,
           textAlign: TextAlign.center,
         ),

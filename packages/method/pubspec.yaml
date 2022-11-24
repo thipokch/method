@@ -46,6 +46,7 @@ dependencies:
 
   # method_bloc:
   method_core:
+  method_kit:
   method_ui:
   method_style:
   method_repo:

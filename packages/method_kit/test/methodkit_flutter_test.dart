@@ -4,34 +4,34 @@ import 'package:method_kit/method_kit.dart';
 
 void main() {
   testWidgets(
-    'method_kit click through three steps',
+    'method_kit click through three tasks',
     (WidgetTester tester) async {
-      final surveyWidget = MaterialApp(
+      final exerciseWidget = MaterialApp(
         home: Scaffold(
           body: MethodKit(
-            task: OrderedTask(
-              id: const TaskIdentifier(id: "1"),
-              steps: [
-                InstructionStep(
-                  title: 'Welcome to the\nQuickBird Studios\nHealth Survey',
+            exercise: OrderedExercise(
+              id: const ExerciseIdentifier(id: "1"),
+              tasks: [
+                InstructionTask(
+                  title: 'Welcome to the\nQuickBird Studios\nHealth Exercise',
                   text: 'Get ready for a bunch of super random questions!',
                   buttonText: 'Let\'s go!',
-                  stepIdentifier: StepIdentifier.fromNullable(),
+                  taskIdentifier: TaskIdentifier.fromNullable(),
                 ),
-                QuestionStep(
+                QuestionTask(
                   title: 'How old are you?',
                   answerFormat: const IntegerAnswerFormat(
                     defaultValue: 25,
                     hint: 'Please enter your age',
                   ),
-                  stepIdentifier: StepIdentifier.fromNullable(),
+                  taskIdentifier: TaskIdentifier.fromNullable(),
                 ),
-                const CompletionStep(
-                  stepIdentifier: StepIdentifier(id: '321'),
+                const CompletionTask(
+                  taskIdentifier: TaskIdentifier(id: '321'),
                   text:
-                      'Thanks for taking the survey, we will contact you soon!',
+                      'Thanks for taking the Exercise, we will contact you soon!',
                   title: 'Done!',
-                  buttonText: 'Submit survey',
+                  buttonText: 'Submit Exercise',
                 ),
               ],
             ),
@@ -42,7 +42,7 @@ void main() {
         ),
       );
 
-      await tester.pumpWidget(surveyWidget);
+      await tester.pumpWidget(exerciseWidget);
       await tester.pumpAndSettle();
 
       final introButton = find.text('Let\'s go!'.toUpperCase());
@@ -58,7 +58,7 @@ void main() {
       await tester.tap(questionButton);
 
       await tester.pumpAndSettle();
-      final completeButtom = find.text('Submit survey'.toUpperCase());
+      final completeButtom = find.text('Submit Exercise'.toUpperCase());
       expect(completeButtom, findsOneWidget);
       await tester.tap(completeButtom);
     },

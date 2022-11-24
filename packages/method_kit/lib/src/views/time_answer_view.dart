@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:method_kit/src/answer_format/time_answer_format.dart';
 import 'package:method_kit/src/result/question/time_question_result.dart';
-import 'package:method_kit/src/steps/predefined_steps/question_step.dart';
-import 'package:method_kit/src/views/widget/step_view.dart';
+import 'package:method_kit/src/task/predefined_task/question_task.dart';
+import 'package:method_kit/src/views/widget/task_view.dart';
 import 'package:method_kit/src/views/widget/time_picker_widget.dart'
-    as surveywidget;
+    as exercisewidget;
 
 class TimeAnswerView extends StatefulWidget {
-  final QuestionStep questionStep;
+  final QuestionTask questionTask;
   final TimeQuestionResult? result;
 
   const TimeAnswerView({
     Key? key,
-    required this.questionStep,
+    required this.questionTask,
     required this.result,
   }) : super(key: key);
 
@@ -31,7 +31,7 @@ class _TimeAnswerViewState extends State<TimeAnswerView> {
   @override
   void initState() {
     super.initState();
-    _timeAnswerFormat = widget.questionStep.answerFormat as TimeAnswerFormat;
+    _timeAnswerFormat = widget.questionTask.answerFormat as TimeAnswerFormat;
     _result = widget.result?.result ??
         _timeAnswerFormat.defaultValue ??
         TimeOfDay.fromDateTime(
@@ -41,29 +41,29 @@ class _TimeAnswerViewState extends State<TimeAnswerView> {
 
   @override
   Widget build(BuildContext context) {
-    return StepView(
-      step: widget.questionStep,
+    return TaskView(
+      task: widget.questionTask,
       resultFunction: () => TimeQuestionResult(
-        id: widget.questionStep.stepIdentifier,
+        id: widget.questionTask.taskIdentifier,
         startDate: _startDate,
         endDate: DateTime.now(),
         valueIdentifier: _result.toString(),
         result: _result,
       ),
-      isValid: widget.questionStep.isOptional || _result != null,
-      title: widget.questionStep.title.isNotEmpty
+      isValid: widget.questionTask.isOptional || _result != null,
+      title: widget.questionTask.title.isNotEmpty
           ? Text(
-              widget.questionStep.title,
+              widget.questionTask.title,
               style: Theme.of(context).textTheme.headline2,
               textAlign: TextAlign.center,
             )
-          : widget.questionStep.content,
+          : widget.questionTask.content,
       child: Column(
         children: [
           Padding(
             padding: const EdgeInsets.only(bottom: 14.0),
             child: Text(
-              widget.questionStep.text,
+              widget.questionTask.text,
               style: Theme.of(context).textTheme.bodyText2,
               textAlign: TextAlign.center,
             ),
@@ -81,7 +81,7 @@ class _TimeAnswerViewState extends State<TimeAnswerView> {
     return SizedBox(
       width: double.infinity,
       height: 450.0,
-      child: surveywidget.TimePickerWidget(
+      child: exercisewidget.TimePickerWidget(
         initialTime: _result ??
             TimeOfDay.fromDateTime(
               DateTime.now(),

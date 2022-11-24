@@ -3,16 +3,16 @@ import 'package:method_kit/src/answer_format/single_choice_answer_format.dart';
 import 'package:method_kit/src/answer_format/text_choice.dart';
 import 'package:method_kit/src/views/widget/selection_list_tile.dart';
 import 'package:method_kit/src/result/question/single_choice_question_result.dart';
-import 'package:method_kit/src/steps/predefined_steps/question_step.dart';
-import 'package:method_kit/src/views/widget/step_view.dart';
+import 'package:method_kit/src/task/predefined_task/question_task.dart';
+import 'package:method_kit/src/views/widget/task_view.dart';
 
 class SingleChoiceAnswerView extends StatefulWidget {
-  final QuestionStep questionStep;
+  final QuestionTask questionTask;
   final SingleChoiceQuestionResult? result;
 
   const SingleChoiceAnswerView({
     Key? key,
-    required this.questionStep,
+    required this.questionTask,
     required this.result,
   }) : super(key: key);
 
@@ -30,7 +30,7 @@ class _SingleChoiceAnswerViewState extends State<SingleChoiceAnswerView> {
   void initState() {
     super.initState();
     _singleChoiceAnswerFormat =
-        widget.questionStep.answerFormat as SingleChoiceAnswerFormat;
+        widget.questionTask.answerFormat as SingleChoiceAnswerFormat;
     _selectedChoice =
         widget.result?.result ?? _singleChoiceAnswerFormat.defaultSelection;
     _startDate = DateTime.now();
@@ -38,23 +38,23 @@ class _SingleChoiceAnswerViewState extends State<SingleChoiceAnswerView> {
 
   @override
   Widget build(BuildContext context) {
-    return StepView(
-      step: widget.questionStep,
+    return TaskView(
+      task: widget.questionTask,
       resultFunction: () => SingleChoiceQuestionResult(
-        id: widget.questionStep.stepIdentifier,
+        id: widget.questionTask.taskIdentifier,
         startDate: _startDate,
         endDate: DateTime.now(),
         valueIdentifier: _selectedChoice?.value ?? '',
         result: _selectedChoice,
       ),
-      isValid: widget.questionStep.isOptional || _selectedChoice != null,
-      title: widget.questionStep.title.isNotEmpty
+      isValid: widget.questionTask.isOptional || _selectedChoice != null,
+      title: widget.questionTask.title.isNotEmpty
           ? Text(
-              widget.questionStep.title,
+              widget.questionTask.title,
               style: Theme.of(context).textTheme.headline2,
               textAlign: TextAlign.center,
             )
-          : widget.questionStep.content,
+          : widget.questionTask.content,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 14.0),
         child: Column(
@@ -62,7 +62,7 @@ class _SingleChoiceAnswerViewState extends State<SingleChoiceAnswerView> {
             Padding(
               padding: const EdgeInsets.only(bottom: 32.0),
               child: Text(
-                widget.questionStep.text,
+                widget.questionTask.text,
                 style: Theme.of(context).textTheme.bodyText2,
                 textAlign: TextAlign.center,
               ),
