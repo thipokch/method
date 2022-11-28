@@ -16,7 +16,7 @@ _$TaskDefinitionLabel _$$TaskDefinitionLabelFromJson(
       id: json['id'] as String,
       uuid: _$JsonConverterFromJson<String, UuidValue>(
           json['uuid'], const UuidConverter().fromJson),
-      $type: json['runtimeType'] as String?,
+      $type: json['type'] as String?,
     );
 
 Map<String, dynamic> _$$TaskDefinitionLabelToJson(
@@ -29,7 +29,7 @@ Map<String, dynamic> _$$TaskDefinitionLabelToJson(
       'id': instance.id,
       'uuid': _$JsonConverterToJson<String, UuidValue>(
           instance.uuid, const UuidConverter().toJson),
-      'runtimeType': instance.$type,
+      'type': instance.$type,
     };
 
 Value? _$JsonConverterFromJson<Json, Value>(
@@ -53,7 +53,7 @@ _$TaskDefinitionNote _$$TaskDefinitionNoteFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       uuid: _$JsonConverterFromJson<String, UuidValue>(
           json['uuid'], const UuidConverter().fromJson),
-      $type: json['runtimeType'] as String?,
+      $type: json['type'] as String?,
     );
 
 Map<String, dynamic> _$$TaskDefinitionNoteToJson(
@@ -66,7 +66,7 @@ Map<String, dynamic> _$$TaskDefinitionNoteToJson(
       'id': instance.id,
       'uuid': _$JsonConverterToJson<String, UuidValue>(
           instance.uuid, const UuidConverter().toJson),
-      'runtimeType': instance.$type,
+      'type': instance.$type,
     };
 
 _$TaskDefinitionPart _$$TaskDefinitionPartFromJson(Map<String, dynamic> json) =>
@@ -78,7 +78,7 @@ _$TaskDefinitionPart _$$TaskDefinitionPartFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       uuid: _$JsonConverterFromJson<String, UuidValue>(
           json['uuid'], const UuidConverter().fromJson),
-      $type: json['runtimeType'] as String?,
+      $type: json['type'] as String?,
     );
 
 Map<String, dynamic> _$$TaskDefinitionPartToJson(
@@ -91,5 +91,5 @@ Map<String, dynamic> _$$TaskDefinitionPartToJson(
       'id': instance.id,
       'uuid': _$JsonConverterToJson<String, UuidValue>(
           instance.uuid, const UuidConverter().toJson),
-      'runtimeType': instance.$type,
+      'type': instance.$type,
     };

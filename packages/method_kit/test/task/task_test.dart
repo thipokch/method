@@ -1,9 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:method_kit/src/task/identifier/task_identifier.dart';
-import 'package:method_kit/src/task/predefined_task/instruction_task.dart';
-import 'package:method_kit/src/task/task.dart';
+import 'package:method_core/method_core.dart';
 
 void main() {
   test('instruction task is the same created by json and code', () {
@@ -12,7 +10,7 @@ void main() {
       "taskIdentifier": {
         "id": "1"
       },
-      "type": "intro",
+      "type": "instruction",
       "title": "Welcome to the\\nQuickBird Studios\\nHealth Exercise",
       "text": "Get ready for a bunch of super random questions!",
       "buttonText": "Let's go!"

@@ -1,8 +1,6 @@
 import 'dart:collection';
 
-import 'package:method_kit/src/result/question_result.dart';
-import 'package:method_kit/src/task/task.dart';
-import 'package:method_kit/src/exercise/exercise.dart';
+import 'package:method_kit/method_kit.dart';
 
 abstract class ExerciseNavigator {
   final Exercise exercise;
@@ -11,7 +9,7 @@ abstract class ExerciseNavigator {
   ExerciseNavigator(this.exercise);
 
   Task? firstTask();
-  Task? nextTask({required Task task, QuestionResult? questionResult});
+  Task? nextTask({required Task task, TaskResultDetail? questionResult});
   Task? previousInList(Task task);
 
   Task? nextInList(Task? task) {

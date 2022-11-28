@@ -3,7 +3,7 @@ import 'package:method_kit/method_kit.dart';
 
 void main() {
   final tResult = CompletionTaskResult(
-    Identifier(id: 'example1'),
+    const Identifier(id: 'example1'),
     DateTime(2022, 8, 12, 16, 4),
     DateTime(2022, 8, 12, 16, 14),
   );

@@ -26,12 +26,12 @@ Map<String, dynamic> _$$_ExerciseToJson(_$_Exercise instance) =>
       'icon': instance.icon,
       'name': instance.name,
       'description': instance.description,
-      'definitions': instance.definitions,
+      'definitions': instance.definitions.map((e) => e.toJson()).toList(),
       'hierarchyPath': instance.hierarchyPath,
       'id': instance.id,
       'uuid': _$JsonConverterToJson<String, UuidValue>(
           instance.uuid, const UuidConverter().toJson),
-      'presentation': instance.presentation,
+      'presentation': instance.presentation.toJson(),
     };
 
 Value? _$JsonConverterFromJson<Json, Value>(

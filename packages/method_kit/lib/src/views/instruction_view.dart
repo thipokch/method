@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:method_kit/src/result/task/instruction_task_result.dart';
-import 'package:method_kit/src/task/predefined_task/instruction_task.dart';
+import 'package:method_core/method_core.dart';
 import 'package:method_kit/src/views/widget/task_view.dart';
 
 class InstructionView extends StatelessWidget {

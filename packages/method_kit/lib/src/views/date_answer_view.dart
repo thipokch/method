@@ -2,9 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:intl/intl.dart';
-import 'package:method_kit/src/answer_format/date_answer_format.dart';
-import 'package:method_kit/src/result/question/date_question_result.dart';
-import 'package:method_kit/src/task/predefined_task/question_task.dart';
+import 'package:method_core/method_core.dart';
 import 'package:method_kit/src/views/widget/task_view.dart';
 
 class DateAnswerView extends StatefulWidget {

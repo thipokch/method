@@ -1,4 +1,4 @@
-import 'package:method_kit/src/result/question_result.dart';
+import 'package:method_kit/method_kit.dart';
 
 abstract class ExerciseEvent {
   const ExerciseEvent();
@@ -7,19 +7,19 @@ abstract class ExerciseEvent {
 class StartExercise extends ExerciseEvent {}
 
 class NextTask extends ExerciseEvent {
-  final QuestionResult questionResult;
+  final TaskResultDetail questionResult;
 
   NextTask(this.questionResult);
 }
 
 class TaskBack extends ExerciseEvent {
-  final QuestionResult? questionResult;
+  final TaskResultDetail? questionResult;
 
   TaskBack(this.questionResult);
 }
 
 class CloseExercise extends ExerciseEvent {
-  final QuestionResult? questionResult;
+  final TaskResultDetail? questionResult;
 
   CloseExercise(this.questionResult);
 }

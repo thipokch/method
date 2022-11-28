@@ -1,21 +1,13 @@
 import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:method_kit/src/configuration/app_bar_configuration.dart';
-import 'package:method_kit/src/navigator/exercise_navigator.dart';
-import 'package:method_kit/src/presenter/exercise_event.dart';
-import 'package:method_kit/src/presenter/exercise_state.dart';
-import 'package:method_kit/src/result/question_result.dart';
-import 'package:method_kit/src/result/task_result.dart';
-import 'package:method_kit/src/result/exercise/exercise_result.dart';
-import 'package:method_kit/src/task/task.dart';
-import 'package:method_kit/src/task/identifier/task_identifier.dart';
+import 'package:method_kit/method_kit.dart';
 
 //TO DO: Extract gathering of the results into another class
 class ExercisePresenter extends Bloc<ExerciseEvent, ExerciseState> {
   final ExerciseNavigator exerciseNavigator;
   final Function(ExerciseResult) onResult;
 
-  Set<QuestionResult> results = {};
+  Set<TaskResultDetail> results = {};
   late final DateTime startDate;
 
   ExercisePresenter({
@@ -94,7 +86,7 @@ class ExercisePresenter extends Bloc<ExerciseEvent, ExerciseState> {
       return _handleExerciseFinished(currentState);
     }
 
-    QuestionResult? questionResult =
+    TaskResultDetail? questionResult =
         _getResultByTaskIdentifier(nextTask.taskIdentifier);
 
     return PresentingExerciseState(
@@ -120,7 +112,7 @@ class ExercisePresenter extends Bloc<ExerciseEvent, ExerciseState> {
         exerciseNavigator.previousInList(currentState.currentTask);
 
     if (previousTask != null) {
-      QuestionResult? questionResult =
+      TaskResultDetail? questionResult =
           _getResultByTaskIdentifier(previousTask.taskIdentifier);
 
       return PresentingExerciseState(
@@ -143,7 +135,7 @@ class ExercisePresenter extends Bloc<ExerciseEvent, ExerciseState> {
     return state;
   }
 
-  QuestionResult? _getResultByTaskIdentifier(TaskIdentifier? identifier) {
+  TaskResultDetail? _getResultByTaskIdentifier(TaskIdentifier? identifier) {
     return results.firstWhereOrNull(
       (element) => element.id == identifier,
     );
@@ -192,12 +184,13 @@ class ExercisePresenter extends Bloc<ExerciseEvent, ExerciseState> {
     );
   }
 
-  void _addResult(QuestionResult? questionResult) {
+  void _addResult(TaskResultDetail? questionResult) {
     if (questionResult == null) {
       return;
     }
-    results
-        .removeWhere((QuestionResult result) => result.id == questionResult.id);
+    results.removeWhere(
+      (TaskResultDetail result) => result.id == questionResult.id,
+    );
     results.add(
       questionResult,
     );

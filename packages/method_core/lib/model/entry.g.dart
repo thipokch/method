@@ -27,8 +27,8 @@ _$_Entry _$$_EntryFromJson(Map<String, dynamic> json) => _$_Entry(
     );
 
 Map<String, dynamic> _$$_EntryToJson(_$_Entry instance) => <String, dynamic>{
-      'template': instance.template,
-      'definitions': instance.definitions,
+      'template': instance.template.toJson(),
+      'definitions': instance.definitions.map((e) => e.toJson()).toList(),
       'hierarchyPath': instance.hierarchyPath,
       'id': instance.id,
       'uuid': _$JsonConverterToJson<String, UuidValue>(

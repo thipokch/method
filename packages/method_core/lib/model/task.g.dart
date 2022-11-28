@@ -25,7 +25,7 @@ Map<String, dynamic> _$$TaskLinearToJson(_$TaskLinear instance) =>
       'icon': instance.icon,
       'name': instance.name,
       'description': instance.description,
-      'definitions': instance.definitions,
+      'definitions': instance.definitions.map((e) => e.toJson()).toList(),
       'hierarchyPath': instance.hierarchyPath,
       'id': instance.id,
       'uuid': _$JsonConverterToJson<String, UuidValue>(
@@ -65,7 +65,7 @@ Map<String, dynamic> _$$TaskDivergeToJson(_$TaskDiverge instance) =>
       'icon': instance.icon,
       'name': instance.name,
       'description': instance.description,
-      'definitions': instance.definitions,
+      'definitions': instance.definitions.map((e) => e.toJson()).toList(),
       'hierarchyPath': instance.hierarchyPath,
       'id': instance.id,
       'uuid': _$JsonConverterToJson<String, UuidValue>(
@@ -93,7 +93,7 @@ Map<String, dynamic> _$$TaskConvergeToJson(_$TaskConverge instance) =>
       'icon': instance.icon,
       'name': instance.name,
       'description': instance.description,
-      'definitions': instance.definitions,
+      'definitions': instance.definitions.map((e) => e.toJson()).toList(),
       'hierarchyPath': instance.hierarchyPath,
       'id': instance.id,
       'uuid': _$JsonConverterToJson<String, UuidValue>(
@@ -121,7 +121,7 @@ Map<String, dynamic> _$$TaskFeedbackToJson(_$TaskFeedback instance) =>
       'icon': instance.icon,
       'name': instance.name,
       'description': instance.description,
-      'definitions': instance.definitions,
+      'definitions': instance.definitions.map((e) => e.toJson()).toList(),
       'hierarchyPath': instance.hierarchyPath,
       'id': instance.id,
       'uuid': _$JsonConverterToJson<String, UuidValue>(

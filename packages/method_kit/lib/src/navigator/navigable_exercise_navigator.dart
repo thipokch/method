@@ -1,17 +1,10 @@
-import 'package:method_kit/src/navigator/rules/conditional_navigation_rule.dart';
-import 'package:method_kit/src/navigator/rules/direct_navigation_rule.dart';
-import 'package:method_kit/src/navigator/rules/navigation_rule.dart';
-import 'package:method_kit/src/navigator/exercise_navigator.dart';
-import 'package:method_kit/src/result/question_result.dart';
-import 'package:method_kit/src/task/task.dart';
-import 'package:method_kit/src/exercise/navigable_exercise.dart';
-import 'package:method_kit/src/exercise/exercise.dart';
+import 'package:method_kit/method_kit.dart';
 
 class NavigableExerciseNavigator extends ExerciseNavigator {
   NavigableExerciseNavigator(Exercise exercise) : super(exercise);
 
   @override
-  Task? nextTask({required Task task, QuestionResult? questionResult}) {
+  Task? nextTask({required Task task, TaskResultDetail? questionResult}) {
     record(task);
     final navigableExercise = exercise as NavigableExercise;
     NavigationRule? rule =
@@ -47,7 +40,7 @@ class NavigableExerciseNavigator extends ExerciseNavigator {
   Task? evaluateNextTask(
     Task? task,
     ConditionalNavigationRule rule,
-    QuestionResult? questionResult,
+    TaskResultDetail? questionResult,
   ) {
     if (questionResult == null) {
       return nextInList(task);
@@ -71,7 +64,7 @@ class NavigableExerciseNavigator extends ExerciseNavigator {
     final previousTask = peekHistory();
 
     return previousTask == null
-        ? exercise.initalTask ?? exercise.tasks.first
+        ? exercise.initialTask ?? exercise.tasks.first
         : nextTask(task: previousTask, questionResult: null);
   }
 }

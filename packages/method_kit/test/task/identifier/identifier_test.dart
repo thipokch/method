@@ -11,7 +11,7 @@ void main() {
       }
     ''';
     final jsonIdentifier = Identifier.fromJson(json.decode(jsonStr));
-    final identifier = Identifier(id: '123');
+    const identifier = Identifier(id: '123');
 
     expect(identifier, jsonIdentifier);
   });

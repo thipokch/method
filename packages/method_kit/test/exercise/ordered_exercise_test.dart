@@ -11,8 +11,8 @@ void main() {
       "type": "ordered"
     }
     ''';
-    final Exercise orderedExercise =
-        OrderedExercise(id: const ExerciseIdentifier(id: '123'), tasks: []);
+    const Exercise orderedExercise =
+        OrderedExercise(id: ExerciseIdentifier(id: '123'), tasks: []);
 
     final orderedJsonExercise = OrderedExercise.fromJson(json.decode(jsonStr));
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:method_core/method_core.dart';
+import 'package:method_kit/src/views/task_create_view.dart';
 import 'package:provider/provider.dart';
 import 'package:method_kit/src/configuration/app_bar_configuration.dart';
 import 'package:method_kit/src/controller/exercise_controller.dart';
@@ -8,10 +10,6 @@ import 'package:method_kit/src/navigator/ordered_exercise_navigator.dart';
 import 'package:method_kit/src/navigator/exercise_navigator.dart';
 import 'package:method_kit/src/presenter/exercise_presenter.dart';
 import 'package:method_kit/src/presenter/exercise_state.dart';
-import 'package:method_kit/src/result/exercise/exercise_result.dart';
-import 'package:method_kit/src/exercise/navigable_exercise.dart';
-import 'package:method_kit/src/exercise/ordered_exercise.dart';
-import 'package:method_kit/src/exercise/exercise.dart';
 import 'package:method_kit/src/views/widget/exercise_app_bar.dart';
 import 'package:method_kit/src/widget/exercise_progress_configuration.dart';
 import 'package:collection/collection.dart' show IterableExtension;

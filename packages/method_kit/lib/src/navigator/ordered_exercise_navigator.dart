@@ -1,13 +1,10 @@
-import 'package:method_kit/src/navigator/exercise_navigator.dart';
-import 'package:method_kit/src/result/question_result.dart';
-import 'package:method_kit/src/task/task.dart';
-import 'package:method_kit/src/exercise/exercise.dart';
+import 'package:method_kit/method_kit.dart';
 
 class OrderedExerciseNavigator extends ExerciseNavigator {
   OrderedExerciseNavigator(Exercise exercise) : super(exercise);
 
   @override
-  Task? nextTask({required Task task, QuestionResult? questionResult}) {
+  Task? nextTask({required Task task, Result? questionResult}) {
     record(task);
 
     return nextInList(task);
@@ -26,7 +23,7 @@ class OrderedExerciseNavigator extends ExerciseNavigator {
     final previousTask = peekHistory();
 
     return previousTask == null
-        ? exercise.initalTask ?? exercise.tasks.first
+        ? exercise.initialTask ?? exercise.tasks.first
         : nextInList(previousTask);
   }
 }

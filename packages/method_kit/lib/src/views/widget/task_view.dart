@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:method_kit/src/controller/exercise_controller.dart';
-import 'package:method_kit/src/result/question_result.dart';
-import 'package:method_kit/src/task/task.dart' as exercisetask;
+import 'package:method_kit/method_kit.dart';
+// import 'package:method_kit/src/controller/exercise_controller.dart';
+// import 'package:method_kit/src/result/question_result.dart';
+// import 'package:method_kit/src/task/task.dart' as exercisetask;
 import 'package:provider/provider.dart';
 
 class TaskView extends StatelessWidget {
-  final exercisetask.Task task;
+  final Task task;
   final Widget title;
   final Widget child;
-  final QuestionResult Function() resultFunction;
+  final TaskResultDetail Function() resultFunction;
   final bool isValid;
   final ExerciseController? controller;
 
@@ -52,11 +53,7 @@ class TaskView extends StatelessWidget {
                             exerciseController.nextTask(context, resultFunction)
                         : null,
                     child: Text(
-                      task.buttonText?.toUpperCase() ??
-                          context
-                              .read<Map<String, String>?>()?['next']
-                              ?.toUpperCase() ??
-                          'Next',
+                      task.buttonText.toUpperCase(),
                       style: TextStyle(
                         color: isValid
                             ? Theme.of(context).primaryColor

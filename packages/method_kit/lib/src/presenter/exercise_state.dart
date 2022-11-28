@@ -1,7 +1,5 @@
+import 'package:method_core/method_core.dart';
 import 'package:method_kit/src/configuration/app_bar_configuration.dart';
-import 'package:method_kit/src/result/question_result.dart';
-import 'package:method_kit/src/result/exercise/exercise_result.dart';
-import 'package:method_kit/src/task/task.dart';
 
 abstract class ExerciseState {
   const ExerciseState();
@@ -12,9 +10,9 @@ class LoadingExerciseState extends ExerciseState {}
 class PresentingExerciseState extends ExerciseState {
   final AppBarConfiguration appBarConfiguration;
   final List<Task> tasks;
-  final Set<QuestionResult> questionResults;
+  final Set<TaskResultDetail> questionResults;
   final Task currentTask;
-  final QuestionResult? result;
+  final TaskResultDetail? result;
   final int currentTaskIndex;
   final int taskCount;
   final bool isPreviousTask;
@@ -34,7 +32,7 @@ class PresentingExerciseState extends ExerciseState {
 class ExerciseResultState extends ExerciseState {
   final ExerciseResult result;
   final Task? currentTask;
-  final QuestionResult? taskResult;
+  final TaskResultDetail? taskResult;
 
   ExerciseResultState({
     required this.result,

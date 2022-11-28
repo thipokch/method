@@ -16,7 +16,7 @@ void main() {
                   title: 'Welcome to the\nQuickBird Studios\nHealth Exercise',
                   text: 'Get ready for a bunch of super random questions!',
                   buttonText: 'Let\'s go!',
-                  taskIdentifier: TaskIdentifier.fromNullable(),
+                  taskIdentifier: Identifier.newTask(),
                 ),
                 QuestionTask(
                   title: 'How old are you?',
@@ -24,7 +24,7 @@ void main() {
                     defaultValue: 25,
                     hint: 'Please enter your age',
                   ),
-                  taskIdentifier: TaskIdentifier.fromNullable(),
+                  taskIdentifier: Identifier.newTask(),
                 ),
                 const CompletionTask(
                   taskIdentifier: TaskIdentifier(id: '321'),

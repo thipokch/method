@@ -2,33 +2,33 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:method_kit/method_kit.dart';
 
 void main() {
-  final List<QuestionResult> tQuestionResults = ([
+  final List<TaskResultDetail> tQuestionResults = ([
     InstructionTaskResult(
-      Identifier(id: 'example1_intro'),
+      const Identifier(id: 'example1_intro'),
       DateTime(2022, 8, 12, 16, 4),
       DateTime(2022, 8, 12, 16, 5),
     ),
     BooleanQuestionResult(
-      id: Identifier(id: 'example1_boolean'),
+      id: const Identifier(id: 'example1_boolean'),
       startDate: DateTime(2022, 8, 12, 16, 5),
       endDate: DateTime(2022, 8, 12, 16, 10),
       valueIdentifier: 'bool1',
       result: BooleanResult.NEGATIVE,
     ),
     CompletionTaskResult(
-      Identifier(id: 'example1_completion'),
+      const Identifier(id: 'example1_completion'),
       DateTime(2022, 8, 12, 16, 10),
       DateTime(2022, 8, 12, 16, 14),
     ),
   ]);
   final tExerciseResult = ExerciseResult(
-    id: Identifier(id: 'example1'),
+    id: const Identifier(id: 'example1'),
     startDate: DateTime(2022, 8, 12, 16, 4),
     endDate: DateTime(2022, 8, 12, 16, 14),
     finishReason: FinishReason.COMPLETED,
     results: [
       TaskResult(
-        id: Identifier(id: 'example1_taskResult'),
+        id: const Identifier(id: 'example1_taskResult'),
         startDate: DateTime(2022, 8, 12, 16, 5),
         endDate: DateTime(2022, 8, 12, 16, 10),
         results: tQuestionResults,

@@ -1,27 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:method_kit/src/answer_format/multi_double.dart';
-import 'package:method_kit/src/answer_format/multiple_double_answer_format.dart';
-import 'package:method_kit/src/result/question/multiple_double_question_result.dart';
-import 'package:method_kit/src/task/predefined_task/question_task.dart';
+import 'package:method_core/method_core.dart';
 import 'package:method_kit/src/views/widget/task_view.dart';
 
-class MultipleDoubleAnswerView extends StatefulWidget {
+class MultiDoubleAnswerView extends StatefulWidget {
   final QuestionTask questionTask;
-  final MultipleDoubleQuestionResult? result;
+  final MultiDoubleQuestionResult? result;
 
-  const MultipleDoubleAnswerView({
+  const MultiDoubleAnswerView({
     Key? key,
     required this.questionTask,
     required this.result,
   }) : super(key: key);
 
   @override
-  State<MultipleDoubleAnswerView> createState() =>
-      _MultipleDoubleAnswerViewState();
+  State<MultiDoubleAnswerView> createState() => _MultiDoubleAnswerViewState();
 }
 
-class _MultipleDoubleAnswerViewState extends State<MultipleDoubleAnswerView> {
-  late final MultipleDoubleAnswerFormat _multipleDoubleAnswer;
+class _MultiDoubleAnswerViewState extends State<MultiDoubleAnswerView> {
+  late final MultiDoubleAnswerFormat _multipleDoubleAnswer;
   late final List<TextEditingController> _controller;
   late final DateTime _startDate;
 
@@ -32,7 +28,7 @@ class _MultipleDoubleAnswerViewState extends State<MultipleDoubleAnswerView> {
   void initState() {
     super.initState();
     _multipleDoubleAnswer =
-        widget.questionTask.answerFormat as MultipleDoubleAnswerFormat;
+        widget.questionTask.answerFormat as MultiDoubleAnswerFormat;
     _controller = _multipleDoubleAnswer.hints.map((e) {
       return TextEditingController();
     }).toList();
@@ -72,7 +68,7 @@ class _MultipleDoubleAnswerViewState extends State<MultipleDoubleAnswerView> {
   Widget build(BuildContext context) {
     return TaskView(
       task: widget.questionTask,
-      resultFunction: () => MultipleDoubleQuestionResult(
+      resultFunction: () => MultiDoubleQuestionResult(
         id: widget.questionTask.taskIdentifier,
         startDate: _startDate,
         endDate: DateTime.now(),

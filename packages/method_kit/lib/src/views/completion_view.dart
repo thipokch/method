@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:method_kit/src/result/task/completion_task_result.dart';
-import 'package:method_kit/src/task/predefined_task/completion_task.dart';
+import 'package:method_core/method_core.dart';
 import 'package:method_kit/src/views/widget/task_view.dart';
 
 class CompletionView extends StatelessWidget {

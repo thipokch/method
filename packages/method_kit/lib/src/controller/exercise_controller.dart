@@ -1,8 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:method_kit/src/presenter/exercise_event.dart';
-import 'package:method_kit/src/presenter/exercise_presenter.dart';
-import 'package:method_kit/src/result/question_result.dart';
+import 'package:method_kit/method_kit.dart';
 
 class ExerciseController {
   /// Defines what should happen if the next task is called
@@ -16,7 +14,7 @@ class ExerciseController {
   /// ```
   final Function(
     BuildContext context,
-    QuestionResult Function() resultFunction,
+    Result Function() resultFunction,
   )? onNextTask;
 
   /// Defines what should happen if the previous task is called
@@ -30,7 +28,7 @@ class ExerciseController {
   /// ```
   final Function(
     BuildContext context,
-    QuestionResult Function()? resultFunction,
+    Result Function()? resultFunction,
   )? onTaskBack;
 
   /// Defines what should happen if the exercise should be closed
@@ -44,7 +42,7 @@ class ExerciseController {
   /// ```
   final Function(
     BuildContext context,
-    QuestionResult Function()? resultFunction,
+    TaskResultDetail Function()? resultFunction,
   )? onCloseExercise;
 
   ExerciseController({
@@ -55,7 +53,7 @@ class ExerciseController {
 
   void nextTask(
     BuildContext context,
-    QuestionResult Function() resultFunction,
+    TaskResultDetail Function() resultFunction,
   ) {
     if (onNextTask != null) {
       onNextTask!(context, resultFunction);
@@ -71,7 +69,7 @@ class ExerciseController {
 
   void taskBack({
     required BuildContext context,
-    QuestionResult Function()? resultFunction,
+    TaskResultDetail Function()? resultFunction,
   }) {
     if (onTaskBack != null) {
       onTaskBack!(context, resultFunction);
@@ -87,7 +85,7 @@ class ExerciseController {
 
   void closeExercise({
     required BuildContext context,
-    QuestionResult Function()? resultFunction,
+    TaskResultDetail Function()? resultFunction,
   }) {
     if (onCloseExercise != null) {
       onCloseExercise!(context, resultFunction);

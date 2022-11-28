@@ -28,8 +28,8 @@ _$_Session _$$_SessionFromJson(Map<String, dynamic> json) => _$_Session(
 
 Map<String, dynamic> _$$_SessionToJson(_$_Session instance) =>
     <String, dynamic>{
-      'template': instance.template,
-      'definitions': instance.definitions,
+      'template': instance.template.toJson(),
+      'definitions': instance.definitions.map((e) => e.toJson()).toList(),
       'hierarchyPath': instance.hierarchyPath,
       'id': instance.id,
       'uuid': _$JsonConverterToJson<String, UuidValue>(
