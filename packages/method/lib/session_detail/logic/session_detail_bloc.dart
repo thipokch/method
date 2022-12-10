@@ -7,7 +7,7 @@ import 'package:method_core/model/entry.dart';
 import 'package:method_core/model/exercise.dart';
 import 'package:method_core/model/session.dart';
 import 'package:method_core/model/task.dart';
-import 'package:method_repo/repository.dart';
+import 'package:method_repo/method_repo.dart';
 
 part 'session_detail_event.dart';
 part 'session_detail_state.dart';
@@ -27,18 +27,18 @@ class SessionDetailBloc extends Bloc<SessionDetailEvent, SessionDetailState> {
     required this.id,
     required this.repository,
   }) : super(const _Initial()) {
-    on<_Start>(_onStart);
+    // on<_Start>(_onStart);
     add(const _Start());
   }
 
   final String id;
   final Repository repository;
 
-  void _onStart(_Start event, Emitter<SessionDetailState> emit) => emit.forEach(
-        repository.sessions.stream(id),
-        onData: _onData,
-        onError: _onError,
-      );
+  // void _onStart(_Start event, Emitter<SessionDetailState> emit) => emit.forEach(
+  //       repository.sessions.stream(id),
+  //       onData: _onData,
+  //       onError: _onError,
+  //     );
 
   // STREAM EVENTS
 

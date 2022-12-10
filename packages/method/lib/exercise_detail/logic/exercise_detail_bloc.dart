@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method_core/model/exercise.dart';
-import 'package:method_repo/repository.dart';
+import 'package:method_repo/method_repo.dart';
 
 part 'exercise_detail_event.dart';
 part 'exercise_detail_state.dart';
@@ -36,19 +36,19 @@ class ExerciseDetailBloc
     required this.id,
     required this.repository,
   }) : super(const _Initial()) {
-    on<_Start>(_onStart);
+    // on<_Start>(_onStart);
     add(const _Start());
   }
 
   final String id;
   final Repository repository;
 
-  void _onStart(_Start event, Emitter<ExerciseDetailState> emit) =>
-      emit.forEach(
-        repository.exercises.stream(id),
-        onData: _onData,
-        onError: _onError,
-      );
+  // void _onStart(_Start event, Emitter<ExerciseDetailState> emit) =>
+  //     emit.forEach(
+  //       repository.exercises.stream(id),
+  //       onData: _onData,
+  //       onError: _onError,
+  //     );
 
   // STREAM EVENTS
 

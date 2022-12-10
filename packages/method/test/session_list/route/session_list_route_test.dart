@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:method/session_list/session_list.dart';
 import 'package:method_core/model/session.dart';
 import 'package:method_repo/collection/session.dart';
-import 'package:method_repo/repository.dart';
+import 'package:method_repo/method_repo.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../mock/mock_data.dart';

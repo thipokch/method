@@ -15,9 +15,9 @@ class SessionEditState with _$SessionEditState {
 }
 
 extension Property on SessionEditState {
-  Exercise? get exercise => mapOrNull(
-        started: (_) => _.session.template,
-      );
+  // Exercise? get exercise => mapOrNull(
+  //       started: (_) => _.session.,
+  //     );
 
   Session? get session => mapOrNull(
         started: (_) => _.session,

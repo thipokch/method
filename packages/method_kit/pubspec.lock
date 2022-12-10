@@ -8,13 +8,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "49.0.0"
-  _flutterfire_internals:
-    dependency: transitive
-    description:
-      name: _flutterfire_internals
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.2"
   analyzer:
     dependency: transitive
     description:
@@ -148,20 +141,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.1"
-  cloud_firestore_platform_interface:
-    dependency: transitive
-    description:
-      name: cloud_firestore_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "5.7.7"
-  cloud_firestore_web:
-    dependency: transitive
-    description:
-      name: cloud_firestore_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.8.10"
   code_builder:
     dependency: transitive
     description:
@@ -225,13 +204,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.1"
-  ffi:
-    dependency: transitive
-    description:
-      name: ffi
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.1"
   file:
     dependency: transitive
     description:
@@ -239,48 +211,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.1.4"
-  firebase_core:
-    dependency: transitive
-    description:
-      name: firebase_core
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.24.0"
-  firebase_core_platform_interface:
-    dependency: transitive
-    description:
-      name: firebase_core_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.5.2"
-  firebase_core_web:
-    dependency: transitive
-    description:
-      name: firebase_core_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.7.3"
-  firebase_remote_config:
-    dependency: transitive
-    description:
-      name: firebase_remote_config
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.20"
-  firebase_remote_config_platform_interface:
-    dependency: transitive
-    description:
-      name: firebase_remote_config_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.19"
-  firebase_remote_config_web:
-    dependency: transitive
-    description:
-      name: firebase_remote_config_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.8"
   fixnum:
     dependency: transitive
     description:
@@ -443,20 +373,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
-  isar:
-    dependency: transitive
-    description:
-      name: isar
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.2"
-  isar_flutter_libs:
-    dependency: transitive
-    description:
-      name: isar_flutter_libs
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.2"
   js:
     dependency: transitive
     description:
@@ -524,20 +440,6 @@ packages:
     dependency: "direct main"
     description:
       path: "../method_core"
-      relative: true
-    source: path
-    version: "0.0.0"
-  method_isar:
-    dependency: "direct overridden"
-    description:
-      path: "../method_isar"
-      relative: true
-    source: path
-    version: "0.0.0"
-  method_repo:
-    dependency: "direct dev"
-    description:
-      path: "../method_repo"
       relative: true
     source: path
     version: "0.0.0"

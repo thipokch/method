@@ -8,7 +8,7 @@ import 'package:method/app/route/route.dart';
 import 'package:method/session_detail/session_detail.dart';
 import 'package:method/util/bloc_navigator.dart';
 import 'package:method_core/model/session.dart';
-import 'package:method_repo/repository.dart';
+import 'package:method_repo/method_repo.dart';
 
 part 'session_list_event.dart';
 part 'session_list_state.dart';
@@ -37,7 +37,7 @@ class SessionListBloc extends Bloc<SessionListEvent, SessionListState>
   }) : super(const _Initial()) {
     on<_Start>(_onStart);
     on<_SelectSession>(_onSelectSession);
-    on<_DeleteSession>(_onDeleteSession);
+    // on<_DeleteSession>(_onDeleteSession);
   }
 
   final Repository repository;
@@ -46,11 +46,12 @@ class SessionListBloc extends Bloc<SessionListEvent, SessionListState>
   @override
   final GlobalKey<NavigatorState> navigator;
 
-  void _onStart(_Start event, Emitter<SessionListState> emit) => emit.forEach(
-        repository.sessions.streamAll(),
-        onData: _onData,
-        onError: _onError,
-      );
+  void _onStart(_Start event, Emitter<SessionListState> emit) {}
+  // void _onStart(_Start event, Emitter<SessionListState> emit) => emit.forEach(
+  //       repository.sessions.streamAll(),
+  //       onData: _onData,
+  //       onError: _onError,
+  //     );
 
   void _onSelectSession(
     _SelectSession event,
@@ -58,11 +59,11 @@ class SessionListBloc extends Bloc<SessionListEvent, SessionListState>
   ) =>
       SessionDetailRoute(event.session.id).go(context);
 
-  void _onDeleteSession(
-    _DeleteSession event,
-    Emitter<SessionListState> emit,
-  ) async =>
-      await repository.sessions.remove(event.session);
+  // void _onDeleteSession(
+  //   _DeleteSession event,
+  //   Emitter<SessionListState> emit,
+  // ) async =>
+  //     await repository.sessions.remove(event.session);
 
   // STREAM EVENTS
 

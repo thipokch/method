@@ -8,7 +8,7 @@ import 'package:method_core/model/exercise.dart';
 import 'package:method_core/model/session.dart';
 import 'package:method_repo/collection/exercise.dart';
 import 'package:method_repo/collection/session.dart';
-import 'package:method_repo/repository.dart';
+import 'package:method_repo/method_repo.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../util/core_matcher.dart';

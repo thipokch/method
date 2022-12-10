@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:method/session_edit/session_edit.dart';
 import 'package:method/util/sheet.dart';
+import 'package:method_kit/method_kit.dart';
+import 'package:method_repo/method_repo.dart';
 
 class ExerciseStartRoute extends GoRouteData {
   const ExerciseStartRoute(this.id);
@@ -10,13 +10,23 @@ class ExerciseStartRoute extends GoRouteData {
   final String id;
 
   @override
-  Widget build(BuildContext context) => BlocProvider(
-        create: (context) => SessionEditBloc(repository: context.read())
-          ..add(SessionEditEvent.startExercise(exerciseId: id)),
-        child: const SessionEditView(),
+  Widget build(BuildContext context) => MethodKit(
+        exercise: sampleExercise,
+        onResult: (_) {},
       );
 
+
+  // @override
+  // Widget build(BuildContext context) => BlocProvider(
+  //       create: (context) => SessionEditBloc(repository: context.read())
+  //         ..add(SessionEditEvent.startExercise(exerciseId: id)),
+  //       child: const SessionEditView(),
+  //     );
+
+  // @override
+  // Page<void> buildPageWithState(BuildContext context, GoRouterState state) =>
+  //     MtSheet(child: build(context));
   @override
   Page<void> buildPageWithState(BuildContext context, GoRouterState state) =>
-      MtSheet(child: build(context));
+      CupertinoPage(child: build(context));
 }

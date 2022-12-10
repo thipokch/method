@@ -1,4 +1,4 @@
-import 'package:method_repo/source/driver.dart';
+import 'driver.dart';
 
 abstract class SourceCollection<DRIVER, DOM> extends BaseCollection<DOM> {
   final SourceDriver<DRIVER> source;

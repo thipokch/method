@@ -205,7 +205,9 @@ scripts:
     description: Build web for given environment.
       For local development, use .env to set variables
       BUILD_ENV - build environment (dev, stg, prd)
-    run: flutter build web --verbose --release --target=packages/method/lib/main.$BUILD_ENV.dart
+    run: | 
+      cd packages/method/ && \
+      flutter build web --verbose --release --target=lib/main.$BUILD_ENV.dart
 
   build:web:dev:
     description: Builds web for development.

@@ -44,7 +44,6 @@ dependencies:
   # realm: ^0.5.0+beta
   # uuid: ^3.0.6
 
-  # method_bloc:
   method_core:
   method_kit:
   method_ui:
@@ -80,6 +79,8 @@ dev_dependencies:
   mocktail: ^0.3.0
 
 flutter:
+  assets:
+    - assets/
 
 flutter_native_splash:
   color: "#000000"

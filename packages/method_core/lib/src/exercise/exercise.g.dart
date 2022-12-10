@@ -8,6 +8,9 @@ part of 'exercise.dart';
 
 _$NavigableExercise _$$NavigableExerciseFromJson(Map<String, dynamic> json) =>
     _$NavigableExercise(
+      icon: json['icon'] as String,
+      name: json['name'] as String,
+      description: json['description'] as String,
       id: const ExerciseIdentifierConverter().fromJson(json['id'] as String),
       tasks: (json['tasks'] as List<dynamic>?)
               ?.map((e) => Task.fromJson(e as Map<String, dynamic>))
@@ -25,6 +28,9 @@ _$NavigableExercise _$$NavigableExerciseFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$NavigableExerciseToJson(_$NavigableExercise instance) =>
     <String, dynamic>{
+      'icon': instance.icon,
+      'name': instance.name,
+      'description': instance.description,
       'id': const ExerciseIdentifierConverter().toJson(instance.id),
       'tasks': instance.tasks.map((e) => e.toJson()).toList(),
       'initialTask': instance.initialTask?.toJson(),
@@ -35,6 +41,9 @@ Map<String, dynamic> _$$NavigableExerciseToJson(_$NavigableExercise instance) =>
 
 _$OrderedExercise _$$OrderedExerciseFromJson(Map<String, dynamic> json) =>
     _$OrderedExercise(
+      icon: json['icon'] as String,
+      name: json['name'] as String,
+      description: json['description'] as String,
       id: const ExerciseIdentifierConverter().fromJson(json['id'] as String),
       tasks: (json['tasks'] as List<dynamic>?)
               ?.map((e) => Task.fromJson(e as Map<String, dynamic>))
@@ -48,6 +57,9 @@ _$OrderedExercise _$$OrderedExerciseFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$OrderedExerciseToJson(_$OrderedExercise instance) =>
     <String, dynamic>{
+      'icon': instance.icon,
+      'name': instance.name,
+      'description': instance.description,
       'id': const ExerciseIdentifierConverter().toJson(instance.id),
       'tasks': instance.tasks.map((e) => e.toJson()).toList(),
       'initialTask': instance.initialTask?.toJson(),

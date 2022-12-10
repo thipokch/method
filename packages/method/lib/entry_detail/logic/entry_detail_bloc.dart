@@ -7,7 +7,7 @@ import 'package:method_core/model/entry.dart';
 import 'package:method_core/model/entry_definition.dart';
 import 'package:method_core/model/task.dart';
 import 'package:method_core/model/task_definition.dart';
-import 'package:method_repo/repository.dart';
+import 'package:method_repo/method_repo.dart';
 
 part 'entry_detail_event.dart';
 part 'entry_detail_state.dart';
@@ -24,18 +24,18 @@ class EntryDetailBloc extends Bloc<EntryDetailEvent, EntryDetailState> {
     required this.id,
     required this.repository,
   }) : super(const _Initial()) {
-    on<_Start>(_onStart);
+    // on<_Start>(_onStart);
     add(const _Start());
   }
 
   final String id;
   final Repository repository;
 
-  void _onStart(_Start event, Emitter<EntryDetailState> emit) => emit.forEach(
-        repository.entries.stream(id),
-        onData: _onData,
-        onError: _onError,
-      );
+  // void _onStart(_Start event, Emitter<EntryDetailState> emit) => emit.forEach(
+  //       repository.entries.stream(id),
+  //       onData: _onData,
+  //       onError: _onError,
+  //     );
 
   // STREAM EVENTS
 

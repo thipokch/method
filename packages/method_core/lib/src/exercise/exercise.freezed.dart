@@ -29,6 +29,9 @@ Exercise _$ExerciseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Exercise {
+  String get icon => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
   @ExerciseIdentifierConverter()
   ExerciseIdentifier get id => throw _privateConstructorUsedError;
   List<Task> get tasks => throw _privateConstructorUsedError;
@@ -36,6 +39,9 @@ mixin _$Exercise {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
+            String icon,
+            String name,
+            String description,
             @ExerciseIdentifierConverter()
                 ExerciseIdentifier id,
             List<Task> tasks,
@@ -45,6 +51,9 @@ mixin _$Exercise {
                 Map<TaskIdentifier, NavigationRule> navigationRules)
         navigable,
     required TResult Function(
+            String icon,
+            String name,
+            String description,
             @ExerciseIdentifierConverter() ExerciseIdentifier id,
             List<Task> tasks,
             Task? initialTask)
@@ -54,6 +63,9 @@ mixin _$Exercise {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(
+            String icon,
+            String name,
+            String description,
             @ExerciseIdentifierConverter()
                 ExerciseIdentifier id,
             List<Task> tasks,
@@ -62,14 +74,22 @@ mixin _$Exercise {
             @MapOfNavigationRulesConverter()
                 Map<TaskIdentifier, NavigationRule> navigationRules)?
         navigable,
-    TResult Function(@ExerciseIdentifierConverter() ExerciseIdentifier id,
-            List<Task> tasks, Task? initialTask)?
+    TResult Function(
+            String icon,
+            String name,
+            String description,
+            @ExerciseIdentifierConverter() ExerciseIdentifier id,
+            List<Task> tasks,
+            Task? initialTask)?
         ordered,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
+            String icon,
+            String name,
+            String description,
             @ExerciseIdentifierConverter()
                 ExerciseIdentifier id,
             List<Task> tasks,
@@ -78,8 +98,13 @@ mixin _$Exercise {
             @MapOfNavigationRulesConverter()
                 Map<TaskIdentifier, NavigationRule> navigationRules)?
         navigable,
-    TResult Function(@ExerciseIdentifierConverter() ExerciseIdentifier id,
-            List<Task> tasks, Task? initialTask)?
+    TResult Function(
+            String icon,
+            String name,
+            String description,
+            @ExerciseIdentifierConverter() ExerciseIdentifier id,
+            List<Task> tasks,
+            Task? initialTask)?
         ordered,
     required TResult orElse(),
   }) =>
@@ -114,7 +139,10 @@ abstract class $ExerciseCopyWith<$Res> {
   factory $ExerciseCopyWith(Exercise value, $Res Function(Exercise) then) =
       _$ExerciseCopyWithImpl<$Res>;
   $Res call(
-      {@ExerciseIdentifierConverter() ExerciseIdentifier id,
+      {String icon,
+      String name,
+      String description,
+      @ExerciseIdentifierConverter() ExerciseIdentifier id,
       List<Task> tasks,
       Task? initialTask});
 
@@ -131,11 +159,26 @@ class _$ExerciseCopyWithImpl<$Res> implements $ExerciseCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? icon = freezed,
+    Object? name = freezed,
+    Object? description = freezed,
     Object? id = freezed,
     Object? tasks = freezed,
     Object? initialTask = freezed,
   }) {
     return _then(_value.copyWith(
+      icon: icon == freezed
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -171,7 +214,10 @@ abstract class _$$NavigableExerciseCopyWith<$Res>
       __$$NavigableExerciseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@ExerciseIdentifierConverter()
+      {String icon,
+      String name,
+      String description,
+      @ExerciseIdentifierConverter()
           ExerciseIdentifier id,
       List<Task> tasks,
       Task? initialTask,
@@ -196,12 +242,27 @@ class __$$NavigableExerciseCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? icon = freezed,
+    Object? name = freezed,
+    Object? description = freezed,
     Object? id = freezed,
     Object? tasks = freezed,
     Object? initialTask = freezed,
     Object? navigationRules = freezed,
   }) {
     return _then(_$NavigableExercise(
+      icon: icon == freezed
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -226,7 +287,10 @@ class __$$NavigableExerciseCopyWithImpl<$Res>
 @JsonSerializable()
 class _$NavigableExercise extends NavigableExercise {
   const _$NavigableExercise(
-      {@ExerciseIdentifierConverter()
+      {required this.icon,
+      required this.name,
+      required this.description,
+      @ExerciseIdentifierConverter()
           required this.id,
       final List<Task> tasks = const [],
       this.initialTask,
@@ -242,6 +306,12 @@ class _$NavigableExercise extends NavigableExercise {
   factory _$NavigableExercise.fromJson(Map<String, dynamic> json) =>
       _$$NavigableExerciseFromJson(json);
 
+  @override
+  final String icon;
+  @override
+  final String name;
+  @override
+  final String description;
   @override
   @ExerciseIdentifierConverter()
   final ExerciseIdentifier id;
@@ -271,7 +341,7 @@ class _$NavigableExercise extends NavigableExercise {
 
   @override
   String toString() {
-    return 'Exercise.navigable(id: $id, tasks: $tasks, initialTask: $initialTask, navigationRules: $navigationRules)';
+    return 'Exercise.navigable(icon: $icon, name: $name, description: $description, id: $id, tasks: $tasks, initialTask: $initialTask, navigationRules: $navigationRules)';
   }
 
   @override
@@ -279,6 +349,10 @@ class _$NavigableExercise extends NavigableExercise {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$NavigableExercise &&
+            const DeepCollectionEquality().equals(other.icon, icon) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other._tasks, _tasks) &&
             const DeepCollectionEquality()
@@ -291,6 +365,9 @@ class _$NavigableExercise extends NavigableExercise {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(icon),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(_tasks),
       const DeepCollectionEquality().hash(initialTask),
@@ -305,6 +382,9 @@ class _$NavigableExercise extends NavigableExercise {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
+            String icon,
+            String name,
+            String description,
             @ExerciseIdentifierConverter()
                 ExerciseIdentifier id,
             List<Task> tasks,
@@ -314,18 +394,25 @@ class _$NavigableExercise extends NavigableExercise {
                 Map<TaskIdentifier, NavigationRule> navigationRules)
         navigable,
     required TResult Function(
+            String icon,
+            String name,
+            String description,
             @ExerciseIdentifierConverter() ExerciseIdentifier id,
             List<Task> tasks,
             Task? initialTask)
         ordered,
   }) {
-    return navigable(id, tasks, initialTask, navigationRules);
+    return navigable(
+        icon, name, description, id, tasks, initialTask, navigationRules);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(
+            String icon,
+            String name,
+            String description,
             @ExerciseIdentifierConverter()
                 ExerciseIdentifier id,
             List<Task> tasks,
@@ -334,17 +421,26 @@ class _$NavigableExercise extends NavigableExercise {
             @MapOfNavigationRulesConverter()
                 Map<TaskIdentifier, NavigationRule> navigationRules)?
         navigable,
-    TResult Function(@ExerciseIdentifierConverter() ExerciseIdentifier id,
-            List<Task> tasks, Task? initialTask)?
+    TResult Function(
+            String icon,
+            String name,
+            String description,
+            @ExerciseIdentifierConverter() ExerciseIdentifier id,
+            List<Task> tasks,
+            Task? initialTask)?
         ordered,
   }) {
-    return navigable?.call(id, tasks, initialTask, navigationRules);
+    return navigable?.call(
+        icon, name, description, id, tasks, initialTask, navigationRules);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
+            String icon,
+            String name,
+            String description,
             @ExerciseIdentifierConverter()
                 ExerciseIdentifier id,
             List<Task> tasks,
@@ -353,13 +449,19 @@ class _$NavigableExercise extends NavigableExercise {
             @MapOfNavigationRulesConverter()
                 Map<TaskIdentifier, NavigationRule> navigationRules)?
         navigable,
-    TResult Function(@ExerciseIdentifierConverter() ExerciseIdentifier id,
-            List<Task> tasks, Task? initialTask)?
+    TResult Function(
+            String icon,
+            String name,
+            String description,
+            @ExerciseIdentifierConverter() ExerciseIdentifier id,
+            List<Task> tasks,
+            Task? initialTask)?
         ordered,
     required TResult orElse(),
   }) {
     if (navigable != null) {
-      return navigable(id, tasks, initialTask, navigationRules);
+      return navigable(
+          icon, name, description, id, tasks, initialTask, navigationRules);
     }
     return orElse();
   }
@@ -405,7 +507,10 @@ class _$NavigableExercise extends NavigableExercise {
 
 abstract class NavigableExercise extends Exercise {
   const factory NavigableExercise(
-          {@ExerciseIdentifierConverter()
+          {required final String icon,
+          required final String name,
+          required final String description,
+          @ExerciseIdentifierConverter()
               required final ExerciseIdentifier id,
           final List<Task> tasks,
           final Task? initialTask,
@@ -418,6 +523,12 @@ abstract class NavigableExercise extends Exercise {
   factory NavigableExercise.fromJson(Map<String, dynamic> json) =
       _$NavigableExercise.fromJson;
 
+  @override
+  String get icon;
+  @override
+  String get name;
+  @override
+  String get description;
   @override
   @ExerciseIdentifierConverter()
   ExerciseIdentifier get id;
@@ -442,7 +553,10 @@ abstract class _$$OrderedExerciseCopyWith<$Res>
       __$$OrderedExerciseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@ExerciseIdentifierConverter() ExerciseIdentifier id,
+      {String icon,
+      String name,
+      String description,
+      @ExerciseIdentifierConverter() ExerciseIdentifier id,
       List<Task> tasks,
       Task? initialTask});
 
@@ -462,11 +576,26 @@ class __$$OrderedExerciseCopyWithImpl<$Res> extends _$ExerciseCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? icon = freezed,
+    Object? name = freezed,
+    Object? description = freezed,
     Object? id = freezed,
     Object? tasks = freezed,
     Object? initialTask = freezed,
   }) {
     return _then(_$OrderedExercise(
+      icon: icon == freezed
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -487,7 +616,10 @@ class __$$OrderedExerciseCopyWithImpl<$Res> extends _$ExerciseCopyWithImpl<$Res>
 @JsonSerializable()
 class _$OrderedExercise extends OrderedExercise {
   const _$OrderedExercise(
-      {@ExerciseIdentifierConverter() required this.id,
+      {required this.icon,
+      required this.name,
+      required this.description,
+      @ExerciseIdentifierConverter() required this.id,
       final List<Task> tasks = const [],
       this.initialTask,
       final String? $type})
@@ -498,6 +630,12 @@ class _$OrderedExercise extends OrderedExercise {
   factory _$OrderedExercise.fromJson(Map<String, dynamic> json) =>
       _$$OrderedExerciseFromJson(json);
 
+  @override
+  final String icon;
+  @override
+  final String name;
+  @override
+  final String description;
   @override
   @ExerciseIdentifierConverter()
   final ExerciseIdentifier id;
@@ -517,7 +655,7 @@ class _$OrderedExercise extends OrderedExercise {
 
   @override
   String toString() {
-    return 'Exercise.ordered(id: $id, tasks: $tasks, initialTask: $initialTask)';
+    return 'Exercise.ordered(icon: $icon, name: $name, description: $description, id: $id, tasks: $tasks, initialTask: $initialTask)';
   }
 
   @override
@@ -525,6 +663,10 @@ class _$OrderedExercise extends OrderedExercise {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$OrderedExercise &&
+            const DeepCollectionEquality().equals(other.icon, icon) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other._tasks, _tasks) &&
             const DeepCollectionEquality()
@@ -535,6 +677,9 @@ class _$OrderedExercise extends OrderedExercise {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(icon),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(_tasks),
       const DeepCollectionEquality().hash(initialTask));
@@ -548,6 +693,9 @@ class _$OrderedExercise extends OrderedExercise {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
+            String icon,
+            String name,
+            String description,
             @ExerciseIdentifierConverter()
                 ExerciseIdentifier id,
             List<Task> tasks,
@@ -557,18 +705,24 @@ class _$OrderedExercise extends OrderedExercise {
                 Map<TaskIdentifier, NavigationRule> navigationRules)
         navigable,
     required TResult Function(
+            String icon,
+            String name,
+            String description,
             @ExerciseIdentifierConverter() ExerciseIdentifier id,
             List<Task> tasks,
             Task? initialTask)
         ordered,
   }) {
-    return ordered(id, tasks, initialTask);
+    return ordered(icon, name, description, id, tasks, initialTask);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(
+            String icon,
+            String name,
+            String description,
             @ExerciseIdentifierConverter()
                 ExerciseIdentifier id,
             List<Task> tasks,
@@ -577,17 +731,25 @@ class _$OrderedExercise extends OrderedExercise {
             @MapOfNavigationRulesConverter()
                 Map<TaskIdentifier, NavigationRule> navigationRules)?
         navigable,
-    TResult Function(@ExerciseIdentifierConverter() ExerciseIdentifier id,
-            List<Task> tasks, Task? initialTask)?
+    TResult Function(
+            String icon,
+            String name,
+            String description,
+            @ExerciseIdentifierConverter() ExerciseIdentifier id,
+            List<Task> tasks,
+            Task? initialTask)?
         ordered,
   }) {
-    return ordered?.call(id, tasks, initialTask);
+    return ordered?.call(icon, name, description, id, tasks, initialTask);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
+            String icon,
+            String name,
+            String description,
             @ExerciseIdentifierConverter()
                 ExerciseIdentifier id,
             List<Task> tasks,
@@ -596,13 +758,18 @@ class _$OrderedExercise extends OrderedExercise {
             @MapOfNavigationRulesConverter()
                 Map<TaskIdentifier, NavigationRule> navigationRules)?
         navigable,
-    TResult Function(@ExerciseIdentifierConverter() ExerciseIdentifier id,
-            List<Task> tasks, Task? initialTask)?
+    TResult Function(
+            String icon,
+            String name,
+            String description,
+            @ExerciseIdentifierConverter() ExerciseIdentifier id,
+            List<Task> tasks,
+            Task? initialTask)?
         ordered,
     required TResult orElse(),
   }) {
     if (ordered != null) {
-      return ordered(id, tasks, initialTask);
+      return ordered(icon, name, description, id, tasks, initialTask);
     }
     return orElse();
   }
@@ -648,7 +815,10 @@ class _$OrderedExercise extends OrderedExercise {
 
 abstract class OrderedExercise extends Exercise {
   const factory OrderedExercise(
-      {@ExerciseIdentifierConverter() required final ExerciseIdentifier id,
+      {required final String icon,
+      required final String name,
+      required final String description,
+      @ExerciseIdentifierConverter() required final ExerciseIdentifier id,
       final List<Task> tasks,
       final Task? initialTask}) = _$OrderedExercise;
   const OrderedExercise._() : super._();
@@ -656,6 +826,12 @@ abstract class OrderedExercise extends Exercise {
   factory OrderedExercise.fromJson(Map<String, dynamic> json) =
       _$OrderedExercise.fromJson;
 
+  @override
+  String get icon;
+  @override
+  String get name;
+  @override
+  String get description;
   @override
   @ExerciseIdentifierConverter()
   ExerciseIdentifier get id;

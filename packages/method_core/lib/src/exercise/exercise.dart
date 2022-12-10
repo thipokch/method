@@ -11,6 +11,10 @@ abstract class _Exercise {
   List<Task> get tasks;
   Task? get initialTask;
 
+  String get icon;
+  String get name;
+  String get description;
+
   const _Exercise();
 }
 
@@ -24,6 +28,9 @@ class Exercise extends _Exercise with _$Exercise {
   /// is called. The logic which [Task] is called is defined in the
   /// [NavigationRule]
   const factory Exercise.navigable({
+    required final String icon,
+    required final String name,
+    required final String description,
     @ExerciseIdentifierConverter() required final ExerciseIdentifier id,
     @Default([]) final List<Task> tasks,
     final Task? initialTask,
@@ -35,6 +42,9 @@ class Exercise extends _Exercise with _$Exercise {
   }) = NavigableExercise;
 
   const factory Exercise.ordered({
+    required final String icon,
+    required final String name,
+    required final String description,
     @ExerciseIdentifierConverter() required final ExerciseIdentifier id,
     @Default([]) final List<Task> tasks,
     final Task? initialTask,

@@ -1,7 +1,11 @@
 PODS:
-  - AssociatedValues (5.0.0)
+  - dynamic_color (0.0.2):
+    - FlutterMacOS
   - Firebase/Analytics (9.6.0):
     - Firebase/Core
+  - Firebase/AppCheck (9.6.0):
+    - Firebase/CoreOnly
+    - FirebaseAppCheck (~> 9.6.0)
   - Firebase/Core (9.6.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (~> 9.6.0)
@@ -10,50 +14,39 @@ PODS:
   - Firebase/Crashlytics (9.6.0):
     - Firebase/CoreOnly
     - FirebaseCrashlytics (~> 9.6.0)
-  - Firebase/InAppMessaging (9.6.0):
-    - Firebase/CoreOnly
-    - FirebaseInAppMessaging (~> 9.6.0-beta)
   - Firebase/Installations (9.6.0):
     - Firebase/CoreOnly
     - FirebaseInstallations (~> 9.6.0)
-  - Firebase/Performance (9.6.0):
-    - Firebase/CoreOnly
-    - FirebasePerformance (~> 9.6.0)
   - Firebase/RemoteConfig (9.6.0):
     - Firebase/CoreOnly
     - FirebaseRemoteConfig (~> 9.6.0)
   - firebase_analytics (9.3.8):
     - Firebase/Analytics (= 9.6.0)
     - firebase_core
-    - Flutter
+    - FlutterMacOS
   - firebase_app_check (0.0.9-1):
+    - Firebase/AppCheck (~> 9.6.0)
     - Firebase/CoreOnly (~> 9.6.0)
     - firebase_core
-    - FirebaseAppCheck (~> 9.6.0-beta)
-    - Flutter
+    - FlutterMacOS
   - firebase_app_installations (0.1.1-10):
-    - Firebase/Installations (= 9.6.0)
+    - Firebase/CoreOnly (~> 9.6.0)
+    - Firebase/Installations (~> 9.6.0)
     - firebase_core
-    - Flutter
+    - FlutterMacOS
   - firebase_core (1.24.0):
-    - Firebase/CoreOnly (= 9.6.0)
-    - Flutter
+    - Firebase/CoreOnly (~> 9.6.0)
+    - FlutterMacOS
   - firebase_crashlytics (2.8.13):
-    - Firebase/Crashlytics (= 9.6.0)
+    - Firebase/CoreOnly (~> 9.6.0)
+    - Firebase/Crashlytics (~> 9.6.0)
     - firebase_core
-    - Flutter
-  - firebase_in_app_messaging (0.6.0-27):
-    - Firebase/InAppMessaging (= 9.6.0)
-    - firebase_core
-    - Flutter
-  - firebase_performance (0.8.3-3):
-    - Firebase/Performance (= 9.6.0)
-    - firebase_core
-    - Flutter
+    - FlutterMacOS
   - firebase_remote_config (2.0.20):
-    - Firebase/RemoteConfig (= 9.6.0)
+    - Firebase/CoreOnly (~> 9.6.0)
+    - Firebase/RemoteConfig (~> 9.6.0)
     - firebase_core
-    - Flutter
+    - FlutterMacOS
   - FirebaseABTesting (9.6.0):
     - FirebaseCore (~> 9.0)
   - FirebaseAnalytics (9.6.0):
@@ -97,46 +90,23 @@ PODS:
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - PromisesObjC (~> 2.1)
-  - FirebaseInAppMessaging (9.6.0-beta):
-    - FirebaseABTesting (~> 9.0)
-    - FirebaseCore (~> 9.0)
-    - FirebaseInstallations (~> 9.0)
-    - GoogleUtilities/Environment (~> 7.7)
-    - nanopb (< 2.30910.0, >= 2.30908.0)
   - FirebaseInstallations (9.6.0):
     - FirebaseCore (~> 9.0)
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/UserDefaults (~> 7.7)
     - PromisesObjC (~> 2.1)
-  - FirebasePerformance (9.6.0):
-    - FirebaseCore (~> 9.0)
-    - FirebaseInstallations (~> 9.0)
-    - FirebaseRemoteConfig (~> 9.0)
-    - GoogleDataTransport (< 10.0.0, >= 9.1.4)
-    - GoogleUtilities/Environment (~> 7.7)
-    - GoogleUtilities/ISASwizzler (~> 7.7)
-    - GoogleUtilities/MethodSwizzler (~> 7.7)
-    - nanopb (< 2.30910.0, >= 2.30908.0)
   - FirebaseRemoteConfig (9.6.0):
     - FirebaseABTesting (~> 9.0)
     - FirebaseCore (~> 9.0)
     - FirebaseInstallations (~> 9.0)
     - GoogleUtilities/Environment (~> 7.7)
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
-  - Flutter (1.0.0)
   - flutter_inappwebview (0.0.1):
-    - Flutter
-    - flutter_inappwebview/Core (= 0.0.1)
+    - FlutterMacOS
     - OrderedSet (~> 5.0)
-  - flutter_inappwebview/Core (0.0.1):
-    - Flutter
-    - OrderedSet (~> 5.0)
-  - flutter_native_splash (0.0.1):
-    - Flutter
   - flutter_platform_alert (0.0.1):
-    - Flutter
-  - gaimon (0.0.1):
-    - Flutter
+    - FlutterMacOS
+  - FlutterMacOS (1.0.0)
   - GoogleAppMeasurement (9.6.0):
     - GoogleAppMeasurement/AdIdSupport (= 9.6.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
@@ -167,7 +137,6 @@ PODS:
     - GoogleUtilities/Network
   - GoogleUtilities/Environment (7.8.0):
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/ISASwizzler (7.8.0)
   - GoogleUtilities/Logger (7.8.0):
     - GoogleUtilities/Environment
   - GoogleUtilities/MethodSwizzler (7.8.0):
@@ -181,46 +150,34 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (7.8.0):
     - GoogleUtilities/Logger
-  - image_picker_ios (0.0.1):
-    - Flutter
-  - integration_test (0.0.1):
-    - Flutter
+  - isar_flutter_libs (1.0.0):
+    - FlutterMacOS
   - nanopb (2.30909.0):
     - nanopb/decode (= 2.30909.0)
     - nanopb/encode (= 2.30909.0)
   - nanopb/decode (2.30909.0)
   - nanopb/encode (2.30909.0)
-  - OrderedObjectSet (5.0.0)
   - OrderedSet (5.0.0)
-  - package_info_plus (0.4.5):
-    - Flutter
+  - package_info_plus_macos (0.0.1):
+    - FlutterMacOS
   - PromisesObjC (2.1.1)
-  - SwiftCollection (0.5.0):
-    - AssociatedValues (~> 5.0.0)
-    - OrderedObjectSet (~> 5.0.0)
 
 DEPENDENCIES:
-  - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
-  - firebase_app_check (from `.symlinks/plugins/firebase_app_check/ios`)
-  - firebase_app_installations (from `.symlinks/plugins/firebase_app_installations/ios`)
-  - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
-  - firebase_crashlytics (from `.symlinks/plugins/firebase_crashlytics/ios`)
-  - firebase_in_app_messaging (from `.symlinks/plugins/firebase_in_app_messaging/ios`)
-  - firebase_performance (from `.symlinks/plugins/firebase_performance/ios`)
-  - firebase_remote_config (from `.symlinks/plugins/firebase_remote_config/ios`)
-  - Flutter (from `Flutter`)
-  - flutter_inappwebview (from `.symlinks/plugins/flutter_inappwebview/ios`)
-  - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
-  - flutter_platform_alert (from `.symlinks/plugins/flutter_platform_alert/ios`)
-  - gaimon (from `.symlinks/plugins/gaimon/ios`)
-  - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
-  - integration_test (from `.symlinks/plugins/integration_test/ios`)
-  - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
-  - SwiftCollection (~> 0.5)
+  - dynamic_color (from `Flutter/ephemeral/.symlinks/plugins/dynamic_color/macos`)
+  - firebase_analytics (from `Flutter/ephemeral/.symlinks/plugins/firebase_analytics/macos`)
+  - firebase_app_check (from `Flutter/ephemeral/.symlinks/plugins/firebase_app_check/macos`)
+  - firebase_app_installations (from `Flutter/ephemeral/.symlinks/plugins/firebase_app_installations/macos`)
+  - firebase_core (from `Flutter/ephemeral/.symlinks/plugins/firebase_core/macos`)
+  - firebase_crashlytics (from `Flutter/ephemeral/.symlinks/plugins/firebase_crashlytics/macos`)
+  - firebase_remote_config (from `Flutter/ephemeral/.symlinks/plugins/firebase_remote_config/macos`)
+  - flutter_inappwebview (from `Flutter/ephemeral/.symlinks/plugins/flutter_inappwebview/macos`)
+  - flutter_platform_alert (from `Flutter/ephemeral/.symlinks/plugins/flutter_platform_alert/macos`)
+  - FlutterMacOS (from `Flutter/ephemeral`)
+  - isar_flutter_libs (from `Flutter/ephemeral/.symlinks/plugins/isar_flutter_libs/macos`)
+  - package_info_plus_macos (from `Flutter/ephemeral/.symlinks/plugins/package_info_plus_macos/macos`)
 
 SPEC REPOS:
   trunk:
-    - AssociatedValues
     - Firebase
     - FirebaseABTesting
     - FirebaseAnalytics
@@ -229,64 +186,50 @@ SPEC REPOS:
     - FirebaseCoreDiagnostics
     - FirebaseCoreInternal
     - FirebaseCrashlytics
-    - FirebaseInAppMessaging
     - FirebaseInstallations
-    - FirebasePerformance
     - FirebaseRemoteConfig
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUtilities
     - nanopb
-    - OrderedObjectSet
     - OrderedSet
     - PromisesObjC
-    - SwiftCollection
 
 EXTERNAL SOURCES:
+  dynamic_color:
+    :path: Flutter/ephemeral/.symlinks/plugins/dynamic_color/macos
   firebase_analytics:
-    :path: ".symlinks/plugins/firebase_analytics/ios"
+    :path: Flutter/ephemeral/.symlinks/plugins/firebase_analytics/macos
   firebase_app_check:
-    :path: ".symlinks/plugins/firebase_app_check/ios"
+    :path: Flutter/ephemeral/.symlinks/plugins/firebase_app_check/macos
   firebase_app_installations:
-    :path: ".symlinks/plugins/firebase_app_installations/ios"
+    :path: Flutter/ephemeral/.symlinks/plugins/firebase_app_installations/macos
   firebase_core:
-    :path: ".symlinks/plugins/firebase_core/ios"
+    :path: Flutter/ephemeral/.symlinks/plugins/firebase_core/macos
   firebase_crashlytics:
-    :path: ".symlinks/plugins/firebase_crashlytics/ios"
-  firebase_in_app_messaging:
-    :path: ".symlinks/plugins/firebase_in_app_messaging/ios"
-  firebase_performance:
-    :path: ".symlinks/plugins/firebase_performance/ios"
+    :path: Flutter/ephemeral/.symlinks/plugins/firebase_crashlytics/macos
   firebase_remote_config:
-    :path: ".symlinks/plugins/firebase_remote_config/ios"
-  Flutter:
-    :path: Flutter
+    :path: Flutter/ephemeral/.symlinks/plugins/firebase_remote_config/macos
   flutter_inappwebview:
-    :path: ".symlinks/plugins/flutter_inappwebview/ios"
-  flutter_native_splash:
-    :path: ".symlinks/plugins/flutter_native_splash/ios"
+    :path: Flutter/ephemeral/.symlinks/plugins/flutter_inappwebview/macos
   flutter_platform_alert:
-    :path: ".symlinks/plugins/flutter_platform_alert/ios"
-  gaimon:
-    :path: ".symlinks/plugins/gaimon/ios"
-  image_picker_ios:
-    :path: ".symlinks/plugins/image_picker_ios/ios"
-  integration_test:
-    :path: ".symlinks/plugins/integration_test/ios"
-  package_info_plus:
-    :path: ".symlinks/plugins/package_info_plus/ios"
+    :path: Flutter/ephemeral/.symlinks/plugins/flutter_platform_alert/macos
+  FlutterMacOS:
+    :path: Flutter/ephemeral
+  isar_flutter_libs:
+    :path: Flutter/ephemeral/.symlinks/plugins/isar_flutter_libs/macos
+  package_info_plus_macos:
+    :path: Flutter/ephemeral/.symlinks/plugins/package_info_plus_macos/macos
 
 SPEC CHECKSUMS:
-  AssociatedValues: 33dfc4f4d0ec2f1177a2558e176364e2ac849cd1
+  dynamic_color: 394d6a888650f8534e029b27d2f8bc5c64e44008
   Firebase: 5ae8b7cf8efce559a653aef0ad95bab3f427c351
-  firebase_analytics: 9937a91df25cce5b0ee19eaf65277ff8bf0f88e5
-  firebase_app_check: 7816f0eb0e4393502a2e5d1096ddd8982c4211ae
-  firebase_app_installations: d5cc98047f49925ed01b2358852420c53759cdfc
-  firebase_core: 7c28ecc1e5dd74e03829ac3e9ff5ba3314e737a9
-  firebase_crashlytics: 6da281ee61c465536fb3ed5343108a1343a70504
-  firebase_in_app_messaging: 1f15d0053e5e44b58bc94890517acc8384103133
-  firebase_performance: 3ae9ae3142d5d0bf8782e1e7a73dde2267bc4415
-  firebase_remote_config: df81462997f4d1582113c543e5a39ef832cebb92
+  firebase_analytics: 3fb1fc410452441f17469aadcc601263b47a21be
+  firebase_app_check: 5524bc40b2c652764ad44fbbe9a2dff704467de7
+  firebase_app_installations: 3343331305c9a44950cd563ff160eeaf9aa79753
+  firebase_core: 970bc7db019f0985976324d90cdc370527c31461
+  firebase_crashlytics: b53259c6f20151171d94e74542e73cb802c15dac
+  firebase_remote_config: 8a4c5b9fb69584a41c2c6f42f0eadaa0cc432fad
   FirebaseABTesting: 61826730ce9eee8781ba99a2b3420e9bce148dc9
   FirebaseAnalytics: 89ad762c6c3852a685794174757e2c60a36b6a82
   FirebaseAppCheck: c7e07ba851608c192518302f8b35a984cfec1824
@@ -294,27 +237,20 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: 99a495094b10a57eeb3ae8efa1665700ad0bdaa6
   FirebaseCoreInternal: bca76517fe1ed381e989f5e7d8abb0da8d85bed3
   FirebaseCrashlytics: 3210572ddb77801e5a0bd9d7bc890769f2066a0c
-  FirebaseInAppMessaging: 64f19fde7c3010c170af2c8c629bdb484a4ba642
   FirebaseInstallations: 0a115432c4e223c5ab20b0dbbe4cbefa793a0e8e
-  FirebasePerformance: f1e62598cd98c88ce6c10e0d26223d18b85c26d6
   FirebaseRemoteConfig: ee09d77a7d7c7e31da6a0d1cf956cd611c85609c
-  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  flutter_inappwebview: 4fe74e5e65809c3d363febfd9e2b21aa79bb0f1c
-  flutter_native_splash: 52501b97d1c0a5f898d687f1646226c1f93c56ef
-  flutter_platform_alert: 6a241c90f3cc350d0286deeefee9f52bee957019
-  gaimon: 7688c586f38dcc4782e6fe26f648057d280a9d8b
+  flutter_inappwebview: 62e949df616a9f6e1b0366326381f208c7fcad37
+  flutter_platform_alert: b21b2b7d801e71c12ce9ffab618ff114ca9fc903
+  FlutterMacOS: ae6af50a8ea7d6103d888583d46bd8328a7e9811
   GoogleAppMeasurement: 6de2b1a69e4326eb82ee05d138f6a5cb7311bcb1
   GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
   GoogleUtilities: 1d20a6ad97ef46f67bbdec158ce00563a671ebb7
-  image_picker_ios: b786a5dcf033a8336a657191401bfdf12017dabb
-  integration_test: a1e7d09bd98eca2fc37aefd79d4f41ad37bdbbe5
+  isar_flutter_libs: 43385c99864c168fadba7c9adeddc5d38838ca6a
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
-  OrderedObjectSet: 7eb2d546c515a9dc5ac321ce5605d4e96f5d4c3c
   OrderedSet: aaeb196f7fef5a9edf55d89760da9176ad40b93c
-  package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
+  package_info_plus_macos: f010621b07802a241d96d01876d6705f15e77c1c
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
-  SwiftCollection: 9f83c97b993bfad6298d7765631b409a00f57779
 
-PODFILE CHECKSUM: 5cfef79bc0bbb32590875ce6dcf98c9c7809ec5a
+PODFILE CHECKSUM: 0d3963a09fc94f580682bd88480486da345dc3f0
 
 COCOAPODS: 1.11.3

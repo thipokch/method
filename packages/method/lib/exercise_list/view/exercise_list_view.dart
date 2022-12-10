@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/exercise_list/exercise_list.dart';
-import 'package:method_core/model/exercise.dart';
+import 'package:method_core/method_core.dart';
 import 'package:method_style/element_color.dart';
 import 'package:method_style/element_scale.dart';
 import 'package:method_ui/emoji/riso_emoji.dart';
@@ -64,11 +64,12 @@ class _Card extends StatelessWidget {
         tag: exercise.name,
         child: Theme(
           // Hero defaults to Materialapp's Theme
-          data: Theme.of(context).copyWith(
-            colorScheme: exercise.presentation
-                .colorScheme(Theme.of(context).brightness)
-                .harmonizeWith(Theme.of(context).colorScheme.primary),
-          ),
+          data: Theme.of(context),
+          // .copyWith(
+          //   colorScheme: exercise.presentation
+          //       .colorScheme(Theme.of(context).brightness)
+          //       .harmonizeWith(Theme.of(context).colorScheme.primary),
+          // ),
           child: Builder(builder: (context) {
             final themeData = Theme.of(context);
             final colorScheme = themeData.colorScheme;

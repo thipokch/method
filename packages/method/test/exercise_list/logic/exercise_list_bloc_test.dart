@@ -6,7 +6,7 @@ import 'package:method/app/route/app_route.dart';
 import 'package:method/exercise_list/exercise_list.dart';
 import 'package:method_core/model/exercise.dart';
 import 'package:method_repo/collection/exercise.dart';
-import 'package:method_repo/repository.dart';
+import 'package:method_repo/method_repo.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../mock/mock_data.dart';
