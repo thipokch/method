@@ -1,4 +1,4 @@
-import 'package:method_style/element_scale.dart';
+import 'package:method_ui/element_scale.dart';
 import 'package:flutter/material.dart';
 
 class ChipEmoji extends StatelessWidget {

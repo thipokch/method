@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Task _$TaskFromJson(Map<String, dynamic> json) {
-  switch (json['type']) {
+  switch (json['runtimeType']) {
     case 'completion':
       return CompletionTask.fromJson(json);
     case 'instruction':
@@ -24,8 +24,8 @@ Task _$TaskFromJson(Map<String, dynamic> json) {
       return QuestionTask.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(
-          json, 'type', 'Task', 'Invalid union type "${json['type']}"!');
+      throw CheckedFromJsonException(json, 'runtimeType', 'Task',
+          'Invalid union type "${json['runtimeType']}"!');
   }
 }
 
@@ -331,7 +331,7 @@ class _$CompletionTask extends CompletionTask {
   @JsonKey()
   final String assetPath;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -682,7 +682,7 @@ class _$InstructionTask extends InstructionTask {
   @JsonKey()
   final bool showAppBar;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -1049,7 +1049,7 @@ class _$QuestionTask extends QuestionTask {
   @override
   final AnswerFormat answerFormat;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override

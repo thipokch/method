@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:method/app/route/route.dart';
 import 'package:method/session_edit/route/session_edit_route.dart';
 import 'package:method_core/model/session.dart';
-import 'package:method_style/element_scale.dart';
-import 'package:method_style/element_symbol.dart';
+import 'package:method_ui/element_scale.dart';
+import 'package:method_ui/element_symbol.dart';
 import 'package:method_ui/page/page.dart';
 
 import '../session_detail.dart';

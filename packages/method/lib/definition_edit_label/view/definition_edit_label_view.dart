@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:method_core/model/entry_definition.dart';
 import 'package:method_core/model/task_definition.dart';
-import 'package:method_style/element_scale.dart';
+import 'package:method_ui/element_scale.dart';
 import 'package:method_ui/emoji/emoji.dart';
 
 part 'definition_edit_label_sliver.dart';

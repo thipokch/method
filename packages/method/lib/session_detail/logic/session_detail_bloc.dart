@@ -7,7 +7,7 @@ import 'package:method_core/model/entry.dart';
 import 'package:method_core/model/exercise.dart';
 import 'package:method_core/model/session.dart';
 import 'package:method_core/model/task.dart';
-import 'package:method_repo/method_repo.dart';
+import 'package:method_data/method_data.dart';
 
 part 'session_detail_event.dart';
 part 'session_detail_state.dart';

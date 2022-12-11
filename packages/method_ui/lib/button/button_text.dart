@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:method_style/patch/ink_sparkle.dart';
+import 'package:method_ui/patch/ink_sparkle.dart';
 
 import 'button_icon.dart';
 import 'button_states.dart';

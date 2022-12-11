@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:method/entry_edit/page/entry_edit_page_base.dart';
-import 'package:method_style/element_scale.dart';
+import 'package:method_ui/element_scale.dart';
 
 import '../entry_edit_diverge.dart';
 

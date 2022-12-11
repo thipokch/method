@@ -857,31 +857,10 @@ packages:
       relative: true
     source: path
     version: "0.0.0"
-  method_emoji:
-    dependency: "direct overridden"
-    description:
-      path: "../method_emoji"
-      relative: true
-    source: path
-    version: "0.0.0"
-  method_kit:
+  method_data:
     dependency: "direct main"
     description:
-      path: "../method_kit"
-      relative: true
-    source: path
-    version: "0.0.0"
-  method_repo:
-    dependency: "direct main"
-    description:
-      path: "../method_repo"
-      relative: true
-    source: path
-    version: "0.0.0"
-  method_style:
-    dependency: "direct main"
-    description:
-      path: "../method_style"
+      path: "../method_data"
       relative: true
     source: path
     version: "0.0.0"

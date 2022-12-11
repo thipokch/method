@@ -7,7 +7,7 @@ import 'package:method_core/model/entry.dart';
 import 'package:method_core/model/entry_definition.dart';
 import 'package:method_core/model/task.dart';
 import 'package:method_core/model/task_definition.dart';
-import 'package:method_repo/method_repo.dart';
+import 'package:method_data/method_data.dart';
 
 part 'entry_detail_event.dart';
 part 'entry_detail_state.dart';

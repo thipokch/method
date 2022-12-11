@@ -59,5 +59,5 @@ class MtRisoEmoji extends StatelessWidget {
 
 extension Shader on MtEmoji {
   Future<ImageShader> shader() =>
-      loadImageShader("packages/method_emoji/assets/webp/$unicode.webp");
+      loadImageShader("packages/method_ui/assets/webp/$unicode.webp");
 }

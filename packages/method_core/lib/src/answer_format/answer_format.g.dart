@@ -13,7 +13,7 @@ _$BooleanAnswerFormat _$$BooleanAnswerFormatFromJson(
       negativeAnswer: json['negativeAnswer'] as String,
       result: $enumDecodeNullable(_$BooleanResultEnumMap, json['result']) ??
           BooleanResult.NONE,
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$BooleanAnswerFormatToJson(
@@ -22,7 +22,7 @@ Map<String, dynamic> _$$BooleanAnswerFormatToJson(
       'positiveAnswer': instance.positiveAnswer,
       'negativeAnswer': instance.negativeAnswer,
       'result': _$BooleanResultEnumMap[instance.result]!,
-      'type': instance.$type,
+      'runtimeType': instance.$type,
     };
 
 const _$BooleanResultEnumMap = {
@@ -42,7 +42,7 @@ _$DateAnswerFormat _$$DateAnswerFormatFromJson(Map<String, dynamic> json) =>
       maxDate: json['maxDate'] == null
           ? null
           : DateTime.parse(json['maxDate'] as String),
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$DateAnswerFormatToJson(_$DateAnswerFormat instance) =>
@@ -50,14 +50,14 @@ Map<String, dynamic> _$$DateAnswerFormatToJson(_$DateAnswerFormat instance) =>
       'defaultDate': instance.defaultDate?.toIso8601String(),
       'minDate': instance.minDate?.toIso8601String(),
       'maxDate': instance.maxDate?.toIso8601String(),
-      'type': instance.$type,
+      'runtimeType': instance.$type,
     };
 
 _$DoubleAnswerFormat _$$DoubleAnswerFormatFromJson(Map<String, dynamic> json) =>
     _$DoubleAnswerFormat(
       defaultValue: (json['defaultValue'] as num?)?.toDouble(),
       hint: json['hint'] as String? ?? '',
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$DoubleAnswerFormatToJson(
@@ -65,21 +65,21 @@ Map<String, dynamic> _$$DoubleAnswerFormatToJson(
     <String, dynamic>{
       'defaultValue': instance.defaultValue,
       'hint': instance.hint,
-      'type': instance.$type,
+      'runtimeType': instance.$type,
     };
 
 _$ImageAnswerFormat _$$ImageAnswerFormatFromJson(Map<String, dynamic> json) =>
     _$ImageAnswerFormat(
       defaultValue: json['defaultValue'] as String?,
       buttonText: json['buttonText'] as String? ?? 'Image: ',
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$ImageAnswerFormatToJson(_$ImageAnswerFormat instance) =>
     <String, dynamic>{
       'defaultValue': instance.defaultValue,
       'buttonText': instance.buttonText,
-      'type': instance.$type,
+      'runtimeType': instance.$type,
     };
 
 _$IntegerAnswerFormat _$$IntegerAnswerFormatFromJson(
@@ -87,7 +87,7 @@ _$IntegerAnswerFormat _$$IntegerAnswerFormatFromJson(
     _$IntegerAnswerFormat(
       defaultValue: json['defaultValue'] as int?,
       hint: json['hint'] as String? ?? '',
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$IntegerAnswerFormatToJson(
@@ -95,7 +95,7 @@ Map<String, dynamic> _$$IntegerAnswerFormatToJson(
     <String, dynamic>{
       'defaultValue': instance.defaultValue,
       'hint': instance.hint,
-      'type': instance.$type,
+      'runtimeType': instance.$type,
     };
 
 _$MultiChoiceAnswerFormat _$$MultiChoiceAnswerFormatFromJson(
@@ -108,16 +108,15 @@ _$MultiChoiceAnswerFormat _$$MultiChoiceAnswerFormatFromJson(
               ?.map((e) => TextChoice.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$MultiChoiceAnswerFormatToJson(
         _$MultiChoiceAnswerFormat instance) =>
     <String, dynamic>{
-      'textChoices': instance.textChoices.map((e) => e.toJson()).toList(),
-      'defaultSelection':
-          instance.defaultSelection.map((e) => e.toJson()).toList(),
-      'type': instance.$type,
+      'textChoices': instance.textChoices,
+      'defaultSelection': instance.defaultSelection,
+      'runtimeType': instance.$type,
     };
 
 _$MultiDoubleAnswerFormat _$$MultiDoubleAnswerFormatFromJson(
@@ -129,15 +128,15 @@ _$MultiDoubleAnswerFormat _$$MultiDoubleAnswerFormatFromJson(
       hints:
           (json['hints'] as List<dynamic>?)?.map((e) => e as String).toList() ??
               const [],
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$MultiDoubleAnswerFormatToJson(
         _$MultiDoubleAnswerFormat instance) =>
     <String, dynamic>{
-      'defaultValues': instance.defaultValues?.map((e) => e.toJson()).toList(),
+      'defaultValues': instance.defaultValues,
       'hints': instance.hints,
-      'type': instance.$type,
+      'runtimeType': instance.$type,
     };
 
 _$ScaleAnswerFormat _$$ScaleAnswerFormatFromJson(Map<String, dynamic> json) =>
@@ -148,7 +147,7 @@ _$ScaleAnswerFormat _$$ScaleAnswerFormatFromJson(Map<String, dynamic> json) =>
       step: (json['step'] as num).toDouble(),
       maximumValueDescription: json['maximumValueDescription'] as String? ?? '',
       minimumValueDescription: json['minimumValueDescription'] as String? ?? '',
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$ScaleAnswerFormatToJson(_$ScaleAnswerFormat instance) =>
@@ -159,7 +158,7 @@ Map<String, dynamic> _$$ScaleAnswerFormatToJson(_$ScaleAnswerFormat instance) =>
       'step': instance.step,
       'maximumValueDescription': instance.maximumValueDescription,
       'minimumValueDescription': instance.minimumValueDescription,
-      'type': instance.$type,
+      'runtimeType': instance.$type,
     };
 
 _$SingleChoiceAnswerFormat _$$SingleChoiceAnswerFormatFromJson(
@@ -172,15 +171,15 @@ _$SingleChoiceAnswerFormat _$$SingleChoiceAnswerFormatFromJson(
           ? null
           : TextChoice.fromJson(
               json['defaultSelection'] as Map<String, dynamic>),
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$SingleChoiceAnswerFormatToJson(
         _$SingleChoiceAnswerFormat instance) =>
     <String, dynamic>{
-      'textChoices': instance.textChoices.map((e) => e.toJson()).toList(),
-      'defaultSelection': instance.defaultSelection?.toJson(),
-      'type': instance.$type,
+      'textChoices': instance.textChoices,
+      'defaultSelection': instance.defaultSelection,
+      'runtimeType': instance.$type,
     };
 
 _$TextAnswerFormat _$$TextAnswerFormatFromJson(Map<String, dynamic> json) =>
@@ -188,7 +187,7 @@ _$TextAnswerFormat _$$TextAnswerFormatFromJson(Map<String, dynamic> json) =>
       maxLines: json['maxLines'] as int?,
       hint: json['hint'] as String? ?? '',
       validationRegEx: json['validationRegEx'] as String? ?? '',
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$TextAnswerFormatToJson(_$TextAnswerFormat instance) =>
@@ -196,20 +195,20 @@ Map<String, dynamic> _$$TextAnswerFormatToJson(_$TextAnswerFormat instance) =>
       'maxLines': instance.maxLines,
       'hint': instance.hint,
       'validationRegEx': instance.validationRegEx,
-      'type': instance.$type,
+      'runtimeType': instance.$type,
     };
 
 _$TimeAnswerFormat _$$TimeAnswerFormatFromJson(Map<String, dynamic> json) =>
     _$TimeAnswerFormat(
       defaultValue:
           const TimeOfDayConverter().fromJson(json['defaultValue'] as String?),
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$TimeAnswerFormatToJson(_$TimeAnswerFormat instance) =>
     <String, dynamic>{
       'defaultValue': const TimeOfDayConverter().toJson(instance.defaultValue),
-      'type': instance.$type,
+      'runtimeType': instance.$type,
     };
 
 _$_MultiDouble _$$_MultiDoubleFromJson(Map<String, dynamic> json) =>

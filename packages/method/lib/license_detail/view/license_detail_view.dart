@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:method_style/element_scale.dart';
+import 'package:method_ui/element_scale.dart';
 
 import '../license_detail.dart';
 

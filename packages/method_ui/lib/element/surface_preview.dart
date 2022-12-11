@@ -1,4 +1,4 @@
-import 'package:method_style/element_surface.dart';
+import 'package:method_ui/element_surface.dart';
 import 'package:flutter/material.dart';
 
 class SurfacePreview extends StatelessWidget {

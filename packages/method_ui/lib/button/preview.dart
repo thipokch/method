@@ -1,6 +1,6 @@
 // ignore_for_file: no-empty-block
 
-import 'package:method_style/element_symbol.dart';
+import 'package:method_ui/element_symbol.dart';
 import 'package:flutter/material.dart';
 import 'package:method_ui/button/button_action.dart';
 

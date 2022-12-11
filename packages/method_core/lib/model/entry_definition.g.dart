@@ -13,7 +13,7 @@ _$EntryDefinitionLabel _$$EntryDefinitionLabelFromJson(
       id: json['id'] as String,
       uuid: _$JsonConverterFromJson<String, UuidValue>(
           json['uuid'], const UuidConverter().fromJson),
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$EntryDefinitionLabelToJson(
@@ -23,7 +23,7 @@ Map<String, dynamic> _$$EntryDefinitionLabelToJson(
       'id': instance.id,
       'uuid': _$JsonConverterToJson<String, UuidValue>(
           instance.uuid, const UuidConverter().toJson),
-      'type': instance.$type,
+      'runtimeType': instance.$type,
     };
 
 Value? _$JsonConverterFromJson<Json, Value>(
@@ -46,7 +46,7 @@ _$EntryDefinitionNote _$$EntryDefinitionNoteFromJson(
       id: json['id'] as String,
       uuid: _$JsonConverterFromJson<String, UuidValue>(
           json['uuid'], const UuidConverter().fromJson),
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$EntryDefinitionNoteToJson(
@@ -57,5 +57,5 @@ Map<String, dynamic> _$$EntryDefinitionNoteToJson(
       'id': instance.id,
       'uuid': _$JsonConverterToJson<String, UuidValue>(
           instance.uuid, const UuidConverter().toJson),
-      'type': instance.$type,
+      'runtimeType': instance.$type,
     };

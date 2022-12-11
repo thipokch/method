@@ -1,4 +1,4 @@
-import 'package:method_style/element_symbol.dart';
+import 'package:method_ui/element_symbol.dart';
 import 'package:flutter/material.dart';
 import 'package:method_ui/preview_composite.dart';
 import 'package:method_ui/preview_element.dart';

@@ -1,5 +1,5 @@
 import 'package:method_core/model/session.dart';
-import 'package:method_repo/content/content.dart';
+import 'package:method_data/content/content.dart';
 
 final List<Session> mockSessions = [
   Session.from(template: Content.exerciseAct),

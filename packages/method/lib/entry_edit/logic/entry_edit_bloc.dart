@@ -6,7 +6,7 @@ import 'package:method_core/model/definition.dart';
 import 'package:method_core/model/task_definition.dart';
 import 'package:method_core/model/entry_definition.dart';
 import 'package:method_core/model/task.dart';
-import 'package:method_repo/method_repo.dart';
+import 'package:method_data/method_data.dart';
 
 part 'entry_edit_event.dart';
 part 'entry_edit_state.dart';

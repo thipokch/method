@@ -3,8 +3,8 @@
 import 'dart:math' as math;
 import 'dart:ui' show ImageFilter;
 
-import 'package:method_style/element_symbol.dart';
-import 'package:method_style/element_motion.dart';
+import 'package:method_ui/element_symbol.dart';
+import 'package:method_ui/element_motion.dart';
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

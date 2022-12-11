@@ -20,8 +20,8 @@ _$_TaskResult _$$_TaskResultFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_TaskResultToJson(_$_TaskResult instance) =>
     <String, dynamic>{
-      'id': instance.id?.toJson(),
+      'id': instance.id,
       'startDate': instance.startDate.toIso8601String(),
       'endDate': instance.endDate.toIso8601String(),
-      'results': instance.results.map((e) => e.toJson()).toList(),
+      'results': instance.results,
     };

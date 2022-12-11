@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:method_style/element_theme.dart';
+import 'package:method_ui/element_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 

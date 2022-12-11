@@ -15,15 +15,15 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Exercise _$ExerciseFromJson(Map<String, dynamic> json) {
-  switch (json['type']) {
+  switch (json['runtimeType']) {
     case 'navigable':
       return NavigableExercise.fromJson(json);
     case 'ordered':
       return OrderedExercise.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(
-          json, 'type', 'Exercise', 'Invalid union type "${json['type']}"!');
+      throw CheckedFromJsonException(json, 'runtimeType', 'Exercise',
+          'Invalid union type "${json['runtimeType']}"!');
   }
 }
 
@@ -336,7 +336,7 @@ class _$NavigableExercise extends NavigableExercise {
     return EqualUnmodifiableMapView(_navigationRules);
   }
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -650,7 +650,7 @@ class _$OrderedExercise extends OrderedExercise {
   @override
   final Task? initialTask;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override

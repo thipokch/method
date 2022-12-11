@@ -1,5 +1,5 @@
-import 'package:method_style/element_symbol.dart';
-import 'package:method_style/element_scale.dart';
+import 'package:method_ui/element_symbol.dart';
+import 'package:method_ui/element_scale.dart';
 import 'package:flutter/material.dart';
 
 class IconographyPreview extends StatelessWidget {

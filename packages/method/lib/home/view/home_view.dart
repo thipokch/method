@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:method_style/element_symbol.dart';
+import 'package:method_ui/element_symbol.dart';
 
 import '../home.dart';
 

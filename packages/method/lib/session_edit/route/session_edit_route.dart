@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:method/util/sheet.dart';
-import 'package:method_kit/method_kit.dart';
-import 'package:method_repo/method_repo.dart';
+import 'package:method_core/method_core.dart';
+import 'package:method_data/method_data.dart';
 
 import '../session_edit.dart';
 
@@ -14,7 +14,7 @@ class SessionEditRoute extends GoRouteData {
   final int? initialIndex;
 
   @override
-  Widget build(BuildContext context) => MethodKit(
+  Widget build(BuildContext context) => Method(
         exercise: sampleExercise,
         onResult: (_) {},
       );

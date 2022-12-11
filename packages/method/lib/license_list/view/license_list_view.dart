@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/license/model/license_data.dart';
-import 'package:method_style/element_scale.dart';
-import 'package:method_style/element_symbol.dart';
+import 'package:method_ui/element_scale.dart';
+import 'package:method_ui/element_symbol.dart';
 
 import '../license_list.dart';
 

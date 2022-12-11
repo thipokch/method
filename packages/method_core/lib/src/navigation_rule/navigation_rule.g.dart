@@ -12,7 +12,7 @@ _$ConditionalNavigationRule _$$ConditionalNavigationRuleFromJson(
       resultToTaskIdentifierMapper:
           const ConditionalNavigationFunctionConverter()
               .fromJson(json['values'] as Map<String, dynamic>),
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$ConditionalNavigationRuleToJson(
@@ -20,7 +20,7 @@ Map<String, dynamic> _$$ConditionalNavigationRuleToJson(
     <String, dynamic>{
       'values': const ConditionalNavigationFunctionConverter()
           .toJson(instance.resultToTaskIdentifierMapper),
-      'type': instance.$type,
+      'runtimeType': instance.$type,
     };
 
 _$DirectNavigationRule _$$DirectNavigationRuleFromJson(
@@ -28,12 +28,12 @@ _$DirectNavigationRule _$$DirectNavigationRuleFromJson(
     _$DirectNavigationRule(
       destinationTaskIdentifier: TaskIdentifier.fromJson(
           json['destinationTaskIdentifier'] as Map<String, dynamic>),
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$DirectNavigationRuleToJson(
         _$DirectNavigationRule instance) =>
     <String, dynamic>{
-      'destinationTaskIdentifier': instance.destinationTaskIdentifier.toJson(),
-      'type': instance.$type,
+      'destinationTaskIdentifier': instance.destinationTaskIdentifier,
+      'runtimeType': instance.$type,
     };

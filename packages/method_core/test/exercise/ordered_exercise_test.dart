@@ -1,0 +1,21 @@
+import 'dart:convert';
+
+import 'package:flutter_test/flutter_test.dart';
+import 'package:method_core/method_core.dart';
+
+void main() {
+  test('ordered exercise created by json is the same as created via code', () {
+    const jsonStr = '''
+    {
+      "id": "123",
+      "type": "ordered"
+    }
+    ''';
+    const Exercise orderedExercise =
+        OrderedExercise(id: ExerciseIdentifier(id: '123'), tasks: []);
+
+    final orderedJsonExercise = OrderedExercise.fromJson(json.decode(jsonStr));
+
+    expect(orderedExercise, orderedJsonExercise);
+  });
+}

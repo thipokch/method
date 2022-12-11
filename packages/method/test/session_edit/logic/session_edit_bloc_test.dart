@@ -6,9 +6,9 @@ import 'package:method/session_edit/session_edit.dart';
 import 'package:method_core/model/entry.dart';
 import 'package:method_core/model/exercise.dart';
 import 'package:method_core/model/session.dart';
-import 'package:method_repo/collection/exercise.dart';
-import 'package:method_repo/collection/session.dart';
-import 'package:method_repo/method_repo.dart';
+import 'package:method_data/collection/exercise.dart';
+import 'package:method_data/collection/session.dart';
+import 'package:method_data/method_data.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../util/core_matcher.dart';

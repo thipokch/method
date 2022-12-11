@@ -8,7 +8,7 @@ import 'package:method/app/route/route.dart';
 import 'package:method/session_detail/session_detail.dart';
 import 'package:method/util/bloc_navigator.dart';
 import 'package:method_core/model/session.dart';
-import 'package:method_repo/method_repo.dart';
+import 'package:method_data/method_data.dart';
 
 part 'session_list_event.dart';
 part 'session_list_state.dart';

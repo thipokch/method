@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:method_style/element_symbol.dart';
+import 'package:method_ui/element_symbol.dart';
 
 class ListChildrenBuilder {
   const ListChildrenBuilder._();

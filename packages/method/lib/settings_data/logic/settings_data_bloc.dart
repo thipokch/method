@@ -5,7 +5,7 @@ import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/flow/flow.dart';
 import 'package:method/util/bloc_navigator.dart';
-import 'package:method_repo/method_repo.dart';
+import 'package:method_data/method_data.dart';
 
 typedef SettingsDataState = void;
 

@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 TaskDefinition _$TaskDefinitionFromJson(Map<String, dynamic> json) {
-  switch (json['type']) {
+  switch (json['runtimeType']) {
     case 'label':
       return TaskDefinitionLabel.fromJson(json);
     case 'note':
@@ -24,8 +24,8 @@ TaskDefinition _$TaskDefinitionFromJson(Map<String, dynamic> json) {
       return TaskDefinitionPart.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(json, 'type', 'TaskDefinition',
-          'Invalid union type "${json['type']}"!');
+      throw CheckedFromJsonException(json, 'runtimeType', 'TaskDefinition',
+          'Invalid union type "${json['runtimeType']}"!');
   }
 }
 
@@ -263,7 +263,7 @@ class _$TaskDefinitionLabel extends TaskDefinitionLabel {
   @UuidConverter()
   final UuidValue? uuid;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -520,7 +520,7 @@ class _$TaskDefinitionNote extends TaskDefinitionNote {
   @UuidConverter()
   final UuidValue? uuid;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -777,7 +777,7 @@ class _$TaskDefinitionPart extends TaskDefinitionPart {
   @UuidConverter()
   final UuidValue? uuid;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override

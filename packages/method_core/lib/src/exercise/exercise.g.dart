@@ -23,7 +23,7 @@ _$NavigableExercise _$$NavigableExerciseFromJson(Map<String, dynamic> json) =>
           ? const {}
           : const MapOfNavigationRulesConverter()
               .fromJson(json['rules'] as List),
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$NavigableExerciseToJson(_$NavigableExercise instance) =>
@@ -32,11 +32,11 @@ Map<String, dynamic> _$$NavigableExerciseToJson(_$NavigableExercise instance) =>
       'name': instance.name,
       'description': instance.description,
       'id': const ExerciseIdentifierConverter().toJson(instance.id),
-      'tasks': instance.tasks.map((e) => e.toJson()).toList(),
-      'initialTask': instance.initialTask?.toJson(),
+      'tasks': instance.tasks,
+      'initialTask': instance.initialTask,
       'rules': const MapOfNavigationRulesConverter()
           .toJson(instance.navigationRules),
-      'type': instance.$type,
+      'runtimeType': instance.$type,
     };
 
 _$OrderedExercise _$$OrderedExerciseFromJson(Map<String, dynamic> json) =>
@@ -52,7 +52,7 @@ _$OrderedExercise _$$OrderedExerciseFromJson(Map<String, dynamic> json) =>
       initialTask: json['initialTask'] == null
           ? null
           : Task.fromJson(json['initialTask'] as Map<String, dynamic>),
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$OrderedExerciseToJson(_$OrderedExercise instance) =>
@@ -61,7 +61,7 @@ Map<String, dynamic> _$$OrderedExerciseToJson(_$OrderedExercise instance) =>
       'name': instance.name,
       'description': instance.description,
       'id': const ExerciseIdentifierConverter().toJson(instance.id),
-      'tasks': instance.tasks.map((e) => e.toJson()).toList(),
-      'initialTask': instance.initialTask?.toJson(),
-      'type': instance.$type,
+      'tasks': instance.tasks,
+      'initialTask': instance.initialTask,
+      'runtimeType': instance.$type,
     };

@@ -1,5 +1,5 @@
-import 'package:method_style/element_scale.dart';
-import 'package:method_style/element_touch.dart';
+import 'package:method_ui/element_scale.dart';
+import 'package:method_ui/element_touch.dart';
 import 'package:flutter/material.dart';
 
 class ButtonAction extends StatelessWidget {

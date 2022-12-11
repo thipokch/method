@@ -1,5 +1,5 @@
-import 'package:method_repo/collection/exercise.dart';
-import 'package:method_repo/method_repo.dart';
+import 'package:method_data/collection/exercise.dart';
+import 'package:method_data/method_data.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockRepository extends Mock implements Repository {}

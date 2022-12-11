@@ -3,7 +3,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:method/entry_edit_linear/entry_edit_linear.dart';
 import 'package:method_core/model/entry.dart';
 import 'package:method_core/model/entry_definition.dart';
-import 'package:method_repo/content/content.dart';
 
 import '../../util/core_matcher.dart';
 import '../../util/state_matcher.dart';

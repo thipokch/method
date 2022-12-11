@@ -16,19 +16,19 @@ _$CompletionTask _$$CompletionTaskFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String,
       text: json['text'] as String,
       assetPath: json['assetPath'] as String? ?? '',
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$CompletionTaskToJson(_$CompletionTask instance) =>
     <String, dynamic>{
       'isOptional': instance.isOptional,
-      'taskIdentifier': instance.taskIdentifier.toJson(),
+      'taskIdentifier': instance.taskIdentifier,
       'buttonText': instance.buttonText,
       'showAppBar': instance.showAppBar,
       'title': instance.title,
       'text': instance.text,
       'assetPath': instance.assetPath,
-      'type': instance.$type,
+      'runtimeType': instance.$type,
     };
 
 _$InstructionTask _$$InstructionTaskFromJson(Map<String, dynamic> json) =>
@@ -42,7 +42,7 @@ _$InstructionTask _$$InstructionTaskFromJson(Map<String, dynamic> json) =>
       canGoBack: json['canGoBack'] as bool? ?? false,
       showProgress: json['showProgress'] as bool? ?? false,
       showAppBar: json['showAppBar'] as bool? ?? true,
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$InstructionTaskToJson(_$InstructionTask instance) =>
@@ -51,11 +51,11 @@ Map<String, dynamic> _$$InstructionTaskToJson(_$InstructionTask instance) =>
       'text': instance.text,
       'isOptional': instance.isOptional,
       'buttonText': instance.buttonText,
-      'taskIdentifier': instance.taskIdentifier.toJson(),
+      'taskIdentifier': instance.taskIdentifier,
       'canGoBack': instance.canGoBack,
       'showProgress': instance.showProgress,
       'showAppBar': instance.showAppBar,
-      'type': instance.$type,
+      'runtimeType': instance.$type,
     };
 
 _$QuestionTask _$$QuestionTaskFromJson(Map<String, dynamic> json) =>
@@ -69,17 +69,17 @@ _$QuestionTask _$$QuestionTaskFromJson(Map<String, dynamic> json) =>
       text: json['text'] as String? ?? '',
       answerFormat:
           AnswerFormat.fromJson(json['answerFormat'] as Map<String, dynamic>),
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$QuestionTaskToJson(_$QuestionTask instance) =>
     <String, dynamic>{
       'isOptional': instance.isOptional,
       'buttonText': instance.buttonText,
-      'taskIdentifier': instance.taskIdentifier.toJson(),
+      'taskIdentifier': instance.taskIdentifier,
       'showAppBar': instance.showAppBar,
       'title': instance.title,
       'text': instance.text,
-      'answerFormat': instance.answerFormat.toJson(),
-      'type': instance.$type,
+      'answerFormat': instance.answerFormat,
+      'runtimeType': instance.$type,
     };

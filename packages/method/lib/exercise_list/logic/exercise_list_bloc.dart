@@ -10,7 +10,7 @@ import 'package:method/app/app.dart';
 import 'package:method/exercise_detail/route/exercise_detail_route.dart';
 import 'package:method/session_edit/route/exercise_start_route.dart';
 import 'package:method_core/method_core.dart';
-import 'package:method_repo/method_repo.dart';
+import 'package:method_data/method_data.dart';
 
 part 'exercise_list_event.dart';
 part 'exercise_list_state.dart';
@@ -51,7 +51,7 @@ class ExerciseListBloc extends Bloc<ExerciseListEvent, ExerciseListState> {
       emit(ExerciseListState.started(exercises: [sampleExercise]));
       
   // rootBundle
-  //     .loadString('packages/method_kit/assets/example.json')
+  //     .loadString('packages/method_core/assets/example.json')
   //     .then((value) => Exercise.fromJson(json.decode(value)))
   //     .then((value) => emit(ExerciseListState.started(exercises: [value])));
 

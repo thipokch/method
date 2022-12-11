@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Identifier _$IdentifierFromJson(Map<String, dynamic> json) {
-  switch (json['type']) {
+  switch (json['runtimeType']) {
     case 'exercise':
       return ExerciseIdentifier.fromJson(json);
     case 'task':
@@ -154,7 +154,7 @@ class _$BaseIdentifier implements BaseIdentifier {
   @override
   final String id;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -316,7 +316,7 @@ class _$ExerciseIdentifier implements ExerciseIdentifier {
   @override
   final String id;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -480,7 +480,7 @@ class _$TaskIdentifier implements TaskIdentifier {
   @override
   final String id;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override

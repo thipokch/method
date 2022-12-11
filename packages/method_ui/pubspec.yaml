@@ -13,10 +13,20 @@ dependencies:
   linked_scroll_controller: ^0.2.0
   figma_squircle: ^0.5.3
 
-  method_style:
-  method_emoji:
+  characters: ^1.1.0
+  flutter_svg: ^1.0.0
+  io: ^1.0.3
+
+  path: ^1.8.0
+  yaml: ^3.1.0
+  image: ^3.2.2
+
+  fluentui_system_icons: ^1.1.178
+  gaimon: ^1.0.1
+  dynamic_color: ^1.5.4
 
 dev_dependencies:
+  flutter_gen_runner:
   dart_code_metrics: ^4.17.0
   flutter_lints: ^2.0.0
   flutter_test:
@@ -24,3 +34,38 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/webp/
+  fonts:
+    - family: NotoSans
+      fonts:
+        - asset: fonts/NotoSans-Black.ttf
+        - asset: fonts/NotoSans-BlackItalic.ttf
+        - asset: fonts/NotoSans-Bold.ttf
+        - asset: fonts/NotoSans-BoldItalic.ttf
+        - asset: fonts/NotoSans-ExtraBold.ttf
+        - asset: fonts/NotoSans-ExtraBoldItalic.ttf
+        - asset: fonts/NotoSans-BoldItalic.ttf
+        - asset: fonts/NotoSans-ExtraLight.ttf
+        - asset: fonts/NotoSans-ExtraLightItalic.ttf
+        - asset: fonts/NotoSans-Italic.ttf
+        - asset: fonts/NotoSans-Light.ttf
+        - asset: fonts/NotoSans-LightItalic.ttf
+        - asset: fonts/NotoSans-Medium.ttf
+        - asset: fonts/NotoSans-MediumItalic.ttf
+        - asset: fonts/NotoSans-Regular.ttf
+        - asset: fonts/NotoSans-SemiBold.ttf
+        - asset: fonts/NotoSans-SemiBoldItalic.ttf
+        - asset: fonts/NotoSans-Thin.ttf
+        - asset: fonts/NotoSans-ThinItalic.ttf
+
+flutter_gen:
+  output: lib/gen/ # Optional (default: lib/gen/)
+  line_length: 80 # Optional (default: 80)
+
+  integrations:
+    flutter_svg: true
+    # flare_flutter: true
+    # rive: true
+
+  package_parameter_enabled: true

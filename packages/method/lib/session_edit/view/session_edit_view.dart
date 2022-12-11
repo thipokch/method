@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:method_kit/method_kit.dart';
+import 'package:method_core/method_core.dart';
 
 part 'session_edit_sliver.dart';
 
@@ -19,13 +19,13 @@ class _Editor extends StatelessWidget {
   @override
   Widget build(BuildContext context) => FutureBuilder<Exercise>(
         future: rootBundle
-            .loadString('packages/method_kit/assets/example.json')
+            .loadString('packages/method_core/assets/example.json')
             .then((value) {
           return Exercise.fromJson(json.decode(value));
         }),
         builder: (context, snapshot) {
           return snapshot.hasData
-              ? MethodKit(
+              ? Method(
                   exercise: snapshot.data!,
                   onResult: (value) => null,
                 )

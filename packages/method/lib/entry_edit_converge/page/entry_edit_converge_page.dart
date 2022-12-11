@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:method/entry_edit/page/page.dart';
-import 'package:method_style/element_scale.dart';
+import 'package:method_ui/element_scale.dart';
 
 import '../entry_edit_converge.dart';
 

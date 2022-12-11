@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/app/view/app_info_view.dart';
 import 'package:method/settings_list/logic/settings_list_bloc.dart';
 import 'package:method/util/list.dart';
-import 'package:method_style/element_scale.dart';
+import 'package:method_ui/element_scale.dart';
 
 part 'settings_list_sliver.dart';
 

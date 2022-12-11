@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/app/logic/logic.dart';
 import 'package:method/settings_appearance/logic/logic.dart';
-import 'package:method_style/element_symbol.dart';
+import 'package:method_ui/element_symbol.dart';
 
 // import '../settings_appearance.dart';
 

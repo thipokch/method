@@ -1,5 +1,5 @@
-// import 'package:method_style/element_scale.dart';
-// import 'package:method_style/element_motion.dart';
+// import 'package:method_ui/element_scale.dart';
+// import 'package:method_ui/element_motion.dart';
 // import 'package:figma_squircle/figma_squircle.dart';
 // import 'package:flutter/material.dart';
 // import 'package:method_ui/util/conditional_parent_widget.dart';

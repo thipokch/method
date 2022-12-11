@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:method_style/element_motion.dart';
-import 'package:method_style/element_scale.dart';
-import 'package:method_style/element_symbol.dart';
-import 'package:method_style/element_touch.dart';
+import 'package:method_ui/element_motion.dart';
+import 'package:method_ui/element_scale.dart';
+import 'package:method_ui/element_symbol.dart';
+import 'package:method_ui/element_touch.dart';
 
 class MtSliverArtBar extends StatefulWidget {
   final Widget emoji;

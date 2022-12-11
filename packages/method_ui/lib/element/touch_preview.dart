@@ -1,4 +1,4 @@
-import 'package:method_style/element_touch.dart';
+import 'package:method_ui/element_touch.dart';
 import 'package:flutter/material.dart';
 
 import '../button/button_tonal.dart';

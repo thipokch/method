@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 TaskResultDetail _$TaskResultDetailFromJson(Map<String, dynamic> json) {
-  switch (json['type']) {
+  switch (json['runtimeType']) {
     case 'completion':
       return CompletionTaskResult.fromJson(json);
     case 'instruction':
@@ -46,8 +46,8 @@ TaskResultDetail _$TaskResultDetailFromJson(Map<String, dynamic> json) {
       return TimeQuestionResult.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(json, 'type', 'TaskResultDetail',
-          'Invalid union type "${json['type']}"!');
+      throw CheckedFromJsonException(json, 'runtimeType', 'TaskResultDetail',
+          'Invalid union type "${json['runtimeType']}"!');
   }
 }
 
@@ -366,7 +366,7 @@ class _$CompletionTaskResult extends CompletionTaskResult {
   @override
   final DateTime endDate;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -707,7 +707,7 @@ class _$InstructionTaskResult extends InstructionTaskResult {
   @override
   final DateTime endDate;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -1075,7 +1075,7 @@ class _$VideoTaskResult extends VideoTaskResult {
   @override
   final VideoResult? result;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -1443,7 +1443,7 @@ class _$BooleanQuestionResult extends BooleanQuestionResult {
   @override
   final BooleanResult? result;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -1817,7 +1817,7 @@ class _$DateQuestionResult extends DateQuestionResult {
   @override
   final DateTime? result;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -2191,7 +2191,7 @@ class _$DoubleQuestionResult extends DoubleQuestionResult {
   @override
   final double? result;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -2565,7 +2565,7 @@ class _$ImageQuestionResult extends ImageQuestionResult {
   @override
   final String? result;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -2939,7 +2939,7 @@ class _$IntegerQuestionResult extends IntegerQuestionResult {
   @override
   final int? result;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -3322,7 +3322,7 @@ class _$MultiChoiceQuestionResult extends MultiChoiceQuestionResult {
     return EqualUnmodifiableListView(value);
   }
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -3705,7 +3705,7 @@ class _$MultiDoubleQuestionResult extends MultiDoubleQuestionResult {
     return EqualUnmodifiableListView(value);
   }
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -4079,7 +4079,7 @@ class _$ScaleQuestionResult extends ScaleQuestionResult {
   @override
   final double? result;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -4468,7 +4468,7 @@ class _$SingleChoiceQuestionResult extends SingleChoiceQuestionResult {
   @override
   final TextChoice? result;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -4842,7 +4842,7 @@ class _$TextQuestionResult extends TextQuestionResult {
   @override
   final String? result;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -5217,7 +5217,7 @@ class _$TimeQuestionResult extends TimeQuestionResult {
   @override
   final TimeOfDay? result;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override

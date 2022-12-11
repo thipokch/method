@@ -64,7 +64,7 @@ jobs:
 
       # - name: Hygiene - Code Metrics
       #   env:
-      #     INPUT_FOLDERS: "./packages/method, ./packages/method_bloc, ./packages/method_core, ./packages/method_emoji, ./packages/method_isar, ./packages/method_repo, ./packages/method_style, ./packages/method_ui"
+      #     INPUT_FOLDERS: "./packages/method, ./packages/method_bloc, ./packages/method_core, ./packages/method_ui, ./packages/method_isar, ./packages/method_data, ./packages/method_ui, ./packages/method_ui"
       #     INPUT_GITHUB_TOKEN: ${{ github.token }}
       #     # Defaults
       #     INPUT_RELATIVE_PATH: ""

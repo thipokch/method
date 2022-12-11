@@ -15,15 +15,15 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 NavigationRule _$NavigationRuleFromJson(Map<String, dynamic> json) {
-  switch (json['type']) {
+  switch (json['runtimeType']) {
     case 'conditional':
       return ConditionalNavigationRule.fromJson(json);
     case 'direct':
       return DirectNavigationRule.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(json, 'type', 'NavigationRule',
-          'Invalid union type "${json['type']}"!');
+      throw CheckedFromJsonException(json, 'runtimeType', 'NavigationRule',
+          'Invalid union type "${json['runtimeType']}"!');
   }
 }
 
@@ -156,7 +156,7 @@ class _$ConditionalNavigationRule extends ConditionalNavigationRule {
   @ConditionalNavigationFunctionConverter()
   final ConditionalNavigationFunction resultToTaskIdentifierMapper;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -333,7 +333,7 @@ class _$DirectNavigationRule extends DirectNavigationRule {
   @override
   final TaskIdentifier destinationTaskIdentifier;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override

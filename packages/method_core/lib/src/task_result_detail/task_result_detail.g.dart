@@ -12,16 +12,16 @@ _$CompletionTaskResult _$$CompletionTaskResultFromJson(
       Identifier.fromJson(json['id'] as Map<String, dynamic>),
       DateTime.parse(json['startDate'] as String),
       DateTime.parse(json['endDate'] as String),
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$CompletionTaskResultToJson(
         _$CompletionTaskResult instance) =>
     <String, dynamic>{
-      'id': instance.id.toJson(),
+      'id': instance.id,
       'startDate': instance.startDate.toIso8601String(),
       'endDate': instance.endDate.toIso8601String(),
-      'type': instance.$type,
+      'runtimeType': instance.$type,
     };
 
 _$InstructionTaskResult _$$InstructionTaskResultFromJson(
@@ -30,16 +30,16 @@ _$InstructionTaskResult _$$InstructionTaskResultFromJson(
       Identifier.fromJson(json['id'] as Map<String, dynamic>),
       DateTime.parse(json['startDate'] as String),
       DateTime.parse(json['endDate'] as String),
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$InstructionTaskResultToJson(
         _$InstructionTaskResult instance) =>
     <String, dynamic>{
-      'id': instance.id.toJson(),
+      'id': instance.id,
       'startDate': instance.startDate.toIso8601String(),
       'endDate': instance.endDate.toIso8601String(),
-      'type': instance.$type,
+      'runtimeType': instance.$type,
     };
 
 _$VideoTaskResult _$$VideoTaskResultFromJson(Map<String, dynamic> json) =>
@@ -50,16 +50,16 @@ _$VideoTaskResult _$$VideoTaskResultFromJson(Map<String, dynamic> json) =>
       result: json['result'] == null
           ? null
           : VideoResult.fromJson(json['result'] as Map<String, dynamic>),
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$VideoTaskResultToJson(_$VideoTaskResult instance) =>
     <String, dynamic>{
-      'id': instance.id.toJson(),
+      'id': instance.id,
       'startDate': instance.startDate.toIso8601String(),
       'endDate': instance.endDate.toIso8601String(),
-      'result': instance.result?.toJson(),
-      'type': instance.$type,
+      'result': instance.result,
+      'runtimeType': instance.$type,
     };
 
 _$BooleanQuestionResult _$$BooleanQuestionResultFromJson(
@@ -70,18 +70,18 @@ _$BooleanQuestionResult _$$BooleanQuestionResultFromJson(
       endDate: DateTime.parse(json['endDate'] as String),
       valueIdentifier: json['valueIdentifier'] as String,
       result: $enumDecodeNullable(_$BooleanResultEnumMap, json['result']),
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$BooleanQuestionResultToJson(
         _$BooleanQuestionResult instance) =>
     <String, dynamic>{
-      'id': instance.id.toJson(),
+      'id': instance.id,
       'startDate': instance.startDate.toIso8601String(),
       'endDate': instance.endDate.toIso8601String(),
       'valueIdentifier': instance.valueIdentifier,
       'result': _$BooleanResultEnumMap[instance.result],
-      'type': instance.$type,
+      'runtimeType': instance.$type,
     };
 
 const _$BooleanResultEnumMap = {
@@ -99,18 +99,18 @@ _$DateQuestionResult _$$DateQuestionResultFromJson(Map<String, dynamic> json) =>
       result: json['result'] == null
           ? null
           : DateTime.parse(json['result'] as String),
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$DateQuestionResultToJson(
         _$DateQuestionResult instance) =>
     <String, dynamic>{
-      'id': instance.id.toJson(),
+      'id': instance.id,
       'startDate': instance.startDate.toIso8601String(),
       'endDate': instance.endDate.toIso8601String(),
       'valueIdentifier': instance.valueIdentifier,
       'result': instance.result?.toIso8601String(),
-      'type': instance.$type,
+      'runtimeType': instance.$type,
     };
 
 _$DoubleQuestionResult _$$DoubleQuestionResultFromJson(
@@ -121,18 +121,18 @@ _$DoubleQuestionResult _$$DoubleQuestionResultFromJson(
       endDate: DateTime.parse(json['endDate'] as String),
       valueIdentifier: json['valueIdentifier'] as String,
       result: (json['result'] as num?)?.toDouble(),
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$DoubleQuestionResultToJson(
         _$DoubleQuestionResult instance) =>
     <String, dynamic>{
-      'id': instance.id.toJson(),
+      'id': instance.id,
       'startDate': instance.startDate.toIso8601String(),
       'endDate': instance.endDate.toIso8601String(),
       'valueIdentifier': instance.valueIdentifier,
       'result': instance.result,
-      'type': instance.$type,
+      'runtimeType': instance.$type,
     };
 
 _$ImageQuestionResult _$$ImageQuestionResultFromJson(
@@ -143,18 +143,18 @@ _$ImageQuestionResult _$$ImageQuestionResultFromJson(
       endDate: DateTime.parse(json['endDate'] as String),
       valueIdentifier: json['valueIdentifier'] as String,
       result: json['result'] as String?,
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$ImageQuestionResultToJson(
         _$ImageQuestionResult instance) =>
     <String, dynamic>{
-      'id': instance.id.toJson(),
+      'id': instance.id,
       'startDate': instance.startDate.toIso8601String(),
       'endDate': instance.endDate.toIso8601String(),
       'valueIdentifier': instance.valueIdentifier,
       'result': instance.result,
-      'type': instance.$type,
+      'runtimeType': instance.$type,
     };
 
 _$IntegerQuestionResult _$$IntegerQuestionResultFromJson(
@@ -165,18 +165,18 @@ _$IntegerQuestionResult _$$IntegerQuestionResultFromJson(
       endDate: DateTime.parse(json['endDate'] as String),
       valueIdentifier: json['valueIdentifier'] as String,
       result: json['result'] as int?,
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$IntegerQuestionResultToJson(
         _$IntegerQuestionResult instance) =>
     <String, dynamic>{
-      'id': instance.id.toJson(),
+      'id': instance.id,
       'startDate': instance.startDate.toIso8601String(),
       'endDate': instance.endDate.toIso8601String(),
       'valueIdentifier': instance.valueIdentifier,
       'result': instance.result,
-      'type': instance.$type,
+      'runtimeType': instance.$type,
     };
 
 _$MultiChoiceQuestionResult _$$MultiChoiceQuestionResultFromJson(
@@ -189,18 +189,18 @@ _$MultiChoiceQuestionResult _$$MultiChoiceQuestionResultFromJson(
       result: (json['result'] as List<dynamic>?)
           ?.map((e) => TextChoice.fromJson(e as Map<String, dynamic>))
           .toList(),
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$MultiChoiceQuestionResultToJson(
         _$MultiChoiceQuestionResult instance) =>
     <String, dynamic>{
-      'id': instance.id.toJson(),
+      'id': instance.id,
       'startDate': instance.startDate.toIso8601String(),
       'endDate': instance.endDate.toIso8601String(),
       'valueIdentifier': instance.valueIdentifier,
-      'result': instance.result?.map((e) => e.toJson()).toList(),
-      'type': instance.$type,
+      'result': instance.result,
+      'runtimeType': instance.$type,
     };
 
 _$MultiDoubleQuestionResult _$$MultiDoubleQuestionResultFromJson(
@@ -213,18 +213,18 @@ _$MultiDoubleQuestionResult _$$MultiDoubleQuestionResultFromJson(
       result: (json['result'] as List<dynamic>?)
           ?.map((e) => MultiDouble.fromJson(e as Map<String, dynamic>))
           .toList(),
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$MultiDoubleQuestionResultToJson(
         _$MultiDoubleQuestionResult instance) =>
     <String, dynamic>{
-      'id': instance.id.toJson(),
+      'id': instance.id,
       'startDate': instance.startDate.toIso8601String(),
       'endDate': instance.endDate.toIso8601String(),
       'valueIdentifier': instance.valueIdentifier,
-      'result': instance.result?.map((e) => e.toJson()).toList(),
-      'type': instance.$type,
+      'result': instance.result,
+      'runtimeType': instance.$type,
     };
 
 _$ScaleQuestionResult _$$ScaleQuestionResultFromJson(
@@ -235,18 +235,18 @@ _$ScaleQuestionResult _$$ScaleQuestionResultFromJson(
       endDate: DateTime.parse(json['endDate'] as String),
       valueIdentifier: json['valueIdentifier'] as String,
       result: (json['result'] as num?)?.toDouble(),
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$ScaleQuestionResultToJson(
         _$ScaleQuestionResult instance) =>
     <String, dynamic>{
-      'id': instance.id.toJson(),
+      'id': instance.id,
       'startDate': instance.startDate.toIso8601String(),
       'endDate': instance.endDate.toIso8601String(),
       'valueIdentifier': instance.valueIdentifier,
       'result': instance.result,
-      'type': instance.$type,
+      'runtimeType': instance.$type,
     };
 
 _$SingleChoiceQuestionResult _$$SingleChoiceQuestionResultFromJson(
@@ -259,18 +259,18 @@ _$SingleChoiceQuestionResult _$$SingleChoiceQuestionResultFromJson(
       result: json['result'] == null
           ? null
           : TextChoice.fromJson(json['result'] as Map<String, dynamic>),
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$SingleChoiceQuestionResultToJson(
         _$SingleChoiceQuestionResult instance) =>
     <String, dynamic>{
-      'id': instance.id.toJson(),
+      'id': instance.id,
       'startDate': instance.startDate.toIso8601String(),
       'endDate': instance.endDate.toIso8601String(),
       'valueIdentifier': instance.valueIdentifier,
-      'result': instance.result?.toJson(),
-      'type': instance.$type,
+      'result': instance.result,
+      'runtimeType': instance.$type,
     };
 
 _$TextQuestionResult _$$TextQuestionResultFromJson(Map<String, dynamic> json) =>
@@ -280,18 +280,18 @@ _$TextQuestionResult _$$TextQuestionResultFromJson(Map<String, dynamic> json) =>
       endDate: DateTime.parse(json['endDate'] as String),
       valueIdentifier: json['valueIdentifier'] as String,
       result: json['result'] as String?,
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$TextQuestionResultToJson(
         _$TextQuestionResult instance) =>
     <String, dynamic>{
-      'id': instance.id.toJson(),
+      'id': instance.id,
       'startDate': instance.startDate.toIso8601String(),
       'endDate': instance.endDate.toIso8601String(),
       'valueIdentifier': instance.valueIdentifier,
       'result': instance.result,
-      'type': instance.$type,
+      'runtimeType': instance.$type,
     };
 
 _$TimeQuestionResult _$$TimeQuestionResultFromJson(Map<String, dynamic> json) =>
@@ -301,16 +301,16 @@ _$TimeQuestionResult _$$TimeQuestionResultFromJson(Map<String, dynamic> json) =>
       endDate: DateTime.parse(json['endDate'] as String),
       valueIdentifier: json['valueIdentifier'] as String,
       result: const TimeOfDayConverter().fromJson(json['result'] as String?),
-      $type: json['type'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$TimeQuestionResultToJson(
         _$TimeQuestionResult instance) =>
     <String, dynamic>{
-      'id': instance.id.toJson(),
+      'id': instance.id,
       'startDate': instance.startDate.toIso8601String(),
       'endDate': instance.endDate.toIso8601String(),
       'valueIdentifier': instance.valueIdentifier,
       'result': const TimeOfDayConverter().toJson(instance.result),
-      'type': instance.$type,
+      'runtimeType': instance.$type,
     };

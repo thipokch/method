@@ -1,16 +1,10 @@
-# melos_managed_dependency_overrides: go_router,method_core,method_emoji,method_kit,method_repo,method_style,method_ui
+# melos_managed_dependency_overrides: go_router,method_core,method_data,method_ui
 dependency_overrides:
   go_router:
     path: ../go_router
   method_core:
     path: ../method_core
-  method_emoji:
-    path: ../method_emoji
-  method_kit:
-    path: ../method_kit
-  method_repo:
-    path: ../method_repo
-  method_style:
-    path: ../method_style
+  method_data:
+    path: ../method_data
   method_ui:
     path: ../method_ui

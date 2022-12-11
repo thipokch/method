@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 AnswerFormat _$AnswerFormatFromJson(Map<String, dynamic> json) {
-  switch (json['type']) {
+  switch (json['runtimeType']) {
     case 'boolean':
       return BooleanAnswerFormat.fromJson(json);
     case 'date':
@@ -40,8 +40,8 @@ AnswerFormat _$AnswerFormatFromJson(Map<String, dynamic> json) {
       return TimeAnswerFormat.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(json, 'type', 'AnswerFormat',
-          'Invalid union type "${json['type']}"!');
+      throw CheckedFromJsonException(json, 'runtimeType', 'AnswerFormat',
+          'Invalid union type "${json['runtimeType']}"!');
   }
 }
 
@@ -275,7 +275,7 @@ class _$BooleanAnswerFormat extends BooleanAnswerFormat {
   @JsonKey()
   final BooleanResult result;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -577,7 +577,7 @@ class _$DateAnswerFormat extends DateAnswerFormat {
   @override
   final DateTime? maxDate;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -862,7 +862,7 @@ class _$DoubleAnswerFormat extends DoubleAnswerFormat {
   @JsonKey()
   final String hint;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -1138,7 +1138,7 @@ class _$ImageAnswerFormat extends ImageAnswerFormat {
   @JsonKey()
   final String buttonText;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -1415,7 +1415,7 @@ class _$IntegerAnswerFormat extends IntegerAnswerFormat {
   @JsonKey()
   final String hint;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -1705,7 +1705,7 @@ class _$MultiChoiceAnswerFormat extends MultiChoiceAnswerFormat {
     return EqualUnmodifiableListView(_defaultSelection);
   }
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -1999,7 +1999,7 @@ class _$MultiDoubleAnswerFormat extends MultiDoubleAnswerFormat {
     return EqualUnmodifiableListView(_hints);
   }
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -2317,7 +2317,7 @@ class _$ScaleAnswerFormat extends ScaleAnswerFormat {
   @JsonKey()
   final String minimumValueDescription;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -2637,7 +2637,7 @@ class _$SingleChoiceAnswerFormat extends SingleChoiceAnswerFormat {
   @override
   final TextChoice? defaultSelection;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -2934,7 +2934,7 @@ class _$TextAnswerFormat extends TextAnswerFormat {
   @JsonKey()
   final String validationRegEx;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
@@ -3214,7 +3214,7 @@ class _$TimeAnswerFormat extends TimeAnswerFormat {
   @TimeOfDayConverter()
   final TimeOfDay? defaultValue;
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override

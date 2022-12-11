@@ -14,7 +14,7 @@ import 'package:go_router/go_router.dart';
 import 'package:method/app/app.dart';
 import 'package:method/license/service/license_service.dart';
 import 'package:method/settings_appearance/logic/settings_appearance_bloc.dart';
-import 'package:method_repo/method_repo.dart';
+import 'package:method_data/method_data.dart';
 import 'package:method_ui/riso/riso_shader.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';

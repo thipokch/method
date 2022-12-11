@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method_core/model/exercise.dart';
-import 'package:method_repo/method_repo.dart';
+import 'package:method_data/method_data.dart';
 
 part 'exercise_detail_event.dart';
 part 'exercise_detail_state.dart';

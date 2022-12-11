@@ -45,10 +45,8 @@ dependencies:
   # uuid: ^3.0.6
 
   method_core:
-  method_kit:
   method_ui:
-  method_style:
-  method_repo:
+  method_data:
   go_router:
 
 dev_dependencies:
