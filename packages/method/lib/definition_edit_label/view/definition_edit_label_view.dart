@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:method_core/model/entry_definition.dart';
 import 'package:method_core/model/task_definition.dart';
-import 'package:method_ui/element_scale.dart';
-import 'package:method_ui/emoji/emoji.dart';
+import 'package:method_style/method_style.dart';
 
 part 'definition_edit_label_sliver.dart';
 
@@ -47,7 +46,7 @@ class DefinitionEditLabelView extends StatelessWidget {
     required ColorScheme colorScheme,
   }) =>
       Padding(
-        padding: const EdgeInsets.only(top: ElementScale.spaceS),
+        padding: const EdgeInsets.only(top: MtSpaces.S),
         child: Text(
           name,
           style: textTheme.labelSmall!.copyWith(
@@ -65,7 +64,7 @@ class DefinitionEditLabelView extends StatelessWidget {
       IconButton(
         iconSize: 36.0,
         style: style,
-        padding: const EdgeInsets.all(ElementScale.spaceM),
+        padding: const EdgeInsets.all(MtSpaces.M),
         onPressed: onTap,
         // color: colorScheme.primaryContainer,
         icon: SizedBox(

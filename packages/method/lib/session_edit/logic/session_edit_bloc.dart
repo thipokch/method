@@ -34,7 +34,7 @@ class SessionEditBloc extends Bloc<SessionEditEvent, SessionEditState> {
   SessionEditBloc({
     required this.repository,
     this.analytics,
-  // ignore: no-empty-block
+    // ignore: no-empty-block
   }) : super(const _Initial()) {
     // on<_StartExercise>(_onStartExercise);
     // on<_StartSession>(_onStartSession);

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:method_ui/element_scale.dart';
+import 'package:method_style/method_style.dart';
 
 import '../license_detail.dart';
 
@@ -20,7 +20,7 @@ class LicenseDetailView extends StatelessWidget {
               itemBuilder: (context, index) => flattened[index] != null
                   ? _LicenseBody(flattened[index]!)
                   : const Padding(
-                      padding: EdgeInsets.all(ElementScale.spaceM),
+                      padding: EdgeInsets.all(MtSpaces.M),
                       child: Divider(),
                     ),
               itemCount: flattened.length,
@@ -40,7 +40,7 @@ class _LicenseBody extends StatelessWidget {
   Widget build(BuildContext context) =>
       paragraph.indent == LicenseParagraph.centeredIndent
           ? Padding(
-              padding: const EdgeInsets.only(top: ElementScale.spaceM),
+              padding: const EdgeInsets.only(top: MtSpaces.M),
               child: Text(
                 paragraph.text,
                 style: const TextStyle(fontWeight: FontWeight.bold),

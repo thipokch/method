@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:method/entry_edit/page/entry_edit_page_base.dart';
-import 'package:method_ui/element_scale.dart';
+import 'package:method_style/method_style.dart';
 
 import '../entry_edit_diverge.dart';
 
@@ -21,7 +21,7 @@ class EntryEditDivergePage extends StatelessWidget {
           SliverSafeArea(
             top: false,
             sliver: SliverPadding(
-              padding: EdgeInsets.all(ElementScale.spaceM),
+              padding: EdgeInsets.all(MtSpaces.M),
               sliver: EntryEditDivergeCardSliver(),
             ),
           ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/util/list.dart';
-import 'package:method_ui/element_scale.dart';
+import 'package:method_style/method_style.dart';
 
 import '../settings_data.dart';
 
@@ -12,7 +12,7 @@ class SettingsDataView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.symmetric(vertical: ElementScale.spaceM),
+        padding: const EdgeInsets.symmetric(vertical: MtSpaces.M),
         child: ListView(
           children: _ListChildren.children(bloc: context.read()),
         ),

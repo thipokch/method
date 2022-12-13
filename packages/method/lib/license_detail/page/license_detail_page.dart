@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:method_ui/element_scale.dart';
-import 'package:method_ui/page/page.dart';
+import 'package:method_style/method_style.dart';
+import 'package:method_style/method_style.dart';
 
 import '../license_detail.dart';
 
@@ -14,7 +14,7 @@ class LicenseDetailPage extends StatelessWidget {
         // description: Text(""),
         slivers: const [
           SliverPadding(
-            padding: EdgeInsets.all(ElementScale.spaceM),
+            padding: EdgeInsets.all(MtSpaces.M),
             sliver: LicenseDetailSliver(),
           ),
         ],

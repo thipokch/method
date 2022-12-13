@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:method_ui/element_theme.dart';
+import 'package:method_style/method_style.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
@@ -51,8 +51,8 @@ class _AppStartedView extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             routerConfig: routerConfig,
             themeMode: themeMode,
-            theme: ElementTheme.light,
-            darkTheme: ElementTheme.dark,
+            theme: MtTheme.lightTheme,
+            darkTheme: MtTheme.darkTheme,
           ),
         ),
       );

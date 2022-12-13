@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:method/entry_edit/page/page.dart';
-import 'package:method_ui/element_scale.dart';
+import 'package:method_style/method_style.dart';
 
 import '../entry_edit_converge.dart';
 
@@ -31,14 +31,14 @@ class EntryEditConvergePage extends StatelessWidget {
           SliverSafeArea(
             top: false,
             sliver: SliverPadding(
-              padding: EdgeInsets.all(ElementScale.spaceM),
+              padding: EdgeInsets.all(MtSpaces.M),
               sliver: EntryEditConvergeCardSliver(),
             ),
           ),
           SliverSafeArea(
             top: false,
             sliver: SliverPadding(
-              padding: EdgeInsets.all(ElementScale.spaceM),
+              padding: EdgeInsets.all(MtSpaces.M),
               sliver: EntryEditConvergeLabelSliver(),
             ),
           ),

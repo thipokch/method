@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:method_core/model/entry_definition.dart';
 import 'package:method_core/model/task_definition.dart';
-import 'package:method_ui/element_motion.dart';
-import 'package:method_ui/element_symbol.dart';
-import 'package:method_ui/card/card.dart';
-import 'package:method_ui/card/card_text_edit.dart';
-import 'package:method_ui/card/card_tile.dart';
-
+import 'package:method_style/method_style.dart';
 part 'definition_edit_card_sliver.dart';
 
 class DefinitionEditCardView extends StatelessWidget {
@@ -73,11 +68,11 @@ class _CardHeader extends StatelessWidget {
         title: taskDefinition.name,
         description: taskDefinition.description,
         trailing: AnimatedCrossFade(
-          firstChild: const Icon(ElementSymbol.dismiss),
-          secondChild: const Icon(ElementSymbol.add),
+          firstChild: const Icon(MtSymbols.dismiss),
+          secondChild: const Icon(MtSymbols.add),
           crossFadeState:
               isSelected ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-          duration: ElementMotion.moderate,
+          duration: MtDurations.moderate,
         ),
       );
 }

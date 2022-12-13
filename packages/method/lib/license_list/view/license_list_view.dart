@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/license/model/license_data.dart';
-import 'package:method_ui/element_scale.dart';
-import 'package:method_ui/element_symbol.dart';
+import 'package:method_style/method_style.dart';
+import 'package:method_style/method_style.dart';
 
 import '../license_list.dart';
 
@@ -52,7 +52,7 @@ class _LicenseListTile extends StatelessWidget {
   Widget build(BuildContext context) => ListTile(
         // key: ValueKey(index),
         title: Text(packageName),
-        trailing: const Icon(ElementSymbol.chevronForward),
+        trailing: const Icon(MtSymbols.chevronForward),
         subtitle: Text(MaterialLocalizations.of(context)
             .licensesPackageDetailText(numberLicenses)),
         onTap: () => bloc.selectPackage(packageName),

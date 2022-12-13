@@ -864,10 +864,10 @@ packages:
       relative: true
     source: path
     version: "0.0.0"
-  method_ui:
+  method_style:
     dependency: "direct main"
     description:
-      path: "../method_ui"
+      path: "../method_style"
       relative: true
     source: path
     version: "0.0.0"

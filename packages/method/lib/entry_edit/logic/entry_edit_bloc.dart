@@ -21,7 +21,7 @@ class EntryEditBloc extends Bloc<EntryEditEvent, EntryEditState> {
   EntryEditBloc({
     required this.repository,
     this.analytics,
-  // ignore: no-empty-block
+    // ignore: no-empty-block
   }) : super(const EntryEditState.intial()) {
     // on<_StartTask>(_onStartTask);
     // on<_StartEntry>(_onStartEntry);

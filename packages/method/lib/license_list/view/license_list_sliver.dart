@@ -5,7 +5,7 @@ class LicenseListSliver extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SliverPadding(
-        padding: const EdgeInsets.symmetric(vertical: ElementScale.spaceM),
+        padding: const EdgeInsets.symmetric(vertical: MtSpaces.M),
         sliver: LicenseListBuilder(
           builder: (context, state) => state == null
               ? const SliverFillRemaining(child: CupertinoActivityIndicator())

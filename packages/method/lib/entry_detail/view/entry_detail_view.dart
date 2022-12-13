@@ -5,7 +5,7 @@ import 'package:method_core/model/entry.dart';
 import 'package:method_core/model/entry_definition.dart';
 import 'package:method_core/model/task.dart';
 import 'package:method_core/model/task_definition.dart';
-import 'package:method_ui/emoji/emoji.dart';
+import 'package:method_style/method_style.dart';
 
 import '../entry_detail.dart';
 

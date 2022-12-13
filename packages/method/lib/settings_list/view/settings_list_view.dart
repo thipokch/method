@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/app/view/app_info_view.dart';
 import 'package:method/settings_list/logic/settings_list_bloc.dart';
 import 'package:method/util/list.dart';
-import 'package:method_ui/element_scale.dart';
+import 'package:method_style/method_style.dart';
 
 part 'settings_list_sliver.dart';
 
@@ -12,7 +12,7 @@ class SettingsListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.only(top: ElementScale.spaceM),
+        padding: const EdgeInsets.only(top: MtSpaces.M),
         child: ListView(
           children: _ListChildren.children(bloc: context.read()),
         ),

@@ -4,11 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/app/route/route.dart';
 import 'package:method/session_edit/route/route.dart';
 import 'package:method_core/abstract/present.dart';
-import 'package:method_ui/element_color.dart';
-import 'package:method_ui/button/button_filled.dart';
-import 'package:method_ui/emoji/riso_emoji.dart';
-import 'package:method_ui/page/art_page.dart';
-import 'package:method_ui/riso/riso_canvas.dart';
+import 'package:method_style/method_style.dart';
 
 import '../exercise_detail.dart';
 

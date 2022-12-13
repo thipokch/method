@@ -1,9 +1,9 @@
-import 'package:method_ui/element_react.dart';
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:method_style/method_style.dart';
 
 // import 'package:sheet/route.dart';
 
@@ -114,7 +114,7 @@ class MtSheet<T> extends Page<T> {
         settings: this,
         builder: (context) => Material(child: child),
         containerBuilder: (context, animation, child) => _SheetContainer(
-          topRadius: topRadius ?? ElementReact.screenCornerRadius(context),
+          topRadius: topRadius ?? MtTheme.screenCornerRadius(context),
           backgroundColor: backgroundColor,
           child: child,
         ),
@@ -135,7 +135,7 @@ class MtSheet<T> extends Page<T> {
         isDismissible: isDismissible ?? !expand ? true : false,
         modalBarrierColor: barrierColor ?? Colors.black12,
         enableDrag: enableDrag,
-        topRadius: topRadius ?? ElementReact.screenCornerRadius(context),
+        topRadius: topRadius ?? MtTheme.screenCornerRadius(context),
         animationCurve: animationCurve,
         previousRouteAnimationCurve: previousRouteAnimationCurve,
         duration: duration,

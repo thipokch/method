@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:method_ui/element_scale.dart';
+import 'package:method_style/method_style.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 
@@ -26,8 +26,7 @@ class AppInfoView extends StatelessWidget {
                     ),
                     if (info.version != '')
                       Padding(
-                        padding:
-                            const EdgeInsets.only(bottom: ElementScale.spaceM),
+                        padding: const EdgeInsets.only(bottom: MtSpaces.M),
                         child: Text(
                           info.version,
                           style: Theme.of(context).textTheme.bodyText2,

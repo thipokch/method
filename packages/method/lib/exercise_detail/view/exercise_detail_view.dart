@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/exercise_detail/logic/logic.dart';
 import 'package:method_core/model/task.dart';
-import 'package:method_ui/emoji/riso_emoji.dart';
+import 'package:method_style/method_style.dart';
 
 // import '../exercise_detail.dart';
 

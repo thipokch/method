@@ -1,0 +1,11 @@
+bricks:
+  feature:
+    path: templates/feature
+  model:
+    path: templates/model
+  model_bundle:
+    path: templates/model_bundle
+  service:
+    path: templates/service
+  service_package:
+    path: templates/service_package

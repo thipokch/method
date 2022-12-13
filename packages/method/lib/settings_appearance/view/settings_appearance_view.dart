@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/app/logic/logic.dart';
 import 'package:method/settings_appearance/logic/logic.dart';
-import 'package:method_ui/element_symbol.dart';
+import 'package:method_style/method_style.dart';
 
 // import '../settings_appearance.dart';
 
@@ -30,7 +30,7 @@ class _ListChildren {
         title: Text(entry.key),
         trailing: Visibility(
           visible: bloc.state.themeMode == entry.value,
-          child: const Icon(ElementSymbol.checkmark),
+          child: const Icon(MtSymbols.checkmark),
         ),
         onTap: () => bloc.add(
           SettingsAppearanceEvent.setThemeMode(themeMode: entry.value),

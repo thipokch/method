@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:method_core/method_core.dart';
 
 var sampleExercise = Exercise.navigable(
-  icon: "💀",
+  icon: "😀",
   name: "",
   description: "",
   id: ExerciseIdentifier(id: Identifier.uuid()),
@@ -123,7 +123,6 @@ var sampleExercise = Exercise.navigable(
 //     },
 //   ),
 // )
-
 
 // import 'package:method_core/method_core.dart';
 // import 'package:method_core/model/task.dart';

@@ -4,10 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/exercise_list/exercise_list.dart';
 import 'package:method_core/method_core.dart';
-import 'package:method_ui/element_color.dart';
-import 'package:method_ui/element_scale.dart';
-import 'package:method_ui/emoji/riso_emoji.dart';
-import 'package:method_ui/riso/riso_canvas.dart';
+import 'package:method_style/method_style.dart';
 
 part 'exercise_list_sliver.dart';
 
@@ -81,8 +78,8 @@ class _Card extends StatelessWidget {
               shape: const SmoothRectangleBorder(
                 borderRadius: SmoothBorderRadius.all(
                   SmoothRadius(
-                    cornerRadius: ElementScale.cornerLarge,
-                    cornerSmoothing: ElementScale.cornerSmoothFactor,
+                    cornerRadius: MtCorner.Large,
+                    cornerSmoothing: MtCorner.smoothFactor,
                   ),
                 ),
               ),

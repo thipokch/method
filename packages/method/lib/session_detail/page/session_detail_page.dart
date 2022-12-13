@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:method/app/route/route.dart';
 import 'package:method/session_edit/route/session_edit_route.dart';
 import 'package:method_core/model/session.dart';
-import 'package:method_ui/element_scale.dart';
-import 'package:method_ui/element_symbol.dart';
-import 'package:method_ui/page/page.dart';
+import 'package:method_style/method_style.dart';
 
 import '../session_detail.dart';
 
@@ -36,13 +34,13 @@ class SessionDetailPage extends StatelessWidget {
               : AspectRatio(
                   aspectRatio: 1,
                   child: PopupMenuButton(
-                    icon: const Icon(ElementSymbol.moreVertical),
+                    icon: const Icon(MtSymbols.moreVertical),
                     position: PopupMenuPosition.under,
                     shape: const SmoothRectangleBorder(
                       borderRadius: SmoothBorderRadius.all(
                         SmoothRadius(
-                          cornerRadius: ElementScale.cornerLarge,
-                          cornerSmoothing: ElementScale.cornerSmoothFactor,
+                          cornerRadius: MtCorner.Large,
+                          cornerSmoothing: MtCorner.smoothFactor,
                         ),
                       ),
                     ),
@@ -59,7 +57,7 @@ class SessionDetailPage extends StatelessWidget {
                               child: Text('Edit'),
                             ),
                             Icon(
-                              ElementSymbol.editFilled,
+                              MtSymbols.editFilled,
                               color: Theme.of(context).colorScheme.onBackground,
                             ),
                           ],
@@ -92,7 +90,7 @@ class SessionDetailPage extends StatelessWidget {
                       //         child: Text('Delete'),
                       //       ),
                       //       Icon(
-                      //         ElementSymbol.deleteFilled,
+                      //         MtSymbols.deleteFilled,
                       //         color: Theme.of(context).colorScheme.error,
                       //       ),
                       //     ],

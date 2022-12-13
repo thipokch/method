@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:method_ui/element_symbol.dart';
+import 'package:method_style/method_style.dart';
 
 import '../home.dart';
 
@@ -41,18 +41,18 @@ class _ListItems {
 
   static const destinations = <NavigationDestination>[
     NavigationDestination(
-      icon: Icon(ElementSymbol.list),
-      selectedIcon: Icon(ElementSymbol.listFilled),
+      icon: Icon(MtSymbols.list),
+      selectedIcon: Icon(MtSymbols.listFilled),
       label: 'Timeline',
     ),
     NavigationDestination(
-      icon: Icon(ElementSymbol.add),
-      selectedIcon: Icon(ElementSymbol.addFilled),
+      icon: Icon(MtSymbols.add),
+      selectedIcon: Icon(MtSymbols.addFilled),
       label: 'Library',
     ),
     NavigationDestination(
-      icon: Icon(ElementSymbol.person),
-      selectedIcon: Icon(ElementSymbol.personFilled),
+      icon: Icon(MtSymbols.person),
+      selectedIcon: Icon(MtSymbols.personFilled),
       label: 'You',
     ),
   ];

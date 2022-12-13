@@ -89,7 +89,7 @@ class SessionListSliver extends StatelessWidget {
                                   onPressed: () {
                                     SessionEditRoute(element.id).go(context);
                                   },
-                                  trailingIcon: ElementSymbol.editFilled,
+                                  trailingIcon: MtSymbols.editFilled,
                                   child: const Text('Edit'),
                                 ),
                                 CupertinoContextMenuAction(
@@ -115,7 +115,7 @@ class SessionListSliver extends StatelessWidget {
                                     });
                                   },
                                   isDestructiveAction: true,
-                                  trailingIcon: ElementSymbol.deleteFilled,
+                                  trailingIcon: MtSymbols.deleteFilled,
                                   child: const Text('Delete'),
                                 ),
                               ],

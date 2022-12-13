@@ -5,7 +5,7 @@ class SettingsListSliver extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SliverPadding(
-        padding: const EdgeInsets.symmetric(vertical: ElementScale.spaceM),
+        padding: const EdgeInsets.symmetric(vertical: MtSpaces.M),
         sliver: SliverList(
           delegate: SliverChildListDelegate(
             _ListChildren.children(bloc: context.read()),

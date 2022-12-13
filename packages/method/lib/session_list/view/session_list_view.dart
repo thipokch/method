@@ -9,11 +9,7 @@ import 'package:intl/intl.dart';
 import 'package:method/app/route/route.dart';
 import 'package:method/session_edit/route/session_edit_route.dart';
 import 'package:method_core/model/session.dart';
-import 'package:method_ui/element_scale.dart';
-import 'package:method_ui/element_symbol.dart';
-import 'package:method_ui/button/button_filled.dart';
-import 'package:method_ui/context_menu/context_menu.dart';
-import 'package:method_ui/emoji/emoji.dart';
+import 'package:method_style/method_style.dart';
 
 import '../logic/session_list_bloc.dart';
 
@@ -111,7 +107,7 @@ class _Item extends StatelessWidget {
                                         color: Theme.of(context)
                                             .colorScheme
                                             .surface,
-                                        width: ElementScale.strokeL,
+                                        width: MtStroke.L,
                                       ),
                                       backgroundColor: Theme.of(context)
                                           .colorScheme
@@ -128,7 +124,7 @@ class _Item extends StatelessWidget {
                                   BorderedCircleAvatar(
                                 border: BorderSide(
                                   color: colorScheme.background,
-                                  width: ElementScale.strokeL,
+                                  width: MtStroke.L,
                                 ),
                                 backgroundColor: colorScheme.primary,
                                 child: SizedBox(

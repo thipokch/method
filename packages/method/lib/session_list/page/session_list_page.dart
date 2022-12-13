@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:method_ui/page/page.dart';
+import 'package:method_style/method_style.dart';
 
 import '../session_list.dart';
 

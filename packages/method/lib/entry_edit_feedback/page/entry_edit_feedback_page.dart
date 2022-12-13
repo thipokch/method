@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:method/entry_edit/page/entry_edit_page_base.dart';
 import 'package:method/entry_edit_feedback/view/view.dart';
-import 'package:method_ui/element_scale.dart';
+import 'package:method_style/method_style.dart';
 
 class EntryEditFeedbackPage extends StatelessWidget {
   const EntryEditFeedbackPage({super.key});
@@ -22,17 +22,17 @@ class EntryEditFeedbackPage extends StatelessWidget {
           // ),
 
           SliverPadding(
-            padding: EdgeInsets.symmetric(horizontal: ElementScale.spaceM),
+            padding: EdgeInsets.symmetric(horizontal: MtSpaces.M),
             sliver: EntryEditFeedbackLabelSliver(),
           ),
 
           SliverPadding(
-            padding: EdgeInsets.symmetric(horizontal: ElementScale.spaceM),
+            padding: EdgeInsets.symmetric(horizontal: MtSpaces.M),
             sliver: EntryEditFeedbackTopicSliver(),
           ),
 
           SliverPadding(
-            padding: EdgeInsets.symmetric(horizontal: ElementScale.spaceM),
+            padding: EdgeInsets.symmetric(horizontal: MtSpaces.M),
             sliver: EntryEditFeedbackNoteSliver(),
           ),
         ],

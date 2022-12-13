@@ -85,9 +85,9 @@ class EntryDetailSliver extends StatelessWidget {
                                 // shape: const SmoothRectangleBorder(
                                 //   borderRadius: SmoothBorderRadius.all(
                                 //     SmoothRadius(
-                                //       cornerRadius: ElementScale.cornerLarge,
+                                //       cornerRadius: MtCorner.Large,
                                 //       cornerSmoothing:
-                                //           ElementScale.cornerSmoothFactor,
+                                //           MtCorner.SmoothFactor,
                                 //     ),
                                 //   ),
                                 // ),

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:method_ui/element_symbol.dart';
+import 'package:method_style/method_style.dart';
 
 class ListChildrenBuilder {
   const ListChildrenBuilder._();
@@ -14,7 +14,7 @@ class ListChildrenBuilder {
   static Widget tile(MapEntry<String, FutureOr<void> Function()?> entry) =>
       ListTile(
         title: Text(entry.key),
-        trailing: const Icon(ElementSymbol.chevronForward),
+        trailing: const Icon(MtSymbols.chevronForward),
         onTap: entry.value,
       );
 }

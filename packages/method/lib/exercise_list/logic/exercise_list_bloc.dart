@@ -49,7 +49,7 @@ class ExerciseListBloc extends Bloc<ExerciseListEvent, ExerciseListState> {
 
   void _onStart(_Start event, Emitter<ExerciseListState> emit) =>
       emit(ExerciseListState.started(exercises: [sampleExercise]));
-      
+
   // rootBundle
   //     .loadString('packages/method_core/assets/example.json')
   //     .then((value) => Exercise.fromJson(json.decode(value)))
@@ -73,9 +73,8 @@ class ExerciseListBloc extends Bloc<ExerciseListEvent, ExerciseListState> {
       // event.exercise.id != "note"
       //     ? ExerciseDetailRoute("test")
       //         .push(navigator.currentContext!)
-      //     : 
-          ExerciseStartRoute("test")
-              .push(navigator.currentContext!);
+      //     :
+      ExerciseStartRoute("test").push(navigator.currentContext!);
 
   // STREAM EVENTS
 

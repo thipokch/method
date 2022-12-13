@@ -15,7 +15,7 @@ class LicenseDetailSliver extends StatelessWidget {
                 (context, index) => flattened[index] != null
                     ? _LicenseBody(flattened[index]!)
                     : const Padding(
-                        padding: EdgeInsets.all(ElementScale.spaceM),
+                        padding: EdgeInsets.all(MtSpaces.M),
                         child: Divider(),
                       ),
               ),

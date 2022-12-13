@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method/definition_edit_label/view/view.dart';
 import 'package:method/entry_edit_feedback/logic/entry_edit_feedback_bloc.dart';
 import 'package:method_core/model/entry_definition.dart';
-import 'package:method_ui/text/text_box.dart';
+import 'package:method_style/method_style.dart';
 
 part 'entry_edit_feedback_sliver.dart';
 
