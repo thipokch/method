@@ -3,6 +3,8 @@ export 'color_theme.dart';
 export 'custom_colors.dart';
 export 'harmonize.dart';
 
+abstract class MtColors {}
+
 // /// Defines the color palette for the MethodStyle UI.
 // abstract class MtColors {
 //   /// Black

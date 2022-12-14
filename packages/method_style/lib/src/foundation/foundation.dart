@@ -1,4 +1,5 @@
 export 'colors/colors.dart';
+export 'elevation/elevation.dart';
 export 'haptics/haptics.dart';
 export 'motion/motion.dart';
 export 'textures/textures.dart';

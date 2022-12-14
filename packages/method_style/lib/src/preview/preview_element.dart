@@ -23,8 +23,6 @@ class ElementPreview extends StatelessWidget {
           children: [
             _sectionLabel("Buttons"),
             const Buttons(),
-            _sectionLabel("Touch"),
-            const HapticsPreview(),
             _sectionLabel("Chips"),
             const ChipPreview(),
             _sectionLabel("Headings"),

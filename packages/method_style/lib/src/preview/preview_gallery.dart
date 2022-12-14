@@ -3,8 +3,6 @@ import 'package:method_style/method_style.dart';
 
 import 'preview_composite.dart';
 import 'preview_element.dart';
-import 'preview_presentation.dart';
-import 'preview_style.dart';
 
 // NavigationRail shows if the screen width is greater or equal to
 // screenWidthThreshold; otherwise, NavigationBar is used for navigation.
@@ -34,9 +32,9 @@ class _MtStylePreviewState extends State<MtStylePreview> {
       case 1:
         return ElementPreview(showNavBottomBar: showNavBarExample);
       case 2:
-        return const PresentationPreview();
+        return Container();
       case 3:
-        return const StylePreview();
+        return Container();
       default:
         return ElementPreview(showNavBottomBar: showNavBarExample);
     }

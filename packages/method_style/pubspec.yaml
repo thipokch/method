@@ -30,14 +30,14 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_gen_runner:
+  flutter_gen_runner: ^5.1.0+1
   dart_code_metrics: ^4.17.0
   flutter_lints: ^2.0.0
   build_runner:
 
 flutter:
-  assets:
-    - assets/emojis/
+  # assets:
+  #   - assets/emojis/
   fonts:
     - family: NotoSans
       fonts:
@@ -98,3 +98,7 @@ flutter_gen:
     # rive: true
 
   package_parameter_enabled: true
+  assets:
+    outputs:
+      exclude:
+        - assets/emojis/*

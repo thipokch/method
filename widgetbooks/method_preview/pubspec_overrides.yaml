@@ -1,0 +1,4 @@
+# melos_managed_dependency_overrides: method_style
+dependency_overrides:
+  method_style:
+    path: ../../packages/method_style

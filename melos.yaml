@@ -3,6 +3,7 @@ repository: https://github.com/thipokch/method
 
 packages:
   - packages/**
+  - widgetbooks/**
 
 command:
   bootstrap:
@@ -54,8 +55,8 @@ scripts:
 
   setup:analysis:
     run: |
-      melos exec -c 6 --scope="method_*"  -- \
-        cp ../method/analysis_options.yaml ./analysis_options.yaml
+      melos exec -c 6 --scope="method*"  -- \
+        cp $MELOS_ROOT_PATH/analysis_options.yaml ./analysis_options.yaml
 
   setup:githook:
     description: Setup scripts to run on git hook events.

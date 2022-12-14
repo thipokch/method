@@ -9,3 +9,5 @@ bricks:
     path: templates/service
   service_package:
     path: templates/service_package
+  widgetbook_starter: ^0.1.0+2
+  widgetbook_app: ^0.1.0+1
