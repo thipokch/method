@@ -51,8 +51,8 @@ class _AppStartedView extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             routerConfig: routerConfig,
             themeMode: themeMode,
-            theme: MtTheme.lightTheme,
-            darkTheme: MtTheme.darkTheme,
+            theme: MtTheme.light,
+            darkTheme: MtTheme.dark,
           ),
         ),
       );

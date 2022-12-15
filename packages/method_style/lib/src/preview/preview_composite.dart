@@ -19,9 +19,9 @@ class CompositePreview extends StatelessWidget {
           shrinkWrap: true,
           children: [
             _sectionLabel("Cards"),
-            const CardPreview(),
+            // const CardPreview(),
             _sectionLabel("Text Box"),
-            const TextPreview(),
+            // const TextPreview(),
             _sectionLabel("Dialogs"),
             const Dialogs(),
           ],

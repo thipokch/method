@@ -22,11 +22,11 @@ class ElementPreview extends StatelessWidget {
           shrinkWrap: true,
           children: [
             _sectionLabel("Buttons"),
-            const Buttons(),
+            // const Buttons(),
             _sectionLabel("Chips"),
-            const ChipPreview(),
+            // const ChipPreview(),
             _sectionLabel("Headings"),
-            const HeadingPreview(),
+            // const HeadingPreview(),
             showNavBottomBar
                 ? const NavigationBars(
                     selectedIndex: 0,

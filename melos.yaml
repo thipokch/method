@@ -3,7 +3,7 @@ repository: https://github.com/thipokch/method
 
 packages:
   - packages/**
-  - widgetbooks/**
+  - previews/**
 
 command:
   bootstrap:

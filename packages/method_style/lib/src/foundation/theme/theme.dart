@@ -10,10 +10,10 @@ abstract class MtTheme {
         extensions: const [MtColorTheme.lightCustomColors],
       );
 
-  static get lightTheme =>
+  static get light =>
       defaultTheme.copyWith(colorScheme: MtColorTheme.lightColorStyle);
 
-  static get darkTheme =>
+  static get dark =>
       defaultTheme.copyWith(colorScheme: MtColorTheme.darkColorStyle);
 
   // static adaptive(MediaQueryData media) => defaultTheme.copyWith(
