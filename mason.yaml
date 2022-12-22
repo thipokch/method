@@ -1,13 +1,13 @@
 bricks:
   feature:
-    path: templates/feature
+    path: template/feature
   model:
-    path: templates/model
+    path: template/model
   model_bundle:
-    path: templates/model_bundle
+    path: template/model_bundle
   service:
-    path: templates/service
+    path: template/service
   service_package:
-    path: templates/service_package
+    path: template/service_package
   widgetbook_starter: ^0.1.0+2
   widgetbook_app: ^0.1.0+1

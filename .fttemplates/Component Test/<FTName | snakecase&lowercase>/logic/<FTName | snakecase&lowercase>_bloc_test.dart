@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:method/<FTName | snakecase&lowercase>/<FTName | snakecase&lowercase>.dart';
+import 'package:method_app/<FTName | snakecase&lowercase>/<FTName | snakecase&lowercase>.dart';
 
 void main() {
   group('<FTName | pascalcase>Bloc', () {

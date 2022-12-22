@@ -1,0 +1,10 @@
+# melos_managed_dependency_overrides: go_router,method_preview,method_style,widgetbook
+dependency_overrides:
+  go_router:
+    path: ../../patch/go_router
+  method_preview:
+    path: ../method_preview
+  method_style:
+    path: ../../package/method_style
+  widgetbook:
+    path: ../../patch/widgetbook

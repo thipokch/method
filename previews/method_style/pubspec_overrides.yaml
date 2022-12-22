@@ -1,6 +1,0 @@
-# melos_managed_dependency_overrides: method_preview,method_style
-dependency_overrides:
-  method_preview:
-    path: ../method_preview
-  method_style:
-    path: ../../packages/method_style

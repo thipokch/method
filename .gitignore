@@ -56,10 +56,7 @@ GoogleService-Info.plist
 google-services.js
 macos/firebase_app_id_file.json
 ios/firebase_app_id_file.json
-lib/config/firebase.dev.dart
-lib/config/firebase.stg.dart
-lib/config/firebase.prd.dart
-
+package/method_app/lib/config/
 Gemfile.lock
 
 .favorites.json
@@ -67,3 +64,5 @@ Gemfile.lock
 ios/vendor/
 
 ios/.ruby-version
+
+.mason/
