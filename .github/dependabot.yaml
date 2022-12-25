@@ -13,21 +13,21 @@ updates:
       interval: "weekly"
 
   - package-ecosystem: "pub"
-    directory: "/package/component"
+    directory: "/packages/component"
     schedule:
       interval: "weekly"
 
   - package-ecosystem: "pub"
-    directory: "/package/core"
+    directory: "/packages/core"
     schedule:
       interval: "weekly"
 
   - package-ecosystem: "pub"
-    directory: "/package/element"
+    directory: "/packages/element"
     schedule:
       interval: "weekly"
 
   - package-ecosystem: "pub"
-    directory: "/package/matter"
+    directory: "/packages/matter"
     schedule:
       interval: "weekly"

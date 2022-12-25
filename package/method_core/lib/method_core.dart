@@ -1,2 +1,0 @@
-library method_core;
-

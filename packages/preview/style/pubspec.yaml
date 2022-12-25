@@ -1,0 +1,38 @@
+name: method_style_preview
+description: A Widgetbook for the method_style package.
+
+publish_to: none
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.17.6 <3.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  widgetbook: ^2.4.1
+  widgetbook_annotation: ^2.1.0
+  device_frame: ^1.1.0
+
+  method_style:
+  method_preview:
+
+dev_dependencies:
+
+  # Code Analysis
+
+  method_analysis: 
+
+  # Code Generation
+
+  build_runner: ^2.3.0
+  freezed: ^2.2.0
+  json_serializable: ^6.5.4 
+  widgetbook_generator: ^2.4.1
+
+
+flutter:
+  uses-material-design: true

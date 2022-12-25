@@ -2,10 +2,8 @@ name: method
 repository: https://github.com/thipokch/method
 
 packages:
-  - package/**
-  - patch/**
-  - preview/**
-
+  - packages/**
+  
 command:
   bootstrap:
     usePubspecOverrides: true
@@ -35,7 +33,6 @@ scripts:
       melos bootstrap && \
       melos setup:mason && \
       melos setup:secrets && \
-      melos setup:analysis && \
       melos setup:githook
 
   setup:mason:
@@ -50,14 +47,8 @@ scripts:
       melos clean && \
       melos bootstrap && \
       melos setup:secrets && \
-      melos setup:analysis && \
       git config --global user.email "noreply@github.com" && \
       git config --global user.name "GitHub"
-
-  setup:analysis:
-    run: |
-      melos exec -c 6 --scope="method*"  -- \
-        cp $MELOS_ROOT_PATH/analysis_options.yaml ./analysis_options.yaml
 
   setup:githook:
     description: Setup scripts to run on git hook events.
@@ -75,7 +66,7 @@ scripts:
       [ ! -f .env ] || export $(grep -v '^#' .env | xargs) && \
         echo "Environment variables from .env exported..."
 
-      export METHOD_DIR=$MELOS_ROOT_PATH/package/method_app
+      export METHOD_DIR=$MELOS_ROOT_PATH/packages/app
       export SECRETS_DIR=$MELOS_ROOT_PATH/.secrets
       echo "Using '$SECRETS_DIR'..."
 
@@ -127,7 +118,7 @@ scripts:
       Bump build number
       For local development, use .env to set variables
         BUILD_NUM - build number
-    run: dart ./package/method_app/script/version_build.dart
+    run: dart ./packages/app/script/version_build.dart
 
   build:generate:
     description: Run all code generators.
@@ -158,7 +149,7 @@ scripts:
 
   build:template:
     run: |
-      mason bundle ./template/feature_test -t dart -o ./template/feature_test
+      mason bundle ./templates/feature_test -t dart -o ./templates/feature_test
 
   #   iOS
 
@@ -171,7 +162,7 @@ scripts:
       [ ! -f .env ] || export $(grep -v '^#' .env | xargs) && \
         echo "Environment variables from .env exported..."
 
-      export METHOD_DIR=$MELOS_ROOT_PATH/package/method_app && \
+      export METHOD_DIR=$MELOS_ROOT_PATH/packages/app && \
 
       export BUILD_ENV=dev && \
       melos setup:build && \
@@ -201,7 +192,7 @@ scripts:
       [ ! -f .env ] || export $(grep -v '^#' .env | xargs) && \
         echo "Environment variables from .env exported..."
 
-      export METHOD_DIR=$MELOS_ROOT_PATH/package/method_app && \
+      export METHOD_DIR=$MELOS_ROOT_PATH/packages/app && \
 
       export BUILD_ENV=dev && \
       melos setup:build && \
@@ -231,7 +222,7 @@ scripts:
       [ ! -f .env ] || export $(grep -v '^#' .env | xargs) && \
         echo "Environment variables from .env exported..."
 
-      export METHOD_DIR=$MELOS_ROOT_PATH/package/method_app && \
+      export METHOD_DIR=$MELOS_ROOT_PATH/packages/app && \
 
       export BUILD_ENV=dev && \
       melos setup:build && \
@@ -340,7 +331,7 @@ scripts:
       [ ! -f .env ] || export $(grep -v '^#' .env | xargs) && \
         echo "Environment variables from .env exported..." && \
 
-      export METHOD_DIR=$MELOS_ROOT_PATH/package/method_app
+      export METHOD_DIR=$MELOS_ROOT_PATH/packages/app
 
       export APP_STORE_CONNECT_API_KEY_KEY_ID=$ASC_KEY_ID
       export APP_STORE_CONNECT_API_KEY_ISSUER_ID=$ASC_ISSUER_ID
