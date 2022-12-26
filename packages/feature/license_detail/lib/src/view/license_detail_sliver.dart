@@ -1,21 +1,28 @@
-import 'package:flutter/material.dart';
-import 'package:method_license_detail/license_detail.dart';
+part of 'license_detail_view.dart';
 
-/// {@template license_detail_sliver}
-/// Sliver of the LicenseDetailPage.
-///
-/// Add what it does
-/// {@endtemplate}
 class LicenseDetailSliver extends StatelessWidget {
-  /// {@macro license_detail_sliver}
   const LicenseDetailSliver({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<LicenseDetailBloc, LicenseDetailState>(
-      builder: (context, state) {
-        return Center(child: Text(state.toString()));
-      },
-    );
-  }
+  Widget build(BuildContext context) => LicenseDetailBuilder(
+        builder: (context, state) => state.maybeMap(
+          loadedLicenseDetail: (_) {
+            final flattened = _.licenseDetail.flatten();
+
+            return SliverList(
+              delegate: SliverChildBuilderDelegate(
+                childCount: flattened.length,
+                (context, index) => flattened[index] != null
+                    ? _LicenseBody(flattened[index]!)
+                    : const Padding(
+                        padding: EdgeInsets.all(MtSpaces.M),
+                        child: Divider(),
+                      ),
+              ),
+            );
+          },
+          orElse: () =>
+              const SliverFillRemaining(child: CupertinoActivityIndicator()),
+        ),
+      );
 }

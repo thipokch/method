@@ -1,0 +1,55 @@
+{
+	"folders": [
+		{
+			"name": "🚀 app",
+			"path": "../packages/app",
+		},
+		{
+			"name": "📦 feature",
+			"path": "../packages/feature",
+		},
+		{
+			"name": "⚡️ data",
+			"path": "../packages/data",
+		},
+		{
+			"name": "💄 style",
+			"path": "../packages/style",
+		},
+		{
+			"name": "🎪 preview",
+			"path": "../packages/preview",
+		},
+		{
+			"name": "⚙️ tool",
+			"path": "../packages/tool",
+		},
+		{
+			"name": "🌳 root",
+			"path": ".."
+		},
+	],
+	"settings": {
+		"dart.analysisExcludedFolders": [
+			"../templates",
+		],
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/CVS": true,
+			"**/.DS_Store": true,
+			"**/Thumbs.db": true,
+			"**/analysis_options.yaml": true,
+			"**/README.md": true,
+			"**/lib/*.dart": false,
+			"**/pubspec.lock": true,
+			"**/melos_*.iml": true,
+			"**/.flutter-plugins-dependencies": true,
+			"**/.flutter-plugins": true,
+			"**/.dart_tool": true,
+			"**/.gitignore": true
+		},
+		"explorerExclude.backup": {}
+	}
+}

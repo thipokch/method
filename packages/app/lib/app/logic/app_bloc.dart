@@ -13,12 +13,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:method_app/app/app.dart';
 import 'package:method_app/settings_appearance/logic/settings_appearance_bloc.dart';
-import 'package:method_data/method_data.dart';
 import 'package:method_style/method_style.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
-import 'package:rudder_sdk_flutter/RudderController.dart';
 
 part 'app_event.dart';
 part 'app_state.dart';
@@ -56,7 +54,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   // final RemoteConfigSettings? remoteConfig;
   final GoRouter routerConfig;
 
-  final AnalyticRepository analytics;
+  final AnalyticService analytics;
 
   // DEFAULTS
 

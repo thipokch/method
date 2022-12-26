@@ -18,7 +18,7 @@ class AnalyticRouteObserver extends RouteObserver<ModalRoute<dynamic>> {
     Function(PlatformException error)? onError,
   }) : _onError = onError;
 
-  final AnalyticRepository analytic;
+  final AnalyticService analytic;
   final ScreenNameExtractor nameExtractor;
   final RouteFilter routeFilter;
   final void Function(PlatformException error)? _onError;

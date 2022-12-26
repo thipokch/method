@@ -56,7 +56,7 @@ Future<void> main() async {
       //   ),
       // );
 
-      // AnalyticRepository.initialize(
+      // AnalyticService.initialize(
       //   // "EDABVhLyZJr91dDOGkJ1E0syk2dLKkHP",
       //   DefaultRudderOptions.writeKey,
       //   config: AnalyticConfigBuilder()
@@ -89,7 +89,7 @@ Future<void> main() async {
             //   fetchTimeout: const Duration(minutes: 1),
             //   minimumFetchInterval: const Duration(minutes: 5),
             // ),
-            analytics: AnalyticRepository(
+            analytics: AnalyticService(
               rudder: RudderController.instance
                 ..initialize(
                   // "EDABVhLyZJr91dDOGkJ1E0syk2dLKkHP",

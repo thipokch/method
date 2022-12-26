@@ -1,0 +1,45 @@
+import 'package:flutter/material.dart';
+import 'package:method_style/method_style.dart';
+
+class SettingsListView extends StatelessWidget {
+  const SettingsListView({
+    super.key,
+    required this.onSelectData,
+    required this.onSelectAppearance,
+    required this.onSelectLicense,
+    required this.onSelectFeedback,
+    required this.onSelectPrivacy,
+    required this.onSelectTerms,
+  });
+
+  final VoidCallback onSelectData;
+  final VoidCallback onSelectAppearance;
+  final VoidCallback onSelectLicense;
+  final VoidCallback onSelectFeedback;
+  final VoidCallback onSelectPrivacy;
+  final VoidCallback onSelectTerms;
+
+  @override
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.only(top: MtSpaces.M),
+        child: ListView(
+          children: [
+            ...{
+              "Data & Privacy": onSelectData,
+            }.entries.map(ListItemBuilder.tile),
+            ListItemBuilder.section("GENERAL"),
+            ...{
+              "Appearance": onSelectAppearance,
+            }.entries.map(ListItemBuilder.tile),
+            ListItemBuilder.section("ABOUT"),
+            ...{
+              "Feedback": onSelectFeedback,
+              "Privacy Policy": onSelectPrivacy,
+              "Terms of Service": onSelectTerms,
+              "Acknowledgments": onSelectLicense,
+            }.entries.map(ListItemBuilder.tile),
+            // const AppInfoView(),
+          ],
+        ),
+      );
+}

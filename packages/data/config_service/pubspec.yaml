@@ -11,6 +11,14 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # Firebase
+
+  # RudderStack x Firebase SDK version podfile override
+  # https://firebase.flutter.dev/docs/manual-installation#overriding-firebase-sdk-versions
+  # $FirebaseSDKVersion = '8.15.0'
+
+  firebase_remote_config: ^3.0.8
+
 dev_dependencies:
 
   # Code Analysis

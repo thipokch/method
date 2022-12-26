@@ -1,4 +1,4 @@
-# melos_managed_dependency_overrides: go_router,method_analysis,method_app,method_preview,method_style,widgetbook
+# melos_managed_dependency_overrides: go_router,method_analysis,method_app,method_license_detail,method_license_list,method_license_repository,method_preview,method_settings_list,method_style,method_user_repository,widgetbook
 dependency_overrides:
   go_router:
     path: ../../patch/go_router
@@ -6,9 +6,19 @@ dependency_overrides:
     path: ../../tool/method_analysis
   method_app:
     path: ../../app
+  method_license_detail:
+    path: ../../feature/license_detail
+  method_license_list:
+    path: ../../feature/license_list
+  method_license_repository:
+    path: ../../data/license_repository
   method_preview:
     path: ../preview
+  method_settings_list:
+    path: ../../feature/settings_list
   method_style:
     path: ../../style
+  method_user_repository:
+    path: ../../data/user_repository
   widgetbook:
     path: ../../patch/widgetbook

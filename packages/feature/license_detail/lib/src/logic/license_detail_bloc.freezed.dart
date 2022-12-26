@@ -15,848 +15,13 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$LicenseDetailEvent {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() create,
-    required TResult Function() start,
-    required TResult Function() resume,
-    required TResult Function() pause,
-    required TResult Function() stop,
-    required TResult Function() destroy,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? create,
-    TResult? Function()? start,
-    TResult? Function()? resume,
-    TResult? Function()? pause,
-    TResult? Function()? stop,
-    TResult? Function()? destroy,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? create,
-    TResult Function()? start,
-    TResult Function()? resume,
-    TResult Function()? pause,
-    TResult Function()? stop,
-    TResult Function()? destroy,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Create value) create,
-    required TResult Function(_Start value) start,
-    required TResult Function(_Resume value) resume,
-    required TResult Function(_Pause value) pause,
-    required TResult Function(_Stop value) stop,
-    required TResult Function(_Destroy value) destroy,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Create value)? create,
-    TResult? Function(_Start value)? start,
-    TResult? Function(_Resume value)? resume,
-    TResult? Function(_Pause value)? pause,
-    TResult? Function(_Stop value)? stop,
-    TResult? Function(_Destroy value)? destroy,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Create value)? create,
-    TResult Function(_Start value)? start,
-    TResult Function(_Resume value)? resume,
-    TResult Function(_Pause value)? pause,
-    TResult Function(_Stop value)? stop,
-    TResult Function(_Destroy value)? destroy,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $LicenseDetailEventCopyWith<$Res> {
-  factory $LicenseDetailEventCopyWith(
-          LicenseDetailEvent value, $Res Function(LicenseDetailEvent) then) =
-      _$LicenseDetailEventCopyWithImpl<$Res, LicenseDetailEvent>;
-}
-
-/// @nodoc
-class _$LicenseDetailEventCopyWithImpl<$Res, $Val extends LicenseDetailEvent>
-    implements $LicenseDetailEventCopyWith<$Res> {
-  _$LicenseDetailEventCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$_CreateCopyWith<$Res> {
-  factory _$$_CreateCopyWith(_$_Create value, $Res Function(_$_Create) then) =
-      __$$_CreateCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_CreateCopyWithImpl<$Res>
-    extends _$LicenseDetailEventCopyWithImpl<$Res, _$_Create>
-    implements _$$_CreateCopyWith<$Res> {
-  __$$_CreateCopyWithImpl(_$_Create _value, $Res Function(_$_Create) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_Create extends _Create {
-  const _$_Create() : super._();
-
-  @override
-  String toString() {
-    return 'LicenseDetailEvent.create()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Create);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() create,
-    required TResult Function() start,
-    required TResult Function() resume,
-    required TResult Function() pause,
-    required TResult Function() stop,
-    required TResult Function() destroy,
-  }) {
-    return create();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? create,
-    TResult? Function()? start,
-    TResult? Function()? resume,
-    TResult? Function()? pause,
-    TResult? Function()? stop,
-    TResult? Function()? destroy,
-  }) {
-    return create?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? create,
-    TResult Function()? start,
-    TResult Function()? resume,
-    TResult Function()? pause,
-    TResult Function()? stop,
-    TResult Function()? destroy,
-    required TResult orElse(),
-  }) {
-    if (create != null) {
-      return create();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Create value) create,
-    required TResult Function(_Start value) start,
-    required TResult Function(_Resume value) resume,
-    required TResult Function(_Pause value) pause,
-    required TResult Function(_Stop value) stop,
-    required TResult Function(_Destroy value) destroy,
-  }) {
-    return create(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Create value)? create,
-    TResult? Function(_Start value)? start,
-    TResult? Function(_Resume value)? resume,
-    TResult? Function(_Pause value)? pause,
-    TResult? Function(_Stop value)? stop,
-    TResult? Function(_Destroy value)? destroy,
-  }) {
-    return create?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Create value)? create,
-    TResult Function(_Start value)? start,
-    TResult Function(_Resume value)? resume,
-    TResult Function(_Pause value)? pause,
-    TResult Function(_Stop value)? stop,
-    TResult Function(_Destroy value)? destroy,
-    required TResult orElse(),
-  }) {
-    if (create != null) {
-      return create(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Create extends LicenseDetailEvent {
-  const factory _Create() = _$_Create;
-  const _Create._() : super._();
-}
-
-/// @nodoc
-abstract class _$$_StartCopyWith<$Res> {
-  factory _$$_StartCopyWith(_$_Start value, $Res Function(_$_Start) then) =
-      __$$_StartCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_StartCopyWithImpl<$Res>
-    extends _$LicenseDetailEventCopyWithImpl<$Res, _$_Start>
-    implements _$$_StartCopyWith<$Res> {
-  __$$_StartCopyWithImpl(_$_Start _value, $Res Function(_$_Start) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_Start extends _Start {
-  const _$_Start() : super._();
-
-  @override
-  String toString() {
-    return 'LicenseDetailEvent.start()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Start);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() create,
-    required TResult Function() start,
-    required TResult Function() resume,
-    required TResult Function() pause,
-    required TResult Function() stop,
-    required TResult Function() destroy,
-  }) {
-    return start();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? create,
-    TResult? Function()? start,
-    TResult? Function()? resume,
-    TResult? Function()? pause,
-    TResult? Function()? stop,
-    TResult? Function()? destroy,
-  }) {
-    return start?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? create,
-    TResult Function()? start,
-    TResult Function()? resume,
-    TResult Function()? pause,
-    TResult Function()? stop,
-    TResult Function()? destroy,
-    required TResult orElse(),
-  }) {
-    if (start != null) {
-      return start();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Create value) create,
-    required TResult Function(_Start value) start,
-    required TResult Function(_Resume value) resume,
-    required TResult Function(_Pause value) pause,
-    required TResult Function(_Stop value) stop,
-    required TResult Function(_Destroy value) destroy,
-  }) {
-    return start(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Create value)? create,
-    TResult? Function(_Start value)? start,
-    TResult? Function(_Resume value)? resume,
-    TResult? Function(_Pause value)? pause,
-    TResult? Function(_Stop value)? stop,
-    TResult? Function(_Destroy value)? destroy,
-  }) {
-    return start?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Create value)? create,
-    TResult Function(_Start value)? start,
-    TResult Function(_Resume value)? resume,
-    TResult Function(_Pause value)? pause,
-    TResult Function(_Stop value)? stop,
-    TResult Function(_Destroy value)? destroy,
-    required TResult orElse(),
-  }) {
-    if (start != null) {
-      return start(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Start extends LicenseDetailEvent {
-  const factory _Start() = _$_Start;
-  const _Start._() : super._();
-}
-
-/// @nodoc
-abstract class _$$_ResumeCopyWith<$Res> {
-  factory _$$_ResumeCopyWith(_$_Resume value, $Res Function(_$_Resume) then) =
-      __$$_ResumeCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_ResumeCopyWithImpl<$Res>
-    extends _$LicenseDetailEventCopyWithImpl<$Res, _$_Resume>
-    implements _$$_ResumeCopyWith<$Res> {
-  __$$_ResumeCopyWithImpl(_$_Resume _value, $Res Function(_$_Resume) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_Resume extends _Resume {
-  const _$_Resume() : super._();
-
-  @override
-  String toString() {
-    return 'LicenseDetailEvent.resume()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Resume);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() create,
-    required TResult Function() start,
-    required TResult Function() resume,
-    required TResult Function() pause,
-    required TResult Function() stop,
-    required TResult Function() destroy,
-  }) {
-    return resume();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? create,
-    TResult? Function()? start,
-    TResult? Function()? resume,
-    TResult? Function()? pause,
-    TResult? Function()? stop,
-    TResult? Function()? destroy,
-  }) {
-    return resume?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? create,
-    TResult Function()? start,
-    TResult Function()? resume,
-    TResult Function()? pause,
-    TResult Function()? stop,
-    TResult Function()? destroy,
-    required TResult orElse(),
-  }) {
-    if (resume != null) {
-      return resume();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Create value) create,
-    required TResult Function(_Start value) start,
-    required TResult Function(_Resume value) resume,
-    required TResult Function(_Pause value) pause,
-    required TResult Function(_Stop value) stop,
-    required TResult Function(_Destroy value) destroy,
-  }) {
-    return resume(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Create value)? create,
-    TResult? Function(_Start value)? start,
-    TResult? Function(_Resume value)? resume,
-    TResult? Function(_Pause value)? pause,
-    TResult? Function(_Stop value)? stop,
-    TResult? Function(_Destroy value)? destroy,
-  }) {
-    return resume?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Create value)? create,
-    TResult Function(_Start value)? start,
-    TResult Function(_Resume value)? resume,
-    TResult Function(_Pause value)? pause,
-    TResult Function(_Stop value)? stop,
-    TResult Function(_Destroy value)? destroy,
-    required TResult orElse(),
-  }) {
-    if (resume != null) {
-      return resume(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Resume extends LicenseDetailEvent {
-  const factory _Resume() = _$_Resume;
-  const _Resume._() : super._();
-}
-
-/// @nodoc
-abstract class _$$_PauseCopyWith<$Res> {
-  factory _$$_PauseCopyWith(_$_Pause value, $Res Function(_$_Pause) then) =
-      __$$_PauseCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_PauseCopyWithImpl<$Res>
-    extends _$LicenseDetailEventCopyWithImpl<$Res, _$_Pause>
-    implements _$$_PauseCopyWith<$Res> {
-  __$$_PauseCopyWithImpl(_$_Pause _value, $Res Function(_$_Pause) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_Pause extends _Pause {
-  const _$_Pause() : super._();
-
-  @override
-  String toString() {
-    return 'LicenseDetailEvent.pause()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Pause);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() create,
-    required TResult Function() start,
-    required TResult Function() resume,
-    required TResult Function() pause,
-    required TResult Function() stop,
-    required TResult Function() destroy,
-  }) {
-    return pause();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? create,
-    TResult? Function()? start,
-    TResult? Function()? resume,
-    TResult? Function()? pause,
-    TResult? Function()? stop,
-    TResult? Function()? destroy,
-  }) {
-    return pause?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? create,
-    TResult Function()? start,
-    TResult Function()? resume,
-    TResult Function()? pause,
-    TResult Function()? stop,
-    TResult Function()? destroy,
-    required TResult orElse(),
-  }) {
-    if (pause != null) {
-      return pause();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Create value) create,
-    required TResult Function(_Start value) start,
-    required TResult Function(_Resume value) resume,
-    required TResult Function(_Pause value) pause,
-    required TResult Function(_Stop value) stop,
-    required TResult Function(_Destroy value) destroy,
-  }) {
-    return pause(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Create value)? create,
-    TResult? Function(_Start value)? start,
-    TResult? Function(_Resume value)? resume,
-    TResult? Function(_Pause value)? pause,
-    TResult? Function(_Stop value)? stop,
-    TResult? Function(_Destroy value)? destroy,
-  }) {
-    return pause?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Create value)? create,
-    TResult Function(_Start value)? start,
-    TResult Function(_Resume value)? resume,
-    TResult Function(_Pause value)? pause,
-    TResult Function(_Stop value)? stop,
-    TResult Function(_Destroy value)? destroy,
-    required TResult orElse(),
-  }) {
-    if (pause != null) {
-      return pause(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Pause extends LicenseDetailEvent {
-  const factory _Pause() = _$_Pause;
-  const _Pause._() : super._();
-}
-
-/// @nodoc
-abstract class _$$_StopCopyWith<$Res> {
-  factory _$$_StopCopyWith(_$_Stop value, $Res Function(_$_Stop) then) =
-      __$$_StopCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_StopCopyWithImpl<$Res>
-    extends _$LicenseDetailEventCopyWithImpl<$Res, _$_Stop>
-    implements _$$_StopCopyWith<$Res> {
-  __$$_StopCopyWithImpl(_$_Stop _value, $Res Function(_$_Stop) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_Stop extends _Stop {
-  const _$_Stop() : super._();
-
-  @override
-  String toString() {
-    return 'LicenseDetailEvent.stop()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Stop);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() create,
-    required TResult Function() start,
-    required TResult Function() resume,
-    required TResult Function() pause,
-    required TResult Function() stop,
-    required TResult Function() destroy,
-  }) {
-    return stop();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? create,
-    TResult? Function()? start,
-    TResult? Function()? resume,
-    TResult? Function()? pause,
-    TResult? Function()? stop,
-    TResult? Function()? destroy,
-  }) {
-    return stop?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? create,
-    TResult Function()? start,
-    TResult Function()? resume,
-    TResult Function()? pause,
-    TResult Function()? stop,
-    TResult Function()? destroy,
-    required TResult orElse(),
-  }) {
-    if (stop != null) {
-      return stop();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Create value) create,
-    required TResult Function(_Start value) start,
-    required TResult Function(_Resume value) resume,
-    required TResult Function(_Pause value) pause,
-    required TResult Function(_Stop value) stop,
-    required TResult Function(_Destroy value) destroy,
-  }) {
-    return stop(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Create value)? create,
-    TResult? Function(_Start value)? start,
-    TResult? Function(_Resume value)? resume,
-    TResult? Function(_Pause value)? pause,
-    TResult? Function(_Stop value)? stop,
-    TResult? Function(_Destroy value)? destroy,
-  }) {
-    return stop?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Create value)? create,
-    TResult Function(_Start value)? start,
-    TResult Function(_Resume value)? resume,
-    TResult Function(_Pause value)? pause,
-    TResult Function(_Stop value)? stop,
-    TResult Function(_Destroy value)? destroy,
-    required TResult orElse(),
-  }) {
-    if (stop != null) {
-      return stop(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Stop extends LicenseDetailEvent {
-  const factory _Stop() = _$_Stop;
-  const _Stop._() : super._();
-}
-
-/// @nodoc
-abstract class _$$_DestroyCopyWith<$Res> {
-  factory _$$_DestroyCopyWith(
-          _$_Destroy value, $Res Function(_$_Destroy) then) =
-      __$$_DestroyCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_DestroyCopyWithImpl<$Res>
-    extends _$LicenseDetailEventCopyWithImpl<$Res, _$_Destroy>
-    implements _$$_DestroyCopyWith<$Res> {
-  __$$_DestroyCopyWithImpl(_$_Destroy _value, $Res Function(_$_Destroy) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_Destroy extends _Destroy {
-  const _$_Destroy() : super._();
-
-  @override
-  String toString() {
-    return 'LicenseDetailEvent.destroy()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Destroy);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() create,
-    required TResult Function() start,
-    required TResult Function() resume,
-    required TResult Function() pause,
-    required TResult Function() stop,
-    required TResult Function() destroy,
-  }) {
-    return destroy();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? create,
-    TResult? Function()? start,
-    TResult? Function()? resume,
-    TResult? Function()? pause,
-    TResult? Function()? stop,
-    TResult? Function()? destroy,
-  }) {
-    return destroy?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? create,
-    TResult Function()? start,
-    TResult Function()? resume,
-    TResult Function()? pause,
-    TResult Function()? stop,
-    TResult Function()? destroy,
-    required TResult orElse(),
-  }) {
-    if (destroy != null) {
-      return destroy();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Create value) create,
-    required TResult Function(_Start value) start,
-    required TResult Function(_Resume value) resume,
-    required TResult Function(_Pause value) pause,
-    required TResult Function(_Stop value) stop,
-    required TResult Function(_Destroy value) destroy,
-  }) {
-    return destroy(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Create value)? create,
-    TResult? Function(_Start value)? start,
-    TResult? Function(_Resume value)? resume,
-    TResult? Function(_Pause value)? pause,
-    TResult? Function(_Stop value)? stop,
-    TResult? Function(_Destroy value)? destroy,
-  }) {
-    return destroy?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Create value)? create,
-    TResult Function(_Start value)? start,
-    TResult Function(_Resume value)? resume,
-    TResult Function(_Pause value)? pause,
-    TResult Function(_Stop value)? stop,
-    TResult Function(_Destroy value)? destroy,
-    required TResult orElse(),
-  }) {
-    if (destroy != null) {
-      return destroy(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Destroy extends LicenseDetailEvent {
-  const factory _Destroy() = _$_Destroy;
-  const _Destroy._() : super._();
-}
-
-/// @nodoc
 mixin _$LicenseDetailState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() created,
-    required TResult Function() started,
-    required TResult Function() resumed,
+    required TResult Function(LicenseData licenseList) loadedLicenseList,
+    required TResult Function(List<List<LicenseParagraph>> licenseDetail)
+        loadedLicenseDetail,
     required TResult Function() destroyed,
     required TResult Function(Object error, StackTrace stackTrace) errored,
   }) =>
@@ -864,9 +29,9 @@ mixin _$LicenseDetailState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? created,
-    TResult? Function()? started,
-    TResult? Function()? resumed,
+    TResult? Function(LicenseData licenseList)? loadedLicenseList,
+    TResult? Function(List<List<LicenseParagraph>> licenseDetail)?
+        loadedLicenseDetail,
     TResult? Function()? destroyed,
     TResult? Function(Object error, StackTrace stackTrace)? errored,
   }) =>
@@ -874,9 +39,9 @@ mixin _$LicenseDetailState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? created,
-    TResult Function()? started,
-    TResult Function()? resumed,
+    TResult Function(LicenseData licenseList)? loadedLicenseList,
+    TResult Function(List<List<LicenseParagraph>> licenseDetail)?
+        loadedLicenseDetail,
     TResult Function()? destroyed,
     TResult Function(Object error, StackTrace stackTrace)? errored,
     required TResult orElse(),
@@ -885,9 +50,8 @@ mixin _$LicenseDetailState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Created value) created,
-    required TResult Function(_Started value) started,
-    required TResult Function(_Resumed value) resumed,
+    required TResult Function(_LoadedLicenseList value) loadedLicenseList,
+    required TResult Function(_LoadedLicenseDetail value) loadedLicenseDetail,
     required TResult Function(_Destroyed value) destroyed,
     required TResult Function(_Errored value) errored,
   }) =>
@@ -895,9 +59,8 @@ mixin _$LicenseDetailState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Created value)? created,
-    TResult? Function(_Started value)? started,
-    TResult? Function(_Resumed value)? resumed,
+    TResult? Function(_LoadedLicenseList value)? loadedLicenseList,
+    TResult? Function(_LoadedLicenseDetail value)? loadedLicenseDetail,
     TResult? Function(_Destroyed value)? destroyed,
     TResult? Function(_Errored value)? errored,
   }) =>
@@ -905,9 +68,8 @@ mixin _$LicenseDetailState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Created value)? created,
-    TResult Function(_Started value)? started,
-    TResult Function(_Resumed value)? resumed,
+    TResult Function(_LoadedLicenseList value)? loadedLicenseList,
+    TResult Function(_LoadedLicenseDetail value)? loadedLicenseDetail,
     TResult Function(_Destroyed value)? destroyed,
     TResult Function(_Errored value)? errored,
     required TResult orElse(),
@@ -950,12 +112,18 @@ class __$$_InitialCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Initial extends _Initial {
+class _$_Initial extends _Initial with DiagnosticableTreeMixin {
   const _$_Initial() : super._();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LicenseDetailState.initial()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'LicenseDetailState.initial'));
   }
 
   @override
@@ -971,9 +139,9 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() created,
-    required TResult Function() started,
-    required TResult Function() resumed,
+    required TResult Function(LicenseData licenseList) loadedLicenseList,
+    required TResult Function(List<List<LicenseParagraph>> licenseDetail)
+        loadedLicenseDetail,
     required TResult Function() destroyed,
     required TResult Function(Object error, StackTrace stackTrace) errored,
   }) {
@@ -984,9 +152,9 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? created,
-    TResult? Function()? started,
-    TResult? Function()? resumed,
+    TResult? Function(LicenseData licenseList)? loadedLicenseList,
+    TResult? Function(List<List<LicenseParagraph>> licenseDetail)?
+        loadedLicenseDetail,
     TResult? Function()? destroyed,
     TResult? Function(Object error, StackTrace stackTrace)? errored,
   }) {
@@ -997,9 +165,9 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? created,
-    TResult Function()? started,
-    TResult Function()? resumed,
+    TResult Function(LicenseData licenseList)? loadedLicenseList,
+    TResult Function(List<List<LicenseParagraph>> licenseDetail)?
+        loadedLicenseDetail,
     TResult Function()? destroyed,
     TResult Function(Object error, StackTrace stackTrace)? errored,
     required TResult orElse(),
@@ -1014,9 +182,8 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Created value) created,
-    required TResult Function(_Started value) started,
-    required TResult Function(_Resumed value) resumed,
+    required TResult Function(_LoadedLicenseList value) loadedLicenseList,
+    required TResult Function(_LoadedLicenseDetail value) loadedLicenseDetail,
     required TResult Function(_Destroyed value) destroyed,
     required TResult Function(_Errored value) errored,
   }) {
@@ -1027,9 +194,8 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Created value)? created,
-    TResult? Function(_Started value)? started,
-    TResult? Function(_Resumed value)? resumed,
+    TResult? Function(_LoadedLicenseList value)? loadedLicenseList,
+    TResult? Function(_LoadedLicenseDetail value)? loadedLicenseDetail,
     TResult? Function(_Destroyed value)? destroyed,
     TResult? Function(_Errored value)? errored,
   }) {
@@ -1040,9 +206,8 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Created value)? created,
-    TResult Function(_Started value)? started,
-    TResult Function(_Resumed value)? resumed,
+    TResult Function(_LoadedLicenseList value)? loadedLicenseList,
+    TResult Function(_LoadedLicenseDetail value)? loadedLicenseDetail,
     TResult Function(_Destroyed value)? destroyed,
     TResult Function(_Errored value)? errored,
     required TResult orElse(),
@@ -1060,78 +225,116 @@ abstract class _Initial extends LicenseDetailState {
 }
 
 /// @nodoc
-abstract class _$$_CreatedCopyWith<$Res> {
-  factory _$$_CreatedCopyWith(
-          _$_Created value, $Res Function(_$_Created) then) =
-      __$$_CreatedCopyWithImpl<$Res>;
+abstract class _$$_LoadedLicenseListCopyWith<$Res> {
+  factory _$$_LoadedLicenseListCopyWith(_$_LoadedLicenseList value,
+          $Res Function(_$_LoadedLicenseList) then) =
+      __$$_LoadedLicenseListCopyWithImpl<$Res>;
+  @useResult
+  $Res call({LicenseData licenseList});
 }
 
 /// @nodoc
-class __$$_CreatedCopyWithImpl<$Res>
-    extends _$LicenseDetailStateCopyWithImpl<$Res, _$_Created>
-    implements _$$_CreatedCopyWith<$Res> {
-  __$$_CreatedCopyWithImpl(_$_Created _value, $Res Function(_$_Created) _then)
+class __$$_LoadedLicenseListCopyWithImpl<$Res>
+    extends _$LicenseDetailStateCopyWithImpl<$Res, _$_LoadedLicenseList>
+    implements _$$_LoadedLicenseListCopyWith<$Res> {
+  __$$_LoadedLicenseListCopyWithImpl(
+      _$_LoadedLicenseList _value, $Res Function(_$_LoadedLicenseList) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? licenseList = null,
+  }) {
+    return _then(_$_LoadedLicenseList(
+      licenseList: null == licenseList
+          ? _value.licenseList
+          : licenseList // ignore: cast_nullable_to_non_nullable
+              as LicenseData,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_Created extends _Created {
-  const _$_Created() : super._();
+class _$_LoadedLicenseList extends _LoadedLicenseList
+    with DiagnosticableTreeMixin {
+  const _$_LoadedLicenseList({required this.licenseList}) : super._();
 
   @override
-  String toString() {
-    return 'LicenseDetailState.created()';
+  final LicenseData licenseList;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'LicenseDetailState.loadedLicenseList(licenseList: $licenseList)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LicenseDetailState.loadedLicenseList'))
+      ..add(DiagnosticsProperty('licenseList', licenseList));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Created);
+        (other.runtimeType == runtimeType &&
+            other is _$_LoadedLicenseList &&
+            (identical(other.licenseList, licenseList) ||
+                other.licenseList == licenseList));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, licenseList);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_LoadedLicenseListCopyWith<_$_LoadedLicenseList> get copyWith =>
+      __$$_LoadedLicenseListCopyWithImpl<_$_LoadedLicenseList>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() created,
-    required TResult Function() started,
-    required TResult Function() resumed,
+    required TResult Function(LicenseData licenseList) loadedLicenseList,
+    required TResult Function(List<List<LicenseParagraph>> licenseDetail)
+        loadedLicenseDetail,
     required TResult Function() destroyed,
     required TResult Function(Object error, StackTrace stackTrace) errored,
   }) {
-    return created();
+    return loadedLicenseList(licenseList);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? created,
-    TResult? Function()? started,
-    TResult? Function()? resumed,
+    TResult? Function(LicenseData licenseList)? loadedLicenseList,
+    TResult? Function(List<List<LicenseParagraph>> licenseDetail)?
+        loadedLicenseDetail,
     TResult? Function()? destroyed,
     TResult? Function(Object error, StackTrace stackTrace)? errored,
   }) {
-    return created?.call();
+    return loadedLicenseList?.call(licenseList);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? created,
-    TResult Function()? started,
-    TResult Function()? resumed,
+    TResult Function(LicenseData licenseList)? loadedLicenseList,
+    TResult Function(List<List<LicenseParagraph>> licenseDetail)?
+        loadedLicenseDetail,
     TResult Function()? destroyed,
     TResult Function(Object error, StackTrace stackTrace)? errored,
     required TResult orElse(),
   }) {
-    if (created != null) {
-      return created();
+    if (loadedLicenseList != null) {
+      return loadedLicenseList(licenseList);
     }
     return orElse();
   }
@@ -1140,124 +343,174 @@ class _$_Created extends _Created {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Created value) created,
-    required TResult Function(_Started value) started,
-    required TResult Function(_Resumed value) resumed,
+    required TResult Function(_LoadedLicenseList value) loadedLicenseList,
+    required TResult Function(_LoadedLicenseDetail value) loadedLicenseDetail,
     required TResult Function(_Destroyed value) destroyed,
     required TResult Function(_Errored value) errored,
   }) {
-    return created(this);
+    return loadedLicenseList(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Created value)? created,
-    TResult? Function(_Started value)? started,
-    TResult? Function(_Resumed value)? resumed,
+    TResult? Function(_LoadedLicenseList value)? loadedLicenseList,
+    TResult? Function(_LoadedLicenseDetail value)? loadedLicenseDetail,
     TResult? Function(_Destroyed value)? destroyed,
     TResult? Function(_Errored value)? errored,
   }) {
-    return created?.call(this);
+    return loadedLicenseList?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Created value)? created,
-    TResult Function(_Started value)? started,
-    TResult Function(_Resumed value)? resumed,
+    TResult Function(_LoadedLicenseList value)? loadedLicenseList,
+    TResult Function(_LoadedLicenseDetail value)? loadedLicenseDetail,
     TResult Function(_Destroyed value)? destroyed,
     TResult Function(_Errored value)? errored,
     required TResult orElse(),
   }) {
-    if (created != null) {
-      return created(this);
+    if (loadedLicenseList != null) {
+      return loadedLicenseList(this);
     }
     return orElse();
   }
 }
 
-abstract class _Created extends LicenseDetailState {
-  const factory _Created() = _$_Created;
-  const _Created._() : super._();
+abstract class _LoadedLicenseList extends LicenseDetailState {
+  const factory _LoadedLicenseList({required final LicenseData licenseList}) =
+      _$_LoadedLicenseList;
+  const _LoadedLicenseList._() : super._();
+
+  LicenseData get licenseList;
+  @JsonKey(ignore: true)
+  _$$_LoadedLicenseListCopyWith<_$_LoadedLicenseList> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_StartedCopyWith<$Res> {
-  factory _$$_StartedCopyWith(
-          _$_Started value, $Res Function(_$_Started) then) =
-      __$$_StartedCopyWithImpl<$Res>;
+abstract class _$$_LoadedLicenseDetailCopyWith<$Res> {
+  factory _$$_LoadedLicenseDetailCopyWith(_$_LoadedLicenseDetail value,
+          $Res Function(_$_LoadedLicenseDetail) then) =
+      __$$_LoadedLicenseDetailCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<List<LicenseParagraph>> licenseDetail});
 }
 
 /// @nodoc
-class __$$_StartedCopyWithImpl<$Res>
-    extends _$LicenseDetailStateCopyWithImpl<$Res, _$_Started>
-    implements _$$_StartedCopyWith<$Res> {
-  __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
+class __$$_LoadedLicenseDetailCopyWithImpl<$Res>
+    extends _$LicenseDetailStateCopyWithImpl<$Res, _$_LoadedLicenseDetail>
+    implements _$$_LoadedLicenseDetailCopyWith<$Res> {
+  __$$_LoadedLicenseDetailCopyWithImpl(_$_LoadedLicenseDetail _value,
+      $Res Function(_$_LoadedLicenseDetail) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? licenseDetail = null,
+  }) {
+    return _then(_$_LoadedLicenseDetail(
+      licenseDetail: null == licenseDetail
+          ? _value._licenseDetail
+          : licenseDetail // ignore: cast_nullable_to_non_nullable
+              as List<List<LicenseParagraph>>,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_Started extends _Started {
-  const _$_Started() : super._();
+class _$_LoadedLicenseDetail extends _LoadedLicenseDetail
+    with DiagnosticableTreeMixin {
+  const _$_LoadedLicenseDetail(
+      {required final List<List<LicenseParagraph>> licenseDetail})
+      : _licenseDetail = licenseDetail,
+        super._();
+
+  final List<List<LicenseParagraph>> _licenseDetail;
+  @override
+  List<List<LicenseParagraph>> get licenseDetail {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_licenseDetail);
+  }
 
   @override
-  String toString() {
-    return 'LicenseDetailState.started()';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'LicenseDetailState.loadedLicenseDetail(licenseDetail: $licenseDetail)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(
+          DiagnosticsProperty('type', 'LicenseDetailState.loadedLicenseDetail'))
+      ..add(DiagnosticsProperty('licenseDetail', licenseDetail));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Started);
+        (other.runtimeType == runtimeType &&
+            other is _$_LoadedLicenseDetail &&
+            const DeepCollectionEquality()
+                .equals(other._licenseDetail, _licenseDetail));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_licenseDetail));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_LoadedLicenseDetailCopyWith<_$_LoadedLicenseDetail> get copyWith =>
+      __$$_LoadedLicenseDetailCopyWithImpl<_$_LoadedLicenseDetail>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() created,
-    required TResult Function() started,
-    required TResult Function() resumed,
+    required TResult Function(LicenseData licenseList) loadedLicenseList,
+    required TResult Function(List<List<LicenseParagraph>> licenseDetail)
+        loadedLicenseDetail,
     required TResult Function() destroyed,
     required TResult Function(Object error, StackTrace stackTrace) errored,
   }) {
-    return started();
+    return loadedLicenseDetail(licenseDetail);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? created,
-    TResult? Function()? started,
-    TResult? Function()? resumed,
+    TResult? Function(LicenseData licenseList)? loadedLicenseList,
+    TResult? Function(List<List<LicenseParagraph>> licenseDetail)?
+        loadedLicenseDetail,
     TResult? Function()? destroyed,
     TResult? Function(Object error, StackTrace stackTrace)? errored,
   }) {
-    return started?.call();
+    return loadedLicenseDetail?.call(licenseDetail);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? created,
-    TResult Function()? started,
-    TResult Function()? resumed,
+    TResult Function(LicenseData licenseList)? loadedLicenseList,
+    TResult Function(List<List<LicenseParagraph>> licenseDetail)?
+        loadedLicenseDetail,
     TResult Function()? destroyed,
     TResult Function(Object error, StackTrace stackTrace)? errored,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started();
+    if (loadedLicenseDetail != null) {
+      return loadedLicenseDetail(licenseDetail);
     }
     return orElse();
   }
@@ -1266,175 +519,53 @@ class _$_Started extends _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Created value) created,
-    required TResult Function(_Started value) started,
-    required TResult Function(_Resumed value) resumed,
+    required TResult Function(_LoadedLicenseList value) loadedLicenseList,
+    required TResult Function(_LoadedLicenseDetail value) loadedLicenseDetail,
     required TResult Function(_Destroyed value) destroyed,
     required TResult Function(_Errored value) errored,
   }) {
-    return started(this);
+    return loadedLicenseDetail(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Created value)? created,
-    TResult? Function(_Started value)? started,
-    TResult? Function(_Resumed value)? resumed,
+    TResult? Function(_LoadedLicenseList value)? loadedLicenseList,
+    TResult? Function(_LoadedLicenseDetail value)? loadedLicenseDetail,
     TResult? Function(_Destroyed value)? destroyed,
     TResult? Function(_Errored value)? errored,
   }) {
-    return started?.call(this);
+    return loadedLicenseDetail?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Created value)? created,
-    TResult Function(_Started value)? started,
-    TResult Function(_Resumed value)? resumed,
+    TResult Function(_LoadedLicenseList value)? loadedLicenseList,
+    TResult Function(_LoadedLicenseDetail value)? loadedLicenseDetail,
     TResult Function(_Destroyed value)? destroyed,
     TResult Function(_Errored value)? errored,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started(this);
+    if (loadedLicenseDetail != null) {
+      return loadedLicenseDetail(this);
     }
     return orElse();
   }
 }
 
-abstract class _Started extends LicenseDetailState {
-  const factory _Started() = _$_Started;
-  const _Started._() : super._();
-}
+abstract class _LoadedLicenseDetail extends LicenseDetailState {
+  const factory _LoadedLicenseDetail(
+          {required final List<List<LicenseParagraph>> licenseDetail}) =
+      _$_LoadedLicenseDetail;
+  const _LoadedLicenseDetail._() : super._();
 
-/// @nodoc
-abstract class _$$_ResumedCopyWith<$Res> {
-  factory _$$_ResumedCopyWith(
-          _$_Resumed value, $Res Function(_$_Resumed) then) =
-      __$$_ResumedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_ResumedCopyWithImpl<$Res>
-    extends _$LicenseDetailStateCopyWithImpl<$Res, _$_Resumed>
-    implements _$$_ResumedCopyWith<$Res> {
-  __$$_ResumedCopyWithImpl(_$_Resumed _value, $Res Function(_$_Resumed) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_Resumed extends _Resumed {
-  const _$_Resumed() : super._();
-
-  @override
-  String toString() {
-    return 'LicenseDetailState.resumed()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Resumed);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() created,
-    required TResult Function() started,
-    required TResult Function() resumed,
-    required TResult Function() destroyed,
-    required TResult Function(Object error, StackTrace stackTrace) errored,
-  }) {
-    return resumed();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? created,
-    TResult? Function()? started,
-    TResult? Function()? resumed,
-    TResult? Function()? destroyed,
-    TResult? Function(Object error, StackTrace stackTrace)? errored,
-  }) {
-    return resumed?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? created,
-    TResult Function()? started,
-    TResult Function()? resumed,
-    TResult Function()? destroyed,
-    TResult Function(Object error, StackTrace stackTrace)? errored,
-    required TResult orElse(),
-  }) {
-    if (resumed != null) {
-      return resumed();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Created value) created,
-    required TResult Function(_Started value) started,
-    required TResult Function(_Resumed value) resumed,
-    required TResult Function(_Destroyed value) destroyed,
-    required TResult Function(_Errored value) errored,
-  }) {
-    return resumed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Created value)? created,
-    TResult? Function(_Started value)? started,
-    TResult? Function(_Resumed value)? resumed,
-    TResult? Function(_Destroyed value)? destroyed,
-    TResult? Function(_Errored value)? errored,
-  }) {
-    return resumed?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Created value)? created,
-    TResult Function(_Started value)? started,
-    TResult Function(_Resumed value)? resumed,
-    TResult Function(_Destroyed value)? destroyed,
-    TResult Function(_Errored value)? errored,
-    required TResult orElse(),
-  }) {
-    if (resumed != null) {
-      return resumed(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Resumed extends LicenseDetailState {
-  const factory _Resumed() = _$_Resumed;
-  const _Resumed._() : super._();
+  List<List<LicenseParagraph>> get licenseDetail;
+  @JsonKey(ignore: true)
+  _$$_LoadedLicenseDetailCopyWith<_$_LoadedLicenseDetail> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1455,12 +586,18 @@ class __$$_DestroyedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Destroyed extends _Destroyed {
+class _$_Destroyed extends _Destroyed with DiagnosticableTreeMixin {
   const _$_Destroyed() : super._();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LicenseDetailState.destroyed()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'LicenseDetailState.destroyed'));
   }
 
   @override
@@ -1476,9 +613,9 @@ class _$_Destroyed extends _Destroyed {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() created,
-    required TResult Function() started,
-    required TResult Function() resumed,
+    required TResult Function(LicenseData licenseList) loadedLicenseList,
+    required TResult Function(List<List<LicenseParagraph>> licenseDetail)
+        loadedLicenseDetail,
     required TResult Function() destroyed,
     required TResult Function(Object error, StackTrace stackTrace) errored,
   }) {
@@ -1489,9 +626,9 @@ class _$_Destroyed extends _Destroyed {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? created,
-    TResult? Function()? started,
-    TResult? Function()? resumed,
+    TResult? Function(LicenseData licenseList)? loadedLicenseList,
+    TResult? Function(List<List<LicenseParagraph>> licenseDetail)?
+        loadedLicenseDetail,
     TResult? Function()? destroyed,
     TResult? Function(Object error, StackTrace stackTrace)? errored,
   }) {
@@ -1502,9 +639,9 @@ class _$_Destroyed extends _Destroyed {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? created,
-    TResult Function()? started,
-    TResult Function()? resumed,
+    TResult Function(LicenseData licenseList)? loadedLicenseList,
+    TResult Function(List<List<LicenseParagraph>> licenseDetail)?
+        loadedLicenseDetail,
     TResult Function()? destroyed,
     TResult Function(Object error, StackTrace stackTrace)? errored,
     required TResult orElse(),
@@ -1519,9 +656,8 @@ class _$_Destroyed extends _Destroyed {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Created value) created,
-    required TResult Function(_Started value) started,
-    required TResult Function(_Resumed value) resumed,
+    required TResult Function(_LoadedLicenseList value) loadedLicenseList,
+    required TResult Function(_LoadedLicenseDetail value) loadedLicenseDetail,
     required TResult Function(_Destroyed value) destroyed,
     required TResult Function(_Errored value) errored,
   }) {
@@ -1532,9 +668,8 @@ class _$_Destroyed extends _Destroyed {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Created value)? created,
-    TResult? Function(_Started value)? started,
-    TResult? Function(_Resumed value)? resumed,
+    TResult? Function(_LoadedLicenseList value)? loadedLicenseList,
+    TResult? Function(_LoadedLicenseDetail value)? loadedLicenseDetail,
     TResult? Function(_Destroyed value)? destroyed,
     TResult? Function(_Errored value)? errored,
   }) {
@@ -1545,9 +680,8 @@ class _$_Destroyed extends _Destroyed {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Created value)? created,
-    TResult Function(_Started value)? started,
-    TResult Function(_Resumed value)? resumed,
+    TResult Function(_LoadedLicenseList value)? loadedLicenseList,
+    TResult Function(_LoadedLicenseDetail value)? loadedLicenseDetail,
     TResult Function(_Destroyed value)? destroyed,
     TResult Function(_Errored value)? errored,
     required TResult orElse(),
@@ -1598,7 +732,7 @@ class __$$_ErroredCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Errored extends _Errored {
+class _$_Errored extends _Errored with DiagnosticableTreeMixin {
   const _$_Errored({required this.error, required this.stackTrace}) : super._();
 
   @override
@@ -1607,8 +741,17 @@ class _$_Errored extends _Errored {
   final StackTrace stackTrace;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LicenseDetailState.errored(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LicenseDetailState.errored'))
+      ..add(DiagnosticsProperty('error', error))
+      ..add(DiagnosticsProperty('stackTrace', stackTrace));
   }
 
   @override
@@ -1635,9 +778,9 @@ class _$_Errored extends _Errored {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() created,
-    required TResult Function() started,
-    required TResult Function() resumed,
+    required TResult Function(LicenseData licenseList) loadedLicenseList,
+    required TResult Function(List<List<LicenseParagraph>> licenseDetail)
+        loadedLicenseDetail,
     required TResult Function() destroyed,
     required TResult Function(Object error, StackTrace stackTrace) errored,
   }) {
@@ -1648,9 +791,9 @@ class _$_Errored extends _Errored {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? created,
-    TResult? Function()? started,
-    TResult? Function()? resumed,
+    TResult? Function(LicenseData licenseList)? loadedLicenseList,
+    TResult? Function(List<List<LicenseParagraph>> licenseDetail)?
+        loadedLicenseDetail,
     TResult? Function()? destroyed,
     TResult? Function(Object error, StackTrace stackTrace)? errored,
   }) {
@@ -1661,9 +804,9 @@ class _$_Errored extends _Errored {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? created,
-    TResult Function()? started,
-    TResult Function()? resumed,
+    TResult Function(LicenseData licenseList)? loadedLicenseList,
+    TResult Function(List<List<LicenseParagraph>> licenseDetail)?
+        loadedLicenseDetail,
     TResult Function()? destroyed,
     TResult Function(Object error, StackTrace stackTrace)? errored,
     required TResult orElse(),
@@ -1678,9 +821,8 @@ class _$_Errored extends _Errored {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Created value) created,
-    required TResult Function(_Started value) started,
-    required TResult Function(_Resumed value) resumed,
+    required TResult Function(_LoadedLicenseList value) loadedLicenseList,
+    required TResult Function(_LoadedLicenseDetail value) loadedLicenseDetail,
     required TResult Function(_Destroyed value) destroyed,
     required TResult Function(_Errored value) errored,
   }) {
@@ -1691,9 +833,8 @@ class _$_Errored extends _Errored {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Created value)? created,
-    TResult? Function(_Started value)? started,
-    TResult? Function(_Resumed value)? resumed,
+    TResult? Function(_LoadedLicenseList value)? loadedLicenseList,
+    TResult? Function(_LoadedLicenseDetail value)? loadedLicenseDetail,
     TResult? Function(_Destroyed value)? destroyed,
     TResult? Function(_Errored value)? errored,
   }) {
@@ -1704,9 +845,8 @@ class _$_Errored extends _Errored {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Created value)? created,
-    TResult Function(_Started value)? started,
-    TResult Function(_Resumed value)? resumed,
+    TResult Function(_LoadedLicenseList value)? loadedLicenseList,
+    TResult Function(_LoadedLicenseDetail value)? loadedLicenseDetail,
     TResult Function(_Destroyed value)? destroyed,
     TResult Function(_Errored value)? errored,
     required TResult orElse(),

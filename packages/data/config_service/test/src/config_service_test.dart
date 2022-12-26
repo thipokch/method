@@ -1,3 +1,4 @@
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:method_config_service/config_service.dart';
 import 'package:test/test.dart';
 
@@ -6,12 +7,13 @@ void main() {
     late ConfigService configService;
 
     setUp(() {
-      configService = const ConfigService();
+      configService =
+          ConfigService(remoteConfig: FirebaseRemoteConfig.instance);
     });
 
     test('can be instantiated', () {
-      expect(const ConfigService(), isNotNull);
+      expect(ConfigService(remoteConfig: FirebaseRemoteConfig.instance),
+          isNotNull);
     });
-    
   });
 }

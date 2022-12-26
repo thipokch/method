@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:method_license_list/license_list.dart';
+import 'package:method_style/method_style.dart';
 
-/// {@template license_list_page}
-/// A description for LicenseListPage
-/// {@endtemplate}
+import '../license_list.dart';
+
 class LicenseListPage extends StatelessWidget {
-  /// {@macro license_list_page}
   const LicenseListPage({super.key});
 
-
   @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => LicenseListBloc(),
-      child: const Scaffold(
-        body: LicenseListView(),
-      ),
-    );
-  }   
+  Widget build(BuildContext context) => const MtAppPage(
+        name: Text("Acknowledgments"),
+        // description: Text(""),
+        slivers: [
+          LicenseListSliver(),
+        ],
+      );
 }

@@ -6,6 +6,7 @@ export 'context_menu/context_menu.dart';
 export 'emoji/emoji.dart';
 export 'float/float.dart';
 export 'heading/heading.dart';
+export 'list/list.dart';
 export 'nav/nav.dart';
 export 'page/page.dart';
 export 'scaffold/scaffold.dart';

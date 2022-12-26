@@ -14,7 +14,13 @@
         "**/.metadata": true,
         "**/.packages": true,
         "**/*.iml": true,
-        "**/pubspec.lock": true
+        "**/pubspec.lock": true,
+        "**/pubspec_overrides.yaml": true,
+        "**/analysis_options.yaml": true
     },
-    "explorerExclude.backup": {}
+    "explorerExclude.backup": {},
+    "editor.tokenColorCustomizations": {
+        "comments": "",
+        "textMateRules": []
+    },
 }

@@ -20,7 +20,7 @@ class AppRoute {
       settings.name ?? GoRouter.of(defaultNavigator.currentContext!).location;
 
   // static final defaultObserver = AnalyticRouteObserver(
-  //   analytic: AnalyticRepository,
+  //   analytic: AnalyticService,
   //   nameExtractor: defaultNameExtractor,
   // );
 

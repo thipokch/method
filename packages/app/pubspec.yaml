@@ -55,9 +55,17 @@ dependencies:
   # uuid: ^3.0.6
 
   # method_core:
-  method_style:
   # method_data:
+  
   go_router:
+
+  method_style:
+
+  # Features
+
+  method_license_detail:
+  method_license_list:
+  method_settings_list:
 
 dev_dependencies:
   method_analysis:

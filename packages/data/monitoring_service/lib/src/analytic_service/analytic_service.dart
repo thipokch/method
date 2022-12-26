@@ -1,14 +1,15 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:rudder_sdk_flutter/RudderController.dart';
 
 import 'analytic_context.dart';
 
-/// {@template analytic_repository}
-/// [AnalyticRepository] description
+/// {@template analytic_service}
+/// [AnalyticService] description
 /// {@endtemplate}
-class AnalyticRepository {
-  /// {@macro analytic_repository}
-  AnalyticRepository({required RudderController rudder}) : _rudder = rudder {
+class AnalyticService {
+  /// {@macro analytic_service}
+  AnalyticService({required RudderController rudder}) : _rudder = rudder {
     if (Firebase.apps.isEmpty) {
       throw Exception(
         "Firebase Analytics must be initialized for RudderStacks' Firebase Integration.",

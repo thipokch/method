@@ -11,7 +11,10 @@ dependencies:
   flutter:
     sdk: flutter
 
-dev_dependencies:dev_dependencies:
+  firebase_messaging: ^14.2.0
+  firebase_in_app_messaging: ^0.7.0+9
+
+dev_dependencies:
 
   # Code Analysis
 

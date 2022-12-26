@@ -9,6 +9,5 @@ class AnalyticContext {
     required this.map,
   });
 
-  String get anonymousId =>
-      map['anonymousId'] ?? map['traits']['anonymousId'] ?? "undefined";
+  String? get anonymousId => map['anonymousId'] ?? map['traits']['anonymousId'];
 }

@@ -183,6 +183,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.1"
+  dynamic_color:
+    dependency: transitive
+    description:
+      name: dynamic_color
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.5.4"
   fake_async:
     dependency: transitive
     description:
@@ -190,6 +197,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.1"
+  figma_squircle:
+    dependency: transitive
+    description:
+      name: figma_squircle
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.3"
   file:
     dependency: transitive
     description:
@@ -204,6 +218,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
+  fluentui_system_icons:
+    dependency: transitive
+    description:
+      name: fluentui_system_icons
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.189"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -228,6 +249,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  flutter_svg:
+    dependency: transitive
+    description:
+      name: flutter_svg
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.6"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -264,6 +292,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  gaimon:
+    dependency: transitive
+    description:
+      name: gaimon
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   glob:
     dependency: transitive
     description:
@@ -299,6 +334,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.2"
+  image:
+    dependency: transitive
+    description:
+      name: image
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.2.2"
   integration_test:
     dependency: "direct dev"
     description: flutter
@@ -332,6 +374,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.5.4"
+  linked_scroll_controller:
+    dependency: transitive
+    description:
+      name: linked_scroll_controller
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0"
   lints:
     dependency: transitive
     description:
@@ -374,6 +423,20 @@ packages:
       relative: true
     source: path
     version: "1.0.0+1"
+  method_license_repository:
+    dependency: "direct main"
+    description:
+      path: "../../data/license_repository"
+      relative: true
+    source: path
+    version: "1.0.0+1"
+  method_style:
+    dependency: "direct main"
+    description:
+      path: "../../style"
+      relative: true
+    source: path
+    version: "0.0.0"
   mime:
     dependency: transitive
     description:
@@ -416,6 +479,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.2"
+  path_drawing:
+    dependency: transitive
+    description:
+      name: path_drawing
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
+  path_parsing:
+    dependency: transitive
+    description:
+      name: path_parsing
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
+  petitparser:
+    dependency: transitive
+    description:
+      name: petitparser
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.1.0"
   platform:
     dependency: transitive
     description:
@@ -645,6 +729,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
+  xml:
+    dependency: transitive
+    description:
+      name: xml
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "6.1.0"
   yaml:
     dependency: transitive
     description:
@@ -654,4 +745,4 @@ packages:
     version: "3.1.1"
 sdks:
   dart: ">=2.18.0 <3.0.0"
-  flutter: ">=1.16.0"
+  flutter: ">=3.3.0"

@@ -17,6 +17,9 @@ dependencies:
 
   go_router:
 
+  method_style:
+  method_license_repository:
+
 dev_dependencies:
 
   # Code Analysis

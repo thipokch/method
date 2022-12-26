@@ -1,0 +1,10 @@
+# melos_managed_dependency_overrides: go_router,method_analysis,method_monitoring_service,method_style
+dependency_overrides:
+  go_router:
+    path: ../../patch/go_router
+  method_analysis:
+    path: ../../tool/method_analysis
+  method_monitoring_service:
+    path: ../../data/monitoring_service
+  method_style:
+    path: ../../style

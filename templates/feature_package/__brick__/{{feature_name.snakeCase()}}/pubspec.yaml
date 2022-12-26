@@ -17,6 +17,9 @@ dependencies:
 
   go_router:
 
+  method_style:
+  method_monitoring_service:
+
 dev_dependencies:
 
   # Code Analysis

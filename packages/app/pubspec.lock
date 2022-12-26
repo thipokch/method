@@ -617,6 +617,34 @@ packages:
       relative: true
     source: path
     version: "1.0.0+1"
+  method_license_detail:
+    dependency: "direct main"
+    description:
+      path: "../feature/license_detail"
+      relative: true
+    source: path
+    version: "1.0.0+1"
+  method_license_list:
+    dependency: "direct main"
+    description:
+      path: "../feature/license_list"
+      relative: true
+    source: path
+    version: "1.0.0+1"
+  method_license_repository:
+    dependency: "direct overridden"
+    description:
+      path: "../data/license_repository"
+      relative: true
+    source: path
+    version: "1.0.0+1"
+  method_settings_list:
+    dependency: "direct main"
+    description:
+      path: "../feature/settings_list"
+      relative: true
+    source: path
+    version: "1.0.0+1"
   method_style:
     dependency: "direct main"
     description:
@@ -624,6 +652,13 @@ packages:
       relative: true
     source: path
     version: "0.0.0"
+  method_user_repository:
+    dependency: "direct overridden"
+    description:
+      path: "../data/user_repository"
+      relative: true
+    source: path
+    version: "1.0.0+1"
   mime:
     dependency: transitive
     description:

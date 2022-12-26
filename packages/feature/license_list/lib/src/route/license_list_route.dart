@@ -1,19 +1,24 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../view/license_list_page.dart';
+import '../license_list.dart';
 
-/// {@template license_list_route}
-/// A description for LicenseListRoute
-/// {@endtemplate}
-class LicenseListRoute extends GoRouteData{
-  /// {@macro license_list_route}
+class LicenseListRoute extends GoRouteData {
   const LicenseListRoute();
 
+  static String name = "LicenseList";
+
   @override
-  Widget build(BuildContext context) => const LicenseListPage();
+  Widget build(BuildContext context) => BlocProvider(
+        create: (context) => LicenseListBloc(
+          navigator: context.read(),
+          licenseRepo: context.read(),
+        ),
+        child: const LicenseListPage(),
+      );
 
   @override
   Page<void> buildPageWithState(BuildContext context, GoRouterState state) =>
-      NoTransitionPage(child: build(context));
+      CupertinoPage(child: build(context), name: name);
 }

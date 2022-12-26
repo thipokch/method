@@ -23,14 +23,6 @@ GoRoute get $settingsFlow => GoRouteData.$route(
           factory: $SettingsAppearanceRouteExtension._fromState,
         ),
         GoRouteData.$route(
-          path: 'privacy',
-          factory: $PrivacyRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'terms',
-          factory: $TermsRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
           path: 'license',
           factory: $LicenseListRouteExtension._fromState,
           routes: [
@@ -74,30 +66,6 @@ extension $SettingsAppearanceRouteExtension on SettingsAppearanceRoute {
 
   String get location => GoRouteData.$location(
         '/settings/appearance',
-      );
-
-  void go(BuildContext context) => context.go(location, extra: this);
-
-  void push(BuildContext context) => context.push(location, extra: this);
-}
-
-extension $PrivacyRouteExtension on PrivacyRoute {
-  static PrivacyRoute _fromState(GoRouterState state) => const PrivacyRoute();
-
-  String get location => GoRouteData.$location(
-        '/settings/privacy',
-      );
-
-  void go(BuildContext context) => context.go(location, extra: this);
-
-  void push(BuildContext context) => context.push(location, extra: this);
-}
-
-extension $TermsRouteExtension on TermsRoute {
-  static TermsRoute _fromState(GoRouterState state) => const TermsRoute();
-
-  String get location => GoRouteData.$location(
-        '/settings/terms',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
