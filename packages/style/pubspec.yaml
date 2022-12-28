@@ -23,9 +23,10 @@ dependencies:
   yaml: ^3.1.0
   image: ^3.2.2
 
-  fluentui_system_icons: ^1.1.178
+  fluentui_system_icons: ^1.1.181
   gaimon: ^1.0.1
   dynamic_color: ^1.5.4
+  modal_bottom_sheet: ^2.1.2
 
 
 dev_dependencies:

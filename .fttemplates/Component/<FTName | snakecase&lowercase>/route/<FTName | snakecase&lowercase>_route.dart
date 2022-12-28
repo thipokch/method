@@ -10,6 +10,6 @@ class <FTName | pascalcase>Route extends GoRouteData{
   Widget build(BuildContext context) => const <FTName | pascalcase>Page();
 
   @override
-  Page<void> buildPageWithState(BuildContext context, GoRouterState state) =>
+  Page<void> buildPage(BuildContext context, GoRouterState state) =>
       NoTransitionPage(child: build(context));
 }

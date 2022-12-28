@@ -17,6 +17,10 @@
 			"path": "../packages/style",
 		},
 		{
+			"name": "🌎 common",
+			"path": "../packages/common",
+		},
+		{
 			"name": "🎪 preview",
 			"path": "../packages/preview",
 		},

@@ -16,7 +16,7 @@ void main() {
         onSelectPrivacy: () {},
         onSelectTerms: () {},
       )));
-      expect(find.byType(SettingsListView), findsOneWidget);
+      expect(find.byType(SettingsListSliver), findsOneWidget);
     });
   });
 }

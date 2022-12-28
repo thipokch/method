@@ -25,7 +25,7 @@ class SettingsListPage extends StatelessWidget {
         name: const Text("Me"),
         // description: Text(""),
         slivers: [
-          SettingsListView(
+          SettingsListSliver(
             onSelectData: onSelectData,
             onSelectAppearance: onSelectAppearance,
             onSelectLicense: onSelectLicense,

@@ -56,16 +56,20 @@ dependencies:
 
   # method_core:
   # method_data:
-  
+
   go_router:
 
   method_style:
 
   # Features
-
   method_license_detail:
   method_license_list:
   method_settings_list:
+  method_settings_appearance:
+
+  # Repository & Services
+  method_monitoring_service:
+  method_user_repository:
 
 dev_dependencies:
   method_analysis:
@@ -80,8 +84,8 @@ dev_dependencies:
 
   build_runner: ^2.3.0
   freezed: ^2.2.0
-  json_serializable: ^6.5.4 
-  go_router_builder: ^1.0.9
+  json_serializable: ^6.5.4
+  go_router_builder: ^1.0.15
 
   # Testing
 
@@ -89,8 +93,8 @@ dev_dependencies:
     sdk: flutter
   integration_test:
     sdk: flutter
-  bloc_test: ^9.1.0 
-  mocktail: ^0.3.0 
+  bloc_test: ^9.1.0
+  mocktail: ^0.3.0
 
 flutter:
   assets:

@@ -6,9 +6,7 @@
 
 import 'dart:core';
 import 'package:flutter/material.dart';
-import 'package:method_app/settings_list/settings_list.dart';
 import 'package:method_app_preview/app.dart';
-import 'package:method_app_preview/src/settings.dart';
 import 'package:method_preview/method_preview.dart';
 import 'package:method_style/method_style.dart';
 import 'package:widgetbook/widgetbook.dart';
@@ -161,29 +159,7 @@ class HotReload extends StatelessWidget {
       categories: [
         WidgetbookCategory(
           name: 'use cases',
-          folders: [
-            WidgetbookFolder(
-              name: 'settings_list',
-              widgets: [],
-              folders: [
-                WidgetbookFolder(
-                  name: 'page',
-                  widgets: [
-                    WidgetbookComponent(
-                      name: 'SettingsListPage',
-                      useCases: [
-                        WidgetbookUseCase(
-                          name: 'Default',
-                          builder: (context) => buildSettingsList(context),
-                        ),
-                      ],
-                    ),
-                  ],
-                  folders: [],
-                ),
-              ],
-            ),
-          ],
+          folders: [],
           widgets: [],
         ),
       ],

@@ -14,6 +14,6 @@ class {{feature_name.pascalCase()}}Route extends GoRouteData{
   Widget build(BuildContext context) => const {{feature_name.pascalCase()}}Page();
 
   @override
-  Page<void> buildPageWithState(BuildContext context, GoRouterState state) =>
+  Page<void> buildPage(BuildContext context, GoRouterState state) =>
       NoTransitionPage(child: build(context));
 }

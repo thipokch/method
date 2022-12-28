@@ -14,7 +14,7 @@ void main() {
             create: (_) => AppBloc(
               routerConfig: GoRouter(
                 debugLogDiagnostics: true,
-                initialLocation: const SettingsFlow().location,
+                initialLocation: const SettingsFlow().path,
                 routes: $appRoutes,
               ),
             ),

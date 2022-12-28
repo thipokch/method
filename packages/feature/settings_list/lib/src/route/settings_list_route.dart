@@ -22,7 +22,7 @@ class SettingsListRoute extends GoRouteData {
   final VoidCallback onSelectTerms;
 
   @override
-  Widget build(BuildContext context) => SettingsListPage(
+  Widget build(BuildContext context, GoRouterState state) => SettingsListPage(
         onSelectData: onSelectData,
         onSelectAppearance: onSelectAppearance,
         onSelectLicense: onSelectLicense,
@@ -32,6 +32,6 @@ class SettingsListRoute extends GoRouteData {
       );
 
   @override
-  Page<void> buildPageWithState(BuildContext context, GoRouterState state) =>
-      NoTransitionPage(child: build(context), name: name);
+  Page<void> buildPage(BuildContext context, GoRouterState state) =>
+      NoTransitionPage(child: build(context, state), name: name);
 }

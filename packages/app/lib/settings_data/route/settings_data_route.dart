@@ -19,6 +19,6 @@ class SettingsDataRoute extends GoRouteData {
       );
 
   @override
-  Page<void> buildPageWithState(BuildContext context, GoRouterState state) =>
+  Page<void> buildPage(BuildContext context, GoRouterState state) =>
       CupertinoPage(child: build(context), name: name);
 }

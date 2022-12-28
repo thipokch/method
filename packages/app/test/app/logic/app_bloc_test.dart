@@ -14,7 +14,7 @@ void main() {
       build: () => AppBloc(
         routerConfig: GoRouter(
           debugLogDiagnostics: true,
-          initialLocation: const SessionFlow().location,
+          initialLocation: const SessionFlow().path,
           routes: $appRoutes,
         ),
         services: const [],

@@ -14,6 +14,6 @@ class AppInfoRoute extends GoRouteData{
   Widget build(BuildContext context) => const AppInfoPage();
 
   @override
-  Page<void> buildPageWithState(BuildContext context, GoRouterState state) =>
+  Page<void> buildPage(BuildContext context, GoRouterState state) =>
       NoTransitionPage(child: build(context));
 }

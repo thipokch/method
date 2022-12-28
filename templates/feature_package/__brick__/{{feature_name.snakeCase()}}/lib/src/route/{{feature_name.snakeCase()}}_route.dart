@@ -10,10 +10,13 @@ class {{feature_name.pascalCase()}}Route extends GoRouteData{
   /// {@macro {{feature_name.snakeCase()}}_route}
   const {{feature_name.pascalCase()}}Route();
 
-  @override
-  Widget build(BuildContext context) => const {{feature_name.pascalCase()}}Page();
+  static String name = "{{feature_name.pascalCase()}}";
 
   @override
-  Page<void> buildPageWithState(BuildContext context, GoRouterState state) =>
-      NoTransitionPage(child: build(context));
+  Widget build(context, state) => 
+      const {{feature_name.pascalCase()}}Page();
+
+  @override
+  Page<void> buildPage(context, state) =>
+      NoTransitionPage(child: build(context, state));
 }

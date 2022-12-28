@@ -8,7 +8,7 @@ void main() {
   group('SettingsListView', () {
     testWidgets('renders Text', (tester) async {
       await tester.pumpWidget(
-        MaterialApp(home: SettingsListView(
+        MaterialApp(home: SettingsListSliver(
           onSelectData: () {},
           onSelectAppearance: () {},
           onSelectLicense: () {},

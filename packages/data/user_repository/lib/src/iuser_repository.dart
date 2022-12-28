@@ -1,11 +1,10 @@
 part of 'user_repository.dart';
 
 /// An interface for UserRepository
-abstract class IUserRepository{ 
-  /// A description for getThemeMode
-  FutureOr<ThemeMode> getThemeMode();
-  
+abstract class IUserRepository {
+  /// A description for streamUser
+  Stream<User> streamUser();
+
   /// A description for setThemeMode
-  FutureOr<void> setThemeMode();
-  
+  void setThemeMode(ThemeMode themeMode);
 }

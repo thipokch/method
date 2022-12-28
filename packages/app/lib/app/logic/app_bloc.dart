@@ -12,8 +12,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:method_app/app/app.dart';
-import 'package:method_app/settings_appearance/logic/settings_appearance_bloc.dart';
+import 'package:method_app/route/route.dart';
+import 'package:method_monitoring_service/monitoring_service.dart';
 import 'package:method_style/method_style.dart';
+import 'package:method_user_repository/user_repository.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
@@ -59,9 +61,15 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   // DEFAULTS
 
   Future<List<SingleChildStatelessWidget>> defaultServices() async => [
-        Provider<LicenseRepository>(
-          create: (_) => LicenseRepository(),
+        Provider.value(
+          value: analytics,
         ),
+        Provider<UserRepository>(
+          create: (_) => UserRepository(),
+        ),
+        // Provider<LicenseRepository>(
+        //   create: (_) => LicenseRepository(),
+        // ),
         // Provider<FirebaseAnalytics>(
         //   create: (_) => FirebaseAnalytics.instance,
         // ),
@@ -91,7 +99,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
           initialData: null,
         ),
         Provider<GlobalKey<NavigatorState>>.value(
-          value: AppRoute.defaultNavigator,
+          value: AppRouter.defaultNavigator,
         ),
         // Provider<Repository>.value(
         //   value: await Repository.open(),
@@ -103,16 +111,17 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         Provider(
           create: (context) => ChromeSafariBrowser(),
         ),
+
         // Provider(
         //   create: (_) => RudderController.instance,
         // ),
       ];
 
-  void handleSettingsAppearance(
-    BuildContext context,
-    SettingsAppearanceState state,
-  ) =>
-      state.mapOrNull();
+  // void handleSettingsAppearance(
+  //   BuildContext context,
+  //   SettingsAppearanceState state,
+  // ) =>
+  //     state.mapOrNull();
 
   // EVENT HANDLERS
 

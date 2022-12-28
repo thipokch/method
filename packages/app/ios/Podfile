@@ -33,7 +33,7 @@ target 'Runner' do
 
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
   # pod 'SwiftCollection', '~> 0.5'
-  pod 'Rudder-Firebase', :path => '../../../patch/rudder-integration-firebase-ios'
+  pod 'Rudder-Firebase', :path => '../../patch/rudder-integration-firebase-ios'
 end
 
 post_install do |installer|

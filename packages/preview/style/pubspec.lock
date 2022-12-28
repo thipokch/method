@@ -274,7 +274,7 @@ packages:
       path: "../../patch/go_router"
       relative: true
     source: path
-    version: "5.1.0"
+    version: "6.0.0"
   graphs:
     dependency: transitive
     description:
@@ -401,6 +401,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
+  modal_bottom_sheet:
+    dependency: transitive
+    description:
+      name: modal_bottom_sheet
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.2"
   nested:
     dependency: transitive
     description:

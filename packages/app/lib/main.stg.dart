@@ -7,9 +7,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:method_app/app/logic/app_bloc.dart';
-import 'package:method_app/app/route/route.dart';
+import 'package:method_app/route/route.dart';
 import 'package:method_app/app/view/view.dart';
-import 'package:method_data/method_data.dart';
+import 'package:method_monitoring_service/monitoring_service.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:rudder_integration_firebase_flutter/rudder_integration_firebase_flutter.dart';
 import 'package:rudder_sdk_flutter/RudderController.dart';
@@ -58,7 +58,7 @@ Future<void> main() async {
         BlocProvider(
           create: (_) => AppBloc(
             // debugMode: kDebugMode,
-            routerConfig: AppRoute.defaultRouter,
+            routerConfig: AppRouter.defaultRouter,
             // remoteConfig: RemoteConfigSettings(
             //   fetchTimeout: const Duration(minutes: 1),
             //   minimumFetchInterval: const Duration(minutes: 5),

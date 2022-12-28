@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
-import '../license_list.dart';
+import 'package:method_license_list/license_list.dart';
 
 class LicenseListRoute extends GoRouteData {
   const LicenseListRoute();
@@ -19,6 +18,6 @@ class LicenseListRoute extends GoRouteData {
       );
 
   @override
-  Page<void> buildPageWithState(BuildContext context, GoRouterState state) =>
+  Page<void> buildPage(BuildContext context, GoRouterState state) =>
       CupertinoPage(child: build(context), name: name);
 }

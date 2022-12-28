@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:method_app/app/route/app_route.dart';
+import 'package:method_app/route/app_route.dart';
 import 'package:method_app/session_list/session_list.dart';
 import 'package:method_core/model/session.dart';
 import 'package:method_data/collection/session.dart';
